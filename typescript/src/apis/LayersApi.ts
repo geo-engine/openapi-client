@@ -20,6 +20,7 @@ import type {
   AddLayerCollection,
   Layer,
   LayerCollection,
+  SearchCapabilities,
   TaskResponse,
 } from '../models/index';
 import {
@@ -33,6 +34,8 @@ import {
     LayerToJSON,
     LayerCollectionFromJSON,
     LayerCollectionToJSON,
+    SearchCapabilitiesFromJSON,
+    SearchCapabilitiesToJSON,
     TaskResponseFromJSON,
     TaskResponseToJSON,
 } from '../models/index';
@@ -55,6 +58,15 @@ export interface AddExistingLayerToCollectionRequest {
 export interface AddLayerRequest {
     collection: string;
     addLayer: AddLayer;
+}
+
+export interface AutocompleteHandlerRequest {
+    provider: string;
+    collection: string;
+    searchType: string;
+    searchString: string;
+    limit: number;
+    offset: number;
 }
 
 export interface LayerHandlerRequest {
@@ -96,6 +108,19 @@ export interface RemoveCollectionFromCollectionRequest {
 export interface RemoveLayerFromCollectionRequest {
     collection: string;
     layer: string;
+}
+
+export interface SearchCapabilitiesHandlerRequest {
+    provider: string;
+}
+
+export interface SearchHandlerRequest {
+    provider: string;
+    collection: string;
+    searchType: string;
+    searchString: string;
+    limit: number;
+    offset: number;
 }
 
 /**
@@ -280,6 +305,62 @@ export class LayersApi extends runtime.BaseAPI {
      */
     async addLayer(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
         const response = await this.addLayerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async autocompleteHandlerRaw(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling autocompleteHandler.');
+        }
+
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling autocompleteHandler.');
+        }
+
+        if (requestParameters.searchType === null || requestParameters.searchType === undefined) {
+            throw new runtime.RequiredError('searchType','Required parameter requestParameters.searchType was null or undefined when calling autocompleteHandler.');
+        }
+
+        if (requestParameters.searchString === null || requestParameters.searchString === undefined) {
+            throw new runtime.RequiredError('searchString','Required parameter requestParameters.searchString was null or undefined when calling autocompleteHandler.');
+        }
+
+        if (requestParameters.limit === null || requestParameters.limit === undefined) {
+            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling autocompleteHandler.');
+        }
+
+        if (requestParameters.offset === null || requestParameters.offset === undefined) {
+            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling autocompleteHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/collections/search/autocomplete/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))).replace(`{${"search_type"}}`, encodeURIComponent(String(requestParameters.searchType))).replace(`{${"search_string"}}`, encodeURIComponent(String(requestParameters.searchString))).replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters.limit))).replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters.offset))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
+    }
+
+    /**
+     */
+    async autocompleteHandler(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.autocompleteHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -650,6 +731,98 @@ export class LayersApi extends runtime.BaseAPI {
      */
     async removeLayerFromCollection(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeLayerFromCollectionRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     */
+    async searchCapabilitiesHandlerRaw(requestParameters: SearchCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchCapabilities>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling searchCapabilitiesHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/collections/search/capabilities/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SearchCapabilitiesFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async searchCapabilitiesHandler(requestParameters: SearchCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchCapabilities> {
+        const response = await this.searchCapabilitiesHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async searchHandlerRaw(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling searchHandler.');
+        }
+
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling searchHandler.');
+        }
+
+        if (requestParameters.searchType === null || requestParameters.searchType === undefined) {
+            throw new runtime.RequiredError('searchType','Required parameter requestParameters.searchType was null or undefined when calling searchHandler.');
+        }
+
+        if (requestParameters.searchString === null || requestParameters.searchString === undefined) {
+            throw new runtime.RequiredError('searchString','Required parameter requestParameters.searchString was null or undefined when calling searchHandler.');
+        }
+
+        if (requestParameters.limit === null || requestParameters.limit === undefined) {
+            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling searchHandler.');
+        }
+
+        if (requestParameters.offset === null || requestParameters.offset === undefined) {
+            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling searchHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/collections/search/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))).replace(`{${"search_type"}}`, encodeURIComponent(String(requestParameters.searchType))).replace(`{${"search_string"}}`, encodeURIComponent(String(requestParameters.searchString))).replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters.limit))).replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters.offset))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LayerCollectionFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async searchHandler(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection> {
+        const response = await this.searchHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
 }

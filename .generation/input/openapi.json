@@ -1221,6 +1221,251 @@
         ]
       }
     },
+    "/layers/collections/search/autocomplete/{provider}/{collection}": {
+      "get": {
+        "tags": [
+          "Layers"
+        ],
+        "operationId": "autocomplete_handler",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "Data provider id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DataProviderId"
+            }
+          },
+          {
+            "name": "collection",
+            "in": "path",
+            "description": "Layer collection id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/LayerCollectionId"
+            }
+          },
+          {
+            "name": "search_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search_string",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "offset",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  "An empty collection",
+                  "Ports in Germany"
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
+    "/layers/collections/search/capabilities/{provider}": {
+      "get": {
+        "tags": [
+          "Layers"
+        ],
+        "operationId": "search_capabilities_handler",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "Data provider id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DataProviderId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchCapabilities"
+                },
+                "example": {
+                  "autocomplete": true,
+                  "filters": [],
+                  "search_types": {
+                    "fulltext": true,
+                    "prefix": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
+    "/layers/collections/search/{provider}/{collection}": {
+      "get": {
+        "tags": [
+          "Layers"
+        ],
+        "operationId": "search_handler",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "Data provider id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DataProviderId"
+            }
+          },
+          {
+            "name": "collection",
+            "in": "path",
+            "description": "Layer collection id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/LayerCollectionId"
+            }
+          },
+          {
+            "name": "search_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search_string",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "offset",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LayerCollection"
+                },
+                "example": {
+                  "description": "All available Geo Engine layers",
+                  "entryLabel": null,
+                  "id": {
+                    "collectionId": "05102bb3-a855-4a37-8a8a-30026a91fef1",
+                    "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74"
+                  },
+                  "items": [
+                    {
+                      "description": "There is nothing here",
+                      "id": {
+                        "collectionId": "a29f77cc-51ce-466b-86ef-d0ab2170bc0a",
+                        "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74"
+                      },
+                      "name": "An empty collection",
+                      "properties": [],
+                      "type": "collection"
+                    },
+                    {
+                      "description": "Natural Earth Ports point filtered with Germany polygon",
+                      "id": {
+                        "layerId": "b75db46e-2b9a-4a86-b33f-bc06a73cd711",
+                        "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74"
+                      },
+                      "name": "Ports in Germany",
+                      "properties": [],
+                      "type": "layer"
+                    }
+                  ],
+                  "name": "Layers",
+                  "properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
     "/layers/collections/{provider}/{collection}": {
       "get": {
         "tags": [
@@ -7793,6 +8038,43 @@
           },
           "timeInterval": {
             "$ref": "#/components/schemas/TimeInterval"
+          }
+        }
+      },
+      "SearchCapabilities": {
+        "type": "object",
+        "required": [
+          "search_types",
+          "autocomplete"
+        ],
+        "properties": {
+          "autocomplete": {
+            "type": "boolean"
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "search_types": {
+            "$ref": "#/components/schemas/SearchTypes"
+          }
+        }
+      },
+      "SearchTypes": {
+        "type": "object",
+        "required": [
+          "fulltext",
+          "prefix"
+        ],
+        "properties": {
+          "fulltext": {
+            "type": "boolean"
+          },
+          "prefix": {
+            "type": "boolean"
           }
         }
       },

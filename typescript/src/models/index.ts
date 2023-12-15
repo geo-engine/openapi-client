@@ -163,6 +163,8 @@ export * from './Role';
 export * from './RoleDescription';
 export * from './RunningTaskStatus';
 export * from './STRectangle';
+export * from './SearchCapabilities';
+export * from './SearchTypes';
 export * from './ServerInfo';
 export * from './SingleBandRasterColorizer';
 export * from './SpatialPartition2D';

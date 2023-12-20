@@ -37,7 +37,7 @@ function SearchCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'autocomplete': json['autocomplete'],
         'filters': !(0, runtime_1.exists)(json, 'filters') ? undefined : json['filters'],
-        'searchTypes': (0, SearchTypes_1.SearchTypesFromJSON)(json['search_types']),
+        'searchTypes': (0, SearchTypes_1.SearchTypesFromJSON)(json['searchTypes']),
     };
 }
 exports.SearchCapabilitiesFromJSONTyped = SearchCapabilitiesFromJSONTyped;
@@ -51,7 +51,7 @@ function SearchCapabilitiesToJSON(value) {
     return {
         'autocomplete': value.autocomplete,
         'filters': value.filters,
-        'search_types': (0, SearchTypes_1.SearchTypesToJSON)(value.searchTypes),
+        'searchTypes': (0, SearchTypes_1.SearchTypesToJSON)(value.searchTypes),
     };
 }
 exports.SearchCapabilitiesToJSON = SearchCapabilitiesToJSON;

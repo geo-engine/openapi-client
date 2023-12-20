@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import type { AddCollection200Response, AddLayer, AddLayerCollection, Layer, LayerCollection, SearchCapabilities, TaskResponse } from '../models/index';
+import * as runtime from "../runtime";
+import type { AddCollection200Response, AddLayer, AddLayerCollection, Layer, LayerCollection, SearchCapabilities, TaskResponse } from "../models/index";
 export interface AddCollectionRequest {
     collection: string;
     addLayerCollection: AddLayerCollection;
@@ -124,9 +124,13 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     addLayer(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;
     /**
+     * Autocompletes the search on the contents of the collection of the given provider
+     * Autocompletes the search on the contents of the collection of the given provider
      */
     autocompleteHandlerRaw(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
     /**
+     * Autocompletes the search on the contents of the collection of the given provider
+     * Autocompletes the search on the contents of the collection of the given provider
      */
     autocompleteHandler(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
     /**
@@ -216,9 +220,13 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     searchCapabilitiesHandler(requestParameters: SearchCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchCapabilities>;
     /**
+     * Searches the contents of the collection of the given provider
+     * Searches the contents of the collection of the given provider
      */
     searchHandlerRaw(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>>;
     /**
+     * Searches the contents of the collection of the given provider
+     * Searches the contents of the collection of the given provider
      */
     searchHandler(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection>;
 }

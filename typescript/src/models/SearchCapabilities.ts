@@ -69,7 +69,7 @@ export function SearchCapabilitiesFromJSONTyped(json: any, ignoreDiscriminator: 
         
         'autocomplete': json['autocomplete'],
         'filters': !exists(json, 'filters') ? undefined : json['filters'],
-        'searchTypes': SearchTypesFromJSON(json['search_types']),
+        'searchTypes': SearchTypesFromJSON(json['searchTypes']),
     };
 }
 
@@ -84,7 +84,7 @@ export function SearchCapabilitiesToJSON(value?: SearchCapabilities | null): any
         
         'autocomplete': value.autocomplete,
         'filters': value.filters,
-        'search_types': SearchTypesToJSON(value.searchTypes),
+        'searchTypes': SearchTypesToJSON(value.searchTypes),
     };
 }
 

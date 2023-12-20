@@ -1226,6 +1226,8 @@
         "tags": [
           "Layers"
         ],
+        "summary": "Autocompletes the search on the contents of the collection of the given provider",
+        "description": "Autocompletes the search on the contents of the collection of the given provider",
         "operationId": "autocomplete_handler",
         "parameters": [
           {
@@ -1247,7 +1249,7 @@
             }
           },
           {
-            "name": "search_type",
+            "name": "searchType",
             "in": "path",
             "required": true,
             "schema": {
@@ -1255,7 +1257,7 @@
             }
           },
           {
-            "name": "search_string",
+            "name": "searchString",
             "in": "path",
             "required": true,
             "schema": {
@@ -1358,6 +1360,8 @@
         "tags": [
           "Layers"
         ],
+        "summary": "Searches the contents of the collection of the given provider",
+        "description": "Searches the contents of the collection of the given provider",
         "operationId": "search_handler",
         "parameters": [
           {
@@ -1379,7 +1383,7 @@
             }
           },
           {
-            "name": "search_type",
+            "name": "searchType",
             "in": "path",
             "required": true,
             "schema": {
@@ -1387,7 +1391,7 @@
             }
           },
           {
-            "name": "search_string",
+            "name": "searchString",
             "in": "path",
             "required": true,
             "schema": {
@@ -8044,7 +8048,7 @@
       "SearchCapabilities": {
         "type": "object",
         "required": [
-          "search_types",
+          "searchTypes",
           "autocomplete"
         ],
         "properties": {
@@ -8058,7 +8062,7 @@
             },
             "nullable": true
           },
-          "search_types": {
+          "searchTypes": {
             "$ref": "#/components/schemas/SearchTypes"
           }
         }

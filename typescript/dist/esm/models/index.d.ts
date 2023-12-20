@@ -162,6 +162,7 @@ export * from './RoleDescription';
 export * from './RunningTaskStatus';
 export * from './STRectangle';
 export * from './SearchCapabilities';
+export * from './SearchType';
 export * from './SearchTypes';
 export * from './ServerInfo';
 export * from './SingleBandRasterColorizer';

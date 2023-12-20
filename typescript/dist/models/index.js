@@ -180,6 +180,7 @@ __exportStar(require("./RoleDescription"), exports);
 __exportStar(require("./RunningTaskStatus"), exports);
 __exportStar(require("./STRectangle"), exports);
 __exportStar(require("./SearchCapabilities"), exports);
+__exportStar(require("./SearchType"), exports);
 __exportStar(require("./SearchTypes"), exports);
 __exportStar(require("./ServerInfo"), exports);
 __exportStar(require("./SingleBandRasterColorizer"), exports);

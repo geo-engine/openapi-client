@@ -12,7 +12,8 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from "../runtime";
+
+import * as runtime from '../runtime';
 import type {
   AddCollection200Response,
   AddLayer,
@@ -20,1355 +21,851 @@ import type {
   Layer,
   LayerCollection,
   SearchCapabilities,
+  SearchType,
   TaskResponse,
-} from "../models/index";
+} from '../models/index';
 import {
-  AddCollection200ResponseFromJSON,
-  AddCollection200ResponseToJSON,
-  AddLayerFromJSON,
-  AddLayerToJSON,
-  AddLayerCollectionFromJSON,
-  AddLayerCollectionToJSON,
-  LayerFromJSON,
-  LayerToJSON,
-  LayerCollectionFromJSON,
-  LayerCollectionToJSON,
-  SearchCapabilitiesFromJSON,
-  SearchCapabilitiesToJSON,
-  TaskResponseFromJSON,
-  TaskResponseToJSON,
-} from "../models/index";
+    AddCollection200ResponseFromJSON,
+    AddCollection200ResponseToJSON,
+    AddLayerFromJSON,
+    AddLayerToJSON,
+    AddLayerCollectionFromJSON,
+    AddLayerCollectionToJSON,
+    LayerFromJSON,
+    LayerToJSON,
+    LayerCollectionFromJSON,
+    LayerCollectionToJSON,
+    SearchCapabilitiesFromJSON,
+    SearchCapabilitiesToJSON,
+    SearchTypeFromJSON,
+    SearchTypeToJSON,
+    TaskResponseFromJSON,
+    TaskResponseToJSON,
+} from '../models/index';
 
 export interface AddCollectionRequest {
-  collection: string;
-  addLayerCollection: AddLayerCollection;
+    collection: string;
+    addLayerCollection: AddLayerCollection;
 }
 
 export interface AddExistingCollectionToCollectionRequest {
-  parent: string;
-  collection: string;
+    parent: string;
+    collection: string;
 }
 
 export interface AddExistingLayerToCollectionRequest {
-  collection: string;
-  layer: string;
+    collection: string;
+    layer: string;
 }
 
 export interface AddLayerRequest {
-  collection: string;
-  addLayer: AddLayer;
+    collection: string;
+    addLayer: AddLayer;
 }
 
 export interface AutocompleteHandlerRequest {
-  provider: string;
-  collection: string;
-  searchType: string;
-  searchString: string;
-  limit: number;
-  offset: number;
+    provider: string;
+    collection: string;
+    searchType: SearchType;
+    searchString: string;
+    limit: number;
+    offset: number;
 }
 
 export interface LayerHandlerRequest {
-  provider: string;
-  layer: string;
+    provider: string;
+    layer: string;
 }
 
 export interface LayerToDatasetRequest {
-  provider: string;
-  layer: string;
+    provider: string;
+    layer: string;
 }
 
 export interface LayerToWorkflowIdHandlerRequest {
-  provider: string;
-  layer: string;
+    provider: string;
+    layer: string;
 }
 
 export interface ListCollectionHandlerRequest {
-  provider: string;
-  collection: string;
-  offset: number;
-  limit: number;
+    provider: string;
+    collection: string;
+    offset: number;
+    limit: number;
 }
 
 export interface ListRootCollectionsHandlerRequest {
-  offset: number;
-  limit: number;
+    offset: number;
+    limit: number;
 }
 
 export interface RemoveCollectionRequest {
-  collection: string;
+    collection: string;
 }
 
 export interface RemoveCollectionFromCollectionRequest {
-  parent: string;
-  collection: string;
+    parent: string;
+    collection: string;
 }
 
 export interface RemoveLayerFromCollectionRequest {
-  collection: string;
-  layer: string;
+    collection: string;
+    layer: string;
 }
 
 export interface SearchCapabilitiesHandlerRequest {
-  provider: string;
+    provider: string;
 }
 
 export interface SearchHandlerRequest {
-  provider: string;
-  collection: string;
-  searchType: string;
-  searchString: string;
-  limit: number;
-  offset: number;
+    provider: string;
+    collection: string;
+    searchType: SearchType;
+    searchString: string;
+    limit: number;
+    offset: number;
 }
 
 /**
- *
+ * 
  */
 export class LayersApi extends runtime.BaseAPI {
-  /**
-   * Add a new collection to an existing collection
-   * Add a new collection to an existing collection
-   */
-  async addCollectionRaw(
-    requestParameters: AddCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<AddCollection200Response>> {
-    if (
-      requestParameters.collection === null ||
-      requestParameters.collection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "collection",
-        "Required parameter requestParameters.collection was null or undefined when calling addCollection."
-      );
+
+    /**
+     * Add a new collection to an existing collection
+     * Add a new collection to an existing collection
+     */
+    async addCollectionRaw(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling addCollection.');
+        }
+
+        if (requestParameters.addLayerCollection === null || requestParameters.addLayerCollection === undefined) {
+            throw new runtime.RequiredError('addLayerCollection','Required parameter requestParameters.addLayerCollection was null or undefined when calling addCollection.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/collections/{collection}/collections`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AddLayerCollectionToJSON(requestParameters.addLayerCollection),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
     }
 
-    if (
-      requestParameters.addLayerCollection === null ||
-      requestParameters.addLayerCollection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "addLayerCollection",
-        "Required parameter requestParameters.addLayerCollection was null or undefined when calling addCollection."
-      );
+    /**
+     * Add a new collection to an existing collection
+     * Add a new collection to an existing collection
+     */
+    async addCollection(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
+        const response = await this.addCollectionRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
-    const queryParameters: any = {};
+    /**
+     * Add an existing collection to a collection
+     * Add an existing collection to a collection
+     */
+    async addExistingCollectionToCollectionRaw(requestParameters: AddExistingCollectionToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.parent === null || requestParameters.parent === undefined) {
+            throw new runtime.RequiredError('parent','Required parameter requestParameters.parent was null or undefined when calling addExistingCollectionToCollection.');
+        }
 
-    const headerParameters: runtime.HTTPHeaders = {};
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling addExistingCollectionToCollection.');
+        }
 
-    headerParameters["Content-Type"] = "application/json";
+        const queryParameters: any = {};
 
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
+        const headerParameters: runtime.HTTPHeaders = {};
 
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layerDb/collections/{collection}/collections`.replace(
-          `{${"collection"}}`,
-          encodeURIComponent(String(requestParameters.collection))
-        ),
-        method: "POST",
-        headers: headerParameters,
-        query: queryParameters,
-        body: AddLayerCollectionToJSON(requestParameters.addLayerCollection),
-      },
-      initOverrides
-    );
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
 
-    return new runtime.JSONApiResponse(response, (jsonValue) =>
-      AddCollection200ResponseFromJSON(jsonValue)
-    );
-  }
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/collections/{parent}/collections/{collection}`.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters.parent))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
 
-  /**
-   * Add a new collection to an existing collection
-   * Add a new collection to an existing collection
-   */
-  async addCollection(
-    requestParameters: AddCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<AddCollection200Response> {
-    const response = await this.addCollectionRaw(
-      requestParameters,
-      initOverrides
-    );
-    return await response.value();
-  }
-
-  /**
-   * Add an existing collection to a collection
-   * Add an existing collection to a collection
-   */
-  async addExistingCollectionToCollectionRaw(
-    requestParameters: AddExistingCollectionToCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<void>> {
-    if (
-      requestParameters.parent === null ||
-      requestParameters.parent === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "parent",
-        "Required parameter requestParameters.parent was null or undefined when calling addExistingCollectionToCollection."
-      );
+        return new runtime.VoidApiResponse(response);
     }
 
-    if (
-      requestParameters.collection === null ||
-      requestParameters.collection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "collection",
-        "Required parameter requestParameters.collection was null or undefined when calling addExistingCollectionToCollection."
-      );
+    /**
+     * Add an existing collection to a collection
+     * Add an existing collection to a collection
+     */
+    async addExistingCollectionToCollection(requestParameters: AddExistingCollectionToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addExistingCollectionToCollectionRaw(requestParameters, initOverrides);
     }
 
-    const queryParameters: any = {};
+    /**
+     * Add an existing layer to a collection
+     * Add an existing layer to a collection
+     */
+    async addExistingLayerToCollectionRaw(requestParameters: AddExistingLayerToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling addExistingLayerToCollection.');
+        }
 
-    const headerParameters: runtime.HTTPHeaders = {};
+        if (requestParameters.layer === null || requestParameters.layer === undefined) {
+            throw new runtime.RequiredError('layer','Required parameter requestParameters.layer was null or undefined when calling addExistingLayerToCollection.');
+        }
 
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
+        const queryParameters: any = {};
 
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layerDb/collections/{parent}/collections/{collection}`
-          .replace(
-            `{${"parent"}}`,
-            encodeURIComponent(String(requestParameters.parent))
-          )
-          .replace(
-            `{${"collection"}}`,
-            encodeURIComponent(String(requestParameters.collection))
-          ),
-        method: "POST",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
+        const headerParameters: runtime.HTTPHeaders = {};
 
-    return new runtime.VoidApiResponse(response);
-  }
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
 
-  /**
-   * Add an existing collection to a collection
-   * Add an existing collection to a collection
-   */
-  async addExistingCollectionToCollection(
-    requestParameters: AddExistingCollectionToCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<void> {
-    await this.addExistingCollectionToCollectionRaw(
-      requestParameters,
-      initOverrides
-    );
-  }
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/collections/{collection}/layers/{layer}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
 
-  /**
-   * Add an existing layer to a collection
-   * Add an existing layer to a collection
-   */
-  async addExistingLayerToCollectionRaw(
-    requestParameters: AddExistingLayerToCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<void>> {
-    if (
-      requestParameters.collection === null ||
-      requestParameters.collection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "collection",
-        "Required parameter requestParameters.collection was null or undefined when calling addExistingLayerToCollection."
-      );
+        return new runtime.VoidApiResponse(response);
     }
 
-    if (
-      requestParameters.layer === null ||
-      requestParameters.layer === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "layer",
-        "Required parameter requestParameters.layer was null or undefined when calling addExistingLayerToCollection."
-      );
+    /**
+     * Add an existing layer to a collection
+     * Add an existing layer to a collection
+     */
+    async addExistingLayerToCollection(requestParameters: AddExistingLayerToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addExistingLayerToCollectionRaw(requestParameters, initOverrides);
     }
 
-    const queryParameters: any = {};
+    /**
+     * Add a new layer to a collection
+     * Add a new layer to a collection
+     */
+    async addLayerRaw(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling addLayer.');
+        }
 
-    const headerParameters: runtime.HTTPHeaders = {};
+        if (requestParameters.addLayer === null || requestParameters.addLayer === undefined) {
+            throw new runtime.RequiredError('addLayer','Required parameter requestParameters.addLayer was null or undefined when calling addLayer.');
+        }
 
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
+        const queryParameters: any = {};
 
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layerDb/collections/{collection}/layers/{layer}`
-          .replace(
-            `{${"collection"}}`,
-            encodeURIComponent(String(requestParameters.collection))
-          )
-          .replace(
-            `{${"layer"}}`,
-            encodeURIComponent(String(requestParameters.layer))
-          ),
-        method: "POST",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
+        const headerParameters: runtime.HTTPHeaders = {};
 
-    return new runtime.VoidApiResponse(response);
-  }
+        headerParameters['Content-Type'] = 'application/json';
 
-  /**
-   * Add an existing layer to a collection
-   * Add an existing layer to a collection
-   */
-  async addExistingLayerToCollection(
-    requestParameters: AddExistingLayerToCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<void> {
-    await this.addExistingLayerToCollectionRaw(
-      requestParameters,
-      initOverrides
-    );
-  }
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
 
-  /**
-   * Add a new layer to a collection
-   * Add a new layer to a collection
-   */
-  async addLayerRaw(
-    requestParameters: AddLayerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<AddCollection200Response>> {
-    if (
-      requestParameters.collection === null ||
-      requestParameters.collection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "collection",
-        "Required parameter requestParameters.collection was null or undefined when calling addLayer."
-      );
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/collections/{collection}/layers`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AddLayerToJSON(requestParameters.addLayer),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
     }
 
-    if (
-      requestParameters.addLayer === null ||
-      requestParameters.addLayer === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "addLayer",
-        "Required parameter requestParameters.addLayer was null or undefined when calling addLayer."
-      );
+    /**
+     * Add a new layer to a collection
+     * Add a new layer to a collection
+     */
+    async addLayer(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
+        const response = await this.addLayerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
-    const queryParameters: any = {};
+    /**
+     * Autocompletes the search on the contents of the collection of the given provider
+     * Autocompletes the search on the contents of the collection of the given provider
+     */
+    async autocompleteHandlerRaw(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling autocompleteHandler.');
+        }
 
-    const headerParameters: runtime.HTTPHeaders = {};
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling autocompleteHandler.');
+        }
 
-    headerParameters["Content-Type"] = "application/json";
+        if (requestParameters.searchType === null || requestParameters.searchType === undefined) {
+            throw new runtime.RequiredError('searchType','Required parameter requestParameters.searchType was null or undefined when calling autocompleteHandler.');
+        }
 
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
+        if (requestParameters.searchString === null || requestParameters.searchString === undefined) {
+            throw new runtime.RequiredError('searchString','Required parameter requestParameters.searchString was null or undefined when calling autocompleteHandler.');
+        }
 
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layerDb/collections/{collection}/layers`.replace(
-          `{${"collection"}}`,
-          encodeURIComponent(String(requestParameters.collection))
-        ),
-        method: "POST",
-        headers: headerParameters,
-        query: queryParameters,
-        body: AddLayerToJSON(requestParameters.addLayer),
-      },
-      initOverrides
-    );
+        if (requestParameters.limit === null || requestParameters.limit === undefined) {
+            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling autocompleteHandler.');
+        }
 
-    return new runtime.JSONApiResponse(response, (jsonValue) =>
-      AddCollection200ResponseFromJSON(jsonValue)
-    );
-  }
+        if (requestParameters.offset === null || requestParameters.offset === undefined) {
+            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling autocompleteHandler.');
+        }
 
-  /**
-   * Add a new layer to a collection
-   * Add a new layer to a collection
-   */
-  async addLayer(
-    requestParameters: AddLayerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<AddCollection200Response> {
-    const response = await this.addLayerRaw(requestParameters, initOverrides);
-    return await response.value();
-  }
+        const queryParameters: any = {};
 
-  /**
-   * Autocompletes the search on the contents of the collection of the given provider
-   * Autocompletes the search on the contents of the collection of the given provider
-   */
-  async autocompleteHandlerRaw(
-    requestParameters: AutocompleteHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<Array<string>>> {
-    if (
-      requestParameters.provider === null ||
-      requestParameters.provider === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "provider",
-        "Required parameter requestParameters.provider was null or undefined when calling autocompleteHandler."
-      );
-    }
+        if (requestParameters.searchType !== undefined) {
+            queryParameters['searchType'] = requestParameters.searchType;
+        }
 
-    if (
-      requestParameters.collection === null ||
-      requestParameters.collection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "collection",
-        "Required parameter requestParameters.collection was null or undefined when calling autocompleteHandler."
-      );
+        if (requestParameters.searchString !== undefined) {
+            queryParameters['searchString'] = requestParameters.searchString;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/collections/search/autocomplete/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse<any>(response);
     }
 
-    if (
-      requestParameters.searchType === null ||
-      requestParameters.searchType === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "searchType",
-        "Required parameter requestParameters.searchType was null or undefined when calling autocompleteHandler."
-      );
+    /**
+     * Autocompletes the search on the contents of the collection of the given provider
+     * Autocompletes the search on the contents of the collection of the given provider
+     */
+    async autocompleteHandler(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.autocompleteHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
-    if (
-      requestParameters.searchString === null ||
-      requestParameters.searchString === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "searchString",
-        "Required parameter requestParameters.searchString was null or undefined when calling autocompleteHandler."
-      );
+    /**
+     * Retrieves the layer of the given provider
+     * Retrieves the layer of the given provider
+     */
+    async layerHandlerRaw(requestParameters: LayerHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Layer>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling layerHandler.');
+        }
+
+        if (requestParameters.layer === null || requestParameters.layer === undefined) {
+            throw new runtime.RequiredError('layer','Required parameter requestParameters.layer was null or undefined when calling layerHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/{provider}/{layer}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LayerFromJSON(jsonValue));
     }
 
-    if (
-      requestParameters.limit === null ||
-      requestParameters.limit === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "limit",
-        "Required parameter requestParameters.limit was null or undefined when calling autocompleteHandler."
-      );
+    /**
+     * Retrieves the layer of the given provider
+     * Retrieves the layer of the given provider
+     */
+    async layerHandler(requestParameters: LayerHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Layer> {
+        const response = await this.layerHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
-    if (
-      requestParameters.offset === null ||
-      requestParameters.offset === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "offset",
-        "Required parameter requestParameters.offset was null or undefined when calling autocompleteHandler."
-      );
+    /**
+     * Persist a raster layer from a provider as a dataset.
+     * Persist a raster layer from a provider as a dataset.
+     */
+    async layerToDatasetRaw(requestParameters: LayerToDatasetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskResponse>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling layerToDataset.');
+        }
+
+        if (requestParameters.layer === null || requestParameters.layer === undefined) {
+            throw new runtime.RequiredError('layer','Required parameter requestParameters.layer was null or undefined when calling layerToDataset.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/{provider}/{layer}/dataset`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TaskResponseFromJSON(jsonValue));
     }
 
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layers/collections/search/autocomplete/{provider}/{collection}`
-          .replace(
-            `{${"provider"}}`,
-            encodeURIComponent(String(requestParameters.provider))
-          )
-          .replace(
-            `{${"collection"}}`,
-            encodeURIComponent(String(requestParameters.collection))
-          )
-          .replace(
-            `{${"searchType"}}`,
-            encodeURIComponent(String(requestParameters.searchType))
-          )
-          .replace(
-            `{${"searchString"}}`,
-            encodeURIComponent(String(requestParameters.searchString))
-          )
-          .replace(
-            `{${"limit"}}`,
-            encodeURIComponent(String(requestParameters.limit))
-          )
-          .replace(
-            `{${"offset"}}`,
-            encodeURIComponent(String(requestParameters.offset))
-          ),
-        method: "GET",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.JSONApiResponse<any>(response);
-  }
-
-  /**
-   * Autocompletes the search on the contents of the collection of the given provider
-   * Autocompletes the search on the contents of the collection of the given provider
-   */
-  async autocompleteHandler(
-    requestParameters: AutocompleteHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<Array<string>> {
-    const response = await this.autocompleteHandlerRaw(
-      requestParameters,
-      initOverrides
-    );
-    return await response.value();
-  }
-
-  /**
-   * Retrieves the layer of the given provider
-   * Retrieves the layer of the given provider
-   */
-  async layerHandlerRaw(
-    requestParameters: LayerHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<Layer>> {
-    if (
-      requestParameters.provider === null ||
-      requestParameters.provider === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "provider",
-        "Required parameter requestParameters.provider was null or undefined when calling layerHandler."
-      );
+    /**
+     * Persist a raster layer from a provider as a dataset.
+     * Persist a raster layer from a provider as a dataset.
+     */
+    async layerToDataset(requestParameters: LayerToDatasetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaskResponse> {
+        const response = await this.layerToDatasetRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
-    if (
-      requestParameters.layer === null ||
-      requestParameters.layer === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "layer",
-        "Required parameter requestParameters.layer was null or undefined when calling layerHandler."
-      );
+    /**
+     * Registers a layer from a provider as a workflow and returns the workflow id
+     * Registers a layer from a provider as a workflow and returns the workflow id
+     */
+    async layerToWorkflowIdHandlerRaw(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling layerToWorkflowIdHandler.');
+        }
+
+        if (requestParameters.layer === null || requestParameters.layer === undefined) {
+            throw new runtime.RequiredError('layer','Required parameter requestParameters.layer was null or undefined when calling layerToWorkflowIdHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/{provider}/{layer}/workflowId`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
     }
 
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layers/{provider}/{layer}`
-          .replace(
-            `{${"provider"}}`,
-            encodeURIComponent(String(requestParameters.provider))
-          )
-          .replace(
-            `{${"layer"}}`,
-            encodeURIComponent(String(requestParameters.layer))
-          ),
-        method: "GET",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.JSONApiResponse(response, (jsonValue) =>
-      LayerFromJSON(jsonValue)
-    );
-  }
-
-  /**
-   * Retrieves the layer of the given provider
-   * Retrieves the layer of the given provider
-   */
-  async layerHandler(
-    requestParameters: LayerHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<Layer> {
-    const response = await this.layerHandlerRaw(
-      requestParameters,
-      initOverrides
-    );
-    return await response.value();
-  }
-
-  /**
-   * Persist a raster layer from a provider as a dataset.
-   * Persist a raster layer from a provider as a dataset.
-   */
-  async layerToDatasetRaw(
-    requestParameters: LayerToDatasetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<TaskResponse>> {
-    if (
-      requestParameters.provider === null ||
-      requestParameters.provider === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "provider",
-        "Required parameter requestParameters.provider was null or undefined when calling layerToDataset."
-      );
+    /**
+     * Registers a layer from a provider as a workflow and returns the workflow id
+     * Registers a layer from a provider as a workflow and returns the workflow id
+     */
+    async layerToWorkflowIdHandler(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
+        const response = await this.layerToWorkflowIdHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
-    if (
-      requestParameters.layer === null ||
-      requestParameters.layer === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "layer",
-        "Required parameter requestParameters.layer was null or undefined when calling layerToDataset."
-      );
+    /**
+     * List the contents of the collection of the given provider
+     * List the contents of the collection of the given provider
+     */
+    async listCollectionHandlerRaw(requestParameters: ListCollectionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling listCollectionHandler.');
+        }
+
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling listCollectionHandler.');
+        }
+
+        if (requestParameters.offset === null || requestParameters.offset === undefined) {
+            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling listCollectionHandler.');
+        }
+
+        if (requestParameters.limit === null || requestParameters.limit === undefined) {
+            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling listCollectionHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/collections/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LayerCollectionFromJSON(jsonValue));
     }
 
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layers/{provider}/{layer}/dataset`
-          .replace(
-            `{${"provider"}}`,
-            encodeURIComponent(String(requestParameters.provider))
-          )
-          .replace(
-            `{${"layer"}}`,
-            encodeURIComponent(String(requestParameters.layer))
-          ),
-        method: "POST",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.JSONApiResponse(response, (jsonValue) =>
-      TaskResponseFromJSON(jsonValue)
-    );
-  }
-
-  /**
-   * Persist a raster layer from a provider as a dataset.
-   * Persist a raster layer from a provider as a dataset.
-   */
-  async layerToDataset(
-    requestParameters: LayerToDatasetRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<TaskResponse> {
-    const response = await this.layerToDatasetRaw(
-      requestParameters,
-      initOverrides
-    );
-    return await response.value();
-  }
-
-  /**
-   * Registers a layer from a provider as a workflow and returns the workflow id
-   * Registers a layer from a provider as a workflow and returns the workflow id
-   */
-  async layerToWorkflowIdHandlerRaw(
-    requestParameters: LayerToWorkflowIdHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<AddCollection200Response>> {
-    if (
-      requestParameters.provider === null ||
-      requestParameters.provider === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "provider",
-        "Required parameter requestParameters.provider was null or undefined when calling layerToWorkflowIdHandler."
-      );
+    /**
+     * List the contents of the collection of the given provider
+     * List the contents of the collection of the given provider
+     */
+    async listCollectionHandler(requestParameters: ListCollectionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection> {
+        const response = await this.listCollectionHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
-    if (
-      requestParameters.layer === null ||
-      requestParameters.layer === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "layer",
-        "Required parameter requestParameters.layer was null or undefined when calling layerToWorkflowIdHandler."
-      );
+    /**
+     * List all layer collections
+     * List all layer collections
+     */
+    async listRootCollectionsHandlerRaw(requestParameters: ListRootCollectionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
+        if (requestParameters.offset === null || requestParameters.offset === undefined) {
+            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling listRootCollectionsHandler.');
+        }
+
+        if (requestParameters.limit === null || requestParameters.limit === undefined) {
+            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling listRootCollectionsHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/collections`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LayerCollectionFromJSON(jsonValue));
     }
 
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layers/{provider}/{layer}/workflowId`
-          .replace(
-            `{${"provider"}}`,
-            encodeURIComponent(String(requestParameters.provider))
-          )
-          .replace(
-            `{${"layer"}}`,
-            encodeURIComponent(String(requestParameters.layer))
-          ),
-        method: "POST",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.JSONApiResponse(response, (jsonValue) =>
-      AddCollection200ResponseFromJSON(jsonValue)
-    );
-  }
-
-  /**
-   * Registers a layer from a provider as a workflow and returns the workflow id
-   * Registers a layer from a provider as a workflow and returns the workflow id
-   */
-  async layerToWorkflowIdHandler(
-    requestParameters: LayerToWorkflowIdHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<AddCollection200Response> {
-    const response = await this.layerToWorkflowIdHandlerRaw(
-      requestParameters,
-      initOverrides
-    );
-    return await response.value();
-  }
-
-  /**
-   * List the contents of the collection of the given provider
-   * List the contents of the collection of the given provider
-   */
-  async listCollectionHandlerRaw(
-    requestParameters: ListCollectionHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<LayerCollection>> {
-    if (
-      requestParameters.provider === null ||
-      requestParameters.provider === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "provider",
-        "Required parameter requestParameters.provider was null or undefined when calling listCollectionHandler."
-      );
+    /**
+     * List all layer collections
+     * List all layer collections
+     */
+    async listRootCollectionsHandler(requestParameters: ListRootCollectionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection> {
+        const response = await this.listRootCollectionsHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
-    if (
-      requestParameters.collection === null ||
-      requestParameters.collection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "collection",
-        "Required parameter requestParameters.collection was null or undefined when calling listCollectionHandler."
-      );
+    /**
+     * Remove a collection
+     * Remove a collection
+     */
+    async removeCollectionRaw(requestParameters: RemoveCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling removeCollection.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/collections/{collection}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
     }
 
-    if (
-      requestParameters.offset === null ||
-      requestParameters.offset === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "offset",
-        "Required parameter requestParameters.offset was null or undefined when calling listCollectionHandler."
-      );
+    /**
+     * Remove a collection
+     * Remove a collection
+     */
+    async removeCollection(requestParameters: RemoveCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.removeCollectionRaw(requestParameters, initOverrides);
     }
 
-    if (
-      requestParameters.limit === null ||
-      requestParameters.limit === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "limit",
-        "Required parameter requestParameters.limit was null or undefined when calling listCollectionHandler."
-      );
+    /**
+     * Delete a collection from a collection
+     * Delete a collection from a collection
+     */
+    async removeCollectionFromCollectionRaw(requestParameters: RemoveCollectionFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.parent === null || requestParameters.parent === undefined) {
+            throw new runtime.RequiredError('parent','Required parameter requestParameters.parent was null or undefined when calling removeCollectionFromCollection.');
+        }
+
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling removeCollectionFromCollection.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/collections/{parent}/collections/{collection}`.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters.parent))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
     }
 
-    const queryParameters: any = {};
-
-    if (requestParameters.offset !== undefined) {
-      queryParameters["offset"] = requestParameters.offset;
+    /**
+     * Delete a collection from a collection
+     * Delete a collection from a collection
+     */
+    async removeCollectionFromCollection(requestParameters: RemoveCollectionFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.removeCollectionFromCollectionRaw(requestParameters, initOverrides);
     }
 
-    if (requestParameters.limit !== undefined) {
-      queryParameters["limit"] = requestParameters.limit;
+    /**
+     * Remove a layer from a collection
+     * Remove a layer from a collection
+     */
+    async removeLayerFromCollectionRaw(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling removeLayerFromCollection.');
+        }
+
+        if (requestParameters.layer === null || requestParameters.layer === undefined) {
+            throw new runtime.RequiredError('layer','Required parameter requestParameters.layer was null or undefined when calling removeLayerFromCollection.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/collections/{collection}/layers/{layer}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
     }
 
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layers/collections/{provider}/{collection}`
-          .replace(
-            `{${"provider"}}`,
-            encodeURIComponent(String(requestParameters.provider))
-          )
-          .replace(
-            `{${"collection"}}`,
-            encodeURIComponent(String(requestParameters.collection))
-          ),
-        method: "GET",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.JSONApiResponse(response, (jsonValue) =>
-      LayerCollectionFromJSON(jsonValue)
-    );
-  }
-
-  /**
-   * List the contents of the collection of the given provider
-   * List the contents of the collection of the given provider
-   */
-  async listCollectionHandler(
-    requestParameters: ListCollectionHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<LayerCollection> {
-    const response = await this.listCollectionHandlerRaw(
-      requestParameters,
-      initOverrides
-    );
-    return await response.value();
-  }
-
-  /**
-   * List all layer collections
-   * List all layer collections
-   */
-  async listRootCollectionsHandlerRaw(
-    requestParameters: ListRootCollectionsHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<LayerCollection>> {
-    if (
-      requestParameters.offset === null ||
-      requestParameters.offset === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "offset",
-        "Required parameter requestParameters.offset was null or undefined when calling listRootCollectionsHandler."
-      );
+    /**
+     * Remove a layer from a collection
+     * Remove a layer from a collection
+     */
+    async removeLayerFromCollection(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.removeLayerFromCollectionRaw(requestParameters, initOverrides);
     }
 
-    if (
-      requestParameters.limit === null ||
-      requestParameters.limit === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "limit",
-        "Required parameter requestParameters.limit was null or undefined when calling listRootCollectionsHandler."
-      );
+    /**
+     */
+    async searchCapabilitiesHandlerRaw(requestParameters: SearchCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchCapabilities>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling searchCapabilitiesHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/collections/search/capabilities/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SearchCapabilitiesFromJSON(jsonValue));
     }
 
-    const queryParameters: any = {};
-
-    if (requestParameters.offset !== undefined) {
-      queryParameters["offset"] = requestParameters.offset;
+    /**
+     */
+    async searchCapabilitiesHandler(requestParameters: SearchCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchCapabilities> {
+        const response = await this.searchCapabilitiesHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
-    if (requestParameters.limit !== undefined) {
-      queryParameters["limit"] = requestParameters.limit;
+    /**
+     * Searches the contents of the collection of the given provider
+     * Searches the contents of the collection of the given provider
+     */
+    async searchHandlerRaw(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling searchHandler.');
+        }
+
+        if (requestParameters.collection === null || requestParameters.collection === undefined) {
+            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling searchHandler.');
+        }
+
+        if (requestParameters.searchType === null || requestParameters.searchType === undefined) {
+            throw new runtime.RequiredError('searchType','Required parameter requestParameters.searchType was null or undefined when calling searchHandler.');
+        }
+
+        if (requestParameters.searchString === null || requestParameters.searchString === undefined) {
+            throw new runtime.RequiredError('searchString','Required parameter requestParameters.searchString was null or undefined when calling searchHandler.');
+        }
+
+        if (requestParameters.limit === null || requestParameters.limit === undefined) {
+            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling searchHandler.');
+        }
+
+        if (requestParameters.offset === null || requestParameters.offset === undefined) {
+            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling searchHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.searchType !== undefined) {
+            queryParameters['searchType'] = requestParameters.searchType;
+        }
+
+        if (requestParameters.searchString !== undefined) {
+            queryParameters['searchString'] = requestParameters.searchString;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/collections/search/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => LayerCollectionFromJSON(jsonValue));
     }
 
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layers/collections`,
-        method: "GET",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.JSONApiResponse(response, (jsonValue) =>
-      LayerCollectionFromJSON(jsonValue)
-    );
-  }
-
-  /**
-   * List all layer collections
-   * List all layer collections
-   */
-  async listRootCollectionsHandler(
-    requestParameters: ListRootCollectionsHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<LayerCollection> {
-    const response = await this.listRootCollectionsHandlerRaw(
-      requestParameters,
-      initOverrides
-    );
-    return await response.value();
-  }
-
-  /**
-   * Remove a collection
-   * Remove a collection
-   */
-  async removeCollectionRaw(
-    requestParameters: RemoveCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<void>> {
-    if (
-      requestParameters.collection === null ||
-      requestParameters.collection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "collection",
-        "Required parameter requestParameters.collection was null or undefined when calling removeCollection."
-      );
+    /**
+     * Searches the contents of the collection of the given provider
+     * Searches the contents of the collection of the given provider
+     */
+    async searchHandler(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection> {
+        const response = await this.searchHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layerDb/collections/{collection}`.replace(
-          `{${"collection"}}`,
-          encodeURIComponent(String(requestParameters.collection))
-        ),
-        method: "DELETE",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.VoidApiResponse(response);
-  }
-
-  /**
-   * Remove a collection
-   * Remove a collection
-   */
-  async removeCollection(
-    requestParameters: RemoveCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<void> {
-    await this.removeCollectionRaw(requestParameters, initOverrides);
-  }
-
-  /**
-   * Delete a collection from a collection
-   * Delete a collection from a collection
-   */
-  async removeCollectionFromCollectionRaw(
-    requestParameters: RemoveCollectionFromCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<void>> {
-    if (
-      requestParameters.parent === null ||
-      requestParameters.parent === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "parent",
-        "Required parameter requestParameters.parent was null or undefined when calling removeCollectionFromCollection."
-      );
-    }
-
-    if (
-      requestParameters.collection === null ||
-      requestParameters.collection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "collection",
-        "Required parameter requestParameters.collection was null or undefined when calling removeCollectionFromCollection."
-      );
-    }
-
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layerDb/collections/{parent}/collections/{collection}`
-          .replace(
-            `{${"parent"}}`,
-            encodeURIComponent(String(requestParameters.parent))
-          )
-          .replace(
-            `{${"collection"}}`,
-            encodeURIComponent(String(requestParameters.collection))
-          ),
-        method: "DELETE",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.VoidApiResponse(response);
-  }
-
-  /**
-   * Delete a collection from a collection
-   * Delete a collection from a collection
-   */
-  async removeCollectionFromCollection(
-    requestParameters: RemoveCollectionFromCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<void> {
-    await this.removeCollectionFromCollectionRaw(
-      requestParameters,
-      initOverrides
-    );
-  }
-
-  /**
-   * Remove a layer from a collection
-   * Remove a layer from a collection
-   */
-  async removeLayerFromCollectionRaw(
-    requestParameters: RemoveLayerFromCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<void>> {
-    if (
-      requestParameters.collection === null ||
-      requestParameters.collection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "collection",
-        "Required parameter requestParameters.collection was null or undefined when calling removeLayerFromCollection."
-      );
-    }
-
-    if (
-      requestParameters.layer === null ||
-      requestParameters.layer === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "layer",
-        "Required parameter requestParameters.layer was null or undefined when calling removeLayerFromCollection."
-      );
-    }
-
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layerDb/collections/{collection}/layers/{layer}`
-          .replace(
-            `{${"collection"}}`,
-            encodeURIComponent(String(requestParameters.collection))
-          )
-          .replace(
-            `{${"layer"}}`,
-            encodeURIComponent(String(requestParameters.layer))
-          ),
-        method: "DELETE",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.VoidApiResponse(response);
-  }
-
-  /**
-   * Remove a layer from a collection
-   * Remove a layer from a collection
-   */
-  async removeLayerFromCollection(
-    requestParameters: RemoveLayerFromCollectionRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<void> {
-    await this.removeLayerFromCollectionRaw(requestParameters, initOverrides);
-  }
-
-  /**
-   */
-  async searchCapabilitiesHandlerRaw(
-    requestParameters: SearchCapabilitiesHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<SearchCapabilities>> {
-    if (
-      requestParameters.provider === null ||
-      requestParameters.provider === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "provider",
-        "Required parameter requestParameters.provider was null or undefined when calling searchCapabilitiesHandler."
-      );
-    }
-
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layers/collections/search/capabilities/{provider}`.replace(
-          `{${"provider"}}`,
-          encodeURIComponent(String(requestParameters.provider))
-        ),
-        method: "GET",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.JSONApiResponse(response, (jsonValue) =>
-      SearchCapabilitiesFromJSON(jsonValue)
-    );
-  }
-
-  /**
-   */
-  async searchCapabilitiesHandler(
-    requestParameters: SearchCapabilitiesHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<SearchCapabilities> {
-    const response = await this.searchCapabilitiesHandlerRaw(
-      requestParameters,
-      initOverrides
-    );
-    return await response.value();
-  }
-
-  /**
-   * Searches the contents of the collection of the given provider
-   * Searches the contents of the collection of the given provider
-   */
-  async searchHandlerRaw(
-    requestParameters: SearchHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<runtime.ApiResponse<LayerCollection>> {
-    if (
-      requestParameters.provider === null ||
-      requestParameters.provider === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "provider",
-        "Required parameter requestParameters.provider was null or undefined when calling searchHandler."
-      );
-    }
-
-    if (
-      requestParameters.collection === null ||
-      requestParameters.collection === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "collection",
-        "Required parameter requestParameters.collection was null or undefined when calling searchHandler."
-      );
-    }
-
-    if (
-      requestParameters.searchType === null ||
-      requestParameters.searchType === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "searchType",
-        "Required parameter requestParameters.searchType was null or undefined when calling searchHandler."
-      );
-    }
-
-    if (
-      requestParameters.searchString === null ||
-      requestParameters.searchString === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "searchString",
-        "Required parameter requestParameters.searchString was null or undefined when calling searchHandler."
-      );
-    }
-
-    if (
-      requestParameters.limit === null ||
-      requestParameters.limit === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "limit",
-        "Required parameter requestParameters.limit was null or undefined when calling searchHandler."
-      );
-    }
-
-    if (
-      requestParameters.offset === null ||
-      requestParameters.offset === undefined
-    ) {
-      throw new runtime.RequiredError(
-        "offset",
-        "Required parameter requestParameters.offset was null or undefined when calling searchHandler."
-      );
-    }
-
-    const queryParameters: any = {};
-
-    const headerParameters: runtime.HTTPHeaders = {};
-
-    if (this.configuration && this.configuration.accessToken) {
-      const token = this.configuration.accessToken;
-      const tokenString = await token("session_token", []);
-
-      if (tokenString) {
-        headerParameters["Authorization"] = `Bearer ${tokenString}`;
-      }
-    }
-    const response = await this.request(
-      {
-        path: `/layers/collections/search/{provider}/{collection}`
-          .replace(
-            `{${"provider"}}`,
-            encodeURIComponent(String(requestParameters.provider))
-          )
-          .replace(
-            `{${"collection"}}`,
-            encodeURIComponent(String(requestParameters.collection))
-          )
-          .replace(
-            `{${"searchType"}}`,
-            encodeURIComponent(String(requestParameters.searchType))
-          )
-          .replace(
-            `{${"searchString"}}`,
-            encodeURIComponent(String(requestParameters.searchString))
-          )
-          .replace(
-            `{${"limit"}}`,
-            encodeURIComponent(String(requestParameters.limit))
-          )
-          .replace(
-            `{${"offset"}}`,
-            encodeURIComponent(String(requestParameters.offset))
-          ),
-        method: "GET",
-        headers: headerParameters,
-        query: queryParameters,
-      },
-      initOverrides
-    );
-
-    return new runtime.JSONApiResponse(response, (jsonValue) =>
-      LayerCollectionFromJSON(jsonValue)
-    );
-  }
-
-  /**
-   * Searches the contents of the collection of the given provider
-   * Searches the contents of the collection of the given provider
-   */
-  async searchHandler(
-    requestParameters: SearchHandlerRequest,
-    initOverrides?: RequestInit | runtime.InitOverrideFunction
-  ): Promise<LayerCollection> {
-    const response = await this.searchHandlerRaw(
-      requestParameters,
-      initOverrides
-    );
-    return await response.value();
-  }
 }

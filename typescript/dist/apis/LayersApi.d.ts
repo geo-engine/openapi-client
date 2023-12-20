@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from "../runtime";
-import type { AddCollection200Response, AddLayer, AddLayerCollection, Layer, LayerCollection, SearchCapabilities, TaskResponse } from "../models/index";
+import * as runtime from '../runtime';
+import type { AddCollection200Response, AddLayer, AddLayerCollection, Layer, LayerCollection, SearchCapabilities, SearchType, TaskResponse } from '../models/index';
 export interface AddCollectionRequest {
     collection: string;
     addLayerCollection: AddLayerCollection;
@@ -30,7 +30,7 @@ export interface AddLayerRequest {
 export interface AutocompleteHandlerRequest {
     provider: string;
     collection: string;
-    searchType: string;
+    searchType: SearchType;
     searchString: string;
     limit: number;
     offset: number;
@@ -74,7 +74,7 @@ export interface SearchCapabilitiesHandlerRequest {
 export interface SearchHandlerRequest {
     provider: string;
     collection: string;
-    searchType: string;
+    searchType: SearchType;
     searchString: string;
     limit: number;
     offset: number;

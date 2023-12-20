@@ -1237,7 +1237,8 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/DataProviderId"
-            }
+            },
+            "example": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74"
           },
           {
             "name": "collection",
@@ -1246,43 +1247,48 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/LayerCollectionId"
-            }
+            },
+            "example": "05102bb3-a855-4a37-8a8a-30026a91fef1"
           },
           {
             "name": "searchType",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
-              "type": "string"
-            }
+              "$ref": "#/components/schemas/SearchType"
+            },
+            "example": "fulltext"
           },
           {
             "name": "searchString",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "test"
           },
           {
             "name": "limit",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32",
               "minimum": 0
-            }
+            },
+            "example": "20"
           },
           {
             "name": "offset",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32",
               "minimum": 0
-            }
+            },
+            "example": "0"
           }
         ],
         "responses": {
@@ -1371,7 +1377,8 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/DataProviderId"
-            }
+            },
+            "example": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74"
           },
           {
             "name": "collection",
@@ -1380,43 +1387,48 @@
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/LayerCollectionId"
-            }
+            },
+            "example": "05102bb3-a855-4a37-8a8a-30026a91fef1"
           },
           {
             "name": "searchType",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
-              "type": "string"
-            }
+              "$ref": "#/components/schemas/SearchType"
+            },
+            "example": "fulltext"
           },
           {
             "name": "searchString",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "test"
           },
           {
             "name": "limit",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32",
               "minimum": 0
-            }
+            },
+            "example": "20"
           },
           {
             "name": "offset",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32",
               "minimum": 0
-            }
+            },
+            "example": "0"
           }
         ],
         "responses": {
@@ -8066,6 +8078,13 @@
             "$ref": "#/components/schemas/SearchTypes"
           }
         }
+      },
+      "SearchType": {
+        "type": "string",
+        "enum": [
+          "fulltext",
+          "prefix"
+        ]
       },
       "SearchTypes": {
         "type": "object",

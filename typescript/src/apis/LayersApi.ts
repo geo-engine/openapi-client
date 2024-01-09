@@ -20,7 +20,7 @@ import type {
   AddLayerCollection,
   Layer,
   LayerCollection,
-  SearchCapabilities,
+  ProviderCapabilities,
   SearchType,
   TaskResponse,
 } from '../models/index';
@@ -35,8 +35,8 @@ import {
     LayerToJSON,
     LayerCollectionFromJSON,
     LayerCollectionToJSON,
-    SearchCapabilitiesFromJSON,
-    SearchCapabilitiesToJSON,
+    ProviderCapabilitiesFromJSON,
+    ProviderCapabilitiesToJSON,
     SearchTypeFromJSON,
     SearchTypeToJSON,
     TaskResponseFromJSON,
@@ -99,6 +99,10 @@ export interface ListRootCollectionsHandlerRequest {
     limit: number;
 }
 
+export interface ProviderCapabilitiesHandlerRequest {
+    provider: string;
+}
+
 export interface RemoveCollectionRequest {
     collection: string;
 }
@@ -111,10 +115,6 @@ export interface RemoveCollectionFromCollectionRequest {
 export interface RemoveLayerFromCollectionRequest {
     collection: string;
     layer: string;
-}
-
-export interface SearchCapabilitiesHandlerRequest {
-    provider: string;
 }
 
 export interface SearchHandlerRequest {
@@ -632,6 +632,42 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
+     */
+    async providerCapabilitiesHandlerRaw(requestParameters: ProviderCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProviderCapabilities>> {
+        if (requestParameters.provider === null || requestParameters.provider === undefined) {
+            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling providerCapabilitiesHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layers/{provider}/capabilities`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ProviderCapabilitiesFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async providerCapabilitiesHandler(requestParameters: ProviderCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProviderCapabilities> {
+        const response = await this.providerCapabilitiesHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Remove a collection
      * Remove a collection
      */
@@ -754,42 +790,6 @@ export class LayersApi extends runtime.BaseAPI {
      */
     async removeLayerFromCollection(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeLayerFromCollectionRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     */
-    async searchCapabilitiesHandlerRaw(requestParameters: SearchCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchCapabilities>> {
-        if (requestParameters.provider === null || requestParameters.provider === undefined) {
-            throw new runtime.RequiredError('provider','Required parameter requestParameters.provider was null or undefined when calling searchCapabilitiesHandler.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("session_token", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/layers/collections/search/capabilities/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => SearchCapabilitiesFromJSON(jsonValue));
-    }
-
-    /**
-     */
-    async searchCapabilitiesHandler(requestParameters: SearchCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchCapabilities> {
-        const response = await this.searchCapabilitiesHandlerRaw(requestParameters, initOverrides);
-        return await response.value();
     }
 
     /**

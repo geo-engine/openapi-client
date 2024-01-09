@@ -1317,50 +1317,6 @@
         ]
       }
     },
-    "/layers/collections/search/capabilities/{provider}": {
-      "get": {
-        "tags": [
-          "Layers"
-        ],
-        "operationId": "search_capabilities_handler",
-        "parameters": [
-          {
-            "name": "provider",
-            "in": "path",
-            "description": "Data provider id",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DataProviderId"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SearchCapabilities"
-                },
-                "example": {
-                  "autocomplete": true,
-                  "filters": [],
-                  "search_types": {
-                    "fulltext": true,
-                    "prefix": true
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "session_token": []
-          }
-        ]
-      }
-    },
     "/layers/collections/search/{provider}/{collection}": {
       "get": {
         "tags": [
@@ -1569,6 +1525,53 @@
                   ],
                   "name": "Datasets",
                   "properties": []
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
+    "/layers/{provider}/capabilities": {
+      "get": {
+        "tags": [
+          "Layers"
+        ],
+        "operationId": "provider_capabilities_handler",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "Data provider id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DataProviderId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProviderCapabilities"
+                },
+                "example": {
+                  "listing": true,
+                  "search": {
+                    "autocomplete": true,
+                    "filters": [],
+                    "search_types": {
+                      "fulltext": true,
+                      "prefix": true
+                    }
+                  }
                 }
               }
             }
@@ -7538,6 +7541,21 @@
               "$ref": "#/components/schemas/Provenance"
             },
             "nullable": true
+          }
+        }
+      },
+      "ProviderCapabilities": {
+        "type": "object",
+        "required": [
+          "listing",
+          "search"
+        ],
+        "properties": {
+          "listing": {
+            "type": "boolean"
+          },
+          "search": {
+            "$ref": "#/components/schemas/SearchCapabilities"
           }
         }
       },

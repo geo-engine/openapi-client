@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as runtime from '../runtime';
-import { AddCollection200ResponseFromJSON, AddLayerToJSON, AddLayerCollectionToJSON, LayerFromJSON, LayerCollectionFromJSON, SearchCapabilitiesFromJSON, TaskResponseFromJSON, } from '../models/index';
+import { AddCollection200ResponseFromJSON, AddLayerToJSON, AddLayerCollectionToJSON, LayerFromJSON, LayerCollectionFromJSON, ProviderCapabilitiesFromJSON, TaskResponseFromJSON, } from '../models/index';
 /**
  *
  */
@@ -471,6 +471,39 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
+     */
+    providerCapabilitiesHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.provider === null || requestParameters.provider === undefined) {
+                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling providerCapabilitiesHandler.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/layers/{provider}/capabilities`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => ProviderCapabilitiesFromJSON(jsonValue));
+        });
+    }
+    /**
+     */
+    providerCapabilitiesHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.providerCapabilitiesHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
      * Remove a collection
      * Remove a collection
      */
@@ -582,39 +615,6 @@ export class LayersApi extends runtime.BaseAPI {
     removeLayerFromCollection(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.removeLayerFromCollectionRaw(requestParameters, initOverrides);
-        });
-    }
-    /**
-     */
-    searchCapabilitiesHandlerRaw(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.provider === null || requestParameters.provider === undefined) {
-                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling searchCapabilitiesHandler.');
-            }
-            const queryParameters = {};
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("session_token", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/layers/collections/search/capabilities/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => SearchCapabilitiesFromJSON(jsonValue));
-        });
-    }
-    /**
-     */
-    searchCapabilitiesHandler(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.searchCapabilitiesHandlerRaw(requestParameters, initOverrides);
-            return yield response.value();
         });
     }
     /**

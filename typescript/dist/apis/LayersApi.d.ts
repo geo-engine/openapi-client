@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AddCollection200Response, AddLayer, AddLayerCollection, Layer, LayerCollection, SearchCapabilities, SearchType, TaskResponse } from '../models/index';
+import type { AddCollection200Response, AddLayer, AddLayerCollection, Layer, LayerCollection, ProviderCapabilities, SearchType, TaskResponse } from '../models/index';
 export interface AddCollectionRequest {
     collection: string;
     addLayerCollection: AddLayerCollection;
@@ -57,6 +57,9 @@ export interface ListRootCollectionsHandlerRequest {
     offset: number;
     limit: number;
 }
+export interface ProviderCapabilitiesHandlerRequest {
+    provider: string;
+}
 export interface RemoveCollectionRequest {
     collection: string;
 }
@@ -67,9 +70,6 @@ export interface RemoveCollectionFromCollectionRequest {
 export interface RemoveLayerFromCollectionRequest {
     collection: string;
     layer: string;
-}
-export interface SearchCapabilitiesHandlerRequest {
-    provider: string;
 }
 export interface SearchHandlerRequest {
     provider: string;
@@ -184,6 +184,12 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     listRootCollectionsHandler(requestParameters: ListRootCollectionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection>;
     /**
+     */
+    providerCapabilitiesHandlerRaw(requestParameters: ProviderCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProviderCapabilities>>;
+    /**
+     */
+    providerCapabilitiesHandler(requestParameters: ProviderCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProviderCapabilities>;
+    /**
      * Remove a collection
      * Remove a collection
      */
@@ -213,12 +219,6 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Remove a layer from a collection
      */
     removeLayerFromCollection(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     */
-    searchCapabilitiesHandlerRaw(requestParameters: SearchCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchCapabilities>>;
-    /**
-     */
-    searchCapabilitiesHandler(requestParameters: SearchCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchCapabilities>;
     /**
      * Searches the contents of the collection of the given provider
      * Searches the contents of the collection of the given provider

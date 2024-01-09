@@ -156,6 +156,7 @@ __exportStar(require("./ProjectVersion"), exports);
 __exportStar(require("./Provenance"), exports);
 __exportStar(require("./ProvenanceEntry"), exports);
 __exportStar(require("./ProvenanceOutput"), exports);
+__exportStar(require("./ProviderCapabilities"), exports);
 __exportStar(require("./ProviderLayerCollectionId"), exports);
 __exportStar(require("./ProviderLayerId"), exports);
 __exportStar(require("./Quota"), exports);

@@ -474,6 +474,39 @@ class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
+     */
+    providerCapabilitiesHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.provider === null || requestParameters.provider === undefined) {
+                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling providerCapabilitiesHandler.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/layers/{provider}/capabilities`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProviderCapabilitiesFromJSON)(jsonValue));
+        });
+    }
+    /**
+     */
+    providerCapabilitiesHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.providerCapabilitiesHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
      * Remove a collection
      * Remove a collection
      */
@@ -585,39 +618,6 @@ class LayersApi extends runtime.BaseAPI {
     removeLayerFromCollection(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.removeLayerFromCollectionRaw(requestParameters, initOverrides);
-        });
-    }
-    /**
-     */
-    searchCapabilitiesHandlerRaw(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.provider === null || requestParameters.provider === undefined) {
-                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling searchCapabilitiesHandler.');
-            }
-            const queryParameters = {};
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("session_token", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/layers/collections/search/capabilities/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SearchCapabilitiesFromJSON)(jsonValue));
-        });
-    }
-    /**
-     */
-    searchCapabilitiesHandler(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.searchCapabilitiesHandlerRaw(requestParameters, initOverrides);
-            return yield response.value();
         });
     }
     /**

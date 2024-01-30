@@ -32,6 +32,7 @@ export interface RasterStreamWebsocketRequest {
     spatialBounds: SpatialPartition2D;
     timeInterval: string;
     spatialResolution: SpatialResolution;
+    attributes: string;
     resultType: RasterStreamWebsocketResultType;
 }
 export interface RegisterWorkflowHandlerRequest {

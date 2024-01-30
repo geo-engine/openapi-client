@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "http://0.0.0.0:8080/api"
+      "url": "http://127.0.0.1:3030/api"
     }
   ],
   "paths": {
@@ -4562,6 +4562,14 @@
             }
           },
           {
+            "name": "attributes",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "resultType",
             "in": "query",
             "required": true,
@@ -4829,6 +4837,13 @@
           "northEast",
           "eastNorth"
         ]
+      },
+      "BandSelection": {
+        "type": "array",
+        "items": {
+          "type": "integer",
+          "minimum": 0
+        }
       },
       "BoundingBox2D": {
         "type": "object",

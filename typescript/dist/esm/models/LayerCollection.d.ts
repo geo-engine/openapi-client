@@ -28,7 +28,7 @@ export interface LayerCollection {
      * @type {string}
      * @memberof LayerCollection
      */
-    entryLabel?: string | null;
+    entryLabel?: string;
     /**
      *
      * @type {ProviderLayerCollectionId}
@@ -57,7 +57,7 @@ export interface LayerCollection {
 /**
  * Check if a given object implements the LayerCollection interface.
  */
-export declare function instanceOfLayerCollection(value: object): boolean;
+export declare function instanceOfLayerCollection(value: object): value is LayerCollection;
 export declare function LayerCollectionFromJSON(json: any): LayerCollection;
 export declare function LayerCollectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerCollection;
 export declare function LayerCollectionToJSON(value?: LayerCollection | null): any;

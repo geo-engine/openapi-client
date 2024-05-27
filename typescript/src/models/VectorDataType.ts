@@ -26,6 +26,17 @@ export const VectorDataType = {
 export type VectorDataType = typeof VectorDataType[keyof typeof VectorDataType];
 
 
+export function instanceOfVectorDataType(value: any): boolean {
+    for (const key in VectorDataType) {
+        if (Object.prototype.hasOwnProperty.call(VectorDataType, key)) {
+            if (VectorDataType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function VectorDataTypeFromJSON(json: any): VectorDataType {
     return VectorDataTypeFromJSONTyped(json, false);
 }

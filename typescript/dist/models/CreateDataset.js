@@ -20,10 +20,11 @@ const DatasetDefinition_1 = require("./DatasetDefinition");
  * Check if a given object implements the CreateDataset interface.
  */
 function instanceOfCreateDataset(value) {
-    let isInstance = true;
-    isInstance = isInstance && "dataPath" in value;
-    isInstance = isInstance && "definition" in value;
-    return isInstance;
+    if (!('dataPath' in value) || value['dataPath'] === undefined)
+        return false;
+    if (!('definition' in value) || value['definition'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfCreateDataset = instanceOfCreateDataset;
 function CreateDatasetFromJSON(json) {
@@ -31,7 +32,7 @@ function CreateDatasetFromJSON(json) {
 }
 exports.CreateDatasetFromJSON = CreateDatasetFromJSON;
 function CreateDatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,15 +42,12 @@ function CreateDatasetFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.CreateDatasetFromJSONTyped = CreateDatasetFromJSONTyped;
 function CreateDatasetToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'dataPath': (0, DataPath_1.DataPathToJSON)(value.dataPath),
-        'definition': (0, DatasetDefinition_1.DatasetDefinitionToJSON)(value.definition),
+        'dataPath': (0, DataPath_1.DataPathToJSON)(value['dataPath']),
+        'definition': (0, DatasetDefinition_1.DatasetDefinitionToJSON)(value['definition']),
     };
 }
 exports.CreateDatasetToJSON = CreateDatasetToJSON;

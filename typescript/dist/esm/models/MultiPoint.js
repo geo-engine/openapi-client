@@ -16,15 +16,15 @@ import { Coordinate2DFromJSON, Coordinate2DToJSON, } from './Coordinate2D';
  * Check if a given object implements the MultiPoint interface.
  */
 export function instanceOfMultiPoint(value) {
-    let isInstance = true;
-    isInstance = isInstance && "coordinates" in value;
-    return isInstance;
+    if (!('coordinates' in value) || value['coordinates'] === undefined)
+        return false;
+    return true;
 }
 export function MultiPointFromJSON(json) {
     return MultiPointFromJSONTyped(json, false);
 }
 export function MultiPointFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -32,13 +32,10 @@ export function MultiPointFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function MultiPointToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'coordinates': (value.coordinates.map(Coordinate2DToJSON)),
+        'coordinates': (value['coordinates'].map(Coordinate2DToJSON)),
     };
 }

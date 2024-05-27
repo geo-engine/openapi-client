@@ -19,9 +19,9 @@ const Provenance_1 = require("./Provenance");
  * Check if a given object implements the Provenances interface.
  */
 function instanceOfProvenances(value) {
-    let isInstance = true;
-    isInstance = isInstance && "provenances" in value;
-    return isInstance;
+    if (!('provenances' in value) || value['provenances'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfProvenances = instanceOfProvenances;
 function ProvenancesFromJSON(json) {
@@ -29,7 +29,7 @@ function ProvenancesFromJSON(json) {
 }
 exports.ProvenancesFromJSON = ProvenancesFromJSON;
 function ProvenancesFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,14 +38,11 @@ function ProvenancesFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ProvenancesFromJSONTyped = ProvenancesFromJSONTyped;
 function ProvenancesToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'provenances': (value.provenances.map(Provenance_1.ProvenanceToJSON)),
+        'provenances': (value['provenances'].map(Provenance_1.ProvenanceToJSON)),
     };
 }
 exports.ProvenancesToJSON = ProvenancesToJSON;

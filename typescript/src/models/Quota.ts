@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface Quota {
 /**
  * Check if a given object implements the Quota interface.
  */
-export function instanceOfQuota(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "available" in value;
-    isInstance = isInstance && "used" in value;
-
-    return isInstance;
+export function instanceOfQuota(value: object): value is Quota {
+    if (!('available' in value) || value['available'] === undefined) return false;
+    if (!('used' in value) || value['used'] === undefined) return false;
+    return true;
 }
 
 export function QuotaFromJSON(json: any): Quota {
@@ -49,7 +47,7 @@ export function QuotaFromJSON(json: any): Quota {
 }
 
 export function QuotaFromJSONTyped(json: any, ignoreDiscriminator: boolean): Quota {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function QuotaFromJSONTyped(json: any, ignoreDiscriminator: boolean): Quo
 }
 
 export function QuotaToJSON(value?: Quota | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'available': value.available,
-        'used': value.used,
+        'available': value['available'],
+        'used': value['used'],
     };
 }
 

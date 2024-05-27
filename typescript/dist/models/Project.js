@@ -14,25 +14,32 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProjectToJSON = exports.ProjectFromJSONTyped = exports.ProjectFromJSON = exports.instanceOfProject = void 0;
+const TimeStep_1 = require("./TimeStep");
 const Plot_1 = require("./Plot");
-const ProjectLayer_1 = require("./ProjectLayer");
 const ProjectVersion_1 = require("./ProjectVersion");
 const STRectangle_1 = require("./STRectangle");
-const TimeStep_1 = require("./TimeStep");
+const ProjectLayer_1 = require("./ProjectLayer");
 /**
  * Check if a given object implements the Project interface.
  */
 function instanceOfProject(value) {
-    let isInstance = true;
-    isInstance = isInstance && "bounds" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "layers" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "plots" in value;
-    isInstance = isInstance && "timeStep" in value;
-    isInstance = isInstance && "version" in value;
-    return isInstance;
+    if (!('bounds' in value) || value['bounds'] === undefined)
+        return false;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('layers' in value) || value['layers'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('plots' in value) || value['plots'] === undefined)
+        return false;
+    if (!('timeStep' in value) || value['timeStep'] === undefined)
+        return false;
+    if (!('version' in value) || value['version'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfProject = instanceOfProject;
 function ProjectFromJSON(json) {
@@ -40,7 +47,7 @@ function ProjectFromJSON(json) {
 }
 exports.ProjectFromJSON = ProjectFromJSON;
 function ProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -56,21 +63,18 @@ function ProjectFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ProjectFromJSONTyped = ProjectFromJSONTyped;
 function ProjectToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'bounds': (0, STRectangle_1.STRectangleToJSON)(value.bounds),
-        'description': value.description,
-        'id': value.id,
-        'layers': (value.layers.map(ProjectLayer_1.ProjectLayerToJSON)),
-        'name': value.name,
-        'plots': (value.plots.map(Plot_1.PlotToJSON)),
-        'timeStep': (0, TimeStep_1.TimeStepToJSON)(value.timeStep),
-        'version': (0, ProjectVersion_1.ProjectVersionToJSON)(value.version),
+        'bounds': (0, STRectangle_1.STRectangleToJSON)(value['bounds']),
+        'description': value['description'],
+        'id': value['id'],
+        'layers': (value['layers'].map(ProjectLayer_1.ProjectLayerToJSON)),
+        'name': value['name'],
+        'plots': (value['plots'].map(Plot_1.PlotToJSON)),
+        'timeStep': (0, TimeStep_1.TimeStepToJSON)(value['timeStep']),
+        'version': (0, ProjectVersion_1.ProjectVersionToJSON)(value['version']),
     };
 }
 exports.ProjectToJSON = ProjectToJSON;

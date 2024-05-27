@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { RasterColorizer } from './RasterColorizer';
 import {
     RasterColorizerFromJSON,
@@ -43,12 +43,10 @@ export interface RasterSymbology {
 /**
  * Check if a given object implements the RasterSymbology interface.
  */
-export function instanceOfRasterSymbology(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "opacity" in value;
-    isInstance = isInstance && "rasterColorizer" in value;
-
-    return isInstance;
+export function instanceOfRasterSymbology(value: object): value is RasterSymbology {
+    if (!('opacity' in value) || value['opacity'] === undefined) return false;
+    if (!('rasterColorizer' in value) || value['rasterColorizer'] === undefined) return false;
+    return true;
 }
 
 export function RasterSymbologyFromJSON(json: any): RasterSymbology {
@@ -56,7 +54,7 @@ export function RasterSymbologyFromJSON(json: any): RasterSymbology {
 }
 
 export function RasterSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterSymbology {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function RasterSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function RasterSymbologyToJSON(value?: RasterSymbology | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'opacity': value.opacity,
-        'rasterColorizer': RasterColorizerToJSON(value.rasterColorizer),
+        'opacity': value['opacity'],
+        'rasterColorizer': RasterColorizerToJSON(value['rasterColorizer']),
     };
 }
 

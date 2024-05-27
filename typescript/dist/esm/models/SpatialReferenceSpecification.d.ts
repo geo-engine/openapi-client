@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { AxisOrder } from './AxisOrder';
 import type { BoundingBox2D } from './BoundingBox2D';
+import type { AxisOrder } from './AxisOrder';
 /**
  * The specification of a spatial reference, where extent and axis labels are given
  * in natural order (x, y) = (east, north)
@@ -23,13 +23,13 @@ export interface SpatialReferenceSpecification {
      * @type {Array<string>}
      * @memberof SpatialReferenceSpecification
      */
-    axisLabels?: Array<string> | null;
+    axisLabels?: Array<string>;
     /**
      *
      * @type {AxisOrder}
      * @memberof SpatialReferenceSpecification
      */
-    axisOrder?: AxisOrder | null;
+    axisOrder?: AxisOrder;
     /**
      *
      * @type {BoundingBox2D}
@@ -58,7 +58,7 @@ export interface SpatialReferenceSpecification {
 /**
  * Check if a given object implements the SpatialReferenceSpecification interface.
  */
-export declare function instanceOfSpatialReferenceSpecification(value: object): boolean;
+export declare function instanceOfSpatialReferenceSpecification(value: object): value is SpatialReferenceSpecification;
 export declare function SpatialReferenceSpecificationFromJSON(json: any): SpatialReferenceSpecification;
 export declare function SpatialReferenceSpecificationFromJSONTyped(json: any, ignoreDiscriminator: boolean): SpatialReferenceSpecification;
 export declare function SpatialReferenceSpecificationToJSON(value?: SpatialReferenceSpecification | null): any;

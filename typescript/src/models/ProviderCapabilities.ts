@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SearchCapabilities } from './SearchCapabilities';
 import {
     SearchCapabilitiesFromJSON,
@@ -43,12 +43,10 @@ export interface ProviderCapabilities {
 /**
  * Check if a given object implements the ProviderCapabilities interface.
  */
-export function instanceOfProviderCapabilities(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "listing" in value;
-    isInstance = isInstance && "search" in value;
-
-    return isInstance;
+export function instanceOfProviderCapabilities(value: object): value is ProviderCapabilities {
+    if (!('listing' in value) || value['listing'] === undefined) return false;
+    if (!('search' in value) || value['search'] === undefined) return false;
+    return true;
 }
 
 export function ProviderCapabilitiesFromJSON(json: any): ProviderCapabilities {
@@ -56,7 +54,7 @@ export function ProviderCapabilitiesFromJSON(json: any): ProviderCapabilities {
 }
 
 export function ProviderCapabilitiesFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProviderCapabilities {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function ProviderCapabilitiesFromJSONTyped(json: any, ignoreDiscriminator
 }
 
 export function ProviderCapabilitiesToJSON(value?: ProviderCapabilities | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'listing': value.listing,
-        'search': SearchCapabilitiesToJSON(value.search),
+        'listing': value['listing'],
+        'search': SearchCapabilitiesToJSON(value['search']),
     };
 }
 

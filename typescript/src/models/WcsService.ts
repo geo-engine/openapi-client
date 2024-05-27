@@ -23,6 +23,17 @@ export const WcsService = {
 export type WcsService = typeof WcsService[keyof typeof WcsService];
 
 
+export function instanceOfWcsService(value: any): boolean {
+    for (const key in WcsService) {
+        if (Object.prototype.hasOwnProperty.call(WcsService, key)) {
+            if (WcsService[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function WcsServiceFromJSON(json: any): WcsService {
     return WcsServiceFromJSONTyped(json, false);
 }

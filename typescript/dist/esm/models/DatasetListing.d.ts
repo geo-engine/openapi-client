@@ -58,7 +58,7 @@ export interface DatasetListing {
      * @type {Symbology}
      * @memberof DatasetListing
      */
-    symbology?: Symbology | null;
+    symbology?: Symbology;
     /**
      *
      * @type {Array<string>}
@@ -69,7 +69,7 @@ export interface DatasetListing {
 /**
  * Check if a given object implements the DatasetListing interface.
  */
-export declare function instanceOfDatasetListing(value: object): boolean;
+export declare function instanceOfDatasetListing(value: object): value is DatasetListing;
 export declare function DatasetListingFromJSON(json: any): DatasetListing;
 export declare function DatasetListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): DatasetListing;
 export declare function DatasetListingToJSON(value?: DatasetListing | null): any;

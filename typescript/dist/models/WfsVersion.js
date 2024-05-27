@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WfsVersionToJSON = exports.WfsVersionFromJSONTyped = exports.WfsVersionFromJSON = exports.WfsVersion = void 0;
+exports.WfsVersionToJSON = exports.WfsVersionFromJSONTyped = exports.WfsVersionFromJSON = exports.instanceOfWfsVersion = exports.WfsVersion = void 0;
 /**
  *
  * @export
@@ -21,6 +21,17 @@ exports.WfsVersionToJSON = exports.WfsVersionFromJSONTyped = exports.WfsVersionF
 exports.WfsVersion = {
     _200: '2.0.0'
 };
+function instanceOfWfsVersion(value) {
+    for (const key in exports.WfsVersion) {
+        if (Object.prototype.hasOwnProperty.call(exports.WfsVersion, key)) {
+            if (exports.WfsVersion[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+exports.instanceOfWfsVersion = instanceOfWfsVersion;
 function WfsVersionFromJSON(json) {
     return WfsVersionFromJSONTyped(json, false);
 }

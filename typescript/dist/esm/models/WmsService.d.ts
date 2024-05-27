@@ -17,6 +17,7 @@ export declare const WmsService: {
     readonly Wms: "WMS";
 };
 export type WmsService = typeof WmsService[keyof typeof WmsService];
+export declare function instanceOfWmsService(value: any): boolean;
 export declare function WmsServiceFromJSON(json: any): WmsService;
 export declare function WmsServiceFromJSONTyped(json: any, ignoreDiscriminator: boolean): WmsService;
 export declare function WmsServiceToJSON(value?: WmsService | null): any;

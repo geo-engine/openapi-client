@@ -34,13 +34,13 @@ export interface AddDataset {
      * @type {string}
      * @memberof AddDataset
      */
-    name?: string | null;
+    name?: string;
     /**
      *
      * @type {Array<Provenance>}
      * @memberof AddDataset
      */
-    provenance?: Array<Provenance> | null;
+    provenance?: Array<Provenance>;
     /**
      *
      * @type {string}
@@ -52,18 +52,18 @@ export interface AddDataset {
      * @type {Symbology}
      * @memberof AddDataset
      */
-    symbology?: Symbology | null;
+    symbology?: Symbology;
     /**
      *
      * @type {Array<string>}
      * @memberof AddDataset
      */
-    tags?: Array<string> | null;
+    tags?: Array<string>;
 }
 /**
  * Check if a given object implements the AddDataset interface.
  */
-export declare function instanceOfAddDataset(value: object): boolean;
+export declare function instanceOfAddDataset(value: object): value is AddDataset;
 export declare function AddDatasetFromJSON(json: any): AddDataset;
 export declare function AddDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddDataset;
 export declare function AddDatasetToJSON(value?: AddDataset | null): any;

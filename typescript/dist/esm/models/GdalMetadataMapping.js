@@ -11,23 +11,25 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RasterPropertiesEntryTypeFromJSON, RasterPropertiesEntryTypeToJSON, } from './RasterPropertiesEntryType';
 import { RasterPropertiesKeyFromJSON, RasterPropertiesKeyToJSON, } from './RasterPropertiesKey';
+import { RasterPropertiesEntryTypeFromJSON, RasterPropertiesEntryTypeToJSON, } from './RasterPropertiesEntryType';
 /**
  * Check if a given object implements the GdalMetadataMapping interface.
  */
 export function instanceOfGdalMetadataMapping(value) {
-    let isInstance = true;
-    isInstance = isInstance && "sourceKey" in value;
-    isInstance = isInstance && "targetKey" in value;
-    isInstance = isInstance && "targetType" in value;
-    return isInstance;
+    if (!('sourceKey' in value) || value['sourceKey'] === undefined)
+        return false;
+    if (!('targetKey' in value) || value['targetKey'] === undefined)
+        return false;
+    if (!('targetType' in value) || value['targetType'] === undefined)
+        return false;
+    return true;
 }
 export function GdalMetadataMappingFromJSON(json) {
     return GdalMetadataMappingFromJSONTyped(json, false);
 }
 export function GdalMetadataMappingFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,15 +39,12 @@ export function GdalMetadataMappingFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function GdalMetadataMappingToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'source_key': RasterPropertiesKeyToJSON(value.sourceKey),
-        'target_key': RasterPropertiesKeyToJSON(value.targetKey),
-        'target_type': RasterPropertiesEntryTypeToJSON(value.targetType),
+        'source_key': RasterPropertiesKeyToJSON(value['sourceKey']),
+        'target_key': RasterPropertiesKeyToJSON(value['targetKey']),
+        'target_type': RasterPropertiesEntryTypeToJSON(value['targetType']),
     };
 }

@@ -29,7 +29,7 @@ export interface _TaskStatusWithId {
 /**
  * Check if a given object implements the TaskStatusWithId interface.
  */
-export declare function instanceOfTaskStatusWithId(value: object): boolean;
+export declare function instanceOfTaskStatusWithId(value: object): value is TaskStatusWithId;
 export declare function TaskStatusWithIdFromJSON(json: any): TaskStatusWithId;
 export declare function TaskStatusWithIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatusWithId;
 export declare function TaskStatusWithIdToJSON(value?: TaskStatusWithId | null): any;

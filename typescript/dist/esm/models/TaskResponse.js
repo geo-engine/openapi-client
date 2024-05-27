@@ -15,15 +15,15 @@
  * Check if a given object implements the TaskResponse interface.
  */
 export function instanceOfTaskResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "taskId" in value;
-    return isInstance;
+    if (!('taskId' in value) || value['taskId'] === undefined)
+        return false;
+    return true;
 }
 export function TaskResponseFromJSON(json) {
     return TaskResponseFromJSONTyped(json, false);
 }
 export function TaskResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -31,13 +31,10 @@ export function TaskResponseFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function TaskResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'taskId': value.taskId,
+        'taskId': value['taskId'],
     };
 }

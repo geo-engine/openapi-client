@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { MockDatasetDataSourceLoadingInfo } from './MockDatasetDataSourceLoadingInfo';
-import {
-    MockDatasetDataSourceLoadingInfoFromJSON,
-    MockDatasetDataSourceLoadingInfoFromJSONTyped,
-    MockDatasetDataSourceLoadingInfoToJSON,
-} from './MockDatasetDataSourceLoadingInfo';
+import { mapValues } from '../runtime';
 import type { VectorResultDescriptor } from './VectorResultDescriptor';
 import {
     VectorResultDescriptorFromJSON,
     VectorResultDescriptorFromJSONTyped,
     VectorResultDescriptorToJSON,
 } from './VectorResultDescriptor';
+import type { MockDatasetDataSourceLoadingInfo } from './MockDatasetDataSourceLoadingInfo';
+import {
+    MockDatasetDataSourceLoadingInfoFromJSON,
+    MockDatasetDataSourceLoadingInfoFromJSONTyped,
+    MockDatasetDataSourceLoadingInfoToJSON,
+} from './MockDatasetDataSourceLoadingInfo';
 
 /**
  * 
@@ -49,12 +49,10 @@ export interface MockMetaData {
 /**
  * Check if a given object implements the MockMetaData interface.
  */
-export function instanceOfMockMetaData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "loadingInfo" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-
-    return isInstance;
+export function instanceOfMockMetaData(value: object): value is MockMetaData {
+    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined) return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
+    return true;
 }
 
 export function MockMetaDataFromJSON(json: any): MockMetaData {
@@ -62,7 +60,7 @@ export function MockMetaDataFromJSON(json: any): MockMetaData {
 }
 
 export function MockMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): MockMetaData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function MockMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolea
 }
 
 export function MockMetaDataToJSON(value?: MockMetaData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value.loadingInfo),
-        'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
+        'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value['loadingInfo']),
+        'resultDescriptor': VectorResultDescriptorToJSON(value['resultDescriptor']),
     };
 }
 

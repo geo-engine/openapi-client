@@ -14,38 +14,35 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NumberParamToJSON = exports.NumberParamFromJSONTyped = exports.NumberParamFromJSON = void 0;
-const DerivedNumberWithType_1 = require("./DerivedNumberWithType");
-const StaticNumberParam_1 = require("./StaticNumberParam");
+const NumberParamDerived_1 = require("./NumberParamDerived");
+const NumberParamStatic_1 = require("./NumberParamStatic");
 function NumberParamFromJSON(json) {
     return NumberParamFromJSONTyped(json, false);
 }
 exports.NumberParamFromJSON = NumberParamFromJSON;
 function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'derived':
-            return Object.assign(Object.assign({}, (0, DerivedNumberWithType_1.DerivedNumberWithTypeFromJSONTyped)(json, true)), { type: 'derived' });
+            return Object.assign({}, (0, NumberParamDerived_1.NumberParamDerivedFromJSONTyped)(json, true), { type: 'derived' });
         case 'static':
-            return Object.assign(Object.assign({}, (0, StaticNumberParam_1.StaticNumberParamFromJSONTyped)(json, true)), { type: 'static' });
+            return Object.assign({}, (0, NumberParamStatic_1.NumberParamStaticFromJSONTyped)(json, true), { type: 'static' });
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }
 }
 exports.NumberParamFromJSONTyped = NumberParamFromJSONTyped;
 function NumberParamToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'derived':
-            return (0, DerivedNumberWithType_1.DerivedNumberWithTypeToJSON)(value);
+            return (0, NumberParamDerived_1.NumberParamDerivedToJSON)(value);
         case 'static':
-            return (0, StaticNumberParam_1.StaticNumberParamToJSON)(value);
+            return (0, NumberParamStatic_1.NumberParamStaticToJSON)(value);
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
     }

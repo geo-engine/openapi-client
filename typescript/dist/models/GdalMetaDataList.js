@@ -14,16 +14,17 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalMetaDataListToJSON = exports.GdalMetaDataListFromJSONTyped = exports.GdalMetaDataListFromJSON = exports.instanceOfGdalMetaDataList = void 0;
-const GdalLoadingInfoTemporalSlice_1 = require("./GdalLoadingInfoTemporalSlice");
 const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
+const GdalLoadingInfoTemporalSlice_1 = require("./GdalLoadingInfoTemporalSlice");
 /**
  * Check if a given object implements the GdalMetaDataList interface.
  */
 function instanceOfGdalMetaDataList(value) {
-    let isInstance = true;
-    isInstance = isInstance && "params" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    return isInstance;
+    if (!('params' in value) || value['params'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfGdalMetaDataList = instanceOfGdalMetaDataList;
 function GdalMetaDataListFromJSON(json) {
@@ -31,7 +32,7 @@ function GdalMetaDataListFromJSON(json) {
 }
 exports.GdalMetaDataListFromJSON = GdalMetaDataListFromJSON;
 function GdalMetaDataListFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,15 +42,12 @@ function GdalMetaDataListFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.GdalMetaDataListFromJSONTyped = GdalMetaDataListFromJSONTyped;
 function GdalMetaDataListToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'params': (value.params.map(GdalLoadingInfoTemporalSlice_1.GdalLoadingInfoTemporalSliceToJSON)),
-        'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorToJSON)(value.resultDescriptor),
+        'params': (value['params'].map(GdalLoadingInfoTemporalSlice_1.GdalLoadingInfoTemporalSliceToJSON)),
+        'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorToJSON)(value['resultDescriptor']),
     };
 }
 exports.GdalMetaDataListToJSON = GdalMetaDataListToJSON;

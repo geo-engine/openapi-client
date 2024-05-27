@@ -9,11 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { OgrSourceErrorSpec } from './OgrSourceErrorSpec';
+import type { VectorDataType } from './VectorDataType';
+import type { TypedGeometry } from './TypedGeometry';
 import type { OgrSourceColumnSpec } from './OgrSourceColumnSpec';
 import type { OgrSourceDatasetTimeType } from './OgrSourceDatasetTimeType';
-import type { OgrSourceErrorSpec } from './OgrSourceErrorSpec';
-import type { TypedGeometry } from './TypedGeometry';
-import type { VectorDataType } from './VectorDataType';
 /**
  *
  * @export
@@ -25,7 +25,7 @@ export interface OgrSourceDataset {
      * @type {string}
      * @memberof OgrSourceDataset
      */
-    attributeQuery?: string | null;
+    attributeQuery?: string;
     /**
      *
      * @type {number}
@@ -37,19 +37,19 @@ export interface OgrSourceDataset {
      * @type {OgrSourceColumnSpec}
      * @memberof OgrSourceDataset
      */
-    columns?: OgrSourceColumnSpec | null;
+    columns?: OgrSourceColumnSpec;
     /**
      *
      * @type {VectorDataType}
      * @memberof OgrSourceDataset
      */
-    dataType?: VectorDataType | null;
+    dataType?: VectorDataType;
     /**
      *
      * @type {TypedGeometry}
      * @memberof OgrSourceDataset
      */
-    defaultGeometry?: TypedGeometry | null;
+    defaultGeometry?: TypedGeometry;
     /**
      *
      * @type {string}
@@ -85,7 +85,7 @@ export interface OgrSourceDataset {
      * @type {string}
      * @memberof OgrSourceDataset
      */
-    sqlQuery?: string | null;
+    sqlQuery?: string;
     /**
      *
      * @type {OgrSourceDatasetTimeType}
@@ -96,7 +96,7 @@ export interface OgrSourceDataset {
 /**
  * Check if a given object implements the OgrSourceDataset interface.
  */
-export declare function instanceOfOgrSourceDataset(value: object): boolean;
+export declare function instanceOfOgrSourceDataset(value: object): value is OgrSourceDataset;
 export declare function OgrSourceDatasetFromJSON(json: any): OgrSourceDataset;
 export declare function OgrSourceDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDataset;
 export declare function OgrSourceDatasetToJSON(value?: OgrSourceDataset | null): any;

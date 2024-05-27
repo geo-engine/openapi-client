@@ -12,58 +12,55 @@
  * Do not edit the class manually.
  */
 
+import type { DataIdExternal } from './DataIdExternal';
 import {
-    ExternalDataIdWithType,
-    instanceOfExternalDataIdWithType,
-    ExternalDataIdWithTypeFromJSON,
-    ExternalDataIdWithTypeFromJSONTyped,
-    ExternalDataIdWithTypeToJSON,
-} from './ExternalDataIdWithType';
+    instanceOfDataIdExternal,
+    DataIdExternalFromJSON,
+    DataIdExternalFromJSONTyped,
+    DataIdExternalToJSON,
+} from './DataIdExternal';
+import type { DataIdInternal } from './DataIdInternal';
 import {
-    InternalDataId,
-    instanceOfInternalDataId,
-    InternalDataIdFromJSON,
-    InternalDataIdFromJSONTyped,
-    InternalDataIdToJSON,
-} from './InternalDataId';
+    instanceOfDataIdInternal,
+    DataIdInternalFromJSON,
+    DataIdInternalFromJSONTyped,
+    DataIdInternalToJSON,
+} from './DataIdInternal';
 
 /**
  * @type DataId
  * 
  * @export
  */
-export type DataId = { type: 'external' } & ExternalDataIdWithType | { type: 'internal' } & InternalDataId;
+export type DataId = { type: 'external' } & DataIdExternal | { type: 'internal' } & DataIdInternal;
 
 export function DataIdFromJSON(json: any): DataId {
     return DataIdFromJSONTyped(json, false);
 }
 
 export function DataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataId {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'external':
-            return {...ExternalDataIdWithTypeFromJSONTyped(json, true), type: 'external'};
+            return Object.assign({}, DataIdExternalFromJSONTyped(json, true), { type: 'external' });
         case 'internal':
-            return {...InternalDataIdFromJSONTyped(json, true), type: 'internal'};
+            return Object.assign({}, DataIdInternalFromJSONTyped(json, true), { type: 'internal' });
         default:
             throw new Error(`No variant of DataId exists with 'type=${json['type']}'`);
     }
 }
 
 export function DataIdToJSON(value?: DataId | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'external':
-            return ExternalDataIdWithTypeToJSON(value);
+            return DataIdExternalToJSON(value);
         case 'internal':
-            return InternalDataIdToJSON(value);
+            return DataIdInternalToJSON(value);
         default:
             throw new Error(`No variant of DataId exists with 'type=${value['type']}'`);
     }

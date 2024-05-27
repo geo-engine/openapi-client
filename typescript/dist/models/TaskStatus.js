@@ -14,48 +14,45 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TaskStatusToJSON = exports.TaskStatusFromJSONTyped = exports.TaskStatusFromJSON = void 0;
-const AbortedTaskStatus_1 = require("./AbortedTaskStatus");
-const CompletedTaskStatus_1 = require("./CompletedTaskStatus");
-const FailedTaskStatus_1 = require("./FailedTaskStatus");
-const RunningTaskStatus_1 = require("./RunningTaskStatus");
+const TaskStatusAborted_1 = require("./TaskStatusAborted");
+const TaskStatusCompleted_1 = require("./TaskStatusCompleted");
+const TaskStatusFailed_1 = require("./TaskStatusFailed");
+const TaskStatusRunning_1 = require("./TaskStatusRunning");
 function TaskStatusFromJSON(json) {
     return TaskStatusFromJSONTyped(json, false);
 }
 exports.TaskStatusFromJSON = TaskStatusFromJSON;
 function TaskStatusFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['status']) {
         case 'aborted':
-            return Object.assign(Object.assign({}, (0, AbortedTaskStatus_1.AbortedTaskStatusFromJSONTyped)(json, true)), { status: 'aborted' });
+            return Object.assign({}, (0, TaskStatusAborted_1.TaskStatusAbortedFromJSONTyped)(json, true), { status: 'aborted' });
         case 'completed':
-            return Object.assign(Object.assign({}, (0, CompletedTaskStatus_1.CompletedTaskStatusFromJSONTyped)(json, true)), { status: 'completed' });
+            return Object.assign({}, (0, TaskStatusCompleted_1.TaskStatusCompletedFromJSONTyped)(json, true), { status: 'completed' });
         case 'failed':
-            return Object.assign(Object.assign({}, (0, FailedTaskStatus_1.FailedTaskStatusFromJSONTyped)(json, true)), { status: 'failed' });
+            return Object.assign({}, (0, TaskStatusFailed_1.TaskStatusFailedFromJSONTyped)(json, true), { status: 'failed' });
         case 'running':
-            return Object.assign(Object.assign({}, (0, RunningTaskStatus_1.RunningTaskStatusFromJSONTyped)(json, true)), { status: 'running' });
+            return Object.assign({}, (0, TaskStatusRunning_1.TaskStatusRunningFromJSONTyped)(json, true), { status: 'running' });
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${json['status']}'`);
     }
 }
 exports.TaskStatusFromJSONTyped = TaskStatusFromJSONTyped;
 function TaskStatusToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     switch (value['status']) {
         case 'aborted':
-            return (0, AbortedTaskStatus_1.AbortedTaskStatusToJSON)(value);
+            return (0, TaskStatusAborted_1.TaskStatusAbortedToJSON)(value);
         case 'completed':
-            return (0, CompletedTaskStatus_1.CompletedTaskStatusToJSON)(value);
+            return (0, TaskStatusCompleted_1.TaskStatusCompletedToJSON)(value);
         case 'failed':
-            return (0, FailedTaskStatus_1.FailedTaskStatusToJSON)(value);
+            return (0, TaskStatusFailed_1.TaskStatusFailedToJSON)(value);
         case 'running':
-            return (0, RunningTaskStatus_1.RunningTaskStatusToJSON)(value);
+            return (0, TaskStatusRunning_1.TaskStatusRunningToJSON)(value);
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${value['status']}'`);
     }

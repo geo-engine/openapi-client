@@ -16,17 +16,19 @@ import { PlotOutputFormatFromJSON, PlotOutputFormatToJSON, } from './PlotOutputF
  * Check if a given object implements the WrappedPlotOutput interface.
  */
 export function instanceOfWrappedPlotOutput(value) {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "outputFormat" in value;
-    isInstance = isInstance && "plotType" in value;
-    return isInstance;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    if (!('outputFormat' in value) || value['outputFormat'] === undefined)
+        return false;
+    if (!('plotType' in value) || value['plotType'] === undefined)
+        return false;
+    return true;
 }
 export function WrappedPlotOutputFromJSON(json) {
     return WrappedPlotOutputFromJSONTyped(json, false);
 }
 export function WrappedPlotOutputFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -36,15 +38,12 @@ export function WrappedPlotOutputFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function WrappedPlotOutputToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'data': value.data,
-        'outputFormat': PlotOutputFormatToJSON(value.outputFormat),
-        'plotType': value.plotType,
+        'data': value['data'],
+        'outputFormat': PlotOutputFormatToJSON(value['outputFormat']),
+        'plotType': value['plotType'],
     };
 }

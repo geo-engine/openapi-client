@@ -18,11 +18,13 @@ exports.ProvenanceToJSON = exports.ProvenanceFromJSONTyped = exports.ProvenanceF
  * Check if a given object implements the Provenance interface.
  */
 function instanceOfProvenance(value) {
-    let isInstance = true;
-    isInstance = isInstance && "citation" in value;
-    isInstance = isInstance && "license" in value;
-    isInstance = isInstance && "uri" in value;
-    return isInstance;
+    if (!('citation' in value) || value['citation'] === undefined)
+        return false;
+    if (!('license' in value) || value['license'] === undefined)
+        return false;
+    if (!('uri' in value) || value['uri'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfProvenance = instanceOfProvenance;
 function ProvenanceFromJSON(json) {
@@ -30,7 +32,7 @@ function ProvenanceFromJSON(json) {
 }
 exports.ProvenanceFromJSON = ProvenanceFromJSON;
 function ProvenanceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,16 +43,13 @@ function ProvenanceFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ProvenanceFromJSONTyped = ProvenanceFromJSONTyped;
 function ProvenanceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'citation': value.citation,
-        'license': value.license,
-        'uri': value.uri,
+        'citation': value['citation'],
+        'license': value['license'],
+        'uri': value['uri'],
     };
 }
 exports.ProvenanceToJSON = ProvenanceToJSON;

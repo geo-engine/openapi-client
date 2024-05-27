@@ -18,11 +18,13 @@ exports.DateTimeParseFormatToJSON = exports.DateTimeParseFormatFromJSONTyped = e
  * Check if a given object implements the DateTimeParseFormat interface.
  */
 function instanceOfDateTimeParseFormat(value) {
-    let isInstance = true;
-    isInstance = isInstance && "fmt" in value;
-    isInstance = isInstance && "hasTime" in value;
-    isInstance = isInstance && "hasTz" in value;
-    return isInstance;
+    if (!('fmt' in value) || value['fmt'] === undefined)
+        return false;
+    if (!('hasTime' in value) || value['hasTime'] === undefined)
+        return false;
+    if (!('hasTz' in value) || value['hasTz'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfDateTimeParseFormat = instanceOfDateTimeParseFormat;
 function DateTimeParseFormatFromJSON(json) {
@@ -30,7 +32,7 @@ function DateTimeParseFormatFromJSON(json) {
 }
 exports.DateTimeParseFormatFromJSON = DateTimeParseFormatFromJSON;
 function DateTimeParseFormatFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,16 +43,13 @@ function DateTimeParseFormatFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.DateTimeParseFormatFromJSONTyped = DateTimeParseFormatFromJSONTyped;
 function DateTimeParseFormatToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'fmt': value.fmt,
-        'has_time': value.hasTime,
-        'has_tz': value.hasTz,
+        'fmt': value['fmt'],
+        'has_time': value['hasTime'],
+        'has_tz': value['hasTz'],
     };
 }
 exports.DateTimeParseFormatToJSON = DateTimeParseFormatToJSON;

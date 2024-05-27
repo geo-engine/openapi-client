@@ -31,7 +31,7 @@ export interface Breakpoint {
 /**
  * Check if a given object implements the Breakpoint interface.
  */
-export declare function instanceOfBreakpoint(value: object): boolean;
+export declare function instanceOfBreakpoint(value: object): value is Breakpoint;
 export declare function BreakpointFromJSON(json: any): Breakpoint;
 export declare function BreakpointFromJSONTyped(json: any, ignoreDiscriminator: boolean): Breakpoint;
 export declare function BreakpointToJSON(value?: Breakpoint | null): any;

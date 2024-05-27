@@ -18,10 +18,11 @@ exports.TimeIntervalToJSON = exports.TimeIntervalFromJSONTyped = exports.TimeInt
  * Check if a given object implements the TimeInterval interface.
  */
 function instanceOfTimeInterval(value) {
-    let isInstance = true;
-    isInstance = isInstance && "end" in value;
-    isInstance = isInstance && "start" in value;
-    return isInstance;
+    if (!('end' in value) || value['end'] === undefined)
+        return false;
+    if (!('start' in value) || value['start'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfTimeInterval = instanceOfTimeInterval;
 function TimeIntervalFromJSON(json) {
@@ -29,7 +30,7 @@ function TimeIntervalFromJSON(json) {
 }
 exports.TimeIntervalFromJSON = TimeIntervalFromJSON;
 function TimeIntervalFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,12 @@ function TimeIntervalFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.TimeIntervalFromJSONTyped = TimeIntervalFromJSONTyped;
 function TimeIntervalToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'end': value.end,
-        'start': value.start,
+        'end': value['end'],
+        'start': value['start'],
     };
 }
 exports.TimeIntervalToJSON = TimeIntervalToJSON;

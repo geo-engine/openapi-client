@@ -37,7 +37,7 @@ export interface AuthCodeResponse {
 /**
  * Check if a given object implements the AuthCodeResponse interface.
  */
-export declare function instanceOfAuthCodeResponse(value: object): boolean;
+export declare function instanceOfAuthCodeResponse(value: object): value is AuthCodeResponse;
 export declare function AuthCodeResponseFromJSON(json: any): AuthCodeResponse;
 export declare function AuthCodeResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthCodeResponse;
 export declare function AuthCodeResponseToJSON(value?: AuthCodeResponse | null): any;

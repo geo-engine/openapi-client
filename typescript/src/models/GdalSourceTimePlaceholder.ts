@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { DateTimeParseFormat } from './DateTimeParseFormat';
 import {
     DateTimeParseFormatFromJSON,
@@ -49,12 +49,10 @@ export interface GdalSourceTimePlaceholder {
 /**
  * Check if a given object implements the GdalSourceTimePlaceholder interface.
  */
-export function instanceOfGdalSourceTimePlaceholder(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "format" in value;
-    isInstance = isInstance && "reference" in value;
-
-    return isInstance;
+export function instanceOfGdalSourceTimePlaceholder(value: object): value is GdalSourceTimePlaceholder {
+    if (!('format' in value) || value['format'] === undefined) return false;
+    if (!('reference' in value) || value['reference'] === undefined) return false;
+    return true;
 }
 
 export function GdalSourceTimePlaceholderFromJSON(json: any): GdalSourceTimePlaceholder {
@@ -62,7 +60,7 @@ export function GdalSourceTimePlaceholderFromJSON(json: any): GdalSourceTimePlac
 }
 
 export function GdalSourceTimePlaceholderFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalSourceTimePlaceholder {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function GdalSourceTimePlaceholderFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function GdalSourceTimePlaceholderToJSON(value?: GdalSourceTimePlaceholder | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'format': DateTimeParseFormatToJSON(value.format),
-        'reference': TimeReferenceToJSON(value.reference),
+        'format': DateTimeParseFormatToJSON(value['format']),
+        'reference': TimeReferenceToJSON(value['reference']),
     };
 }
 

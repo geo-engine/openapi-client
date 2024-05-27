@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DescribeCoverageRequestToJSON = exports.DescribeCoverageRequestFromJSONTyped = exports.DescribeCoverageRequestFromJSON = exports.DescribeCoverageRequest = void 0;
+exports.DescribeCoverageRequestToJSON = exports.DescribeCoverageRequestFromJSONTyped = exports.DescribeCoverageRequestFromJSON = exports.instanceOfDescribeCoverageRequest = exports.DescribeCoverageRequest = void 0;
 /**
  *
  * @export
@@ -21,6 +21,17 @@ exports.DescribeCoverageRequestToJSON = exports.DescribeCoverageRequestFromJSONT
 exports.DescribeCoverageRequest = {
     DescribeCoverage: 'DescribeCoverage'
 };
+function instanceOfDescribeCoverageRequest(value) {
+    for (const key in exports.DescribeCoverageRequest) {
+        if (Object.prototype.hasOwnProperty.call(exports.DescribeCoverageRequest, key)) {
+            if (exports.DescribeCoverageRequest[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+exports.instanceOfDescribeCoverageRequest = instanceOfDescribeCoverageRequest;
 function DescribeCoverageRequestFromJSON(json) {
     return DescribeCoverageRequestFromJSONTyped(json, false);
 }

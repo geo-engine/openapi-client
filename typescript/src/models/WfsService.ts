@@ -23,6 +23,17 @@ export const WfsService = {
 export type WfsService = typeof WfsService[keyof typeof WfsService];
 
 
+export function instanceOfWfsService(value: any): boolean {
+    for (const key in WfsService) {
+        if (Object.prototype.hasOwnProperty.call(WfsService, key)) {
+            if (WfsService[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function WfsServiceFromJSON(json: any): WfsService {
     return WfsServiceFromJSONTyped(json, false);
 }

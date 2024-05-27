@@ -12,31 +12,31 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ColorParam } from './ColorParam';
-import {
-    ColorParamFromJSON,
-    ColorParamFromJSONTyped,
-    ColorParamToJSON,
-} from './ColorParam';
-import type { NumberParam } from './NumberParam';
-import {
-    NumberParamFromJSON,
-    NumberParamFromJSONTyped,
-    NumberParamToJSON,
-} from './NumberParam';
-import type { StrokeParam } from './StrokeParam';
-import {
-    StrokeParamFromJSON,
-    StrokeParamFromJSONTyped,
-    StrokeParamToJSON,
-} from './StrokeParam';
+import { mapValues } from '../runtime';
 import type { TextSymbology } from './TextSymbology';
 import {
     TextSymbologyFromJSON,
     TextSymbologyFromJSONTyped,
     TextSymbologyToJSON,
 } from './TextSymbology';
+import type { StrokeParam } from './StrokeParam';
+import {
+    StrokeParamFromJSON,
+    StrokeParamFromJSONTyped,
+    StrokeParamToJSON,
+} from './StrokeParam';
+import type { NumberParam } from './NumberParam';
+import {
+    NumberParamFromJSON,
+    NumberParamFromJSONTyped,
+    NumberParamToJSON,
+} from './NumberParam';
+import type { ColorParam } from './ColorParam';
+import {
+    ColorParamFromJSON,
+    ColorParamFromJSONTyped,
+    ColorParamToJSON,
+} from './ColorParam';
 
 /**
  * 
@@ -67,19 +67,17 @@ export interface PointSymbology {
      * @type {TextSymbology}
      * @memberof PointSymbology
      */
-    text?: TextSymbology | null;
+    text?: TextSymbology;
 }
 
 /**
  * Check if a given object implements the PointSymbology interface.
  */
-export function instanceOfPointSymbology(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "fillColor" in value;
-    isInstance = isInstance && "radius" in value;
-    isInstance = isInstance && "stroke" in value;
-
-    return isInstance;
+export function instanceOfPointSymbology(value: object): value is PointSymbology {
+    if (!('fillColor' in value) || value['fillColor'] === undefined) return false;
+    if (!('radius' in value) || value['radius'] === undefined) return false;
+    if (!('stroke' in value) || value['stroke'] === undefined) return false;
+    return true;
 }
 
 export function PointSymbologyFromJSON(json: any): PointSymbology {
@@ -87,7 +85,7 @@ export function PointSymbologyFromJSON(json: any): PointSymbology {
 }
 
 export function PointSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): PointSymbology {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -95,23 +93,20 @@ export function PointSymbologyFromJSONTyped(json: any, ignoreDiscriminator: bool
         'fillColor': ColorParamFromJSON(json['fillColor']),
         'radius': NumberParamFromJSON(json['radius']),
         'stroke': StrokeParamFromJSON(json['stroke']),
-        'text': !exists(json, 'text') ? undefined : TextSymbologyFromJSON(json['text']),
+        'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
     };
 }
 
 export function PointSymbologyToJSON(value?: PointSymbology | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'fillColor': ColorParamToJSON(value.fillColor),
-        'radius': NumberParamToJSON(value.radius),
-        'stroke': StrokeParamToJSON(value.stroke),
-        'text': TextSymbologyToJSON(value.text),
+        'fillColor': ColorParamToJSON(value['fillColor']),
+        'radius': NumberParamToJSON(value['radius']),
+        'stroke': StrokeParamToJSON(value['stroke']),
+        'text': TextSymbologyToJSON(value['text']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ProviderLayerCollectionId } from './ProviderLayerCollectionId';
 import {
     ProviderLayerCollectionIdFromJSON,
@@ -55,13 +55,11 @@ export interface LayerCollectionListing {
 /**
  * Check if a given object implements the LayerCollectionListing interface.
  */
-export function instanceOfLayerCollectionListing(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+export function instanceOfLayerCollectionListing(value: object): value is LayerCollectionListing {
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    return true;
 }
 
 export function LayerCollectionListingFromJSON(json: any): LayerCollectionListing {
@@ -69,7 +67,7 @@ export function LayerCollectionListingFromJSON(json: any): LayerCollectionListin
 }
 
 export function LayerCollectionListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerCollectionListing {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -77,23 +75,20 @@ export function LayerCollectionListingFromJSONTyped(json: any, ignoreDiscriminat
         'description': json['description'],
         'id': ProviderLayerCollectionIdFromJSON(json['id']),
         'name': json['name'],
-        'properties': !exists(json, 'properties') ? undefined : json['properties'],
+        'properties': json['properties'] == null ? undefined : json['properties'],
     };
 }
 
 export function LayerCollectionListingToJSON(value?: LayerCollectionListing | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'description': value.description,
-        'id': ProviderLayerCollectionIdToJSON(value.id),
-        'name': value.name,
-        'properties': value.properties,
+        'description': value['description'],
+        'id': ProviderLayerCollectionIdToJSON(value['id']),
+        'name': value['name'],
+        'properties': value['properties'],
     };
 }
 

@@ -20,6 +20,7 @@ export declare const SpatialReferenceAuthority: {
     readonly Esri: "ESRI";
 };
 export type SpatialReferenceAuthority = typeof SpatialReferenceAuthority[keyof typeof SpatialReferenceAuthority];
+export declare function instanceOfSpatialReferenceAuthority(value: any): boolean;
 export declare function SpatialReferenceAuthorityFromJSON(json: any): SpatialReferenceAuthority;
 export declare function SpatialReferenceAuthorityFromJSONTyped(json: any, ignoreDiscriminator: boolean): SpatialReferenceAuthority;
 export declare function SpatialReferenceAuthorityToJSON(value?: SpatialReferenceAuthority | null): any;

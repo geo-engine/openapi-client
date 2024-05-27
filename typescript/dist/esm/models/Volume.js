@@ -15,16 +15,17 @@
  * Check if a given object implements the Volume interface.
  */
 export function instanceOfVolume(value) {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "path" in value;
-    return isInstance;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('path' in value) || value['path'] === undefined)
+        return false;
+    return true;
 }
 export function VolumeFromJSON(json) {
     return VolumeFromJSONTyped(json, false);
 }
 export function VolumeFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -33,14 +34,11 @@ export function VolumeFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function VolumeToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'name': value.name,
-        'path': value.path,
+        'name': value['name'],
+        'path': value['path'],
     };
 }

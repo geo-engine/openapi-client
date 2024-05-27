@@ -41,7 +41,7 @@ export type TypedOperatorTypeEnum = typeof TypedOperatorTypeEnum[keyof typeof Ty
 /**
  * Check if a given object implements the TypedOperator interface.
  */
-export declare function instanceOfTypedOperator(value: object): boolean;
+export declare function instanceOfTypedOperator(value: object): value is TypedOperator;
 export declare function TypedOperatorFromJSON(json: any): TypedOperator;
 export declare function TypedOperatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedOperator;
 export declare function TypedOperatorToJSON(value?: TypedOperator | null): any;

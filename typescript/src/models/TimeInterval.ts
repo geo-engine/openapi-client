@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Stores time intervals in ms in close-open semantic [start, end)
  * @export
@@ -36,12 +36,10 @@ export interface TimeInterval {
 /**
  * Check if a given object implements the TimeInterval interface.
  */
-export function instanceOfTimeInterval(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "end" in value;
-    isInstance = isInstance && "start" in value;
-
-    return isInstance;
+export function instanceOfTimeInterval(value: object): value is TimeInterval {
+    if (!('end' in value) || value['end'] === undefined) return false;
+    if (!('start' in value) || value['start'] === undefined) return false;
+    return true;
 }
 
 export function TimeIntervalFromJSON(json: any): TimeInterval {
@@ -49,7 +47,7 @@ export function TimeIntervalFromJSON(json: any): TimeInterval {
 }
 
 export function TimeIntervalFromJSONTyped(json: any, ignoreDiscriminator: boolean): TimeInterval {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function TimeIntervalFromJSONTyped(json: any, ignoreDiscriminator: boolea
 }
 
 export function TimeIntervalToJSON(value?: TimeInterval | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'end': value.end,
-        'start': value.start,
+        'end': value['end'],
+        'start': value['start'],
     };
 }
 

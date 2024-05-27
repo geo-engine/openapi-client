@@ -18,10 +18,11 @@ exports.ErrorResponseToJSON = exports.ErrorResponseFromJSONTyped = exports.Error
  * Check if a given object implements the ErrorResponse interface.
  */
 function instanceOfErrorResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "error" in value;
-    isInstance = isInstance && "message" in value;
-    return isInstance;
+    if (!('error' in value) || value['error'] === undefined)
+        return false;
+    if (!('message' in value) || value['message'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfErrorResponse = instanceOfErrorResponse;
 function ErrorResponseFromJSON(json) {
@@ -29,7 +30,7 @@ function ErrorResponseFromJSON(json) {
 }
 exports.ErrorResponseFromJSON = ErrorResponseFromJSON;
 function ErrorResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,12 @@ function ErrorResponseFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ErrorResponseFromJSONTyped = ErrorResponseFromJSONTyped;
 function ErrorResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'error': value.error,
-        'message': value.message,
+        'error': value['error'],
+        'message': value['message'],
     };
 }
 exports.ErrorResponseToJSON = ErrorResponseToJSON;

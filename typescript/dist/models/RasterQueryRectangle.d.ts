@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { SpatialPartition2D } from './SpatialPartition2D';
 import type { SpatialResolution } from './SpatialResolution';
 import type { TimeInterval } from './TimeInterval';
+import type { SpatialPartition2D } from './SpatialPartition2D';
 /**
  * A spatio-temporal rectangle with a specified resolution
  * @export
@@ -40,7 +40,7 @@ export interface RasterQueryRectangle {
 /**
  * Check if a given object implements the RasterQueryRectangle interface.
  */
-export declare function instanceOfRasterQueryRectangle(value: object): boolean;
+export declare function instanceOfRasterQueryRectangle(value: object): value is RasterQueryRectangle;
 export declare function RasterQueryRectangleFromJSON(json: any): RasterQueryRectangle;
 export declare function RasterQueryRectangleFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterQueryRectangle;
 export declare function RasterQueryRectangleToJSON(value?: RasterQueryRectangle | null): any;

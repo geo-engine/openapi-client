@@ -27,10 +27,11 @@ exports.TypedOperatorTypeEnum = {
  * Check if a given object implements the TypedOperator interface.
  */
 function instanceOfTypedOperator(value) {
-    let isInstance = true;
-    isInstance = isInstance && "operator" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('operator' in value) || value['operator'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfTypedOperator = instanceOfTypedOperator;
 function TypedOperatorFromJSON(json) {
@@ -38,7 +39,7 @@ function TypedOperatorFromJSON(json) {
 }
 exports.TypedOperatorFromJSON = TypedOperatorFromJSON;
 function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -48,15 +49,12 @@ function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.TypedOperatorFromJSONTyped = TypedOperatorFromJSONTyped;
 function TypedOperatorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorToJSON)(value.operator),
-        'type': value.type,
+        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorToJSON)(value['operator']),
+        'type': value['type'],
     };
 }
 exports.TypedOperatorToJSON = TypedOperatorToJSON;

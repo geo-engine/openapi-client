@@ -20,10 +20,11 @@ const TimeReference_1 = require("./TimeReference");
  * Check if a given object implements the GdalSourceTimePlaceholder interface.
  */
 function instanceOfGdalSourceTimePlaceholder(value) {
-    let isInstance = true;
-    isInstance = isInstance && "format" in value;
-    isInstance = isInstance && "reference" in value;
-    return isInstance;
+    if (!('format' in value) || value['format'] === undefined)
+        return false;
+    if (!('reference' in value) || value['reference'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfGdalSourceTimePlaceholder = instanceOfGdalSourceTimePlaceholder;
 function GdalSourceTimePlaceholderFromJSON(json) {
@@ -31,7 +32,7 @@ function GdalSourceTimePlaceholderFromJSON(json) {
 }
 exports.GdalSourceTimePlaceholderFromJSON = GdalSourceTimePlaceholderFromJSON;
 function GdalSourceTimePlaceholderFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,15 +42,12 @@ function GdalSourceTimePlaceholderFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.GdalSourceTimePlaceholderFromJSONTyped = GdalSourceTimePlaceholderFromJSONTyped;
 function GdalSourceTimePlaceholderToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'format': (0, DateTimeParseFormat_1.DateTimeParseFormatToJSON)(value.format),
-        'reference': (0, TimeReference_1.TimeReferenceToJSON)(value.reference),
+        'format': (0, DateTimeParseFormat_1.DateTimeParseFormatToJSON)(value['format']),
+        'reference': (0, TimeReference_1.TimeReferenceToJSON)(value['reference']),
     };
 }
 exports.GdalSourceTimePlaceholderToJSON = GdalSourceTimePlaceholderToJSON;

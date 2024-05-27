@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ColorParam } from './ColorParam';
-import type { NumberParam } from './NumberParam';
-import type { StrokeParam } from './StrokeParam';
 import type { TextSymbology } from './TextSymbology';
+import type { StrokeParam } from './StrokeParam';
+import type { NumberParam } from './NumberParam';
+import type { ColorParam } from './ColorParam';
 /**
  *
  * @export
@@ -42,12 +42,12 @@ export interface PointSymbology {
      * @type {TextSymbology}
      * @memberof PointSymbology
      */
-    text?: TextSymbology | null;
+    text?: TextSymbology;
 }
 /**
  * Check if a given object implements the PointSymbology interface.
  */
-export declare function instanceOfPointSymbology(value: object): boolean;
+export declare function instanceOfPointSymbology(value: object): value is PointSymbology;
 export declare function PointSymbologyFromJSON(json: any): PointSymbology;
 export declare function PointSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): PointSymbology;
 export declare function PointSymbologyToJSON(value?: PointSymbology | null): any;

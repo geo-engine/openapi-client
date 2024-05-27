@@ -25,7 +25,7 @@ export interface TaskAbortOptions {
 /**
  * Check if a given object implements the TaskAbortOptions interface.
  */
-export declare function instanceOfTaskAbortOptions(value: object): boolean;
+export declare function instanceOfTaskAbortOptions(value: object): value is TaskAbortOptions;
 export declare function TaskAbortOptionsFromJSON(json: any): TaskAbortOptions;
 export declare function TaskAbortOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskAbortOptions;
 export declare function TaskAbortOptionsToJSON(value?: TaskAbortOptions | null): any;

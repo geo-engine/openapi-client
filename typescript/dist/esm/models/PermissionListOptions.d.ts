@@ -31,7 +31,7 @@ export interface PermissionListOptions {
 /**
  * Check if a given object implements the PermissionListOptions interface.
  */
-export declare function instanceOfPermissionListOptions(value: object): boolean;
+export declare function instanceOfPermissionListOptions(value: object): value is PermissionListOptions;
 export declare function PermissionListOptionsFromJSON(json: any): PermissionListOptions;
 export declare function PermissionListOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): PermissionListOptions;
 export declare function PermissionListOptionsToJSON(value?: PermissionListOptions | null): any;

@@ -20,18 +20,17 @@ function FormatSpecificsFromJSON(json) {
 }
 exports.FormatSpecificsFromJSON = FormatSpecificsFromJSON;
 function FormatSpecificsFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return Object.assign({}, (0, FormatSpecificsOneOf_1.FormatSpecificsOneOfFromJSONTyped)(json, true));
+    if ((0, FormatSpecificsOneOf_1.instanceOfFormatSpecificsOneOf)(json)) {
+        return (0, FormatSpecificsOneOf_1.FormatSpecificsOneOfFromJSONTyped)(json, true);
+    }
 }
 exports.FormatSpecificsFromJSONTyped = FormatSpecificsFromJSONTyped;
 function FormatSpecificsToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     if ((0, FormatSpecificsOneOf_1.instanceOfFormatSpecificsOneOf)(value)) {
         return (0, FormatSpecificsOneOf_1.FormatSpecificsOneOfToJSON)(value);

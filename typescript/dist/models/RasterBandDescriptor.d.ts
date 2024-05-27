@@ -32,7 +32,7 @@ export interface RasterBandDescriptor {
 /**
  * Check if a given object implements the RasterBandDescriptor interface.
  */
-export declare function instanceOfRasterBandDescriptor(value: object): boolean;
+export declare function instanceOfRasterBandDescriptor(value: object): value is RasterBandDescriptor;
 export declare function RasterBandDescriptorFromJSON(json: any): RasterBandDescriptor;
 export declare function RasterBandDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterBandDescriptor;
 export declare function RasterBandDescriptorToJSON(value?: RasterBandDescriptor | null): any;

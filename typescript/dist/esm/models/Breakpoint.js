@@ -15,16 +15,17 @@
  * Check if a given object implements the Breakpoint interface.
  */
 export function instanceOfBreakpoint(value) {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "value" in value;
-    return isInstance;
+    if (!('color' in value) || value['color'] === undefined)
+        return false;
+    if (!('value' in value) || value['value'] === undefined)
+        return false;
+    return true;
 }
 export function BreakpointFromJSON(json) {
     return BreakpointFromJSONTyped(json, false);
 }
 export function BreakpointFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -33,14 +34,11 @@ export function BreakpointFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function BreakpointToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'color': value.color,
-        'value': value.value,
+        'color': value['color'],
+        'value': value['value'],
     };
 }

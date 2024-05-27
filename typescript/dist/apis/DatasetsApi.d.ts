@@ -30,13 +30,13 @@ export interface ListDatasetsHandlerRequest {
     order: OrderBy;
     offset: number;
     limit: number;
-    filter?: string | null;
-    tags?: Array<string> | null;
+    filter?: string;
+    tags?: Array<string>;
 }
 export interface SuggestMetaDataHandlerRequest {
     upload: string;
-    mainFile?: string | null;
-    layerName?: string | null;
+    mainFile?: string;
+    layerName?: string;
 }
 export interface UpdateDatasetHandlerRequest {
     dataset: string;

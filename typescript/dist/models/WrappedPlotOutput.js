@@ -19,11 +19,13 @@ const PlotOutputFormat_1 = require("./PlotOutputFormat");
  * Check if a given object implements the WrappedPlotOutput interface.
  */
 function instanceOfWrappedPlotOutput(value) {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "outputFormat" in value;
-    isInstance = isInstance && "plotType" in value;
-    return isInstance;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    if (!('outputFormat' in value) || value['outputFormat'] === undefined)
+        return false;
+    if (!('plotType' in value) || value['plotType'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfWrappedPlotOutput = instanceOfWrappedPlotOutput;
 function WrappedPlotOutputFromJSON(json) {
@@ -31,7 +33,7 @@ function WrappedPlotOutputFromJSON(json) {
 }
 exports.WrappedPlotOutputFromJSON = WrappedPlotOutputFromJSON;
 function WrappedPlotOutputFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -42,16 +44,13 @@ function WrappedPlotOutputFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.WrappedPlotOutputFromJSONTyped = WrappedPlotOutputFromJSONTyped;
 function WrappedPlotOutputToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'data': value.data,
-        'outputFormat': (0, PlotOutputFormat_1.PlotOutputFormatToJSON)(value.outputFormat),
-        'plotType': value.plotType,
+        'data': value['data'],
+        'outputFormat': (0, PlotOutputFormat_1.PlotOutputFormatToJSON)(value['outputFormat']),
+        'plotType': value['plotType'],
     };
 }
 exports.WrappedPlotOutputToJSON = WrappedPlotOutputToJSON;

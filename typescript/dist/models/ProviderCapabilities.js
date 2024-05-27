@@ -19,10 +19,11 @@ const SearchCapabilities_1 = require("./SearchCapabilities");
  * Check if a given object implements the ProviderCapabilities interface.
  */
 function instanceOfProviderCapabilities(value) {
-    let isInstance = true;
-    isInstance = isInstance && "listing" in value;
-    isInstance = isInstance && "search" in value;
-    return isInstance;
+    if (!('listing' in value) || value['listing'] === undefined)
+        return false;
+    if (!('search' in value) || value['search'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfProviderCapabilities = instanceOfProviderCapabilities;
 function ProviderCapabilitiesFromJSON(json) {
@@ -30,7 +31,7 @@ function ProviderCapabilitiesFromJSON(json) {
 }
 exports.ProviderCapabilitiesFromJSON = ProviderCapabilitiesFromJSON;
 function ProviderCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -40,15 +41,12 @@ function ProviderCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ProviderCapabilitiesFromJSONTyped = ProviderCapabilitiesFromJSONTyped;
 function ProviderCapabilitiesToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'listing': value.listing,
-        'search': (0, SearchCapabilities_1.SearchCapabilitiesToJSON)(value.search),
+        'listing': value['listing'],
+        'search': (0, SearchCapabilities_1.SearchCapabilitiesToJSON)(value['search']),
     };
 }
 exports.ProviderCapabilitiesToJSON = ProviderCapabilitiesToJSON;

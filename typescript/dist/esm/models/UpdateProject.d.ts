@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { LayerUpdate } from './LayerUpdate';
+import type { TimeStep } from './TimeStep';
 import type { PlotUpdate } from './PlotUpdate';
 import type { STRectangle } from './STRectangle';
-import type { TimeStep } from './TimeStep';
+import type { LayerUpdate } from './LayerUpdate';
 /**
  *
  * @export
@@ -24,13 +24,13 @@ export interface UpdateProject {
      * @type {STRectangle}
      * @memberof UpdateProject
      */
-    bounds?: STRectangle | null;
+    bounds?: STRectangle;
     /**
      *
      * @type {string}
      * @memberof UpdateProject
      */
-    description?: string | null;
+    description?: string;
     /**
      *
      * @type {string}
@@ -42,30 +42,30 @@ export interface UpdateProject {
      * @type {Array<LayerUpdate>}
      * @memberof UpdateProject
      */
-    layers?: Array<LayerUpdate> | null;
+    layers?: Array<LayerUpdate>;
     /**
      *
      * @type {string}
      * @memberof UpdateProject
      */
-    name?: string | null;
+    name?: string;
     /**
      *
      * @type {Array<PlotUpdate>}
      * @memberof UpdateProject
      */
-    plots?: Array<PlotUpdate> | null;
+    plots?: Array<PlotUpdate>;
     /**
      *
      * @type {TimeStep}
      * @memberof UpdateProject
      */
-    timeStep?: TimeStep | null;
+    timeStep?: TimeStep;
 }
 /**
  * Check if a given object implements the UpdateProject interface.
  */
-export declare function instanceOfUpdateProject(value: object): boolean;
+export declare function instanceOfUpdateProject(value: object): value is UpdateProject;
 export declare function UpdateProjectFromJSON(json: any): UpdateProject;
 export declare function UpdateProjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateProject;
 export declare function UpdateProjectToJSON(value?: UpdateProject | null): any;

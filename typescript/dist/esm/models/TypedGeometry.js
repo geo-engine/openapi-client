@@ -19,17 +19,25 @@ export function TypedGeometryFromJSON(json) {
     return TypedGeometryFromJSONTyped(json, false);
 }
 export function TypedGeometryFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return Object.assign(Object.assign(Object.assign(Object.assign({}, TypedGeometryOneOfFromJSONTyped(json, true)), TypedGeometryOneOf1FromJSONTyped(json, true)), TypedGeometryOneOf2FromJSONTyped(json, true)), TypedGeometryOneOf3FromJSONTyped(json, true));
+    if (instanceOfTypedGeometryOneOf(json)) {
+        return TypedGeometryOneOfFromJSONTyped(json, true);
+    }
+    if (instanceOfTypedGeometryOneOf1(json)) {
+        return TypedGeometryOneOf1FromJSONTyped(json, true);
+    }
+    if (instanceOfTypedGeometryOneOf2(json)) {
+        return TypedGeometryOneOf2FromJSONTyped(json, true);
+    }
+    if (instanceOfTypedGeometryOneOf3(json)) {
+        return TypedGeometryOneOf3FromJSONTyped(json, true);
+    }
 }
 export function TypedGeometryToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     if (instanceOfTypedGeometryOneOf(value)) {
         return TypedGeometryOneOfToJSON(value);

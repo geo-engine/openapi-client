@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CsvHeaderToJSON = exports.CsvHeaderFromJSONTyped = exports.CsvHeaderFromJSON = exports.CsvHeader = void 0;
+exports.CsvHeaderToJSON = exports.CsvHeaderFromJSONTyped = exports.CsvHeaderFromJSON = exports.instanceOfCsvHeader = exports.CsvHeader = void 0;
 /**
  *
  * @export
@@ -23,6 +23,17 @@ exports.CsvHeader = {
     No: 'no',
     Auto: 'auto'
 };
+function instanceOfCsvHeader(value) {
+    for (const key in exports.CsvHeader) {
+        if (Object.prototype.hasOwnProperty.call(exports.CsvHeader, key)) {
+            if (exports.CsvHeader[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+exports.instanceOfCsvHeader = instanceOfCsvHeader;
 function CsvHeaderFromJSON(json) {
     return CsvHeaderFromJSONTyped(json, false);
 }

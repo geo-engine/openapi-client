@@ -11,22 +11,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MockDatasetDataSourceLoadingInfoFromJSON, MockDatasetDataSourceLoadingInfoToJSON, } from './MockDatasetDataSourceLoadingInfo';
 import { VectorResultDescriptorFromJSON, VectorResultDescriptorToJSON, } from './VectorResultDescriptor';
+import { MockDatasetDataSourceLoadingInfoFromJSON, MockDatasetDataSourceLoadingInfoToJSON, } from './MockDatasetDataSourceLoadingInfo';
 /**
  * Check if a given object implements the MockMetaData interface.
  */
 export function instanceOfMockMetaData(value) {
-    let isInstance = true;
-    isInstance = isInstance && "loadingInfo" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    return isInstance;
+    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    return true;
 }
 export function MockMetaDataFromJSON(json) {
     return MockMetaDataFromJSONTyped(json, false);
 }
 export function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -35,14 +36,11 @@ export function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function MockMetaDataToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value.loadingInfo),
-        'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
+        'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value['loadingInfo']),
+        'resultDescriptor': VectorResultDescriptorToJSON(value['resultDescriptor']),
     };
 }

@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { BoundingBox2D } from './BoundingBox2D';
 import type { SpatialResolution } from './SpatialResolution';
 import type { TimeInterval } from './TimeInterval';
+import type { BoundingBox2D } from './BoundingBox2D';
 /**
  * A spatio-temporal rectangle with a specified resolution
  * @export
@@ -40,7 +40,7 @@ export interface VectorQueryRectangle {
 /**
  * Check if a given object implements the VectorQueryRectangle interface.
  */
-export declare function instanceOfVectorQueryRectangle(value: object): boolean;
+export declare function instanceOfVectorQueryRectangle(value: object): value is VectorQueryRectangle;
 export declare function VectorQueryRectangleFromJSON(json: any): VectorQueryRectangle;
 export declare function VectorQueryRectangleFromJSONTyped(json: any, ignoreDiscriminator: boolean): VectorQueryRectangle;
 export declare function VectorQueryRectangleToJSON(value?: VectorQueryRectangle | null): any;

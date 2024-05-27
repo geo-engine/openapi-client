@@ -16,15 +16,15 @@ import { MultiPointFromJSON, MultiPointToJSON, } from './MultiPoint';
  * Check if a given object implements the TypedGeometryOneOf1 interface.
  */
 export function instanceOfTypedGeometryOneOf1(value) {
-    let isInstance = true;
-    isInstance = isInstance && "multiPoint" in value;
-    return isInstance;
+    if (!('multiPoint' in value) || value['multiPoint'] === undefined)
+        return false;
+    return true;
 }
 export function TypedGeometryOneOf1FromJSON(json) {
     return TypedGeometryOneOf1FromJSONTyped(json, false);
 }
 export function TypedGeometryOneOf1FromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -32,13 +32,10 @@ export function TypedGeometryOneOf1FromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function TypedGeometryOneOf1ToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'MultiPoint': MultiPointToJSON(value.multiPoint),
+        'MultiPoint': MultiPointToJSON(value['multiPoint']),
     };
 }

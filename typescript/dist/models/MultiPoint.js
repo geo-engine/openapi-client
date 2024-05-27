@@ -19,9 +19,9 @@ const Coordinate2D_1 = require("./Coordinate2D");
  * Check if a given object implements the MultiPoint interface.
  */
 function instanceOfMultiPoint(value) {
-    let isInstance = true;
-    isInstance = isInstance && "coordinates" in value;
-    return isInstance;
+    if (!('coordinates' in value) || value['coordinates'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfMultiPoint = instanceOfMultiPoint;
 function MultiPointFromJSON(json) {
@@ -29,7 +29,7 @@ function MultiPointFromJSON(json) {
 }
 exports.MultiPointFromJSON = MultiPointFromJSON;
 function MultiPointFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,14 +38,11 @@ function MultiPointFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.MultiPointFromJSONTyped = MultiPointFromJSONTyped;
 function MultiPointToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'coordinates': (value.coordinates.map(Coordinate2D_1.Coordinate2DToJSON)),
+        'coordinates': (value['coordinates'].map(Coordinate2D_1.Coordinate2DToJSON)),
     };
 }
 exports.MultiPointToJSON = MultiPointToJSON;

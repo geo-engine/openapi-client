@@ -31,7 +31,7 @@ export interface ExternalDataId {
 /**
  * Check if a given object implements the ExternalDataId interface.
  */
-export declare function instanceOfExternalDataId(value: object): boolean;
+export declare function instanceOfExternalDataId(value: object): value is ExternalDataId;
 export declare function ExternalDataIdFromJSON(json: any): ExternalDataId;
 export declare function ExternalDataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExternalDataId;
 export declare function ExternalDataIdToJSON(value?: ExternalDataId | null): any;

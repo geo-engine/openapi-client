@@ -14,18 +14,18 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalMetaDataStaticToJSON = exports.GdalMetaDataStaticFromJSONTyped = exports.GdalMetaDataStaticFromJSON = exports.instanceOfGdalMetaDataStatic = void 0;
-const runtime_1 = require("../runtime");
-const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
-const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
 const TimeInterval_1 = require("./TimeInterval");
+const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
+const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
 /**
  * Check if a given object implements the GdalMetaDataStatic interface.
  */
 function instanceOfGdalMetaDataStatic(value) {
-    let isInstance = true;
-    isInstance = isInstance && "params" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    return isInstance;
+    if (!('params' in value) || value['params'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfGdalMetaDataStatic = instanceOfGdalMetaDataStatic;
 function GdalMetaDataStaticFromJSON(json) {
@@ -33,29 +33,26 @@ function GdalMetaDataStaticFromJSON(json) {
 }
 exports.GdalMetaDataStaticFromJSON = GdalMetaDataStaticFromJSON;
 function GdalMetaDataStaticFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'cacheTtl': !(0, runtime_1.exists)(json, 'cacheTtl') ? undefined : json['cacheTtl'],
+        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
         'params': (0, GdalDatasetParameters_1.GdalDatasetParametersFromJSON)(json['params']),
         'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorFromJSON)(json['resultDescriptor']),
-        'time': !(0, runtime_1.exists)(json, 'time') ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
+        'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
     };
 }
 exports.GdalMetaDataStaticFromJSONTyped = GdalMetaDataStaticFromJSONTyped;
 function GdalMetaDataStaticToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'cacheTtl': value.cacheTtl,
-        'params': (0, GdalDatasetParameters_1.GdalDatasetParametersToJSON)(value.params),
-        'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorToJSON)(value.resultDescriptor),
-        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value.time),
+        'cacheTtl': value['cacheTtl'],
+        'params': (0, GdalDatasetParameters_1.GdalDatasetParametersToJSON)(value['params']),
+        'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorToJSON)(value['resultDescriptor']),
+        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
     };
 }
 exports.GdalMetaDataStaticToJSON = GdalMetaDataStaticToJSON;

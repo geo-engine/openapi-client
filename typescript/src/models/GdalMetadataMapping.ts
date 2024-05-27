@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { RasterPropertiesEntryType } from './RasterPropertiesEntryType';
-import {
-    RasterPropertiesEntryTypeFromJSON,
-    RasterPropertiesEntryTypeFromJSONTyped,
-    RasterPropertiesEntryTypeToJSON,
-} from './RasterPropertiesEntryType';
+import { mapValues } from '../runtime';
 import type { RasterPropertiesKey } from './RasterPropertiesKey';
 import {
     RasterPropertiesKeyFromJSON,
     RasterPropertiesKeyFromJSONTyped,
     RasterPropertiesKeyToJSON,
 } from './RasterPropertiesKey';
+import type { RasterPropertiesEntryType } from './RasterPropertiesEntryType';
+import {
+    RasterPropertiesEntryTypeFromJSON,
+    RasterPropertiesEntryTypeFromJSONTyped,
+    RasterPropertiesEntryTypeToJSON,
+} from './RasterPropertiesEntryType';
 
 /**
  * 
@@ -55,13 +55,11 @@ export interface GdalMetadataMapping {
 /**
  * Check if a given object implements the GdalMetadataMapping interface.
  */
-export function instanceOfGdalMetadataMapping(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "sourceKey" in value;
-    isInstance = isInstance && "targetKey" in value;
-    isInstance = isInstance && "targetType" in value;
-
-    return isInstance;
+export function instanceOfGdalMetadataMapping(value: object): value is GdalMetadataMapping {
+    if (!('sourceKey' in value) || value['sourceKey'] === undefined) return false;
+    if (!('targetKey' in value) || value['targetKey'] === undefined) return false;
+    if (!('targetType' in value) || value['targetType'] === undefined) return false;
+    return true;
 }
 
 export function GdalMetadataMappingFromJSON(json: any): GdalMetadataMapping {
@@ -69,7 +67,7 @@ export function GdalMetadataMappingFromJSON(json: any): GdalMetadataMapping {
 }
 
 export function GdalMetadataMappingFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalMetadataMapping {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -81,17 +79,14 @@ export function GdalMetadataMappingFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function GdalMetadataMappingToJSON(value?: GdalMetadataMapping | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'source_key': RasterPropertiesKeyToJSON(value.sourceKey),
-        'target_key': RasterPropertiesKeyToJSON(value.targetKey),
-        'target_type': RasterPropertiesEntryTypeToJSON(value.targetType),
+        'source_key': RasterPropertiesKeyToJSON(value['sourceKey']),
+        'target_key': RasterPropertiesKeyToJSON(value['targetKey']),
+        'target_type': RasterPropertiesEntryTypeToJSON(value['targetType']),
     };
 }
 

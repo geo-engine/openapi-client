@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { DataId } from './DataId';
-import {
-    DataIdFromJSON,
-    DataIdFromJSONTyped,
-    DataIdToJSON,
-} from './DataId';
+import { mapValues } from '../runtime';
 import type { Provenance } from './Provenance';
 import {
     ProvenanceFromJSON,
     ProvenanceFromJSONTyped,
     ProvenanceToJSON,
 } from './Provenance';
+import type { DataId } from './DataId';
+import {
+    DataIdFromJSON,
+    DataIdFromJSONTyped,
+    DataIdToJSON,
+} from './DataId';
 
 /**
  * 
@@ -49,12 +49,10 @@ export interface ProvenanceEntry {
 /**
  * Check if a given object implements the ProvenanceEntry interface.
  */
-export function instanceOfProvenanceEntry(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "provenance" in value;
-
-    return isInstance;
+export function instanceOfProvenanceEntry(value: object): value is ProvenanceEntry {
+    if (!('data' in value) || value['data'] === undefined) return false;
+    if (!('provenance' in value) || value['provenance'] === undefined) return false;
+    return true;
 }
 
 export function ProvenanceEntryFromJSON(json: any): ProvenanceEntry {
@@ -62,7 +60,7 @@ export function ProvenanceEntryFromJSON(json: any): ProvenanceEntry {
 }
 
 export function ProvenanceEntryFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProvenanceEntry {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function ProvenanceEntryFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function ProvenanceEntryToJSON(value?: ProvenanceEntry | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': ((value.data as Array<any>).map(DataIdToJSON)),
-        'provenance': ProvenanceToJSON(value.provenance),
+        'data': ((value['data'] as Array<any>).map(DataIdToJSON)),
+        'provenance': ProvenanceToJSON(value['provenance']),
     };
 }
 

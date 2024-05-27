@@ -23,6 +23,17 @@ export const GetCoverageFormat = {
 export type GetCoverageFormat = typeof GetCoverageFormat[keyof typeof GetCoverageFormat];
 
 
+export function instanceOfGetCoverageFormat(value: any): boolean {
+    for (const key in GetCoverageFormat) {
+        if (Object.prototype.hasOwnProperty.call(GetCoverageFormat, key)) {
+            if (GetCoverageFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function GetCoverageFormatFromJSON(json: any): GetCoverageFormat {
     return GetCoverageFormatFromJSONTyped(json, false);
 }

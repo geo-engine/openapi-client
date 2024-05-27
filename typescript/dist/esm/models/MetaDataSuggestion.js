@@ -16,17 +16,19 @@ import { MetaDataDefinitionFromJSON, MetaDataDefinitionToJSON, } from './MetaDat
  * Check if a given object implements the MetaDataSuggestion interface.
  */
 export function instanceOfMetaDataSuggestion(value) {
-    let isInstance = true;
-    isInstance = isInstance && "layerName" in value;
-    isInstance = isInstance && "mainFile" in value;
-    isInstance = isInstance && "metaData" in value;
-    return isInstance;
+    if (!('layerName' in value) || value['layerName'] === undefined)
+        return false;
+    if (!('mainFile' in value) || value['mainFile'] === undefined)
+        return false;
+    if (!('metaData' in value) || value['metaData'] === undefined)
+        return false;
+    return true;
 }
 export function MetaDataSuggestionFromJSON(json) {
     return MetaDataSuggestionFromJSONTyped(json, false);
 }
 export function MetaDataSuggestionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -36,15 +38,12 @@ export function MetaDataSuggestionFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function MetaDataSuggestionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'layerName': value.layerName,
-        'mainFile': value.mainFile,
-        'metaData': MetaDataDefinitionToJSON(value.metaData),
+        'layerName': value['layerName'],
+        'mainFile': value['mainFile'],
+        'metaData': MetaDataDefinitionToJSON(value['metaData']),
     };
 }

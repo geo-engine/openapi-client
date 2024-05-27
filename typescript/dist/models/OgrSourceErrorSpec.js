@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceErrorSpecToJSON = exports.OgrSourceErrorSpecFromJSONTyped = exports.OgrSourceErrorSpecFromJSON = exports.OgrSourceErrorSpec = void 0;
+exports.OgrSourceErrorSpecToJSON = exports.OgrSourceErrorSpecFromJSONTyped = exports.OgrSourceErrorSpecFromJSON = exports.instanceOfOgrSourceErrorSpec = exports.OgrSourceErrorSpec = void 0;
 /**
  *
  * @export
@@ -22,6 +22,17 @@ exports.OgrSourceErrorSpec = {
     Ignore: 'ignore',
     Abort: 'abort'
 };
+function instanceOfOgrSourceErrorSpec(value) {
+    for (const key in exports.OgrSourceErrorSpec) {
+        if (Object.prototype.hasOwnProperty.call(exports.OgrSourceErrorSpec, key)) {
+            if (exports.OgrSourceErrorSpec[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+exports.instanceOfOgrSourceErrorSpec = instanceOfOgrSourceErrorSpec;
 function OgrSourceErrorSpecFromJSON(json) {
     return OgrSourceErrorSpecFromJSONTyped(json, false);
 }

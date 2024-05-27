@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The spatial resolution in SRS units
  * @export
@@ -36,12 +36,10 @@ export interface SpatialResolution {
 /**
  * Check if a given object implements the SpatialResolution interface.
  */
-export function instanceOfSpatialResolution(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "x" in value;
-    isInstance = isInstance && "y" in value;
-
-    return isInstance;
+export function instanceOfSpatialResolution(value: object): value is SpatialResolution {
+    if (!('x' in value) || value['x'] === undefined) return false;
+    if (!('y' in value) || value['y'] === undefined) return false;
+    return true;
 }
 
 export function SpatialResolutionFromJSON(json: any): SpatialResolution {
@@ -49,7 +47,7 @@ export function SpatialResolutionFromJSON(json: any): SpatialResolution {
 }
 
 export function SpatialResolutionFromJSONTyped(json: any, ignoreDiscriminator: boolean): SpatialResolution {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function SpatialResolutionFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function SpatialResolutionToJSON(value?: SpatialResolution | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'x': value.x,
-        'y': value.y,
+        'x': value['x'],
+        'y': value['y'],
     };
 }
 

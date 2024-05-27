@@ -19,6 +19,7 @@ export declare const CsvHeader: {
     readonly Auto: "auto";
 };
 export type CsvHeader = typeof CsvHeader[keyof typeof CsvHeader];
+export declare function instanceOfCsvHeader(value: any): boolean;
 export declare function CsvHeaderFromJSON(json: any): CsvHeader;
 export declare function CsvHeaderFromJSONTyped(json: any, ignoreDiscriminator: boolean): CsvHeader;
 export declare function CsvHeaderToJSON(value?: CsvHeader | null): any;

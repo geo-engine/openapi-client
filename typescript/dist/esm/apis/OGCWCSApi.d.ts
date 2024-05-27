@@ -15,7 +15,7 @@ export interface WcsCapabilitiesHandlerRequest {
     workflow: string;
     service: WcsService;
     request: GetCapabilitiesRequest;
-    version?: WcsVersion | null;
+    version?: WcsVersion;
 }
 export interface WcsDescribeCoverageHandlerRequest {
     workflow: string;
@@ -36,9 +36,9 @@ export interface WcsGetCoverageHandlerRequest {
     gridorigin?: string;
     gridoffsets?: string;
     time?: string;
-    resx?: number | null;
-    resy?: number | null;
-    nodatavalue?: number | null;
+    resx?: number;
+    resy?: number;
+    nodatavalue?: number;
 }
 /**
  *

@@ -31,7 +31,7 @@ export interface RasterDatasetFromWorkflowResult {
 /**
  * Check if a given object implements the RasterDatasetFromWorkflowResult interface.
  */
-export declare function instanceOfRasterDatasetFromWorkflowResult(value: object): boolean;
+export declare function instanceOfRasterDatasetFromWorkflowResult(value: object): value is RasterDatasetFromWorkflowResult;
 export declare function RasterDatasetFromWorkflowResultFromJSON(json: any): RasterDatasetFromWorkflowResult;
 export declare function RasterDatasetFromWorkflowResultFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterDatasetFromWorkflowResult;
 export declare function RasterDatasetFromWorkflowResultToJSON(value?: RasterDatasetFromWorkflowResult | null): any;

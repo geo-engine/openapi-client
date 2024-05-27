@@ -15,15 +15,15 @@
  * Check if a given object implements the UpdateQuota interface.
  */
 export function instanceOfUpdateQuota(value) {
-    let isInstance = true;
-    isInstance = isInstance && "available" in value;
-    return isInstance;
+    if (!('available' in value) || value['available'] === undefined)
+        return false;
+    return true;
 }
 export function UpdateQuotaFromJSON(json) {
     return UpdateQuotaFromJSONTyped(json, false);
 }
 export function UpdateQuotaFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -31,13 +31,10 @@ export function UpdateQuotaFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function UpdateQuotaToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'available': value.available,
+        'available': value['available'],
     };
 }

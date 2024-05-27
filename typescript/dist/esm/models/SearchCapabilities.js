@@ -11,40 +11,37 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { SearchTypesFromJSON, SearchTypesToJSON, } from './SearchTypes';
 /**
  * Check if a given object implements the SearchCapabilities interface.
  */
 export function instanceOfSearchCapabilities(value) {
-    let isInstance = true;
-    isInstance = isInstance && "autocomplete" in value;
-    isInstance = isInstance && "searchTypes" in value;
-    return isInstance;
+    if (!('autocomplete' in value) || value['autocomplete'] === undefined)
+        return false;
+    if (!('searchTypes' in value) || value['searchTypes'] === undefined)
+        return false;
+    return true;
 }
 export function SearchCapabilitiesFromJSON(json) {
     return SearchCapabilitiesFromJSONTyped(json, false);
 }
 export function SearchCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'autocomplete': json['autocomplete'],
-        'filters': !exists(json, 'filters') ? undefined : json['filters'],
+        'filters': json['filters'] == null ? undefined : json['filters'],
         'searchTypes': SearchTypesFromJSON(json['searchTypes']),
     };
 }
 export function SearchCapabilitiesToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'autocomplete': value.autocomplete,
-        'filters': value.filters,
-        'searchTypes': SearchTypesToJSON(value.searchTypes),
+        'autocomplete': value['autocomplete'],
+        'filters': value['filters'],
+        'searchTypes': SearchTypesToJSON(value['searchTypes']),
     };
 }

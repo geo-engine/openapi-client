@@ -12,58 +12,55 @@
  * Do not edit the class manually.
  */
 
+import type { CollectionItemCollection } from './CollectionItemCollection';
 import {
-    LayerCollectionListingWithType,
-    instanceOfLayerCollectionListingWithType,
-    LayerCollectionListingWithTypeFromJSON,
-    LayerCollectionListingWithTypeFromJSONTyped,
-    LayerCollectionListingWithTypeToJSON,
-} from './LayerCollectionListingWithType';
+    instanceOfCollectionItemCollection,
+    CollectionItemCollectionFromJSON,
+    CollectionItemCollectionFromJSONTyped,
+    CollectionItemCollectionToJSON,
+} from './CollectionItemCollection';
+import type { CollectionItemLayer } from './CollectionItemLayer';
 import {
-    LayerListingWithType,
-    instanceOfLayerListingWithType,
-    LayerListingWithTypeFromJSON,
-    LayerListingWithTypeFromJSONTyped,
-    LayerListingWithTypeToJSON,
-} from './LayerListingWithType';
+    instanceOfCollectionItemLayer,
+    CollectionItemLayerFromJSON,
+    CollectionItemLayerFromJSONTyped,
+    CollectionItemLayerToJSON,
+} from './CollectionItemLayer';
 
 /**
  * @type CollectionItem
  * 
  * @export
  */
-export type CollectionItem = { type: 'collection' } & LayerCollectionListingWithType | { type: 'layer' } & LayerListingWithType;
+export type CollectionItem = { type: 'collection' } & CollectionItemCollection | { type: 'layer' } & CollectionItemLayer;
 
 export function CollectionItemFromJSON(json: any): CollectionItem {
     return CollectionItemFromJSONTyped(json, false);
 }
 
 export function CollectionItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): CollectionItem {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'collection':
-            return {...LayerCollectionListingWithTypeFromJSONTyped(json, true), type: 'collection'};
+            return Object.assign({}, CollectionItemCollectionFromJSONTyped(json, true), { type: 'collection' });
         case 'layer':
-            return {...LayerListingWithTypeFromJSONTyped(json, true), type: 'layer'};
+            return Object.assign({}, CollectionItemLayerFromJSONTyped(json, true), { type: 'layer' });
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }
 }
 
 export function CollectionItemToJSON(value?: CollectionItem | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'collection':
-            return LayerCollectionListingWithTypeToJSON(value);
+            return CollectionItemCollectionToJSON(value);
         case 'layer':
-            return LayerListingWithTypeToJSON(value);
+            return CollectionItemLayerToJSON(value);
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${value['type']}'`);
     }

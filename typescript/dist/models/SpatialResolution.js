@@ -18,10 +18,11 @@ exports.SpatialResolutionToJSON = exports.SpatialResolutionFromJSONTyped = expor
  * Check if a given object implements the SpatialResolution interface.
  */
 function instanceOfSpatialResolution(value) {
-    let isInstance = true;
-    isInstance = isInstance && "x" in value;
-    isInstance = isInstance && "y" in value;
-    return isInstance;
+    if (!('x' in value) || value['x'] === undefined)
+        return false;
+    if (!('y' in value) || value['y'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfSpatialResolution = instanceOfSpatialResolution;
 function SpatialResolutionFromJSON(json) {
@@ -29,7 +30,7 @@ function SpatialResolutionFromJSON(json) {
 }
 exports.SpatialResolutionFromJSON = SpatialResolutionFromJSON;
 function SpatialResolutionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,12 @@ function SpatialResolutionFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.SpatialResolutionFromJSONTyped = SpatialResolutionFromJSONTyped;
 function SpatialResolutionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'x': value.x,
-        'y': value.y,
+        'x': value['x'],
+        'y': value['y'],
     };
 }
 exports.SpatialResolutionToJSON = SpatialResolutionToJSON;

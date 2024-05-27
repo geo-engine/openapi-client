@@ -21,6 +21,16 @@ export const SpatialReferenceAuthority = {
     Iau2000: 'IAU2000',
     Esri: 'ESRI'
 };
+export function instanceOfSpatialReferenceAuthority(value) {
+    for (const key in SpatialReferenceAuthority) {
+        if (Object.prototype.hasOwnProperty.call(SpatialReferenceAuthority, key)) {
+            if (SpatialReferenceAuthority[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function SpatialReferenceAuthorityFromJSON(json) {
     return SpatialReferenceAuthorityFromJSONTyped(json, false);
 }

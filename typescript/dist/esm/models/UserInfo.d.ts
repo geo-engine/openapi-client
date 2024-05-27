@@ -20,7 +20,7 @@ export interface UserInfo {
      * @type {string}
      * @memberof UserInfo
      */
-    email?: string | null;
+    email?: string;
     /**
      *
      * @type {string}
@@ -32,12 +32,12 @@ export interface UserInfo {
      * @type {string}
      * @memberof UserInfo
      */
-    realName?: string | null;
+    realName?: string;
 }
 /**
  * Check if a given object implements the UserInfo interface.
  */
-export declare function instanceOfUserInfo(value: object): boolean;
+export declare function instanceOfUserInfo(value: object): value is UserInfo;
 export declare function UserInfoFromJSON(json: any): UserInfo;
 export declare function UserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserInfo;
 export declare function UserInfoToJSON(value?: UserInfo | null): any;

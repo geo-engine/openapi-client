@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
+import type { Plot } from './Plot';
 import {
-    Plot,
     instanceOfPlot,
     PlotFromJSON,
     PlotFromJSONTyped,
     PlotToJSON,
 } from './Plot';
+import type { ProjectUpdateToken } from './ProjectUpdateToken';
 import {
-    ProjectUpdateToken,
     instanceOfProjectUpdateToken,
     ProjectUpdateTokenFromJSON,
     ProjectUpdateTokenFromJSONTyped,
@@ -39,24 +39,20 @@ export function PlotUpdateFromJSON(json: any): PlotUpdate {
 }
 
 export function PlotUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlotUpdate {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    if (json === ProjectUpdateToken.None) {
-        return ProjectUpdateToken.None;
-    } else if (json === ProjectUpdateToken.Delete) {
-        return ProjectUpdateToken.Delete;
-    } else {
-        return { ...PlotFromJSONTyped(json, true) };
+    if (instanceOfPlot(json)) {
+        return PlotFromJSONTyped(json, true);
+    }
+    if (instanceOfProjectUpdateToken(json)) {
+        return ProjectUpdateTokenFromJSONTyped(json, true);
     }
 }
 
 export function PlotUpdateToJSON(value?: PlotUpdate | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
 
     if (typeof value === 'object' && instanceOfPlot(value)) {

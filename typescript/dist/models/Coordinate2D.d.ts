@@ -31,7 +31,7 @@ export interface Coordinate2D {
 /**
  * Check if a given object implements the Coordinate2D interface.
  */
-export declare function instanceOfCoordinate2D(value: object): boolean;
+export declare function instanceOfCoordinate2D(value: object): value is Coordinate2D;
 export declare function Coordinate2DFromJSON(json: any): Coordinate2D;
 export declare function Coordinate2DFromJSONTyped(json: any, ignoreDiscriminator: boolean): Coordinate2D;
 export declare function Coordinate2DToJSON(value?: Coordinate2D | null): any;

@@ -16,15 +16,15 @@ import { FormatSpecificsOneOfCsvFromJSON, FormatSpecificsOneOfCsvToJSON, } from 
  * Check if a given object implements the FormatSpecificsOneOf interface.
  */
 export function instanceOfFormatSpecificsOneOf(value) {
-    let isInstance = true;
-    isInstance = isInstance && "csv" in value;
-    return isInstance;
+    if (!('csv' in value) || value['csv'] === undefined)
+        return false;
+    return true;
 }
 export function FormatSpecificsOneOfFromJSON(json) {
     return FormatSpecificsOneOfFromJSONTyped(json, false);
 }
 export function FormatSpecificsOneOfFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -32,13 +32,10 @@ export function FormatSpecificsOneOfFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function FormatSpecificsOneOfToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'csv': FormatSpecificsOneOfCsvToJSON(value.csv),
+        'csv': FormatSpecificsOneOfCsvToJSON(value['csv']),
     };
 }

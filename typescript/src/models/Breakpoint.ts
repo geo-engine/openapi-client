@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface Breakpoint {
 /**
  * Check if a given object implements the Breakpoint interface.
  */
-export function instanceOfBreakpoint(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "value" in value;
-
-    return isInstance;
+export function instanceOfBreakpoint(value: object): value is Breakpoint {
+    if (!('color' in value) || value['color'] === undefined) return false;
+    if (!('value' in value) || value['value'] === undefined) return false;
+    return true;
 }
 
 export function BreakpointFromJSON(json: any): Breakpoint {
@@ -49,7 +47,7 @@ export function BreakpointFromJSON(json: any): Breakpoint {
 }
 
 export function BreakpointFromJSONTyped(json: any, ignoreDiscriminator: boolean): Breakpoint {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function BreakpointFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 }
 
 export function BreakpointToJSON(value?: Breakpoint | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'color': value.color,
-        'value': value.value,
+        'color': value['color'],
+        'value': value['value'],
     };
 }
 

@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { MockDatasetDataSourceLoadingInfo } from './MockDatasetDataSourceLoadingInfo';
 import type { VectorResultDescriptor } from './VectorResultDescriptor';
+import type { MockDatasetDataSourceLoadingInfo } from './MockDatasetDataSourceLoadingInfo';
 /**
  *
  * @export
@@ -33,7 +33,7 @@ export interface MockMetaData {
 /**
  * Check if a given object implements the MockMetaData interface.
  */
-export declare function instanceOfMockMetaData(value: object): boolean;
+export declare function instanceOfMockMetaData(value: object): value is MockMetaData;
 export declare function MockMetaDataFromJSON(json: any): MockMetaData;
 export declare function MockMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): MockMetaData;
 export declare function MockMetaDataToJSON(value?: MockMetaData | null): any;

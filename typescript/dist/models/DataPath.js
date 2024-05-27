@@ -21,18 +21,20 @@ function DataPathFromJSON(json) {
 }
 exports.DataPathFromJSON = DataPathFromJSON;
 function DataPathFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return Object.assign(Object.assign({}, (0, DataPathOneOf_1.DataPathOneOfFromJSONTyped)(json, true)), (0, DataPathOneOf1_1.DataPathOneOf1FromJSONTyped)(json, true));
+    if ((0, DataPathOneOf_1.instanceOfDataPathOneOf)(json)) {
+        return (0, DataPathOneOf_1.DataPathOneOfFromJSONTyped)(json, true);
+    }
+    if ((0, DataPathOneOf1_1.instanceOfDataPathOneOf1)(json)) {
+        return (0, DataPathOneOf1_1.DataPathOneOf1FromJSONTyped)(json, true);
+    }
 }
 exports.DataPathFromJSONTyped = DataPathFromJSONTyped;
 function DataPathToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     if ((0, DataPathOneOf_1.instanceOfDataPathOneOf)(value)) {
         return (0, DataPathOneOf_1.DataPathOneOfToJSON)(value);

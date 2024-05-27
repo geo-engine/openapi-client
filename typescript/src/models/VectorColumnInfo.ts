@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { FeatureDataType } from './FeatureDataType';
-import {
-    FeatureDataTypeFromJSON,
-    FeatureDataTypeFromJSONTyped,
-    FeatureDataTypeToJSON,
-} from './FeatureDataType';
+import { mapValues } from '../runtime';
 import type { Measurement } from './Measurement';
 import {
     MeasurementFromJSON,
     MeasurementFromJSONTyped,
     MeasurementToJSON,
 } from './Measurement';
+import type { FeatureDataType } from './FeatureDataType';
+import {
+    FeatureDataTypeFromJSON,
+    FeatureDataTypeFromJSONTyped,
+    FeatureDataTypeToJSON,
+} from './FeatureDataType';
 
 /**
  * 
@@ -49,12 +49,10 @@ export interface VectorColumnInfo {
 /**
  * Check if a given object implements the VectorColumnInfo interface.
  */
-export function instanceOfVectorColumnInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "dataType" in value;
-    isInstance = isInstance && "measurement" in value;
-
-    return isInstance;
+export function instanceOfVectorColumnInfo(value: object): value is VectorColumnInfo {
+    if (!('dataType' in value) || value['dataType'] === undefined) return false;
+    if (!('measurement' in value) || value['measurement'] === undefined) return false;
+    return true;
 }
 
 export function VectorColumnInfoFromJSON(json: any): VectorColumnInfo {
@@ -62,7 +60,7 @@ export function VectorColumnInfoFromJSON(json: any): VectorColumnInfo {
 }
 
 export function VectorColumnInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): VectorColumnInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function VectorColumnInfoFromJSONTyped(json: any, ignoreDiscriminator: bo
 }
 
 export function VectorColumnInfoToJSON(value?: VectorColumnInfo | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'dataType': FeatureDataTypeToJSON(value.dataType),
-        'measurement': MeasurementToJSON(value.measurement),
+        'dataType': FeatureDataTypeToJSON(value['dataType']),
+        'measurement': MeasurementToJSON(value['measurement']),
     };
 }
 

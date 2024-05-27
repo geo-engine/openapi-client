@@ -17,6 +17,7 @@ export declare const GetCapabilitiesRequest: {
     readonly GetCapabilities: "GetCapabilities";
 };
 export type GetCapabilitiesRequest = typeof GetCapabilitiesRequest[keyof typeof GetCapabilitiesRequest];
+export declare function instanceOfGetCapabilitiesRequest(value: any): boolean;
 export declare function GetCapabilitiesRequestFromJSON(json: any): GetCapabilitiesRequest;
 export declare function GetCapabilitiesRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCapabilitiesRequest;
 export declare function GetCapabilitiesRequestToJSON(value?: GetCapabilitiesRequest | null): any;

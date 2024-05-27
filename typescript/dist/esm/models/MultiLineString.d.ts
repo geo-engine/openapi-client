@@ -26,7 +26,7 @@ export interface MultiLineString {
 /**
  * Check if a given object implements the MultiLineString interface.
  */
-export declare function instanceOfMultiLineString(value: object): boolean;
+export declare function instanceOfMultiLineString(value: object): value is MultiLineString;
 export declare function MultiLineStringFromJSON(json: any): MultiLineString;
 export declare function MultiLineStringFromJSONTyped(json: any, ignoreDiscriminator: boolean): MultiLineString;
 export declare function MultiLineStringToJSON(value?: MultiLineString | null): any;

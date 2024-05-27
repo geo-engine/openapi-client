@@ -27,10 +27,11 @@ exports.WorkflowTypeEnum = {
  * Check if a given object implements the Workflow interface.
  */
 function instanceOfWorkflow(value) {
-    let isInstance = true;
-    isInstance = isInstance && "operator" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('operator' in value) || value['operator'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfWorkflow = instanceOfWorkflow;
 function WorkflowFromJSON(json) {
@@ -38,7 +39,7 @@ function WorkflowFromJSON(json) {
 }
 exports.WorkflowFromJSON = WorkflowFromJSON;
 function WorkflowFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -48,15 +49,12 @@ function WorkflowFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.WorkflowFromJSONTyped = WorkflowFromJSONTyped;
 function WorkflowToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorToJSON)(value.operator),
-        'type': value.type,
+        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorToJSON)(value['operator']),
+        'type': value['type'],
     };
 }
 exports.WorkflowToJSON = WorkflowToJSON;

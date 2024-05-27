@@ -19,10 +19,11 @@ const Measurement_1 = require("./Measurement");
  * Check if a given object implements the RasterBandDescriptor interface.
  */
 function instanceOfRasterBandDescriptor(value) {
-    let isInstance = true;
-    isInstance = isInstance && "measurement" in value;
-    isInstance = isInstance && "name" in value;
-    return isInstance;
+    if (!('measurement' in value) || value['measurement'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfRasterBandDescriptor = instanceOfRasterBandDescriptor;
 function RasterBandDescriptorFromJSON(json) {
@@ -30,7 +31,7 @@ function RasterBandDescriptorFromJSON(json) {
 }
 exports.RasterBandDescriptorFromJSON = RasterBandDescriptorFromJSON;
 function RasterBandDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -40,15 +41,12 @@ function RasterBandDescriptorFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.RasterBandDescriptorFromJSONTyped = RasterBandDescriptorFromJSONTyped;
 function RasterBandDescriptorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'measurement': (0, Measurement_1.MeasurementToJSON)(value.measurement),
-        'name': value.name,
+        'measurement': (0, Measurement_1.MeasurementToJSON)(value['measurement']),
+        'name': value['name'],
     };
 }
 exports.RasterBandDescriptorToJSON = RasterBandDescriptorToJSON;

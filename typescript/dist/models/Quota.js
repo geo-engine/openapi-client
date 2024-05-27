@@ -18,10 +18,11 @@ exports.QuotaToJSON = exports.QuotaFromJSONTyped = exports.QuotaFromJSON = expor
  * Check if a given object implements the Quota interface.
  */
 function instanceOfQuota(value) {
-    let isInstance = true;
-    isInstance = isInstance && "available" in value;
-    isInstance = isInstance && "used" in value;
-    return isInstance;
+    if (!('available' in value) || value['available'] === undefined)
+        return false;
+    if (!('used' in value) || value['used'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfQuota = instanceOfQuota;
 function QuotaFromJSON(json) {
@@ -29,7 +30,7 @@ function QuotaFromJSON(json) {
 }
 exports.QuotaFromJSON = QuotaFromJSON;
 function QuotaFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,12 @@ function QuotaFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.QuotaFromJSONTyped = QuotaFromJSONTyped;
 function QuotaToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'available': value.available,
-        'used': value.used,
+        'available': value['available'],
+        'used': value['used'],
     };
 }
 exports.QuotaToJSON = QuotaToJSON;

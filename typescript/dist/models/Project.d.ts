@@ -9,11 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { TimeStep } from './TimeStep';
 import type { Plot } from './Plot';
-import type { ProjectLayer } from './ProjectLayer';
 import type { ProjectVersion } from './ProjectVersion';
 import type { STRectangle } from './STRectangle';
-import type { TimeStep } from './TimeStep';
+import type { ProjectLayer } from './ProjectLayer';
 /**
  *
  * @export
@@ -72,7 +72,7 @@ export interface Project {
 /**
  * Check if a given object implements the Project interface.
  */
-export declare function instanceOfProject(value: object): boolean;
+export declare function instanceOfProject(value: object): value is Project;
 export declare function ProjectFromJSON(json: any): Project;
 export declare function ProjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): Project;
 export declare function ProjectToJSON(value?: Project | null): any;

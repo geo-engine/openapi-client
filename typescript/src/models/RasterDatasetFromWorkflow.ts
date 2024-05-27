@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { RasterQueryRectangle } from './RasterQueryRectangle';
 import {
     RasterQueryRectangleFromJSON,
@@ -37,7 +37,7 @@ export interface RasterDatasetFromWorkflow {
      * @type {string}
      * @memberof RasterDatasetFromWorkflow
      */
-    description?: string | null;
+    description?: string;
     /**
      * 
      * @type {string}
@@ -49,7 +49,7 @@ export interface RasterDatasetFromWorkflow {
      * @type {string}
      * @memberof RasterDatasetFromWorkflow
      */
-    name?: string | null;
+    name?: string;
     /**
      * 
      * @type {RasterQueryRectangle}
@@ -61,12 +61,10 @@ export interface RasterDatasetFromWorkflow {
 /**
  * Check if a given object implements the RasterDatasetFromWorkflow interface.
  */
-export function instanceOfRasterDatasetFromWorkflow(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "query" in value;
-
-    return isInstance;
+export function instanceOfRasterDatasetFromWorkflow(value: object): value is RasterDatasetFromWorkflow {
+    if (!('displayName' in value) || value['displayName'] === undefined) return false;
+    if (!('query' in value) || value['query'] === undefined) return false;
+    return true;
 }
 
 export function RasterDatasetFromWorkflowFromJSON(json: any): RasterDatasetFromWorkflow {
@@ -74,33 +72,30 @@ export function RasterDatasetFromWorkflowFromJSON(json: any): RasterDatasetFromW
 }
 
 export function RasterDatasetFromWorkflowFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterDatasetFromWorkflow {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'asCog': !exists(json, 'asCog') ? undefined : json['asCog'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'asCog': json['asCog'] == null ? undefined : json['asCog'],
+        'description': json['description'] == null ? undefined : json['description'],
         'displayName': json['displayName'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'name': json['name'] == null ? undefined : json['name'],
         'query': RasterQueryRectangleFromJSON(json['query']),
     };
 }
 
 export function RasterDatasetFromWorkflowToJSON(value?: RasterDatasetFromWorkflow | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'asCog': value.asCog,
-        'description': value.description,
-        'displayName': value.displayName,
-        'name': value.name,
-        'query': RasterQueryRectangleToJSON(value.query),
+        'asCog': value['asCog'],
+        'description': value['description'],
+        'displayName': value['displayName'],
+        'name': value['name'],
+        'query': RasterQueryRectangleToJSON(value['query']),
     };
 }
 

@@ -20,6 +20,7 @@ export declare const TaskFilter: {
     readonly Completed: "completed";
 };
 export type TaskFilter = typeof TaskFilter[keyof typeof TaskFilter];
+export declare function instanceOfTaskFilter(value: any): boolean;
 export declare function TaskFilterFromJSON(json: any): TaskFilter;
 export declare function TaskFilterFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskFilter;
 export declare function TaskFilterToJSON(value?: TaskFilter | null): any;

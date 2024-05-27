@@ -18,10 +18,11 @@ exports.PlotToJSON = exports.PlotFromJSONTyped = exports.PlotFromJSON = exports.
  * Check if a given object implements the Plot interface.
  */
 function instanceOfPlot(value) {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "workflow" in value;
-    return isInstance;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('workflow' in value) || value['workflow'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfPlot = instanceOfPlot;
 function PlotFromJSON(json) {
@@ -29,7 +30,7 @@ function PlotFromJSON(json) {
 }
 exports.PlotFromJSON = PlotFromJSON;
 function PlotFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,12 @@ function PlotFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.PlotFromJSONTyped = PlotFromJSONTyped;
 function PlotToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'name': value.name,
-        'workflow': value.workflow,
+        'name': value['name'],
+        'workflow': value['workflow'],
     };
 }
 exports.PlotToJSON = PlotToJSON;

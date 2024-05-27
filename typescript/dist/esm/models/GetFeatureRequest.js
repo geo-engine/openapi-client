@@ -18,6 +18,16 @@
 export const GetFeatureRequest = {
     GetFeature: 'GetFeature'
 };
+export function instanceOfGetFeatureRequest(value) {
+    for (const key in GetFeatureRequest) {
+        if (Object.prototype.hasOwnProperty.call(GetFeatureRequest, key)) {
+            if (GetFeatureRequest[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function GetFeatureRequestFromJSON(json) {
     return GetFeatureRequestFromJSONTyped(json, false);
 }

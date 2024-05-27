@@ -15,16 +15,17 @@
  * Check if a given object implements the ProjectVersion interface.
  */
 export function instanceOfProjectVersion(value) {
-    let isInstance = true;
-    isInstance = isInstance && "changed" in value;
-    isInstance = isInstance && "id" in value;
-    return isInstance;
+    if (!('changed' in value) || value['changed'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    return true;
 }
 export function ProjectVersionFromJSON(json) {
     return ProjectVersionFromJSONTyped(json, false);
 }
 export function ProjectVersionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -33,14 +34,11 @@ export function ProjectVersionFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ProjectVersionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'changed': (value.changed.toISOString()),
-        'id': value.id,
+        'changed': ((value['changed']).toISOString()),
+        'id': value['id'],
     };
 }

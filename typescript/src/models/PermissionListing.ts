@@ -12,25 +12,25 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Permission } from './Permission';
-import {
-    PermissionFromJSON,
-    PermissionFromJSONTyped,
-    PermissionToJSON,
-} from './Permission';
-import type { ResourceId } from './ResourceId';
-import {
-    ResourceIdFromJSON,
-    ResourceIdFromJSONTyped,
-    ResourceIdToJSON,
-} from './ResourceId';
+import { mapValues } from '../runtime';
 import type { Role } from './Role';
 import {
     RoleFromJSON,
     RoleFromJSONTyped,
     RoleToJSON,
 } from './Role';
+import type { ResourceId } from './ResourceId';
+import {
+    ResourceIdFromJSON,
+    ResourceIdFromJSONTyped,
+    ResourceIdToJSON,
+} from './ResourceId';
+import type { Permission } from './Permission';
+import {
+    PermissionFromJSON,
+    PermissionFromJSONTyped,
+    PermissionToJSON,
+} from './Permission';
 
 /**
  * 
@@ -61,13 +61,11 @@ export interface PermissionListing {
 /**
  * Check if a given object implements the PermissionListing interface.
  */
-export function instanceOfPermissionListing(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "permission" in value;
-    isInstance = isInstance && "resourceId" in value;
-    isInstance = isInstance && "role" in value;
-
-    return isInstance;
+export function instanceOfPermissionListing(value: object): value is PermissionListing {
+    if (!('permission' in value) || value['permission'] === undefined) return false;
+    if (!('resourceId' in value) || value['resourceId'] === undefined) return false;
+    if (!('role' in value) || value['role'] === undefined) return false;
+    return true;
 }
 
 export function PermissionListingFromJSON(json: any): PermissionListing {
@@ -75,7 +73,7 @@ export function PermissionListingFromJSON(json: any): PermissionListing {
 }
 
 export function PermissionListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): PermissionListing {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -87,17 +85,14 @@ export function PermissionListingFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function PermissionListingToJSON(value?: PermissionListing | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'permission': PermissionToJSON(value.permission),
-        'resourceId': ResourceIdToJSON(value.resourceId),
-        'role': RoleToJSON(value.role),
+        'permission': PermissionToJSON(value['permission']),
+        'resourceId': ResourceIdToJSON(value['resourceId']),
+        'role': RoleToJSON(value['role']),
     };
 }
 

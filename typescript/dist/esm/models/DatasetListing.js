@@ -11,28 +11,33 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { SymbologyFromJSON, SymbologyToJSON, } from './Symbology';
 import { TypedResultDescriptorFromJSON, TypedResultDescriptorToJSON, } from './TypedResultDescriptor';
 /**
  * Check if a given object implements the DatasetListing interface.
  */
 export function instanceOfDatasetListing(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "sourceOperator" in value;
-    isInstance = isInstance && "tags" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('displayName' in value) || value['displayName'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    if (!('sourceOperator' in value) || value['sourceOperator'] === undefined)
+        return false;
+    if (!('tags' in value) || value['tags'] === undefined)
+        return false;
+    return true;
 }
 export function DatasetListingFromJSON(json) {
     return DatasetListingFromJSONTyped(json, false);
 }
 export function DatasetListingFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -42,25 +47,22 @@ export function DatasetListingFromJSONTyped(json, ignoreDiscriminator) {
         'name': json['name'],
         'resultDescriptor': TypedResultDescriptorFromJSON(json['resultDescriptor']),
         'sourceOperator': json['sourceOperator'],
-        'symbology': !exists(json, 'symbology') ? undefined : SymbologyFromJSON(json['symbology']),
+        'symbology': json['symbology'] == null ? undefined : SymbologyFromJSON(json['symbology']),
         'tags': json['tags'],
     };
 }
 export function DatasetListingToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'displayName': value.displayName,
-        'id': value.id,
-        'name': value.name,
-        'resultDescriptor': TypedResultDescriptorToJSON(value.resultDescriptor),
-        'sourceOperator': value.sourceOperator,
-        'symbology': SymbologyToJSON(value.symbology),
-        'tags': value.tags,
+        'description': value['description'],
+        'displayName': value['displayName'],
+        'id': value['id'],
+        'name': value['name'],
+        'resultDescriptor': TypedResultDescriptorToJSON(value['resultDescriptor']),
+        'sourceOperator': value['sourceOperator'],
+        'symbology': SymbologyToJSON(value['symbology']),
+        'tags': value['tags'],
     };
 }

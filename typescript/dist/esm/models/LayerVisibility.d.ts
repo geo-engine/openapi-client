@@ -31,7 +31,7 @@ export interface LayerVisibility {
 /**
  * Check if a given object implements the LayerVisibility interface.
  */
-export declare function instanceOfLayerVisibility(value: object): boolean;
+export declare function instanceOfLayerVisibility(value: object): value is LayerVisibility;
 export declare function LayerVisibilityFromJSON(json: any): LayerVisibility;
 export declare function LayerVisibilityFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerVisibility;
 export declare function LayerVisibilityToJSON(value?: LayerVisibility | null): any;

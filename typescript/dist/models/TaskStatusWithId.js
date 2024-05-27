@@ -19,9 +19,9 @@ const TaskStatus_1 = require("./TaskStatus");
  * Check if a given object implements the TaskStatusWithId interface.
  */
 function instanceOfTaskStatusWithId(value) {
-    let isInstance = true;
-    isInstance = isInstance && "taskId" in value;
-    return isInstance;
+    if (!('taskId' in value) || value['taskId'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfTaskStatusWithId = instanceOfTaskStatusWithId;
 function TaskStatusWithIdFromJSON(json) {
@@ -29,19 +29,16 @@ function TaskStatusWithIdFromJSON(json) {
 }
 exports.TaskStatusWithIdFromJSON = TaskStatusWithIdFromJSON;
 function TaskStatusWithIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return Object.assign(Object.assign({}, (0, TaskStatus_1.TaskStatusFromJSONTyped)(json, ignoreDiscriminator)), { 'taskId': json['taskId'] });
 }
 exports.TaskStatusWithIdFromJSONTyped = TaskStatusWithIdFromJSONTyped;
 function TaskStatusWithIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
-    return Object.assign(Object.assign({}, (0, TaskStatus_1.TaskStatusToJSON)(value)), { 'taskId': value.taskId });
+    return Object.assign(Object.assign({}, (0, TaskStatus_1.TaskStatusToJSON)(value)), { 'taskId': value['taskId'] });
 }
 exports.TaskStatusWithIdToJSON = TaskStatusWithIdToJSON;

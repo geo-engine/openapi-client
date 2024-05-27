@@ -27,7 +27,7 @@ export interface SearchCapabilities {
      * @type {Array<string>}
      * @memberof SearchCapabilities
      */
-    filters?: Array<string> | null;
+    filters?: Array<string>;
     /**
      *
      * @type {SearchTypes}
@@ -38,7 +38,7 @@ export interface SearchCapabilities {
 /**
  * Check if a given object implements the SearchCapabilities interface.
  */
-export declare function instanceOfSearchCapabilities(value: object): boolean;
+export declare function instanceOfSearchCapabilities(value: object): value is SearchCapabilities;
 export declare function SearchCapabilitiesFromJSON(json: any): SearchCapabilities;
 export declare function SearchCapabilitiesFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchCapabilities;
 export declare function SearchCapabilitiesToJSON(value?: SearchCapabilities | null): any;

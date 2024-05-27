@@ -23,6 +23,17 @@ export const GetCapabilitiesFormat = {
 export type GetCapabilitiesFormat = typeof GetCapabilitiesFormat[keyof typeof GetCapabilitiesFormat];
 
 
+export function instanceOfGetCapabilitiesFormat(value: any): boolean {
+    for (const key in GetCapabilitiesFormat) {
+        if (Object.prototype.hasOwnProperty.call(GetCapabilitiesFormat, key)) {
+            if (GetCapabilitiesFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function GetCapabilitiesFormatFromJSON(json: any): GetCapabilitiesFormat {
     return GetCapabilitiesFormatFromJSONTyped(json, false);
 }

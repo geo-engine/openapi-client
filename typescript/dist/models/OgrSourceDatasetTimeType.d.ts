@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { NoneOgrSourceDatasetTimeType } from './NoneOgrSourceDatasetTimeType';
-import { StartDurationOgrSourceDatasetTimeType } from './StartDurationOgrSourceDatasetTimeType';
-import { StartEndOgrSourceDatasetTimeType } from './StartEndOgrSourceDatasetTimeType';
-import { StartOgrSourceDatasetTimeType } from './StartOgrSourceDatasetTimeType';
+import type { OgrSourceDatasetTimeTypeNone } from './OgrSourceDatasetTimeTypeNone';
+import type { OgrSourceDatasetTimeTypeStart } from './OgrSourceDatasetTimeTypeStart';
+import type { OgrSourceDatasetTimeTypeStartDuration } from './OgrSourceDatasetTimeTypeStartDuration';
+import type { OgrSourceDatasetTimeTypeStartEnd } from './OgrSourceDatasetTimeTypeStartEnd';
 /**
  * @type OgrSourceDatasetTimeType
  *
@@ -20,13 +20,13 @@ import { StartOgrSourceDatasetTimeType } from './StartOgrSourceDatasetTimeType';
  */
 export type OgrSourceDatasetTimeType = {
     type: 'none';
-} & NoneOgrSourceDatasetTimeType | {
+} & OgrSourceDatasetTimeTypeNone | {
     type: 'start';
-} & StartOgrSourceDatasetTimeType | {
+} & OgrSourceDatasetTimeTypeStart | {
     type: 'startDuration';
-} & StartDurationOgrSourceDatasetTimeType | {
+} & OgrSourceDatasetTimeTypeStartDuration | {
     type: 'startEnd';
-} & StartEndOgrSourceDatasetTimeType;
+} & OgrSourceDatasetTimeTypeStartEnd;
 export declare function OgrSourceDatasetTimeTypeFromJSON(json: any): OgrSourceDatasetTimeType;
 export declare function OgrSourceDatasetTimeTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDatasetTimeType;
 export declare function OgrSourceDatasetTimeTypeToJSON(value?: OgrSourceDatasetTimeType | null): any;

@@ -17,6 +17,7 @@ export declare const GetCapabilitiesFormat: {
     readonly TextXml: "text/xml";
 };
 export type GetCapabilitiesFormat = typeof GetCapabilitiesFormat[keyof typeof GetCapabilitiesFormat];
+export declare function instanceOfGetCapabilitiesFormat(value: any): boolean;
 export declare function GetCapabilitiesFormatFromJSON(json: any): GetCapabilitiesFormat;
 export declare function GetCapabilitiesFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCapabilitiesFormat;
 export declare function GetCapabilitiesFormatToJSON(value?: GetCapabilitiesFormat | null): any;

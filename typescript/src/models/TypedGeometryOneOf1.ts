@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MultiPoint } from './MultiPoint';
 import {
     MultiPointFromJSON,
@@ -37,11 +37,9 @@ export interface TypedGeometryOneOf1 {
 /**
  * Check if a given object implements the TypedGeometryOneOf1 interface.
  */
-export function instanceOfTypedGeometryOneOf1(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "multiPoint" in value;
-
-    return isInstance;
+export function instanceOfTypedGeometryOneOf1(value: object): value is TypedGeometryOneOf1 {
+    if (!('multiPoint' in value) || value['multiPoint'] === undefined) return false;
+    return true;
 }
 
 export function TypedGeometryOneOf1FromJSON(json: any): TypedGeometryOneOf1 {
@@ -49,7 +47,7 @@ export function TypedGeometryOneOf1FromJSON(json: any): TypedGeometryOneOf1 {
 }
 
 export function TypedGeometryOneOf1FromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedGeometryOneOf1 {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function TypedGeometryOneOf1FromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function TypedGeometryOneOf1ToJSON(value?: TypedGeometryOneOf1 | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'MultiPoint': MultiPointToJSON(value.multiPoint),
+        'MultiPoint': MultiPointToJSON(value['multiPoint']),
     };
 }
 

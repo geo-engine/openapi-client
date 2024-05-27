@@ -22,6 +22,7 @@ export declare const FeatureDataType: {
     readonly DateTime: "dateTime";
 };
 export type FeatureDataType = typeof FeatureDataType[keyof typeof FeatureDataType];
+export declare function instanceOfFeatureDataType(value: any): boolean;
 export declare function FeatureDataTypeFromJSON(json: any): FeatureDataType;
 export declare function FeatureDataTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): FeatureDataType;
 export declare function FeatureDataTypeToJSON(value?: FeatureDataType | null): any;

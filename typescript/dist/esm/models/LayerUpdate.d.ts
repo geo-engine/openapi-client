@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ProjectLayer } from './ProjectLayer';
-import { ProjectUpdateToken } from './ProjectUpdateToken';
+import type { ProjectLayer } from './ProjectLayer';
+import type { ProjectUpdateToken } from './ProjectUpdateToken';
 /**
  * @type LayerUpdate
  *

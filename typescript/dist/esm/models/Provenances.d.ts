@@ -26,7 +26,7 @@ export interface Provenances {
 /**
  * Check if a given object implements the Provenances interface.
  */
-export declare function instanceOfProvenances(value: object): boolean;
+export declare function instanceOfProvenances(value: object): value is Provenances;
 export declare function ProvenancesFromJSON(json: any): Provenances;
 export declare function ProvenancesFromJSONTyped(json: any, ignoreDiscriminator: boolean): Provenances;
 export declare function ProvenancesToJSON(value?: Provenances | null): any;

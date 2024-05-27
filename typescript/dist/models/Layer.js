@@ -14,20 +14,22 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LayerToJSON = exports.LayerFromJSONTyped = exports.LayerFromJSON = exports.instanceOfLayer = void 0;
-const runtime_1 = require("../runtime");
-const ProviderLayerId_1 = require("./ProviderLayerId");
 const Symbology_1 = require("./Symbology");
+const ProviderLayerId_1 = require("./ProviderLayerId");
 const Workflow_1 = require("./Workflow");
 /**
  * Check if a given object implements the Layer interface.
  */
 function instanceOfLayer(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "workflow" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('workflow' in value) || value['workflow'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfLayer = instanceOfLayer;
 function LayerFromJSON(json) {
@@ -35,35 +37,32 @@ function LayerFromJSON(json) {
 }
 exports.LayerFromJSON = LayerFromJSON;
 function LayerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
         'id': (0, ProviderLayerId_1.ProviderLayerIdFromJSON)(json['id']),
-        'metadata': !(0, runtime_1.exists)(json, 'metadata') ? undefined : json['metadata'],
+        'metadata': json['metadata'] == null ? undefined : json['metadata'],
         'name': json['name'],
-        'properties': !(0, runtime_1.exists)(json, 'properties') ? undefined : json['properties'],
-        'symbology': !(0, runtime_1.exists)(json, 'symbology') ? undefined : (0, Symbology_1.SymbologyFromJSON)(json['symbology']),
+        'properties': json['properties'] == null ? undefined : json['properties'],
+        'symbology': json['symbology'] == null ? undefined : (0, Symbology_1.SymbologyFromJSON)(json['symbology']),
         'workflow': (0, Workflow_1.WorkflowFromJSON)(json['workflow']),
     };
 }
 exports.LayerFromJSONTyped = LayerFromJSONTyped;
 function LayerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'id': (0, ProviderLayerId_1.ProviderLayerIdToJSON)(value.id),
-        'metadata': value.metadata,
-        'name': value.name,
-        'properties': value.properties,
-        'symbology': (0, Symbology_1.SymbologyToJSON)(value.symbology),
-        'workflow': (0, Workflow_1.WorkflowToJSON)(value.workflow),
+        'description': value['description'],
+        'id': (0, ProviderLayerId_1.ProviderLayerIdToJSON)(value['id']),
+        'metadata': value['metadata'],
+        'name': value['name'],
+        'properties': value['properties'],
+        'symbology': (0, Symbology_1.SymbologyToJSON)(value['symbology']),
+        'workflow': (0, Workflow_1.WorkflowToJSON)(value['workflow']),
     };
 }
 exports.LayerToJSON = LayerToJSON;

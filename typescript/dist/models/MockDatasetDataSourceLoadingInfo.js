@@ -19,9 +19,9 @@ const Coordinate2D_1 = require("./Coordinate2D");
  * Check if a given object implements the MockDatasetDataSourceLoadingInfo interface.
  */
 function instanceOfMockDatasetDataSourceLoadingInfo(value) {
-    let isInstance = true;
-    isInstance = isInstance && "points" in value;
-    return isInstance;
+    if (!('points' in value) || value['points'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfMockDatasetDataSourceLoadingInfo = instanceOfMockDatasetDataSourceLoadingInfo;
 function MockDatasetDataSourceLoadingInfoFromJSON(json) {
@@ -29,7 +29,7 @@ function MockDatasetDataSourceLoadingInfoFromJSON(json) {
 }
 exports.MockDatasetDataSourceLoadingInfoFromJSON = MockDatasetDataSourceLoadingInfoFromJSON;
 function MockDatasetDataSourceLoadingInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,14 +38,11 @@ function MockDatasetDataSourceLoadingInfoFromJSONTyped(json, ignoreDiscriminator
 }
 exports.MockDatasetDataSourceLoadingInfoFromJSONTyped = MockDatasetDataSourceLoadingInfoFromJSONTyped;
 function MockDatasetDataSourceLoadingInfoToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'points': (value.points.map(Coordinate2D_1.Coordinate2DToJSON)),
+        'points': (value['points'].map(Coordinate2D_1.Coordinate2DToJSON)),
     };
 }
 exports.MockDatasetDataSourceLoadingInfoToJSON = MockDatasetDataSourceLoadingInfoToJSON;

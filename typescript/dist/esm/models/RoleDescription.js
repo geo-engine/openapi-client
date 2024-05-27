@@ -16,16 +16,17 @@ import { RoleFromJSON, RoleToJSON, } from './Role';
  * Check if a given object implements the RoleDescription interface.
  */
 export function instanceOfRoleDescription(value) {
-    let isInstance = true;
-    isInstance = isInstance && "individual" in value;
-    isInstance = isInstance && "role" in value;
-    return isInstance;
+    if (!('individual' in value) || value['individual'] === undefined)
+        return false;
+    if (!('role' in value) || value['role'] === undefined)
+        return false;
+    return true;
 }
 export function RoleDescriptionFromJSON(json) {
     return RoleDescriptionFromJSONTyped(json, false);
 }
 export function RoleDescriptionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -34,14 +35,11 @@ export function RoleDescriptionFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function RoleDescriptionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'individual': value.individual,
-        'role': RoleToJSON(value.role),
+        'individual': value['individual'],
+        'role': RoleToJSON(value['role']),
     };
 }

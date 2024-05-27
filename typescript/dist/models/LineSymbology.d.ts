@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { StrokeParam } from './StrokeParam';
 import type { TextSymbology } from './TextSymbology';
+import type { StrokeParam } from './StrokeParam';
 /**
  *
  * @export
@@ -34,12 +34,12 @@ export interface LineSymbology {
      * @type {TextSymbology}
      * @memberof LineSymbology
      */
-    text?: TextSymbology | null;
+    text?: TextSymbology;
 }
 /**
  * Check if a given object implements the LineSymbology interface.
  */
-export declare function instanceOfLineSymbology(value: object): boolean;
+export declare function instanceOfLineSymbology(value: object): value is LineSymbology;
 export declare function LineSymbologyFromJSON(json: any): LineSymbology;
 export declare function LineSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): LineSymbology;
 export declare function LineSymbologyToJSON(value?: LineSymbology | null): any;

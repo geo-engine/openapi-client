@@ -11,31 +11,34 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { CollectionItemFromJSON, CollectionItemToJSON, } from './CollectionItem';
 import { ProviderLayerCollectionIdFromJSON, ProviderLayerCollectionIdToJSON, } from './ProviderLayerCollectionId';
 /**
  * Check if a given object implements the LayerCollection interface.
  */
 export function instanceOfLayerCollection(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "items" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "properties" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('items' in value) || value['items'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('properties' in value) || value['properties'] === undefined)
+        return false;
+    return true;
 }
 export function LayerCollectionFromJSON(json) {
     return LayerCollectionFromJSONTyped(json, false);
 }
 export function LayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
-        'entryLabel': !exists(json, 'entryLabel') ? undefined : json['entryLabel'],
+        'entryLabel': json['entryLabel'] == null ? undefined : json['entryLabel'],
         'id': ProviderLayerCollectionIdFromJSON(json['id']),
         'items': (json['items'].map(CollectionItemFromJSON)),
         'name': json['name'],
@@ -43,18 +46,15 @@ export function LayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function LayerCollectionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'entryLabel': value.entryLabel,
-        'id': ProviderLayerCollectionIdToJSON(value.id),
-        'items': (value.items.map(CollectionItemToJSON)),
-        'name': value.name,
-        'properties': value.properties,
+        'description': value['description'],
+        'entryLabel': value['entryLabel'],
+        'id': ProviderLayerCollectionIdToJSON(value['id']),
+        'items': (value['items'].map(CollectionItemToJSON)),
+        'name': value['name'],
+        'properties': value['properties'],
     };
 }

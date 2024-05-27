@@ -16,17 +16,16 @@ export function FormatSpecificsFromJSON(json) {
     return FormatSpecificsFromJSONTyped(json, false);
 }
 export function FormatSpecificsFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return Object.assign({}, FormatSpecificsOneOfFromJSONTyped(json, true));
+    if (instanceOfFormatSpecificsOneOf(json)) {
+        return FormatSpecificsOneOfFromJSONTyped(json, true);
+    }
 }
 export function FormatSpecificsToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     if (instanceOfFormatSpecificsOneOf(value)) {
         return FormatSpecificsOneOfToJSON(value);

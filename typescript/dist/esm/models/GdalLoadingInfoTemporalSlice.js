@@ -11,40 +11,36 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
-import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './GdalDatasetParameters';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
+import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './GdalDatasetParameters';
 /**
  * Check if a given object implements the GdalLoadingInfoTemporalSlice interface.
  */
 export function instanceOfGdalLoadingInfoTemporalSlice(value) {
-    let isInstance = true;
-    isInstance = isInstance && "time" in value;
-    return isInstance;
+    if (!('time' in value) || value['time'] === undefined)
+        return false;
+    return true;
 }
 export function GdalLoadingInfoTemporalSliceFromJSON(json) {
     return GdalLoadingInfoTemporalSliceFromJSONTyped(json, false);
 }
 export function GdalLoadingInfoTemporalSliceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'cacheTtl': !exists(json, 'cacheTtl') ? undefined : json['cacheTtl'],
-        'params': !exists(json, 'params') ? undefined : GdalDatasetParametersFromJSON(json['params']),
+        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
+        'params': json['params'] == null ? undefined : GdalDatasetParametersFromJSON(json['params']),
         'time': TimeIntervalFromJSON(json['time']),
     };
 }
 export function GdalLoadingInfoTemporalSliceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'cacheTtl': value.cacheTtl,
-        'params': GdalDatasetParametersToJSON(value.params),
-        'time': TimeIntervalToJSON(value.time),
+        'cacheTtl': value['cacheTtl'],
+        'params': GdalDatasetParametersToJSON(value['params']),
+        'time': TimeIntervalToJSON(value['time']),
     };
 }

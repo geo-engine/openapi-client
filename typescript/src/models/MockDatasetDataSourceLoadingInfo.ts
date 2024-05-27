@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Coordinate2D } from './Coordinate2D';
 import {
     Coordinate2DFromJSON,
@@ -37,11 +37,9 @@ export interface MockDatasetDataSourceLoadingInfo {
 /**
  * Check if a given object implements the MockDatasetDataSourceLoadingInfo interface.
  */
-export function instanceOfMockDatasetDataSourceLoadingInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "points" in value;
-
-    return isInstance;
+export function instanceOfMockDatasetDataSourceLoadingInfo(value: object): value is MockDatasetDataSourceLoadingInfo {
+    if (!('points' in value) || value['points'] === undefined) return false;
+    return true;
 }
 
 export function MockDatasetDataSourceLoadingInfoFromJSON(json: any): MockDatasetDataSourceLoadingInfo {
@@ -49,7 +47,7 @@ export function MockDatasetDataSourceLoadingInfoFromJSON(json: any): MockDataset
 }
 
 export function MockDatasetDataSourceLoadingInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MockDatasetDataSourceLoadingInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function MockDatasetDataSourceLoadingInfoFromJSONTyped(json: any, ignoreD
 }
 
 export function MockDatasetDataSourceLoadingInfoToJSON(value?: MockDatasetDataSourceLoadingInfo | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'points': ((value.points as Array<any>).map(Coordinate2DToJSON)),
+        'points': ((value['points'] as Array<any>).map(Coordinate2DToJSON)),
     };
 }
 

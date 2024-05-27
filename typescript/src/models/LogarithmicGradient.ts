@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Breakpoint } from './Breakpoint';
 import {
     BreakpointFromJSON,
@@ -55,14 +55,12 @@ export interface LogarithmicGradient {
 /**
  * Check if a given object implements the LogarithmicGradient interface.
  */
-export function instanceOfLogarithmicGradient(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "breakpoints" in value;
-    isInstance = isInstance && "noDataColor" in value;
-    isInstance = isInstance && "overColor" in value;
-    isInstance = isInstance && "underColor" in value;
-
-    return isInstance;
+export function instanceOfLogarithmicGradient(value: object): value is LogarithmicGradient {
+    if (!('breakpoints' in value) || value['breakpoints'] === undefined) return false;
+    if (!('noDataColor' in value) || value['noDataColor'] === undefined) return false;
+    if (!('overColor' in value) || value['overColor'] === undefined) return false;
+    if (!('underColor' in value) || value['underColor'] === undefined) return false;
+    return true;
 }
 
 export function LogarithmicGradientFromJSON(json: any): LogarithmicGradient {
@@ -70,7 +68,7 @@ export function LogarithmicGradientFromJSON(json: any): LogarithmicGradient {
 }
 
 export function LogarithmicGradientFromJSONTyped(json: any, ignoreDiscriminator: boolean): LogarithmicGradient {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -83,18 +81,15 @@ export function LogarithmicGradientFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function LogarithmicGradientToJSON(value?: LogarithmicGradient | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'breakpoints': ((value.breakpoints as Array<any>).map(BreakpointToJSON)),
-        'noDataColor': value.noDataColor,
-        'overColor': value.overColor,
-        'underColor': value.underColor,
+        'breakpoints': ((value['breakpoints'] as Array<any>).map(BreakpointToJSON)),
+        'noDataColor': value['noDataColor'],
+        'overColor': value['overColor'],
+        'underColor': value['underColor'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FormatSpecificsOneOfCsv } from './FormatSpecificsOneOfCsv';
 import {
     FormatSpecificsOneOfCsvFromJSON,
@@ -37,11 +37,9 @@ export interface FormatSpecificsOneOf {
 /**
  * Check if a given object implements the FormatSpecificsOneOf interface.
  */
-export function instanceOfFormatSpecificsOneOf(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "csv" in value;
-
-    return isInstance;
+export function instanceOfFormatSpecificsOneOf(value: object): value is FormatSpecificsOneOf {
+    if (!('csv' in value) || value['csv'] === undefined) return false;
+    return true;
 }
 
 export function FormatSpecificsOneOfFromJSON(json: any): FormatSpecificsOneOf {
@@ -49,7 +47,7 @@ export function FormatSpecificsOneOfFromJSON(json: any): FormatSpecificsOneOf {
 }
 
 export function FormatSpecificsOneOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatSpecificsOneOf {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function FormatSpecificsOneOfFromJSONTyped(json: any, ignoreDiscriminator
 }
 
 export function FormatSpecificsOneOfToJSON(value?: FormatSpecificsOneOf | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'csv': FormatSpecificsOneOfCsvToJSON(value.csv),
+        'csv': FormatSpecificsOneOfCsvToJSON(value['csv']),
     };
 }
 

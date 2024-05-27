@@ -11,23 +11,25 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
+import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 /**
  * Check if a given object implements the STRectangle interface.
  */
 export function instanceOfSTRectangle(value) {
-    let isInstance = true;
-    isInstance = isInstance && "boundingBox" in value;
-    isInstance = isInstance && "spatialReference" in value;
-    isInstance = isInstance && "timeInterval" in value;
-    return isInstance;
+    if (!('boundingBox' in value) || value['boundingBox'] === undefined)
+        return false;
+    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+        return false;
+    if (!('timeInterval' in value) || value['timeInterval'] === undefined)
+        return false;
+    return true;
 }
 export function STRectangleFromJSON(json) {
     return STRectangleFromJSONTyped(json, false);
 }
 export function STRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,15 +39,12 @@ export function STRectangleFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function STRectangleToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'boundingBox': BoundingBox2DToJSON(value.boundingBox),
-        'spatialReference': value.spatialReference,
-        'timeInterval': TimeIntervalToJSON(value.timeInterval),
+        'boundingBox': BoundingBox2DToJSON(value['boundingBox']),
+        'spatialReference': value['spatialReference'],
+        'timeInterval': TimeIntervalToJSON(value['timeInterval']),
     };
 }

@@ -18,9 +18,9 @@ exports.TypedGeometryOneOfToJSON = exports.TypedGeometryOneOfFromJSONTyped = exp
  * Check if a given object implements the TypedGeometryOneOf interface.
  */
 function instanceOfTypedGeometryOneOf(value) {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    return isInstance;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfTypedGeometryOneOf = instanceOfTypedGeometryOneOf;
 function TypedGeometryOneOfFromJSON(json) {
@@ -28,7 +28,7 @@ function TypedGeometryOneOfFromJSON(json) {
 }
 exports.TypedGeometryOneOfFromJSON = TypedGeometryOneOfFromJSON;
 function TypedGeometryOneOfFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,14 +37,11 @@ function TypedGeometryOneOfFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.TypedGeometryOneOfFromJSONTyped = TypedGeometryOneOfFromJSONTyped;
 function TypedGeometryOneOfToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'Data': value.data,
+        'Data': value['data'],
     };
 }
 exports.TypedGeometryOneOfToJSON = TypedGeometryOneOfToJSON;

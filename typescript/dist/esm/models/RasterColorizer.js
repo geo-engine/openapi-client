@@ -11,31 +11,28 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SingleBandRasterColorizerFromJSONTyped, SingleBandRasterColorizerToJSON, } from './SingleBandRasterColorizer';
+import { RasterColorizerSingleBandFromJSONTyped, RasterColorizerSingleBandToJSON, } from './RasterColorizerSingleBand';
 export function RasterColorizerFromJSON(json) {
     return RasterColorizerFromJSONTyped(json, false);
 }
 export function RasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'singleBand':
-            return Object.assign(Object.assign({}, SingleBandRasterColorizerFromJSONTyped(json, true)), { type: 'singleBand' });
+            return Object.assign({}, RasterColorizerSingleBandFromJSONTyped(json, true), { type: 'singleBand' });
         default:
             throw new Error(`No variant of RasterColorizer exists with 'type=${json['type']}'`);
     }
 }
 export function RasterColorizerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'singleBand':
-            return SingleBandRasterColorizerToJSON(value);
+            return RasterColorizerSingleBandToJSON(value);
         default:
             throw new Error(`No variant of RasterColorizer exists with 'type=${value['type']}'`);
     }

@@ -14,17 +14,19 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.STRectangleToJSON = exports.STRectangleFromJSONTyped = exports.STRectangleFromJSON = exports.instanceOfSTRectangle = void 0;
-const BoundingBox2D_1 = require("./BoundingBox2D");
 const TimeInterval_1 = require("./TimeInterval");
+const BoundingBox2D_1 = require("./BoundingBox2D");
 /**
  * Check if a given object implements the STRectangle interface.
  */
 function instanceOfSTRectangle(value) {
-    let isInstance = true;
-    isInstance = isInstance && "boundingBox" in value;
-    isInstance = isInstance && "spatialReference" in value;
-    isInstance = isInstance && "timeInterval" in value;
-    return isInstance;
+    if (!('boundingBox' in value) || value['boundingBox'] === undefined)
+        return false;
+    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+        return false;
+    if (!('timeInterval' in value) || value['timeInterval'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfSTRectangle = instanceOfSTRectangle;
 function STRectangleFromJSON(json) {
@@ -32,7 +34,7 @@ function STRectangleFromJSON(json) {
 }
 exports.STRectangleFromJSON = STRectangleFromJSON;
 function STRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,16 +45,13 @@ function STRectangleFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.STRectangleFromJSONTyped = STRectangleFromJSONTyped;
 function STRectangleToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'boundingBox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value.boundingBox),
-        'spatialReference': value.spatialReference,
-        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value.timeInterval),
+        'boundingBox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value['boundingBox']),
+        'spatialReference': value['spatialReference'],
+        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
     };
 }
 exports.STRectangleToJSON = STRectangleToJSON;

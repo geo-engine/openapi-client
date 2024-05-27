@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetCoverageFormatToJSON = exports.GetCoverageFormatFromJSONTyped = exports.GetCoverageFormatFromJSON = exports.GetCoverageFormat = void 0;
+exports.GetCoverageFormatToJSON = exports.GetCoverageFormatFromJSONTyped = exports.GetCoverageFormatFromJSON = exports.instanceOfGetCoverageFormat = exports.GetCoverageFormat = void 0;
 /**
  *
  * @export
@@ -21,6 +21,17 @@ exports.GetCoverageFormatToJSON = exports.GetCoverageFormatFromJSONTyped = expor
 exports.GetCoverageFormat = {
     ImageTiff: 'image/tiff'
 };
+function instanceOfGetCoverageFormat(value) {
+    for (const key in exports.GetCoverageFormat) {
+        if (Object.prototype.hasOwnProperty.call(exports.GetCoverageFormat, key)) {
+            if (exports.GetCoverageFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+exports.instanceOfGetCoverageFormat = instanceOfGetCoverageFormat;
 function GetCoverageFormatFromJSON(json) {
     return GetCoverageFormatFromJSONTyped(json, false);
 }

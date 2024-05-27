@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlotOutputFormat } from './PlotOutputFormat';
 import {
     PlotOutputFormatFromJSON,
@@ -49,13 +49,11 @@ export interface WrappedPlotOutput {
 /**
  * Check if a given object implements the WrappedPlotOutput interface.
  */
-export function instanceOfWrappedPlotOutput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "outputFormat" in value;
-    isInstance = isInstance && "plotType" in value;
-
-    return isInstance;
+export function instanceOfWrappedPlotOutput(value: object): value is WrappedPlotOutput {
+    if (!('data' in value) || value['data'] === undefined) return false;
+    if (!('outputFormat' in value) || value['outputFormat'] === undefined) return false;
+    if (!('plotType' in value) || value['plotType'] === undefined) return false;
+    return true;
 }
 
 export function WrappedPlotOutputFromJSON(json: any): WrappedPlotOutput {
@@ -63,7 +61,7 @@ export function WrappedPlotOutputFromJSON(json: any): WrappedPlotOutput {
 }
 
 export function WrappedPlotOutputFromJSONTyped(json: any, ignoreDiscriminator: boolean): WrappedPlotOutput {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -75,17 +73,14 @@ export function WrappedPlotOutputFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function WrappedPlotOutputToJSON(value?: WrappedPlotOutput | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'data': value.data,
-        'outputFormat': PlotOutputFormatToJSON(value.outputFormat),
-        'plotType': value.plotType,
+        'data': value['data'],
+        'outputFormat': PlotOutputFormatToJSON(value['outputFormat']),
+        'plotType': value['plotType'],
     };
 }
 

@@ -19,6 +19,16 @@ export const SearchType = {
     Fulltext: 'fulltext',
     Prefix: 'prefix'
 };
+export function instanceOfSearchType(value) {
+    for (const key in SearchType) {
+        if (Object.prototype.hasOwnProperty.call(SearchType, key)) {
+            if (SearchType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function SearchTypeFromJSON(json) {
     return SearchTypeFromJSONTyped(json, false);
 }

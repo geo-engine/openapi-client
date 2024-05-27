@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetCapabilitiesRequestToJSON = exports.GetCapabilitiesRequestFromJSONTyped = exports.GetCapabilitiesRequestFromJSON = exports.GetCapabilitiesRequest = void 0;
+exports.GetCapabilitiesRequestToJSON = exports.GetCapabilitiesRequestFromJSONTyped = exports.GetCapabilitiesRequestFromJSON = exports.instanceOfGetCapabilitiesRequest = exports.GetCapabilitiesRequest = void 0;
 /**
  *
  * @export
@@ -21,6 +21,17 @@ exports.GetCapabilitiesRequestToJSON = exports.GetCapabilitiesRequestFromJSONTyp
 exports.GetCapabilitiesRequest = {
     GetCapabilities: 'GetCapabilities'
 };
+function instanceOfGetCapabilitiesRequest(value) {
+    for (const key in exports.GetCapabilitiesRequest) {
+        if (Object.prototype.hasOwnProperty.call(exports.GetCapabilitiesRequest, key)) {
+            if (exports.GetCapabilitiesRequest[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+exports.instanceOfGetCapabilitiesRequest = instanceOfGetCapabilitiesRequest;
 function GetCapabilitiesRequestFromJSON(json) {
     return GetCapabilitiesRequestFromJSONTyped(json, false);
 }

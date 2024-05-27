@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectUpdateTokenToJSON = exports.instanceOfProjectUpdateToken = exports.ProjectUpdateTokenFromJSONTyped = exports.ProjectUpdateTokenFromJSON = exports.ProjectUpdateToken = void 0;
+exports.ProjectUpdateTokenToJSON = exports.ProjectUpdateTokenFromJSONTyped = exports.ProjectUpdateTokenFromJSON = exports.instanceOfProjectUpdateToken = exports.ProjectUpdateToken = void 0;
 /**
  *
  * @export
@@ -22,6 +22,17 @@ exports.ProjectUpdateToken = {
     None: 'none',
     Delete: 'delete'
 };
+function instanceOfProjectUpdateToken(value) {
+    for (const key in exports.ProjectUpdateToken) {
+        if (Object.prototype.hasOwnProperty.call(exports.ProjectUpdateToken, key)) {
+            if (exports.ProjectUpdateToken[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+exports.instanceOfProjectUpdateToken = instanceOfProjectUpdateToken;
 function ProjectUpdateTokenFromJSON(json) {
     return ProjectUpdateTokenFromJSONTyped(json, false);
 }
@@ -30,10 +41,6 @@ function ProjectUpdateTokenFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 exports.ProjectUpdateTokenFromJSONTyped = ProjectUpdateTokenFromJSONTyped;
-function instanceOfProjectUpdateToken(value) {
-    return value === exports.ProjectUpdateToken.None || value === exports.ProjectUpdateToken.Delete;
-}
-exports.instanceOfProjectUpdateToken = instanceOfProjectUpdateToken;
 function ProjectUpdateTokenToJSON(value) {
     return value;
 }

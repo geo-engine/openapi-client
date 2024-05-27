@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Role } from './Role';
 import {
     RoleFromJSON,
@@ -43,12 +43,10 @@ export interface RoleDescription {
 /**
  * Check if a given object implements the RoleDescription interface.
  */
-export function instanceOfRoleDescription(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "individual" in value;
-    isInstance = isInstance && "role" in value;
-
-    return isInstance;
+export function instanceOfRoleDescription(value: object): value is RoleDescription {
+    if (!('individual' in value) || value['individual'] === undefined) return false;
+    if (!('role' in value) || value['role'] === undefined) return false;
+    return true;
 }
 
 export function RoleDescriptionFromJSON(json: any): RoleDescription {
@@ -56,7 +54,7 @@ export function RoleDescriptionFromJSON(json: any): RoleDescription {
 }
 
 export function RoleDescriptionFromJSONTyped(json: any, ignoreDiscriminator: boolean): RoleDescription {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function RoleDescriptionFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function RoleDescriptionToJSON(value?: RoleDescription | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'individual': value.individual,
-        'role': RoleToJSON(value.role),
+        'individual': value['individual'],
+        'role': RoleToJSON(value['role']),
     };
 }
 

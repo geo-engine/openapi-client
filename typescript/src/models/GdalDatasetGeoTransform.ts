@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Coordinate2D } from './Coordinate2D';
 import {
     Coordinate2DFromJSON,
@@ -49,13 +49,11 @@ export interface GdalDatasetGeoTransform {
 /**
  * Check if a given object implements the GdalDatasetGeoTransform interface.
  */
-export function instanceOfGdalDatasetGeoTransform(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "originCoordinate" in value;
-    isInstance = isInstance && "xPixelSize" in value;
-    isInstance = isInstance && "yPixelSize" in value;
-
-    return isInstance;
+export function instanceOfGdalDatasetGeoTransform(value: object): value is GdalDatasetGeoTransform {
+    if (!('originCoordinate' in value) || value['originCoordinate'] === undefined) return false;
+    if (!('xPixelSize' in value) || value['xPixelSize'] === undefined) return false;
+    if (!('yPixelSize' in value) || value['yPixelSize'] === undefined) return false;
+    return true;
 }
 
 export function GdalDatasetGeoTransformFromJSON(json: any): GdalDatasetGeoTransform {
@@ -63,7 +61,7 @@ export function GdalDatasetGeoTransformFromJSON(json: any): GdalDatasetGeoTransf
 }
 
 export function GdalDatasetGeoTransformFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalDatasetGeoTransform {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -75,17 +73,14 @@ export function GdalDatasetGeoTransformFromJSONTyped(json: any, ignoreDiscrimina
 }
 
 export function GdalDatasetGeoTransformToJSON(value?: GdalDatasetGeoTransform | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'originCoordinate': Coordinate2DToJSON(value.originCoordinate),
-        'xPixelSize': value.xPixelSize,
-        'yPixelSize': value.yPixelSize,
+        'originCoordinate': Coordinate2DToJSON(value['originCoordinate']),
+        'xPixelSize': value['xPixelSize'],
+        'yPixelSize': value['yPixelSize'],
     };
 }
 

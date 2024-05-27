@@ -11,24 +11,26 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PermissionFromJSON, PermissionToJSON, } from './Permission';
-import { ResourceIdFromJSON, ResourceIdToJSON, } from './ResourceId';
 import { RoleFromJSON, RoleToJSON, } from './Role';
+import { ResourceIdFromJSON, ResourceIdToJSON, } from './ResourceId';
+import { PermissionFromJSON, PermissionToJSON, } from './Permission';
 /**
  * Check if a given object implements the PermissionListing interface.
  */
 export function instanceOfPermissionListing(value) {
-    let isInstance = true;
-    isInstance = isInstance && "permission" in value;
-    isInstance = isInstance && "resourceId" in value;
-    isInstance = isInstance && "role" in value;
-    return isInstance;
+    if (!('permission' in value) || value['permission'] === undefined)
+        return false;
+    if (!('resourceId' in value) || value['resourceId'] === undefined)
+        return false;
+    if (!('role' in value) || value['role'] === undefined)
+        return false;
+    return true;
 }
 export function PermissionListingFromJSON(json) {
     return PermissionListingFromJSONTyped(json, false);
 }
 export function PermissionListingFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,15 +40,12 @@ export function PermissionListingFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function PermissionListingToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'permission': PermissionToJSON(value.permission),
-        'resourceId': ResourceIdToJSON(value.resourceId),
-        'role': RoleToJSON(value.role),
+        'permission': PermissionToJSON(value['permission']),
+        'resourceId': ResourceIdToJSON(value['resourceId']),
+        'role': RoleToJSON(value['role']),
     };
 }

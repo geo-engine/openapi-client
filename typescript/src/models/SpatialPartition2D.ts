@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Coordinate2D } from './Coordinate2D';
 import {
     Coordinate2DFromJSON,
@@ -43,12 +43,10 @@ export interface SpatialPartition2D {
 /**
  * Check if a given object implements the SpatialPartition2D interface.
  */
-export function instanceOfSpatialPartition2D(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "lowerRightCoordinate" in value;
-    isInstance = isInstance && "upperLeftCoordinate" in value;
-
-    return isInstance;
+export function instanceOfSpatialPartition2D(value: object): value is SpatialPartition2D {
+    if (!('lowerRightCoordinate' in value) || value['lowerRightCoordinate'] === undefined) return false;
+    if (!('upperLeftCoordinate' in value) || value['upperLeftCoordinate'] === undefined) return false;
+    return true;
 }
 
 export function SpatialPartition2DFromJSON(json: any): SpatialPartition2D {
@@ -56,7 +54,7 @@ export function SpatialPartition2DFromJSON(json: any): SpatialPartition2D {
 }
 
 export function SpatialPartition2DFromJSONTyped(json: any, ignoreDiscriminator: boolean): SpatialPartition2D {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function SpatialPartition2DFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function SpatialPartition2DToJSON(value?: SpatialPartition2D | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'lowerRightCoordinate': Coordinate2DToJSON(value.lowerRightCoordinate),
-        'upperLeftCoordinate': Coordinate2DToJSON(value.upperLeftCoordinate),
+        'lowerRightCoordinate': Coordinate2DToJSON(value['lowerRightCoordinate']),
+        'upperLeftCoordinate': Coordinate2DToJSON(value['upperLeftCoordinate']),
     };
 }
 

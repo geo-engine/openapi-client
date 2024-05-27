@@ -37,7 +37,7 @@ export interface DateTimeParseFormat {
 /**
  * Check if a given object implements the DateTimeParseFormat interface.
  */
-export declare function instanceOfDateTimeParseFormat(value: object): boolean;
+export declare function instanceOfDateTimeParseFormat(value: object): value is DateTimeParseFormat;
 export declare function DateTimeParseFormatFromJSON(json: any): DateTimeParseFormat;
 export declare function DateTimeParseFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): DateTimeParseFormat;
 export declare function DateTimeParseFormatToJSON(value?: DateTimeParseFormat | null): any;

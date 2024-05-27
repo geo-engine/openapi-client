@@ -15,15 +15,15 @@
  * Check if a given object implements the CreateDatasetHandler200Response interface.
  */
 export function instanceOfCreateDatasetHandler200Response(value) {
-    let isInstance = true;
-    isInstance = isInstance && "datasetName" in value;
-    return isInstance;
+    if (!('datasetName' in value) || value['datasetName'] === undefined)
+        return false;
+    return true;
 }
 export function CreateDatasetHandler200ResponseFromJSON(json) {
     return CreateDatasetHandler200ResponseFromJSONTyped(json, false);
 }
 export function CreateDatasetHandler200ResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -31,13 +31,10 @@ export function CreateDatasetHandler200ResponseFromJSONTyped(json, ignoreDiscrim
     };
 }
 export function CreateDatasetHandler200ResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'datasetName': value.datasetName,
+        'datasetName': value['datasetName'],
     };
 }

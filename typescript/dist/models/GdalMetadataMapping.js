@@ -14,17 +14,19 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalMetadataMappingToJSON = exports.GdalMetadataMappingFromJSONTyped = exports.GdalMetadataMappingFromJSON = exports.instanceOfGdalMetadataMapping = void 0;
-const RasterPropertiesEntryType_1 = require("./RasterPropertiesEntryType");
 const RasterPropertiesKey_1 = require("./RasterPropertiesKey");
+const RasterPropertiesEntryType_1 = require("./RasterPropertiesEntryType");
 /**
  * Check if a given object implements the GdalMetadataMapping interface.
  */
 function instanceOfGdalMetadataMapping(value) {
-    let isInstance = true;
-    isInstance = isInstance && "sourceKey" in value;
-    isInstance = isInstance && "targetKey" in value;
-    isInstance = isInstance && "targetType" in value;
-    return isInstance;
+    if (!('sourceKey' in value) || value['sourceKey'] === undefined)
+        return false;
+    if (!('targetKey' in value) || value['targetKey'] === undefined)
+        return false;
+    if (!('targetType' in value) || value['targetType'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfGdalMetadataMapping = instanceOfGdalMetadataMapping;
 function GdalMetadataMappingFromJSON(json) {
@@ -32,7 +34,7 @@ function GdalMetadataMappingFromJSON(json) {
 }
 exports.GdalMetadataMappingFromJSON = GdalMetadataMappingFromJSON;
 function GdalMetadataMappingFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,16 +45,13 @@ function GdalMetadataMappingFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.GdalMetadataMappingFromJSONTyped = GdalMetadataMappingFromJSONTyped;
 function GdalMetadataMappingToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'source_key': (0, RasterPropertiesKey_1.RasterPropertiesKeyToJSON)(value.sourceKey),
-        'target_key': (0, RasterPropertiesKey_1.RasterPropertiesKeyToJSON)(value.targetKey),
-        'target_type': (0, RasterPropertiesEntryType_1.RasterPropertiesEntryTypeToJSON)(value.targetType),
+        'source_key': (0, RasterPropertiesKey_1.RasterPropertiesKeyToJSON)(value['sourceKey']),
+        'target_key': (0, RasterPropertiesKey_1.RasterPropertiesKeyToJSON)(value['targetKey']),
+        'target_type': (0, RasterPropertiesEntryType_1.RasterPropertiesEntryTypeToJSON)(value['targetType']),
     };
 }
 exports.GdalMetadataMappingToJSON = GdalMetadataMappingToJSON;

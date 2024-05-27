@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { BoundingBox2D } from './BoundingBox2D';
-import {
-    BoundingBox2DFromJSON,
-    BoundingBox2DFromJSONTyped,
-    BoundingBox2DToJSON,
-} from './BoundingBox2D';
+import { mapValues } from '../runtime';
 import type { TimeInterval } from './TimeInterval';
 import {
     TimeIntervalFromJSON,
     TimeIntervalFromJSONTyped,
     TimeIntervalToJSON,
 } from './TimeInterval';
+import type { BoundingBox2D } from './BoundingBox2D';
+import {
+    BoundingBox2DFromJSON,
+    BoundingBox2DFromJSONTyped,
+    BoundingBox2DToJSON,
+} from './BoundingBox2D';
 
 /**
  * A `ResultDescriptor` for plot queries
@@ -37,7 +37,7 @@ export interface PlotResultDescriptor {
      * @type {BoundingBox2D}
      * @memberof PlotResultDescriptor
      */
-    bbox?: BoundingBox2D | null;
+    bbox?: BoundingBox2D;
     /**
      * 
      * @type {string}
@@ -49,17 +49,15 @@ export interface PlotResultDescriptor {
      * @type {TimeInterval}
      * @memberof PlotResultDescriptor
      */
-    time?: TimeInterval | null;
+    time?: TimeInterval;
 }
 
 /**
  * Check if a given object implements the PlotResultDescriptor interface.
  */
-export function instanceOfPlotResultDescriptor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "spatialReference" in value;
-
-    return isInstance;
+export function instanceOfPlotResultDescriptor(value: object): value is PlotResultDescriptor {
+    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
+    return true;
 }
 
 export function PlotResultDescriptorFromJSON(json: any): PlotResultDescriptor {
@@ -67,29 +65,26 @@ export function PlotResultDescriptorFromJSON(json: any): PlotResultDescriptor {
 }
 
 export function PlotResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlotResultDescriptor {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'bbox': !exists(json, 'bbox') ? undefined : BoundingBox2DFromJSON(json['bbox']),
+        'bbox': json['bbox'] == null ? undefined : BoundingBox2DFromJSON(json['bbox']),
         'spatialReference': json['spatialReference'],
-        'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
     };
 }
 
 export function PlotResultDescriptorToJSON(value?: PlotResultDescriptor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'bbox': BoundingBox2DToJSON(value.bbox),
-        'spatialReference': value.spatialReference,
-        'time': TimeIntervalToJSON(value.time),
+        'bbox': BoundingBox2DToJSON(value['bbox']),
+        'spatialReference': value['spatialReference'],
+        'time': TimeIntervalToJSON(value['time']),
     };
 }
 

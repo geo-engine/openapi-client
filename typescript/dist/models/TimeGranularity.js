@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TimeGranularityToJSON = exports.TimeGranularityFromJSONTyped = exports.TimeGranularityFromJSON = exports.TimeGranularity = void 0;
+exports.TimeGranularityToJSON = exports.TimeGranularityFromJSONTyped = exports.TimeGranularityFromJSON = exports.instanceOfTimeGranularity = exports.TimeGranularity = void 0;
 /**
  * A time granularity.
  * @export
@@ -27,6 +27,17 @@ exports.TimeGranularity = {
     Months: 'months',
     Years: 'years'
 };
+function instanceOfTimeGranularity(value) {
+    for (const key in exports.TimeGranularity) {
+        if (Object.prototype.hasOwnProperty.call(exports.TimeGranularity, key)) {
+            if (exports.TimeGranularity[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+exports.instanceOfTimeGranularity = instanceOfTimeGranularity;
 function TimeGranularityFromJSON(json) {
     return TimeGranularityFromJSONTyped(json, false);
 }

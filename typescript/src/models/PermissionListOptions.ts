@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface PermissionListOptions {
 /**
  * Check if a given object implements the PermissionListOptions interface.
  */
-export function instanceOfPermissionListOptions(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "limit" in value;
-    isInstance = isInstance && "offset" in value;
-
-    return isInstance;
+export function instanceOfPermissionListOptions(value: object): value is PermissionListOptions {
+    if (!('limit' in value) || value['limit'] === undefined) return false;
+    if (!('offset' in value) || value['offset'] === undefined) return false;
+    return true;
 }
 
 export function PermissionListOptionsFromJSON(json: any): PermissionListOptions {
@@ -49,7 +47,7 @@ export function PermissionListOptionsFromJSON(json: any): PermissionListOptions 
 }
 
 export function PermissionListOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): PermissionListOptions {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function PermissionListOptionsFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function PermissionListOptionsToJSON(value?: PermissionListOptions | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'limit': value.limit,
-        'offset': value.offset,
+        'limit': value['limit'],
+        'offset': value['offset'],
     };
 }
 

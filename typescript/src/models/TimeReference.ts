@@ -24,6 +24,17 @@ export const TimeReference = {
 export type TimeReference = typeof TimeReference[keyof typeof TimeReference];
 
 
+export function instanceOfTimeReference(value: any): boolean {
+    for (const key in TimeReference) {
+        if (Object.prototype.hasOwnProperty.call(TimeReference, key)) {
+            if (TimeReference[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function TimeReferenceFromJSON(json: any): TimeReference {
     return TimeReferenceFromJSONTyped(json, false);
 }

@@ -14,20 +14,23 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserSessionToJSON = exports.UserSessionFromJSONTyped = exports.UserSessionFromJSON = exports.instanceOfUserSession = void 0;
-const runtime_1 = require("../runtime");
 const STRectangle_1 = require("./STRectangle");
 const UserInfo_1 = require("./UserInfo");
 /**
  * Check if a given object implements the UserSession interface.
  */
 function instanceOfUserSession(value) {
-    let isInstance = true;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "roles" in value;
-    isInstance = isInstance && "user" in value;
-    isInstance = isInstance && "validUntil" in value;
-    return isInstance;
+    if (!('created' in value) || value['created'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('roles' in value) || value['roles'] === undefined)
+        return false;
+    if (!('user' in value) || value['user'] === undefined)
+        return false;
+    if (!('validUntil' in value) || value['validUntil'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfUserSession = instanceOfUserSession;
 function UserSessionFromJSON(json) {
@@ -35,35 +38,32 @@ function UserSessionFromJSON(json) {
 }
 exports.UserSessionFromJSON = UserSessionFromJSON;
 function UserSessionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'created': (new Date(json['created'])),
         'id': json['id'],
-        'project': !(0, runtime_1.exists)(json, 'project') ? undefined : json['project'],
+        'project': json['project'] == null ? undefined : json['project'],
         'roles': json['roles'],
         'user': (0, UserInfo_1.UserInfoFromJSON)(json['user']),
         'validUntil': (new Date(json['validUntil'])),
-        'view': !(0, runtime_1.exists)(json, 'view') ? undefined : (0, STRectangle_1.STRectangleFromJSON)(json['view']),
+        'view': json['view'] == null ? undefined : (0, STRectangle_1.STRectangleFromJSON)(json['view']),
     };
 }
 exports.UserSessionFromJSONTyped = UserSessionFromJSONTyped;
 function UserSessionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'created': (value.created.toISOString()),
-        'id': value.id,
-        'project': value.project,
-        'roles': value.roles,
-        'user': (0, UserInfo_1.UserInfoToJSON)(value.user),
-        'validUntil': (value.validUntil.toISOString()),
-        'view': (0, STRectangle_1.STRectangleToJSON)(value.view),
+        'created': ((value['created']).toISOString()),
+        'id': value['id'],
+        'project': value['project'],
+        'roles': value['roles'],
+        'user': (0, UserInfo_1.UserInfoToJSON)(value['user']),
+        'validUntil': ((value['validUntil']).toISOString()),
+        'view': (0, STRectangle_1.STRectangleToJSON)(value['view']),
     };
 }
 exports.UserSessionToJSON = UserSessionToJSON;

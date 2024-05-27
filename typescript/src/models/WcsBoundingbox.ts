@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,17 +30,15 @@ export interface WcsBoundingbox {
      * @type {string}
      * @memberof WcsBoundingbox
      */
-    spatialReference?: string | null;
+    spatialReference?: string;
 }
 
 /**
  * Check if a given object implements the WcsBoundingbox interface.
  */
-export function instanceOfWcsBoundingbox(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "bbox" in value;
-
-    return isInstance;
+export function instanceOfWcsBoundingbox(value: object): value is WcsBoundingbox {
+    if (!('bbox' in value) || value['bbox'] === undefined) return false;
+    return true;
 }
 
 export function WcsBoundingboxFromJSON(json: any): WcsBoundingbox {
@@ -48,27 +46,24 @@ export function WcsBoundingboxFromJSON(json: any): WcsBoundingbox {
 }
 
 export function WcsBoundingboxFromJSONTyped(json: any, ignoreDiscriminator: boolean): WcsBoundingbox {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'bbox': json['bbox'],
-        'spatialReference': !exists(json, 'spatial_reference') ? undefined : json['spatial_reference'],
+        'spatialReference': json['spatial_reference'] == null ? undefined : json['spatial_reference'],
     };
 }
 
 export function WcsBoundingboxToJSON(value?: WcsBoundingbox | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'bbox': value.bbox,
-        'spatial_reference': value.spatialReference,
+        'bbox': value['bbox'],
+        'spatial_reference': value['spatialReference'],
     };
 }
 

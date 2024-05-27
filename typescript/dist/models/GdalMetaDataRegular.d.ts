@@ -9,11 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { GdalDatasetParameters } from './GdalDatasetParameters';
+import type { TimeStep } from './TimeStep';
+import type { TimeInterval } from './TimeInterval';
 import type { GdalSourceTimePlaceholder } from './GdalSourceTimePlaceholder';
 import type { RasterResultDescriptor } from './RasterResultDescriptor';
-import type { TimeInterval } from './TimeInterval';
-import type { TimeStep } from './TimeStep';
+import type { GdalDatasetParameters } from './GdalDatasetParameters';
 /**
  *
  * @export
@@ -62,7 +62,7 @@ export interface GdalMetaDataRegular {
 /**
  * Check if a given object implements the GdalMetaDataRegular interface.
  */
-export declare function instanceOfGdalMetaDataRegular(value: object): boolean;
+export declare function instanceOfGdalMetaDataRegular(value: object): value is GdalMetaDataRegular;
 export declare function GdalMetaDataRegularFromJSON(json: any): GdalMetaDataRegular;
 export declare function GdalMetaDataRegularFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalMetaDataRegular;
 export declare function GdalMetaDataRegularToJSON(value?: GdalMetaDataRegular | null): any;

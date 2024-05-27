@@ -11,24 +11,26 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 import { SpatialResolutionFromJSON, SpatialResolutionToJSON, } from './SpatialResolution';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
+import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 /**
  * Check if a given object implements the VectorQueryRectangle interface.
  */
 export function instanceOfVectorQueryRectangle(value) {
-    let isInstance = true;
-    isInstance = isInstance && "spatialBounds" in value;
-    isInstance = isInstance && "spatialResolution" in value;
-    isInstance = isInstance && "timeInterval" in value;
-    return isInstance;
+    if (!('spatialBounds' in value) || value['spatialBounds'] === undefined)
+        return false;
+    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined)
+        return false;
+    if (!('timeInterval' in value) || value['timeInterval'] === undefined)
+        return false;
+    return true;
 }
 export function VectorQueryRectangleFromJSON(json) {
     return VectorQueryRectangleFromJSONTyped(json, false);
 }
 export function VectorQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,15 +40,12 @@ export function VectorQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function VectorQueryRectangleToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'spatialBounds': BoundingBox2DToJSON(value.spatialBounds),
-        'spatialResolution': SpatialResolutionToJSON(value.spatialResolution),
-        'timeInterval': TimeIntervalToJSON(value.timeInterval),
+        'spatialBounds': BoundingBox2DToJSON(value['spatialBounds']),
+        'spatialResolution': SpatialResolutionToJSON(value['spatialResolution']),
+        'timeInterval': TimeIntervalToJSON(value['timeInterval']),
     };
 }

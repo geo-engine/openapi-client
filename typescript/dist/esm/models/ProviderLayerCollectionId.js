@@ -15,16 +15,17 @@
  * Check if a given object implements the ProviderLayerCollectionId interface.
  */
 export function instanceOfProviderLayerCollectionId(value) {
-    let isInstance = true;
-    isInstance = isInstance && "collectionId" in value;
-    isInstance = isInstance && "providerId" in value;
-    return isInstance;
+    if (!('collectionId' in value) || value['collectionId'] === undefined)
+        return false;
+    if (!('providerId' in value) || value['providerId'] === undefined)
+        return false;
+    return true;
 }
 export function ProviderLayerCollectionIdFromJSON(json) {
     return ProviderLayerCollectionIdFromJSONTyped(json, false);
 }
 export function ProviderLayerCollectionIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -33,14 +34,11 @@ export function ProviderLayerCollectionIdFromJSONTyped(json, ignoreDiscriminator
     };
 }
 export function ProviderLayerCollectionIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'collectionId': value.collectionId,
-        'providerId': value.providerId,
+        'collectionId': value['collectionId'],
+        'providerId': value['providerId'],
     };
 }

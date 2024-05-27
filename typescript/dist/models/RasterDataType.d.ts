@@ -26,6 +26,7 @@ export declare const RasterDataType: {
     readonly F64: "F64";
 };
 export type RasterDataType = typeof RasterDataType[keyof typeof RasterDataType];
+export declare function instanceOfRasterDataType(value: any): boolean;
 export declare function RasterDataTypeFromJSON(json: any): RasterDataType;
 export declare function RasterDataTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterDataType;
 export declare function RasterDataTypeToJSON(value?: RasterDataType | null): any;

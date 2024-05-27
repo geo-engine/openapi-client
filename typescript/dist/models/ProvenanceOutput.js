@@ -14,16 +14,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProvenanceOutputToJSON = exports.ProvenanceOutputFromJSONTyped = exports.ProvenanceOutputFromJSON = exports.instanceOfProvenanceOutput = void 0;
-const runtime_1 = require("../runtime");
-const DataId_1 = require("./DataId");
 const Provenance_1 = require("./Provenance");
+const DataId_1 = require("./DataId");
 /**
  * Check if a given object implements the ProvenanceOutput interface.
  */
 function instanceOfProvenanceOutput(value) {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    return isInstance;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfProvenanceOutput = instanceOfProvenanceOutput;
 function ProvenanceOutputFromJSON(json) {
@@ -31,25 +30,22 @@ function ProvenanceOutputFromJSON(json) {
 }
 exports.ProvenanceOutputFromJSON = ProvenanceOutputFromJSON;
 function ProvenanceOutputFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'data': (0, DataId_1.DataIdFromJSON)(json['data']),
-        'provenance': !(0, runtime_1.exists)(json, 'provenance') ? undefined : (json['provenance'] === null ? null : json['provenance'].map(Provenance_1.ProvenanceFromJSON)),
+        'provenance': json['provenance'] == null ? undefined : (json['provenance'].map(Provenance_1.ProvenanceFromJSON)),
     };
 }
 exports.ProvenanceOutputFromJSONTyped = ProvenanceOutputFromJSONTyped;
 function ProvenanceOutputToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'data': (0, DataId_1.DataIdToJSON)(value.data),
-        'provenance': value.provenance === undefined ? undefined : (value.provenance === null ? null : value.provenance.map(Provenance_1.ProvenanceToJSON)),
+        'data': (0, DataId_1.DataIdToJSON)(value['data']),
+        'provenance': value['provenance'] == null ? undefined : (value['provenance'].map(Provenance_1.ProvenanceToJSON)),
     };
 }
 exports.ProvenanceOutputToJSON = ProvenanceOutputToJSON;

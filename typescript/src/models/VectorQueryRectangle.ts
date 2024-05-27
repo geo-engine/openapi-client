@@ -12,13 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { BoundingBox2D } from './BoundingBox2D';
-import {
-    BoundingBox2DFromJSON,
-    BoundingBox2DFromJSONTyped,
-    BoundingBox2DToJSON,
-} from './BoundingBox2D';
+import { mapValues } from '../runtime';
 import type { SpatialResolution } from './SpatialResolution';
 import {
     SpatialResolutionFromJSON,
@@ -31,6 +25,12 @@ import {
     TimeIntervalFromJSONTyped,
     TimeIntervalToJSON,
 } from './TimeInterval';
+import type { BoundingBox2D } from './BoundingBox2D';
+import {
+    BoundingBox2DFromJSON,
+    BoundingBox2DFromJSONTyped,
+    BoundingBox2DToJSON,
+} from './BoundingBox2D';
 
 /**
  * A spatio-temporal rectangle with a specified resolution
@@ -61,13 +61,11 @@ export interface VectorQueryRectangle {
 /**
  * Check if a given object implements the VectorQueryRectangle interface.
  */
-export function instanceOfVectorQueryRectangle(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "spatialBounds" in value;
-    isInstance = isInstance && "spatialResolution" in value;
-    isInstance = isInstance && "timeInterval" in value;
-
-    return isInstance;
+export function instanceOfVectorQueryRectangle(value: object): value is VectorQueryRectangle {
+    if (!('spatialBounds' in value) || value['spatialBounds'] === undefined) return false;
+    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined) return false;
+    if (!('timeInterval' in value) || value['timeInterval'] === undefined) return false;
+    return true;
 }
 
 export function VectorQueryRectangleFromJSON(json: any): VectorQueryRectangle {
@@ -75,7 +73,7 @@ export function VectorQueryRectangleFromJSON(json: any): VectorQueryRectangle {
 }
 
 export function VectorQueryRectangleFromJSONTyped(json: any, ignoreDiscriminator: boolean): VectorQueryRectangle {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -87,17 +85,14 @@ export function VectorQueryRectangleFromJSONTyped(json: any, ignoreDiscriminator
 }
 
 export function VectorQueryRectangleToJSON(value?: VectorQueryRectangle | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'spatialBounds': BoundingBox2DToJSON(value.spatialBounds),
-        'spatialResolution': SpatialResolutionToJSON(value.spatialResolution),
-        'timeInterval': TimeIntervalToJSON(value.timeInterval),
+        'spatialBounds': BoundingBox2DToJSON(value['spatialBounds']),
+        'spatialResolution': SpatialResolutionToJSON(value['spatialResolution']),
+        'timeInterval': TimeIntervalToJSON(value['timeInterval']),
     };
 }
 

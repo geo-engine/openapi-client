@@ -18,10 +18,11 @@ exports.RasterDatasetFromWorkflowResultToJSON = exports.RasterDatasetFromWorkflo
  * Check if a given object implements the RasterDatasetFromWorkflowResult interface.
  */
 function instanceOfRasterDatasetFromWorkflowResult(value) {
-    let isInstance = true;
-    isInstance = isInstance && "dataset" in value;
-    isInstance = isInstance && "upload" in value;
-    return isInstance;
+    if (!('dataset' in value) || value['dataset'] === undefined)
+        return false;
+    if (!('upload' in value) || value['upload'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfRasterDatasetFromWorkflowResult = instanceOfRasterDatasetFromWorkflowResult;
 function RasterDatasetFromWorkflowResultFromJSON(json) {
@@ -29,7 +30,7 @@ function RasterDatasetFromWorkflowResultFromJSON(json) {
 }
 exports.RasterDatasetFromWorkflowResultFromJSON = RasterDatasetFromWorkflowResultFromJSON;
 function RasterDatasetFromWorkflowResultFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,12 @@ function RasterDatasetFromWorkflowResultFromJSONTyped(json, ignoreDiscriminator)
 }
 exports.RasterDatasetFromWorkflowResultFromJSONTyped = RasterDatasetFromWorkflowResultFromJSONTyped;
 function RasterDatasetFromWorkflowResultToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'dataset': value.dataset,
-        'upload': value.upload,
+        'dataset': value['dataset'],
+        'upload': value['upload'],
     };
 }
 exports.RasterDatasetFromWorkflowResultToJSON = RasterDatasetFromWorkflowResultToJSON;

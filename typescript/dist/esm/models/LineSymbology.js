@@ -11,41 +11,38 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
-import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
+import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 /**
  * Check if a given object implements the LineSymbology interface.
  */
 export function instanceOfLineSymbology(value) {
-    let isInstance = true;
-    isInstance = isInstance && "autoSimplified" in value;
-    isInstance = isInstance && "stroke" in value;
-    return isInstance;
+    if (!('autoSimplified' in value) || value['autoSimplified'] === undefined)
+        return false;
+    if (!('stroke' in value) || value['stroke'] === undefined)
+        return false;
+    return true;
 }
 export function LineSymbologyFromJSON(json) {
     return LineSymbologyFromJSONTyped(json, false);
 }
 export function LineSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'autoSimplified': json['autoSimplified'],
         'stroke': StrokeParamFromJSON(json['stroke']),
-        'text': !exists(json, 'text') ? undefined : TextSymbologyFromJSON(json['text']),
+        'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
     };
 }
 export function LineSymbologyToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'autoSimplified': value.autoSimplified,
-        'stroke': StrokeParamToJSON(value.stroke),
-        'text': TextSymbologyToJSON(value.text),
+        'autoSimplified': value['autoSimplified'],
+        'stroke': StrokeParamToJSON(value['stroke']),
+        'text': TextSymbologyToJSON(value['text']),
     };
 }

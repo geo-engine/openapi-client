@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Coordinate2D } from './Coordinate2D';
 import {
     Coordinate2DFromJSON,
@@ -37,11 +37,9 @@ export interface MultiPoint {
 /**
  * Check if a given object implements the MultiPoint interface.
  */
-export function instanceOfMultiPoint(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "coordinates" in value;
-
-    return isInstance;
+export function instanceOfMultiPoint(value: object): value is MultiPoint {
+    if (!('coordinates' in value) || value['coordinates'] === undefined) return false;
+    return true;
 }
 
 export function MultiPointFromJSON(json: any): MultiPoint {
@@ -49,7 +47,7 @@ export function MultiPointFromJSON(json: any): MultiPoint {
 }
 
 export function MultiPointFromJSONTyped(json: any, ignoreDiscriminator: boolean): MultiPoint {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function MultiPointFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 }
 
 export function MultiPointToJSON(value?: MultiPoint | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'coordinates': ((value.coordinates as Array<any>).map(Coordinate2DToJSON)),
+        'coordinates': ((value['coordinates'] as Array<any>).map(Coordinate2DToJSON)),
     };
 }
 

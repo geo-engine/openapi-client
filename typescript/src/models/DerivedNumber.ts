@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,13 +42,11 @@ export interface DerivedNumber {
 /**
  * Check if a given object implements the DerivedNumber interface.
  */
-export function instanceOfDerivedNumber(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "attribute" in value;
-    isInstance = isInstance && "defaultValue" in value;
-    isInstance = isInstance && "factor" in value;
-
-    return isInstance;
+export function instanceOfDerivedNumber(value: object): value is DerivedNumber {
+    if (!('attribute' in value) || value['attribute'] === undefined) return false;
+    if (!('defaultValue' in value) || value['defaultValue'] === undefined) return false;
+    if (!('factor' in value) || value['factor'] === undefined) return false;
+    return true;
 }
 
 export function DerivedNumberFromJSON(json: any): DerivedNumber {
@@ -56,7 +54,7 @@ export function DerivedNumberFromJSON(json: any): DerivedNumber {
 }
 
 export function DerivedNumberFromJSONTyped(json: any, ignoreDiscriminator: boolean): DerivedNumber {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -68,17 +66,14 @@ export function DerivedNumberFromJSONTyped(json: any, ignoreDiscriminator: boole
 }
 
 export function DerivedNumberToJSON(value?: DerivedNumber | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'attribute': value.attribute,
-        'defaultValue': value.defaultValue,
-        'factor': value.factor,
+        'attribute': value['attribute'],
+        'defaultValue': value['defaultValue'],
+        'factor': value['factor'],
     };
 }
 

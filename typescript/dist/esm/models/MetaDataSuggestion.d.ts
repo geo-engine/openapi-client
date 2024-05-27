@@ -38,7 +38,7 @@ export interface MetaDataSuggestion {
 /**
  * Check if a given object implements the MetaDataSuggestion interface.
  */
-export declare function instanceOfMetaDataSuggestion(value: object): boolean;
+export declare function instanceOfMetaDataSuggestion(value: object): value is MetaDataSuggestion;
 export declare function MetaDataSuggestionFromJSON(json: any): MetaDataSuggestion;
 export declare function MetaDataSuggestionFromJSONTyped(json: any, ignoreDiscriminator: boolean): MetaDataSuggestion;
 export declare function MetaDataSuggestionToJSON(value?: MetaDataSuggestion | null): any;

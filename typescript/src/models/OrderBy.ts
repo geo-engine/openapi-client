@@ -24,6 +24,17 @@ export const OrderBy = {
 export type OrderBy = typeof OrderBy[keyof typeof OrderBy];
 
 
+export function instanceOfOrderBy(value: any): boolean {
+    for (const key in OrderBy) {
+        if (Object.prototype.hasOwnProperty.call(OrderBy, key)) {
+            if (OrderBy[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function OrderByFromJSON(json: any): OrderBy {
     return OrderByFromJSONTyped(json, false);
 }

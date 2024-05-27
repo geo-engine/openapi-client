@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,17 +30,15 @@ export interface ContinuousMeasurement {
      * @type {string}
      * @memberof ContinuousMeasurement
      */
-    unit?: string | null;
+    unit?: string;
 }
 
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
-export function instanceOfContinuousMeasurement(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "measurement" in value;
-
-    return isInstance;
+export function instanceOfContinuousMeasurement(value: object): value is ContinuousMeasurement {
+    if (!('measurement' in value) || value['measurement'] === undefined) return false;
+    return true;
 }
 
 export function ContinuousMeasurementFromJSON(json: any): ContinuousMeasurement {
@@ -48,27 +46,24 @@ export function ContinuousMeasurementFromJSON(json: any): ContinuousMeasurement 
 }
 
 export function ContinuousMeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): ContinuousMeasurement {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'measurement': json['measurement'],
-        'unit': !exists(json, 'unit') ? undefined : json['unit'],
+        'unit': json['unit'] == null ? undefined : json['unit'],
     };
 }
 
 export function ContinuousMeasurementToJSON(value?: ContinuousMeasurement | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'measurement': value.measurement,
-        'unit': value.unit,
+        'measurement': value['measurement'],
+        'unit': value['unit'],
     };
 }
 

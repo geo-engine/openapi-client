@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { DataId } from './DataId';
 import type { Provenance } from './Provenance';
+import type { DataId } from './DataId';
 /**
  *
  * @export
@@ -33,7 +33,7 @@ export interface ProvenanceEntry {
 /**
  * Check if a given object implements the ProvenanceEntry interface.
  */
-export declare function instanceOfProvenanceEntry(value: object): boolean;
+export declare function instanceOfProvenanceEntry(value: object): value is ProvenanceEntry;
 export declare function ProvenanceEntryFromJSON(json: any): ProvenanceEntry;
 export declare function ProvenanceEntryFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProvenanceEntry;
 export declare function ProvenanceEntryToJSON(value?: ProvenanceEntry | null): any;

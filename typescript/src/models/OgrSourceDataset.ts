@@ -12,7 +12,25 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
+import type { OgrSourceErrorSpec } from './OgrSourceErrorSpec';
+import {
+    OgrSourceErrorSpecFromJSON,
+    OgrSourceErrorSpecFromJSONTyped,
+    OgrSourceErrorSpecToJSON,
+} from './OgrSourceErrorSpec';
+import type { VectorDataType } from './VectorDataType';
+import {
+    VectorDataTypeFromJSON,
+    VectorDataTypeFromJSONTyped,
+    VectorDataTypeToJSON,
+} from './VectorDataType';
+import type { TypedGeometry } from './TypedGeometry';
+import {
+    TypedGeometryFromJSON,
+    TypedGeometryFromJSONTyped,
+    TypedGeometryToJSON,
+} from './TypedGeometry';
 import type { OgrSourceColumnSpec } from './OgrSourceColumnSpec';
 import {
     OgrSourceColumnSpecFromJSON,
@@ -25,24 +43,6 @@ import {
     OgrSourceDatasetTimeTypeFromJSONTyped,
     OgrSourceDatasetTimeTypeToJSON,
 } from './OgrSourceDatasetTimeType';
-import type { OgrSourceErrorSpec } from './OgrSourceErrorSpec';
-import {
-    OgrSourceErrorSpecFromJSON,
-    OgrSourceErrorSpecFromJSONTyped,
-    OgrSourceErrorSpecToJSON,
-} from './OgrSourceErrorSpec';
-import type { TypedGeometry } from './TypedGeometry';
-import {
-    TypedGeometryFromJSON,
-    TypedGeometryFromJSONTyped,
-    TypedGeometryToJSON,
-} from './TypedGeometry';
-import type { VectorDataType } from './VectorDataType';
-import {
-    VectorDataTypeFromJSON,
-    VectorDataTypeFromJSONTyped,
-    VectorDataTypeToJSON,
-} from './VectorDataType';
 
 /**
  * 
@@ -55,7 +55,7 @@ export interface OgrSourceDataset {
      * @type {string}
      * @memberof OgrSourceDataset
      */
-    attributeQuery?: string | null;
+    attributeQuery?: string;
     /**
      * 
      * @type {number}
@@ -67,19 +67,19 @@ export interface OgrSourceDataset {
      * @type {OgrSourceColumnSpec}
      * @memberof OgrSourceDataset
      */
-    columns?: OgrSourceColumnSpec | null;
+    columns?: OgrSourceColumnSpec;
     /**
      * 
      * @type {VectorDataType}
      * @memberof OgrSourceDataset
      */
-    dataType?: VectorDataType | null;
+    dataType?: VectorDataType;
     /**
      * 
      * @type {TypedGeometry}
      * @memberof OgrSourceDataset
      */
-    defaultGeometry?: TypedGeometry | null;
+    defaultGeometry?: TypedGeometry;
     /**
      * 
      * @type {string}
@@ -115,7 +115,7 @@ export interface OgrSourceDataset {
      * @type {string}
      * @memberof OgrSourceDataset
      */
-    sqlQuery?: string | null;
+    sqlQuery?: string;
     /**
      * 
      * @type {OgrSourceDatasetTimeType}
@@ -127,13 +127,11 @@ export interface OgrSourceDataset {
 /**
  * Check if a given object implements the OgrSourceDataset interface.
  */
-export function instanceOfOgrSourceDataset(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "fileName" in value;
-    isInstance = isInstance && "layerName" in value;
-    isInstance = isInstance && "onError" in value;
-
-    return isInstance;
+export function instanceOfOgrSourceDataset(value: object): value is OgrSourceDataset {
+    if (!('fileName' in value) || value['fileName'] === undefined) return false;
+    if (!('layerName' in value) || value['layerName'] === undefined) return false;
+    if (!('onError' in value) || value['onError'] === undefined) return false;
+    return true;
 }
 
 export function OgrSourceDatasetFromJSON(json: any): OgrSourceDataset {
@@ -141,47 +139,44 @@ export function OgrSourceDatasetFromJSON(json: any): OgrSourceDataset {
 }
 
 export function OgrSourceDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDataset {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'attributeQuery': !exists(json, 'attributeQuery') ? undefined : json['attributeQuery'],
-        'cacheTtl': !exists(json, 'cacheTtl') ? undefined : json['cacheTtl'],
-        'columns': !exists(json, 'columns') ? undefined : OgrSourceColumnSpecFromJSON(json['columns']),
-        'dataType': !exists(json, 'dataType') ? undefined : VectorDataTypeFromJSON(json['dataType']),
-        'defaultGeometry': !exists(json, 'defaultGeometry') ? undefined : TypedGeometryFromJSON(json['defaultGeometry']),
+        'attributeQuery': json['attributeQuery'] == null ? undefined : json['attributeQuery'],
+        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
+        'columns': json['columns'] == null ? undefined : OgrSourceColumnSpecFromJSON(json['columns']),
+        'dataType': json['dataType'] == null ? undefined : VectorDataTypeFromJSON(json['dataType']),
+        'defaultGeometry': json['defaultGeometry'] == null ? undefined : TypedGeometryFromJSON(json['defaultGeometry']),
         'fileName': json['fileName'],
-        'forceOgrSpatialFilter': !exists(json, 'forceOgrSpatialFilter') ? undefined : json['forceOgrSpatialFilter'],
-        'forceOgrTimeFilter': !exists(json, 'forceOgrTimeFilter') ? undefined : json['forceOgrTimeFilter'],
+        'forceOgrSpatialFilter': json['forceOgrSpatialFilter'] == null ? undefined : json['forceOgrSpatialFilter'],
+        'forceOgrTimeFilter': json['forceOgrTimeFilter'] == null ? undefined : json['forceOgrTimeFilter'],
         'layerName': json['layerName'],
         'onError': OgrSourceErrorSpecFromJSON(json['onError']),
-        'sqlQuery': !exists(json, 'sqlQuery') ? undefined : json['sqlQuery'],
-        'time': !exists(json, 'time') ? undefined : OgrSourceDatasetTimeTypeFromJSON(json['time']),
+        'sqlQuery': json['sqlQuery'] == null ? undefined : json['sqlQuery'],
+        'time': json['time'] == null ? undefined : OgrSourceDatasetTimeTypeFromJSON(json['time']),
     };
 }
 
 export function OgrSourceDatasetToJSON(value?: OgrSourceDataset | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'attributeQuery': value.attributeQuery,
-        'cacheTtl': value.cacheTtl,
-        'columns': OgrSourceColumnSpecToJSON(value.columns),
-        'dataType': VectorDataTypeToJSON(value.dataType),
-        'defaultGeometry': TypedGeometryToJSON(value.defaultGeometry),
-        'fileName': value.fileName,
-        'forceOgrSpatialFilter': value.forceOgrSpatialFilter,
-        'forceOgrTimeFilter': value.forceOgrTimeFilter,
-        'layerName': value.layerName,
-        'onError': OgrSourceErrorSpecToJSON(value.onError),
-        'sqlQuery': value.sqlQuery,
-        'time': OgrSourceDatasetTimeTypeToJSON(value.time),
+        'attributeQuery': value['attributeQuery'],
+        'cacheTtl': value['cacheTtl'],
+        'columns': OgrSourceColumnSpecToJSON(value['columns']),
+        'dataType': VectorDataTypeToJSON(value['dataType']),
+        'defaultGeometry': TypedGeometryToJSON(value['defaultGeometry']),
+        'fileName': value['fileName'],
+        'forceOgrSpatialFilter': value['forceOgrSpatialFilter'],
+        'forceOgrTimeFilter': value['forceOgrTimeFilter'],
+        'layerName': value['layerName'],
+        'onError': OgrSourceErrorSpecToJSON(value['onError']),
+        'sqlQuery': value['sqlQuery'],
+        'time': OgrSourceDatasetTimeTypeToJSON(value['time']),
     };
 }
 

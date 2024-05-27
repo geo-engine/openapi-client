@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { BoundingBox2D } from './BoundingBox2D';
+import type { VectorDataType } from './VectorDataType';
 import type { TimeInterval } from './TimeInterval';
 import type { VectorColumnInfo } from './VectorColumnInfo';
-import type { VectorDataType } from './VectorDataType';
+import type { BoundingBox2D } from './BoundingBox2D';
 /**
  *
  * @export
@@ -24,7 +24,7 @@ export interface VectorResultDescriptor {
      * @type {BoundingBox2D}
      * @memberof VectorResultDescriptor
      */
-    bbox?: BoundingBox2D | null;
+    bbox?: BoundingBox2D;
     /**
      *
      * @type {{ [key: string]: VectorColumnInfo; }}
@@ -50,12 +50,12 @@ export interface VectorResultDescriptor {
      * @type {TimeInterval}
      * @memberof VectorResultDescriptor
      */
-    time?: TimeInterval | null;
+    time?: TimeInterval;
 }
 /**
  * Check if a given object implements the VectorResultDescriptor interface.
  */
-export declare function instanceOfVectorResultDescriptor(value: object): boolean;
+export declare function instanceOfVectorResultDescriptor(value: object): value is VectorResultDescriptor;
 export declare function VectorResultDescriptorFromJSON(json: any): VectorResultDescriptor;
 export declare function VectorResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): VectorResultDescriptor;
 export declare function VectorResultDescriptorToJSON(value?: VectorResultDescriptor | null): any;

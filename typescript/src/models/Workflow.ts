@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TypedOperatorOperator } from './TypedOperatorOperator';
 import {
     TypedOperatorOperatorFromJSON,
@@ -55,12 +55,10 @@ export type WorkflowTypeEnum = typeof WorkflowTypeEnum[keyof typeof WorkflowType
 /**
  * Check if a given object implements the Workflow interface.
  */
-export function instanceOfWorkflow(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "operator" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfWorkflow(value: object): value is Workflow {
+    if (!('operator' in value) || value['operator'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function WorkflowFromJSON(json: any): Workflow {
@@ -68,7 +66,7 @@ export function WorkflowFromJSON(json: any): Workflow {
 }
 
 export function WorkflowFromJSONTyped(json: any, ignoreDiscriminator: boolean): Workflow {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -79,16 +77,13 @@ export function WorkflowFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
 }
 
 export function WorkflowToJSON(value?: Workflow | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'operator': TypedOperatorOperatorToJSON(value.operator),
-        'type': value.type,
+        'operator': TypedOperatorOperatorToJSON(value['operator']),
+        'type': value['type'],
     };
 }
 

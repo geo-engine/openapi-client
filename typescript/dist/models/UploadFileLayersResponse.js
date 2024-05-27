@@ -18,9 +18,9 @@ exports.UploadFileLayersResponseToJSON = exports.UploadFileLayersResponseFromJSO
  * Check if a given object implements the UploadFileLayersResponse interface.
  */
 function instanceOfUploadFileLayersResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "layers" in value;
-    return isInstance;
+    if (!('layers' in value) || value['layers'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfUploadFileLayersResponse = instanceOfUploadFileLayersResponse;
 function UploadFileLayersResponseFromJSON(json) {
@@ -28,7 +28,7 @@ function UploadFileLayersResponseFromJSON(json) {
 }
 exports.UploadFileLayersResponseFromJSON = UploadFileLayersResponseFromJSON;
 function UploadFileLayersResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,14 +37,11 @@ function UploadFileLayersResponseFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.UploadFileLayersResponseFromJSONTyped = UploadFileLayersResponseFromJSONTyped;
 function UploadFileLayersResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'layers': value.layers,
+        'layers': value['layers'],
     };
 }
 exports.UploadFileLayersResponseToJSON = UploadFileLayersResponseToJSON;

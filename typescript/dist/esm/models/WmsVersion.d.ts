@@ -17,6 +17,7 @@ export declare const WmsVersion: {
     readonly _130: "1.3.0";
 };
 export type WmsVersion = typeof WmsVersion[keyof typeof WmsVersion];
+export declare function instanceOfWmsVersion(value: any): boolean;
 export declare function WmsVersionFromJSON(json: any): WmsVersion;
 export declare function WmsVersionFromJSONTyped(json: any, ignoreDiscriminator: boolean): WmsVersion;
 export declare function WmsVersionToJSON(value?: WmsVersion | null): any;

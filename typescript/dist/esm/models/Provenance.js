@@ -15,17 +15,19 @@
  * Check if a given object implements the Provenance interface.
  */
 export function instanceOfProvenance(value) {
-    let isInstance = true;
-    isInstance = isInstance && "citation" in value;
-    isInstance = isInstance && "license" in value;
-    isInstance = isInstance && "uri" in value;
-    return isInstance;
+    if (!('citation' in value) || value['citation'] === undefined)
+        return false;
+    if (!('license' in value) || value['license'] === undefined)
+        return false;
+    if (!('uri' in value) || value['uri'] === undefined)
+        return false;
+    return true;
 }
 export function ProvenanceFromJSON(json) {
     return ProvenanceFromJSONTyped(json, false);
 }
 export function ProvenanceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -35,15 +37,12 @@ export function ProvenanceFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ProvenanceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'citation': value.citation,
-        'license': value.license,
-        'uri': value.uri,
+        'citation': value['citation'],
+        'license': value['license'],
+        'uri': value['uri'],
     };
 }

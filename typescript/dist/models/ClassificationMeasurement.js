@@ -18,10 +18,11 @@ exports.ClassificationMeasurementToJSON = exports.ClassificationMeasurementFromJ
  * Check if a given object implements the ClassificationMeasurement interface.
  */
 function instanceOfClassificationMeasurement(value) {
-    let isInstance = true;
-    isInstance = isInstance && "classes" in value;
-    isInstance = isInstance && "measurement" in value;
-    return isInstance;
+    if (!('classes' in value) || value['classes'] === undefined)
+        return false;
+    if (!('measurement' in value) || value['measurement'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfClassificationMeasurement = instanceOfClassificationMeasurement;
 function ClassificationMeasurementFromJSON(json) {
@@ -29,7 +30,7 @@ function ClassificationMeasurementFromJSON(json) {
 }
 exports.ClassificationMeasurementFromJSON = ClassificationMeasurementFromJSON;
 function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,12 @@ function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ClassificationMeasurementFromJSONTyped = ClassificationMeasurementFromJSONTyped;
 function ClassificationMeasurementToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'classes': value.classes,
-        'measurement': value.measurement,
+        'classes': value['classes'],
+        'measurement': value['measurement'],
     };
 }
 exports.ClassificationMeasurementToJSON = ClassificationMeasurementToJSON;

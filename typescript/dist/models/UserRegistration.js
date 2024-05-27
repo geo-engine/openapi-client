@@ -18,11 +18,13 @@ exports.UserRegistrationToJSON = exports.UserRegistrationFromJSONTyped = exports
  * Check if a given object implements the UserRegistration interface.
  */
 function instanceOfUserRegistration(value) {
-    let isInstance = true;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "password" in value;
-    isInstance = isInstance && "realName" in value;
-    return isInstance;
+    if (!('email' in value) || value['email'] === undefined)
+        return false;
+    if (!('password' in value) || value['password'] === undefined)
+        return false;
+    if (!('realName' in value) || value['realName'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfUserRegistration = instanceOfUserRegistration;
 function UserRegistrationFromJSON(json) {
@@ -30,7 +32,7 @@ function UserRegistrationFromJSON(json) {
 }
 exports.UserRegistrationFromJSON = UserRegistrationFromJSON;
 function UserRegistrationFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,16 +43,13 @@ function UserRegistrationFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.UserRegistrationFromJSONTyped = UserRegistrationFromJSONTyped;
 function UserRegistrationToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'email': value.email,
-        'password': value.password,
-        'realName': value.realName,
+        'email': value['email'],
+        'password': value['password'],
+        'realName': value['realName'],
     };
 }
 exports.UserRegistrationToJSON = UserRegistrationToJSON;

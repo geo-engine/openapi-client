@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { STRectangle } from './STRectangle';
-import {
-    STRectangleFromJSON,
-    STRectangleFromJSONTyped,
-    STRectangleToJSON,
-} from './STRectangle';
+import { mapValues } from '../runtime';
 import type { TimeStep } from './TimeStep';
 import {
     TimeStepFromJSON,
     TimeStepFromJSONTyped,
     TimeStepToJSON,
 } from './TimeStep';
+import type { STRectangle } from './STRectangle';
+import {
+    STRectangleFromJSON,
+    STRectangleFromJSONTyped,
+    STRectangleToJSON,
+} from './STRectangle';
 
 /**
  * 
@@ -55,19 +55,17 @@ export interface CreateProject {
      * @type {TimeStep}
      * @memberof CreateProject
      */
-    timeStep?: TimeStep | null;
+    timeStep?: TimeStep;
 }
 
 /**
  * Check if a given object implements the CreateProject interface.
  */
-export function instanceOfCreateProject(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "bounds" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+export function instanceOfCreateProject(value: object): value is CreateProject {
+    if (!('bounds' in value) || value['bounds'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    return true;
 }
 
 export function CreateProjectFromJSON(json: any): CreateProject {
@@ -75,7 +73,7 @@ export function CreateProjectFromJSON(json: any): CreateProject {
 }
 
 export function CreateProjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateProject {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -83,23 +81,20 @@ export function CreateProjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'bounds': STRectangleFromJSON(json['bounds']),
         'description': json['description'],
         'name': json['name'],
-        'timeStep': !exists(json, 'timeStep') ? undefined : TimeStepFromJSON(json['timeStep']),
+        'timeStep': json['timeStep'] == null ? undefined : TimeStepFromJSON(json['timeStep']),
     };
 }
 
 export function CreateProjectToJSON(value?: CreateProject | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'bounds': STRectangleToJSON(value.bounds),
-        'description': value.description,
-        'name': value.name,
-        'timeStep': TimeStepToJSON(value.timeStep),
+        'bounds': STRectangleToJSON(value['bounds']),
+        'description': value['description'],
+        'name': value['name'],
+        'timeStep': TimeStepToJSON(value['timeStep']),
     };
 }
 

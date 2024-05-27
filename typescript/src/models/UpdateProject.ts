@@ -12,13 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { LayerUpdate } from './LayerUpdate';
+import { mapValues } from '../runtime';
+import type { TimeStep } from './TimeStep';
 import {
-    LayerUpdateFromJSON,
-    LayerUpdateFromJSONTyped,
-    LayerUpdateToJSON,
-} from './LayerUpdate';
+    TimeStepFromJSON,
+    TimeStepFromJSONTyped,
+    TimeStepToJSON,
+} from './TimeStep';
 import type { PlotUpdate } from './PlotUpdate';
 import {
     PlotUpdateFromJSON,
@@ -31,12 +31,12 @@ import {
     STRectangleFromJSONTyped,
     STRectangleToJSON,
 } from './STRectangle';
-import type { TimeStep } from './TimeStep';
+import type { LayerUpdate } from './LayerUpdate';
 import {
-    TimeStepFromJSON,
-    TimeStepFromJSONTyped,
-    TimeStepToJSON,
-} from './TimeStep';
+    LayerUpdateFromJSON,
+    LayerUpdateFromJSONTyped,
+    LayerUpdateToJSON,
+} from './LayerUpdate';
 
 /**
  * 
@@ -49,13 +49,13 @@ export interface UpdateProject {
      * @type {STRectangle}
      * @memberof UpdateProject
      */
-    bounds?: STRectangle | null;
+    bounds?: STRectangle;
     /**
      * 
      * @type {string}
      * @memberof UpdateProject
      */
-    description?: string | null;
+    description?: string;
     /**
      * 
      * @type {string}
@@ -67,35 +67,33 @@ export interface UpdateProject {
      * @type {Array<LayerUpdate>}
      * @memberof UpdateProject
      */
-    layers?: Array<LayerUpdate> | null;
+    layers?: Array<LayerUpdate>;
     /**
      * 
      * @type {string}
      * @memberof UpdateProject
      */
-    name?: string | null;
+    name?: string;
     /**
      * 
      * @type {Array<PlotUpdate>}
      * @memberof UpdateProject
      */
-    plots?: Array<PlotUpdate> | null;
+    plots?: Array<PlotUpdate>;
     /**
      * 
      * @type {TimeStep}
      * @memberof UpdateProject
      */
-    timeStep?: TimeStep | null;
+    timeStep?: TimeStep;
 }
 
 /**
  * Check if a given object implements the UpdateProject interface.
  */
-export function instanceOfUpdateProject(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-
-    return isInstance;
+export function instanceOfUpdateProject(value: object): value is UpdateProject {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    return true;
 }
 
 export function UpdateProjectFromJSON(json: any): UpdateProject {
@@ -103,37 +101,34 @@ export function UpdateProjectFromJSON(json: any): UpdateProject {
 }
 
 export function UpdateProjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateProject {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'bounds': !exists(json, 'bounds') ? undefined : STRectangleFromJSON(json['bounds']),
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'bounds': json['bounds'] == null ? undefined : STRectangleFromJSON(json['bounds']),
+        'description': json['description'] == null ? undefined : json['description'],
         'id': json['id'],
-        'layers': !exists(json, 'layers') ? undefined : (json['layers'] === null ? null : (json['layers'] as Array<any>).map(LayerUpdateFromJSON)),
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'plots': !exists(json, 'plots') ? undefined : (json['plots'] === null ? null : (json['plots'] as Array<any>).map(PlotUpdateFromJSON)),
-        'timeStep': !exists(json, 'timeStep') ? undefined : TimeStepFromJSON(json['timeStep']),
+        'layers': json['layers'] == null ? undefined : ((json['layers'] as Array<any>).map(LayerUpdateFromJSON)),
+        'name': json['name'] == null ? undefined : json['name'],
+        'plots': json['plots'] == null ? undefined : ((json['plots'] as Array<any>).map(PlotUpdateFromJSON)),
+        'timeStep': json['timeStep'] == null ? undefined : TimeStepFromJSON(json['timeStep']),
     };
 }
 
 export function UpdateProjectToJSON(value?: UpdateProject | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'bounds': STRectangleToJSON(value.bounds),
-        'description': value.description,
-        'id': value.id,
-        'layers': value.layers === undefined ? undefined : (value.layers === null ? null : (value.layers as Array<any>).map(LayerUpdateToJSON)),
-        'name': value.name,
-        'plots': value.plots === undefined ? undefined : (value.plots === null ? null : (value.plots as Array<any>).map(PlotUpdateToJSON)),
-        'timeStep': TimeStepToJSON(value.timeStep),
+        'bounds': STRectangleToJSON(value['bounds']),
+        'description': value['description'],
+        'id': value['id'],
+        'layers': value['layers'] == null ? undefined : ((value['layers'] as Array<any>).map(LayerUpdateToJSON)),
+        'name': value['name'],
+        'plots': value['plots'] == null ? undefined : ((value['plots'] as Array<any>).map(PlotUpdateToJSON)),
+        'timeStep': TimeStepToJSON(value['timeStep']),
     };
 }
 

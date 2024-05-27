@@ -18,10 +18,11 @@ exports.UserCredentialsToJSON = exports.UserCredentialsFromJSONTyped = exports.U
  * Check if a given object implements the UserCredentials interface.
  */
 function instanceOfUserCredentials(value) {
-    let isInstance = true;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "password" in value;
-    return isInstance;
+    if (!('email' in value) || value['email'] === undefined)
+        return false;
+    if (!('password' in value) || value['password'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfUserCredentials = instanceOfUserCredentials;
 function UserCredentialsFromJSON(json) {
@@ -29,7 +30,7 @@ function UserCredentialsFromJSON(json) {
 }
 exports.UserCredentialsFromJSON = UserCredentialsFromJSON;
 function UserCredentialsFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,12 @@ function UserCredentialsFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.UserCredentialsFromJSONTyped = UserCredentialsFromJSONTyped;
 function UserCredentialsToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'email': value.email,
-        'password': value.password,
+        'email': value['email'],
+        'password': value['password'],
     };
 }
 exports.UserCredentialsToJSON = UserCredentialsToJSON;

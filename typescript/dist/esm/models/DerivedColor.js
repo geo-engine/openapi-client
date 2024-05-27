@@ -16,16 +16,17 @@ import { ColorizerFromJSON, ColorizerToJSON, } from './Colorizer';
  * Check if a given object implements the DerivedColor interface.
  */
 export function instanceOfDerivedColor(value) {
-    let isInstance = true;
-    isInstance = isInstance && "attribute" in value;
-    isInstance = isInstance && "colorizer" in value;
-    return isInstance;
+    if (!('attribute' in value) || value['attribute'] === undefined)
+        return false;
+    if (!('colorizer' in value) || value['colorizer'] === undefined)
+        return false;
+    return true;
 }
 export function DerivedColorFromJSON(json) {
     return DerivedColorFromJSONTyped(json, false);
 }
 export function DerivedColorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -34,14 +35,11 @@ export function DerivedColorFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function DerivedColorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'attribute': value.attribute,
-        'colorizer': ColorizerToJSON(value.colorizer),
+        'attribute': value['attribute'],
+        'colorizer': ColorizerToJSON(value['colorizer']),
     };
 }

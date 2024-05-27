@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PlotResultDescriptorWithType } from './PlotResultDescriptorWithType';
-import { RasterResultDescriptorWithType } from './RasterResultDescriptorWithType';
-import { VectorResultDescriptorWithType } from './VectorResultDescriptorWithType';
+import type { TypedResultDescriptorPlot } from './TypedResultDescriptorPlot';
+import type { TypedResultDescriptorRaster } from './TypedResultDescriptorRaster';
+import type { TypedResultDescriptorVector } from './TypedResultDescriptorVector';
 /**
  * @type TypedResultDescriptor
  *
@@ -19,11 +19,11 @@ import { VectorResultDescriptorWithType } from './VectorResultDescriptorWithType
  */
 export type TypedResultDescriptor = {
     type: 'plot';
-} & PlotResultDescriptorWithType | {
+} & TypedResultDescriptorPlot | {
     type: 'raster';
-} & RasterResultDescriptorWithType | {
+} & TypedResultDescriptorRaster | {
     type: 'vector';
-} & VectorResultDescriptorWithType;
+} & TypedResultDescriptorVector;
 export declare function TypedResultDescriptorFromJSON(json: any): TypedResultDescriptor;
 export declare function TypedResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedResultDescriptor;
 export declare function TypedResultDescriptorToJSON(value?: TypedResultDescriptor | null): any;

@@ -18,9 +18,9 @@ exports.AuthCodeRequestURLToJSON = exports.AuthCodeRequestURLFromJSONTyped = exp
  * Check if a given object implements the AuthCodeRequestURL interface.
  */
 function instanceOfAuthCodeRequestURL(value) {
-    let isInstance = true;
-    isInstance = isInstance && "url" in value;
-    return isInstance;
+    if (!('url' in value) || value['url'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfAuthCodeRequestURL = instanceOfAuthCodeRequestURL;
 function AuthCodeRequestURLFromJSON(json) {
@@ -28,7 +28,7 @@ function AuthCodeRequestURLFromJSON(json) {
 }
 exports.AuthCodeRequestURLFromJSON = AuthCodeRequestURLFromJSON;
 function AuthCodeRequestURLFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,14 +37,11 @@ function AuthCodeRequestURLFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.AuthCodeRequestURLFromJSONTyped = AuthCodeRequestURLFromJSONTyped;
 function AuthCodeRequestURLToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'url': value.url,
+        'url': value['url'],
     };
 }
 exports.AuthCodeRequestURLToJSON = AuthCodeRequestURLToJSON;

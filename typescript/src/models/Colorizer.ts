@@ -12,80 +12,77 @@
  * Do not edit the class manually.
  */
 
+import type { ColorizerLinearGradient } from './ColorizerLinearGradient';
 import {
-    LinearGradientWithType,
-    instanceOfLinearGradientWithType,
-    LinearGradientWithTypeFromJSON,
-    LinearGradientWithTypeFromJSONTyped,
-    LinearGradientWithTypeToJSON,
-} from './LinearGradientWithType';
+    instanceOfColorizerLinearGradient,
+    ColorizerLinearGradientFromJSON,
+    ColorizerLinearGradientFromJSONTyped,
+    ColorizerLinearGradientToJSON,
+} from './ColorizerLinearGradient';
+import type { ColorizerLogarithmicGradient } from './ColorizerLogarithmicGradient';
 import {
-    LogarithmicGradientWithType,
-    instanceOfLogarithmicGradientWithType,
-    LogarithmicGradientWithTypeFromJSON,
-    LogarithmicGradientWithTypeFromJSONTyped,
-    LogarithmicGradientWithTypeToJSON,
-} from './LogarithmicGradientWithType';
+    instanceOfColorizerLogarithmicGradient,
+    ColorizerLogarithmicGradientFromJSON,
+    ColorizerLogarithmicGradientFromJSONTyped,
+    ColorizerLogarithmicGradientToJSON,
+} from './ColorizerLogarithmicGradient';
+import type { ColorizerPalette } from './ColorizerPalette';
 import {
-    PaletteColorizer,
-    instanceOfPaletteColorizer,
-    PaletteColorizerFromJSON,
-    PaletteColorizerFromJSONTyped,
-    PaletteColorizerToJSON,
-} from './PaletteColorizer';
+    instanceOfColorizerPalette,
+    ColorizerPaletteFromJSON,
+    ColorizerPaletteFromJSONTyped,
+    ColorizerPaletteToJSON,
+} from './ColorizerPalette';
+import type { ColorizerRgba } from './ColorizerRgba';
 import {
-    RgbaColorizer,
-    instanceOfRgbaColorizer,
-    RgbaColorizerFromJSON,
-    RgbaColorizerFromJSONTyped,
-    RgbaColorizerToJSON,
-} from './RgbaColorizer';
+    instanceOfColorizerRgba,
+    ColorizerRgbaFromJSON,
+    ColorizerRgbaFromJSONTyped,
+    ColorizerRgbaToJSON,
+} from './ColorizerRgba';
 
 /**
  * @type Colorizer
  * 
  * @export
  */
-export type Colorizer = { type: 'linearGradient' } & LinearGradientWithType | { type: 'logarithmicGradient' } & LogarithmicGradientWithType | { type: 'palette' } & PaletteColorizer | { type: 'rgba' } & RgbaColorizer;
+export type Colorizer = { type: 'linearGradient' } & ColorizerLinearGradient | { type: 'logarithmicGradient' } & ColorizerLogarithmicGradient | { type: 'palette' } & ColorizerPalette | { type: 'rgba' } & ColorizerRgba;
 
 export function ColorizerFromJSON(json: any): Colorizer {
     return ColorizerFromJSONTyped(json, false);
 }
 
 export function ColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): Colorizer {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'linearGradient':
-            return {...LinearGradientWithTypeFromJSONTyped(json, true), type: 'linearGradient'};
+            return Object.assign({}, ColorizerLinearGradientFromJSONTyped(json, true), { type: 'linearGradient' });
         case 'logarithmicGradient':
-            return {...LogarithmicGradientWithTypeFromJSONTyped(json, true), type: 'logarithmicGradient'};
+            return Object.assign({}, ColorizerLogarithmicGradientFromJSONTyped(json, true), { type: 'logarithmicGradient' });
         case 'palette':
-            return {...PaletteColorizerFromJSONTyped(json, true), type: 'palette'};
+            return Object.assign({}, ColorizerPaletteFromJSONTyped(json, true), { type: 'palette' });
         case 'rgba':
-            return {...RgbaColorizerFromJSONTyped(json, true), type: 'rgba'};
+            return Object.assign({}, ColorizerRgbaFromJSONTyped(json, true), { type: 'rgba' });
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${json['type']}'`);
     }
 }
 
 export function ColorizerToJSON(value?: Colorizer | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'linearGradient':
-            return LinearGradientWithTypeToJSON(value);
+            return ColorizerLinearGradientToJSON(value);
         case 'logarithmicGradient':
-            return LogarithmicGradientWithTypeToJSON(value);
+            return ColorizerLogarithmicGradientToJSON(value);
         case 'palette':
-            return PaletteColorizerToJSON(value);
+            return ColorizerPaletteToJSON(value);
         case 'rgba':
-            return RgbaColorizerToJSON(value);
+            return ColorizerRgbaToJSON(value);
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${value['type']}'`);
     }

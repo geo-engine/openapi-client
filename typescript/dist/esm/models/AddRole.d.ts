@@ -25,7 +25,7 @@ export interface AddRole {
 /**
  * Check if a given object implements the AddRole interface.
  */
-export declare function instanceOfAddRole(value: object): boolean;
+export declare function instanceOfAddRole(value: object): value is AddRole;
 export declare function AddRoleFromJSON(json: any): AddRole;
 export declare function AddRoleFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddRole;
 export declare function AddRoleToJSON(value?: AddRole | null): any;

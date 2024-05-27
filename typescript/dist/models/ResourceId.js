@@ -14,53 +14,50 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResourceIdToJSON = exports.ResourceIdFromJSONTyped = exports.ResourceIdFromJSON = void 0;
-const DatasetIdResourceId_1 = require("./DatasetIdResourceId");
-const LayerCollectionResourceId_1 = require("./LayerCollectionResourceId");
-const LayerResourceId_1 = require("./LayerResourceId");
-const ModelIdResourceId_1 = require("./ModelIdResourceId");
-const ProjectResourceId_1 = require("./ProjectResourceId");
+const ResourceIdDatasetId_1 = require("./ResourceIdDatasetId");
+const ResourceIdLayer_1 = require("./ResourceIdLayer");
+const ResourceIdLayerCollection_1 = require("./ResourceIdLayerCollection");
+const ResourceIdModelId_1 = require("./ResourceIdModelId");
+const ResourceIdProject_1 = require("./ResourceIdProject");
 function ResourceIdFromJSON(json) {
     return ResourceIdFromJSONTyped(json, false);
 }
 exports.ResourceIdFromJSON = ResourceIdFromJSON;
 function ResourceIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'DatasetId':
-            return Object.assign(Object.assign({}, (0, DatasetIdResourceId_1.DatasetIdResourceIdFromJSONTyped)(json, true)), { type: 'DatasetId' });
+            return Object.assign({}, (0, ResourceIdDatasetId_1.ResourceIdDatasetIdFromJSONTyped)(json, true), { type: 'DatasetId' });
         case 'Layer':
-            return Object.assign(Object.assign({}, (0, LayerResourceId_1.LayerResourceIdFromJSONTyped)(json, true)), { type: 'Layer' });
+            return Object.assign({}, (0, ResourceIdLayer_1.ResourceIdLayerFromJSONTyped)(json, true), { type: 'Layer' });
         case 'LayerCollection':
-            return Object.assign(Object.assign({}, (0, LayerCollectionResourceId_1.LayerCollectionResourceIdFromJSONTyped)(json, true)), { type: 'LayerCollection' });
+            return Object.assign({}, (0, ResourceIdLayerCollection_1.ResourceIdLayerCollectionFromJSONTyped)(json, true), { type: 'LayerCollection' });
         case 'ModelId':
-            return Object.assign(Object.assign({}, (0, ModelIdResourceId_1.ModelIdResourceIdFromJSONTyped)(json, true)), { type: 'ModelId' });
+            return Object.assign({}, (0, ResourceIdModelId_1.ResourceIdModelIdFromJSONTyped)(json, true), { type: 'ModelId' });
         case 'Project':
-            return Object.assign(Object.assign({}, (0, ProjectResourceId_1.ProjectResourceIdFromJSONTyped)(json, true)), { type: 'Project' });
+            return Object.assign({}, (0, ResourceIdProject_1.ResourceIdProjectFromJSONTyped)(json, true), { type: 'Project' });
         default:
             throw new Error(`No variant of ResourceId exists with 'type=${json['type']}'`);
     }
 }
 exports.ResourceIdFromJSONTyped = ResourceIdFromJSONTyped;
 function ResourceIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'DatasetId':
-            return (0, DatasetIdResourceId_1.DatasetIdResourceIdToJSON)(value);
+            return (0, ResourceIdDatasetId_1.ResourceIdDatasetIdToJSON)(value);
         case 'Layer':
-            return (0, LayerResourceId_1.LayerResourceIdToJSON)(value);
+            return (0, ResourceIdLayer_1.ResourceIdLayerToJSON)(value);
         case 'LayerCollection':
-            return (0, LayerCollectionResourceId_1.LayerCollectionResourceIdToJSON)(value);
+            return (0, ResourceIdLayerCollection_1.ResourceIdLayerCollectionToJSON)(value);
         case 'ModelId':
-            return (0, ModelIdResourceId_1.ModelIdResourceIdToJSON)(value);
+            return (0, ResourceIdModelId_1.ResourceIdModelIdToJSON)(value);
         case 'Project':
-            return (0, ProjectResourceId_1.ProjectResourceIdToJSON)(value);
+            return (0, ResourceIdProject_1.ResourceIdProjectToJSON)(value);
         default:
             throw new Error(`No variant of ResourceId exists with 'type=${value['type']}'`);
     }

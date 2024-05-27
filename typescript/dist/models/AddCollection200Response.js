@@ -18,9 +18,9 @@ exports.AddCollection200ResponseToJSON = exports.AddCollection200ResponseFromJSO
  * Check if a given object implements the AddCollection200Response interface.
  */
 function instanceOfAddCollection200Response(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfAddCollection200Response = instanceOfAddCollection200Response;
 function AddCollection200ResponseFromJSON(json) {
@@ -28,7 +28,7 @@ function AddCollection200ResponseFromJSON(json) {
 }
 exports.AddCollection200ResponseFromJSON = AddCollection200ResponseFromJSON;
 function AddCollection200ResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,14 +37,11 @@ function AddCollection200ResponseFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.AddCollection200ResponseFromJSONTyped = AddCollection200ResponseFromJSONTyped;
 function AddCollection200ResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
+        'id': value['id'],
     };
 }
 exports.AddCollection200ResponseToJSON = AddCollection200ResponseToJSON;

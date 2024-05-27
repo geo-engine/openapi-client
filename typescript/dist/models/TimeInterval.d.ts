@@ -31,7 +31,7 @@ export interface TimeInterval {
 /**
  * Check if a given object implements the TimeInterval interface.
  */
-export declare function instanceOfTimeInterval(value: object): boolean;
+export declare function instanceOfTimeInterval(value: object): value is TimeInterval;
 export declare function TimeIntervalFromJSON(json: any): TimeInterval;
 export declare function TimeIntervalFromJSONTyped(json: any, ignoreDiscriminator: boolean): TimeInterval;
 export declare function TimeIntervalToJSON(value?: TimeInterval | null): any;

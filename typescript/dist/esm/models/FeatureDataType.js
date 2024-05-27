@@ -23,6 +23,16 @@ export const FeatureDataType = {
     Bool: 'bool',
     DateTime: 'dateTime'
 };
+export function instanceOfFeatureDataType(value) {
+    for (const key in FeatureDataType) {
+        if (Object.prototype.hasOwnProperty.call(FeatureDataType, key)) {
+            if (FeatureDataType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function FeatureDataTypeFromJSON(json) {
     return FeatureDataTypeFromJSONTyped(json, false);
 }

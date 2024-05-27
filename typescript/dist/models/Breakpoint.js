@@ -18,10 +18,11 @@ exports.BreakpointToJSON = exports.BreakpointFromJSONTyped = exports.BreakpointF
  * Check if a given object implements the Breakpoint interface.
  */
 function instanceOfBreakpoint(value) {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "value" in value;
-    return isInstance;
+    if (!('color' in value) || value['color'] === undefined)
+        return false;
+    if (!('value' in value) || value['value'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfBreakpoint = instanceOfBreakpoint;
 function BreakpointFromJSON(json) {
@@ -29,7 +30,7 @@ function BreakpointFromJSON(json) {
 }
 exports.BreakpointFromJSON = BreakpointFromJSON;
 function BreakpointFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,12 @@ function BreakpointFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.BreakpointFromJSONTyped = BreakpointFromJSONTyped;
 function BreakpointToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'color': value.color,
-        'value': value.value,
+        'color': value['color'],
+        'value': value['value'],
     };
 }
 exports.BreakpointToJSON = BreakpointToJSON;

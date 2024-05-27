@@ -19,6 +19,16 @@ export const OrderBy = {
     NameAsc: 'NameAsc',
     NameDesc: 'NameDesc'
 };
+export function instanceOfOrderBy(value) {
+    for (const key in OrderBy) {
+        if (Object.prototype.hasOwnProperty.call(OrderBy, key)) {
+            if (OrderBy[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function OrderByFromJSON(json) {
     return OrderByFromJSONTyped(json, false);
 }

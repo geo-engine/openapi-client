@@ -18,9 +18,9 @@ exports.DataPathOneOf1ToJSON = exports.DataPathOneOf1FromJSONTyped = exports.Dat
  * Check if a given object implements the DataPathOneOf1 interface.
  */
 function instanceOfDataPathOneOf1(value) {
-    let isInstance = true;
-    isInstance = isInstance && "upload" in value;
-    return isInstance;
+    if (!('upload' in value) || value['upload'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfDataPathOneOf1 = instanceOfDataPathOneOf1;
 function DataPathOneOf1FromJSON(json) {
@@ -28,7 +28,7 @@ function DataPathOneOf1FromJSON(json) {
 }
 exports.DataPathOneOf1FromJSON = DataPathOneOf1FromJSON;
 function DataPathOneOf1FromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,14 +37,11 @@ function DataPathOneOf1FromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.DataPathOneOf1FromJSONTyped = DataPathOneOf1FromJSONTyped;
 function DataPathOneOf1ToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'upload': value.upload,
+        'upload': value['upload'],
     };
 }
 exports.DataPathOneOf1ToJSON = DataPathOneOf1ToJSON;

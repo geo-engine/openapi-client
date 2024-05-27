@@ -14,38 +14,35 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataIdToJSON = exports.DataIdFromJSONTyped = exports.DataIdFromJSON = void 0;
-const ExternalDataIdWithType_1 = require("./ExternalDataIdWithType");
-const InternalDataId_1 = require("./InternalDataId");
+const DataIdExternal_1 = require("./DataIdExternal");
+const DataIdInternal_1 = require("./DataIdInternal");
 function DataIdFromJSON(json) {
     return DataIdFromJSONTyped(json, false);
 }
 exports.DataIdFromJSON = DataIdFromJSON;
 function DataIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'external':
-            return Object.assign(Object.assign({}, (0, ExternalDataIdWithType_1.ExternalDataIdWithTypeFromJSONTyped)(json, true)), { type: 'external' });
+            return Object.assign({}, (0, DataIdExternal_1.DataIdExternalFromJSONTyped)(json, true), { type: 'external' });
         case 'internal':
-            return Object.assign(Object.assign({}, (0, InternalDataId_1.InternalDataIdFromJSONTyped)(json, true)), { type: 'internal' });
+            return Object.assign({}, (0, DataIdInternal_1.DataIdInternalFromJSONTyped)(json, true), { type: 'internal' });
         default:
             throw new Error(`No variant of DataId exists with 'type=${json['type']}'`);
     }
 }
 exports.DataIdFromJSONTyped = DataIdFromJSONTyped;
 function DataIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'external':
-            return (0, ExternalDataIdWithType_1.ExternalDataIdWithTypeToJSON)(value);
+            return (0, DataIdExternal_1.DataIdExternalToJSON)(value);
         case 'internal':
-            return (0, InternalDataId_1.InternalDataIdToJSON)(value);
+            return (0, DataIdInternal_1.DataIdInternalToJSON)(value);
         default:
             throw new Error(`No variant of DataId exists with 'type=${value['type']}'`);
     }

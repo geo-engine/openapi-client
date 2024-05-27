@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
+import type { DataPathOneOf } from './DataPathOneOf';
 import {
-    DataPathOneOf,
     instanceOfDataPathOneOf,
     DataPathOneOfFromJSON,
     DataPathOneOfFromJSONTyped,
     DataPathOneOfToJSON,
 } from './DataPathOneOf';
+import type { DataPathOneOf1 } from './DataPathOneOf1';
 import {
-    DataPathOneOf1,
     instanceOfDataPathOneOf1,
     DataPathOneOf1FromJSON,
     DataPathOneOf1FromJSONTyped,
@@ -39,18 +39,20 @@ export function DataPathFromJSON(json: any): DataPath {
 }
 
 export function DataPathFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataPath {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return { ...DataPathOneOfFromJSONTyped(json, true), ...DataPathOneOf1FromJSONTyped(json, true) };
+    if (instanceOfDataPathOneOf(json)) {
+        return DataPathOneOfFromJSONTyped(json, true);
+    }
+    if (instanceOfDataPathOneOf1(json)) {
+        return DataPathOneOf1FromJSONTyped(json, true);
+    }
 }
 
 export function DataPathToJSON(value?: DataPath | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
 
     if (instanceOfDataPathOneOf(value)) {

@@ -19,10 +19,11 @@ const Colorizer_1 = require("./Colorizer");
  * Check if a given object implements the DerivedColor interface.
  */
 function instanceOfDerivedColor(value) {
-    let isInstance = true;
-    isInstance = isInstance && "attribute" in value;
-    isInstance = isInstance && "colorizer" in value;
-    return isInstance;
+    if (!('attribute' in value) || value['attribute'] === undefined)
+        return false;
+    if (!('colorizer' in value) || value['colorizer'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfDerivedColor = instanceOfDerivedColor;
 function DerivedColorFromJSON(json) {
@@ -30,7 +31,7 @@ function DerivedColorFromJSON(json) {
 }
 exports.DerivedColorFromJSON = DerivedColorFromJSON;
 function DerivedColorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -40,15 +41,12 @@ function DerivedColorFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.DerivedColorFromJSONTyped = DerivedColorFromJSONTyped;
 function DerivedColorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'attribute': value.attribute,
-        'colorizer': (0, Colorizer_1.ColorizerToJSON)(value.colorizer),
+        'attribute': value['attribute'],
+        'colorizer': (0, Colorizer_1.ColorizerToJSON)(value['colorizer']),
     };
 }
 exports.DerivedColorToJSON = DerivedColorToJSON;

@@ -41,7 +41,7 @@ export type WorkflowTypeEnum = typeof WorkflowTypeEnum[keyof typeof WorkflowType
 /**
  * Check if a given object implements the Workflow interface.
  */
-export declare function instanceOfWorkflow(value: object): boolean;
+export declare function instanceOfWorkflow(value: object): value is Workflow;
 export declare function WorkflowFromJSON(json: any): Workflow;
 export declare function WorkflowFromJSONTyped(json: any, ignoreDiscriminator: boolean): Workflow;
 export declare function WorkflowToJSON(value?: Workflow | null): any;

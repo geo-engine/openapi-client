@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Colorizer } from './Colorizer';
 import {
     ColorizerFromJSON,
@@ -43,12 +43,10 @@ export interface DerivedColor {
 /**
  * Check if a given object implements the DerivedColor interface.
  */
-export function instanceOfDerivedColor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "attribute" in value;
-    isInstance = isInstance && "colorizer" in value;
-
-    return isInstance;
+export function instanceOfDerivedColor(value: object): value is DerivedColor {
+    if (!('attribute' in value) || value['attribute'] === undefined) return false;
+    if (!('colorizer' in value) || value['colorizer'] === undefined) return false;
+    return true;
 }
 
 export function DerivedColorFromJSON(json: any): DerivedColor {
@@ -56,7 +54,7 @@ export function DerivedColorFromJSON(json: any): DerivedColor {
 }
 
 export function DerivedColorFromJSONTyped(json: any, ignoreDiscriminator: boolean): DerivedColor {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function DerivedColorFromJSONTyped(json: any, ignoreDiscriminator: boolea
 }
 
 export function DerivedColorToJSON(value?: DerivedColor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'attribute': value.attribute,
-        'colorizer': ColorizerToJSON(value.colorizer),
+        'attribute': value['attribute'],
+        'colorizer': ColorizerToJSON(value['colorizer']),
     };
 }
 

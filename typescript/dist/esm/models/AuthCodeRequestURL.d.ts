@@ -25,7 +25,7 @@ export interface AuthCodeRequestURL {
 /**
  * Check if a given object implements the AuthCodeRequestURL interface.
  */
-export declare function instanceOfAuthCodeRequestURL(value: object): boolean;
+export declare function instanceOfAuthCodeRequestURL(value: object): value is AuthCodeRequestURL;
 export declare function AuthCodeRequestURLFromJSON(json: any): AuthCodeRequestURL;
 export declare function AuthCodeRequestURLFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthCodeRequestURL;
 export declare function AuthCodeRequestURLToJSON(value?: AuthCodeRequestURL | null): any;

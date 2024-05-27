@@ -26,12 +26,12 @@ export interface WcsBoundingbox {
      * @type {string}
      * @memberof WcsBoundingbox
      */
-    spatialReference?: string | null;
+    spatialReference?: string;
 }
 /**
  * Check if a given object implements the WcsBoundingbox interface.
  */
-export declare function instanceOfWcsBoundingbox(value: object): boolean;
+export declare function instanceOfWcsBoundingbox(value: object): value is WcsBoundingbox;
 export declare function WcsBoundingboxFromJSON(json: any): WcsBoundingbox;
 export declare function WcsBoundingboxFromJSONTyped(json: any, ignoreDiscriminator: boolean): WcsBoundingbox;
 export declare function WcsBoundingboxToJSON(value?: WcsBoundingbox | null): any;

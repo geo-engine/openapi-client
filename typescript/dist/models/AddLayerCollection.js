@@ -14,15 +14,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AddLayerCollectionToJSON = exports.AddLayerCollectionFromJSONTyped = exports.AddLayerCollectionFromJSON = exports.instanceOfAddLayerCollection = void 0;
-const runtime_1 = require("../runtime");
 /**
  * Check if a given object implements the AddLayerCollection interface.
  */
 function instanceOfAddLayerCollection(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "name" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfAddLayerCollection = instanceOfAddLayerCollection;
 function AddLayerCollectionFromJSON(json) {
@@ -30,27 +30,24 @@ function AddLayerCollectionFromJSON(json) {
 }
 exports.AddLayerCollectionFromJSON = AddLayerCollectionFromJSON;
 function AddLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
         'name': json['name'],
-        'properties': !(0, runtime_1.exists)(json, 'properties') ? undefined : json['properties'],
+        'properties': json['properties'] == null ? undefined : json['properties'],
     };
 }
 exports.AddLayerCollectionFromJSONTyped = AddLayerCollectionFromJSONTyped;
 function AddLayerCollectionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'name': value.name,
-        'properties': value.properties,
+        'description': value['description'],
+        'name': value['name'],
+        'properties': value['properties'],
     };
 }
 exports.AddLayerCollectionToJSON = AddLayerCollectionToJSON;

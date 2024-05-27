@@ -15,16 +15,17 @@
  * Check if a given object implements the Plot interface.
  */
 export function instanceOfPlot(value) {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "workflow" in value;
-    return isInstance;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('workflow' in value) || value['workflow'] === undefined)
+        return false;
+    return true;
 }
 export function PlotFromJSON(json) {
     return PlotFromJSONTyped(json, false);
 }
 export function PlotFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -33,14 +34,11 @@ export function PlotFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function PlotToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'name': value.name,
-        'workflow': value.workflow,
+        'name': value['name'],
+        'workflow': value['workflow'],
     };
 }

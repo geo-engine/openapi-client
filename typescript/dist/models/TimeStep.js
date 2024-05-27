@@ -19,10 +19,11 @@ const TimeGranularity_1 = require("./TimeGranularity");
  * Check if a given object implements the TimeStep interface.
  */
 function instanceOfTimeStep(value) {
-    let isInstance = true;
-    isInstance = isInstance && "granularity" in value;
-    isInstance = isInstance && "step" in value;
-    return isInstance;
+    if (!('granularity' in value) || value['granularity'] === undefined)
+        return false;
+    if (!('step' in value) || value['step'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfTimeStep = instanceOfTimeStep;
 function TimeStepFromJSON(json) {
@@ -30,7 +31,7 @@ function TimeStepFromJSON(json) {
 }
 exports.TimeStepFromJSON = TimeStepFromJSON;
 function TimeStepFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -40,15 +41,12 @@ function TimeStepFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.TimeStepFromJSONTyped = TimeStepFromJSONTyped;
 function TimeStepToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'granularity': (0, TimeGranularity_1.TimeGranularityToJSON)(value.granularity),
-        'step': value.step,
+        'granularity': (0, TimeGranularity_1.TimeGranularityToJSON)(value['granularity']),
+        'step': value['step'],
     };
 }
 exports.TimeStepToJSON = TimeStepToJSON;

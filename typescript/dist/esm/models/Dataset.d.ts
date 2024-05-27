@@ -47,7 +47,7 @@ export interface Dataset {
      * @type {Array<Provenance>}
      * @memberof Dataset
      */
-    provenance?: Array<Provenance> | null;
+    provenance?: Array<Provenance>;
     /**
      *
      * @type {TypedResultDescriptor}
@@ -65,18 +65,18 @@ export interface Dataset {
      * @type {Symbology}
      * @memberof Dataset
      */
-    symbology?: Symbology | null;
+    symbology?: Symbology;
     /**
      *
      * @type {Array<string>}
      * @memberof Dataset
      */
-    tags?: Array<string> | null;
+    tags?: Array<string>;
 }
 /**
  * Check if a given object implements the Dataset interface.
  */
-export declare function instanceOfDataset(value: object): boolean;
+export declare function instanceOfDataset(value: object): value is Dataset;
 export declare function DatasetFromJSON(json: any): Dataset;
 export declare function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Dataset;
 export declare function DatasetToJSON(value?: Dataset | null): any;

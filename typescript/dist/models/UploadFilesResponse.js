@@ -18,9 +18,9 @@ exports.UploadFilesResponseToJSON = exports.UploadFilesResponseFromJSONTyped = e
  * Check if a given object implements the UploadFilesResponse interface.
  */
 function instanceOfUploadFilesResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "files" in value;
-    return isInstance;
+    if (!('files' in value) || value['files'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfUploadFilesResponse = instanceOfUploadFilesResponse;
 function UploadFilesResponseFromJSON(json) {
@@ -28,7 +28,7 @@ function UploadFilesResponseFromJSON(json) {
 }
 exports.UploadFilesResponseFromJSON = UploadFilesResponseFromJSON;
 function UploadFilesResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,14 +37,11 @@ function UploadFilesResponseFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.UploadFilesResponseFromJSONTyped = UploadFilesResponseFromJSONTyped;
 function UploadFilesResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'files': value.files,
+        'files': value['files'],
     };
 }
 exports.UploadFilesResponseToJSON = UploadFilesResponseToJSON;

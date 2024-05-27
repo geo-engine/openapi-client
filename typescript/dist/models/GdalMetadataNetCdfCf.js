@@ -14,22 +14,26 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalMetadataNetCdfCfToJSON = exports.GdalMetadataNetCdfCfFromJSONTyped = exports.GdalMetadataNetCdfCfFromJSON = exports.instanceOfGdalMetadataNetCdfCf = void 0;
-const runtime_1 = require("../runtime");
-const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
-const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
 const TimeStep_1 = require("./TimeStep");
+const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
+const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
 /**
  * Check if a given object implements the GdalMetadataNetCdfCf interface.
  */
 function instanceOfGdalMetadataNetCdfCf(value) {
-    let isInstance = true;
-    isInstance = isInstance && "bandOffset" in value;
-    isInstance = isInstance && "end" in value;
-    isInstance = isInstance && "params" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "start" in value;
-    isInstance = isInstance && "step" in value;
-    return isInstance;
+    if (!('bandOffset' in value) || value['bandOffset'] === undefined)
+        return false;
+    if (!('end' in value) || value['end'] === undefined)
+        return false;
+    if (!('params' in value) || value['params'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    if (!('start' in value) || value['start'] === undefined)
+        return false;
+    if (!('step' in value) || value['step'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfGdalMetadataNetCdfCf = instanceOfGdalMetadataNetCdfCf;
 function GdalMetadataNetCdfCfFromJSON(json) {
@@ -37,12 +41,12 @@ function GdalMetadataNetCdfCfFromJSON(json) {
 }
 exports.GdalMetadataNetCdfCfFromJSON = GdalMetadataNetCdfCfFromJSON;
 function GdalMetadataNetCdfCfFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'bandOffset': json['bandOffset'],
-        'cacheTtl': !(0, runtime_1.exists)(json, 'cacheTtl') ? undefined : json['cacheTtl'],
+        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
         'end': json['end'],
         'params': (0, GdalDatasetParameters_1.GdalDatasetParametersFromJSON)(json['params']),
         'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorFromJSON)(json['resultDescriptor']),
@@ -52,20 +56,17 @@ function GdalMetadataNetCdfCfFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.GdalMetadataNetCdfCfFromJSONTyped = GdalMetadataNetCdfCfFromJSONTyped;
 function GdalMetadataNetCdfCfToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'bandOffset': value.bandOffset,
-        'cacheTtl': value.cacheTtl,
-        'end': value.end,
-        'params': (0, GdalDatasetParameters_1.GdalDatasetParametersToJSON)(value.params),
-        'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorToJSON)(value.resultDescriptor),
-        'start': value.start,
-        'step': (0, TimeStep_1.TimeStepToJSON)(value.step),
+        'bandOffset': value['bandOffset'],
+        'cacheTtl': value['cacheTtl'],
+        'end': value['end'],
+        'params': (0, GdalDatasetParameters_1.GdalDatasetParametersToJSON)(value['params']),
+        'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorToJSON)(value['resultDescriptor']),
+        'start': value['start'],
+        'step': (0, TimeStep_1.TimeStepToJSON)(value['step']),
     };
 }
 exports.GdalMetadataNetCdfCfToJSON = GdalMetadataNetCdfCfToJSON;

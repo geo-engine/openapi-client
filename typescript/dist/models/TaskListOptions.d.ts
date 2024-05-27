@@ -21,7 +21,7 @@ export interface TaskListOptions {
      * @type {TaskFilter}
      * @memberof TaskListOptions
      */
-    filter?: TaskFilter | null;
+    filter?: TaskFilter;
     /**
      *
      * @type {number}
@@ -38,7 +38,7 @@ export interface TaskListOptions {
 /**
  * Check if a given object implements the TaskListOptions interface.
  */
-export declare function instanceOfTaskListOptions(value: object): boolean;
+export declare function instanceOfTaskListOptions(value: object): value is TaskListOptions;
 export declare function TaskListOptionsFromJSON(json: any): TaskListOptions;
 export declare function TaskListOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskListOptions;
 export declare function TaskListOptionsToJSON(value?: TaskListOptions | null): any;

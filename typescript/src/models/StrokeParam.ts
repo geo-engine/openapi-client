@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ColorParam } from './ColorParam';
-import {
-    ColorParamFromJSON,
-    ColorParamFromJSONTyped,
-    ColorParamToJSON,
-} from './ColorParam';
+import { mapValues } from '../runtime';
 import type { NumberParam } from './NumberParam';
 import {
     NumberParamFromJSON,
     NumberParamFromJSONTyped,
     NumberParamToJSON,
 } from './NumberParam';
+import type { ColorParam } from './ColorParam';
+import {
+    ColorParamFromJSON,
+    ColorParamFromJSONTyped,
+    ColorParamToJSON,
+} from './ColorParam';
 
 /**
  * 
@@ -49,12 +49,10 @@ export interface StrokeParam {
 /**
  * Check if a given object implements the StrokeParam interface.
  */
-export function instanceOfStrokeParam(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "width" in value;
-
-    return isInstance;
+export function instanceOfStrokeParam(value: object): value is StrokeParam {
+    if (!('color' in value) || value['color'] === undefined) return false;
+    if (!('width' in value) || value['width'] === undefined) return false;
+    return true;
 }
 
 export function StrokeParamFromJSON(json: any): StrokeParam {
@@ -62,7 +60,7 @@ export function StrokeParamFromJSON(json: any): StrokeParam {
 }
 
 export function StrokeParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): StrokeParam {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function StrokeParamFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function StrokeParamToJSON(value?: StrokeParam | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'color': ColorParamToJSON(value.color),
-        'width': NumberParamToJSON(value.width),
+        'color': ColorParamToJSON(value['color']),
+        'width': NumberParamToJSON(value['width']),
     };
 }
 

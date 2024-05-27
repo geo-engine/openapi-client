@@ -23,18 +23,26 @@ function TypedGeometryFromJSON(json) {
 }
 exports.TypedGeometryFromJSON = TypedGeometryFromJSON;
 function TypedGeometryFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return Object.assign(Object.assign(Object.assign(Object.assign({}, (0, TypedGeometryOneOf_1.TypedGeometryOneOfFromJSONTyped)(json, true)), (0, TypedGeometryOneOf1_1.TypedGeometryOneOf1FromJSONTyped)(json, true)), (0, TypedGeometryOneOf2_1.TypedGeometryOneOf2FromJSONTyped)(json, true)), (0, TypedGeometryOneOf3_1.TypedGeometryOneOf3FromJSONTyped)(json, true));
+    if ((0, TypedGeometryOneOf_1.instanceOfTypedGeometryOneOf)(json)) {
+        return (0, TypedGeometryOneOf_1.TypedGeometryOneOfFromJSONTyped)(json, true);
+    }
+    if ((0, TypedGeometryOneOf1_1.instanceOfTypedGeometryOneOf1)(json)) {
+        return (0, TypedGeometryOneOf1_1.TypedGeometryOneOf1FromJSONTyped)(json, true);
+    }
+    if ((0, TypedGeometryOneOf2_1.instanceOfTypedGeometryOneOf2)(json)) {
+        return (0, TypedGeometryOneOf2_1.TypedGeometryOneOf2FromJSONTyped)(json, true);
+    }
+    if ((0, TypedGeometryOneOf3_1.instanceOfTypedGeometryOneOf3)(json)) {
+        return (0, TypedGeometryOneOf3_1.TypedGeometryOneOf3FromJSONTyped)(json, true);
+    }
 }
 exports.TypedGeometryFromJSONTyped = TypedGeometryFromJSONTyped;
 function TypedGeometryToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     if ((0, TypedGeometryOneOf_1.instanceOfTypedGeometryOneOf)(value)) {
         return (0, TypedGeometryOneOf_1.TypedGeometryOneOfToJSON)(value);

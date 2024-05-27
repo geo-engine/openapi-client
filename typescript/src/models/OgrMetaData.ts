@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { OgrSourceDataset } from './OgrSourceDataset';
-import {
-    OgrSourceDatasetFromJSON,
-    OgrSourceDatasetFromJSONTyped,
-    OgrSourceDatasetToJSON,
-} from './OgrSourceDataset';
+import { mapValues } from '../runtime';
 import type { VectorResultDescriptor } from './VectorResultDescriptor';
 import {
     VectorResultDescriptorFromJSON,
     VectorResultDescriptorFromJSONTyped,
     VectorResultDescriptorToJSON,
 } from './VectorResultDescriptor';
+import type { OgrSourceDataset } from './OgrSourceDataset';
+import {
+    OgrSourceDatasetFromJSON,
+    OgrSourceDatasetFromJSONTyped,
+    OgrSourceDatasetToJSON,
+} from './OgrSourceDataset';
 
 /**
  * 
@@ -49,12 +49,10 @@ export interface OgrMetaData {
 /**
  * Check if a given object implements the OgrMetaData interface.
  */
-export function instanceOfOgrMetaData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "loadingInfo" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-
-    return isInstance;
+export function instanceOfOgrMetaData(value: object): value is OgrMetaData {
+    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined) return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
+    return true;
 }
 
 export function OgrMetaDataFromJSON(json: any): OgrMetaData {
@@ -62,7 +60,7 @@ export function OgrMetaDataFromJSON(json: any): OgrMetaData {
 }
 
 export function OgrMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrMetaData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function OgrMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function OgrMetaDataToJSON(value?: OgrMetaData | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'loadingInfo': OgrSourceDatasetToJSON(value.loadingInfo),
-        'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
+        'loadingInfo': OgrSourceDatasetToJSON(value['loadingInfo']),
+        'resultDescriptor': VectorResultDescriptorToJSON(value['resultDescriptor']),
     };
 }
 

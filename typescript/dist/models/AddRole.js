@@ -18,9 +18,9 @@ exports.AddRoleToJSON = exports.AddRoleFromJSONTyped = exports.AddRoleFromJSON =
  * Check if a given object implements the AddRole interface.
  */
 function instanceOfAddRole(value) {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    return isInstance;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfAddRole = instanceOfAddRole;
 function AddRoleFromJSON(json) {
@@ -28,7 +28,7 @@ function AddRoleFromJSON(json) {
 }
 exports.AddRoleFromJSON = AddRoleFromJSON;
 function AddRoleFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,14 +37,11 @@ function AddRoleFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.AddRoleFromJSONTyped = AddRoleFromJSONTyped;
 function AddRoleToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'name': value.name,
+        'name': value['name'],
     };
 }
 exports.AddRoleToJSON = AddRoleToJSON;

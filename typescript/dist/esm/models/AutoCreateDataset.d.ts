@@ -32,7 +32,7 @@ export interface AutoCreateDataset {
      * @type {string}
      * @memberof AutoCreateDataset
      */
-    layerName?: string | null;
+    layerName?: string;
     /**
      *
      * @type {string}
@@ -44,7 +44,7 @@ export interface AutoCreateDataset {
      * @type {Array<string>}
      * @memberof AutoCreateDataset
      */
-    tags?: Array<string> | null;
+    tags?: Array<string>;
     /**
      *
      * @type {string}
@@ -55,7 +55,7 @@ export interface AutoCreateDataset {
 /**
  * Check if a given object implements the AutoCreateDataset interface.
  */
-export declare function instanceOfAutoCreateDataset(value: object): boolean;
+export declare function instanceOfAutoCreateDataset(value: object): value is AutoCreateDataset;
 export declare function AutoCreateDatasetFromJSON(json: any): AutoCreateDataset;
 export declare function AutoCreateDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): AutoCreateDataset;
 export declare function AutoCreateDatasetToJSON(value?: AutoCreateDataset | null): any;

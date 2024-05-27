@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetCapabilitiesFormatToJSON = exports.GetCapabilitiesFormatFromJSONTyped = exports.GetCapabilitiesFormatFromJSON = exports.GetCapabilitiesFormat = void 0;
+exports.GetCapabilitiesFormatToJSON = exports.GetCapabilitiesFormatFromJSONTyped = exports.GetCapabilitiesFormatFromJSON = exports.instanceOfGetCapabilitiesFormat = exports.GetCapabilitiesFormat = void 0;
 /**
  *
  * @export
@@ -21,6 +21,17 @@ exports.GetCapabilitiesFormatToJSON = exports.GetCapabilitiesFormatFromJSONTyped
 exports.GetCapabilitiesFormat = {
     TextXml: 'text/xml'
 };
+function instanceOfGetCapabilitiesFormat(value) {
+    for (const key in exports.GetCapabilitiesFormat) {
+        if (Object.prototype.hasOwnProperty.call(exports.GetCapabilitiesFormat, key)) {
+            if (exports.GetCapabilitiesFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+exports.instanceOfGetCapabilitiesFormat = instanceOfGetCapabilitiesFormat;
 function GetCapabilitiesFormatFromJSON(json) {
     return GetCapabilitiesFormatFromJSONTyped(json, false);
 }

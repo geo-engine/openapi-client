@@ -11,7 +11,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { ProvenanceFromJSON, ProvenanceToJSON, } from './Provenance';
 import { SymbologyFromJSON, SymbologyToJSON, } from './Symbology';
 import { TypedResultDescriptorFromJSON, TypedResultDescriptorToJSON, } from './TypedResultDescriptor';
@@ -19,20 +18,25 @@ import { TypedResultDescriptorFromJSON, TypedResultDescriptorToJSON, } from './T
  * Check if a given object implements the Dataset interface.
  */
 export function instanceOfDataset(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "sourceOperator" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('displayName' in value) || value['displayName'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    if (!('sourceOperator' in value) || value['sourceOperator'] === undefined)
+        return false;
+    return true;
 }
 export function DatasetFromJSON(json) {
     return DatasetFromJSONTyped(json, false);
 }
 export function DatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -40,29 +44,26 @@ export function DatasetFromJSONTyped(json, ignoreDiscriminator) {
         'displayName': json['displayName'],
         'id': json['id'],
         'name': json['name'],
-        'provenance': !exists(json, 'provenance') ? undefined : (json['provenance'] === null ? null : json['provenance'].map(ProvenanceFromJSON)),
+        'provenance': json['provenance'] == null ? undefined : (json['provenance'].map(ProvenanceFromJSON)),
         'resultDescriptor': TypedResultDescriptorFromJSON(json['resultDescriptor']),
         'sourceOperator': json['sourceOperator'],
-        'symbology': !exists(json, 'symbology') ? undefined : SymbologyFromJSON(json['symbology']),
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
+        'symbology': json['symbology'] == null ? undefined : SymbologyFromJSON(json['symbology']),
+        'tags': json['tags'] == null ? undefined : json['tags'],
     };
 }
 export function DatasetToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'displayName': value.displayName,
-        'id': value.id,
-        'name': value.name,
-        'provenance': value.provenance === undefined ? undefined : (value.provenance === null ? null : value.provenance.map(ProvenanceToJSON)),
-        'resultDescriptor': TypedResultDescriptorToJSON(value.resultDescriptor),
-        'sourceOperator': value.sourceOperator,
-        'symbology': SymbologyToJSON(value.symbology),
-        'tags': value.tags,
+        'description': value['description'],
+        'displayName': value['displayName'],
+        'id': value['id'],
+        'name': value['name'],
+        'provenance': value['provenance'] == null ? undefined : (value['provenance'].map(ProvenanceToJSON)),
+        'resultDescriptor': TypedResultDescriptorToJSON(value['resultDescriptor']),
+        'sourceOperator': value['sourceOperator'],
+        'symbology': SymbologyToJSON(value['symbology']),
+        'tags': value['tags'],
     };
 }

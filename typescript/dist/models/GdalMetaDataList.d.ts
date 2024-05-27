@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { GdalLoadingInfoTemporalSlice } from './GdalLoadingInfoTemporalSlice';
 import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import type { GdalLoadingInfoTemporalSlice } from './GdalLoadingInfoTemporalSlice';
 /**
  *
  * @export
@@ -33,7 +33,7 @@ export interface GdalMetaDataList {
 /**
  * Check if a given object implements the GdalMetaDataList interface.
  */
-export declare function instanceOfGdalMetaDataList(value: object): boolean;
+export declare function instanceOfGdalMetaDataList(value: object): value is GdalMetaDataList;
 export declare function GdalMetaDataListFromJSON(json: any): GdalMetaDataList;
 export declare function GdalMetaDataListFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalMetaDataList;
 export declare function GdalMetaDataListToJSON(value?: GdalMetaDataList | null): any;

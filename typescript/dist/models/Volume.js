@@ -18,10 +18,11 @@ exports.VolumeToJSON = exports.VolumeFromJSONTyped = exports.VolumeFromJSON = ex
  * Check if a given object implements the Volume interface.
  */
 function instanceOfVolume(value) {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "path" in value;
-    return isInstance;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('path' in value) || value['path'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfVolume = instanceOfVolume;
 function VolumeFromJSON(json) {
@@ -29,7 +30,7 @@ function VolumeFromJSON(json) {
 }
 exports.VolumeFromJSON = VolumeFromJSON;
 function VolumeFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,12 @@ function VolumeFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.VolumeFromJSONTyped = VolumeFromJSONTyped;
 function VolumeToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'name': value.name,
-        'path': value.path,
+        'name': value['name'],
+        'path': value['path'],
     };
 }
 exports.VolumeToJSON = VolumeToJSON;

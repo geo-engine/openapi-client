@@ -14,16 +14,17 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OgrMetaDataToJSON = exports.OgrMetaDataFromJSONTyped = exports.OgrMetaDataFromJSON = exports.instanceOfOgrMetaData = void 0;
-const OgrSourceDataset_1 = require("./OgrSourceDataset");
 const VectorResultDescriptor_1 = require("./VectorResultDescriptor");
+const OgrSourceDataset_1 = require("./OgrSourceDataset");
 /**
  * Check if a given object implements the OgrMetaData interface.
  */
 function instanceOfOgrMetaData(value) {
-    let isInstance = true;
-    isInstance = isInstance && "loadingInfo" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    return isInstance;
+    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfOgrMetaData = instanceOfOgrMetaData;
 function OgrMetaDataFromJSON(json) {
@@ -31,7 +32,7 @@ function OgrMetaDataFromJSON(json) {
 }
 exports.OgrMetaDataFromJSON = OgrMetaDataFromJSON;
 function OgrMetaDataFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,15 +42,12 @@ function OgrMetaDataFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.OgrMetaDataFromJSONTyped = OgrMetaDataFromJSONTyped;
 function OgrMetaDataToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'loadingInfo': (0, OgrSourceDataset_1.OgrSourceDatasetToJSON)(value.loadingInfo),
-        'resultDescriptor': (0, VectorResultDescriptor_1.VectorResultDescriptorToJSON)(value.resultDescriptor),
+        'loadingInfo': (0, OgrSourceDataset_1.OgrSourceDatasetToJSON)(value['loadingInfo']),
+        'resultDescriptor': (0, VectorResultDescriptor_1.VectorResultDescriptorToJSON)(value['resultDescriptor']),
     };
 }
 exports.OgrMetaDataToJSON = OgrMetaDataToJSON;

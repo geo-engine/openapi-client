@@ -18,6 +18,7 @@ export declare const Permission: {
     readonly Owner: "Owner";
 };
 export type Permission = typeof Permission[keyof typeof Permission];
+export declare function instanceOfPermission(value: any): boolean;
 export declare function PermissionFromJSON(json: any): Permission;
 export declare function PermissionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Permission;
 export declare function PermissionToJSON(value?: Permission | null): any;

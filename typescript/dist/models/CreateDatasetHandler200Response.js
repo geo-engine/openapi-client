@@ -18,9 +18,9 @@ exports.CreateDatasetHandler200ResponseToJSON = exports.CreateDatasetHandler200R
  * Check if a given object implements the CreateDatasetHandler200Response interface.
  */
 function instanceOfCreateDatasetHandler200Response(value) {
-    let isInstance = true;
-    isInstance = isInstance && "datasetName" in value;
-    return isInstance;
+    if (!('datasetName' in value) || value['datasetName'] === undefined)
+        return false;
+    return true;
 }
 exports.instanceOfCreateDatasetHandler200Response = instanceOfCreateDatasetHandler200Response;
 function CreateDatasetHandler200ResponseFromJSON(json) {
@@ -28,7 +28,7 @@ function CreateDatasetHandler200ResponseFromJSON(json) {
 }
 exports.CreateDatasetHandler200ResponseFromJSON = CreateDatasetHandler200ResponseFromJSON;
 function CreateDatasetHandler200ResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,14 +37,11 @@ function CreateDatasetHandler200ResponseFromJSONTyped(json, ignoreDiscriminator)
 }
 exports.CreateDatasetHandler200ResponseFromJSONTyped = CreateDatasetHandler200ResponseFromJSONTyped;
 function CreateDatasetHandler200ResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'datasetName': value.datasetName,
+        'datasetName': value['datasetName'],
     };
 }
 exports.CreateDatasetHandler200ResponseToJSON = CreateDatasetHandler200ResponseToJSON;

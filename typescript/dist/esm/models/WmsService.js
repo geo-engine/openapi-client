@@ -18,6 +18,16 @@
 export const WmsService = {
     Wms: 'WMS'
 };
+export function instanceOfWmsService(value) {
+    for (const key in WmsService) {
+        if (Object.prototype.hasOwnProperty.call(WmsService, key)) {
+            if (WmsService[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function WmsServiceFromJSON(json) {
     return WmsServiceFromJSONTyped(json, false);
 }

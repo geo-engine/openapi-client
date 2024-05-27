@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Provenance } from './Provenance';
 import {
     ProvenanceFromJSON,
@@ -37,11 +37,9 @@ export interface Provenances {
 /**
  * Check if a given object implements the Provenances interface.
  */
-export function instanceOfProvenances(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "provenances" in value;
-
-    return isInstance;
+export function instanceOfProvenances(value: object): value is Provenances {
+    if (!('provenances' in value) || value['provenances'] === undefined) return false;
+    return true;
 }
 
 export function ProvenancesFromJSON(json: any): Provenances {
@@ -49,7 +47,7 @@ export function ProvenancesFromJSON(json: any): Provenances {
 }
 
 export function ProvenancesFromJSONTyped(json: any, ignoreDiscriminator: boolean): Provenances {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function ProvenancesFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function ProvenancesToJSON(value?: Provenances | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'provenances': ((value.provenances as Array<any>).map(ProvenanceToJSON)),
+        'provenances': ((value['provenances'] as Array<any>).map(ProvenanceToJSON)),
     };
 }
 

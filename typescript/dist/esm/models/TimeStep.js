@@ -16,16 +16,17 @@ import { TimeGranularityFromJSON, TimeGranularityToJSON, } from './TimeGranulari
  * Check if a given object implements the TimeStep interface.
  */
 export function instanceOfTimeStep(value) {
-    let isInstance = true;
-    isInstance = isInstance && "granularity" in value;
-    isInstance = isInstance && "step" in value;
-    return isInstance;
+    if (!('granularity' in value) || value['granularity'] === undefined)
+        return false;
+    if (!('step' in value) || value['step'] === undefined)
+        return false;
+    return true;
 }
 export function TimeStepFromJSON(json) {
     return TimeStepFromJSONTyped(json, false);
 }
 export function TimeStepFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -34,14 +35,11 @@ export function TimeStepFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function TimeStepToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'granularity': TimeGranularityToJSON(value.granularity),
-        'step': value.step,
+        'granularity': TimeGranularityToJSON(value['granularity']),
+        'step': value['step'],
     };
 }

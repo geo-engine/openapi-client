@@ -23,16 +23,16 @@ export interface WfsFeatureHandlerRequest {
     request: GetFeatureRequest;
     typeNames: string;
     bbox: string;
-    version?: WfsVersion | null;
+    version?: WfsVersion;
     time?: string;
-    srsName?: string | null;
-    namespaces?: string | null;
-    count?: number | null;
-    sortBy?: string | null;
-    resultType?: string | null;
-    filter?: string | null;
-    propertyName?: string | null;
-    queryResolution?: string | null;
+    srsName?: string;
+    namespaces?: string;
+    count?: number;
+    sortBy?: string;
+    resultType?: string;
+    filter?: string;
+    propertyName?: string;
+    queryResolution?: string;
 }
 /**
  *

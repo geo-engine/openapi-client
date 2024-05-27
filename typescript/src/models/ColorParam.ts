@@ -12,58 +12,55 @@
  * Do not edit the class manually.
  */
 
+import type { ColorParamDerived } from './ColorParamDerived';
 import {
-    DerivedColorWithType,
-    instanceOfDerivedColorWithType,
-    DerivedColorWithTypeFromJSON,
-    DerivedColorWithTypeFromJSONTyped,
-    DerivedColorWithTypeToJSON,
-} from './DerivedColorWithType';
+    instanceOfColorParamDerived,
+    ColorParamDerivedFromJSON,
+    ColorParamDerivedFromJSONTyped,
+    ColorParamDerivedToJSON,
+} from './ColorParamDerived';
+import type { ColorParamStatic } from './ColorParamStatic';
 import {
-    StaticColorParam,
-    instanceOfStaticColorParam,
-    StaticColorParamFromJSON,
-    StaticColorParamFromJSONTyped,
-    StaticColorParamToJSON,
-} from './StaticColorParam';
+    instanceOfColorParamStatic,
+    ColorParamStaticFromJSON,
+    ColorParamStaticFromJSONTyped,
+    ColorParamStaticToJSON,
+} from './ColorParamStatic';
 
 /**
  * @type ColorParam
  * 
  * @export
  */
-export type ColorParam = { type: 'derived' } & DerivedColorWithType | { type: 'static' } & StaticColorParam;
+export type ColorParam = { type: 'derived' } & ColorParamDerived | { type: 'static' } & ColorParamStatic;
 
 export function ColorParamFromJSON(json: any): ColorParam {
     return ColorParamFromJSONTyped(json, false);
 }
 
 export function ColorParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): ColorParam {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'derived':
-            return {...DerivedColorWithTypeFromJSONTyped(json, true), type: 'derived'};
+            return Object.assign({}, ColorParamDerivedFromJSONTyped(json, true), { type: 'derived' });
         case 'static':
-            return {...StaticColorParamFromJSONTyped(json, true), type: 'static'};
+            return Object.assign({}, ColorParamStaticFromJSONTyped(json, true), { type: 'static' });
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${json['type']}'`);
     }
 }
 
 export function ColorParamToJSON(value?: ColorParam | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'derived':
-            return DerivedColorWithTypeToJSON(value);
+            return ColorParamDerivedToJSON(value);
         case 'static':
-            return StaticColorParamToJSON(value);
+            return ColorParamStaticToJSON(value);
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${value['type']}'`);
     }

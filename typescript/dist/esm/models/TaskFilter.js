@@ -21,6 +21,16 @@ export const TaskFilter = {
     Failed: 'failed',
     Completed: 'completed'
 };
+export function instanceOfTaskFilter(value) {
+    for (const key in TaskFilter) {
+        if (Object.prototype.hasOwnProperty.call(TaskFilter, key)) {
+            if (TaskFilter[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function TaskFilterFromJSON(json) {
     return TaskFilterFromJSONTyped(json, false);
 }

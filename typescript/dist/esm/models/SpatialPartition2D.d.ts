@@ -32,7 +32,7 @@ export interface SpatialPartition2D {
 /**
  * Check if a given object implements the SpatialPartition2D interface.
  */
-export declare function instanceOfSpatialPartition2D(value: object): boolean;
+export declare function instanceOfSpatialPartition2D(value: object): value is SpatialPartition2D;
 export declare function SpatialPartition2DFromJSON(json: any): SpatialPartition2D;
 export declare function SpatialPartition2DFromJSONTyped(json: any, ignoreDiscriminator: boolean): SpatialPartition2D;
 export declare function SpatialPartition2DToJSON(value?: SpatialPartition2D | null): any;

@@ -26,6 +26,17 @@ export const TaskFilter = {
 export type TaskFilter = typeof TaskFilter[keyof typeof TaskFilter];
 
 
+export function instanceOfTaskFilter(value: any): boolean {
+    for (const key in TaskFilter) {
+        if (Object.prototype.hasOwnProperty.call(TaskFilter, key)) {
+            if (TaskFilter[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function TaskFilterFromJSON(json: any): TaskFilter {
     return TaskFilterFromJSONTyped(json, false);
 }

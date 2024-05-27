@@ -11,48 +11,46 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { SymbologyFromJSON, SymbologyToJSON, } from './Symbology';
 import { WorkflowFromJSON, WorkflowToJSON, } from './Workflow';
 /**
  * Check if a given object implements the AddLayer interface.
  */
 export function instanceOfAddLayer(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "workflow" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('workflow' in value) || value['workflow'] === undefined)
+        return false;
+    return true;
 }
 export function AddLayerFromJSON(json) {
     return AddLayerFromJSONTyped(json, false);
 }
 export function AddLayerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
-        'metadata': !exists(json, 'metadata') ? undefined : json['metadata'],
+        'metadata': json['metadata'] == null ? undefined : json['metadata'],
         'name': json['name'],
-        'properties': !exists(json, 'properties') ? undefined : json['properties'],
-        'symbology': !exists(json, 'symbology') ? undefined : SymbologyFromJSON(json['symbology']),
+        'properties': json['properties'] == null ? undefined : json['properties'],
+        'symbology': json['symbology'] == null ? undefined : SymbologyFromJSON(json['symbology']),
         'workflow': WorkflowFromJSON(json['workflow']),
     };
 }
 export function AddLayerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'metadata': value.metadata,
-        'name': value.name,
-        'properties': value.properties,
-        'symbology': SymbologyToJSON(value.symbology),
-        'workflow': WorkflowToJSON(value.workflow),
+        'description': value['description'],
+        'metadata': value['metadata'],
+        'name': value['name'],
+        'properties': value['properties'],
+        'symbology': SymbologyToJSON(value['symbology']),
+        'workflow': WorkflowToJSON(value['workflow']),
     };
 }

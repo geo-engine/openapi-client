@@ -11,38 +11,34 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
-import { DataIdFromJSON, DataIdToJSON, } from './DataId';
 import { ProvenanceFromJSON, ProvenanceToJSON, } from './Provenance';
+import { DataIdFromJSON, DataIdToJSON, } from './DataId';
 /**
  * Check if a given object implements the ProvenanceOutput interface.
  */
 export function instanceOfProvenanceOutput(value) {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    return isInstance;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    return true;
 }
 export function ProvenanceOutputFromJSON(json) {
     return ProvenanceOutputFromJSONTyped(json, false);
 }
 export function ProvenanceOutputFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'data': DataIdFromJSON(json['data']),
-        'provenance': !exists(json, 'provenance') ? undefined : (json['provenance'] === null ? null : json['provenance'].map(ProvenanceFromJSON)),
+        'provenance': json['provenance'] == null ? undefined : (json['provenance'].map(ProvenanceFromJSON)),
     };
 }
 export function ProvenanceOutputToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'data': DataIdToJSON(value.data),
-        'provenance': value.provenance === undefined ? undefined : (value.provenance === null ? null : value.provenance.map(ProvenanceToJSON)),
+        'data': DataIdToJSON(value['data']),
+        'provenance': value['provenance'] == null ? undefined : (value['provenance'].map(ProvenanceToJSON)),
     };
 }

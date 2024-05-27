@@ -44,7 +44,7 @@ export interface LogarithmicGradient {
 /**
  * Check if a given object implements the LogarithmicGradient interface.
  */
-export declare function instanceOfLogarithmicGradient(value: object): boolean;
+export declare function instanceOfLogarithmicGradient(value: object): value is LogarithmicGradient;
 export declare function LogarithmicGradientFromJSON(json: any): LogarithmicGradient;
 export declare function LogarithmicGradientFromJSONTyped(json: any, ignoreDiscriminator: boolean): LogarithmicGradient;
 export declare function LogarithmicGradientToJSON(value?: LogarithmicGradient | null): any;

@@ -18,57 +18,74 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conint
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from geoengine_openapi_client.models.ogr_source_column_spec import OgrSourceColumnSpec
 from geoengine_openapi_client.models.ogr_source_dataset_time_type import OgrSourceDatasetTimeType
 from geoengine_openapi_client.models.ogr_source_error_spec import OgrSourceErrorSpec
 from geoengine_openapi_client.models.typed_geometry import TypedGeometry
 from geoengine_openapi_client.models.vector_data_type import VectorDataType
+from typing import Optional, Set
+from typing_extensions import Self
 
 class OgrSourceDataset(BaseModel):
     """
     OgrSourceDataset
-    """
-    attribute_query: Optional[StrictStr] = Field(None, alias="attributeQuery")
-    cache_ttl: Optional[conint(strict=True, ge=0)] = Field(None, alias="cacheTtl")
+    """ # noqa: E501
+    attribute_query: Optional[StrictStr] = Field(default=None, alias="attributeQuery")
+    cache_ttl: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, alias="cacheTtl")
     columns: Optional[OgrSourceColumnSpec] = None
-    data_type: Optional[VectorDataType] = Field(None, alias="dataType")
-    default_geometry: Optional[TypedGeometry] = Field(None, alias="defaultGeometry")
-    file_name: StrictStr = Field(..., alias="fileName")
-    force_ogr_spatial_filter: Optional[StrictBool] = Field(None, alias="forceOgrSpatialFilter")
-    force_ogr_time_filter: Optional[StrictBool] = Field(None, alias="forceOgrTimeFilter")
-    layer_name: StrictStr = Field(..., alias="layerName")
-    on_error: OgrSourceErrorSpec = Field(..., alias="onError")
-    sql_query: Optional[StrictStr] = Field(None, alias="sqlQuery")
+    data_type: Optional[VectorDataType] = Field(default=None, alias="dataType")
+    default_geometry: Optional[TypedGeometry] = Field(default=None, alias="defaultGeometry")
+    file_name: StrictStr = Field(alias="fileName")
+    force_ogr_spatial_filter: Optional[StrictBool] = Field(default=None, alias="forceOgrSpatialFilter")
+    force_ogr_time_filter: Optional[StrictBool] = Field(default=None, alias="forceOgrTimeFilter")
+    layer_name: StrictStr = Field(alias="layerName")
+    on_error: OgrSourceErrorSpec = Field(alias="onError")
+    sql_query: Optional[StrictStr] = Field(default=None, alias="sqlQuery")
     time: Optional[OgrSourceDatasetTimeType] = None
-    __properties = ["attributeQuery", "cacheTtl", "columns", "dataType", "defaultGeometry", "fileName", "forceOgrSpatialFilter", "forceOgrTimeFilter", "layerName", "onError", "sqlQuery", "time"]
+    __properties: ClassVar[List[str]] = ["attributeQuery", "cacheTtl", "columns", "dataType", "defaultGeometry", "fileName", "forceOgrSpatialFilter", "forceOgrTimeFilter", "layerName", "onError", "sqlQuery", "time"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> OgrSourceDataset:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of OgrSourceDataset from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of columns
         if self.columns:
             _dict['columns'] = self.columns.to_dict()
@@ -79,54 +96,54 @@ class OgrSourceDataset(BaseModel):
         if self.time:
             _dict['time'] = self.time.to_dict()
         # set to None if attribute_query (nullable) is None
-        # and __fields_set__ contains the field
-        if self.attribute_query is None and "attribute_query" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.attribute_query is None and "attribute_query" in self.model_fields_set:
             _dict['attributeQuery'] = None
 
         # set to None if columns (nullable) is None
-        # and __fields_set__ contains the field
-        if self.columns is None and "columns" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.columns is None and "columns" in self.model_fields_set:
             _dict['columns'] = None
 
         # set to None if data_type (nullable) is None
-        # and __fields_set__ contains the field
-        if self.data_type is None and "data_type" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.data_type is None and "data_type" in self.model_fields_set:
             _dict['dataType'] = None
 
         # set to None if default_geometry (nullable) is None
-        # and __fields_set__ contains the field
-        if self.default_geometry is None and "default_geometry" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.default_geometry is None and "default_geometry" in self.model_fields_set:
             _dict['defaultGeometry'] = None
 
         # set to None if sql_query (nullable) is None
-        # and __fields_set__ contains the field
-        if self.sql_query is None and "sql_query" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.sql_query is None and "sql_query" in self.model_fields_set:
             _dict['sqlQuery'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> OgrSourceDataset:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of OgrSourceDataset from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return OgrSourceDataset.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = OgrSourceDataset.parse_obj({
-            "attribute_query": obj.get("attributeQuery"),
-            "cache_ttl": obj.get("cacheTtl"),
-            "columns": OgrSourceColumnSpec.from_dict(obj.get("columns")) if obj.get("columns") is not None else None,
-            "data_type": obj.get("dataType"),
-            "default_geometry": TypedGeometry.from_dict(obj.get("defaultGeometry")) if obj.get("defaultGeometry") is not None else None,
-            "file_name": obj.get("fileName"),
-            "force_ogr_spatial_filter": obj.get("forceOgrSpatialFilter"),
-            "force_ogr_time_filter": obj.get("forceOgrTimeFilter"),
-            "layer_name": obj.get("layerName"),
-            "on_error": obj.get("onError"),
-            "sql_query": obj.get("sqlQuery"),
-            "time": OgrSourceDatasetTimeType.from_dict(obj.get("time")) if obj.get("time") is not None else None
+        _obj = cls.model_validate({
+            "attributeQuery": obj.get("attributeQuery"),
+            "cacheTtl": obj.get("cacheTtl"),
+            "columns": OgrSourceColumnSpec.from_dict(obj["columns"]) if obj.get("columns") is not None else None,
+            "dataType": obj.get("dataType"),
+            "defaultGeometry": TypedGeometry.from_dict(obj["defaultGeometry"]) if obj.get("defaultGeometry") is not None else None,
+            "fileName": obj.get("fileName"),
+            "forceOgrSpatialFilter": obj.get("forceOgrSpatialFilter"),
+            "forceOgrTimeFilter": obj.get("forceOgrTimeFilter"),
+            "layerName": obj.get("layerName"),
+            "onError": obj.get("onError"),
+            "sqlQuery": obj.get("sqlQuery"),
+            "time": OgrSourceDatasetTimeType.from_dict(obj["time"]) if obj.get("time") is not None else None
         })
         return _obj
 

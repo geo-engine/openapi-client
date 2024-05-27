@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.number_param import NumberParam  # noqa: E501
+from geoengine_openapi_client.models.number_param import NumberParam
 
 class TestNumberParam(unittest.TestCase):
     """NumberParam unit test stubs"""
@@ -34,7 +33,7 @@ class TestNumberParam(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `NumberParam`
         """
-        model = NumberParam()  # noqa: E501
+        model = NumberParam()
         if include_optional:
             return NumberParam(
                 type = 'static',

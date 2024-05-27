@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.date_time_parse_format import DateTimeParseFormat  # noqa: E501
+from geoengine_openapi_client.models.date_time_parse_format import DateTimeParseFormat
 
 class TestDateTimeParseFormat(unittest.TestCase):
     """DateTimeParseFormat unit test stubs"""
@@ -34,7 +33,7 @@ class TestDateTimeParseFormat(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DateTimeParseFormat`
         """
-        model = DateTimeParseFormat()  # noqa: E501
+        model = DateTimeParseFormat()
         if include_optional:
             return DateTimeParseFormat(
                 fmt = '',

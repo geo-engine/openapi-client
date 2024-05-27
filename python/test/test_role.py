@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.role import Role  # noqa: E501
+from geoengine_openapi_client.models.role import Role
 
 class TestRole(unittest.TestCase):
     """Role unit test stubs"""
@@ -34,7 +33,7 @@ class TestRole(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Role`
         """
-        model = Role()  # noqa: E501
+        model = Role()
         if include_optional:
             return Role(
                 id = '',

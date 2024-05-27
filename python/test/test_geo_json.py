@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.geo_json import GeoJson  # noqa: E501
+from geoengine_openapi_client.models.geo_json import GeoJson
 
 class TestGeoJson(unittest.TestCase):
     """GeoJson unit test stubs"""
@@ -34,7 +33,7 @@ class TestGeoJson(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GeoJson`
         """
-        model = GeoJson()  # noqa: E501
+        model = GeoJson()
         if include_optional:
             return GeoJson(
                 features = [

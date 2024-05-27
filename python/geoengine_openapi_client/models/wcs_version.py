@@ -13,13 +13,10 @@
 """  # noqa: E501
 
 
+from __future__ import annotations
 import json
-import pprint
-import re  # noqa: F401
-from aenum import Enum, no_arg
-
-
-
+from enum import Enum
+from typing_extensions import Self
 
 
 class WcsVersion(str, Enum):
@@ -34,8 +31,8 @@ class WcsVersion(str, Enum):
     ENUM_1_DOT_1_DOT_1 = '1.1.1'
 
     @classmethod
-    def from_json(cls, json_str: str) -> WcsVersion:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of WcsVersion from a JSON string"""
-        return WcsVersion(json.loads(json_str))
+        return cls(json.loads(json_str))
 
 

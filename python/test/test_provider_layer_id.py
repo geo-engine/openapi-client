@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.provider_layer_id import ProviderLayerId  # noqa: E501
+from geoengine_openapi_client.models.provider_layer_id import ProviderLayerId
 
 class TestProviderLayerId(unittest.TestCase):
     """ProviderLayerId unit test stubs"""
@@ -34,7 +33,7 @@ class TestProviderLayerId(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ProviderLayerId`
         """
-        model = ProviderLayerId()  # noqa: E501
+        model = ProviderLayerId()
         if include_optional:
             return ProviderLayerId(
                 layer_id = '',

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.workflow import Workflow  # noqa: E501
+from geoengine_openapi_client.models.workflow import Workflow
 
 class TestWorkflow(unittest.TestCase):
     """Workflow unit test stubs"""
@@ -34,7 +33,7 @@ class TestWorkflow(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Workflow`
         """
-        model = Workflow()  # noqa: E501
+        model = Workflow()
         if include_optional:
             return Workflow(
                 operator = geoengine_openapi_client.models.typed_operator_operator.TypedOperator_operator(

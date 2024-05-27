@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.logarithmic_gradient import LogarithmicGradient  # noqa: E501
+from geoengine_openapi_client.models.logarithmic_gradient import LogarithmicGradient
 
 class TestLogarithmicGradient(unittest.TestCase):
     """LogarithmicGradient unit test stubs"""
@@ -34,7 +33,7 @@ class TestLogarithmicGradient(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LogarithmicGradient`
         """
-        model = LogarithmicGradient()  # noqa: E501
+        model = LogarithmicGradient()
         if include_optional:
             return LogarithmicGradient(
                 breakpoints = [

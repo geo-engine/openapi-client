@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.derived_number import DerivedNumber  # noqa: E501
+from geoengine_openapi_client.models.derived_number import DerivedNumber
 
 class TestDerivedNumber(unittest.TestCase):
     """DerivedNumber unit test stubs"""
@@ -34,7 +33,7 @@ class TestDerivedNumber(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DerivedNumber`
         """
-        model = DerivedNumber()  # noqa: E501
+        model = DerivedNumber()
         if include_optional:
             return DerivedNumber(
                 attribute = '',

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.st_rectangle import STRectangle  # noqa: E501
+from geoengine_openapi_client.models.st_rectangle import STRectangle
 
 class TestSTRectangle(unittest.TestCase):
     """STRectangle unit test stubs"""
@@ -34,7 +33,7 @@ class TestSTRectangle(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `STRectangle`
         """
-        model = STRectangle()  # noqa: E501
+        model = STRectangle()
         if include_optional:
             return STRectangle(
                 bounding_box = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.data_path_one_of1 import DataPathOneOf1  # noqa: E501
+from geoengine_openapi_client.models.data_path_one_of1 import DataPathOneOf1
 
 class TestDataPathOneOf1(unittest.TestCase):
     """DataPathOneOf1 unit test stubs"""
@@ -34,7 +33,7 @@ class TestDataPathOneOf1(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DataPathOneOf1`
         """
-        model = DataPathOneOf1()  # noqa: E501
+        model = DataPathOneOf1()
         if include_optional:
             return DataPathOneOf1(
                 upload = ''

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.provider_capabilities import ProviderCapabilities  # noqa: E501
+from geoengine_openapi_client.models.provider_capabilities import ProviderCapabilities
 
 class TestProviderCapabilities(unittest.TestCase):
     """ProviderCapabilities unit test stubs"""
@@ -34,7 +33,7 @@ class TestProviderCapabilities(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ProviderCapabilities`
         """
-        model = ProviderCapabilities()  # noqa: E501
+        model = ProviderCapabilities()
         if include_optional:
             return ProviderCapabilities(
                 listing = True,

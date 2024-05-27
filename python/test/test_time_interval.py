@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.time_interval import TimeInterval  # noqa: E501
+from geoengine_openapi_client.models.time_interval import TimeInterval
 
 class TestTimeInterval(unittest.TestCase):
     """TimeInterval unit test stubs"""
@@ -34,7 +33,7 @@ class TestTimeInterval(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TimeInterval`
         """
-        model = TimeInterval()  # noqa: E501
+        model = TimeInterval()
         if include_optional:
             return TimeInterval(
                 end = 56,

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.axis_order import AxisOrder  # noqa: E501
+from geoengine_openapi_client.models.axis_order import AxisOrder
 
 class TestAxisOrder(unittest.TestCase):
     """AxisOrder unit test stubs"""

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.derived_color import DerivedColor  # noqa: E501
+from geoengine_openapi_client.models.derived_color import DerivedColor
 
 class TestDerivedColor(unittest.TestCase):
     """DerivedColor unit test stubs"""
@@ -34,7 +33,7 @@ class TestDerivedColor(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DerivedColor`
         """
-        model = DerivedColor()  # noqa: E501
+        model = DerivedColor()
         if include_optional:
             return DerivedColor(
                 attribute = '',

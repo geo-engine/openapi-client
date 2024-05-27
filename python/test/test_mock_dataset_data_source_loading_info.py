@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.mock_dataset_data_source_loading_info import MockDatasetDataSourceLoadingInfo  # noqa: E501
+from geoengine_openapi_client.models.mock_dataset_data_source_loading_info import MockDatasetDataSourceLoadingInfo
 
 class TestMockDatasetDataSourceLoadingInfo(unittest.TestCase):
     """MockDatasetDataSourceLoadingInfo unit test stubs"""
@@ -34,7 +33,7 @@ class TestMockDatasetDataSourceLoadingInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MockDatasetDataSourceLoadingInfo`
         """
-        model = MockDatasetDataSourceLoadingInfo()  # noqa: E501
+        model = MockDatasetDataSourceLoadingInfo()
         if include_optional:
             return MockDatasetDataSourceLoadingInfo(
                 points = [

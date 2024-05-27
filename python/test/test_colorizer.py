@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.colorizer import Colorizer  # noqa: E501
+from geoengine_openapi_client.models.colorizer import Colorizer
 
 class TestColorizer(unittest.TestCase):
     """Colorizer unit test stubs"""
@@ -34,7 +33,7 @@ class TestColorizer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Colorizer`
         """
-        model = Colorizer()  # noqa: E501
+        model = Colorizer()
         if include_optional:
             return Colorizer(
                 breakpoints = [

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.raster_stream_websocket_result_type import RasterStreamWebsocketResultType  # noqa: E501
+from geoengine_openapi_client.models.raster_stream_websocket_result_type import RasterStreamWebsocketResultType
 
 class TestRasterStreamWebsocketResultType(unittest.TestCase):
     """RasterStreamWebsocketResultType unit test stubs"""

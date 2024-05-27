@@ -4899,22 +4899,6 @@
   },
   "components": {
     "schemas": {
-      "AbortedTaskStatus": {
-        "type": "object",
-        "required": [
-          "status",
-          "cleanUp"
-        ],
-        "properties": {
-          "cleanUp": {},
-          "status": {
-            "type": "string",
-            "enum": [
-              "aborted"
-            ]
-          }
-        }
-      },
       "AddDataset": {
         "type": "object",
         "required": [
@@ -5115,20 +5099,6 @@
           "upload": "420b06de-0a7e-45cb-9c1c-ea901b46ab69"
         }
       },
-      "AutoOgrSourceTimeFormat": {
-        "type": "object",
-        "required": [
-          "format"
-        ],
-        "properties": {
-          "format": {
-            "type": "string",
-            "enum": [
-              "auto"
-            ]
-          }
-        }
-      },
       "AxisLabels": {
         "type": "array",
         "items": {
@@ -5205,45 +5175,85 @@
           }
         }
       },
-      "ClassificationMeasurementWithType": {
-        "type": "object",
-        "required": [
-          "measurement",
-          "classes",
-          "type"
-        ],
-        "properties": {
-          "classes": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          },
-          "measurement": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "classification"
-            ]
-          }
-        }
-      },
       "CollectionItem": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/LayerCollectionListingWithType"
+            "$ref": "#/components/schemas/CollectionItemCollection"
           },
           {
-            "$ref": "#/components/schemas/LayerListingWithType"
+            "$ref": "#/components/schemas/CollectionItemLayer"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "collection": "#/components/schemas/LayerCollectionListingWithType",
-            "layer": "#/components/schemas/LayerListingWithType"
+            "collection": "#/components/schemas/CollectionItemCollection",
+            "layer": "#/components/schemas/CollectionItemLayer"
+          }
+        }
+      },
+      "CollectionItemCollection": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "type"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "$ref": "#/components/schemas/ProviderLayerCollectionId"
+          },
+          "name": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Property"
+            }
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "collection"
+            ]
+          }
+        }
+      },
+      "CollectionItemLayer": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "type"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "$ref": "#/components/schemas/ProviderLayerId"
+          },
+          "name": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Property"
+            },
+            "description": "properties, for instance, to be rendered in the UI"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "layer"
+            ]
           }
         }
       },
@@ -5256,72 +5266,188 @@
       "ColorParam": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/StaticColorParam"
+            "$ref": "#/components/schemas/ColorParamStatic"
           },
           {
-            "$ref": "#/components/schemas/DerivedColorWithType"
+            "$ref": "#/components/schemas/ColorParamDerived"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "derived": "#/components/schemas/DerivedColorWithType",
-            "static": "#/components/schemas/StaticColorParam"
+            "derived": "#/components/schemas/ColorParamDerived",
+            "static": "#/components/schemas/ColorParamStatic"
+          }
+        }
+      },
+      "ColorParamDerived": {
+        "type": "object",
+        "required": [
+          "attribute",
+          "colorizer",
+          "type"
+        ],
+        "properties": {
+          "attribute": {
+            "type": "string"
+          },
+          "colorizer": {
+            "$ref": "#/components/schemas/Colorizer"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "derived"
+            ]
+          }
+        }
+      },
+      "ColorParamStatic": {
+        "type": "object",
+        "required": [
+          "color",
+          "type"
+        ],
+        "properties": {
+          "color": {
+            "$ref": "#/components/schemas/RgbaColor"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "static"
+            ]
           }
         }
       },
       "Colorizer": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/LinearGradientWithType"
+            "$ref": "#/components/schemas/ColorizerLinearGradient"
           },
           {
-            "$ref": "#/components/schemas/LogarithmicGradientWithType"
+            "$ref": "#/components/schemas/ColorizerLogarithmicGradient"
           },
           {
-            "$ref": "#/components/schemas/PaletteColorizer"
+            "$ref": "#/components/schemas/ColorizerPalette"
           },
           {
-            "$ref": "#/components/schemas/RgbaColorizer"
+            "$ref": "#/components/schemas/ColorizerRgba"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "linearGradient": "#/components/schemas/LinearGradientWithType",
-            "logarithmicGradient": "#/components/schemas/LogarithmicGradientWithType",
-            "palette": "#/components/schemas/PaletteColorizer",
-            "rgba": "#/components/schemas/RgbaColorizer"
+            "linearGradient": "#/components/schemas/ColorizerLinearGradient",
+            "logarithmicGradient": "#/components/schemas/ColorizerLogarithmicGradient",
+            "palette": "#/components/schemas/ColorizerPalette",
+            "rgba": "#/components/schemas/ColorizerRgba"
           }
         }
       },
-      "CompletedTaskStatus": {
+      "ColorizerLinearGradient": {
         "type": "object",
         "required": [
-          "status",
-          "taskType",
-          "timeTotal",
-          "timeStarted"
+          "breakpoints",
+          "noDataColor",
+          "overColor",
+          "underColor",
+          "type"
         ],
         "properties": {
-          "description": {
-            "type": "string"
+          "breakpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Breakpoint"
+            }
           },
-          "info": {},
-          "status": {
+          "noDataColor": {
+            "$ref": "#/components/schemas/RgbaColor"
+          },
+          "overColor": {
+            "$ref": "#/components/schemas/RgbaColor"
+          },
+          "type": {
             "type": "string",
             "enum": [
-              "completed"
+              "linearGradient"
             ]
           },
-          "taskType": {
-            "type": "string"
+          "underColor": {
+            "$ref": "#/components/schemas/RgbaColor"
+          }
+        }
+      },
+      "ColorizerLogarithmicGradient": {
+        "type": "object",
+        "required": [
+          "breakpoints",
+          "noDataColor",
+          "overColor",
+          "underColor",
+          "type"
+        ],
+        "properties": {
+          "breakpoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Breakpoint"
+            }
           },
-          "timeStarted": {
-            "type": "string"
+          "noDataColor": {
+            "$ref": "#/components/schemas/RgbaColor"
           },
-          "timeTotal": {
-            "type": "string"
+          "overColor": {
+            "$ref": "#/components/schemas/RgbaColor"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "logarithmicGradient"
+            ]
+          },
+          "underColor": {
+            "$ref": "#/components/schemas/RgbaColor"
+          }
+        }
+      },
+      "ColorizerPalette": {
+        "type": "object",
+        "required": [
+          "colors",
+          "noDataColor",
+          "defaultColor",
+          "type"
+        ],
+        "properties": {
+          "colors": {
+            "$ref": "#/components/schemas/Palette"
+          },
+          "defaultColor": {
+            "$ref": "#/components/schemas/RgbaColor"
+          },
+          "noDataColor": {
+            "$ref": "#/components/schemas/RgbaColor"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "palette"
+            ]
+          }
+        }
+      },
+      "ColorizerRgba": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "rgba"
+            ]
           }
         }
       },
@@ -5333,28 +5459,6 @@
         "properties": {
           "measurement": {
             "type": "string"
-          },
-          "unit": {
-            "type": "string",
-            "nullable": true
-          }
-        }
-      },
-      "ContinuousMeasurementWithType": {
-        "type": "object",
-        "required": [
-          "measurement",
-          "type"
-        ],
-        "properties": {
-          "measurement": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "continuous"
-            ]
           },
           "unit": {
             "type": "string",
@@ -5454,38 +5558,60 @@
           "auto"
         ]
       },
-      "CustomOgrSourceTimeFormat": {
-        "type": "object",
-        "required": [
-          "customFormat",
-          "format"
-        ],
-        "properties": {
-          "customFormat": {
-            "$ref": "#/components/schemas/DateTimeParseFormat"
-          },
-          "format": {
-            "type": "string",
-            "enum": [
-              "custom"
-            ]
-          }
-        }
-      },
       "DataId": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/InternalDataId"
+            "$ref": "#/components/schemas/DataIdInternal"
           },
           {
-            "$ref": "#/components/schemas/ExternalDataIdWithType"
+            "$ref": "#/components/schemas/DataIdExternal"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "external": "#/components/schemas/ExternalDataIdWithType",
-            "internal": "#/components/schemas/InternalDataId"
+            "external": "#/components/schemas/DataIdExternal",
+            "internal": "#/components/schemas/DataIdInternal"
+          }
+        }
+      },
+      "DataIdExternal": {
+        "type": "object",
+        "required": [
+          "providerId",
+          "layerId",
+          "type"
+        ],
+        "properties": {
+          "layerId": {
+            "$ref": "#/components/schemas/LayerId"
+          },
+          "providerId": {
+            "$ref": "#/components/schemas/DataProviderId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "external"
+            ]
+          }
+        }
+      },
+      "DataIdInternal": {
+        "type": "object",
+        "required": [
+          "datasetId",
+          "type"
+        ],
+        "properties": {
+          "datasetId": {
+            "$ref": "#/components/schemas/DatasetId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "internal"
+            ]
           }
         }
       },
@@ -5591,24 +5717,6 @@
         "type": "string",
         "format": "uuid"
       },
-      "DatasetIdResourceId": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/DatasetId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "DatasetId"
-            ]
-          }
-        }
-      },
       "DatasetListing": {
         "type": "object",
         "required": [
@@ -5658,24 +5766,6 @@
       "DatasetName": {
         "type": "string"
       },
-      "DatasetResource": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/DatasetId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "dataset"
-            ]
-          }
-        }
-      },
       "DateTime": {
         "type": "object",
         "description": "An object that composes the date and a timestamp with time zone.",
@@ -5723,28 +5813,6 @@
           }
         }
       },
-      "DerivedColorWithType": {
-        "type": "object",
-        "required": [
-          "attribute",
-          "colorizer",
-          "type"
-        ],
-        "properties": {
-          "attribute": {
-            "type": "string"
-          },
-          "colorizer": {
-            "$ref": "#/components/schemas/Colorizer"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "derived"
-            ]
-          }
-        }
-      },
       "DerivedNumber": {
         "type": "object",
         "required": [
@@ -5763,34 +5831,6 @@
           "factor": {
             "type": "number",
             "format": "double"
-          }
-        }
-      },
-      "DerivedNumberWithType": {
-        "type": "object",
-        "required": [
-          "attribute",
-          "factor",
-          "defaultValue",
-          "type"
-        ],
-        "properties": {
-          "attribute": {
-            "type": "string"
-          },
-          "defaultValue": {
-            "type": "number",
-            "format": "double"
-          },
-          "factor": {
-            "type": "number",
-            "format": "double"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "derived"
-            ]
           }
         }
       },
@@ -5827,46 +5867,6 @@
           },
           "providerId": {
             "$ref": "#/components/schemas/DataProviderId"
-          }
-        }
-      },
-      "ExternalDataIdWithType": {
-        "type": "object",
-        "required": [
-          "providerId",
-          "layerId",
-          "type"
-        ],
-        "properties": {
-          "layerId": {
-            "$ref": "#/components/schemas/LayerId"
-          },
-          "providerId": {
-            "$ref": "#/components/schemas/DataProviderId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "external"
-            ]
-          }
-        }
-      },
-      "FailedTaskStatus": {
-        "type": "object",
-        "required": [
-          "status",
-          "error",
-          "cleanUp"
-        ],
-        "properties": {
-          "cleanUp": {},
-          "error": {},
-          "status": {
-            "type": "string",
-            "enum": [
-              "failed"
-            ]
           }
         }
       },
@@ -6045,31 +6045,6 @@
           }
         }
       },
-      "GdalMetaDataListWithType": {
-        "type": "object",
-        "required": [
-          "resultDescriptor",
-          "params",
-          "type"
-        ],
-        "properties": {
-          "params": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GdalLoadingInfoTemporalSlice"
-            }
-          },
-          "resultDescriptor": {
-            "$ref": "#/components/schemas/RasterResultDescriptor"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "GdalMetaDataList"
-            ]
-          }
-        }
-      },
       "GdalMetaDataRegular": {
         "type": "object",
         "required": [
@@ -6103,46 +6078,6 @@
           }
         }
       },
-      "GdalMetaDataRegularWithType": {
-        "type": "object",
-        "required": [
-          "resultDescriptor",
-          "params",
-          "timePlaceholders",
-          "dataTime",
-          "step",
-          "type"
-        ],
-        "properties": {
-          "cacheTtl": {
-            "$ref": "#/components/schemas/CacheTtlSeconds"
-          },
-          "dataTime": {
-            "$ref": "#/components/schemas/TimeInterval"
-          },
-          "params": {
-            "$ref": "#/components/schemas/GdalDatasetParameters"
-          },
-          "resultDescriptor": {
-            "$ref": "#/components/schemas/RasterResultDescriptor"
-          },
-          "step": {
-            "$ref": "#/components/schemas/TimeStep"
-          },
-          "timePlaceholders": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/GdalSourceTimePlaceholder"
-            }
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "GdalMetaDataRegular"
-            ]
-          }
-        }
-      },
       "GdalMetaDataStatic": {
         "type": "object",
         "required": [
@@ -6166,39 +6101,6 @@
               }
             ],
             "nullable": true
-          }
-        }
-      },
-      "GdalMetaDataStaticWithType": {
-        "type": "object",
-        "required": [
-          "params",
-          "resultDescriptor",
-          "type"
-        ],
-        "properties": {
-          "cacheTtl": {
-            "$ref": "#/components/schemas/CacheTtlSeconds"
-          },
-          "params": {
-            "$ref": "#/components/schemas/GdalDatasetParameters"
-          },
-          "resultDescriptor": {
-            "$ref": "#/components/schemas/RasterResultDescriptor"
-          },
-          "time": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TimeInterval"
-              }
-            ],
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "GdalStatic"
-            ]
           }
         }
       },
@@ -6255,50 +6157,6 @@
           },
           "step": {
             "$ref": "#/components/schemas/TimeStep"
-          }
-        }
-      },
-      "GdalMetadataNetCdfCfWithType": {
-        "type": "object",
-        "description": "Meta data for 4D `NetCDF` CF datasets",
-        "required": [
-          "resultDescriptor",
-          "params",
-          "start",
-          "end",
-          "step",
-          "bandOffset",
-          "type"
-        ],
-        "properties": {
-          "bandOffset": {
-            "type": "integer",
-            "description": "A band offset specifies the first band index to use for the first point in time.\nAll other time steps are added to this offset.",
-            "minimum": 0
-          },
-          "cacheTtl": {
-            "$ref": "#/components/schemas/CacheTtlSeconds"
-          },
-          "end": {
-            "$ref": "#/components/schemas/TimeInstance"
-          },
-          "params": {
-            "$ref": "#/components/schemas/GdalDatasetParameters"
-          },
-          "resultDescriptor": {
-            "$ref": "#/components/schemas/RasterResultDescriptor"
-          },
-          "start": {
-            "$ref": "#/components/schemas/TimeInstance"
-          },
-          "step": {
-            "$ref": "#/components/schemas/TimeStep"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "GdalMetadataNetCdfCf"
-            ]
           }
         }
       },
@@ -6387,38 +6245,6 @@
         "enum": [
           "GetMap"
         ]
-      },
-      "InfiniteOgrSourceDurationSpec": {
-        "type": "object",
-        "required": [
-          "type"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "infinite"
-            ]
-          }
-        }
-      },
-      "InternalDataId": {
-        "type": "object",
-        "required": [
-          "datasetId",
-          "type"
-        ],
-        "properties": {
-          "datasetId": {
-            "$ref": "#/components/schemas/DatasetId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "internal"
-            ]
-          }
-        }
       },
       "Layer": {
         "type": "object",
@@ -6531,74 +6357,6 @@
           }
         }
       },
-      "LayerCollectionListingWithType": {
-        "type": "object",
-        "required": [
-          "id",
-          "name",
-          "description",
-          "type"
-        ],
-        "properties": {
-          "description": {
-            "type": "string"
-          },
-          "id": {
-            "$ref": "#/components/schemas/ProviderLayerCollectionId"
-          },
-          "name": {
-            "type": "string"
-          },
-          "properties": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Property"
-            }
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "collection"
-            ]
-          }
-        }
-      },
-      "LayerCollectionResource": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/LayerCollectionId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "layerCollection"
-            ]
-          }
-        }
-      },
-      "LayerCollectionResourceId": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/LayerCollectionId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "LayerCollection"
-            ]
-          }
-        }
-      },
       "LayerId": {
         "type": "string"
       },
@@ -6625,75 +6383,6 @@
               "$ref": "#/components/schemas/Property"
             },
             "description": "properties, for instance, to be rendered in the UI"
-          }
-        }
-      },
-      "LayerListingWithType": {
-        "type": "object",
-        "required": [
-          "id",
-          "name",
-          "description",
-          "type"
-        ],
-        "properties": {
-          "description": {
-            "type": "string"
-          },
-          "id": {
-            "$ref": "#/components/schemas/ProviderLayerId"
-          },
-          "name": {
-            "type": "string"
-          },
-          "properties": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Property"
-            },
-            "description": "properties, for instance, to be rendered in the UI"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "layer"
-            ]
-          }
-        }
-      },
-      "LayerResource": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/LayerId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "layer"
-            ]
-          }
-        }
-      },
-      "LayerResourceId": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/LayerId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "Layer"
-            ]
           }
         }
       },
@@ -6745,36 +6434,6 @@
           }
         }
       },
-      "LineSymbologyWithType": {
-        "type": "object",
-        "required": [
-          "stroke",
-          "autoSimplified",
-          "type"
-        ],
-        "properties": {
-          "autoSimplified": {
-            "type": "boolean"
-          },
-          "stroke": {
-            "$ref": "#/components/schemas/StrokeParam"
-          },
-          "text": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TextSymbology"
-              }
-            ],
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "line"
-            ]
-          }
-        }
-      },
       "LinearGradient": {
         "type": "object",
         "required": [
@@ -6795,39 +6454,6 @@
           },
           "overColor": {
             "$ref": "#/components/schemas/RgbaColor"
-          },
-          "underColor": {
-            "$ref": "#/components/schemas/RgbaColor"
-          }
-        }
-      },
-      "LinearGradientWithType": {
-        "type": "object",
-        "required": [
-          "breakpoints",
-          "noDataColor",
-          "overColor",
-          "underColor",
-          "type"
-        ],
-        "properties": {
-          "breakpoints": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Breakpoint"
-            }
-          },
-          "noDataColor": {
-            "$ref": "#/components/schemas/RgbaColor"
-          },
-          "overColor": {
-            "$ref": "#/components/schemas/RgbaColor"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "linearGradient"
-            ]
           },
           "underColor": {
             "$ref": "#/components/schemas/RgbaColor"
@@ -6860,90 +6486,304 @@
           }
         }
       },
-      "LogarithmicGradientWithType": {
-        "type": "object",
-        "required": [
-          "breakpoints",
-          "noDataColor",
-          "overColor",
-          "underColor",
-          "type"
-        ],
-        "properties": {
-          "breakpoints": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Breakpoint"
-            }
-          },
-          "noDataColor": {
-            "$ref": "#/components/schemas/RgbaColor"
-          },
-          "overColor": {
-            "$ref": "#/components/schemas/RgbaColor"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "logarithmicGradient"
-            ]
-          },
-          "underColor": {
-            "$ref": "#/components/schemas/RgbaColor"
-          }
-        }
-      },
       "Measurement": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/UnitlessMeasurement"
+            "$ref": "#/components/schemas/MeasurementUnitless"
           },
           {
-            "$ref": "#/components/schemas/ContinuousMeasurementWithType"
+            "$ref": "#/components/schemas/MeasurementContinuous"
           },
           {
-            "$ref": "#/components/schemas/ClassificationMeasurementWithType"
+            "$ref": "#/components/schemas/MeasurementClassification"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "classification": "#/components/schemas/ClassificationMeasurementWithType",
-            "continuous": "#/components/schemas/ContinuousMeasurementWithType",
-            "unitless": "#/components/schemas/UnitlessMeasurement"
+            "classification": "#/components/schemas/MeasurementClassification",
+            "continuous": "#/components/schemas/MeasurementContinuous",
+            "unitless": "#/components/schemas/MeasurementUnitless"
+          }
+        }
+      },
+      "MeasurementClassification": {
+        "type": "object",
+        "required": [
+          "measurement",
+          "classes",
+          "type"
+        ],
+        "properties": {
+          "classes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "measurement": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "classification"
+            ]
+          }
+        }
+      },
+      "MeasurementContinuous": {
+        "type": "object",
+        "required": [
+          "measurement",
+          "type"
+        ],
+        "properties": {
+          "measurement": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "continuous"
+            ]
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "MeasurementUnitless": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "unitless"
+            ]
           }
         }
       },
       "MetaDataDefinition": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/MockMetaDataWithType"
+            "$ref": "#/components/schemas/MetaDataDefinitionMockMetaData"
           },
           {
-            "$ref": "#/components/schemas/OgrMetaDataWithType"
+            "$ref": "#/components/schemas/MetaDataDefinitionOgrMetaData"
           },
           {
-            "$ref": "#/components/schemas/GdalMetaDataRegularWithType"
+            "$ref": "#/components/schemas/MetaDataDefinitionGdalMetaDataRegular"
           },
           {
-            "$ref": "#/components/schemas/GdalMetaDataStaticWithType"
+            "$ref": "#/components/schemas/MetaDataDefinitionGdalStatic"
           },
           {
-            "$ref": "#/components/schemas/GdalMetadataNetCdfCfWithType"
+            "$ref": "#/components/schemas/MetaDataDefinitionGdalMetadataNetCdfCf"
           },
           {
-            "$ref": "#/components/schemas/GdalMetaDataListWithType"
+            "$ref": "#/components/schemas/MetaDataDefinitionGdalMetaDataList"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "GdalMetaDataList": "#/components/schemas/GdalMetaDataListWithType",
-            "GdalMetaDataRegular": "#/components/schemas/GdalMetaDataRegularWithType",
-            "GdalMetadataNetCdfCf": "#/components/schemas/GdalMetadataNetCdfCfWithType",
-            "GdalStatic": "#/components/schemas/GdalMetaDataStaticWithType",
-            "MockMetaData": "#/components/schemas/MockMetaDataWithType",
-            "OgrMetaData": "#/components/schemas/OgrMetaDataWithType"
+            "GdalMetaDataList": "#/components/schemas/MetaDataDefinitionGdalMetaDataList",
+            "GdalMetaDataRegular": "#/components/schemas/MetaDataDefinitionGdalMetaDataRegular",
+            "GdalMetadataNetCdfCf": "#/components/schemas/MetaDataDefinitionGdalMetadataNetCdfCf",
+            "GdalStatic": "#/components/schemas/MetaDataDefinitionGdalStatic",
+            "MockMetaData": "#/components/schemas/MetaDataDefinitionMockMetaData",
+            "OgrMetaData": "#/components/schemas/MetaDataDefinitionOgrMetaData"
+          }
+        }
+      },
+      "MetaDataDefinitionGdalMetaDataList": {
+        "type": "object",
+        "required": [
+          "resultDescriptor",
+          "params",
+          "type"
+        ],
+        "properties": {
+          "params": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GdalLoadingInfoTemporalSlice"
+            }
+          },
+          "resultDescriptor": {
+            "$ref": "#/components/schemas/RasterResultDescriptor"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "GdalMetaDataList"
+            ]
+          }
+        }
+      },
+      "MetaDataDefinitionGdalMetaDataRegular": {
+        "type": "object",
+        "required": [
+          "resultDescriptor",
+          "params",
+          "timePlaceholders",
+          "dataTime",
+          "step",
+          "type"
+        ],
+        "properties": {
+          "cacheTtl": {
+            "$ref": "#/components/schemas/CacheTtlSeconds"
+          },
+          "dataTime": {
+            "$ref": "#/components/schemas/TimeInterval"
+          },
+          "params": {
+            "$ref": "#/components/schemas/GdalDatasetParameters"
+          },
+          "resultDescriptor": {
+            "$ref": "#/components/schemas/RasterResultDescriptor"
+          },
+          "step": {
+            "$ref": "#/components/schemas/TimeStep"
+          },
+          "timePlaceholders": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/GdalSourceTimePlaceholder"
+            }
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "GdalMetaDataRegular"
+            ]
+          }
+        }
+      },
+      "MetaDataDefinitionGdalMetadataNetCdfCf": {
+        "type": "object",
+        "description": "Meta data for 4D `NetCDF` CF datasets",
+        "required": [
+          "resultDescriptor",
+          "params",
+          "start",
+          "end",
+          "step",
+          "bandOffset",
+          "type"
+        ],
+        "properties": {
+          "bandOffset": {
+            "type": "integer",
+            "description": "A band offset specifies the first band index to use for the first point in time.\nAll other time steps are added to this offset.",
+            "minimum": 0
+          },
+          "cacheTtl": {
+            "$ref": "#/components/schemas/CacheTtlSeconds"
+          },
+          "end": {
+            "$ref": "#/components/schemas/TimeInstance"
+          },
+          "params": {
+            "$ref": "#/components/schemas/GdalDatasetParameters"
+          },
+          "resultDescriptor": {
+            "$ref": "#/components/schemas/RasterResultDescriptor"
+          },
+          "start": {
+            "$ref": "#/components/schemas/TimeInstance"
+          },
+          "step": {
+            "$ref": "#/components/schemas/TimeStep"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "GdalMetadataNetCdfCf"
+            ]
+          }
+        }
+      },
+      "MetaDataDefinitionGdalStatic": {
+        "type": "object",
+        "required": [
+          "params",
+          "resultDescriptor",
+          "type"
+        ],
+        "properties": {
+          "cacheTtl": {
+            "$ref": "#/components/schemas/CacheTtlSeconds"
+          },
+          "params": {
+            "$ref": "#/components/schemas/GdalDatasetParameters"
+          },
+          "resultDescriptor": {
+            "$ref": "#/components/schemas/RasterResultDescriptor"
+          },
+          "time": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TimeInterval"
+              }
+            ],
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "GdalStatic"
+            ]
+          }
+        }
+      },
+      "MetaDataDefinitionMockMetaData": {
+        "type": "object",
+        "required": [
+          "loadingInfo",
+          "resultDescriptor",
+          "type"
+        ],
+        "properties": {
+          "loadingInfo": {
+            "$ref": "#/components/schemas/MockDatasetDataSourceLoadingInfo"
+          },
+          "resultDescriptor": {
+            "$ref": "#/components/schemas/VectorResultDescriptor"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MockMetaData"
+            ]
+          }
+        }
+      },
+      "MetaDataDefinitionOgrMetaData": {
+        "type": "object",
+        "required": [
+          "loadingInfo",
+          "resultDescriptor",
+          "type"
+        ],
+        "properties": {
+          "loadingInfo": {
+            "$ref": "#/components/schemas/OgrSourceDataset"
+          },
+          "resultDescriptor": {
+            "$ref": "#/components/schemas/VectorResultDescriptor"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "OgrMetaData"
+            ]
           }
         }
       },
@@ -6996,46 +6836,6 @@
           },
           "resultDescriptor": {
             "$ref": "#/components/schemas/VectorResultDescriptor"
-          }
-        }
-      },
-      "MockMetaDataWithType": {
-        "type": "object",
-        "required": [
-          "loadingInfo",
-          "resultDescriptor",
-          "type"
-        ],
-        "properties": {
-          "loadingInfo": {
-            "$ref": "#/components/schemas/MockDatasetDataSourceLoadingInfo"
-          },
-          "resultDescriptor": {
-            "$ref": "#/components/schemas/VectorResultDescriptor"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "MockMetaData"
-            ]
-          }
-        }
-      },
-      "ModelIdResourceId": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/MlModelId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "ModelId"
-            ]
           }
         }
       },
@@ -7097,34 +6897,67 @@
         "default": null,
         "nullable": true
       },
-      "NoneOgrSourceDatasetTimeType": {
+      "NumberParam": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/NumberParamStatic"
+          },
+          {
+            "$ref": "#/components/schemas/NumberParamDerived"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "derived": "#/components/schemas/NumberParamDerived",
+            "static": "#/components/schemas/NumberParamStatic"
+          }
+        }
+      },
+      "NumberParamDerived": {
         "type": "object",
         "required": [
+          "attribute",
+          "factor",
+          "defaultValue",
+          "type"
+        ],
+        "properties": {
+          "attribute": {
+            "type": "string"
+          },
+          "defaultValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "factor": {
+            "type": "number",
+            "format": "double"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "derived"
+            ]
+          }
+        }
+      },
+      "NumberParamStatic": {
+        "type": "object",
+        "required": [
+          "value",
           "type"
         ],
         "properties": {
           "type": {
             "type": "string",
             "enum": [
-              "none"
+              "static"
             ]
-          }
-        }
-      },
-      "NumberParam": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/StaticNumberParam"
           },
-          {
-            "$ref": "#/components/schemas/DerivedNumberWithType"
-          }
-        ],
-        "discriminator": {
-          "propertyName": "type",
-          "mapping": {
-            "derived": "#/components/schemas/DerivedNumberWithType",
-            "static": "#/components/schemas/StaticNumberParam"
+          "value": {
+            "type": "integer",
+            "minimum": 0
           }
         }
       },
@@ -7143,28 +6976,6 @@
           },
           "resultDescriptor": {
             "$ref": "#/components/schemas/VectorResultDescriptor"
-          }
-        }
-      },
-      "OgrMetaDataWithType": {
-        "type": "object",
-        "required": [
-          "loadingInfo",
-          "resultDescriptor",
-          "type"
-        ],
-        "properties": {
-          "loadingInfo": {
-            "$ref": "#/components/schemas/OgrSourceDataset"
-          },
-          "resultDescriptor": {
-            "$ref": "#/components/schemas/VectorResultDescriptor"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "OgrMetaData"
-            ]
           }
         }
       },
@@ -7294,46 +7105,194 @@
       "OgrSourceDatasetTimeType": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/NoneOgrSourceDatasetTimeType"
+            "$ref": "#/components/schemas/OgrSourceDatasetTimeTypeNone"
           },
           {
-            "$ref": "#/components/schemas/StartOgrSourceDatasetTimeType"
+            "$ref": "#/components/schemas/OgrSourceDatasetTimeTypeStart"
           },
           {
-            "$ref": "#/components/schemas/StartEndOgrSourceDatasetTimeType"
+            "$ref": "#/components/schemas/OgrSourceDatasetTimeTypeStartEnd"
           },
           {
-            "$ref": "#/components/schemas/StartDurationOgrSourceDatasetTimeType"
+            "$ref": "#/components/schemas/OgrSourceDatasetTimeTypeStartDuration"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "none": "#/components/schemas/NoneOgrSourceDatasetTimeType",
-            "start": "#/components/schemas/StartOgrSourceDatasetTimeType",
-            "startDuration": "#/components/schemas/StartDurationOgrSourceDatasetTimeType",
-            "startEnd": "#/components/schemas/StartEndOgrSourceDatasetTimeType"
+            "none": "#/components/schemas/OgrSourceDatasetTimeTypeNone",
+            "start": "#/components/schemas/OgrSourceDatasetTimeTypeStart",
+            "startDuration": "#/components/schemas/OgrSourceDatasetTimeTypeStartDuration",
+            "startEnd": "#/components/schemas/OgrSourceDatasetTimeTypeStartEnd"
+          }
+        }
+      },
+      "OgrSourceDatasetTimeTypeNone": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          }
+        }
+      },
+      "OgrSourceDatasetTimeTypeStart": {
+        "type": "object",
+        "required": [
+          "startField",
+          "startFormat",
+          "duration",
+          "type"
+        ],
+        "properties": {
+          "duration": {
+            "$ref": "#/components/schemas/OgrSourceDurationSpec"
+          },
+          "startField": {
+            "type": "string"
+          },
+          "startFormat": {
+            "$ref": "#/components/schemas/OgrSourceTimeFormat"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "start"
+            ]
+          }
+        }
+      },
+      "OgrSourceDatasetTimeTypeStartDuration": {
+        "type": "object",
+        "required": [
+          "startField",
+          "startFormat",
+          "durationField",
+          "type"
+        ],
+        "properties": {
+          "durationField": {
+            "type": "string"
+          },
+          "startField": {
+            "type": "string"
+          },
+          "startFormat": {
+            "$ref": "#/components/schemas/OgrSourceTimeFormat"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "startDuration"
+            ]
+          }
+        }
+      },
+      "OgrSourceDatasetTimeTypeStartEnd": {
+        "type": "object",
+        "required": [
+          "startField",
+          "startFormat",
+          "endField",
+          "endFormat",
+          "type"
+        ],
+        "properties": {
+          "endField": {
+            "type": "string"
+          },
+          "endFormat": {
+            "$ref": "#/components/schemas/OgrSourceTimeFormat"
+          },
+          "startField": {
+            "type": "string"
+          },
+          "startFormat": {
+            "$ref": "#/components/schemas/OgrSourceTimeFormat"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "startEnd"
+            ]
           }
         }
       },
       "OgrSourceDurationSpec": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/InfiniteOgrSourceDurationSpec"
+            "$ref": "#/components/schemas/OgrSourceDurationSpecInfinite"
           },
           {
-            "$ref": "#/components/schemas/ZeroOgrSourceDurationSpec"
+            "$ref": "#/components/schemas/OgrSourceDurationSpecZero"
           },
           {
-            "$ref": "#/components/schemas/TimeStepWithType"
+            "$ref": "#/components/schemas/OgrSourceDurationSpecValue"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "infinite": "#/components/schemas/InfiniteOgrSourceDurationSpec",
-            "value": "#/components/schemas/TimeStepWithType",
-            "zero": "#/components/schemas/ZeroOgrSourceDurationSpec"
+            "infinite": "#/components/schemas/OgrSourceDurationSpecInfinite",
+            "value": "#/components/schemas/OgrSourceDurationSpecValue",
+            "zero": "#/components/schemas/OgrSourceDurationSpecZero"
+          }
+        }
+      },
+      "OgrSourceDurationSpecInfinite": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "infinite"
+            ]
+          }
+        }
+      },
+      "OgrSourceDurationSpecValue": {
+        "type": "object",
+        "required": [
+          "granularity",
+          "step",
+          "type"
+        ],
+        "properties": {
+          "granularity": {
+            "$ref": "#/components/schemas/TimeGranularity"
+          },
+          "step": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "value"
+            ]
+          }
+        }
+      },
+      "OgrSourceDurationSpecZero": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "zero"
+            ]
           }
         }
       },
@@ -7347,21 +7306,71 @@
       "OgrSourceTimeFormat": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/CustomOgrSourceTimeFormat"
+            "$ref": "#/components/schemas/OgrSourceTimeFormatCustom"
           },
           {
-            "$ref": "#/components/schemas/UnixTimeStampOgrSourceTimeFormat"
+            "$ref": "#/components/schemas/OgrSourceTimeFormatUnixTimeStamp"
           },
           {
-            "$ref": "#/components/schemas/AutoOgrSourceTimeFormat"
+            "$ref": "#/components/schemas/OgrSourceTimeFormatAuto"
           }
         ],
         "discriminator": {
           "propertyName": "format",
           "mapping": {
-            "auto": "#/components/schemas/AutoOgrSourceTimeFormat",
-            "custom": "#/components/schemas/CustomOgrSourceTimeFormat",
-            "unixTimeStamp": "#/components/schemas/UnixTimeStampOgrSourceTimeFormat"
+            "auto": "#/components/schemas/OgrSourceTimeFormatAuto",
+            "custom": "#/components/schemas/OgrSourceTimeFormatCustom",
+            "unixTimeStamp": "#/components/schemas/OgrSourceTimeFormatUnixTimeStamp"
+          }
+        }
+      },
+      "OgrSourceTimeFormatAuto": {
+        "type": "object",
+        "required": [
+          "format"
+        ],
+        "properties": {
+          "format": {
+            "type": "string",
+            "enum": [
+              "auto"
+            ]
+          }
+        }
+      },
+      "OgrSourceTimeFormatCustom": {
+        "type": "object",
+        "required": [
+          "customFormat",
+          "format"
+        ],
+        "properties": {
+          "customFormat": {
+            "$ref": "#/components/schemas/DateTimeParseFormat"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "custom"
+            ]
+          }
+        }
+      },
+      "OgrSourceTimeFormatUnixTimeStamp": {
+        "type": "object",
+        "required": [
+          "timestampType",
+          "format"
+        ],
+        "properties": {
+          "format": {
+            "type": "string",
+            "enum": [
+              "unixTimeStamp"
+            ]
+          },
+          "timestampType": {
+            "$ref": "#/components/schemas/UnixTimeStampType"
           }
         }
       },
@@ -7377,32 +7386,6 @@
         "description": "A map from value to color\n\nIt is assumed that is has at least one and at most 256 entries.",
         "additionalProperties": {
           "$ref": "#/components/schemas/RgbaColor"
-        }
-      },
-      "PaletteColorizer": {
-        "type": "object",
-        "required": [
-          "colors",
-          "noDataColor",
-          "defaultColor",
-          "type"
-        ],
-        "properties": {
-          "colors": {
-            "$ref": "#/components/schemas/Palette"
-          },
-          "defaultColor": {
-            "$ref": "#/components/schemas/RgbaColor"
-          },
-          "noDataColor": {
-            "$ref": "#/components/schemas/RgbaColor"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "palette"
-            ]
-          }
         }
       },
       "Permission": {
@@ -7541,41 +7524,6 @@
           }
         }
       },
-      "PlotResultDescriptorWithType": {
-        "type": "object",
-        "description": "A `ResultDescriptor` for plot queries",
-        "required": [
-          "spatialReference",
-          "type"
-        ],
-        "properties": {
-          "bbox": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BoundingBox2D"
-              }
-            ],
-            "nullable": true
-          },
-          "spatialReference": {
-            "type": "string"
-          },
-          "time": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TimeInterval"
-              }
-            ],
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "plot"
-            ]
-          }
-        }
-      },
       "PlotUpdate": {
         "oneOf": [
           {
@@ -7613,40 +7561,6 @@
           }
         }
       },
-      "PointSymbologyWithType": {
-        "type": "object",
-        "required": [
-          "radius",
-          "fillColor",
-          "stroke",
-          "type"
-        ],
-        "properties": {
-          "fillColor": {
-            "$ref": "#/components/schemas/ColorParam"
-          },
-          "radius": {
-            "$ref": "#/components/schemas/NumberParam"
-          },
-          "stroke": {
-            "$ref": "#/components/schemas/StrokeParam"
-          },
-          "text": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TextSymbology"
-              }
-            ],
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "point"
-            ]
-          }
-        }
-      },
       "PolygonSymbology": {
         "type": "object",
         "required": [
@@ -7671,40 +7585,6 @@
               }
             ],
             "nullable": true
-          }
-        }
-      },
-      "PolygonSymbologyWithType": {
-        "type": "object",
-        "required": [
-          "fillColor",
-          "stroke",
-          "autoSimplified",
-          "type"
-        ],
-        "properties": {
-          "autoSimplified": {
-            "type": "boolean"
-          },
-          "fillColor": {
-            "$ref": "#/components/schemas/ColorParam"
-          },
-          "stroke": {
-            "$ref": "#/components/schemas/StrokeParam"
-          },
-          "text": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TextSymbology"
-              }
-            ],
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "polygon"
-            ]
           }
         }
       },
@@ -7815,42 +7695,6 @@
             "items": {
               "type": "string"
             }
-          }
-        }
-      },
-      "ProjectResource": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ProjectId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "project"
-            ]
-          }
-        }
-      },
-      "ProjectResourceId": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ProjectId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "Project"
-            ]
           }
         }
       },
@@ -8045,13 +7889,37 @@
       "RasterColorizer": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/SingleBandRasterColorizer"
+            "$ref": "#/components/schemas/RasterColorizerSingleBand"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "singleBand": "#/components/schemas/SingleBandRasterColorizer"
+            "singleBand": "#/components/schemas/RasterColorizerSingleBand"
+          }
+        }
+      },
+      "RasterColorizerSingleBand": {
+        "type": "object",
+        "required": [
+          "band",
+          "bandColorizer",
+          "type"
+        ],
+        "properties": {
+          "band": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "bandColorizer": {
+            "$ref": "#/components/schemas/Colorizer"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "singleBand"
+            ]
           }
         }
       },
@@ -8229,57 +8097,6 @@
           }
         }
       },
-      "RasterResultDescriptorWithType": {
-        "type": "object",
-        "description": "A `ResultDescriptor` for raster queries",
-        "required": [
-          "dataType",
-          "spatialReference",
-          "bands",
-          "type"
-        ],
-        "properties": {
-          "bands": {
-            "$ref": "#/components/schemas/RasterBandDescriptors"
-          },
-          "bbox": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SpatialPartition2D"
-              }
-            ],
-            "nullable": true
-          },
-          "dataType": {
-            "$ref": "#/components/schemas/RasterDataType"
-          },
-          "resolution": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SpatialResolution"
-              }
-            ],
-            "nullable": true
-          },
-          "spatialReference": {
-            "type": "string"
-          },
-          "time": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TimeInterval"
-              }
-            ],
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "raster"
-            ]
-          }
-        }
-      },
       "RasterStreamWebsocketResultType": {
         "type": "string",
         "description": "The stream result type for `raster_stream_websocket`.",
@@ -8303,80 +8120,219 @@
           }
         }
       },
-      "RasterSymbologyWithType": {
-        "type": "object",
-        "required": [
-          "opacity",
-          "rasterColorizer",
-          "type"
-        ],
-        "properties": {
-          "opacity": {
-            "type": "number",
-            "format": "double"
-          },
-          "rasterColorizer": {
-            "$ref": "#/components/schemas/RasterColorizer"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "raster"
-            ]
-          }
-        }
-      },
       "Resource": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/LayerResource"
+            "$ref": "#/components/schemas/ResourceLayer"
           },
           {
-            "$ref": "#/components/schemas/LayerCollectionResource"
+            "$ref": "#/components/schemas/ResourceLayerCollection"
           },
           {
-            "$ref": "#/components/schemas/ProjectResource"
+            "$ref": "#/components/schemas/ResourceProject"
           },
           {
-            "$ref": "#/components/schemas/DatasetResource"
+            "$ref": "#/components/schemas/ResourceDataset"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "dataset": "#/components/schemas/DatasetResource",
-            "layer": "#/components/schemas/LayerResource",
-            "layerCollection": "#/components/schemas/LayerCollectionResource",
-            "project": "#/components/schemas/ProjectResource"
+            "dataset": "#/components/schemas/ResourceDataset",
+            "layer": "#/components/schemas/ResourceLayer",
+            "layerCollection": "#/components/schemas/ResourceLayerCollection",
+            "project": "#/components/schemas/ResourceProject"
+          }
+        }
+      },
+      "ResourceDataset": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/DatasetId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "dataset"
+            ]
           }
         }
       },
       "ResourceId": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/LayerResourceId"
+            "$ref": "#/components/schemas/ResourceIdLayer"
           },
           {
-            "$ref": "#/components/schemas/LayerCollectionResourceId"
+            "$ref": "#/components/schemas/ResourceIdLayerCollection"
           },
           {
-            "$ref": "#/components/schemas/ProjectResourceId"
+            "$ref": "#/components/schemas/ResourceIdProject"
           },
           {
-            "$ref": "#/components/schemas/DatasetIdResourceId"
+            "$ref": "#/components/schemas/ResourceIdDatasetId"
           },
           {
-            "$ref": "#/components/schemas/ModelIdResourceId"
+            "$ref": "#/components/schemas/ResourceIdModelId"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "DatasetId": "#/components/schemas/DatasetIdResourceId",
-            "Layer": "#/components/schemas/LayerResourceId",
-            "LayerCollection": "#/components/schemas/LayerCollectionResourceId",
-            "ModelId": "#/components/schemas/ModelIdResourceId",
-            "Project": "#/components/schemas/ProjectResourceId"
+            "DatasetId": "#/components/schemas/ResourceIdDatasetId",
+            "Layer": "#/components/schemas/ResourceIdLayer",
+            "LayerCollection": "#/components/schemas/ResourceIdLayerCollection",
+            "ModelId": "#/components/schemas/ResourceIdModelId",
+            "Project": "#/components/schemas/ResourceIdProject"
+          }
+        }
+      },
+      "ResourceIdDatasetId": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/DatasetId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "DatasetId"
+            ]
+          }
+        }
+      },
+      "ResourceIdLayer": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/LayerId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Layer"
+            ]
+          }
+        }
+      },
+      "ResourceIdLayerCollection": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/LayerCollectionId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "LayerCollection"
+            ]
+          }
+        }
+      },
+      "ResourceIdModelId": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MlModelId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ModelId"
+            ]
+          }
+        }
+      },
+      "ResourceIdProject": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ProjectId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Project"
+            ]
+          }
+        }
+      },
+      "ResourceLayer": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/LayerId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "layer"
+            ]
+          }
+        }
+      },
+      "ResourceLayerCollection": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/LayerCollectionId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "layerCollection"
+            ]
+          }
+        }
+      },
+      "ResourceProject": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ProjectId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "project"
+            ]
           }
         }
       },
@@ -8387,20 +8343,6 @@
         },
         "maxItems": 4,
         "minItems": 4
-      },
-      "RgbaColorizer": {
-        "type": "object",
-        "required": [
-          "type"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "rgba"
-            ]
-          }
-        }
       },
       "Role": {
         "type": "object",
@@ -8435,40 +8377,6 @@
       "RoleId": {
         "type": "string",
         "format": "uuid"
-      },
-      "RunningTaskStatus": {
-        "type": "object",
-        "required": [
-          "status",
-          "taskType",
-          "pctComplete",
-          "estimatedTimeRemaining",
-          "timeStarted"
-        ],
-        "properties": {
-          "description": {
-            "type": "string"
-          },
-          "estimatedTimeRemaining": {
-            "type": "string"
-          },
-          "info": {},
-          "pctComplete": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "running"
-            ]
-          },
-          "taskType": {
-            "type": "string"
-          },
-          "timeStarted": {
-            "type": "string"
-          }
-        }
       },
       "STRectangle": {
         "type": "object",
@@ -8560,30 +8468,6 @@
         "type": "string",
         "format": "uuid"
       },
-      "SingleBandRasterColorizer": {
-        "type": "object",
-        "required": [
-          "band",
-          "bandColorizer",
-          "type"
-        ],
-        "properties": {
-          "band": {
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0
-          },
-          "bandColorizer": {
-            "$ref": "#/components/schemas/Colorizer"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "singleBand"
-            ]
-          }
-        }
-      },
       "SpatialPartition2D": {
         "type": "object",
         "description": "A partition of space that include the upper left but excludes the lower right coordinate",
@@ -8668,125 +8552,6 @@
           }
         }
       },
-      "StartDurationOgrSourceDatasetTimeType": {
-        "type": "object",
-        "required": [
-          "startField",
-          "startFormat",
-          "durationField",
-          "type"
-        ],
-        "properties": {
-          "durationField": {
-            "type": "string"
-          },
-          "startField": {
-            "type": "string"
-          },
-          "startFormat": {
-            "$ref": "#/components/schemas/OgrSourceTimeFormat"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "startDuration"
-            ]
-          }
-        }
-      },
-      "StartEndOgrSourceDatasetTimeType": {
-        "type": "object",
-        "required": [
-          "startField",
-          "startFormat",
-          "endField",
-          "endFormat",
-          "type"
-        ],
-        "properties": {
-          "endField": {
-            "type": "string"
-          },
-          "endFormat": {
-            "$ref": "#/components/schemas/OgrSourceTimeFormat"
-          },
-          "startField": {
-            "type": "string"
-          },
-          "startFormat": {
-            "$ref": "#/components/schemas/OgrSourceTimeFormat"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "startEnd"
-            ]
-          }
-        }
-      },
-      "StartOgrSourceDatasetTimeType": {
-        "type": "object",
-        "required": [
-          "startField",
-          "startFormat",
-          "duration",
-          "type"
-        ],
-        "properties": {
-          "duration": {
-            "$ref": "#/components/schemas/OgrSourceDurationSpec"
-          },
-          "startField": {
-            "type": "string"
-          },
-          "startFormat": {
-            "$ref": "#/components/schemas/OgrSourceTimeFormat"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "start"
-            ]
-          }
-        }
-      },
-      "StaticColorParam": {
-        "type": "object",
-        "required": [
-          "color",
-          "type"
-        ],
-        "properties": {
-          "color": {
-            "$ref": "#/components/schemas/RgbaColor"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "static"
-            ]
-          }
-        }
-      },
-      "StaticNumberParam": {
-        "type": "object",
-        "required": [
-          "value",
-          "type"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "static"
-            ]
-          },
-          "value": {
-            "type": "integer",
-            "minimum": 0
-          }
-        }
-      },
       "StrokeParam": {
         "type": "object",
         "required": [
@@ -8805,25 +8570,146 @@
       "Symbology": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/RasterSymbologyWithType"
+            "$ref": "#/components/schemas/SymbologyRaster"
           },
           {
-            "$ref": "#/components/schemas/PointSymbologyWithType"
+            "$ref": "#/components/schemas/SymbologyPoint"
           },
           {
-            "$ref": "#/components/schemas/LineSymbologyWithType"
+            "$ref": "#/components/schemas/SymbologyLine"
           },
           {
-            "$ref": "#/components/schemas/PolygonSymbologyWithType"
+            "$ref": "#/components/schemas/SymbologyPolygon"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "line": "#/components/schemas/LineSymbologyWithType",
-            "point": "#/components/schemas/PointSymbologyWithType",
-            "polygon": "#/components/schemas/PolygonSymbologyWithType",
-            "raster": "#/components/schemas/RasterSymbologyWithType"
+            "line": "#/components/schemas/SymbologyLine",
+            "point": "#/components/schemas/SymbologyPoint",
+            "polygon": "#/components/schemas/SymbologyPolygon",
+            "raster": "#/components/schemas/SymbologyRaster"
+          }
+        }
+      },
+      "SymbologyLine": {
+        "type": "object",
+        "required": [
+          "stroke",
+          "autoSimplified",
+          "type"
+        ],
+        "properties": {
+          "autoSimplified": {
+            "type": "boolean"
+          },
+          "stroke": {
+            "$ref": "#/components/schemas/StrokeParam"
+          },
+          "text": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TextSymbology"
+              }
+            ],
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "line"
+            ]
+          }
+        }
+      },
+      "SymbologyPoint": {
+        "type": "object",
+        "required": [
+          "radius",
+          "fillColor",
+          "stroke",
+          "type"
+        ],
+        "properties": {
+          "fillColor": {
+            "$ref": "#/components/schemas/ColorParam"
+          },
+          "radius": {
+            "$ref": "#/components/schemas/NumberParam"
+          },
+          "stroke": {
+            "$ref": "#/components/schemas/StrokeParam"
+          },
+          "text": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TextSymbology"
+              }
+            ],
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "point"
+            ]
+          }
+        }
+      },
+      "SymbologyPolygon": {
+        "type": "object",
+        "required": [
+          "fillColor",
+          "stroke",
+          "autoSimplified",
+          "type"
+        ],
+        "properties": {
+          "autoSimplified": {
+            "type": "boolean"
+          },
+          "fillColor": {
+            "$ref": "#/components/schemas/ColorParam"
+          },
+          "stroke": {
+            "$ref": "#/components/schemas/StrokeParam"
+          },
+          "text": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TextSymbology"
+              }
+            ],
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "polygon"
+            ]
+          }
+        }
+      },
+      "SymbologyRaster": {
+        "type": "object",
+        "required": [
+          "opacity",
+          "rasterColorizer",
+          "type"
+        ],
+        "properties": {
+          "opacity": {
+            "type": "number",
+            "format": "double"
+          },
+          "rasterColorizer": {
+            "$ref": "#/components/schemas/RasterColorizer"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "raster"
+            ]
           }
         }
       },
@@ -8886,25 +8772,123 @@
       "TaskStatus": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/RunningTaskStatus"
+            "$ref": "#/components/schemas/TaskStatusRunning"
           },
           {
-            "$ref": "#/components/schemas/CompletedTaskStatus"
+            "$ref": "#/components/schemas/TaskStatusCompleted"
           },
           {
-            "$ref": "#/components/schemas/AbortedTaskStatus"
+            "$ref": "#/components/schemas/TaskStatusAborted"
           },
           {
-            "$ref": "#/components/schemas/FailedTaskStatus"
+            "$ref": "#/components/schemas/TaskStatusFailed"
           }
         ],
         "discriminator": {
           "propertyName": "status",
           "mapping": {
-            "aborted": "#/components/schemas/AbortedTaskStatus",
-            "completed": "#/components/schemas/CompletedTaskStatus",
-            "failed": "#/components/schemas/FailedTaskStatus",
-            "running": "#/components/schemas/RunningTaskStatus"
+            "aborted": "#/components/schemas/TaskStatusAborted",
+            "completed": "#/components/schemas/TaskStatusCompleted",
+            "failed": "#/components/schemas/TaskStatusFailed",
+            "running": "#/components/schemas/TaskStatusRunning"
+          }
+        }
+      },
+      "TaskStatusAborted": {
+        "type": "object",
+        "required": [
+          "status",
+          "cleanUp"
+        ],
+        "properties": {
+          "cleanUp": {},
+          "status": {
+            "type": "string",
+            "enum": [
+              "aborted"
+            ]
+          }
+        }
+      },
+      "TaskStatusCompleted": {
+        "type": "object",
+        "required": [
+          "status",
+          "taskType",
+          "timeTotal",
+          "timeStarted"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "info": {},
+          "status": {
+            "type": "string",
+            "enum": [
+              "completed"
+            ]
+          },
+          "taskType": {
+            "type": "string"
+          },
+          "timeStarted": {
+            "type": "string"
+          },
+          "timeTotal": {
+            "type": "string"
+          }
+        }
+      },
+      "TaskStatusFailed": {
+        "type": "object",
+        "required": [
+          "status",
+          "error",
+          "cleanUp"
+        ],
+        "properties": {
+          "cleanUp": {},
+          "error": {},
+          "status": {
+            "type": "string",
+            "enum": [
+              "failed"
+            ]
+          }
+        }
+      },
+      "TaskStatusRunning": {
+        "type": "object",
+        "required": [
+          "status",
+          "taskType",
+          "pctComplete",
+          "estimatedTimeRemaining",
+          "timeStarted"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "estimatedTimeRemaining": {
+            "type": "string"
+          },
+          "info": {},
+          "pctComplete": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running"
+            ]
+          },
+          "taskType": {
+            "type": "string"
+          },
+          "timeStarted": {
+            "type": "string"
           }
         }
       },
@@ -8999,30 +8983,6 @@
             "type": "integer",
             "format": "int32",
             "minimum": 0
-          }
-        }
-      },
-      "TimeStepWithType": {
-        "type": "object",
-        "required": [
-          "granularity",
-          "step",
-          "type"
-        ],
-        "properties": {
-          "granularity": {
-            "$ref": "#/components/schemas/TimeGranularity"
-          },
-          "step": {
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "value"
-            ]
           }
         }
       },
@@ -9130,53 +9090,152 @@
       "TypedResultDescriptor": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/PlotResultDescriptorWithType"
+            "$ref": "#/components/schemas/TypedResultDescriptorPlot"
           },
           {
-            "$ref": "#/components/schemas/RasterResultDescriptorWithType"
+            "$ref": "#/components/schemas/TypedResultDescriptorRaster"
           },
           {
-            "$ref": "#/components/schemas/VectorResultDescriptorWithType"
+            "$ref": "#/components/schemas/TypedResultDescriptorVector"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "plot": "#/components/schemas/PlotResultDescriptorWithType",
-            "raster": "#/components/schemas/RasterResultDescriptorWithType",
-            "vector": "#/components/schemas/VectorResultDescriptorWithType"
+            "plot": "#/components/schemas/TypedResultDescriptorPlot",
+            "raster": "#/components/schemas/TypedResultDescriptorRaster",
+            "vector": "#/components/schemas/TypedResultDescriptorVector"
           }
         }
       },
-      "UnitlessMeasurement": {
+      "TypedResultDescriptorPlot": {
         "type": "object",
+        "description": "A `ResultDescriptor` for plot queries",
         "required": [
+          "spatialReference",
           "type"
         ],
         "properties": {
+          "bbox": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BoundingBox2D"
+              }
+            ],
+            "nullable": true
+          },
+          "spatialReference": {
+            "type": "string"
+          },
+          "time": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TimeInterval"
+              }
+            ],
+            "nullable": true
+          },
           "type": {
             "type": "string",
             "enum": [
-              "unitless"
+              "plot"
             ]
           }
         }
       },
-      "UnixTimeStampOgrSourceTimeFormat": {
+      "TypedResultDescriptorRaster": {
         "type": "object",
+        "description": "A `ResultDescriptor` for raster queries",
         "required": [
-          "timestampType",
-          "format"
+          "dataType",
+          "spatialReference",
+          "bands",
+          "type"
         ],
         "properties": {
-          "format": {
+          "bands": {
+            "$ref": "#/components/schemas/RasterBandDescriptors"
+          },
+          "bbox": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpatialPartition2D"
+              }
+            ],
+            "nullable": true
+          },
+          "dataType": {
+            "$ref": "#/components/schemas/RasterDataType"
+          },
+          "resolution": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SpatialResolution"
+              }
+            ],
+            "nullable": true
+          },
+          "spatialReference": {
+            "type": "string"
+          },
+          "time": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TimeInterval"
+              }
+            ],
+            "nullable": true
+          },
+          "type": {
             "type": "string",
             "enum": [
-              "unixTimeStamp"
+              "raster"
             ]
+          }
+        }
+      },
+      "TypedResultDescriptorVector": {
+        "type": "object",
+        "required": [
+          "dataType",
+          "spatialReference",
+          "columns",
+          "type"
+        ],
+        "properties": {
+          "bbox": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BoundingBox2D"
+              }
+            ],
+            "nullable": true
           },
-          "timestampType": {
-            "$ref": "#/components/schemas/UnixTimeStampType"
+          "columns": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/VectorColumnInfo"
+            }
+          },
+          "dataType": {
+            "$ref": "#/components/schemas/VectorDataType"
+          },
+          "spatialReference": {
+            "type": "string"
+          },
+          "time": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TimeInterval"
+              }
+            ],
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "vector"
+            ]
           }
         }
       },
@@ -9524,51 +9583,6 @@
           }
         }
       },
-      "VectorResultDescriptorWithType": {
-        "type": "object",
-        "required": [
-          "dataType",
-          "spatialReference",
-          "columns",
-          "type"
-        ],
-        "properties": {
-          "bbox": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BoundingBox2D"
-              }
-            ],
-            "nullable": true
-          },
-          "columns": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/VectorColumnInfo"
-            }
-          },
-          "dataType": {
-            "$ref": "#/components/schemas/VectorDataType"
-          },
-          "spatialReference": {
-            "type": "string"
-          },
-          "time": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TimeInterval"
-              }
-            ],
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "vector"
-            ]
-          }
-        }
-      },
       "Volume": {
         "type": "object",
         "required": [
@@ -9676,20 +9690,6 @@
           },
           "plotType": {
             "type": "string"
-          }
-        }
-      },
-      "ZeroOgrSourceDurationSpec": {
-        "type": "object",
-        "required": [
-          "type"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "zero"
-            ]
           }
         }
       }

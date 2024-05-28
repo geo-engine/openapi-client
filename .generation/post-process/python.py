@@ -31,7 +31,7 @@ def api_client_py(file_contents: List[str]) -> Generator[str, None, None]:
                 # Note: fixed handling of empty responses
             '''), 2 * INDENT + HALF_INDENT)
 
-        elif dedented_line.startswith('if not async_req:'):
+        elif dedented_line.startswith('config = self.configuration'):
             line = indent(dedent('''\
             # Note: remove query string in path part for ogc endpoints
             resource_path = resource_path.partition("?")[0]

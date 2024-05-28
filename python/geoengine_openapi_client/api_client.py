@@ -172,6 +172,9 @@ class ApiClient:
             body, post_params, files)
         """
 
+        # Note: remove query string in path part for ogc endpoints
+        resource_path = resource_path.partition("?")[0]
+
         config = self.configuration
 
         # header parameters

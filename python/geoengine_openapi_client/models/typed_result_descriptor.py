@@ -22,7 +22,7 @@ from geoengine_openapi_client.models.typed_result_descriptor_plot import TypedRe
 from geoengine_openapi_client.models.typed_result_descriptor_raster import TypedResultDescriptorRaster
 from geoengine_openapi_client.models.typed_result_descriptor_vector import TypedResultDescriptorVector
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 TYPEDRESULTDESCRIPTOR_ONE_OF_SCHEMAS = ["TypedResultDescriptorPlot", "TypedResultDescriptorRaster", "TypedResultDescriptorVector"]
@@ -38,7 +38,7 @@ class TypedResultDescriptor(BaseModel):
     # data type: TypedResultDescriptorVector
     oneof_schema_3_validator: Optional[TypedResultDescriptorVector] = None
     actual_instance: Optional[Union[TypedResultDescriptorPlot, TypedResultDescriptorRaster, TypedResultDescriptorVector]] = None
-    one_of_schemas: Set[str] = { "TypedResultDescriptorPlot", "TypedResultDescriptorRaster", "TypedResultDescriptorVector" }
+    one_of_schemas: List[str] = Field(default=Literal["TypedResultDescriptorPlot", "TypedResultDescriptorRaster", "TypedResultDescriptorVector"])
 
     model_config = ConfigDict(
         validate_assignment=True,

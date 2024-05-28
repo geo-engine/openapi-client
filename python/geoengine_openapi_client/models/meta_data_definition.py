@@ -25,7 +25,7 @@ from geoengine_openapi_client.models.meta_data_definition_gdal_static import Met
 from geoengine_openapi_client.models.meta_data_definition_mock_meta_data import MetaDataDefinitionMockMetaData
 from geoengine_openapi_client.models.meta_data_definition_ogr_meta_data import MetaDataDefinitionOgrMetaData
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 METADATADEFINITION_ONE_OF_SCHEMAS = ["MetaDataDefinitionGdalMetaDataList", "MetaDataDefinitionGdalMetaDataRegular", "MetaDataDefinitionGdalMetadataNetCdfCf", "MetaDataDefinitionGdalStatic", "MetaDataDefinitionMockMetaData", "MetaDataDefinitionOgrMetaData"]
@@ -47,7 +47,7 @@ class MetaDataDefinition(BaseModel):
     # data type: MetaDataDefinitionGdalMetaDataList
     oneof_schema_6_validator: Optional[MetaDataDefinitionGdalMetaDataList] = None
     actual_instance: Optional[Union[MetaDataDefinitionGdalMetaDataList, MetaDataDefinitionGdalMetaDataRegular, MetaDataDefinitionGdalMetadataNetCdfCf, MetaDataDefinitionGdalStatic, MetaDataDefinitionMockMetaData, MetaDataDefinitionOgrMetaData]] = None
-    one_of_schemas: Set[str] = { "MetaDataDefinitionGdalMetaDataList", "MetaDataDefinitionGdalMetaDataRegular", "MetaDataDefinitionGdalMetadataNetCdfCf", "MetaDataDefinitionGdalStatic", "MetaDataDefinitionMockMetaData", "MetaDataDefinitionOgrMetaData" }
+    one_of_schemas: List[str] = Field(default=Literal["MetaDataDefinitionGdalMetaDataList", "MetaDataDefinitionGdalMetaDataRegular", "MetaDataDefinitionGdalMetadataNetCdfCf", "MetaDataDefinitionGdalStatic", "MetaDataDefinitionMockMetaData", "MetaDataDefinitionOgrMetaData"])
 
     model_config = ConfigDict(
         validate_assignment=True,

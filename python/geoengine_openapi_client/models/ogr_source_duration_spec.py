@@ -22,7 +22,7 @@ from geoengine_openapi_client.models.ogr_source_duration_spec_infinite import Og
 from geoengine_openapi_client.models.ogr_source_duration_spec_value import OgrSourceDurationSpecValue
 from geoengine_openapi_client.models.ogr_source_duration_spec_zero import OgrSourceDurationSpecZero
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 OGRSOURCEDURATIONSPEC_ONE_OF_SCHEMAS = ["OgrSourceDurationSpecInfinite", "OgrSourceDurationSpecValue", "OgrSourceDurationSpecZero"]
@@ -38,7 +38,7 @@ class OgrSourceDurationSpec(BaseModel):
     # data type: OgrSourceDurationSpecValue
     oneof_schema_3_validator: Optional[OgrSourceDurationSpecValue] = None
     actual_instance: Optional[Union[OgrSourceDurationSpecInfinite, OgrSourceDurationSpecValue, OgrSourceDurationSpecZero]] = None
-    one_of_schemas: Set[str] = { "OgrSourceDurationSpecInfinite", "OgrSourceDurationSpecValue", "OgrSourceDurationSpecZero" }
+    one_of_schemas: List[str] = Field(default=Literal["OgrSourceDurationSpecInfinite", "OgrSourceDurationSpecValue", "OgrSourceDurationSpecZero"])
 
     model_config = ConfigDict(
         validate_assignment=True,

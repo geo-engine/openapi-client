@@ -22,7 +22,7 @@ from geoengine_openapi_client.models.ogr_source_time_format_auto import OgrSourc
 from geoengine_openapi_client.models.ogr_source_time_format_custom import OgrSourceTimeFormatCustom
 from geoengine_openapi_client.models.ogr_source_time_format_unix_time_stamp import OgrSourceTimeFormatUnixTimeStamp
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 OGRSOURCETIMEFORMAT_ONE_OF_SCHEMAS = ["OgrSourceTimeFormatAuto", "OgrSourceTimeFormatCustom", "OgrSourceTimeFormatUnixTimeStamp"]
@@ -38,7 +38,7 @@ class OgrSourceTimeFormat(BaseModel):
     # data type: OgrSourceTimeFormatAuto
     oneof_schema_3_validator: Optional[OgrSourceTimeFormatAuto] = None
     actual_instance: Optional[Union[OgrSourceTimeFormatAuto, OgrSourceTimeFormatCustom, OgrSourceTimeFormatUnixTimeStamp]] = None
-    one_of_schemas: Set[str] = { "OgrSourceTimeFormatAuto", "OgrSourceTimeFormatCustom", "OgrSourceTimeFormatUnixTimeStamp" }
+    one_of_schemas: List[str] = Field(default=Literal["OgrSourceTimeFormatAuto", "OgrSourceTimeFormatCustom", "OgrSourceTimeFormatUnixTimeStamp"])
 
     model_config = ConfigDict(
         validate_assignment=True,

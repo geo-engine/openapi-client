@@ -21,7 +21,7 @@ from typing import Any, List, Optional
 from geoengine_openapi_client.models.data_path_one_of import DataPathOneOf
 from geoengine_openapi_client.models.data_path_one_of1 import DataPathOneOf1
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 DATAPATH_ONE_OF_SCHEMAS = ["DataPathOneOf", "DataPathOneOf1"]
@@ -35,7 +35,7 @@ class DataPath(BaseModel):
     # data type: DataPathOneOf1
     oneof_schema_2_validator: Optional[DataPathOneOf1] = None
     actual_instance: Optional[Union[DataPathOneOf, DataPathOneOf1]] = None
-    one_of_schemas: Set[str] = { "DataPathOneOf", "DataPathOneOf1" }
+    one_of_schemas: List[str] = Field(default=Literal["DataPathOneOf", "DataPathOneOf1"])
 
     model_config = ConfigDict(
         validate_assignment=True,

@@ -21,7 +21,7 @@ from typing import Any, List, Optional
 from geoengine_openapi_client.models.number_param_derived import NumberParamDerived
 from geoengine_openapi_client.models.number_param_static import NumberParamStatic
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 NUMBERPARAM_ONE_OF_SCHEMAS = ["NumberParamDerived", "NumberParamStatic"]
@@ -35,7 +35,7 @@ class NumberParam(BaseModel):
     # data type: NumberParamDerived
     oneof_schema_2_validator: Optional[NumberParamDerived] = None
     actual_instance: Optional[Union[NumberParamDerived, NumberParamStatic]] = None
-    one_of_schemas: Set[str] = { "NumberParamDerived", "NumberParamStatic" }
+    one_of_schemas: List[str] = Field(default=Literal["NumberParamDerived", "NumberParamStatic"])
 
     model_config = ConfigDict(
         validate_assignment=True,

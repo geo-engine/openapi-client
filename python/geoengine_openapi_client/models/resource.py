@@ -23,7 +23,7 @@ from geoengine_openapi_client.models.resource_layer import ResourceLayer
 from geoengine_openapi_client.models.resource_layer_collection import ResourceLayerCollection
 from geoengine_openapi_client.models.resource_project import ResourceProject
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 RESOURCE_ONE_OF_SCHEMAS = ["ResourceDataset", "ResourceLayer", "ResourceLayerCollection", "ResourceProject"]
@@ -41,7 +41,7 @@ class Resource(BaseModel):
     # data type: ResourceDataset
     oneof_schema_4_validator: Optional[ResourceDataset] = None
     actual_instance: Optional[Union[ResourceDataset, ResourceLayer, ResourceLayerCollection, ResourceProject]] = None
-    one_of_schemas: Set[str] = { "ResourceDataset", "ResourceLayer", "ResourceLayerCollection", "ResourceProject" }
+    one_of_schemas: List[str] = Field(default=Literal["ResourceDataset", "ResourceLayer", "ResourceLayerCollection", "ResourceProject"])
 
     model_config = ConfigDict(
         validate_assignment=True,

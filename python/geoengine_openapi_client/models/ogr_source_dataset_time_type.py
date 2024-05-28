@@ -23,7 +23,7 @@ from geoengine_openapi_client.models.ogr_source_dataset_time_type_start import O
 from geoengine_openapi_client.models.ogr_source_dataset_time_type_start_duration import OgrSourceDatasetTimeTypeStartDuration
 from geoengine_openapi_client.models.ogr_source_dataset_time_type_start_end import OgrSourceDatasetTimeTypeStartEnd
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 OGRSOURCEDATASETTIMETYPE_ONE_OF_SCHEMAS = ["OgrSourceDatasetTimeTypeNone", "OgrSourceDatasetTimeTypeStart", "OgrSourceDatasetTimeTypeStartDuration", "OgrSourceDatasetTimeTypeStartEnd"]
@@ -41,7 +41,7 @@ class OgrSourceDatasetTimeType(BaseModel):
     # data type: OgrSourceDatasetTimeTypeStartDuration
     oneof_schema_4_validator: Optional[OgrSourceDatasetTimeTypeStartDuration] = None
     actual_instance: Optional[Union[OgrSourceDatasetTimeTypeNone, OgrSourceDatasetTimeTypeStart, OgrSourceDatasetTimeTypeStartDuration, OgrSourceDatasetTimeTypeStartEnd]] = None
-    one_of_schemas: Set[str] = { "OgrSourceDatasetTimeTypeNone", "OgrSourceDatasetTimeTypeStart", "OgrSourceDatasetTimeTypeStartDuration", "OgrSourceDatasetTimeTypeStartEnd" }
+    one_of_schemas: List[str] = Field(default=Literal["OgrSourceDatasetTimeTypeNone", "OgrSourceDatasetTimeTypeStart", "OgrSourceDatasetTimeTypeStartDuration", "OgrSourceDatasetTimeTypeStartEnd"])
 
     model_config = ConfigDict(
         validate_assignment=True,

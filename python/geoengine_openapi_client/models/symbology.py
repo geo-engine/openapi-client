@@ -23,7 +23,7 @@ from geoengine_openapi_client.models.symbology_point import SymbologyPoint
 from geoengine_openapi_client.models.symbology_polygon import SymbologyPolygon
 from geoengine_openapi_client.models.symbology_raster import SymbologyRaster
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 SYMBOLOGY_ONE_OF_SCHEMAS = ["SymbologyLine", "SymbologyPoint", "SymbologyPolygon", "SymbologyRaster"]
@@ -41,7 +41,7 @@ class Symbology(BaseModel):
     # data type: SymbologyPolygon
     oneof_schema_4_validator: Optional[SymbologyPolygon] = None
     actual_instance: Optional[Union[SymbologyLine, SymbologyPoint, SymbologyPolygon, SymbologyRaster]] = None
-    one_of_schemas: Set[str] = { "SymbologyLine", "SymbologyPoint", "SymbologyPolygon", "SymbologyRaster" }
+    one_of_schemas: List[str] = Field(default=Literal["SymbologyLine", "SymbologyPoint", "SymbologyPolygon", "SymbologyRaster"])
 
     model_config = ConfigDict(
         validate_assignment=True,

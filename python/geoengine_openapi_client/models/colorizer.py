@@ -23,7 +23,7 @@ from geoengine_openapi_client.models.colorizer_logarithmic_gradient import Color
 from geoengine_openapi_client.models.colorizer_palette import ColorizerPalette
 from geoengine_openapi_client.models.colorizer_rgba import ColorizerRgba
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 COLORIZER_ONE_OF_SCHEMAS = ["ColorizerLinearGradient", "ColorizerLogarithmicGradient", "ColorizerPalette", "ColorizerRgba"]
@@ -41,7 +41,7 @@ class Colorizer(BaseModel):
     # data type: ColorizerRgba
     oneof_schema_4_validator: Optional[ColorizerRgba] = None
     actual_instance: Optional[Union[ColorizerLinearGradient, ColorizerLogarithmicGradient, ColorizerPalette, ColorizerRgba]] = None
-    one_of_schemas: Set[str] = { "ColorizerLinearGradient", "ColorizerLogarithmicGradient", "ColorizerPalette", "ColorizerRgba" }
+    one_of_schemas: List[str] = Field(default=Literal["ColorizerLinearGradient", "ColorizerLogarithmicGradient", "ColorizerPalette", "ColorizerRgba"])
 
     model_config = ConfigDict(
         validate_assignment=True,

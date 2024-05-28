@@ -21,7 +21,7 @@ from typing import Any, List, Optional
 from geoengine_openapi_client.models.data_id_external import DataIdExternal
 from geoengine_openapi_client.models.data_id_internal import DataIdInternal
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 DATAID_ONE_OF_SCHEMAS = ["DataIdExternal", "DataIdInternal"]
@@ -35,7 +35,7 @@ class DataId(BaseModel):
     # data type: DataIdExternal
     oneof_schema_2_validator: Optional[DataIdExternal] = None
     actual_instance: Optional[Union[DataIdExternal, DataIdInternal]] = None
-    one_of_schemas: Set[str] = { "DataIdExternal", "DataIdInternal" }
+    one_of_schemas: List[str] = Field(default=Literal["DataIdExternal", "DataIdInternal"])
 
     model_config = ConfigDict(
         validate_assignment=True,

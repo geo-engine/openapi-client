@@ -23,7 +23,7 @@ from geoengine_openapi_client.models.task_status_completed import TaskStatusComp
 from geoengine_openapi_client.models.task_status_failed import TaskStatusFailed
 from geoengine_openapi_client.models.task_status_running import TaskStatusRunning
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 TASKSTATUS_ONE_OF_SCHEMAS = ["TaskStatusAborted", "TaskStatusCompleted", "TaskStatusFailed", "TaskStatusRunning"]
@@ -41,7 +41,7 @@ class TaskStatus(BaseModel):
     # data type: TaskStatusFailed
     oneof_schema_4_validator: Optional[TaskStatusFailed] = None
     actual_instance: Optional[Union[TaskStatusAborted, TaskStatusCompleted, TaskStatusFailed, TaskStatusRunning]] = None
-    one_of_schemas: Set[str] = { "TaskStatusAborted", "TaskStatusCompleted", "TaskStatusFailed", "TaskStatusRunning" }
+    one_of_schemas: List[str] = Field(default=Literal["TaskStatusAborted", "TaskStatusCompleted", "TaskStatusFailed", "TaskStatusRunning"])
 
     model_config = ConfigDict(
         validate_assignment=True,

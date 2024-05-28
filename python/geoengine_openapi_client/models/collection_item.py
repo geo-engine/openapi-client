@@ -21,7 +21,7 @@ from typing import Any, List, Optional
 from geoengine_openapi_client.models.collection_item_collection import CollectionItemCollection
 from geoengine_openapi_client.models.collection_item_layer import CollectionItemLayer
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 COLLECTIONITEM_ONE_OF_SCHEMAS = ["CollectionItemCollection", "CollectionItemLayer"]
@@ -35,7 +35,7 @@ class CollectionItem(BaseModel):
     # data type: CollectionItemLayer
     oneof_schema_2_validator: Optional[CollectionItemLayer] = None
     actual_instance: Optional[Union[CollectionItemCollection, CollectionItemLayer]] = None
-    one_of_schemas: Set[str] = { "CollectionItemCollection", "CollectionItemLayer" }
+    one_of_schemas: List[str] = Field(default=Literal["CollectionItemCollection", "CollectionItemLayer"])
 
     model_config = ConfigDict(
         validate_assignment=True,

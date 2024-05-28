@@ -23,7 +23,7 @@ from geoengine_openapi_client.models.typed_geometry_one_of1 import TypedGeometry
 from geoengine_openapi_client.models.typed_geometry_one_of2 import TypedGeometryOneOf2
 from geoengine_openapi_client.models.typed_geometry_one_of3 import TypedGeometryOneOf3
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 TYPEDGEOMETRY_ONE_OF_SCHEMAS = ["TypedGeometryOneOf", "TypedGeometryOneOf1", "TypedGeometryOneOf2", "TypedGeometryOneOf3"]
@@ -41,7 +41,7 @@ class TypedGeometry(BaseModel):
     # data type: TypedGeometryOneOf3
     oneof_schema_4_validator: Optional[TypedGeometryOneOf3] = None
     actual_instance: Optional[Union[TypedGeometryOneOf, TypedGeometryOneOf1, TypedGeometryOneOf2, TypedGeometryOneOf3]] = None
-    one_of_schemas: Set[str] = { "TypedGeometryOneOf", "TypedGeometryOneOf1", "TypedGeometryOneOf2", "TypedGeometryOneOf3" }
+    one_of_schemas: List[str] = Field(default=Literal["TypedGeometryOneOf", "TypedGeometryOneOf1", "TypedGeometryOneOf2", "TypedGeometryOneOf3"])
 
     model_config = ConfigDict(
         validate_assignment=True,

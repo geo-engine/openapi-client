@@ -20,7 +20,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, f
 from typing import Any, List, Optional
 from geoengine_openapi_client.models.format_specifics_one_of import FormatSpecificsOneOf
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 FORMATSPECIFICS_ONE_OF_SCHEMAS = ["FormatSpecificsOneOf"]
@@ -32,7 +32,7 @@ class FormatSpecifics(BaseModel):
     # data type: FormatSpecificsOneOf
     oneof_schema_1_validator: Optional[FormatSpecificsOneOf] = None
     actual_instance: Optional[Union[FormatSpecificsOneOf]] = None
-    one_of_schemas: Set[str] = { "FormatSpecificsOneOf" }
+    one_of_schemas: List[str] = Field(default=Literal["FormatSpecificsOneOf"])
 
     model_config = ConfigDict(
         validate_assignment=True,

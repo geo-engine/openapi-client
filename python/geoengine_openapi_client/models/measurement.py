@@ -22,7 +22,7 @@ from geoengine_openapi_client.models.measurement_classification import Measureme
 from geoengine_openapi_client.models.measurement_continuous import MeasurementContinuous
 from geoengine_openapi_client.models.measurement_unitless import MeasurementUnitless
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 MEASUREMENT_ONE_OF_SCHEMAS = ["MeasurementClassification", "MeasurementContinuous", "MeasurementUnitless"]
@@ -38,7 +38,7 @@ class Measurement(BaseModel):
     # data type: MeasurementClassification
     oneof_schema_3_validator: Optional[MeasurementClassification] = None
     actual_instance: Optional[Union[MeasurementClassification, MeasurementContinuous, MeasurementUnitless]] = None
-    one_of_schemas: Set[str] = { "MeasurementClassification", "MeasurementContinuous", "MeasurementUnitless" }
+    one_of_schemas: List[str] = Field(default=Literal["MeasurementClassification", "MeasurementContinuous", "MeasurementUnitless"])
 
     model_config = ConfigDict(
         validate_assignment=True,

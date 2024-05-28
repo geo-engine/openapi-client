@@ -21,7 +21,7 @@ from typing import Any, List, Optional
 from geoengine_openapi_client.models.project_layer import ProjectLayer
 from geoengine_openapi_client.models.project_update_token import ProjectUpdateToken
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 LAYERUPDATE_ONE_OF_SCHEMAS = ["ProjectLayer", "ProjectUpdateToken"]
@@ -35,7 +35,7 @@ class LayerUpdate(BaseModel):
     # data type: ProjectLayer
     oneof_schema_2_validator: Optional[ProjectLayer] = None
     actual_instance: Optional[Union[ProjectLayer, ProjectUpdateToken]] = None
-    one_of_schemas: Set[str] = { "ProjectLayer", "ProjectUpdateToken" }
+    one_of_schemas: List[str] = Field(default=Literal["ProjectLayer", "ProjectUpdateToken"])
 
     model_config = ConfigDict(
         validate_assignment=True,

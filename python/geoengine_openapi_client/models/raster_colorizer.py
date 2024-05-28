@@ -20,7 +20,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, f
 from typing import Any, List, Optional
 from geoengine_openapi_client.models.raster_colorizer_single_band import RasterColorizerSingleBand
 from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
 RASTERCOLORIZER_ONE_OF_SCHEMAS = ["RasterColorizerSingleBand"]
@@ -32,7 +32,7 @@ class RasterColorizer(BaseModel):
     # data type: RasterColorizerSingleBand
     oneof_schema_1_validator: Optional[RasterColorizerSingleBand] = None
     actual_instance: Optional[Union[RasterColorizerSingleBand]] = None
-    one_of_schemas: Set[str] = { "RasterColorizerSingleBand" }
+    one_of_schemas: List[str] = Field(default=Literal["RasterColorizerSingleBand"])
 
     model_config = ConfigDict(
         validate_assignment=True,

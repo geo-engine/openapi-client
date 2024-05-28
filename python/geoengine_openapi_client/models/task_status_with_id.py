@@ -99,6 +99,13 @@ class TaskStatusWithId(TaskStatus):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
+        # Note: fixed handling of actual_instance
+        _obj = cls.model_validate({
+            "actual_instance": TaskStatus.from_dict(obj).actual_instance,
+            "task_id": obj.get("taskId")
+        })
+        return _obj
+
         _obj = cls.model_validate({
             "description": obj.get("description"),
             "estimatedTimeRemaining": obj.get("estimatedTimeRemaining"),

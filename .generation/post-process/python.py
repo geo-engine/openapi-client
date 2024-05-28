@@ -98,10 +98,10 @@ def task_status_with_id_py(file_contents: List[str]) -> Generator[str, None, Non
             if getattr(self.actual_instance, "error", None) is None and "error" in self.actual_instance.__fields_set__:
             '''), 2 * INDENT)
 
-        elif dedented_line.startswith('_obj = TaskStatusWithId.parse_obj({'):
+        elif dedented_line.startswith('_obj = cls.model_validate({'):
             line = indent(dedent('''\
             # Note: fixed handling of actual_instance
-            _obj = TaskStatusWithId.parse_obj({
+            _obj = cls.model_validate({
                 "actual_instance": TaskStatus.from_dict(obj).actual_instance,
                 "task_id": obj.get("taskId")
             })

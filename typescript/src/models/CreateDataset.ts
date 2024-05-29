@@ -49,9 +49,9 @@ export interface CreateDataset {
 /**
  * Check if a given object implements the CreateDataset interface.
  */
-export function instanceOfCreateDataset(value: object): value is CreateDataset {
-    if (!('dataPath' in value) || value['dataPath'] === undefined) return false;
-    if (!('definition' in value) || value['definition'] === undefined) return false;
+export function instanceOfCreateDataset(value: object): boolean {
+    if (!('dataPath' in value)) return false;
+    if (!('definition' in value)) return false;
     return true;
 }
 

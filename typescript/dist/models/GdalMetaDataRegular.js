@@ -15,24 +15,24 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalMetaDataRegularToJSON = exports.GdalMetaDataRegularFromJSONTyped = exports.GdalMetaDataRegularFromJSON = exports.instanceOfGdalMetaDataRegular = void 0;
 const runtime_1 = require("../runtime");
-const TimeStep_1 = require("./TimeStep");
-const TimeInterval_1 = require("./TimeInterval");
+const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
 const GdalSourceTimePlaceholder_1 = require("./GdalSourceTimePlaceholder");
 const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
-const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
+const TimeInterval_1 = require("./TimeInterval");
+const TimeStep_1 = require("./TimeStep");
 /**
  * Check if a given object implements the GdalMetaDataRegular interface.
  */
 function instanceOfGdalMetaDataRegular(value) {
-    if (!('dataTime' in value) || value['dataTime'] === undefined)
+    if (!('dataTime' in value))
         return false;
-    if (!('params' in value) || value['params'] === undefined)
+    if (!('params' in value))
         return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+    if (!('resultDescriptor' in value))
         return false;
-    if (!('step' in value) || value['step'] === undefined)
+    if (!('step' in value))
         return false;
-    if (!('timePlaceholders' in value) || value['timePlaceholders'] === undefined)
+    if (!('timePlaceholders' in value))
         return false;
     return true;
 }

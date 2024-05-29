@@ -73,10 +73,10 @@ export interface AddLayer {
 /**
  * Check if a given object implements the AddLayer interface.
  */
-export function instanceOfAddLayer(value: object): value is AddLayer {
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('workflow' in value) || value['workflow'] === undefined) return false;
+export function instanceOfAddLayer(value: object): boolean {
+    if (!('description' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('workflow' in value)) return false;
     return true;
 }
 

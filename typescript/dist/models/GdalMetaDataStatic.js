@@ -14,16 +14,16 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalMetaDataStaticToJSON = exports.GdalMetaDataStaticFromJSONTyped = exports.GdalMetaDataStaticFromJSON = exports.instanceOfGdalMetaDataStatic = void 0;
-const TimeInterval_1 = require("./TimeInterval");
-const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
 const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
+const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
+const TimeInterval_1 = require("./TimeInterval");
 /**
  * Check if a given object implements the GdalMetaDataStatic interface.
  */
 function instanceOfGdalMetaDataStatic(value) {
-    if (!('params' in value) || value['params'] === undefined)
+    if (!('params' in value))
         return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+    if (!('resultDescriptor' in value))
         return false;
     return true;
 }

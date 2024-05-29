@@ -11,15 +11,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MeasurementFromJSON, MeasurementToJSON, } from './Measurement';
 import { FeatureDataTypeFromJSON, FeatureDataTypeToJSON, } from './FeatureDataType';
+import { MeasurementFromJSON, MeasurementToJSON, } from './Measurement';
 /**
  * Check if a given object implements the VectorColumnInfo interface.
  */
 export function instanceOfVectorColumnInfo(value) {
-    if (!('dataType' in value) || value['dataType'] === undefined)
+    if (!('dataType' in value))
         return false;
-    if (!('measurement' in value) || value['measurement'] === undefined)
+    if (!('measurement' in value))
         return false;
     return true;
 }

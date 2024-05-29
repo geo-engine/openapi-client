@@ -23,9 +23,7 @@ function FormatSpecificsFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    if ((0, FormatSpecificsOneOf_1.instanceOfFormatSpecificsOneOf)(json)) {
-        return (0, FormatSpecificsOneOf_1.FormatSpecificsOneOfFromJSONTyped)(json, true);
-    }
+    return Object.assign({}, (0, FormatSpecificsOneOf_1.FormatSpecificsOneOfFromJSONTyped)(json, true));
 }
 exports.FormatSpecificsFromJSONTyped = FormatSpecificsFromJSONTyped;
 function FormatSpecificsToJSON(value) {

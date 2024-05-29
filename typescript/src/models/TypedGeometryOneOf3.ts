@@ -37,8 +37,8 @@ export interface TypedGeometryOneOf3 {
 /**
  * Check if a given object implements the TypedGeometryOneOf3 interface.
  */
-export function instanceOfTypedGeometryOneOf3(value: object): value is TypedGeometryOneOf3 {
-    if (!('multiPolygon' in value) || value['multiPolygon'] === undefined) return false;
+export function instanceOfTypedGeometryOneOf3(value: object): boolean {
+    if (!('multiPolygon' in value)) return false;
     return true;
 }
 

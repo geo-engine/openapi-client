@@ -18,7 +18,7 @@ exports.DateTimeToJSON = exports.DateTimeFromJSONTyped = exports.DateTimeFromJSO
  * Check if a given object implements the DateTime interface.
  */
 function instanceOfDateTime(value) {
-    if (!('datetime' in value) || value['datetime'] === undefined)
+    if (!('datetime' in value))
         return false;
     return true;
 }

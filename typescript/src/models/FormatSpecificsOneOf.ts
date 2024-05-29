@@ -37,8 +37,8 @@ export interface FormatSpecificsOneOf {
 /**
  * Check if a given object implements the FormatSpecificsOneOf interface.
  */
-export function instanceOfFormatSpecificsOneOf(value: object): value is FormatSpecificsOneOf {
-    if (!('csv' in value) || value['csv'] === undefined) return false;
+export function instanceOfFormatSpecificsOneOf(value: object): boolean {
+    if (!('csv' in value)) return false;
     return true;
 }
 

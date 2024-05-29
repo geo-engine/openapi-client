@@ -11,15 +11,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { NumberParamFromJSON, NumberParamToJSON, } from './NumberParam';
 import { ColorParamFromJSON, ColorParamToJSON, } from './ColorParam';
+import { NumberParamFromJSON, NumberParamToJSON, } from './NumberParam';
 /**
  * Check if a given object implements the StrokeParam interface.
  */
 export function instanceOfStrokeParam(value) {
-    if (!('color' in value) || value['color'] === undefined)
+    if (!('color' in value))
         return false;
-    if (!('width' in value) || value['width'] === undefined)
+    if (!('width' in value))
         return false;
     return true;
 }

@@ -40,8 +40,8 @@ export type MeasurementUnitlessTypeEnum = typeof MeasurementUnitlessTypeEnum[key
 /**
  * Check if a given object implements the MeasurementUnitless interface.
  */
-export function instanceOfMeasurementUnitless(value: object): value is MeasurementUnitless {
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfMeasurementUnitless(value: object): boolean {
+    if (!('type' in value)) return false;
     return true;
 }
 

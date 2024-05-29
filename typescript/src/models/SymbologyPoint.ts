@@ -13,30 +13,30 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TextSymbology } from './TextSymbology';
-import {
-    TextSymbologyFromJSON,
-    TextSymbologyFromJSONTyped,
-    TextSymbologyToJSON,
-} from './TextSymbology';
-import type { StrokeParam } from './StrokeParam';
-import {
-    StrokeParamFromJSON,
-    StrokeParamFromJSONTyped,
-    StrokeParamToJSON,
-} from './StrokeParam';
-import type { NumberParam } from './NumberParam';
-import {
-    NumberParamFromJSON,
-    NumberParamFromJSONTyped,
-    NumberParamToJSON,
-} from './NumberParam';
 import type { ColorParam } from './ColorParam';
 import {
     ColorParamFromJSON,
     ColorParamFromJSONTyped,
     ColorParamToJSON,
 } from './ColorParam';
+import type { NumberParam } from './NumberParam';
+import {
+    NumberParamFromJSON,
+    NumberParamFromJSONTyped,
+    NumberParamToJSON,
+} from './NumberParam';
+import type { StrokeParam } from './StrokeParam';
+import {
+    StrokeParamFromJSON,
+    StrokeParamFromJSONTyped,
+    StrokeParamToJSON,
+} from './StrokeParam';
+import type { TextSymbology } from './TextSymbology';
+import {
+    TextSymbologyFromJSON,
+    TextSymbologyFromJSONTyped,
+    TextSymbologyToJSON,
+} from './TextSymbology';
 
 /**
  * 
@@ -89,11 +89,11 @@ export type SymbologyPointTypeEnum = typeof SymbologyPointTypeEnum[keyof typeof 
 /**
  * Check if a given object implements the SymbologyPoint interface.
  */
-export function instanceOfSymbologyPoint(value: object): value is SymbologyPoint {
-    if (!('fillColor' in value) || value['fillColor'] === undefined) return false;
-    if (!('radius' in value) || value['radius'] === undefined) return false;
-    if (!('stroke' in value) || value['stroke'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfSymbologyPoint(value: object): boolean {
+    if (!('fillColor' in value)) return false;
+    if (!('radius' in value)) return false;
+    if (!('stroke' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

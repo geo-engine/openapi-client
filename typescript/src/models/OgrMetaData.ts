@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { VectorResultDescriptor } from './VectorResultDescriptor';
-import {
-    VectorResultDescriptorFromJSON,
-    VectorResultDescriptorFromJSONTyped,
-    VectorResultDescriptorToJSON,
-} from './VectorResultDescriptor';
 import type { OgrSourceDataset } from './OgrSourceDataset';
 import {
     OgrSourceDatasetFromJSON,
     OgrSourceDatasetFromJSONTyped,
     OgrSourceDatasetToJSON,
 } from './OgrSourceDataset';
+import type { VectorResultDescriptor } from './VectorResultDescriptor';
+import {
+    VectorResultDescriptorFromJSON,
+    VectorResultDescriptorFromJSONTyped,
+    VectorResultDescriptorToJSON,
+} from './VectorResultDescriptor';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface OgrMetaData {
 /**
  * Check if a given object implements the OgrMetaData interface.
  */
-export function instanceOfOgrMetaData(value: object): value is OgrMetaData {
-    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined) return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
+export function instanceOfOgrMetaData(value: object): boolean {
+    if (!('loadingInfo' in value)) return false;
+    if (!('resultDescriptor' in value)) return false;
     return true;
 }
 

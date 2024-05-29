@@ -18,16 +18,6 @@
 export const WcsService = {
     Wcs: 'WCS'
 };
-export function instanceOfWcsService(value) {
-    for (const key in WcsService) {
-        if (Object.prototype.hasOwnProperty.call(WcsService, key)) {
-            if (WcsService[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
 export function WcsServiceFromJSON(json) {
     return WcsServiceFromJSONTyped(json, false);
 }

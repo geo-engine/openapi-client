@@ -11,15 +11,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ProvenanceFromJSON, ProvenanceToJSON, } from './Provenance';
 import { DataIdFromJSON, DataIdToJSON, } from './DataId';
+import { ProvenanceFromJSON, ProvenanceToJSON, } from './Provenance';
 /**
  * Check if a given object implements the ProvenanceEntry interface.
  */
 export function instanceOfProvenanceEntry(value) {
-    if (!('data' in value) || value['data'] === undefined)
+    if (!('data' in value))
         return false;
-    if (!('provenance' in value) || value['provenance'] === undefined)
+    if (!('provenance' in value))
         return false;
     return true;
 }

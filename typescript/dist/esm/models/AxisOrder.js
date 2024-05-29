@@ -19,16 +19,6 @@ export const AxisOrder = {
     NorthEast: 'northEast',
     EastNorth: 'eastNorth'
 };
-export function instanceOfAxisOrder(value) {
-    for (const key in AxisOrder) {
-        if (Object.prototype.hasOwnProperty.call(AxisOrder, key)) {
-            if (AxisOrder[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
 export function AxisOrderFromJSON(json) {
     return AxisOrderFromJSONTyped(json, false);
 }

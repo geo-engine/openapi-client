@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetFeatureRequestToJSON = exports.GetFeatureRequestFromJSONTyped = exports.GetFeatureRequestFromJSON = exports.instanceOfGetFeatureRequest = exports.GetFeatureRequest = void 0;
+exports.GetFeatureRequestToJSON = exports.GetFeatureRequestFromJSONTyped = exports.GetFeatureRequestFromJSON = exports.GetFeatureRequest = void 0;
 /**
  *
  * @export
@@ -21,17 +21,6 @@ exports.GetFeatureRequestToJSON = exports.GetFeatureRequestFromJSONTyped = expor
 exports.GetFeatureRequest = {
     GetFeature: 'GetFeature'
 };
-function instanceOfGetFeatureRequest(value) {
-    for (const key in exports.GetFeatureRequest) {
-        if (Object.prototype.hasOwnProperty.call(exports.GetFeatureRequest, key)) {
-            if (exports.GetFeatureRequest[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfGetFeatureRequest = instanceOfGetFeatureRequest;
 function GetFeatureRequestFromJSON(json) {
     return GetFeatureRequestFromJSONTyped(json, false);
 }

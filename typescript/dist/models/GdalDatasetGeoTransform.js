@@ -19,11 +19,11 @@ const Coordinate2D_1 = require("./Coordinate2D");
  * Check if a given object implements the GdalDatasetGeoTransform interface.
  */
 function instanceOfGdalDatasetGeoTransform(value) {
-    if (!('originCoordinate' in value) || value['originCoordinate'] === undefined)
+    if (!('originCoordinate' in value))
         return false;
-    if (!('xPixelSize' in value) || value['xPixelSize'] === undefined)
+    if (!('xPixelSize' in value))
         return false;
-    if (!('yPixelSize' in value) || value['yPixelSize'] === undefined)
+    if (!('yPixelSize' in value))
         return false;
     return true;
 }

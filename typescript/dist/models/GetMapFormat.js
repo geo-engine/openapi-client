@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetMapFormatToJSON = exports.GetMapFormatFromJSONTyped = exports.GetMapFormatFromJSON = exports.instanceOfGetMapFormat = exports.GetMapFormat = void 0;
+exports.GetMapFormatToJSON = exports.GetMapFormatFromJSONTyped = exports.GetMapFormatFromJSON = exports.GetMapFormat = void 0;
 /**
  *
  * @export
@@ -21,17 +21,6 @@ exports.GetMapFormatToJSON = exports.GetMapFormatFromJSONTyped = exports.GetMapF
 exports.GetMapFormat = {
     ImagePng: 'image/png'
 };
-function instanceOfGetMapFormat(value) {
-    for (const key in exports.GetMapFormat) {
-        if (Object.prototype.hasOwnProperty.call(exports.GetMapFormat, key)) {
-            if (exports.GetMapFormat[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfGetMapFormat = instanceOfGetMapFormat;
 function GetMapFormatFromJSON(json) {
     return GetMapFormatFromJSONTyped(json, false);
 }

@@ -30,8 +30,8 @@ export interface TypedGeometryOneOf {
 /**
  * Check if a given object implements the TypedGeometryOneOf interface.
  */
-export function instanceOfTypedGeometryOneOf(value: object): value is TypedGeometryOneOf {
-    if (!('data' in value) || value['data'] === undefined) return false;
+export function instanceOfTypedGeometryOneOf(value: object): boolean {
+    if (!('data' in value)) return false;
     return true;
 }
 

@@ -30,8 +30,8 @@ export interface AddRole {
 /**
  * Check if a given object implements the AddRole interface.
  */
-export function instanceOfAddRole(value: object): value is AddRole {
-    if (!('name' in value) || value['name'] === undefined) return false;
+export function instanceOfAddRole(value: object): boolean {
+    if (!('name' in value)) return false;
     return true;
 }
 

@@ -48,11 +48,11 @@ export interface UpdateDataset {
 /**
  * Check if a given object implements the UpdateDataset interface.
  */
-export function instanceOfUpdateDataset(value: object): value is UpdateDataset {
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('displayName' in value) || value['displayName'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('tags' in value) || value['tags'] === undefined) return false;
+export function instanceOfUpdateDataset(value: object): boolean {
+    if (!('description' in value)) return false;
+    if (!('displayName' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('tags' in value)) return false;
     return true;
 }
 

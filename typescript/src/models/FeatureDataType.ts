@@ -28,17 +28,6 @@ export const FeatureDataType = {
 export type FeatureDataType = typeof FeatureDataType[keyof typeof FeatureDataType];
 
 
-export function instanceOfFeatureDataType(value: any): boolean {
-    for (const key in FeatureDataType) {
-        if (Object.prototype.hasOwnProperty.call(FeatureDataType, key)) {
-            if (FeatureDataType[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function FeatureDataTypeFromJSON(json: any): FeatureDataType {
     return FeatureDataTypeFromJSONTyped(json, false);
 }

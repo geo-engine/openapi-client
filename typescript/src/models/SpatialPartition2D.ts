@@ -43,9 +43,9 @@ export interface SpatialPartition2D {
 /**
  * Check if a given object implements the SpatialPartition2D interface.
  */
-export function instanceOfSpatialPartition2D(value: object): value is SpatialPartition2D {
-    if (!('lowerRightCoordinate' in value) || value['lowerRightCoordinate'] === undefined) return false;
-    if (!('upperLeftCoordinate' in value) || value['upperLeftCoordinate'] === undefined) return false;
+export function instanceOfSpatialPartition2D(value: object): boolean {
+    if (!('lowerRightCoordinate' in value)) return false;
+    if (!('upperLeftCoordinate' in value)) return false;
     return true;
 }
 

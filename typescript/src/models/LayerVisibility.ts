@@ -36,9 +36,9 @@ export interface LayerVisibility {
 /**
  * Check if a given object implements the LayerVisibility interface.
  */
-export function instanceOfLayerVisibility(value: object): value is LayerVisibility {
-    if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('legend' in value) || value['legend'] === undefined) return false;
+export function instanceOfLayerVisibility(value: object): boolean {
+    if (!('data' in value)) return false;
+    if (!('legend' in value)) return false;
     return true;
 }
 

@@ -14,15 +14,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OgrMetaDataToJSON = exports.OgrMetaDataFromJSONTyped = exports.OgrMetaDataFromJSON = exports.instanceOfOgrMetaData = void 0;
-const VectorResultDescriptor_1 = require("./VectorResultDescriptor");
 const OgrSourceDataset_1 = require("./OgrSourceDataset");
+const VectorResultDescriptor_1 = require("./VectorResultDescriptor");
 /**
  * Check if a given object implements the OgrMetaData interface.
  */
 function instanceOfOgrMetaData(value) {
-    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined)
+    if (!('loadingInfo' in value))
         return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+    if (!('resultDescriptor' in value))
         return false;
     return true;
 }

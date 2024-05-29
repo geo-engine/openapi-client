@@ -13,24 +13,24 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TextSymbology } from './TextSymbology';
-import {
-    TextSymbologyFromJSON,
-    TextSymbologyFromJSONTyped,
-    TextSymbologyToJSON,
-} from './TextSymbology';
-import type { StrokeParam } from './StrokeParam';
-import {
-    StrokeParamFromJSON,
-    StrokeParamFromJSONTyped,
-    StrokeParamToJSON,
-} from './StrokeParam';
 import type { ColorParam } from './ColorParam';
 import {
     ColorParamFromJSON,
     ColorParamFromJSONTyped,
     ColorParamToJSON,
 } from './ColorParam';
+import type { StrokeParam } from './StrokeParam';
+import {
+    StrokeParamFromJSON,
+    StrokeParamFromJSONTyped,
+    StrokeParamToJSON,
+} from './StrokeParam';
+import type { TextSymbology } from './TextSymbology';
+import {
+    TextSymbologyFromJSON,
+    TextSymbologyFromJSONTyped,
+    TextSymbologyToJSON,
+} from './TextSymbology';
 
 /**
  * 
@@ -83,11 +83,11 @@ export type SymbologyPolygonTypeEnum = typeof SymbologyPolygonTypeEnum[keyof typ
 /**
  * Check if a given object implements the SymbologyPolygon interface.
  */
-export function instanceOfSymbologyPolygon(value: object): value is SymbologyPolygon {
-    if (!('autoSimplified' in value) || value['autoSimplified'] === undefined) return false;
-    if (!('fillColor' in value) || value['fillColor'] === undefined) return false;
-    if (!('stroke' in value) || value['stroke'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfSymbologyPolygon(value: object): boolean {
+    if (!('autoSimplified' in value)) return false;
+    if (!('fillColor' in value)) return false;
+    if (!('stroke' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

@@ -15,7 +15,7 @@
  * Check if a given object implements the MultiLineString interface.
  */
 export function instanceOfMultiLineString(value) {
-    if (!('coordinates' in value) || value['coordinates'] === undefined)
+    if (!('coordinates' in value))
         return false;
     return true;
 }

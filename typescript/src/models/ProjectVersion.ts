@@ -36,9 +36,9 @@ export interface ProjectVersion {
 /**
  * Check if a given object implements the ProjectVersion interface.
  */
-export function instanceOfProjectVersion(value: object): value is ProjectVersion {
-    if (!('changed' in value) || value['changed'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
+export function instanceOfProjectVersion(value: object): boolean {
+    if (!('changed' in value)) return false;
+    if (!('id' in value)) return false;
     return true;
 }
 

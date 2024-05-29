@@ -37,8 +37,8 @@ export interface MultiLineString {
 /**
  * Check if a given object implements the MultiLineString interface.
  */
-export function instanceOfMultiLineString(value: object): value is MultiLineString {
-    if (!('coordinates' in value) || value['coordinates'] === undefined) return false;
+export function instanceOfMultiLineString(value: object): boolean {
+    if (!('coordinates' in value)) return false;
     return true;
 }
 

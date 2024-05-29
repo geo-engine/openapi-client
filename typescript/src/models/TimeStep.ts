@@ -43,9 +43,9 @@ export interface TimeStep {
 /**
  * Check if a given object implements the TimeStep interface.
  */
-export function instanceOfTimeStep(value: object): value is TimeStep {
-    if (!('granularity' in value) || value['granularity'] === undefined) return false;
-    if (!('step' in value) || value['step'] === undefined) return false;
+export function instanceOfTimeStep(value: object): boolean {
+    if (!('granularity' in value)) return false;
+    if (!('step' in value)) return false;
     return true;
 }
 

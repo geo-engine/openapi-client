@@ -40,8 +40,8 @@ export type OgrSourceDurationSpecInfiniteTypeEnum = typeof OgrSourceDurationSpec
 /**
  * Check if a given object implements the OgrSourceDurationSpecInfinite interface.
  */
-export function instanceOfOgrSourceDurationSpecInfinite(value: object): value is OgrSourceDurationSpecInfinite {
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfOgrSourceDurationSpecInfinite(value: object): boolean {
+    if (!('type' in value)) return false;
     return true;
 }
 

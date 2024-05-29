@@ -44,7 +44,7 @@ export interface LinearGradient {
 /**
  * Check if a given object implements the LinearGradient interface.
  */
-export declare function instanceOfLinearGradient(value: object): value is LinearGradient;
+export declare function instanceOfLinearGradient(value: object): boolean;
 export declare function LinearGradientFromJSON(json: any): LinearGradient;
 export declare function LinearGradientFromJSONTyped(json: any, ignoreDiscriminator: boolean): LinearGradient;
 export declare function LinearGradientToJSON(value?: LinearGradient | null): any;

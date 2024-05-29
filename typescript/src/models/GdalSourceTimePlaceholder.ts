@@ -49,9 +49,9 @@ export interface GdalSourceTimePlaceholder {
 /**
  * Check if a given object implements the GdalSourceTimePlaceholder interface.
  */
-export function instanceOfGdalSourceTimePlaceholder(value: object): value is GdalSourceTimePlaceholder {
-    if (!('format' in value) || value['format'] === undefined) return false;
-    if (!('reference' in value) || value['reference'] === undefined) return false;
+export function instanceOfGdalSourceTimePlaceholder(value: object): boolean {
+    if (!('format' in value)) return false;
+    if (!('reference' in value)) return false;
     return true;
 }
 

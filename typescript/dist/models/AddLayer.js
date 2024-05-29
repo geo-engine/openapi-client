@@ -20,11 +20,11 @@ const Workflow_1 = require("./Workflow");
  * Check if a given object implements the AddLayer interface.
  */
 function instanceOfAddLayer(value) {
-    if (!('description' in value) || value['description'] === undefined)
+    if (!('description' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
-    if (!('workflow' in value) || value['workflow'] === undefined)
+    if (!('workflow' in value))
         return false;
     return true;
 }

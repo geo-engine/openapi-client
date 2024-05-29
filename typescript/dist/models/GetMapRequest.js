@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetMapRequestToJSON = exports.GetMapRequestFromJSONTyped = exports.GetMapRequestFromJSON = exports.instanceOfGetMapRequest = exports.GetMapRequest = void 0;
+exports.GetMapRequestToJSON = exports.GetMapRequestFromJSONTyped = exports.GetMapRequestFromJSON = exports.GetMapRequest = void 0;
 /**
  *
  * @export
@@ -21,17 +21,6 @@ exports.GetMapRequestToJSON = exports.GetMapRequestFromJSONTyped = exports.GetMa
 exports.GetMapRequest = {
     GetMap: 'GetMap'
 };
-function instanceOfGetMapRequest(value) {
-    for (const key in exports.GetMapRequest) {
-        if (Object.prototype.hasOwnProperty.call(exports.GetMapRequest, key)) {
-            if (exports.GetMapRequest[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfGetMapRequest = instanceOfGetMapRequest;
 function GetMapRequestFromJSON(json) {
     return GetMapRequestFromJSONTyped(json, false);
 }

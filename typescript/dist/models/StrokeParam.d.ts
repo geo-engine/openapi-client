@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { NumberParam } from './NumberParam';
 import type { ColorParam } from './ColorParam';
+import type { NumberParam } from './NumberParam';
 /**
  *
  * @export
@@ -33,7 +33,7 @@ export interface StrokeParam {
 /**
  * Check if a given object implements the StrokeParam interface.
  */
-export declare function instanceOfStrokeParam(value: object): value is StrokeParam;
+export declare function instanceOfStrokeParam(value: object): boolean;
 export declare function StrokeParamFromJSON(json: any): StrokeParam;
 export declare function StrokeParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): StrokeParam;
 export declare function StrokeParamToJSON(value?: StrokeParam | null): any;

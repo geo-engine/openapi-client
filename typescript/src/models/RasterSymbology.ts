@@ -43,9 +43,9 @@ export interface RasterSymbology {
 /**
  * Check if a given object implements the RasterSymbology interface.
  */
-export function instanceOfRasterSymbology(value: object): value is RasterSymbology {
-    if (!('opacity' in value) || value['opacity'] === undefined) return false;
-    if (!('rasterColorizer' in value) || value['rasterColorizer'] === undefined) return false;
+export function instanceOfRasterSymbology(value: object): boolean {
+    if (!('opacity' in value)) return false;
+    if (!('rasterColorizer' in value)) return false;
     return true;
 }
 

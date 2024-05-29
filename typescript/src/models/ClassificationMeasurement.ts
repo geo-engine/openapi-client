@@ -36,9 +36,9 @@ export interface ClassificationMeasurement {
 /**
  * Check if a given object implements the ClassificationMeasurement interface.
  */
-export function instanceOfClassificationMeasurement(value: object): value is ClassificationMeasurement {
-    if (!('classes' in value) || value['classes'] === undefined) return false;
-    if (!('measurement' in value) || value['measurement'] === undefined) return false;
+export function instanceOfClassificationMeasurement(value: object): boolean {
+    if (!('classes' in value)) return false;
+    if (!('measurement' in value)) return false;
     return true;
 }
 

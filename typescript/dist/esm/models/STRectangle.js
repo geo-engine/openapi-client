@@ -11,17 +11,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
+import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 /**
  * Check if a given object implements the STRectangle interface.
  */
 export function instanceOfSTRectangle(value) {
-    if (!('boundingBox' in value) || value['boundingBox'] === undefined)
+    if (!('boundingBox' in value))
         return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+    if (!('spatialReference' in value))
         return false;
-    if (!('timeInterval' in value) || value['timeInterval'] === undefined)
+    if (!('timeInterval' in value))
         return false;
     return true;
 }

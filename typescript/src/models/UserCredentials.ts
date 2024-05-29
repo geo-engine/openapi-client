@@ -36,9 +36,9 @@ export interface UserCredentials {
 /**
  * Check if a given object implements the UserCredentials interface.
  */
-export function instanceOfUserCredentials(value: object): value is UserCredentials {
-    if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('password' in value) || value['password'] === undefined) return false;
+export function instanceOfUserCredentials(value: object): boolean {
+    if (!('email' in value)) return false;
+    if (!('password' in value)) return false;
     return true;
 }
 

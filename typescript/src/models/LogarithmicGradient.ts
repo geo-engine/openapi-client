@@ -55,11 +55,11 @@ export interface LogarithmicGradient {
 /**
  * Check if a given object implements the LogarithmicGradient interface.
  */
-export function instanceOfLogarithmicGradient(value: object): value is LogarithmicGradient {
-    if (!('breakpoints' in value) || value['breakpoints'] === undefined) return false;
-    if (!('noDataColor' in value) || value['noDataColor'] === undefined) return false;
-    if (!('overColor' in value) || value['overColor'] === undefined) return false;
-    if (!('underColor' in value) || value['underColor'] === undefined) return false;
+export function instanceOfLogarithmicGradient(value: object): boolean {
+    if (!('breakpoints' in value)) return false;
+    if (!('noDataColor' in value)) return false;
+    if (!('overColor' in value)) return false;
+    if (!('underColor' in value)) return false;
     return true;
 }
 

@@ -71,12 +71,12 @@ export type OgrSourceDatasetTimeTypeStartEndTypeEnum = typeof OgrSourceDatasetTi
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeStartEnd interface.
  */
-export function instanceOfOgrSourceDatasetTimeTypeStartEnd(value: object): value is OgrSourceDatasetTimeTypeStartEnd {
-    if (!('endField' in value) || value['endField'] === undefined) return false;
-    if (!('endFormat' in value) || value['endFormat'] === undefined) return false;
-    if (!('startField' in value) || value['startField'] === undefined) return false;
-    if (!('startFormat' in value) || value['startFormat'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfOgrSourceDatasetTimeTypeStartEnd(value: object): boolean {
+    if (!('endField' in value)) return false;
+    if (!('endFormat' in value)) return false;
+    if (!('startField' in value)) return false;
+    if (!('startFormat' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

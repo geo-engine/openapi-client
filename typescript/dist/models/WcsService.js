@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WcsServiceToJSON = exports.WcsServiceFromJSONTyped = exports.WcsServiceFromJSON = exports.instanceOfWcsService = exports.WcsService = void 0;
+exports.WcsServiceToJSON = exports.WcsServiceFromJSONTyped = exports.WcsServiceFromJSON = exports.WcsService = void 0;
 /**
  *
  * @export
@@ -21,17 +21,6 @@ exports.WcsServiceToJSON = exports.WcsServiceFromJSONTyped = exports.WcsServiceF
 exports.WcsService = {
     Wcs: 'WCS'
 };
-function instanceOfWcsService(value) {
-    for (const key in exports.WcsService) {
-        if (Object.prototype.hasOwnProperty.call(exports.WcsService, key)) {
-            if (exports.WcsService[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfWcsService = instanceOfWcsService;
 function WcsServiceFromJSON(json) {
     return WcsServiceFromJSONTyped(json, false);
 }

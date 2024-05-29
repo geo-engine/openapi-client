@@ -36,9 +36,9 @@ export interface SpatialResolution {
 /**
  * Check if a given object implements the SpatialResolution interface.
  */
-export function instanceOfSpatialResolution(value: object): value is SpatialResolution {
-    if (!('x' in value) || value['x'] === undefined) return false;
-    if (!('y' in value) || value['y'] === undefined) return false;
+export function instanceOfSpatialResolution(value: object): boolean {
+    if (!('x' in value)) return false;
+    if (!('y' in value)) return false;
     return true;
 }
 

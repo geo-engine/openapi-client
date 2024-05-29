@@ -15,9 +15,9 @@
  * Check if a given object implements the ErrorResponse interface.
  */
 export function instanceOfErrorResponse(value) {
-    if (!('error' in value) || value['error'] === undefined)
+    if (!('error' in value))
         return false;
-    if (!('message' in value) || value['message'] === undefined)
+    if (!('message' in value))
         return false;
     return true;
 }

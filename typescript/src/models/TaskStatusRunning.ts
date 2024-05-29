@@ -76,12 +76,12 @@ export type TaskStatusRunningStatusEnum = typeof TaskStatusRunningStatusEnum[key
 /**
  * Check if a given object implements the TaskStatusRunning interface.
  */
-export function instanceOfTaskStatusRunning(value: object): value is TaskStatusRunning {
-    if (!('estimatedTimeRemaining' in value) || value['estimatedTimeRemaining'] === undefined) return false;
-    if (!('pctComplete' in value) || value['pctComplete'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('taskType' in value) || value['taskType'] === undefined) return false;
-    if (!('timeStarted' in value) || value['timeStarted'] === undefined) return false;
+export function instanceOfTaskStatusRunning(value: object): boolean {
+    if (!('estimatedTimeRemaining' in value)) return false;
+    if (!('pctComplete' in value)) return false;
+    if (!('status' in value)) return false;
+    if (!('taskType' in value)) return false;
+    if (!('timeStarted' in value)) return false;
     return true;
 }
 

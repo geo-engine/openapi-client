@@ -30,8 +30,8 @@ export interface DateTime {
 /**
  * Check if a given object implements the DateTime interface.
  */
-export function instanceOfDateTime(value: object): value is DateTime {
-    if (!('datetime' in value) || value['datetime'] === undefined) return false;
+export function instanceOfDateTime(value: object): boolean {
+    if (!('datetime' in value)) return false;
     return true;
 }
 

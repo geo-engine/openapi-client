@@ -30,8 +30,8 @@ export interface AuthCodeRequestURL {
 /**
  * Check if a given object implements the AuthCodeRequestURL interface.
  */
-export function instanceOfAuthCodeRequestURL(value: object): value is AuthCodeRequestURL {
-    if (!('url' in value) || value['url'] === undefined) return false;
+export function instanceOfAuthCodeRequestURL(value: object): boolean {
+    if (!('url' in value)) return false;
     return true;
 }
 

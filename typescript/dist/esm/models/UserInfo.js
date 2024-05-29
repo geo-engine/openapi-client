@@ -15,7 +15,7 @@
  * Check if a given object implements the UserInfo interface.
  */
 export function instanceOfUserInfo(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
     return true;
 }

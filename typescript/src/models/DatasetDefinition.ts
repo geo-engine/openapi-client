@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { MetaDataDefinition } from './MetaDataDefinition';
-import {
-    MetaDataDefinitionFromJSON,
-    MetaDataDefinitionFromJSONTyped,
-    MetaDataDefinitionToJSON,
-} from './MetaDataDefinition';
 import type { AddDataset } from './AddDataset';
 import {
     AddDatasetFromJSON,
     AddDatasetFromJSONTyped,
     AddDatasetToJSON,
 } from './AddDataset';
+import type { MetaDataDefinition } from './MetaDataDefinition';
+import {
+    MetaDataDefinitionFromJSON,
+    MetaDataDefinitionFromJSONTyped,
+    MetaDataDefinitionToJSON,
+} from './MetaDataDefinition';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface DatasetDefinition {
 /**
  * Check if a given object implements the DatasetDefinition interface.
  */
-export function instanceOfDatasetDefinition(value: object): value is DatasetDefinition {
-    if (!('metaData' in value) || value['metaData'] === undefined) return false;
-    if (!('properties' in value) || value['properties'] === undefined) return false;
+export function instanceOfDatasetDefinition(value: object): boolean {
+    if (!('metaData' in value)) return false;
+    if (!('properties' in value)) return false;
     return true;
 }
 

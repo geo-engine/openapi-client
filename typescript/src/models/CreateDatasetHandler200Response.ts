@@ -30,8 +30,8 @@ export interface CreateDatasetHandler200Response {
 /**
  * Check if a given object implements the CreateDatasetHandler200Response interface.
  */
-export function instanceOfCreateDatasetHandler200Response(value: object): value is CreateDatasetHandler200Response {
-    if (!('datasetName' in value) || value['datasetName'] === undefined) return false;
+export function instanceOfCreateDatasetHandler200Response(value: object): boolean {
+    if (!('datasetName' in value)) return false;
     return true;
 }
 

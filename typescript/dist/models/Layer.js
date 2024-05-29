@@ -14,20 +14,20 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LayerToJSON = exports.LayerFromJSONTyped = exports.LayerFromJSON = exports.instanceOfLayer = void 0;
-const Symbology_1 = require("./Symbology");
 const ProviderLayerId_1 = require("./ProviderLayerId");
+const Symbology_1 = require("./Symbology");
 const Workflow_1 = require("./Workflow");
 /**
  * Check if a given object implements the Layer interface.
  */
 function instanceOfLayer(value) {
-    if (!('description' in value) || value['description'] === undefined)
+    if (!('description' in value))
         return false;
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
-    if (!('workflow' in value) || value['workflow'] === undefined)
+    if (!('workflow' in value))
         return false;
     return true;
 }

@@ -15,9 +15,9 @@
  * Check if a given object implements the UserCredentials interface.
  */
 export function instanceOfUserCredentials(value) {
-    if (!('email' in value) || value['email'] === undefined)
+    if (!('email' in value))
         return false;
-    if (!('password' in value) || value['password'] === undefined)
+    if (!('password' in value))
         return false;
     return true;
 }

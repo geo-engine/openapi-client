@@ -16,9 +16,9 @@ import { Coordinate2DFromJSON, Coordinate2DToJSON, } from './Coordinate2D';
  * Check if a given object implements the SpatialPartition2D interface.
  */
 export function instanceOfSpatialPartition2D(value) {
-    if (!('lowerRightCoordinate' in value) || value['lowerRightCoordinate'] === undefined)
+    if (!('lowerRightCoordinate' in value))
         return false;
-    if (!('upperLeftCoordinate' in value) || value['upperLeftCoordinate'] === undefined)
+    if (!('upperLeftCoordinate' in value))
         return false;
     return true;
 }

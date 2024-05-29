@@ -19,11 +19,11 @@ const MetaDataDefinition_1 = require("./MetaDataDefinition");
  * Check if a given object implements the MetaDataSuggestion interface.
  */
 function instanceOfMetaDataSuggestion(value) {
-    if (!('layerName' in value) || value['layerName'] === undefined)
+    if (!('layerName' in value))
         return false;
-    if (!('mainFile' in value) || value['mainFile'] === undefined)
+    if (!('mainFile' in value))
         return false;
-    if (!('metaData' in value) || value['metaData'] === undefined)
+    if (!('metaData' in value))
         return false;
     return true;
 }

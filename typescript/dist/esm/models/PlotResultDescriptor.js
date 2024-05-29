@@ -11,13 +11,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
+import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 /**
  * Check if a given object implements the PlotResultDescriptor interface.
  */
 export function instanceOfPlotResultDescriptor(value) {
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+    if (!('spatialReference' in value))
         return false;
     return true;
 }

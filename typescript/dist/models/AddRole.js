@@ -18,7 +18,7 @@ exports.AddRoleToJSON = exports.AddRoleFromJSONTyped = exports.AddRoleFromJSON =
  * Check if a given object implements the AddRole interface.
  */
 function instanceOfAddRole(value) {
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
     return true;
 }

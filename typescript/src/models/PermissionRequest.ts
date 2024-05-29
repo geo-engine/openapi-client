@@ -55,10 +55,10 @@ export interface PermissionRequest {
 /**
  * Check if a given object implements the PermissionRequest interface.
  */
-export function instanceOfPermissionRequest(value: object): value is PermissionRequest {
-    if (!('permission' in value) || value['permission'] === undefined) return false;
-    if (!('resource' in value) || value['resource'] === undefined) return false;
-    if (!('roleId' in value) || value['roleId'] === undefined) return false;
+export function instanceOfPermissionRequest(value: object): boolean {
+    if (!('permission' in value)) return false;
+    if (!('resource' in value)) return false;
+    if (!('roleId' in value)) return false;
     return true;
 }
 

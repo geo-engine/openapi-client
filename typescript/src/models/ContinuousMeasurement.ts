@@ -36,8 +36,8 @@ export interface ContinuousMeasurement {
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
-export function instanceOfContinuousMeasurement(value: object): value is ContinuousMeasurement {
-    if (!('measurement' in value) || value['measurement'] === undefined) return false;
+export function instanceOfContinuousMeasurement(value: object): boolean {
+    if (!('measurement' in value)) return false;
     return true;
 }
 

@@ -61,11 +61,11 @@ export interface ProjectLayer {
 /**
  * Check if a given object implements the ProjectLayer interface.
  */
-export function instanceOfProjectLayer(value: object): value is ProjectLayer {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('symbology' in value) || value['symbology'] === undefined) return false;
-    if (!('visibility' in value) || value['visibility'] === undefined) return false;
-    if (!('workflow' in value) || value['workflow'] === undefined) return false;
+export function instanceOfProjectLayer(value: object): boolean {
+    if (!('name' in value)) return false;
+    if (!('symbology' in value)) return false;
+    if (!('visibility' in value)) return false;
+    if (!('workflow' in value)) return false;
     return true;
 }
 

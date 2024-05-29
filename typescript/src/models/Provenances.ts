@@ -37,8 +37,8 @@ export interface Provenances {
 /**
  * Check if a given object implements the Provenances interface.
  */
-export function instanceOfProvenances(value: object): value is Provenances {
-    if (!('provenances' in value) || value['provenances'] === undefined) return false;
+export function instanceOfProvenances(value: object): boolean {
+    if (!('provenances' in value)) return false;
     return true;
 }
 

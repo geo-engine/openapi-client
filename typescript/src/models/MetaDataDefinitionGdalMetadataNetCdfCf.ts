@@ -13,24 +13,24 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeStep } from './TimeStep';
-import {
-    TimeStepFromJSON,
-    TimeStepFromJSONTyped,
-    TimeStepToJSON,
-} from './TimeStep';
-import type { RasterResultDescriptor } from './RasterResultDescriptor';
-import {
-    RasterResultDescriptorFromJSON,
-    RasterResultDescriptorFromJSONTyped,
-    RasterResultDescriptorToJSON,
-} from './RasterResultDescriptor';
 import type { GdalDatasetParameters } from './GdalDatasetParameters';
 import {
     GdalDatasetParametersFromJSON,
     GdalDatasetParametersFromJSONTyped,
     GdalDatasetParametersToJSON,
 } from './GdalDatasetParameters';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import {
+    RasterResultDescriptorFromJSON,
+    RasterResultDescriptorFromJSONTyped,
+    RasterResultDescriptorToJSON,
+} from './RasterResultDescriptor';
+import type { TimeStep } from './TimeStep';
+import {
+    TimeStepFromJSON,
+    TimeStepFromJSONTyped,
+    TimeStepToJSON,
+} from './TimeStep';
 
 /**
  * Meta data for 4D `NetCDF` CF datasets
@@ -102,14 +102,14 @@ export type MetaDataDefinitionGdalMetadataNetCdfCfTypeEnum = typeof MetaDataDefi
 /**
  * Check if a given object implements the MetaDataDefinitionGdalMetadataNetCdfCf interface.
  */
-export function instanceOfMetaDataDefinitionGdalMetadataNetCdfCf(value: object): value is MetaDataDefinitionGdalMetadataNetCdfCf {
-    if (!('bandOffset' in value) || value['bandOffset'] === undefined) return false;
-    if (!('end' in value) || value['end'] === undefined) return false;
-    if (!('params' in value) || value['params'] === undefined) return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
-    if (!('start' in value) || value['start'] === undefined) return false;
-    if (!('step' in value) || value['step'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfMetaDataDefinitionGdalMetadataNetCdfCf(value: object): boolean {
+    if (!('bandOffset' in value)) return false;
+    if (!('end' in value)) return false;
+    if (!('params' in value)) return false;
+    if (!('resultDescriptor' in value)) return false;
+    if (!('start' in value)) return false;
+    if (!('step' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

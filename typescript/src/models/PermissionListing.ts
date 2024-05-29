@@ -13,24 +13,24 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Role } from './Role';
-import {
-    RoleFromJSON,
-    RoleFromJSONTyped,
-    RoleToJSON,
-} from './Role';
-import type { ResourceId } from './ResourceId';
-import {
-    ResourceIdFromJSON,
-    ResourceIdFromJSONTyped,
-    ResourceIdToJSON,
-} from './ResourceId';
 import type { Permission } from './Permission';
 import {
     PermissionFromJSON,
     PermissionFromJSONTyped,
     PermissionToJSON,
 } from './Permission';
+import type { ResourceId } from './ResourceId';
+import {
+    ResourceIdFromJSON,
+    ResourceIdFromJSONTyped,
+    ResourceIdToJSON,
+} from './ResourceId';
+import type { Role } from './Role';
+import {
+    RoleFromJSON,
+    RoleFromJSONTyped,
+    RoleToJSON,
+} from './Role';
 
 /**
  * 
@@ -61,10 +61,10 @@ export interface PermissionListing {
 /**
  * Check if a given object implements the PermissionListing interface.
  */
-export function instanceOfPermissionListing(value: object): value is PermissionListing {
-    if (!('permission' in value) || value['permission'] === undefined) return false;
-    if (!('resourceId' in value) || value['resourceId'] === undefined) return false;
-    if (!('role' in value) || value['role'] === undefined) return false;
+export function instanceOfPermissionListing(value: object): boolean {
+    if (!('permission' in value)) return false;
+    if (!('resourceId' in value)) return false;
+    if (!('role' in value)) return false;
     return true;
 }
 

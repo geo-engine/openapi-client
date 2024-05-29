@@ -13,6 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
+import type { BoundingBox2D } from './BoundingBox2D';
+import {
+    BoundingBox2DFromJSON,
+    BoundingBox2DFromJSONTyped,
+    BoundingBox2DToJSON,
+} from './BoundingBox2D';
 import type { SpatialResolution } from './SpatialResolution';
 import {
     SpatialResolutionFromJSON,
@@ -25,12 +31,6 @@ import {
     TimeIntervalFromJSONTyped,
     TimeIntervalToJSON,
 } from './TimeInterval';
-import type { BoundingBox2D } from './BoundingBox2D';
-import {
-    BoundingBox2DFromJSON,
-    BoundingBox2DFromJSONTyped,
-    BoundingBox2DToJSON,
-} from './BoundingBox2D';
 
 /**
  * A spatio-temporal rectangle with a specified resolution
@@ -61,10 +61,10 @@ export interface PlotQueryRectangle {
 /**
  * Check if a given object implements the PlotQueryRectangle interface.
  */
-export function instanceOfPlotQueryRectangle(value: object): value is PlotQueryRectangle {
-    if (!('spatialBounds' in value) || value['spatialBounds'] === undefined) return false;
-    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined) return false;
-    if (!('timeInterval' in value) || value['timeInterval'] === undefined) return false;
+export function instanceOfPlotQueryRectangle(value: object): boolean {
+    if (!('spatialBounds' in value)) return false;
+    if (!('spatialResolution' in value)) return false;
+    if (!('timeInterval' in value)) return false;
     return true;
 }
 

@@ -37,8 +37,8 @@ export interface MultiPoint {
 /**
  * Check if a given object implements the MultiPoint interface.
  */
-export function instanceOfMultiPoint(value: object): value is MultiPoint {
-    if (!('coordinates' in value) || value['coordinates'] === undefined) return false;
+export function instanceOfMultiPoint(value: object): boolean {
+    if (!('coordinates' in value)) return false;
     return true;
 }
 

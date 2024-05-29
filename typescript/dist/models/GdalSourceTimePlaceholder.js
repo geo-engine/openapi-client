@@ -20,9 +20,9 @@ const TimeReference_1 = require("./TimeReference");
  * Check if a given object implements the GdalSourceTimePlaceholder interface.
  */
 function instanceOfGdalSourceTimePlaceholder(value) {
-    if (!('format' in value) || value['format'] === undefined)
+    if (!('format' in value))
         return false;
-    if (!('reference' in value) || value['reference'] === undefined)
+    if (!('reference' in value))
         return false;
     return true;
 }

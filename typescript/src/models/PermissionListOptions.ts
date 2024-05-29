@@ -36,9 +36,9 @@ export interface PermissionListOptions {
 /**
  * Check if a given object implements the PermissionListOptions interface.
  */
-export function instanceOfPermissionListOptions(value: object): value is PermissionListOptions {
-    if (!('limit' in value) || value['limit'] === undefined) return false;
-    if (!('offset' in value) || value['offset'] === undefined) return false;
+export function instanceOfPermissionListOptions(value: object): boolean {
+    if (!('limit' in value)) return false;
+    if (!('offset' in value)) return false;
     return true;
 }
 

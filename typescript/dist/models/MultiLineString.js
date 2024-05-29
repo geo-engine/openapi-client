@@ -18,7 +18,7 @@ exports.MultiLineStringToJSON = exports.MultiLineStringFromJSONTyped = exports.M
  * Check if a given object implements the MultiLineString interface.
  */
 function instanceOfMultiLineString(value) {
-    if (!('coordinates' in value) || value['coordinates'] === undefined)
+    if (!('coordinates' in value))
         return false;
     return true;
 }

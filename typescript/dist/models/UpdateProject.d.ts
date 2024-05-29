@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TimeStep } from './TimeStep';
+import type { LayerUpdate } from './LayerUpdate';
 import type { PlotUpdate } from './PlotUpdate';
 import type { STRectangle } from './STRectangle';
-import type { LayerUpdate } from './LayerUpdate';
+import type { TimeStep } from './TimeStep';
 /**
  *
  * @export
@@ -65,7 +65,7 @@ export interface UpdateProject {
 /**
  * Check if a given object implements the UpdateProject interface.
  */
-export declare function instanceOfUpdateProject(value: object): value is UpdateProject;
+export declare function instanceOfUpdateProject(value: object): boolean;
 export declare function UpdateProjectFromJSON(json: any): UpdateProject;
 export declare function UpdateProjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateProject;
 export declare function UpdateProjectToJSON(value?: UpdateProject | null): any;

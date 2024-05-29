@@ -60,11 +60,11 @@ export type ColorizerPaletteTypeEnum = typeof ColorizerPaletteTypeEnum[keyof typ
 /**
  * Check if a given object implements the ColorizerPalette interface.
  */
-export function instanceOfColorizerPalette(value: object): value is ColorizerPalette {
-    if (!('colors' in value) || value['colors'] === undefined) return false;
-    if (!('defaultColor' in value) || value['defaultColor'] === undefined) return false;
-    if (!('noDataColor' in value) || value['noDataColor'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfColorizerPalette(value: object): boolean {
+    if (!('colors' in value)) return false;
+    if (!('defaultColor' in value)) return false;
+    if (!('noDataColor' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

@@ -18,13 +18,13 @@ exports.ServerInfoToJSON = exports.ServerInfoFromJSONTyped = exports.ServerInfoF
  * Check if a given object implements the ServerInfo interface.
  */
 function instanceOfServerInfo(value) {
-    if (!('buildDate' in value) || value['buildDate'] === undefined)
+    if (!('buildDate' in value))
         return false;
-    if (!('commitHash' in value) || value['commitHash'] === undefined)
+    if (!('commitHash' in value))
         return false;
-    if (!('features' in value) || value['features'] === undefined)
+    if (!('features' in value))
         return false;
-    if (!('version' in value) || value['version'] === undefined)
+    if (!('version' in value))
         return false;
     return true;
 }

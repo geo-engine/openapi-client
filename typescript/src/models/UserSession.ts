@@ -79,12 +79,12 @@ export interface UserSession {
 /**
  * Check if a given object implements the UserSession interface.
  */
-export function instanceOfUserSession(value: object): value is UserSession {
-    if (!('created' in value) || value['created'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('roles' in value) || value['roles'] === undefined) return false;
-    if (!('user' in value) || value['user'] === undefined) return false;
-    if (!('validUntil' in value) || value['validUntil'] === undefined) return false;
+export function instanceOfUserSession(value: object): boolean {
+    if (!('created' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('roles' in value)) return false;
+    if (!('user' in value)) return false;
+    if (!('validUntil' in value)) return false;
     return true;
 }
 

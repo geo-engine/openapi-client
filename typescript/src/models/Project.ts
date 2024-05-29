@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeStep } from './TimeStep';
-import {
-    TimeStepFromJSON,
-    TimeStepFromJSONTyped,
-    TimeStepToJSON,
-} from './TimeStep';
 import type { Plot } from './Plot';
 import {
     PlotFromJSON,
     PlotFromJSONTyped,
     PlotToJSON,
 } from './Plot';
+import type { ProjectLayer } from './ProjectLayer';
+import {
+    ProjectLayerFromJSON,
+    ProjectLayerFromJSONTyped,
+    ProjectLayerToJSON,
+} from './ProjectLayer';
 import type { ProjectVersion } from './ProjectVersion';
 import {
     ProjectVersionFromJSON,
@@ -37,12 +37,12 @@ import {
     STRectangleFromJSONTyped,
     STRectangleToJSON,
 } from './STRectangle';
-import type { ProjectLayer } from './ProjectLayer';
+import type { TimeStep } from './TimeStep';
 import {
-    ProjectLayerFromJSON,
-    ProjectLayerFromJSONTyped,
-    ProjectLayerToJSON,
-} from './ProjectLayer';
+    TimeStepFromJSON,
+    TimeStepFromJSONTyped,
+    TimeStepToJSON,
+} from './TimeStep';
 
 /**
  * 
@@ -103,15 +103,15 @@ export interface Project {
 /**
  * Check if a given object implements the Project interface.
  */
-export function instanceOfProject(value: object): value is Project {
-    if (!('bounds' in value) || value['bounds'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('layers' in value) || value['layers'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('plots' in value) || value['plots'] === undefined) return false;
-    if (!('timeStep' in value) || value['timeStep'] === undefined) return false;
-    if (!('version' in value) || value['version'] === undefined) return false;
+export function instanceOfProject(value: object): boolean {
+    if (!('bounds' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('layers' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('plots' in value)) return false;
+    if (!('timeStep' in value)) return false;
+    if (!('version' in value)) return false;
     return true;
 }
 

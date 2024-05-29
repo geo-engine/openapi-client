@@ -59,10 +59,10 @@ export type ColorParamDerivedTypeEnum = typeof ColorParamDerivedTypeEnum[keyof t
 /**
  * Check if a given object implements the ColorParamDerived interface.
  */
-export function instanceOfColorParamDerived(value: object): value is ColorParamDerived {
-    if (!('attribute' in value) || value['attribute'] === undefined) return false;
-    if (!('colorizer' in value) || value['colorizer'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfColorParamDerived(value: object): boolean {
+    if (!('attribute' in value)) return false;
+    if (!('colorizer' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

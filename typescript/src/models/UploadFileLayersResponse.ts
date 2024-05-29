@@ -30,8 +30,8 @@ export interface UploadFileLayersResponse {
 /**
  * Check if a given object implements the UploadFileLayersResponse interface.
  */
-export function instanceOfUploadFileLayersResponse(value: object): value is UploadFileLayersResponse {
-    if (!('layers' in value) || value['layers'] === undefined) return false;
+export function instanceOfUploadFileLayersResponse(value: object): boolean {
+    if (!('layers' in value)) return false;
     return true;
 }
 

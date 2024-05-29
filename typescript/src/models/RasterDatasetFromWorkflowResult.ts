@@ -36,9 +36,9 @@ export interface RasterDatasetFromWorkflowResult {
 /**
  * Check if a given object implements the RasterDatasetFromWorkflowResult interface.
  */
-export function instanceOfRasterDatasetFromWorkflowResult(value: object): value is RasterDatasetFromWorkflowResult {
-    if (!('dataset' in value) || value['dataset'] === undefined) return false;
-    if (!('upload' in value) || value['upload'] === undefined) return false;
+export function instanceOfRasterDatasetFromWorkflowResult(value: object): boolean {
+    if (!('dataset' in value)) return false;
+    if (!('upload' in value)) return false;
     return true;
 }
 

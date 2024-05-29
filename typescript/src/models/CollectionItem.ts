@@ -44,9 +44,9 @@ export function CollectionItemFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     switch (json['type']) {
         case 'collection':
-            return Object.assign({}, CollectionItemCollectionFromJSONTyped(json, true), { type: 'collection' });
+            return {...CollectionItemCollectionFromJSONTyped(json, true), type: 'collection'};
         case 'layer':
-            return Object.assign({}, CollectionItemLayerFromJSONTyped(json, true), { type: 'layer' });
+            return {...CollectionItemLayerFromJSONTyped(json, true), type: 'layer'};
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }

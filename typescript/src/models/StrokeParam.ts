@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { NumberParam } from './NumberParam';
-import {
-    NumberParamFromJSON,
-    NumberParamFromJSONTyped,
-    NumberParamToJSON,
-} from './NumberParam';
 import type { ColorParam } from './ColorParam';
 import {
     ColorParamFromJSON,
     ColorParamFromJSONTyped,
     ColorParamToJSON,
 } from './ColorParam';
+import type { NumberParam } from './NumberParam';
+import {
+    NumberParamFromJSON,
+    NumberParamFromJSONTyped,
+    NumberParamToJSON,
+} from './NumberParam';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface StrokeParam {
 /**
  * Check if a given object implements the StrokeParam interface.
  */
-export function instanceOfStrokeParam(value: object): value is StrokeParam {
-    if (!('color' in value) || value['color'] === undefined) return false;
-    if (!('width' in value) || value['width'] === undefined) return false;
+export function instanceOfStrokeParam(value: object): boolean {
+    if (!('color' in value)) return false;
+    if (!('width' in value)) return false;
     return true;
 }
 

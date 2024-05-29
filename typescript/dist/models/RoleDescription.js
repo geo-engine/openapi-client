@@ -19,9 +19,9 @@ const Role_1 = require("./Role");
  * Check if a given object implements the RoleDescription interface.
  */
 function instanceOfRoleDescription(value) {
-    if (!('individual' in value) || value['individual'] === undefined)
+    if (!('individual' in value))
         return false;
-    if (!('role' in value) || value['role'] === undefined)
+    if (!('role' in value))
         return false;
     return true;
 }

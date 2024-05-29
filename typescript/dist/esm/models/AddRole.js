@@ -15,7 +15,7 @@
  * Check if a given object implements the AddRole interface.
  */
 export function instanceOfAddRole(value) {
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
     return true;
 }

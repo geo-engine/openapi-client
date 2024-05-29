@@ -15,11 +15,11 @@
  * Check if a given object implements the Provenance interface.
  */
 export function instanceOfProvenance(value) {
-    if (!('citation' in value) || value['citation'] === undefined)
+    if (!('citation' in value))
         return false;
-    if (!('license' in value) || value['license'] === undefined)
+    if (!('license' in value))
         return false;
-    if (!('uri' in value) || value['uri'] === undefined)
+    if (!('uri' in value))
         return false;
     return true;
 }

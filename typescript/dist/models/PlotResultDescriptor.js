@@ -14,13 +14,13 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlotResultDescriptorToJSON = exports.PlotResultDescriptorFromJSONTyped = exports.PlotResultDescriptorFromJSON = exports.instanceOfPlotResultDescriptor = void 0;
-const TimeInterval_1 = require("./TimeInterval");
 const BoundingBox2D_1 = require("./BoundingBox2D");
+const TimeInterval_1 = require("./TimeInterval");
 /**
  * Check if a given object implements the PlotResultDescriptor interface.
  */
 function instanceOfPlotResultDescriptor(value) {
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+    if (!('spatialReference' in value))
         return false;
     return true;
 }

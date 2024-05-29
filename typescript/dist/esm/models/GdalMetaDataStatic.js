@@ -11,16 +11,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
-import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
 import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './GdalDatasetParameters';
+import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
+import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 /**
  * Check if a given object implements the GdalMetaDataStatic interface.
  */
 export function instanceOfGdalMetaDataStatic(value) {
-    if (!('params' in value) || value['params'] === undefined)
+    if (!('params' in value))
         return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+    if (!('resultDescriptor' in value))
         return false;
     return true;
 }

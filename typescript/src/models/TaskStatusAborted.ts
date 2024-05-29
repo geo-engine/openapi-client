@@ -46,9 +46,9 @@ export type TaskStatusAbortedStatusEnum = typeof TaskStatusAbortedStatusEnum[key
 /**
  * Check if a given object implements the TaskStatusAborted interface.
  */
-export function instanceOfTaskStatusAborted(value: object): value is TaskStatusAborted {
-    if (!('cleanUp' in value) || value['cleanUp'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
+export function instanceOfTaskStatusAborted(value: object): boolean {
+    if (!('cleanUp' in value)) return false;
+    if (!('status' in value)) return false;
     return true;
 }
 

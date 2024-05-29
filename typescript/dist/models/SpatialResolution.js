@@ -18,9 +18,9 @@ exports.SpatialResolutionToJSON = exports.SpatialResolutionFromJSONTyped = expor
  * Check if a given object implements the SpatialResolution interface.
  */
 function instanceOfSpatialResolution(value) {
-    if (!('x' in value) || value['x'] === undefined)
+    if (!('x' in value))
         return false;
-    if (!('y' in value) || value['y'] === undefined)
+    if (!('y' in value))
         return false;
     return true;
 }

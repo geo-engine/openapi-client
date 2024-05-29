@@ -16,9 +16,9 @@ import { Coordinate2DFromJSON, Coordinate2DToJSON, } from './Coordinate2D';
  * Check if a given object implements the BoundingBox2D interface.
  */
 export function instanceOfBoundingBox2D(value) {
-    if (!('lowerLeftCoordinate' in value) || value['lowerLeftCoordinate'] === undefined)
+    if (!('lowerLeftCoordinate' in value))
         return false;
-    if (!('upperRightCoordinate' in value) || value['upperRightCoordinate'] === undefined)
+    if (!('upperRightCoordinate' in value))
         return false;
     return true;
 }

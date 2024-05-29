@@ -18,7 +18,7 @@ exports.UploadFileLayersResponseToJSON = exports.UploadFileLayersResponseFromJSO
  * Check if a given object implements the UploadFileLayersResponse interface.
  */
 function instanceOfUploadFileLayersResponse(value) {
-    if (!('layers' in value) || value['layers'] === undefined)
+    if (!('layers' in value))
         return false;
     return true;
 }

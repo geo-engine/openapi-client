@@ -14,19 +14,19 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PointSymbologyToJSON = exports.PointSymbologyFromJSONTyped = exports.PointSymbologyFromJSON = exports.instanceOfPointSymbology = void 0;
-const TextSymbology_1 = require("./TextSymbology");
-const StrokeParam_1 = require("./StrokeParam");
-const NumberParam_1 = require("./NumberParam");
 const ColorParam_1 = require("./ColorParam");
+const NumberParam_1 = require("./NumberParam");
+const StrokeParam_1 = require("./StrokeParam");
+const TextSymbology_1 = require("./TextSymbology");
 /**
  * Check if a given object implements the PointSymbology interface.
  */
 function instanceOfPointSymbology(value) {
-    if (!('fillColor' in value) || value['fillColor'] === undefined)
+    if (!('fillColor' in value))
         return false;
-    if (!('radius' in value) || value['radius'] === undefined)
+    if (!('radius' in value))
         return false;
-    if (!('stroke' in value) || value['stroke'] === undefined)
+    if (!('stroke' in value))
         return false;
     return true;
 }

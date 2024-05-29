@@ -58,13 +58,13 @@ export function ColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     switch (json['type']) {
         case 'linearGradient':
-            return Object.assign({}, ColorizerLinearGradientFromJSONTyped(json, true), { type: 'linearGradient' });
+            return {...ColorizerLinearGradientFromJSONTyped(json, true), type: 'linearGradient'};
         case 'logarithmicGradient':
-            return Object.assign({}, ColorizerLogarithmicGradientFromJSONTyped(json, true), { type: 'logarithmicGradient' });
+            return {...ColorizerLogarithmicGradientFromJSONTyped(json, true), type: 'logarithmicGradient'};
         case 'palette':
-            return Object.assign({}, ColorizerPaletteFromJSONTyped(json, true), { type: 'palette' });
+            return {...ColorizerPaletteFromJSONTyped(json, true), type: 'palette'};
         case 'rgba':
-            return Object.assign({}, ColorizerRgbaFromJSONTyped(json, true), { type: 'rgba' });
+            return {...ColorizerRgbaFromJSONTyped(json, true), type: 'rgba'};
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${json['type']}'`);
     }

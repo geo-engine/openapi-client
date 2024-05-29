@@ -15,19 +15,19 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VectorResultDescriptorToJSON = exports.VectorResultDescriptorFromJSONTyped = exports.VectorResultDescriptorFromJSON = exports.instanceOfVectorResultDescriptor = void 0;
 const runtime_1 = require("../runtime");
-const VectorDataType_1 = require("./VectorDataType");
+const BoundingBox2D_1 = require("./BoundingBox2D");
 const TimeInterval_1 = require("./TimeInterval");
 const VectorColumnInfo_1 = require("./VectorColumnInfo");
-const BoundingBox2D_1 = require("./BoundingBox2D");
+const VectorDataType_1 = require("./VectorDataType");
 /**
  * Check if a given object implements the VectorResultDescriptor interface.
  */
 function instanceOfVectorResultDescriptor(value) {
-    if (!('columns' in value) || value['columns'] === undefined)
+    if (!('columns' in value))
         return false;
-    if (!('dataType' in value) || value['dataType'] === undefined)
+    if (!('dataType' in value))
         return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+    if (!('spatialReference' in value))
         return false;
     return true;
 }

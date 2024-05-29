@@ -19,15 +19,11 @@ export const ProjectUpdateToken = {
     None: 'none',
     Delete: 'delete'
 };
+/**
+ * Check if a given object implements the ProjectUpdateToken interface.
+ */
 export function instanceOfProjectUpdateToken(value) {
-    for (const key in ProjectUpdateToken) {
-        if (Object.prototype.hasOwnProperty.call(ProjectUpdateToken, key)) {
-            if (ProjectUpdateToken[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
+    return value === ProjectUpdateToken.None || value === ProjectUpdateToken.Delete;
 }
 export function ProjectUpdateTokenFromJSON(json) {
     return ProjectUpdateTokenFromJSONTyped(json, false);

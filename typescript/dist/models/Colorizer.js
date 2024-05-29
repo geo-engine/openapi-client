@@ -28,13 +28,13 @@ function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'linearGradient':
-            return Object.assign({}, (0, ColorizerLinearGradient_1.ColorizerLinearGradientFromJSONTyped)(json, true), { type: 'linearGradient' });
+            return Object.assign(Object.assign({}, (0, ColorizerLinearGradient_1.ColorizerLinearGradientFromJSONTyped)(json, true)), { type: 'linearGradient' });
         case 'logarithmicGradient':
-            return Object.assign({}, (0, ColorizerLogarithmicGradient_1.ColorizerLogarithmicGradientFromJSONTyped)(json, true), { type: 'logarithmicGradient' });
+            return Object.assign(Object.assign({}, (0, ColorizerLogarithmicGradient_1.ColorizerLogarithmicGradientFromJSONTyped)(json, true)), { type: 'logarithmicGradient' });
         case 'palette':
-            return Object.assign({}, (0, ColorizerPalette_1.ColorizerPaletteFromJSONTyped)(json, true), { type: 'palette' });
+            return Object.assign(Object.assign({}, (0, ColorizerPalette_1.ColorizerPaletteFromJSONTyped)(json, true)), { type: 'palette' });
         case 'rgba':
-            return Object.assign({}, (0, ColorizerRgba_1.ColorizerRgbaFromJSONTyped)(json, true), { type: 'rgba' });
+            return Object.assign(Object.assign({}, (0, ColorizerRgba_1.ColorizerRgbaFromJSONTyped)(json, true)), { type: 'rgba' });
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${json['type']}'`);
     }

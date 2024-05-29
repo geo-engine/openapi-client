@@ -11,15 +11,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
+import { LayerUpdateFromJSON, LayerUpdateToJSON, } from './LayerUpdate';
 import { PlotUpdateFromJSON, PlotUpdateToJSON, } from './PlotUpdate';
 import { STRectangleFromJSON, STRectangleToJSON, } from './STRectangle';
-import { LayerUpdateFromJSON, LayerUpdateToJSON, } from './LayerUpdate';
+import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
 /**
  * Check if a given object implements the UpdateProject interface.
  */
 export function instanceOfUpdateProject(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
     return true;
 }

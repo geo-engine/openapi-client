@@ -18,7 +18,7 @@ exports.TypedGeometryOneOfToJSON = exports.TypedGeometryOneOfFromJSONTyped = exp
  * Check if a given object implements the TypedGeometryOneOf interface.
  */
 function instanceOfTypedGeometryOneOf(value) {
-    if (!('data' in value) || value['data'] === undefined)
+    if (!('data' in value))
         return false;
     return true;
 }

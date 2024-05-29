@@ -15,7 +15,7 @@
  * Check if a given object implements the CreateDatasetHandler200Response interface.
  */
 export function instanceOfCreateDatasetHandler200Response(value) {
-    if (!('datasetName' in value) || value['datasetName'] === undefined)
+    if (!('datasetName' in value))
         return false;
     return true;
 }

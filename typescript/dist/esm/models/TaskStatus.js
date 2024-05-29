@@ -24,13 +24,13 @@ export function TaskStatusFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['status']) {
         case 'aborted':
-            return Object.assign({}, TaskStatusAbortedFromJSONTyped(json, true), { status: 'aborted' });
+            return Object.assign(Object.assign({}, TaskStatusAbortedFromJSONTyped(json, true)), { status: 'aborted' });
         case 'completed':
-            return Object.assign({}, TaskStatusCompletedFromJSONTyped(json, true), { status: 'completed' });
+            return Object.assign(Object.assign({}, TaskStatusCompletedFromJSONTyped(json, true)), { status: 'completed' });
         case 'failed':
-            return Object.assign({}, TaskStatusFailedFromJSONTyped(json, true), { status: 'failed' });
+            return Object.assign(Object.assign({}, TaskStatusFailedFromJSONTyped(json, true)), { status: 'failed' });
         case 'running':
-            return Object.assign({}, TaskStatusRunningFromJSONTyped(json, true), { status: 'running' });
+            return Object.assign(Object.assign({}, TaskStatusRunningFromJSONTyped(json, true)), { status: 'running' });
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${json['status']}'`);
     }

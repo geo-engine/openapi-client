@@ -16,7 +16,7 @@ import { FormatSpecificsFromJSON, FormatSpecificsToJSON, } from './FormatSpecifi
  * Check if a given object implements the OgrSourceColumnSpec interface.
  */
 export function instanceOfOgrSourceColumnSpec(value) {
-    if (!('x' in value) || value['x'] === undefined)
+    if (!('x' in value))
         return false;
     return true;
 }

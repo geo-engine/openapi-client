@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SearchTypeToJSON = exports.SearchTypeFromJSONTyped = exports.SearchTypeFromJSON = exports.instanceOfSearchType = exports.SearchType = void 0;
+exports.SearchTypeToJSON = exports.SearchTypeFromJSONTyped = exports.SearchTypeFromJSON = exports.SearchType = void 0;
 /**
  *
  * @export
@@ -22,17 +22,6 @@ exports.SearchType = {
     Fulltext: 'fulltext',
     Prefix: 'prefix'
 };
-function instanceOfSearchType(value) {
-    for (const key in exports.SearchType) {
-        if (Object.prototype.hasOwnProperty.call(exports.SearchType, key)) {
-            if (exports.SearchType[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfSearchType = instanceOfSearchType;
 function SearchTypeFromJSON(json) {
     return SearchTypeFromJSONTyped(json, false);
 }

@@ -15,9 +15,9 @@
  * Check if a given object implements the TimeInterval interface.
  */
 export function instanceOfTimeInterval(value) {
-    if (!('end' in value) || value['end'] === undefined)
+    if (!('end' in value))
         return false;
-    if (!('start' in value) || value['start'] === undefined)
+    if (!('start' in value))
         return false;
     return true;
 }

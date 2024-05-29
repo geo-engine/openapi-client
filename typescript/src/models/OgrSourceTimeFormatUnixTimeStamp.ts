@@ -53,9 +53,9 @@ export type OgrSourceTimeFormatUnixTimeStampFormatEnum = typeof OgrSourceTimeFor
 /**
  * Check if a given object implements the OgrSourceTimeFormatUnixTimeStamp interface.
  */
-export function instanceOfOgrSourceTimeFormatUnixTimeStamp(value: object): value is OgrSourceTimeFormatUnixTimeStamp {
-    if (!('format' in value) || value['format'] === undefined) return false;
-    if (!('timestampType' in value) || value['timestampType'] === undefined) return false;
+export function instanceOfOgrSourceTimeFormatUnixTimeStamp(value: object): boolean {
+    if (!('format' in value)) return false;
+    if (!('timestampType' in value)) return false;
     return true;
 }
 

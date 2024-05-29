@@ -17,7 +17,6 @@ export declare const WfsVersion: {
     readonly _200: "2.0.0";
 };
 export type WfsVersion = typeof WfsVersion[keyof typeof WfsVersion];
-export declare function instanceOfWfsVersion(value: any): boolean;
 export declare function WfsVersionFromJSON(json: any): WfsVersion;
 export declare function WfsVersionFromJSONTyped(json: any, ignoreDiscriminator: boolean): WfsVersion;
 export declare function WfsVersionToJSON(value?: WfsVersion | null): any;

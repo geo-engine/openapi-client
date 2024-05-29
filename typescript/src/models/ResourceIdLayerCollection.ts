@@ -46,9 +46,9 @@ export type ResourceIdLayerCollectionTypeEnum = typeof ResourceIdLayerCollection
 /**
  * Check if a given object implements the ResourceIdLayerCollection interface.
  */
-export function instanceOfResourceIdLayerCollection(value: object): value is ResourceIdLayerCollection {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfResourceIdLayerCollection(value: object): boolean {
+    if (!('id' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

@@ -26,17 +26,6 @@ export const SpatialReferenceAuthority = {
 export type SpatialReferenceAuthority = typeof SpatialReferenceAuthority[keyof typeof SpatialReferenceAuthority];
 
 
-export function instanceOfSpatialReferenceAuthority(value: any): boolean {
-    for (const key in SpatialReferenceAuthority) {
-        if (Object.prototype.hasOwnProperty.call(SpatialReferenceAuthority, key)) {
-            if (SpatialReferenceAuthority[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function SpatialReferenceAuthorityFromJSON(json: any): SpatialReferenceAuthority {
     return SpatialReferenceAuthorityFromJSONTyped(json, false);
 }

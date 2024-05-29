@@ -46,9 +46,9 @@ export type ResourceDatasetTypeEnum = typeof ResourceDatasetTypeEnum[keyof typeo
 /**
  * Check if a given object implements the ResourceDataset interface.
  */
-export function instanceOfResourceDataset(value: object): value is ResourceDataset {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfResourceDataset(value: object): boolean {
+    if (!('id' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

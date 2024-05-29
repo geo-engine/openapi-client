@@ -14,24 +14,24 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalDatasetParametersToJSON = exports.GdalDatasetParametersFromJSONTyped = exports.GdalDatasetParametersFromJSON = exports.instanceOfGdalDatasetParameters = void 0;
+const FileNotFoundHandling_1 = require("./FileNotFoundHandling");
 const GdalDatasetGeoTransform_1 = require("./GdalDatasetGeoTransform");
 const GdalMetadataMapping_1 = require("./GdalMetadataMapping");
-const FileNotFoundHandling_1 = require("./FileNotFoundHandling");
 /**
  * Check if a given object implements the GdalDatasetParameters interface.
  */
 function instanceOfGdalDatasetParameters(value) {
-    if (!('fileNotFoundHandling' in value) || value['fileNotFoundHandling'] === undefined)
+    if (!('fileNotFoundHandling' in value))
         return false;
-    if (!('filePath' in value) || value['filePath'] === undefined)
+    if (!('filePath' in value))
         return false;
-    if (!('geoTransform' in value) || value['geoTransform'] === undefined)
+    if (!('geoTransform' in value))
         return false;
-    if (!('height' in value) || value['height'] === undefined)
+    if (!('height' in value))
         return false;
-    if (!('rasterbandChannel' in value) || value['rasterbandChannel'] === undefined)
+    if (!('rasterbandChannel' in value))
         return false;
-    if (!('width' in value) || value['width'] === undefined)
+    if (!('width' in value))
         return false;
     return true;
 }

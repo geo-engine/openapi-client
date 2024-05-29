@@ -15,7 +15,7 @@
  * Check if a given object implements the WcsBoundingbox interface.
  */
 export function instanceOfWcsBoundingbox(value) {
-    if (!('bbox' in value) || value['bbox'] === undefined)
+    if (!('bbox' in value))
         return false;
     return true;
 }

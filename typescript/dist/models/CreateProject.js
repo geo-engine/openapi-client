@@ -14,17 +14,17 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateProjectToJSON = exports.CreateProjectFromJSONTyped = exports.CreateProjectFromJSON = exports.instanceOfCreateProject = void 0;
-const TimeStep_1 = require("./TimeStep");
 const STRectangle_1 = require("./STRectangle");
+const TimeStep_1 = require("./TimeStep");
 /**
  * Check if a given object implements the CreateProject interface.
  */
 function instanceOfCreateProject(value) {
-    if (!('bounds' in value) || value['bounds'] === undefined)
+    if (!('bounds' in value))
         return false;
-    if (!('description' in value) || value['description'] === undefined)
+    if (!('description' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
     return true;
 }

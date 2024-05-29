@@ -14,20 +14,20 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OgrSourceDatasetToJSON = exports.OgrSourceDatasetFromJSONTyped = exports.OgrSourceDatasetFromJSON = exports.instanceOfOgrSourceDataset = void 0;
-const OgrSourceErrorSpec_1 = require("./OgrSourceErrorSpec");
-const VectorDataType_1 = require("./VectorDataType");
-const TypedGeometry_1 = require("./TypedGeometry");
 const OgrSourceColumnSpec_1 = require("./OgrSourceColumnSpec");
 const OgrSourceDatasetTimeType_1 = require("./OgrSourceDatasetTimeType");
+const OgrSourceErrorSpec_1 = require("./OgrSourceErrorSpec");
+const TypedGeometry_1 = require("./TypedGeometry");
+const VectorDataType_1 = require("./VectorDataType");
 /**
  * Check if a given object implements the OgrSourceDataset interface.
  */
 function instanceOfOgrSourceDataset(value) {
-    if (!('fileName' in value) || value['fileName'] === undefined)
+    if (!('fileName' in value))
         return false;
-    if (!('layerName' in value) || value['layerName'] === undefined)
+    if (!('layerName' in value))
         return false;
-    if (!('onError' in value) || value['onError'] === undefined)
+    if (!('onError' in value))
         return false;
     return true;
 }

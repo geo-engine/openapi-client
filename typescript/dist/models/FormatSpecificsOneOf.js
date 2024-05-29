@@ -19,7 +19,7 @@ const FormatSpecificsOneOfCsv_1 = require("./FormatSpecificsOneOfCsv");
  * Check if a given object implements the FormatSpecificsOneOf interface.
  */
 function instanceOfFormatSpecificsOneOf(value) {
-    if (!('csv' in value) || value['csv'] === undefined)
+    if (!('csv' in value))
         return false;
     return true;
 }

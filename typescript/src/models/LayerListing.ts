@@ -55,10 +55,10 @@ export interface LayerListing {
 /**
  * Check if a given object implements the LayerListing interface.
  */
-export function instanceOfLayerListing(value: object): value is LayerListing {
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+export function instanceOfLayerListing(value: object): boolean {
+    if (!('description' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
     return true;
 }
 

@@ -18,9 +18,9 @@ exports.ProviderLayerCollectionIdToJSON = exports.ProviderLayerCollectionIdFromJ
  * Check if a given object implements the ProviderLayerCollectionId interface.
  */
 function instanceOfProviderLayerCollectionId(value) {
-    if (!('collectionId' in value) || value['collectionId'] === undefined)
+    if (!('collectionId' in value))
         return false;
-    if (!('providerId' in value) || value['providerId'] === undefined)
+    if (!('providerId' in value))
         return false;
     return true;
 }

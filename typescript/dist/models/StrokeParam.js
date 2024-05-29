@@ -14,15 +14,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StrokeParamToJSON = exports.StrokeParamFromJSONTyped = exports.StrokeParamFromJSON = exports.instanceOfStrokeParam = void 0;
-const NumberParam_1 = require("./NumberParam");
 const ColorParam_1 = require("./ColorParam");
+const NumberParam_1 = require("./NumberParam");
 /**
  * Check if a given object implements the StrokeParam interface.
  */
 function instanceOfStrokeParam(value) {
-    if (!('color' in value) || value['color'] === undefined)
+    if (!('color' in value))
         return false;
-    if (!('width' in value) || value['width'] === undefined)
+    if (!('width' in value))
         return false;
     return true;
 }

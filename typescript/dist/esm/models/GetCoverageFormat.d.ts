@@ -17,7 +17,6 @@ export declare const GetCoverageFormat: {
     readonly ImageTiff: "image/tiff";
 };
 export type GetCoverageFormat = typeof GetCoverageFormat[keyof typeof GetCoverageFormat];
-export declare function instanceOfGetCoverageFormat(value: any): boolean;
 export declare function GetCoverageFormatFromJSON(json: any): GetCoverageFormat;
 export declare function GetCoverageFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCoverageFormat;
 export declare function GetCoverageFormatToJSON(value?: GetCoverageFormat | null): any;

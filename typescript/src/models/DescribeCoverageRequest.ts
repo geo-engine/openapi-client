@@ -23,17 +23,6 @@ export const DescribeCoverageRequest = {
 export type DescribeCoverageRequest = typeof DescribeCoverageRequest[keyof typeof DescribeCoverageRequest];
 
 
-export function instanceOfDescribeCoverageRequest(value: any): boolean {
-    for (const key in DescribeCoverageRequest) {
-        if (Object.prototype.hasOwnProperty.call(DescribeCoverageRequest, key)) {
-            if (DescribeCoverageRequest[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function DescribeCoverageRequestFromJSON(json: any): DescribeCoverageRequest {
     return DescribeCoverageRequestFromJSONTyped(json, false);
 }

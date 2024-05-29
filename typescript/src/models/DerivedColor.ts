@@ -43,9 +43,9 @@ export interface DerivedColor {
 /**
  * Check if a given object implements the DerivedColor interface.
  */
-export function instanceOfDerivedColor(value: object): value is DerivedColor {
-    if (!('attribute' in value) || value['attribute'] === undefined) return false;
-    if (!('colorizer' in value) || value['colorizer'] === undefined) return false;
+export function instanceOfDerivedColor(value: object): boolean {
+    if (!('attribute' in value)) return false;
+    if (!('colorizer' in value)) return false;
     return true;
 }
 

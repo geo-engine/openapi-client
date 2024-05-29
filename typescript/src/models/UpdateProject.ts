@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeStep } from './TimeStep';
+import type { LayerUpdate } from './LayerUpdate';
 import {
-    TimeStepFromJSON,
-    TimeStepFromJSONTyped,
-    TimeStepToJSON,
-} from './TimeStep';
+    LayerUpdateFromJSON,
+    LayerUpdateFromJSONTyped,
+    LayerUpdateToJSON,
+} from './LayerUpdate';
 import type { PlotUpdate } from './PlotUpdate';
 import {
     PlotUpdateFromJSON,
@@ -31,12 +31,12 @@ import {
     STRectangleFromJSONTyped,
     STRectangleToJSON,
 } from './STRectangle';
-import type { LayerUpdate } from './LayerUpdate';
+import type { TimeStep } from './TimeStep';
 import {
-    LayerUpdateFromJSON,
-    LayerUpdateFromJSONTyped,
-    LayerUpdateToJSON,
-} from './LayerUpdate';
+    TimeStepFromJSON,
+    TimeStepFromJSONTyped,
+    TimeStepToJSON,
+} from './TimeStep';
 
 /**
  * 
@@ -91,8 +91,8 @@ export interface UpdateProject {
 /**
  * Check if a given object implements the UpdateProject interface.
  */
-export function instanceOfUpdateProject(value: object): value is UpdateProject {
-    if (!('id' in value) || value['id'] === undefined) return false;
+export function instanceOfUpdateProject(value: object): boolean {
+    if (!('id' in value)) return false;
     return true;
 }
 

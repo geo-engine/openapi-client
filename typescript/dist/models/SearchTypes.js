@@ -18,9 +18,9 @@ exports.SearchTypesToJSON = exports.SearchTypesFromJSONTyped = exports.SearchTyp
  * Check if a given object implements the SearchTypes interface.
  */
 function instanceOfSearchTypes(value) {
-    if (!('fulltext' in value) || value['fulltext'] === undefined)
+    if (!('fulltext' in value))
         return false;
-    if (!('prefix' in value) || value['prefix'] === undefined)
+    if (!('prefix' in value))
         return false;
     return true;
 }

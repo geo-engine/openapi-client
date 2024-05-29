@@ -36,9 +36,9 @@ export interface Volume {
 /**
  * Check if a given object implements the Volume interface.
  */
-export function instanceOfVolume(value: object): value is Volume {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('path' in value) || value['path'] === undefined) return false;
+export function instanceOfVolume(value: object): boolean {
+    if (!('name' in value)) return false;
+    if (!('path' in value)) return false;
     return true;
 }
 

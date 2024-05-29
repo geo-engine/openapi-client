@@ -15,9 +15,9 @@
  * Check if a given object implements the SearchTypes interface.
  */
 export function instanceOfSearchTypes(value) {
-    if (!('fulltext' in value) || value['fulltext'] === undefined)
+    if (!('fulltext' in value))
         return false;
-    if (!('prefix' in value) || value['prefix'] === undefined)
+    if (!('prefix' in value))
         return false;
     return true;
 }

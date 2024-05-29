@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeInterval } from './TimeInterval';
-import {
-    TimeIntervalFromJSON,
-    TimeIntervalFromJSONTyped,
-    TimeIntervalToJSON,
-} from './TimeInterval';
 import type { BoundingBox2D } from './BoundingBox2D';
 import {
     BoundingBox2DFromJSON,
     BoundingBox2DFromJSONTyped,
     BoundingBox2DToJSON,
 } from './BoundingBox2D';
+import type { TimeInterval } from './TimeInterval';
+import {
+    TimeIntervalFromJSON,
+    TimeIntervalFromJSONTyped,
+    TimeIntervalToJSON,
+} from './TimeInterval';
 
 /**
  * 
@@ -55,10 +55,10 @@ export interface STRectangle {
 /**
  * Check if a given object implements the STRectangle interface.
  */
-export function instanceOfSTRectangle(value: object): value is STRectangle {
-    if (!('boundingBox' in value) || value['boundingBox'] === undefined) return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
-    if (!('timeInterval' in value) || value['timeInterval'] === undefined) return false;
+export function instanceOfSTRectangle(value: object): boolean {
+    if (!('boundingBox' in value)) return false;
+    if (!('spatialReference' in value)) return false;
+    if (!('timeInterval' in value)) return false;
     return true;
 }
 

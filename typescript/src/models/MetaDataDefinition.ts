@@ -72,17 +72,17 @@ export function MetaDataDefinitionFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     switch (json['type']) {
         case 'GdalMetaDataList':
-            return Object.assign({}, MetaDataDefinitionGdalMetaDataListFromJSONTyped(json, true), { type: 'GdalMetaDataList' });
+            return {...MetaDataDefinitionGdalMetaDataListFromJSONTyped(json, true), type: 'GdalMetaDataList'};
         case 'GdalMetaDataRegular':
-            return Object.assign({}, MetaDataDefinitionGdalMetaDataRegularFromJSONTyped(json, true), { type: 'GdalMetaDataRegular' });
+            return {...MetaDataDefinitionGdalMetaDataRegularFromJSONTyped(json, true), type: 'GdalMetaDataRegular'};
         case 'GdalMetadataNetCdfCf':
-            return Object.assign({}, MetaDataDefinitionGdalMetadataNetCdfCfFromJSONTyped(json, true), { type: 'GdalMetadataNetCdfCf' });
+            return {...MetaDataDefinitionGdalMetadataNetCdfCfFromJSONTyped(json, true), type: 'GdalMetadataNetCdfCf'};
         case 'GdalStatic':
-            return Object.assign({}, MetaDataDefinitionGdalStaticFromJSONTyped(json, true), { type: 'GdalStatic' });
+            return {...MetaDataDefinitionGdalStaticFromJSONTyped(json, true), type: 'GdalStatic'};
         case 'MockMetaData':
-            return Object.assign({}, MetaDataDefinitionMockMetaDataFromJSONTyped(json, true), { type: 'MockMetaData' });
+            return {...MetaDataDefinitionMockMetaDataFromJSONTyped(json, true), type: 'MockMetaData'};
         case 'OgrMetaData':
-            return Object.assign({}, MetaDataDefinitionOgrMetaDataFromJSONTyped(json, true), { type: 'OgrMetaData' });
+            return {...MetaDataDefinitionOgrMetaDataFromJSONTyped(json, true), type: 'OgrMetaData'};
         default:
             throw new Error(`No variant of MetaDataDefinition exists with 'type=${json['type']}'`);
     }

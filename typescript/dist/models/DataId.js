@@ -26,9 +26,9 @@ function DataIdFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'external':
-            return Object.assign({}, (0, DataIdExternal_1.DataIdExternalFromJSONTyped)(json, true), { type: 'external' });
+            return Object.assign(Object.assign({}, (0, DataIdExternal_1.DataIdExternalFromJSONTyped)(json, true)), { type: 'external' });
         case 'internal':
-            return Object.assign({}, (0, DataIdInternal_1.DataIdInternalFromJSONTyped)(json, true), { type: 'internal' });
+            return Object.assign(Object.assign({}, (0, DataIdInternal_1.DataIdInternalFromJSONTyped)(json, true)), { type: 'internal' });
         default:
             throw new Error(`No variant of DataId exists with 'type=${json['type']}'`);
     }

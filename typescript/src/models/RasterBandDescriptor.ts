@@ -43,9 +43,9 @@ export interface RasterBandDescriptor {
 /**
  * Check if a given object implements the RasterBandDescriptor interface.
  */
-export function instanceOfRasterBandDescriptor(value: object): value is RasterBandDescriptor {
-    if (!('measurement' in value) || value['measurement'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+export function instanceOfRasterBandDescriptor(value: object): boolean {
+    if (!('measurement' in value)) return false;
+    if (!('name' in value)) return false;
     return true;
 }
 

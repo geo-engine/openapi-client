@@ -24,17 +24,6 @@ export const SearchType = {
 export type SearchType = typeof SearchType[keyof typeof SearchType];
 
 
-export function instanceOfSearchType(value: any): boolean {
-    for (const key in SearchType) {
-        if (Object.prototype.hasOwnProperty.call(SearchType, key)) {
-            if (SearchType[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function SearchTypeFromJSON(json: any): SearchType {
     return SearchTypeFromJSONTyped(json, false);
 }

@@ -19,16 +19,6 @@ export const RasterPropertiesEntryType = {
     Number: 'Number',
     String: 'String'
 };
-export function instanceOfRasterPropertiesEntryType(value) {
-    for (const key in RasterPropertiesEntryType) {
-        if (Object.prototype.hasOwnProperty.call(RasterPropertiesEntryType, key)) {
-            if (RasterPropertiesEntryType[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
 export function RasterPropertiesEntryTypeFromJSON(json) {
     return RasterPropertiesEntryTypeFromJSONTyped(json, false);
 }

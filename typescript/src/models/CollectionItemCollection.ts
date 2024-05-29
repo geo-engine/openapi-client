@@ -71,11 +71,11 @@ export type CollectionItemCollectionTypeEnum = typeof CollectionItemCollectionTy
 /**
  * Check if a given object implements the CollectionItemCollection interface.
  */
-export function instanceOfCollectionItemCollection(value: object): value is CollectionItemCollection {
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfCollectionItemCollection(value: object): boolean {
+    if (!('description' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

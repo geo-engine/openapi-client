@@ -46,9 +46,9 @@ export type ResourceIdProjectTypeEnum = typeof ResourceIdProjectTypeEnum[keyof t
 /**
  * Check if a given object implements the ResourceIdProject interface.
  */
-export function instanceOfResourceIdProject(value: object): value is ResourceIdProject {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfResourceIdProject(value: object): boolean {
+    if (!('id' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

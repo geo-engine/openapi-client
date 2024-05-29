@@ -15,9 +15,9 @@
  * Check if a given object implements the AddLayerCollection interface.
  */
 export function instanceOfAddLayerCollection(value) {
-    if (!('description' in value) || value['description'] === undefined)
+    if (!('description' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
     return true;
 }

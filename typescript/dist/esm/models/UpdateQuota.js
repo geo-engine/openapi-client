@@ -15,7 +15,7 @@
  * Check if a given object implements the UpdateQuota interface.
  */
 export function instanceOfUpdateQuota(value) {
-    if (!('available' in value) || value['available'] === undefined)
+    if (!('available' in value))
         return false;
     return true;
 }

@@ -18,9 +18,9 @@ exports.VolumeToJSON = exports.VolumeFromJSONTyped = exports.VolumeFromJSON = ex
  * Check if a given object implements the Volume interface.
  */
 function instanceOfVolume(value) {
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
-    if (!('path' in value) || value['path'] === undefined)
+    if (!('path' in value))
         return false;
     return true;
 }

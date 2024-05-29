@@ -49,7 +49,7 @@ export interface TaskListOptions {
 /**
  * Check if a given object implements the TaskListOptions interface.
  */
-export function instanceOfTaskListOptions(value: object): value is TaskListOptions {
+export function instanceOfTaskListOptions(value: object): boolean {
     return true;
 }
 

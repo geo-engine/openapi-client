@@ -45,7 +45,7 @@ export interface ProjectLayer {
 /**
  * Check if a given object implements the ProjectLayer interface.
  */
-export declare function instanceOfProjectLayer(value: object): value is ProjectLayer;
+export declare function instanceOfProjectLayer(value: object): boolean;
 export declare function ProjectLayerFromJSON(json: any): ProjectLayer;
 export declare function ProjectLayerFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectLayer;
 export declare function ProjectLayerToJSON(value?: ProjectLayer | null): any;

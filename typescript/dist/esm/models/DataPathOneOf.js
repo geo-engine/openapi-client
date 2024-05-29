@@ -15,7 +15,7 @@
  * Check if a given object implements the DataPathOneOf interface.
  */
 export function instanceOfDataPathOneOf(value) {
-    if (!('volume' in value) || value['volume'] === undefined)
+    if (!('volume' in value))
         return false;
     return true;
 }

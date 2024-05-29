@@ -35,9 +35,7 @@ export function FormatSpecificsFromJSONTyped(json: any, ignoreDiscriminator: boo
     if (json == null) {
         return json;
     }
-    if (instanceOfFormatSpecificsOneOf(json)) {
-        return FormatSpecificsOneOfFromJSONTyped(json, true);
-    }
+    return { ...FormatSpecificsOneOfFromJSONTyped(json, true) };
 }
 
 export function FormatSpecificsToJSON(value?: FormatSpecifics | null): any {

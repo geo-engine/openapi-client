@@ -24,17 +24,6 @@ export const GetMapExceptionFormat = {
 export type GetMapExceptionFormat = typeof GetMapExceptionFormat[keyof typeof GetMapExceptionFormat];
 
 
-export function instanceOfGetMapExceptionFormat(value: any): boolean {
-    for (const key in GetMapExceptionFormat) {
-        if (Object.prototype.hasOwnProperty.call(GetMapExceptionFormat, key)) {
-            if (GetMapExceptionFormat[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function GetMapExceptionFormatFromJSON(json: any): GetMapExceptionFormat {
     return GetMapExceptionFormatFromJSONTyped(json, false);
 }

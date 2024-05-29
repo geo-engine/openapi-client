@@ -20,13 +20,13 @@ const Symbology_1 = require("./Symbology");
  * Check if a given object implements the ProjectLayer interface.
  */
 function instanceOfProjectLayer(value) {
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
-    if (!('symbology' in value) || value['symbology'] === undefined)
+    if (!('symbology' in value))
         return false;
-    if (!('visibility' in value) || value['visibility'] === undefined)
+    if (!('visibility' in value))
         return false;
-    if (!('workflow' in value) || value['workflow'] === undefined)
+    if (!('workflow' in value))
         return false;
     return true;
 }

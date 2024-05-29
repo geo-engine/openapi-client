@@ -15,9 +15,9 @@
  * Check if a given object implements the ProviderLayerId interface.
  */
 export function instanceOfProviderLayerId(value) {
-    if (!('layerId' in value) || value['layerId'] === undefined)
+    if (!('layerId' in value))
         return false;
-    if (!('providerId' in value) || value['providerId'] === undefined)
+    if (!('providerId' in value))
         return false;
     return true;
 }

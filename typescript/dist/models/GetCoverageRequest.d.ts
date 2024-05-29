@@ -17,7 +17,6 @@ export declare const GetCoverageRequest: {
     readonly GetCoverage: "GetCoverage";
 };
 export type GetCoverageRequest = typeof GetCoverageRequest[keyof typeof GetCoverageRequest];
-export declare function instanceOfGetCoverageRequest(value: any): boolean;
 export declare function GetCoverageRequestFromJSON(json: any): GetCoverageRequest;
 export declare function GetCoverageRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCoverageRequest;
 export declare function GetCoverageRequestToJSON(value?: GetCoverageRequest | null): any;

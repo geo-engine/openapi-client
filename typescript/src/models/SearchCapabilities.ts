@@ -49,9 +49,9 @@ export interface SearchCapabilities {
 /**
  * Check if a given object implements the SearchCapabilities interface.
  */
-export function instanceOfSearchCapabilities(value: object): value is SearchCapabilities {
-    if (!('autocomplete' in value) || value['autocomplete'] === undefined) return false;
-    if (!('searchTypes' in value) || value['searchTypes'] === undefined) return false;
+export function instanceOfSearchCapabilities(value: object): boolean {
+    if (!('autocomplete' in value)) return false;
+    if (!('searchTypes' in value)) return false;
     return true;
 }
 

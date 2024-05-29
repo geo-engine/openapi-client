@@ -26,7 +26,7 @@ export interface FormatSpecificsOneOfCsv {
 /**
  * Check if a given object implements the FormatSpecificsOneOfCsv interface.
  */
-export declare function instanceOfFormatSpecificsOneOfCsv(value: object): value is FormatSpecificsOneOfCsv;
+export declare function instanceOfFormatSpecificsOneOfCsv(value: object): boolean;
 export declare function FormatSpecificsOneOfCsvFromJSON(json: any): FormatSpecificsOneOfCsv;
 export declare function FormatSpecificsOneOfCsvFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatSpecificsOneOfCsv;
 export declare function FormatSpecificsOneOfCsvToJSON(value?: FormatSpecificsOneOfCsv | null): any;

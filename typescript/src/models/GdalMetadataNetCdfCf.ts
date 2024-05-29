@@ -13,24 +13,24 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeStep } from './TimeStep';
-import {
-    TimeStepFromJSON,
-    TimeStepFromJSONTyped,
-    TimeStepToJSON,
-} from './TimeStep';
-import type { RasterResultDescriptor } from './RasterResultDescriptor';
-import {
-    RasterResultDescriptorFromJSON,
-    RasterResultDescriptorFromJSONTyped,
-    RasterResultDescriptorToJSON,
-} from './RasterResultDescriptor';
 import type { GdalDatasetParameters } from './GdalDatasetParameters';
 import {
     GdalDatasetParametersFromJSON,
     GdalDatasetParametersFromJSONTyped,
     GdalDatasetParametersToJSON,
 } from './GdalDatasetParameters';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import {
+    RasterResultDescriptorFromJSON,
+    RasterResultDescriptorFromJSONTyped,
+    RasterResultDescriptorToJSON,
+} from './RasterResultDescriptor';
+import type { TimeStep } from './TimeStep';
+import {
+    TimeStepFromJSON,
+    TimeStepFromJSONTyped,
+    TimeStepToJSON,
+} from './TimeStep';
 
 /**
  * Meta data for 4D `NetCDF` CF datasets
@@ -86,13 +86,13 @@ export interface GdalMetadataNetCdfCf {
 /**
  * Check if a given object implements the GdalMetadataNetCdfCf interface.
  */
-export function instanceOfGdalMetadataNetCdfCf(value: object): value is GdalMetadataNetCdfCf {
-    if (!('bandOffset' in value) || value['bandOffset'] === undefined) return false;
-    if (!('end' in value) || value['end'] === undefined) return false;
-    if (!('params' in value) || value['params'] === undefined) return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
-    if (!('start' in value) || value['start'] === undefined) return false;
-    if (!('step' in value) || value['step'] === undefined) return false;
+export function instanceOfGdalMetadataNetCdfCf(value: object): boolean {
+    if (!('bandOffset' in value)) return false;
+    if (!('end' in value)) return false;
+    if (!('params' in value)) return false;
+    if (!('resultDescriptor' in value)) return false;
+    if (!('start' in value)) return false;
+    if (!('step' in value)) return false;
     return true;
 }
 

@@ -18,7 +18,7 @@ exports.AddCollection200ResponseToJSON = exports.AddCollection200ResponseFromJSO
  * Check if a given object implements the AddCollection200Response interface.
  */
 function instanceOfAddCollection200Response(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
     return true;
 }

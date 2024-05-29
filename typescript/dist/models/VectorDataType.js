@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VectorDataTypeToJSON = exports.VectorDataTypeFromJSONTyped = exports.VectorDataTypeFromJSON = exports.instanceOfVectorDataType = exports.VectorDataType = void 0;
+exports.VectorDataTypeToJSON = exports.VectorDataTypeFromJSONTyped = exports.VectorDataTypeFromJSON = exports.VectorDataType = void 0;
 /**
  * An enum that contains all possible vector data types
  * @export
@@ -24,17 +24,6 @@ exports.VectorDataType = {
     MultiLineString: 'MultiLineString',
     MultiPolygon: 'MultiPolygon'
 };
-function instanceOfVectorDataType(value) {
-    for (const key in exports.VectorDataType) {
-        if (Object.prototype.hasOwnProperty.call(exports.VectorDataType, key)) {
-            if (exports.VectorDataType[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfVectorDataType = instanceOfVectorDataType;
 function VectorDataTypeFromJSON(json) {
     return VectorDataTypeFromJSONTyped(json, false);
 }

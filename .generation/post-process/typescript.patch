@@ -1,0 +1,87 @@
+diff --git a/typescript/src/models/LayerUpdate.ts b/typescript/src/models/LayerUpdate.ts
+index 9cd0b91..773af77 100644
+--- a/typescript/src/models/LayerUpdate.ts
++++ b/typescript/src/models/LayerUpdate.ts
+@@ -42,7 +42,12 @@ export function LayerUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean
+     if (json == null) {
+         return json;
+     }
+-    return { ...ProjectLayerFromJSONTyped(json, true), ...ProjectUpdateTokenFromJSONTyped(json, true) };
++    if (instanceOfProjectLayer(json)) {
++        return ProjectLayerFromJSONTyped(json, true);
++    }
++    if (instanceOfProjectUpdateToken(json)) {
++        return ProjectUpdateTokenFromJSONTyped(json, true);
++    }
+ }
+ 
+ export function LayerUpdateToJSON(value?: LayerUpdate | null): any {
+@@ -50,7 +55,7 @@ export function LayerUpdateToJSON(value?: LayerUpdate | null): any {
+         return value;
+     }
+ 
+-    if (instanceOfProjectLayer(value)) {
++    if (typeof value === 'object' && instanceOfProjectLayer(value)) {
+         return ProjectLayerToJSON(value as ProjectLayer);
+     }
+     if (instanceOfProjectUpdateToken(value)) {
+diff --git a/typescript/src/models/PlotUpdate.ts b/typescript/src/models/PlotUpdate.ts
+index c426c48..df0b34f 100644
+--- a/typescript/src/models/PlotUpdate.ts
++++ b/typescript/src/models/PlotUpdate.ts
+@@ -42,7 +42,12 @@ export function PlotUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean)
+     if (json == null) {
+         return json;
+     }
+-    return { ...PlotFromJSONTyped(json, true), ...ProjectUpdateTokenFromJSONTyped(json, true) };
++    if (instanceOfPlot(json)) {
++        return PlotFromJSONTyped(json, true);
++    }
++    if (instanceOfProjectUpdateToken(json)) {
++        return ProjectUpdateTokenFromJSONTyped(json, true);
++    }
+ }
+ 
+ export function PlotUpdateToJSON(value?: PlotUpdate | null): any {
+@@ -50,7 +55,7 @@ export function PlotUpdateToJSON(value?: PlotUpdate | null): any {
+         return value;
+     }
+ 
+-    if (instanceOfPlot(value)) {
++    if (typeof value === 'object' && instanceOfPlot(value)) {
+         return PlotToJSON(value as Plot);
+     }
+     if (instanceOfProjectUpdateToken(value)) {
+diff --git a/typescript/src/models/ProjectUpdateToken.ts b/typescript/src/models/ProjectUpdateToken.ts
+index 9c87df4..e96f4fa 100644
+--- a/typescript/src/models/ProjectUpdateToken.ts
++++ b/typescript/src/models/ProjectUpdateToken.ts
+@@ -24,6 +24,13 @@ export const ProjectUpdateToken = {
+ export type ProjectUpdateToken = typeof ProjectUpdateToken[keyof typeof ProjectUpdateToken];
+ 
+ 
++/**
++ * Check if a given object implements the ProjectUpdateToken interface.
++ */
++export function instanceOfProjectUpdateToken(value: any): boolean {
++    return value === ProjectUpdateToken.None || value === ProjectUpdateToken.Delete;
++}
++
+ export function ProjectUpdateTokenFromJSON(json: any): ProjectUpdateToken {
+     return ProjectUpdateTokenFromJSONTyped(json, false);
+ }
+diff --git a/typescript/src/models/TaskStatusWithId.ts b/typescript/src/models/TaskStatusWithId.ts
+index 4e12eb0..458c424 100644
+--- a/typescript/src/models/TaskStatusWithId.ts
++++ b/typescript/src/models/TaskStatusWithId.ts
+@@ -25,7 +25,9 @@ import {
+  * @export
+  * @interface TaskStatusWithId
+  */
+-export interface TaskStatusWithId extends TaskStatus {
++export type TaskStatusWithId = { taskId: string } & TaskStatus;
++
++export interface _TaskStatusWithId /* extends TaskStatus */ {
+     /**
+      * 
+      * @type {string}

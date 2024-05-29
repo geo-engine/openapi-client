@@ -16,7 +16,7 @@ import { Coordinate2DFromJSON, Coordinate2DToJSON, } from './Coordinate2D';
  * Check if a given object implements the MockDatasetDataSourceLoadingInfo interface.
  */
 export function instanceOfMockDatasetDataSourceLoadingInfo(value) {
-    if (!('points' in value) || value['points'] === undefined)
+    if (!('points' in value))
         return false;
     return true;
 }

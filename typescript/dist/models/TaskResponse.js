@@ -18,7 +18,7 @@ exports.TaskResponseToJSON = exports.TaskResponseFromJSONTyped = exports.TaskRes
  * Check if a given object implements the TaskResponse interface.
  */
 function instanceOfTaskResponse(value) {
-    if (!('taskId' in value) || value['taskId'] === undefined)
+    if (!('taskId' in value))
         return false;
     return true;
 }

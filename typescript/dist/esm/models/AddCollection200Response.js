@@ -15,7 +15,7 @@
  * Check if a given object implements the AddCollection200Response interface.
  */
 export function instanceOfAddCollection200Response(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
     return true;
 }

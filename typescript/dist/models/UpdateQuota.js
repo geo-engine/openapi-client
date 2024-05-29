@@ -18,7 +18,7 @@ exports.UpdateQuotaToJSON = exports.UpdateQuotaFromJSONTyped = exports.UpdateQuo
  * Check if a given object implements the UpdateQuota interface.
  */
 function instanceOfUpdateQuota(value) {
-    if (!('available' in value) || value['available'] === undefined)
+    if (!('available' in value))
         return false;
     return true;
 }

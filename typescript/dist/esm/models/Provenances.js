@@ -16,7 +16,7 @@ import { ProvenanceFromJSON, ProvenanceToJSON, } from './Provenance';
  * Check if a given object implements the Provenances interface.
  */
 export function instanceOfProvenances(value) {
-    if (!('provenances' in value) || value['provenances'] === undefined)
+    if (!('provenances' in value))
         return false;
     return true;
 }

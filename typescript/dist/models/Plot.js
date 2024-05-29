@@ -18,9 +18,9 @@ exports.PlotToJSON = exports.PlotFromJSONTyped = exports.PlotFromJSON = exports.
  * Check if a given object implements the Plot interface.
  */
 function instanceOfPlot(value) {
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
-    if (!('workflow' in value) || value['workflow'] === undefined)
+    if (!('workflow' in value))
         return false;
     return true;
 }

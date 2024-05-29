@@ -55,11 +55,11 @@ export interface LinearGradient {
 /**
  * Check if a given object implements the LinearGradient interface.
  */
-export function instanceOfLinearGradient(value: object): value is LinearGradient {
-    if (!('breakpoints' in value) || value['breakpoints'] === undefined) return false;
-    if (!('noDataColor' in value) || value['noDataColor'] === undefined) return false;
-    if (!('overColor' in value) || value['overColor'] === undefined) return false;
-    if (!('underColor' in value) || value['underColor'] === undefined) return false;
+export function instanceOfLinearGradient(value: object): boolean {
+    if (!('breakpoints' in value)) return false;
+    if (!('noDataColor' in value)) return false;
+    if (!('overColor' in value)) return false;
+    if (!('underColor' in value)) return false;
     return true;
 }
 

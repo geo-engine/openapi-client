@@ -46,9 +46,9 @@ export type DataIdInternalTypeEnum = typeof DataIdInternalTypeEnum[keyof typeof 
 /**
  * Check if a given object implements the DataIdInternal interface.
  */
-export function instanceOfDataIdInternal(value: object): value is DataIdInternal {
-    if (!('datasetId' in value) || value['datasetId'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfDataIdInternal(value: object): boolean {
+    if (!('datasetId' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

@@ -11,18 +11,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RoleFromJSON, RoleToJSON, } from './Role';
-import { ResourceIdFromJSON, ResourceIdToJSON, } from './ResourceId';
 import { PermissionFromJSON, PermissionToJSON, } from './Permission';
+import { ResourceIdFromJSON, ResourceIdToJSON, } from './ResourceId';
+import { RoleFromJSON, RoleToJSON, } from './Role';
 /**
  * Check if a given object implements the PermissionListing interface.
  */
 export function instanceOfPermissionListing(value) {
-    if (!('permission' in value) || value['permission'] === undefined)
+    if (!('permission' in value))
         return false;
-    if (!('resourceId' in value) || value['resourceId'] === undefined)
+    if (!('resourceId' in value))
         return false;
-    if (!('role' in value) || value['role'] === undefined)
+    if (!('role' in value))
         return false;
     return true;
 }

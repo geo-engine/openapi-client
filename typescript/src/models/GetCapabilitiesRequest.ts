@@ -23,17 +23,6 @@ export const GetCapabilitiesRequest = {
 export type GetCapabilitiesRequest = typeof GetCapabilitiesRequest[keyof typeof GetCapabilitiesRequest];
 
 
-export function instanceOfGetCapabilitiesRequest(value: any): boolean {
-    for (const key in GetCapabilitiesRequest) {
-        if (Object.prototype.hasOwnProperty.call(GetCapabilitiesRequest, key)) {
-            if (GetCapabilitiesRequest[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function GetCapabilitiesRequestFromJSON(json: any): GetCapabilitiesRequest {
     return GetCapabilitiesRequestFromJSONTyped(json, false);
 }

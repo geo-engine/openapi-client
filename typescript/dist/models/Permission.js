@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PermissionToJSON = exports.PermissionFromJSONTyped = exports.PermissionFromJSON = exports.instanceOfPermission = exports.Permission = void 0;
+exports.PermissionToJSON = exports.PermissionFromJSONTyped = exports.PermissionFromJSON = exports.Permission = void 0;
 /**
  *
  * @export
@@ -22,17 +22,6 @@ exports.Permission = {
     Read: 'Read',
     Owner: 'Owner'
 };
-function instanceOfPermission(value) {
-    for (const key in exports.Permission) {
-        if (Object.prototype.hasOwnProperty.call(exports.Permission, key)) {
-            if (exports.Permission[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfPermission = instanceOfPermission;
 function PermissionFromJSON(json) {
     return PermissionFromJSONTyped(json, false);
 }

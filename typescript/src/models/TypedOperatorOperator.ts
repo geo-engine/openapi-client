@@ -42,8 +42,8 @@ export interface TypedOperatorOperator {
 /**
  * Check if a given object implements the TypedOperatorOperator interface.
  */
-export function instanceOfTypedOperatorOperator(value: object): value is TypedOperatorOperator {
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfTypedOperatorOperator(value: object): boolean {
+    if (!('type' in value)) return false;
     return true;
 }
 

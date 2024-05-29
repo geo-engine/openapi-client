@@ -17,7 +17,6 @@ export declare const WfsService: {
     readonly Wfs: "WFS";
 };
 export type WfsService = typeof WfsService[keyof typeof WfsService];
-export declare function instanceOfWfsService(value: any): boolean;
 export declare function WfsServiceFromJSON(json: any): WfsService;
 export declare function WfsServiceFromJSONTyped(json: any, ignoreDiscriminator: boolean): WfsService;
 export declare function WfsServiceToJSON(value?: WfsService | null): any;

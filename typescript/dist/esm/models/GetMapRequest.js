@@ -18,16 +18,6 @@
 export const GetMapRequest = {
     GetMap: 'GetMap'
 };
-export function instanceOfGetMapRequest(value) {
-    for (const key in GetMapRequest) {
-        if (Object.prototype.hasOwnProperty.call(GetMapRequest, key)) {
-            if (GetMapRequest[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
 export function GetMapRequestFromJSON(json) {
     return GetMapRequestFromJSONTyped(json, false);
 }

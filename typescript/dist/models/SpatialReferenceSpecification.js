@@ -14,19 +14,19 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpatialReferenceSpecificationToJSON = exports.SpatialReferenceSpecificationFromJSONTyped = exports.SpatialReferenceSpecificationFromJSON = exports.instanceOfSpatialReferenceSpecification = void 0;
-const BoundingBox2D_1 = require("./BoundingBox2D");
 const AxisOrder_1 = require("./AxisOrder");
+const BoundingBox2D_1 = require("./BoundingBox2D");
 /**
  * Check if a given object implements the SpatialReferenceSpecification interface.
  */
 function instanceOfSpatialReferenceSpecification(value) {
-    if (!('extent' in value) || value['extent'] === undefined)
+    if (!('extent' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
-    if (!('projString' in value) || value['projString'] === undefined)
+    if (!('projString' in value))
         return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+    if (!('spatialReference' in value))
         return false;
     return true;
 }

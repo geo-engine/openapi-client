@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Symbology } from './Symbology';
-import {
-    SymbologyFromJSON,
-    SymbologyFromJSONTyped,
-    SymbologyToJSON,
-} from './Symbology';
 import type { ProviderLayerId } from './ProviderLayerId';
 import {
     ProviderLayerIdFromJSON,
     ProviderLayerIdFromJSONTyped,
     ProviderLayerIdToJSON,
 } from './ProviderLayerId';
+import type { Symbology } from './Symbology';
+import {
+    SymbologyFromJSON,
+    SymbologyFromJSONTyped,
+    SymbologyToJSON,
+} from './Symbology';
 import type { Workflow } from './Workflow';
 import {
     WorkflowFromJSON,
@@ -85,11 +85,11 @@ export interface Layer {
 /**
  * Check if a given object implements the Layer interface.
  */
-export function instanceOfLayer(value: object): value is Layer {
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('workflow' in value) || value['workflow'] === undefined) return false;
+export function instanceOfLayer(value: object): boolean {
+    if (!('description' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('workflow' in value)) return false;
     return true;
 }
 

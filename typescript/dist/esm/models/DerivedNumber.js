@@ -15,11 +15,11 @@
  * Check if a given object implements the DerivedNumber interface.
  */
 export function instanceOfDerivedNumber(value) {
-    if (!('attribute' in value) || value['attribute'] === undefined)
+    if (!('attribute' in value))
         return false;
-    if (!('defaultValue' in value) || value['defaultValue'] === undefined)
+    if (!('defaultValue' in value))
         return false;
-    if (!('factor' in value) || value['factor'] === undefined)
+    if (!('factor' in value))
         return false;
     return true;
 }

@@ -15,13 +15,13 @@
  * Check if a given object implements the AutoCreateDataset interface.
  */
 export function instanceOfAutoCreateDataset(value) {
-    if (!('datasetDescription' in value) || value['datasetDescription'] === undefined)
+    if (!('datasetDescription' in value))
         return false;
-    if (!('datasetName' in value) || value['datasetName'] === undefined)
+    if (!('datasetName' in value))
         return false;
-    if (!('mainFile' in value) || value['mainFile'] === undefined)
+    if (!('mainFile' in value))
         return false;
-    if (!('upload' in value) || value['upload'] === undefined)
+    if (!('upload' in value))
         return false;
     return true;
 }

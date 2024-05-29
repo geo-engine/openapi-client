@@ -13,24 +13,24 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeInterval } from './TimeInterval';
-import {
-    TimeIntervalFromJSON,
-    TimeIntervalFromJSONTyped,
-    TimeIntervalToJSON,
-} from './TimeInterval';
-import type { RasterResultDescriptor } from './RasterResultDescriptor';
-import {
-    RasterResultDescriptorFromJSON,
-    RasterResultDescriptorFromJSONTyped,
-    RasterResultDescriptorToJSON,
-} from './RasterResultDescriptor';
 import type { GdalDatasetParameters } from './GdalDatasetParameters';
 import {
     GdalDatasetParametersFromJSON,
     GdalDatasetParametersFromJSONTyped,
     GdalDatasetParametersToJSON,
 } from './GdalDatasetParameters';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import {
+    RasterResultDescriptorFromJSON,
+    RasterResultDescriptorFromJSONTyped,
+    RasterResultDescriptorToJSON,
+} from './RasterResultDescriptor';
+import type { TimeInterval } from './TimeInterval';
+import {
+    TimeIntervalFromJSON,
+    TimeIntervalFromJSONTyped,
+    TimeIntervalToJSON,
+} from './TimeInterval';
 
 /**
  * 
@@ -67,9 +67,9 @@ export interface GdalMetaDataStatic {
 /**
  * Check if a given object implements the GdalMetaDataStatic interface.
  */
-export function instanceOfGdalMetaDataStatic(value: object): value is GdalMetaDataStatic {
-    if (!('params' in value) || value['params'] === undefined) return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
+export function instanceOfGdalMetaDataStatic(value: object): boolean {
+    if (!('params' in value)) return false;
+    if (!('resultDescriptor' in value)) return false;
     return true;
 }
 

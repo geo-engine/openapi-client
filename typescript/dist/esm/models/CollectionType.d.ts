@@ -17,7 +17,6 @@ export declare const CollectionType: {
     readonly FeatureCollection: "FeatureCollection";
 };
 export type CollectionType = typeof CollectionType[keyof typeof CollectionType];
-export declare function instanceOfCollectionType(value: any): boolean;
 export declare function CollectionTypeFromJSON(json: any): CollectionType;
 export declare function CollectionTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): CollectionType;
 export declare function CollectionTypeToJSON(value?: CollectionType | null): any;

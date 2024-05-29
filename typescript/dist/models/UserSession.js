@@ -20,15 +20,15 @@ const UserInfo_1 = require("./UserInfo");
  * Check if a given object implements the UserSession interface.
  */
 function instanceOfUserSession(value) {
-    if (!('created' in value) || value['created'] === undefined)
+    if (!('created' in value))
         return false;
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
-    if (!('roles' in value) || value['roles'] === undefined)
+    if (!('roles' in value))
         return false;
-    if (!('user' in value) || value['user'] === undefined)
+    if (!('user' in value))
         return false;
-    if (!('validUntil' in value) || value['validUntil'] === undefined)
+    if (!('validUntil' in value))
         return false;
     return true;
 }

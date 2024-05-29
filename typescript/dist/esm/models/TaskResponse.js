@@ -15,7 +15,7 @@
  * Check if a given object implements the TaskResponse interface.
  */
 export function instanceOfTaskResponse(value) {
-    if (!('taskId' in value) || value['taskId'] === undefined)
+    if (!('taskId' in value))
         return false;
     return true;
 }

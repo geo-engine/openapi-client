@@ -19,7 +19,6 @@ export declare const PlotOutputFormat: {
     readonly ImagePng: "ImagePng";
 };
 export type PlotOutputFormat = typeof PlotOutputFormat[keyof typeof PlotOutputFormat];
-export declare function instanceOfPlotOutputFormat(value: any): boolean;
 export declare function PlotOutputFormatFromJSON(json: any): PlotOutputFormat;
 export declare function PlotOutputFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlotOutputFormat;
 export declare function PlotOutputFormatToJSON(value?: PlotOutputFormat | null): any;

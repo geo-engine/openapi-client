@@ -14,18 +14,18 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VectorQueryRectangleToJSON = exports.VectorQueryRectangleFromJSONTyped = exports.VectorQueryRectangleFromJSON = exports.instanceOfVectorQueryRectangle = void 0;
+const BoundingBox2D_1 = require("./BoundingBox2D");
 const SpatialResolution_1 = require("./SpatialResolution");
 const TimeInterval_1 = require("./TimeInterval");
-const BoundingBox2D_1 = require("./BoundingBox2D");
 /**
  * Check if a given object implements the VectorQueryRectangle interface.
  */
 function instanceOfVectorQueryRectangle(value) {
-    if (!('spatialBounds' in value) || value['spatialBounds'] === undefined)
+    if (!('spatialBounds' in value))
         return false;
-    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined)
+    if (!('spatialResolution' in value))
         return false;
-    if (!('timeInterval' in value) || value['timeInterval'] === undefined)
+    if (!('timeInterval' in value))
         return false;
     return true;
 }

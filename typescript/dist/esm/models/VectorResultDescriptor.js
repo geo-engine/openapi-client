@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 import { mapValues } from '../runtime';
-import { VectorDataTypeFromJSON, VectorDataTypeToJSON, } from './VectorDataType';
+import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 import { VectorColumnInfoFromJSON, VectorColumnInfoToJSON, } from './VectorColumnInfo';
-import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
+import { VectorDataTypeFromJSON, VectorDataTypeToJSON, } from './VectorDataType';
 /**
  * Check if a given object implements the VectorResultDescriptor interface.
  */
 export function instanceOfVectorResultDescriptor(value) {
-    if (!('columns' in value) || value['columns'] === undefined)
+    if (!('columns' in value))
         return false;
-    if (!('dataType' in value) || value['dataType'] === undefined)
+    if (!('dataType' in value))
         return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+    if (!('spatialReference' in value))
         return false;
     return true;
 }

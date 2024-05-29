@@ -37,8 +37,8 @@ export interface MockDatasetDataSourceLoadingInfo {
 /**
  * Check if a given object implements the MockDatasetDataSourceLoadingInfo interface.
  */
-export function instanceOfMockDatasetDataSourceLoadingInfo(value: object): value is MockDatasetDataSourceLoadingInfo {
-    if (!('points' in value) || value['points'] === undefined) return false;
+export function instanceOfMockDatasetDataSourceLoadingInfo(value: object): boolean {
+    if (!('points' in value)) return false;
     return true;
 }
 

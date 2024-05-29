@@ -23,17 +23,6 @@ export const WmsVersion = {
 export type WmsVersion = typeof WmsVersion[keyof typeof WmsVersion];
 
 
-export function instanceOfWmsVersion(value: any): boolean {
-    for (const key in WmsVersion) {
-        if (Object.prototype.hasOwnProperty.call(WmsVersion, key)) {
-            if (WmsVersion[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function WmsVersionFromJSON(json: any): WmsVersion {
     return WmsVersionFromJSONTyped(json, false);
 }

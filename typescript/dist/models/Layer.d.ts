@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Symbology } from './Symbology';
 import type { ProviderLayerId } from './ProviderLayerId';
+import type { Symbology } from './Symbology';
 import type { Workflow } from './Workflow';
 /**
  *
@@ -66,7 +66,7 @@ export interface Layer {
 /**
  * Check if a given object implements the Layer interface.
  */
-export declare function instanceOfLayer(value: object): value is Layer;
+export declare function instanceOfLayer(value: object): boolean;
 export declare function LayerFromJSON(json: any): Layer;
 export declare function LayerFromJSONTyped(json: any, ignoreDiscriminator: boolean): Layer;
 export declare function LayerToJSON(value?: Layer | null): any;

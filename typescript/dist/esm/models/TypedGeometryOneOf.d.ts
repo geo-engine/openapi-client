@@ -25,7 +25,7 @@ export interface TypedGeometryOneOf {
 /**
  * Check if a given object implements the TypedGeometryOneOf interface.
  */
-export declare function instanceOfTypedGeometryOneOf(value: object): value is TypedGeometryOneOf;
+export declare function instanceOfTypedGeometryOneOf(value: object): boolean;
 export declare function TypedGeometryOneOfFromJSON(json: any): TypedGeometryOneOf;
 export declare function TypedGeometryOneOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedGeometryOneOf;
 export declare function TypedGeometryOneOfToJSON(value?: TypedGeometryOneOf | null): any;

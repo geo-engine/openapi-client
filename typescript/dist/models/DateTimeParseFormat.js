@@ -18,11 +18,11 @@ exports.DateTimeParseFormatToJSON = exports.DateTimeParseFormatFromJSONTyped = e
  * Check if a given object implements the DateTimeParseFormat interface.
  */
 function instanceOfDateTimeParseFormat(value) {
-    if (!('fmt' in value) || value['fmt'] === undefined)
+    if (!('fmt' in value))
         return false;
-    if (!('hasTime' in value) || value['hasTime'] === undefined)
+    if (!('hasTime' in value))
         return false;
-    if (!('hasTz' in value) || value['hasTz'] === undefined)
+    if (!('hasTz' in value))
         return false;
     return true;
 }

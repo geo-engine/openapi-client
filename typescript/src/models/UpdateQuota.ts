@@ -30,8 +30,8 @@ export interface UpdateQuota {
 /**
  * Check if a given object implements the UpdateQuota interface.
  */
-export function instanceOfUpdateQuota(value: object): value is UpdateQuota {
-    if (!('available' in value) || value['available'] === undefined) return false;
+export function instanceOfUpdateQuota(value: object): boolean {
+    if (!('available' in value)) return false;
     return true;
 }
 

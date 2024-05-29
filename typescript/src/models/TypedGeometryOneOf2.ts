@@ -37,8 +37,8 @@ export interface TypedGeometryOneOf2 {
 /**
  * Check if a given object implements the TypedGeometryOneOf2 interface.
  */
-export function instanceOfTypedGeometryOneOf2(value: object): value is TypedGeometryOneOf2 {
-    if (!('multiLineString' in value) || value['multiLineString'] === undefined) return false;
+export function instanceOfTypedGeometryOneOf2(value: object): boolean {
+    if (!('multiLineString' in value)) return false;
     return true;
 }
 

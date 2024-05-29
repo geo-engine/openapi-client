@@ -14,15 +14,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MockMetaDataToJSON = exports.MockMetaDataFromJSONTyped = exports.MockMetaDataFromJSON = exports.instanceOfMockMetaData = void 0;
-const VectorResultDescriptor_1 = require("./VectorResultDescriptor");
 const MockDatasetDataSourceLoadingInfo_1 = require("./MockDatasetDataSourceLoadingInfo");
+const VectorResultDescriptor_1 = require("./VectorResultDescriptor");
 /**
  * Check if a given object implements the MockMetaData interface.
  */
 function instanceOfMockMetaData(value) {
-    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined)
+    if (!('loadingInfo' in value))
         return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+    if (!('resultDescriptor' in value))
         return false;
     return true;
 }

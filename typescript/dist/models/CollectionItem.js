@@ -26,9 +26,9 @@ function CollectionItemFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'collection':
-            return Object.assign({}, (0, CollectionItemCollection_1.CollectionItemCollectionFromJSONTyped)(json, true), { type: 'collection' });
+            return Object.assign(Object.assign({}, (0, CollectionItemCollection_1.CollectionItemCollectionFromJSONTyped)(json, true)), { type: 'collection' });
         case 'layer':
-            return Object.assign({}, (0, CollectionItemLayer_1.CollectionItemLayerFromJSONTyped)(json, true), { type: 'layer' });
+            return Object.assign(Object.assign({}, (0, CollectionItemLayer_1.CollectionItemLayerFromJSONTyped)(json, true)), { type: 'layer' });
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }

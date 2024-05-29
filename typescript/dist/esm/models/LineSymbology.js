@@ -11,15 +11,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
 import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
+import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
 /**
  * Check if a given object implements the LineSymbology interface.
  */
 export function instanceOfLineSymbology(value) {
-    if (!('autoSimplified' in value) || value['autoSimplified'] === undefined)
+    if (!('autoSimplified' in value))
         return false;
-    if (!('stroke' in value) || value['stroke'] === undefined)
+    if (!('stroke' in value))
         return false;
     return true;
 }

@@ -59,10 +59,10 @@ export type RasterColorizerSingleBandTypeEnum = typeof RasterColorizerSingleBand
 /**
  * Check if a given object implements the RasterColorizerSingleBand interface.
  */
-export function instanceOfRasterColorizerSingleBand(value: object): value is RasterColorizerSingleBand {
-    if (!('band' in value) || value['band'] === undefined) return false;
-    if (!('bandColorizer' in value) || value['bandColorizer'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfRasterColorizerSingleBand(value: object): boolean {
+    if (!('band' in value)) return false;
+    if (!('bandColorizer' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

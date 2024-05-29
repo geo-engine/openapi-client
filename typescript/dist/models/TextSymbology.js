@@ -14,17 +14,17 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TextSymbologyToJSON = exports.TextSymbologyFromJSONTyped = exports.TextSymbologyFromJSON = exports.instanceOfTextSymbology = void 0;
-const StrokeParam_1 = require("./StrokeParam");
 const ColorParam_1 = require("./ColorParam");
+const StrokeParam_1 = require("./StrokeParam");
 /**
  * Check if a given object implements the TextSymbology interface.
  */
 function instanceOfTextSymbology(value) {
-    if (!('attribute' in value) || value['attribute'] === undefined)
+    if (!('attribute' in value))
         return false;
-    if (!('fillColor' in value) || value['fillColor'] === undefined)
+    if (!('fillColor' in value))
         return false;
-    if (!('stroke' in value) || value['stroke'] === undefined)
+    if (!('stroke' in value))
         return false;
     return true;
 }

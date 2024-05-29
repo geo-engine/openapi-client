@@ -51,11 +51,11 @@ export function MeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     switch (json['type']) {
         case 'classification':
-            return Object.assign({}, MeasurementClassificationFromJSONTyped(json, true), { type: 'classification' });
+            return {...MeasurementClassificationFromJSONTyped(json, true), type: 'classification'};
         case 'continuous':
-            return Object.assign({}, MeasurementContinuousFromJSONTyped(json, true), { type: 'continuous' });
+            return {...MeasurementContinuousFromJSONTyped(json, true), type: 'continuous'};
         case 'unitless':
-            return Object.assign({}, MeasurementUnitlessFromJSONTyped(json, true), { type: 'unitless' });
+            return {...MeasurementUnitlessFromJSONTyped(json, true), type: 'unitless'};
         default:
             throw new Error(`No variant of Measurement exists with 'type=${json['type']}'`);
     }

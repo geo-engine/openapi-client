@@ -27,11 +27,11 @@ function TypedResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'plot':
-            return Object.assign({}, (0, TypedResultDescriptorPlot_1.TypedResultDescriptorPlotFromJSONTyped)(json, true), { type: 'plot' });
+            return Object.assign(Object.assign({}, (0, TypedResultDescriptorPlot_1.TypedResultDescriptorPlotFromJSONTyped)(json, true)), { type: 'plot' });
         case 'raster':
-            return Object.assign({}, (0, TypedResultDescriptorRaster_1.TypedResultDescriptorRasterFromJSONTyped)(json, true), { type: 'raster' });
+            return Object.assign(Object.assign({}, (0, TypedResultDescriptorRaster_1.TypedResultDescriptorRasterFromJSONTyped)(json, true)), { type: 'raster' });
         case 'vector':
-            return Object.assign({}, (0, TypedResultDescriptorVector_1.TypedResultDescriptorVectorFromJSONTyped)(json, true), { type: 'vector' });
+            return Object.assign(Object.assign({}, (0, TypedResultDescriptorVector_1.TypedResultDescriptorVectorFromJSONTyped)(json, true)), { type: 'vector' });
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${json['type']}'`);
     }

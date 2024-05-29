@@ -41,8 +41,8 @@ export interface _TaskStatusWithId /* extends TaskStatus */ {
 /**
  * Check if a given object implements the TaskStatusWithId interface.
  */
-export function instanceOfTaskStatusWithId(value: object): value is TaskStatusWithId {
-    if (!('taskId' in value) || value['taskId'] === undefined) return false;
+export function instanceOfTaskStatusWithId(value: object): boolean {
+    if (!('taskId' in value)) return false;
     return true;
 }
 

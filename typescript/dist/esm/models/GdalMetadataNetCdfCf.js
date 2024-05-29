@@ -11,24 +11,24 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
-import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
 import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './GdalDatasetParameters';
+import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
+import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
 /**
  * Check if a given object implements the GdalMetadataNetCdfCf interface.
  */
 export function instanceOfGdalMetadataNetCdfCf(value) {
-    if (!('bandOffset' in value) || value['bandOffset'] === undefined)
+    if (!('bandOffset' in value))
         return false;
-    if (!('end' in value) || value['end'] === undefined)
+    if (!('end' in value))
         return false;
-    if (!('params' in value) || value['params'] === undefined)
+    if (!('params' in value))
         return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+    if (!('resultDescriptor' in value))
         return false;
-    if (!('start' in value) || value['start'] === undefined)
+    if (!('start' in value))
         return false;
-    if (!('step' in value) || value['step'] === undefined)
+    if (!('step' in value))
         return false;
     return true;
 }

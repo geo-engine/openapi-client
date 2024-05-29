@@ -11,17 +11,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
 import { STRectangleFromJSON, STRectangleToJSON, } from './STRectangle';
+import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
 /**
  * Check if a given object implements the CreateProject interface.
  */
 export function instanceOfCreateProject(value) {
-    if (!('bounds' in value) || value['bounds'] === undefined)
+    if (!('bounds' in value))
         return false;
-    if (!('description' in value) || value['description'] === undefined)
+    if (!('description' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
     return true;
 }

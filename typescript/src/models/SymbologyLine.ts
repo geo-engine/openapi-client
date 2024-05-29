@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TextSymbology } from './TextSymbology';
-import {
-    TextSymbologyFromJSON,
-    TextSymbologyFromJSONTyped,
-    TextSymbologyToJSON,
-} from './TextSymbology';
 import type { StrokeParam } from './StrokeParam';
 import {
     StrokeParamFromJSON,
     StrokeParamFromJSONTyped,
     StrokeParamToJSON,
 } from './StrokeParam';
+import type { TextSymbology } from './TextSymbology';
+import {
+    TextSymbologyFromJSON,
+    TextSymbologyFromJSONTyped,
+    TextSymbologyToJSON,
+} from './TextSymbology';
 
 /**
  * 
@@ -71,10 +71,10 @@ export type SymbologyLineTypeEnum = typeof SymbologyLineTypeEnum[keyof typeof Sy
 /**
  * Check if a given object implements the SymbologyLine interface.
  */
-export function instanceOfSymbologyLine(value: object): value is SymbologyLine {
-    if (!('autoSimplified' in value) || value['autoSimplified'] === undefined) return false;
-    if (!('stroke' in value) || value['stroke'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfSymbologyLine(value: object): boolean {
+    if (!('autoSimplified' in value)) return false;
+    if (!('stroke' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

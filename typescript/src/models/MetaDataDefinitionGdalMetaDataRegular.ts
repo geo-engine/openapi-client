@@ -13,18 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeStep } from './TimeStep';
+import type { GdalDatasetParameters } from './GdalDatasetParameters';
 import {
-    TimeStepFromJSON,
-    TimeStepFromJSONTyped,
-    TimeStepToJSON,
-} from './TimeStep';
-import type { TimeInterval } from './TimeInterval';
-import {
-    TimeIntervalFromJSON,
-    TimeIntervalFromJSONTyped,
-    TimeIntervalToJSON,
-} from './TimeInterval';
+    GdalDatasetParametersFromJSON,
+    GdalDatasetParametersFromJSONTyped,
+    GdalDatasetParametersToJSON,
+} from './GdalDatasetParameters';
 import type { GdalSourceTimePlaceholder } from './GdalSourceTimePlaceholder';
 import {
     GdalSourceTimePlaceholderFromJSON,
@@ -37,12 +31,18 @@ import {
     RasterResultDescriptorFromJSONTyped,
     RasterResultDescriptorToJSON,
 } from './RasterResultDescriptor';
-import type { GdalDatasetParameters } from './GdalDatasetParameters';
+import type { TimeInterval } from './TimeInterval';
 import {
-    GdalDatasetParametersFromJSON,
-    GdalDatasetParametersFromJSONTyped,
-    GdalDatasetParametersToJSON,
-} from './GdalDatasetParameters';
+    TimeIntervalFromJSON,
+    TimeIntervalFromJSONTyped,
+    TimeIntervalToJSON,
+} from './TimeInterval';
+import type { TimeStep } from './TimeStep';
+import {
+    TimeStepFromJSON,
+    TimeStepFromJSONTyped,
+    TimeStepToJSON,
+} from './TimeStep';
 
 /**
  * 
@@ -107,13 +107,13 @@ export type MetaDataDefinitionGdalMetaDataRegularTypeEnum = typeof MetaDataDefin
 /**
  * Check if a given object implements the MetaDataDefinitionGdalMetaDataRegular interface.
  */
-export function instanceOfMetaDataDefinitionGdalMetaDataRegular(value: object): value is MetaDataDefinitionGdalMetaDataRegular {
-    if (!('dataTime' in value) || value['dataTime'] === undefined) return false;
-    if (!('params' in value) || value['params'] === undefined) return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
-    if (!('step' in value) || value['step'] === undefined) return false;
-    if (!('timePlaceholders' in value) || value['timePlaceholders'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfMetaDataDefinitionGdalMetaDataRegular(value: object): boolean {
+    if (!('dataTime' in value)) return false;
+    if (!('params' in value)) return false;
+    if (!('resultDescriptor' in value)) return false;
+    if (!('step' in value)) return false;
+    if (!('timePlaceholders' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

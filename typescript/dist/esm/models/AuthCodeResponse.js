@@ -15,11 +15,11 @@
  * Check if a given object implements the AuthCodeResponse interface.
  */
 export function instanceOfAuthCodeResponse(value) {
-    if (!('code' in value) || value['code'] === undefined)
+    if (!('code' in value))
         return false;
-    if (!('sessionState' in value) || value['sessionState'] === undefined)
+    if (!('sessionState' in value))
         return false;
-    if (!('state' in value) || value['state'] === undefined)
+    if (!('state' in value))
         return false;
     return true;
 }

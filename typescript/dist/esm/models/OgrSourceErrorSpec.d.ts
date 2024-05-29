@@ -18,7 +18,6 @@ export declare const OgrSourceErrorSpec: {
     readonly Abort: "abort";
 };
 export type OgrSourceErrorSpec = typeof OgrSourceErrorSpec[keyof typeof OgrSourceErrorSpec];
-export declare function instanceOfOgrSourceErrorSpec(value: any): boolean;
 export declare function OgrSourceErrorSpecFromJSON(json: any): OgrSourceErrorSpec;
 export declare function OgrSourceErrorSpecFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceErrorSpec;
 export declare function OgrSourceErrorSpecToJSON(value?: OgrSourceErrorSpec | null): any;

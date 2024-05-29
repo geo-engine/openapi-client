@@ -49,10 +49,10 @@ export interface GdalDatasetGeoTransform {
 /**
  * Check if a given object implements the GdalDatasetGeoTransform interface.
  */
-export function instanceOfGdalDatasetGeoTransform(value: object): value is GdalDatasetGeoTransform {
-    if (!('originCoordinate' in value) || value['originCoordinate'] === undefined) return false;
-    if (!('xPixelSize' in value) || value['xPixelSize'] === undefined) return false;
-    if (!('yPixelSize' in value) || value['yPixelSize'] === undefined) return false;
+export function instanceOfGdalDatasetGeoTransform(value: object): boolean {
+    if (!('originCoordinate' in value)) return false;
+    if (!('xPixelSize' in value)) return false;
+    if (!('yPixelSize' in value)) return false;
     return true;
 }
 

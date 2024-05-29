@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TextSymbology } from './TextSymbology';
-import type { StrokeParam } from './StrokeParam';
 import type { ColorParam } from './ColorParam';
+import type { StrokeParam } from './StrokeParam';
+import type { TextSymbology } from './TextSymbology';
 /**
  *
  * @export
@@ -46,7 +46,7 @@ export interface PolygonSymbology {
 /**
  * Check if a given object implements the PolygonSymbology interface.
  */
-export declare function instanceOfPolygonSymbology(value: object): value is PolygonSymbology;
+export declare function instanceOfPolygonSymbology(value: object): boolean;
 export declare function PolygonSymbologyFromJSON(json: any): PolygonSymbology;
 export declare function PolygonSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): PolygonSymbology;
 export declare function PolygonSymbologyToJSON(value?: PolygonSymbology | null): any;

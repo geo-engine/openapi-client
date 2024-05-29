@@ -15,7 +15,7 @@
  * Check if a given object implements the UploadFilesResponse interface.
  */
 export function instanceOfUploadFilesResponse(value) {
-    if (!('files' in value) || value['files'] === undefined)
+    if (!('files' in value))
         return false;
     return true;
 }

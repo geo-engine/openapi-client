@@ -36,9 +36,9 @@ export interface Coordinate2D {
 /**
  * Check if a given object implements the Coordinate2D interface.
  */
-export function instanceOfCoordinate2D(value: object): value is Coordinate2D {
-    if (!('x' in value) || value['x'] === undefined) return false;
-    if (!('y' in value) || value['y'] === undefined) return false;
+export function instanceOfCoordinate2D(value: object): boolean {
+    if (!('x' in value)) return false;
+    if (!('y' in value)) return false;
     return true;
 }
 

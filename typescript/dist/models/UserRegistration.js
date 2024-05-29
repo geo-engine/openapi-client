@@ -18,11 +18,11 @@ exports.UserRegistrationToJSON = exports.UserRegistrationFromJSONTyped = exports
  * Check if a given object implements the UserRegistration interface.
  */
 function instanceOfUserRegistration(value) {
-    if (!('email' in value) || value['email'] === undefined)
+    if (!('email' in value))
         return false;
-    if (!('password' in value) || value['password'] === undefined)
+    if (!('password' in value))
         return false;
-    if (!('realName' in value) || value['realName'] === undefined)
+    if (!('realName' in value))
         return false;
     return true;
 }

@@ -18,7 +18,6 @@ export declare const WcsVersion: {
     readonly _1: "1.1.1";
 };
 export type WcsVersion = typeof WcsVersion[keyof typeof WcsVersion];
-export declare function instanceOfWcsVersion(value: any): boolean;
 export declare function WcsVersionFromJSON(json: any): WcsVersion;
 export declare function WcsVersionFromJSONTyped(json: any, ignoreDiscriminator: boolean): WcsVersion;
 export declare function WcsVersionToJSON(value?: WcsVersion | null): any;

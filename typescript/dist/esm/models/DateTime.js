@@ -15,7 +15,7 @@
  * Check if a given object implements the DateTime interface.
  */
 export function instanceOfDateTime(value) {
-    if (!('datetime' in value) || value['datetime'] === undefined)
+    if (!('datetime' in value))
         return false;
     return true;
 }

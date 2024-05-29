@@ -14,30 +14,30 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProjectToJSON = exports.ProjectFromJSONTyped = exports.ProjectFromJSON = exports.instanceOfProject = void 0;
-const TimeStep_1 = require("./TimeStep");
 const Plot_1 = require("./Plot");
+const ProjectLayer_1 = require("./ProjectLayer");
 const ProjectVersion_1 = require("./ProjectVersion");
 const STRectangle_1 = require("./STRectangle");
-const ProjectLayer_1 = require("./ProjectLayer");
+const TimeStep_1 = require("./TimeStep");
 /**
  * Check if a given object implements the Project interface.
  */
 function instanceOfProject(value) {
-    if (!('bounds' in value) || value['bounds'] === undefined)
+    if (!('bounds' in value))
         return false;
-    if (!('description' in value) || value['description'] === undefined)
+    if (!('description' in value))
         return false;
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
-    if (!('layers' in value) || value['layers'] === undefined)
+    if (!('layers' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
-    if (!('plots' in value) || value['plots'] === undefined)
+    if (!('plots' in value))
         return false;
-    if (!('timeStep' in value) || value['timeStep'] === undefined)
+    if (!('timeStep' in value))
         return false;
-    if (!('version' in value) || value['version'] === undefined)
+    if (!('version' in value))
         return false;
     return true;
 }

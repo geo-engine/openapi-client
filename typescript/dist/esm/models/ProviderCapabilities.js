@@ -16,9 +16,9 @@ import { SearchCapabilitiesFromJSON, SearchCapabilitiesToJSON, } from './SearchC
  * Check if a given object implements the ProviderCapabilities interface.
  */
 export function instanceOfProviderCapabilities(value) {
-    if (!('listing' in value) || value['listing'] === undefined)
+    if (!('listing' in value))
         return false;
-    if (!('search' in value) || value['search'] === undefined)
+    if (!('search' in value))
         return false;
     return true;
 }

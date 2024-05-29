@@ -12,24 +12,24 @@
  * Do not edit the class manually.
  */
 import { mapValues } from '../runtime';
-import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
-import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
+import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './GdalDatasetParameters';
 import { GdalSourceTimePlaceholderFromJSON, GdalSourceTimePlaceholderToJSON, } from './GdalSourceTimePlaceholder';
 import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
-import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './GdalDatasetParameters';
+import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
+import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
 /**
  * Check if a given object implements the GdalMetaDataRegular interface.
  */
 export function instanceOfGdalMetaDataRegular(value) {
-    if (!('dataTime' in value) || value['dataTime'] === undefined)
+    if (!('dataTime' in value))
         return false;
-    if (!('params' in value) || value['params'] === undefined)
+    if (!('params' in value))
         return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+    if (!('resultDescriptor' in value))
         return false;
-    if (!('step' in value) || value['step'] === undefined)
+    if (!('step' in value))
         return false;
-    if (!('timePlaceholders' in value) || value['timePlaceholders'] === undefined)
+    if (!('timePlaceholders' in value))
         return false;
     return true;
 }

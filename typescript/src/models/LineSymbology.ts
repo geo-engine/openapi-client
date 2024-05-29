@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TextSymbology } from './TextSymbology';
-import {
-    TextSymbologyFromJSON,
-    TextSymbologyFromJSONTyped,
-    TextSymbologyToJSON,
-} from './TextSymbology';
 import type { StrokeParam } from './StrokeParam';
 import {
     StrokeParamFromJSON,
     StrokeParamFromJSONTyped,
     StrokeParamToJSON,
 } from './StrokeParam';
+import type { TextSymbology } from './TextSymbology';
+import {
+    TextSymbologyFromJSON,
+    TextSymbologyFromJSONTyped,
+    TextSymbologyToJSON,
+} from './TextSymbology';
 
 /**
  * 
@@ -55,9 +55,9 @@ export interface LineSymbology {
 /**
  * Check if a given object implements the LineSymbology interface.
  */
-export function instanceOfLineSymbology(value: object): value is LineSymbology {
-    if (!('autoSimplified' in value) || value['autoSimplified'] === undefined) return false;
-    if (!('stroke' in value) || value['stroke'] === undefined) return false;
+export function instanceOfLineSymbology(value: object): boolean {
+    if (!('autoSimplified' in value)) return false;
+    if (!('stroke' in value)) return false;
     return true;
 }
 

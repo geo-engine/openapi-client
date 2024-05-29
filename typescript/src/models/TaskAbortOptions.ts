@@ -30,7 +30,7 @@ export interface TaskAbortOptions {
 /**
  * Check if a given object implements the TaskAbortOptions interface.
  */
-export function instanceOfTaskAbortOptions(value: object): value is TaskAbortOptions {
+export function instanceOfTaskAbortOptions(value: object): boolean {
     return true;
 }
 

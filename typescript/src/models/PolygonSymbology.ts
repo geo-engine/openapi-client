@@ -13,24 +13,24 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TextSymbology } from './TextSymbology';
-import {
-    TextSymbologyFromJSON,
-    TextSymbologyFromJSONTyped,
-    TextSymbologyToJSON,
-} from './TextSymbology';
-import type { StrokeParam } from './StrokeParam';
-import {
-    StrokeParamFromJSON,
-    StrokeParamFromJSONTyped,
-    StrokeParamToJSON,
-} from './StrokeParam';
 import type { ColorParam } from './ColorParam';
 import {
     ColorParamFromJSON,
     ColorParamFromJSONTyped,
     ColorParamToJSON,
 } from './ColorParam';
+import type { StrokeParam } from './StrokeParam';
+import {
+    StrokeParamFromJSON,
+    StrokeParamFromJSONTyped,
+    StrokeParamToJSON,
+} from './StrokeParam';
+import type { TextSymbology } from './TextSymbology';
+import {
+    TextSymbologyFromJSON,
+    TextSymbologyFromJSONTyped,
+    TextSymbologyToJSON,
+} from './TextSymbology';
 
 /**
  * 
@@ -67,10 +67,10 @@ export interface PolygonSymbology {
 /**
  * Check if a given object implements the PolygonSymbology interface.
  */
-export function instanceOfPolygonSymbology(value: object): value is PolygonSymbology {
-    if (!('autoSimplified' in value) || value['autoSimplified'] === undefined) return false;
-    if (!('fillColor' in value) || value['fillColor'] === undefined) return false;
-    if (!('stroke' in value) || value['stroke'] === undefined) return false;
+export function instanceOfPolygonSymbology(value: object): boolean {
+    if (!('autoSimplified' in value)) return false;
+    if (!('fillColor' in value)) return false;
+    if (!('stroke' in value)) return false;
     return true;
 }
 

@@ -16,9 +16,9 @@ import { ColorizerFromJSON, ColorizerToJSON, } from './Colorizer';
  * Check if a given object implements the DerivedColor interface.
  */
 export function instanceOfDerivedColor(value) {
-    if (!('attribute' in value) || value['attribute'] === undefined)
+    if (!('attribute' in value))
         return false;
-    if (!('colorizer' in value) || value['colorizer'] === undefined)
+    if (!('colorizer' in value))
         return false;
     return true;
 }

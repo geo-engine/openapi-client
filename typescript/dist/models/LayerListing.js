@@ -19,11 +19,11 @@ const ProviderLayerId_1 = require("./ProviderLayerId");
  * Check if a given object implements the LayerListing interface.
  */
 function instanceOfLayerListing(value) {
-    if (!('description' in value) || value['description'] === undefined)
+    if (!('description' in value))
         return false;
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
     return true;
 }

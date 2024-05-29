@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FeatureDataTypeToJSON = exports.FeatureDataTypeFromJSONTyped = exports.FeatureDataTypeFromJSON = exports.instanceOfFeatureDataType = exports.FeatureDataType = void 0;
+exports.FeatureDataTypeToJSON = exports.FeatureDataTypeFromJSONTyped = exports.FeatureDataTypeFromJSON = exports.FeatureDataType = void 0;
 /**
  *
  * @export
@@ -26,17 +26,6 @@ exports.FeatureDataType = {
     Bool: 'bool',
     DateTime: 'dateTime'
 };
-function instanceOfFeatureDataType(value) {
-    for (const key in exports.FeatureDataType) {
-        if (Object.prototype.hasOwnProperty.call(exports.FeatureDataType, key)) {
-            if (exports.FeatureDataType[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfFeatureDataType = instanceOfFeatureDataType;
 function FeatureDataTypeFromJSON(json) {
     return FeatureDataTypeFromJSONTyped(json, false);
 }

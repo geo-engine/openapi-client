@@ -42,10 +42,10 @@ export interface DateTimeParseFormat {
 /**
  * Check if a given object implements the DateTimeParseFormat interface.
  */
-export function instanceOfDateTimeParseFormat(value: object): value is DateTimeParseFormat {
-    if (!('fmt' in value) || value['fmt'] === undefined) return false;
-    if (!('hasTime' in value) || value['hasTime'] === undefined) return false;
-    if (!('hasTz' in value) || value['hasTz'] === undefined) return false;
+export function instanceOfDateTimeParseFormat(value: object): boolean {
+    if (!('fmt' in value)) return false;
+    if (!('hasTime' in value)) return false;
+    if (!('hasTz' in value)) return false;
     return true;
 }
 

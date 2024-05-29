@@ -18,16 +18,6 @@
 export const GetCoverageRequest = {
     GetCoverage: 'GetCoverage'
 };
-export function instanceOfGetCoverageRequest(value) {
-    for (const key in GetCoverageRequest) {
-        if (Object.prototype.hasOwnProperty.call(GetCoverageRequest, key)) {
-            if (GetCoverageRequest[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
 export function GetCoverageRequestFromJSON(json) {
     return GetCoverageRequestFromJSONTyped(json, false);
 }

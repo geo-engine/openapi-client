@@ -36,9 +36,9 @@ export interface TimeInterval {
 /**
  * Check if a given object implements the TimeInterval interface.
  */
-export function instanceOfTimeInterval(value: object): value is TimeInterval {
-    if (!('end' in value) || value['end'] === undefined) return false;
-    if (!('start' in value) || value['start'] === undefined) return false;
+export function instanceOfTimeInterval(value: object): boolean {
+    if (!('end' in value)) return false;
+    if (!('start' in value)) return false;
     return true;
 }
 

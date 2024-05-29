@@ -42,10 +42,10 @@ export interface UserRegistration {
 /**
  * Check if a given object implements the UserRegistration interface.
  */
-export function instanceOfUserRegistration(value: object): value is UserRegistration {
-    if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('password' in value) || value['password'] === undefined) return false;
-    if (!('realName' in value) || value['realName'] === undefined) return false;
+export function instanceOfUserRegistration(value: object): boolean {
+    if (!('email' in value)) return false;
+    if (!('password' in value)) return false;
+    if (!('realName' in value)) return false;
     return true;
 }
 

@@ -19,7 +19,7 @@ const TaskStatus_1 = require("./TaskStatus");
  * Check if a given object implements the TaskStatusWithId interface.
  */
 function instanceOfTaskStatusWithId(value) {
-    if (!('taskId' in value) || value['taskId'] === undefined)
+    if (!('taskId' in value))
         return false;
     return true;
 }

@@ -24,13 +24,13 @@ export function ResourceFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'dataset':
-            return Object.assign({}, ResourceDatasetFromJSONTyped(json, true), { type: 'dataset' });
+            return Object.assign(Object.assign({}, ResourceDatasetFromJSONTyped(json, true)), { type: 'dataset' });
         case 'layer':
-            return Object.assign({}, ResourceLayerFromJSONTyped(json, true), { type: 'layer' });
+            return Object.assign(Object.assign({}, ResourceLayerFromJSONTyped(json, true)), { type: 'layer' });
         case 'layerCollection':
-            return Object.assign({}, ResourceLayerCollectionFromJSONTyped(json, true), { type: 'layerCollection' });
+            return Object.assign(Object.assign({}, ResourceLayerCollectionFromJSONTyped(json, true)), { type: 'layerCollection' });
         case 'project':
-            return Object.assign({}, ResourceProjectFromJSONTyped(json, true), { type: 'project' });
+            return Object.assign(Object.assign({}, ResourceProjectFromJSONTyped(json, true)), { type: 'project' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }

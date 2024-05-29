@@ -17,7 +17,6 @@ export declare const GetLegendGraphicRequest: {
     readonly GetLegendGraphic: "GetLegendGraphic";
 };
 export type GetLegendGraphicRequest = typeof GetLegendGraphicRequest[keyof typeof GetLegendGraphicRequest];
-export declare function instanceOfGetLegendGraphicRequest(value: any): boolean;
 export declare function GetLegendGraphicRequestFromJSON(json: any): GetLegendGraphicRequest;
 export declare function GetLegendGraphicRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetLegendGraphicRequest;
 export declare function GetLegendGraphicRequestToJSON(value?: GetLegendGraphicRequest | null): any;

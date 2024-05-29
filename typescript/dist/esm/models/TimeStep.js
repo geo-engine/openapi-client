@@ -16,9 +16,9 @@ import { TimeGranularityFromJSON, TimeGranularityToJSON, } from './TimeGranulari
  * Check if a given object implements the TimeStep interface.
  */
 export function instanceOfTimeStep(value) {
-    if (!('granularity' in value) || value['granularity'] === undefined)
+    if (!('granularity' in value))
         return false;
-    if (!('step' in value) || value['step'] === undefined)
+    if (!('step' in value))
         return false;
     return true;
 }

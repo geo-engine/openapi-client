@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { VectorResultDescriptor } from './VectorResultDescriptor';
-import {
-    VectorResultDescriptorFromJSON,
-    VectorResultDescriptorFromJSONTyped,
-    VectorResultDescriptorToJSON,
-} from './VectorResultDescriptor';
 import type { MockDatasetDataSourceLoadingInfo } from './MockDatasetDataSourceLoadingInfo';
 import {
     MockDatasetDataSourceLoadingInfoFromJSON,
     MockDatasetDataSourceLoadingInfoFromJSONTyped,
     MockDatasetDataSourceLoadingInfoToJSON,
 } from './MockDatasetDataSourceLoadingInfo';
+import type { VectorResultDescriptor } from './VectorResultDescriptor';
+import {
+    VectorResultDescriptorFromJSON,
+    VectorResultDescriptorFromJSONTyped,
+    VectorResultDescriptorToJSON,
+} from './VectorResultDescriptor';
 
 /**
  * 
@@ -65,10 +65,10 @@ export type MetaDataDefinitionMockMetaDataTypeEnum = typeof MetaDataDefinitionMo
 /**
  * Check if a given object implements the MetaDataDefinitionMockMetaData interface.
  */
-export function instanceOfMetaDataDefinitionMockMetaData(value: object): value is MetaDataDefinitionMockMetaData {
-    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined) return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfMetaDataDefinitionMockMetaData(value: object): boolean {
+    if (!('loadingInfo' in value)) return false;
+    if (!('resultDescriptor' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

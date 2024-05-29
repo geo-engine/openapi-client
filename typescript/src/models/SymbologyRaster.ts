@@ -59,10 +59,10 @@ export type SymbologyRasterTypeEnum = typeof SymbologyRasterTypeEnum[keyof typeo
 /**
  * Check if a given object implements the SymbologyRaster interface.
  */
-export function instanceOfSymbologyRaster(value: object): value is SymbologyRaster {
-    if (!('opacity' in value) || value['opacity'] === undefined) return false;
-    if (!('rasterColorizer' in value) || value['rasterColorizer'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfSymbologyRaster(value: object): boolean {
+    if (!('opacity' in value)) return false;
+    if (!('rasterColorizer' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

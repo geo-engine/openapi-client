@@ -16,11 +16,11 @@ import { PlotOutputFormatFromJSON, PlotOutputFormatToJSON, } from './PlotOutputF
  * Check if a given object implements the WrappedPlotOutput interface.
  */
 export function instanceOfWrappedPlotOutput(value) {
-    if (!('data' in value) || value['data'] === undefined)
+    if (!('data' in value))
         return false;
-    if (!('outputFormat' in value) || value['outputFormat'] === undefined)
+    if (!('outputFormat' in value))
         return false;
-    if (!('plotType' in value) || value['plotType'] === undefined)
+    if (!('plotType' in value))
         return false;
     return true;
 }

@@ -20,11 +20,11 @@ const Resource_1 = require("./Resource");
  * Check if a given object implements the PermissionRequest interface.
  */
 function instanceOfPermissionRequest(value) {
-    if (!('permission' in value) || value['permission'] === undefined)
+    if (!('permission' in value))
         return false;
-    if (!('resource' in value) || value['resource'] === undefined)
+    if (!('resource' in value))
         return false;
-    if (!('roleId' in value) || value['roleId'] === undefined)
+    if (!('roleId' in value))
         return false;
     return true;
 }

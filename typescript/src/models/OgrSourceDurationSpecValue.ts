@@ -59,10 +59,10 @@ export type OgrSourceDurationSpecValueTypeEnum = typeof OgrSourceDurationSpecVal
 /**
  * Check if a given object implements the OgrSourceDurationSpecValue interface.
  */
-export function instanceOfOgrSourceDurationSpecValue(value: object): value is OgrSourceDurationSpecValue {
-    if (!('granularity' in value) || value['granularity'] === undefined) return false;
-    if (!('step' in value) || value['step'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfOgrSourceDurationSpecValue(value: object): boolean {
+    if (!('granularity' in value)) return false;
+    if (!('step' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

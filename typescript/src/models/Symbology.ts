@@ -58,13 +58,13 @@ export function SymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     switch (json['type']) {
         case 'line':
-            return Object.assign({}, SymbologyLineFromJSONTyped(json, true), { type: 'line' });
+            return {...SymbologyLineFromJSONTyped(json, true), type: 'line'};
         case 'point':
-            return Object.assign({}, SymbologyPointFromJSONTyped(json, true), { type: 'point' });
+            return {...SymbologyPointFromJSONTyped(json, true), type: 'point'};
         case 'polygon':
-            return Object.assign({}, SymbologyPolygonFromJSONTyped(json, true), { type: 'polygon' });
+            return {...SymbologyPolygonFromJSONTyped(json, true), type: 'polygon'};
         case 'raster':
-            return Object.assign({}, SymbologyRasterFromJSONTyped(json, true), { type: 'raster' });
+            return {...SymbologyRasterFromJSONTyped(json, true), type: 'raster'};
         default:
             throw new Error(`No variant of Symbology exists with 'type=${json['type']}'`);
     }

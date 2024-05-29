@@ -18,7 +18,7 @@ exports.UploadFilesResponseToJSON = exports.UploadFilesResponseFromJSONTyped = e
  * Check if a given object implements the UploadFilesResponse interface.
  */
 function instanceOfUploadFilesResponse(value) {
-    if (!('files' in value) || value['files'] === undefined)
+    if (!('files' in value))
         return false;
     return true;
 }

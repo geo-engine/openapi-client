@@ -56,18 +56,7 @@ export function TypedGeometryFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (json == null) {
         return json;
     }
-    if (instanceOfTypedGeometryOneOf(json)) {
-        return TypedGeometryOneOfFromJSONTyped(json, true);
-    }
-    if (instanceOfTypedGeometryOneOf1(json)) {
-        return TypedGeometryOneOf1FromJSONTyped(json, true);
-    }
-    if (instanceOfTypedGeometryOneOf2(json)) {
-        return TypedGeometryOneOf2FromJSONTyped(json, true);
-    }
-    if (instanceOfTypedGeometryOneOf3(json)) {
-        return TypedGeometryOneOf3FromJSONTyped(json, true);
-    }
+    return { ...TypedGeometryOneOfFromJSONTyped(json, true), ...TypedGeometryOneOf1FromJSONTyped(json, true), ...TypedGeometryOneOf2FromJSONTyped(json, true), ...TypedGeometryOneOf3FromJSONTyped(json, true) };
 }
 
 export function TypedGeometryToJSON(value?: TypedGeometry | null): any {

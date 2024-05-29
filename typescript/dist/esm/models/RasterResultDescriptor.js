@@ -11,20 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SpatialResolutionFromJSON, SpatialResolutionToJSON, } from './SpatialResolution';
-import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 import { RasterBandDescriptorFromJSON, RasterBandDescriptorToJSON, } from './RasterBandDescriptor';
 import { RasterDataTypeFromJSON, RasterDataTypeToJSON, } from './RasterDataType';
 import { SpatialPartition2DFromJSON, SpatialPartition2DToJSON, } from './SpatialPartition2D';
+import { SpatialResolutionFromJSON, SpatialResolutionToJSON, } from './SpatialResolution';
+import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 /**
  * Check if a given object implements the RasterResultDescriptor interface.
  */
 export function instanceOfRasterResultDescriptor(value) {
-    if (!('bands' in value) || value['bands'] === undefined)
+    if (!('bands' in value))
         return false;
-    if (!('dataType' in value) || value['dataType'] === undefined)
+    if (!('dataType' in value))
         return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+    if (!('spatialReference' in value))
         return false;
     return true;
 }

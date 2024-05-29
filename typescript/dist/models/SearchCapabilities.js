@@ -19,9 +19,9 @@ const SearchTypes_1 = require("./SearchTypes");
  * Check if a given object implements the SearchCapabilities interface.
  */
 function instanceOfSearchCapabilities(value) {
-    if (!('autocomplete' in value) || value['autocomplete'] === undefined)
+    if (!('autocomplete' in value))
         return false;
-    if (!('searchTypes' in value) || value['searchTypes'] === undefined)
+    if (!('searchTypes' in value))
         return false;
     return true;
 }

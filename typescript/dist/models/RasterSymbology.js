@@ -19,9 +19,9 @@ const RasterColorizer_1 = require("./RasterColorizer");
  * Check if a given object implements the RasterSymbology interface.
  */
 function instanceOfRasterSymbology(value) {
-    if (!('opacity' in value) || value['opacity'] === undefined)
+    if (!('opacity' in value))
         return false;
-    if (!('rasterColorizer' in value) || value['rasterColorizer'] === undefined)
+    if (!('rasterColorizer' in value))
         return false;
     return true;
 }

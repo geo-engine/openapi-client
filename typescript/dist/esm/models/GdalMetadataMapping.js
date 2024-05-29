@@ -11,17 +11,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RasterPropertiesKeyFromJSON, RasterPropertiesKeyToJSON, } from './RasterPropertiesKey';
 import { RasterPropertiesEntryTypeFromJSON, RasterPropertiesEntryTypeToJSON, } from './RasterPropertiesEntryType';
+import { RasterPropertiesKeyFromJSON, RasterPropertiesKeyToJSON, } from './RasterPropertiesKey';
 /**
  * Check if a given object implements the GdalMetadataMapping interface.
  */
 export function instanceOfGdalMetadataMapping(value) {
-    if (!('sourceKey' in value) || value['sourceKey'] === undefined)
+    if (!('sourceKey' in value))
         return false;
-    if (!('targetKey' in value) || value['targetKey'] === undefined)
+    if (!('targetKey' in value))
         return false;
-    if (!('targetType' in value) || value['targetType'] === undefined)
+    if (!('targetType' in value))
         return false;
     return true;
 }

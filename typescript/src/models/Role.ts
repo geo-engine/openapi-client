@@ -36,9 +36,9 @@ export interface Role {
 /**
  * Check if a given object implements the Role interface.
  */
-export function instanceOfRole(value: object): value is Role {
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+export function instanceOfRole(value: object): boolean {
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
     return true;
 }
 

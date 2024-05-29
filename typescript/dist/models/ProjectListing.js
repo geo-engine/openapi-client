@@ -18,17 +18,17 @@ exports.ProjectListingToJSON = exports.ProjectListingFromJSONTyped = exports.Pro
  * Check if a given object implements the ProjectListing interface.
  */
 function instanceOfProjectListing(value) {
-    if (!('changed' in value) || value['changed'] === undefined)
+    if (!('changed' in value))
         return false;
-    if (!('description' in value) || value['description'] === undefined)
+    if (!('description' in value))
         return false;
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
-    if (!('layerNames' in value) || value['layerNames'] === undefined)
+    if (!('layerNames' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
-    if (!('plotNames' in value) || value['plotNames'] === undefined)
+    if (!('plotNames' in value))
         return false;
     return true;
 }

@@ -43,9 +43,9 @@ export interface ProviderCapabilities {
 /**
  * Check if a given object implements the ProviderCapabilities interface.
  */
-export function instanceOfProviderCapabilities(value: object): value is ProviderCapabilities {
-    if (!('listing' in value) || value['listing'] === undefined) return false;
-    if (!('search' in value) || value['search'] === undefined) return false;
+export function instanceOfProviderCapabilities(value: object): boolean {
+    if (!('listing' in value)) return false;
+    if (!('search' in value)) return false;
     return true;
 }
 

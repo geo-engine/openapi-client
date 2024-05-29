@@ -18,7 +18,7 @@ exports.RasterPropertiesKeyToJSON = exports.RasterPropertiesKeyFromJSONTyped = e
  * Check if a given object implements the RasterPropertiesKey interface.
  */
 function instanceOfRasterPropertiesKey(value) {
-    if (!('key' in value) || value['key'] === undefined)
+    if (!('key' in value))
         return false;
     return true;
 }

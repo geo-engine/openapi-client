@@ -11,19 +11,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 import { AxisOrderFromJSON, AxisOrderToJSON, } from './AxisOrder';
+import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 /**
  * Check if a given object implements the SpatialReferenceSpecification interface.
  */
 export function instanceOfSpatialReferenceSpecification(value) {
-    if (!('extent' in value) || value['extent'] === undefined)
+    if (!('extent' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
-    if (!('projString' in value) || value['projString'] === undefined)
+    if (!('projString' in value))
         return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+    if (!('spatialReference' in value))
         return false;
     return true;
 }

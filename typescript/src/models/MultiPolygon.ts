@@ -37,8 +37,8 @@ export interface MultiPolygon {
 /**
  * Check if a given object implements the MultiPolygon interface.
  */
-export function instanceOfMultiPolygon(value: object): value is MultiPolygon {
-    if (!('polygons' in value) || value['polygons'] === undefined) return false;
+export function instanceOfMultiPolygon(value: object): boolean {
+    if (!('polygons' in value)) return false;
     return true;
 }
 

@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CollectionTypeToJSON = exports.CollectionTypeFromJSONTyped = exports.CollectionTypeFromJSON = exports.instanceOfCollectionType = exports.CollectionType = void 0;
+exports.CollectionTypeToJSON = exports.CollectionTypeFromJSONTyped = exports.CollectionTypeFromJSON = exports.CollectionType = void 0;
 /**
  *
  * @export
@@ -21,17 +21,6 @@ exports.CollectionTypeToJSON = exports.CollectionTypeFromJSONTyped = exports.Col
 exports.CollectionType = {
     FeatureCollection: 'FeatureCollection'
 };
-function instanceOfCollectionType(value) {
-    for (const key in exports.CollectionType) {
-        if (Object.prototype.hasOwnProperty.call(exports.CollectionType, key)) {
-            if (exports.CollectionType[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfCollectionType = instanceOfCollectionType;
 function CollectionTypeFromJSON(json) {
     return CollectionTypeFromJSONTyped(json, false);
 }

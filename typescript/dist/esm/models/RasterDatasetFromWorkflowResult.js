@@ -15,9 +15,9 @@
  * Check if a given object implements the RasterDatasetFromWorkflowResult interface.
  */
 export function instanceOfRasterDatasetFromWorkflowResult(value) {
-    if (!('dataset' in value) || value['dataset'] === undefined)
+    if (!('dataset' in value))
         return false;
-    if (!('upload' in value) || value['upload'] === undefined)
+    if (!('upload' in value))
         return false;
     return true;
 }

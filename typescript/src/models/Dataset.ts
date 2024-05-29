@@ -97,13 +97,13 @@ export interface Dataset {
 /**
  * Check if a given object implements the Dataset interface.
  */
-export function instanceOfDataset(value: object): value is Dataset {
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('displayName' in value) || value['displayName'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
-    if (!('sourceOperator' in value) || value['sourceOperator'] === undefined) return false;
+export function instanceOfDataset(value: object): boolean {
+    if (!('description' in value)) return false;
+    if (!('displayName' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('resultDescriptor' in value)) return false;
+    if (!('sourceOperator' in value)) return false;
     return true;
 }
 

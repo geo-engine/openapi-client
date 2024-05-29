@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Measurement } from './Measurement';
-import {
-    MeasurementFromJSON,
-    MeasurementFromJSONTyped,
-    MeasurementToJSON,
-} from './Measurement';
 import type { FeatureDataType } from './FeatureDataType';
 import {
     FeatureDataTypeFromJSON,
     FeatureDataTypeFromJSONTyped,
     FeatureDataTypeToJSON,
 } from './FeatureDataType';
+import type { Measurement } from './Measurement';
+import {
+    MeasurementFromJSON,
+    MeasurementFromJSONTyped,
+    MeasurementToJSON,
+} from './Measurement';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface VectorColumnInfo {
 /**
  * Check if a given object implements the VectorColumnInfo interface.
  */
-export function instanceOfVectorColumnInfo(value: object): value is VectorColumnInfo {
-    if (!('dataType' in value) || value['dataType'] === undefined) return false;
-    if (!('measurement' in value) || value['measurement'] === undefined) return false;
+export function instanceOfVectorColumnInfo(value: object): boolean {
+    if (!('dataType' in value)) return false;
+    if (!('measurement' in value)) return false;
     return true;
 }
 

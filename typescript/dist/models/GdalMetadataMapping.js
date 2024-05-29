@@ -14,17 +14,17 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalMetadataMappingToJSON = exports.GdalMetadataMappingFromJSONTyped = exports.GdalMetadataMappingFromJSON = exports.instanceOfGdalMetadataMapping = void 0;
-const RasterPropertiesKey_1 = require("./RasterPropertiesKey");
 const RasterPropertiesEntryType_1 = require("./RasterPropertiesEntryType");
+const RasterPropertiesKey_1 = require("./RasterPropertiesKey");
 /**
  * Check if a given object implements the GdalMetadataMapping interface.
  */
 function instanceOfGdalMetadataMapping(value) {
-    if (!('sourceKey' in value) || value['sourceKey'] === undefined)
+    if (!('sourceKey' in value))
         return false;
-    if (!('targetKey' in value) || value['targetKey'] === undefined)
+    if (!('targetKey' in value))
         return false;
-    if (!('targetType' in value) || value['targetType'] === undefined)
+    if (!('targetType' in value))
         return false;
     return true;
 }

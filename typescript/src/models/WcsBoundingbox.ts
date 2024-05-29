@@ -36,8 +36,8 @@ export interface WcsBoundingbox {
 /**
  * Check if a given object implements the WcsBoundingbox interface.
  */
-export function instanceOfWcsBoundingbox(value: object): value is WcsBoundingbox {
-    if (!('bbox' in value) || value['bbox'] === undefined) return false;
+export function instanceOfWcsBoundingbox(value: object): boolean {
+    if (!('bbox' in value)) return false;
     return true;
 }
 

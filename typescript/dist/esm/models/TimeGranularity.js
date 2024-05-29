@@ -24,16 +24,6 @@ export const TimeGranularity = {
     Months: 'months',
     Years: 'years'
 };
-export function instanceOfTimeGranularity(value) {
-    for (const key in TimeGranularity) {
-        if (Object.prototype.hasOwnProperty.call(TimeGranularity, key)) {
-            if (TimeGranularity[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
 export function TimeGranularityFromJSON(json) {
     return TimeGranularityFromJSONTyped(json, false);
 }

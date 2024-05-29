@@ -44,9 +44,9 @@ export function ColorParamFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     switch (json['type']) {
         case 'derived':
-            return Object.assign({}, ColorParamDerivedFromJSONTyped(json, true), { type: 'derived' });
+            return {...ColorParamDerivedFromJSONTyped(json, true), type: 'derived'};
         case 'static':
-            return Object.assign({}, ColorParamStaticFromJSONTyped(json, true), { type: 'static' });
+            return {...ColorParamStaticFromJSONTyped(json, true), type: 'static'};
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${json['type']}'`);
     }

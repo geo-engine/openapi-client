@@ -18,9 +18,9 @@ exports.PermissionListOptionsToJSON = exports.PermissionListOptionsFromJSONTyped
  * Check if a given object implements the PermissionListOptions interface.
  */
 function instanceOfPermissionListOptions(value) {
-    if (!('limit' in value) || value['limit'] === undefined)
+    if (!('limit' in value))
         return false;
-    if (!('offset' in value) || value['offset'] === undefined)
+    if (!('offset' in value))
         return false;
     return true;
 }

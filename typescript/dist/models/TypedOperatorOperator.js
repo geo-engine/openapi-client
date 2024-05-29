@@ -18,7 +18,7 @@ exports.TypedOperatorOperatorToJSON = exports.TypedOperatorOperatorFromJSONTyped
  * Check if a given object implements the TypedOperatorOperator interface.
  */
 function instanceOfTypedOperatorOperator(value) {
-    if (!('type' in value) || value['type'] === undefined)
+    if (!('type' in value))
         return false;
     return true;
 }

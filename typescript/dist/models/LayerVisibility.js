@@ -18,9 +18,9 @@ exports.LayerVisibilityToJSON = exports.LayerVisibilityFromJSONTyped = exports.L
  * Check if a given object implements the LayerVisibility interface.
  */
 function instanceOfLayerVisibility(value) {
-    if (!('data' in value) || value['data'] === undefined)
+    if (!('data' in value))
         return false;
-    if (!('legend' in value) || value['legend'] === undefined)
+    if (!('legend' in value))
         return false;
     return true;
 }

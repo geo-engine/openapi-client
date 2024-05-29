@@ -85,8 +85,8 @@ export interface OgrSourceColumnSpec {
 /**
  * Check if a given object implements the OgrSourceColumnSpec interface.
  */
-export function instanceOfOgrSourceColumnSpec(value: object): value is OgrSourceColumnSpec {
-    if (!('x' in value) || value['x'] === undefined) return false;
+export function instanceOfOgrSourceColumnSpec(value: object): boolean {
+    if (!('x' in value)) return false;
     return true;
 }
 

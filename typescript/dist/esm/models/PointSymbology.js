@@ -11,19 +11,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
-import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
-import { NumberParamFromJSON, NumberParamToJSON, } from './NumberParam';
 import { ColorParamFromJSON, ColorParamToJSON, } from './ColorParam';
+import { NumberParamFromJSON, NumberParamToJSON, } from './NumberParam';
+import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
+import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
 /**
  * Check if a given object implements the PointSymbology interface.
  */
 export function instanceOfPointSymbology(value) {
-    if (!('fillColor' in value) || value['fillColor'] === undefined)
+    if (!('fillColor' in value))
         return false;
-    if (!('radius' in value) || value['radius'] === undefined)
+    if (!('radius' in value))
         return false;
-    if (!('stroke' in value) || value['stroke'] === undefined)
+    if (!('stroke' in value))
         return false;
     return true;
 }

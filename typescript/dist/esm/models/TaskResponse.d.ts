@@ -25,7 +25,7 @@ export interface TaskResponse {
 /**
  * Check if a given object implements the TaskResponse interface.
  */
-export declare function instanceOfTaskResponse(value: object): value is TaskResponse;
+export declare function instanceOfTaskResponse(value: object): boolean;
 export declare function TaskResponseFromJSON(json: any): TaskResponse;
 export declare function TaskResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskResponse;
 export declare function TaskResponseToJSON(value?: TaskResponse | null): any;

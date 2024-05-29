@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { BoundingBox2D } from './BoundingBox2D';
-import {
-    BoundingBox2DFromJSON,
-    BoundingBox2DFromJSONTyped,
-    BoundingBox2DToJSON,
-} from './BoundingBox2D';
 import type { AxisOrder } from './AxisOrder';
 import {
     AxisOrderFromJSON,
     AxisOrderFromJSONTyped,
     AxisOrderToJSON,
 } from './AxisOrder';
+import type { BoundingBox2D } from './BoundingBox2D';
+import {
+    BoundingBox2DFromJSON,
+    BoundingBox2DFromJSONTyped,
+    BoundingBox2DToJSON,
+} from './BoundingBox2D';
 
 /**
  * The specification of a spatial reference, where extent and axis labels are given
@@ -74,11 +74,11 @@ export interface SpatialReferenceSpecification {
 /**
  * Check if a given object implements the SpatialReferenceSpecification interface.
  */
-export function instanceOfSpatialReferenceSpecification(value: object): value is SpatialReferenceSpecification {
-    if (!('extent' in value) || value['extent'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('projString' in value) || value['projString'] === undefined) return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
+export function instanceOfSpatialReferenceSpecification(value: object): boolean {
+    if (!('extent' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('projString' in value)) return false;
+    if (!('spatialReference' in value)) return false;
     return true;
 }
 

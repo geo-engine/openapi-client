@@ -18,9 +18,9 @@ exports.BreakpointToJSON = exports.BreakpointFromJSONTyped = exports.BreakpointF
  * Check if a given object implements the Breakpoint interface.
  */
 function instanceOfBreakpoint(value) {
-    if (!('color' in value) || value['color'] === undefined)
+    if (!('color' in value))
         return false;
-    if (!('value' in value) || value['value'] === undefined)
+    if (!('value' in value))
         return false;
     return true;
 }

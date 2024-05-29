@@ -49,10 +49,10 @@ export interface MetaDataSuggestion {
 /**
  * Check if a given object implements the MetaDataSuggestion interface.
  */
-export function instanceOfMetaDataSuggestion(value: object): value is MetaDataSuggestion {
-    if (!('layerName' in value) || value['layerName'] === undefined) return false;
-    if (!('mainFile' in value) || value['mainFile'] === undefined) return false;
-    if (!('metaData' in value) || value['metaData'] === undefined) return false;
+export function instanceOfMetaDataSuggestion(value: object): boolean {
+    if (!('layerName' in value)) return false;
+    if (!('mainFile' in value)) return false;
+    if (!('metaData' in value)) return false;
     return true;
 }
 

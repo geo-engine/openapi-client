@@ -59,7 +59,7 @@ export interface AddLayer {
 /**
  * Check if a given object implements the AddLayer interface.
  */
-export declare function instanceOfAddLayer(value: object): value is AddLayer;
+export declare function instanceOfAddLayer(value: object): boolean;
 export declare function AddLayerFromJSON(json: any): AddLayer;
 export declare function AddLayerFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddLayer;
 export declare function AddLayerToJSON(value?: AddLayer | null): any;

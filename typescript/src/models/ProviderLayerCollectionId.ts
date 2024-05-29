@@ -36,9 +36,9 @@ export interface ProviderLayerCollectionId {
 /**
  * Check if a given object implements the ProviderLayerCollectionId interface.
  */
-export function instanceOfProviderLayerCollectionId(value: object): value is ProviderLayerCollectionId {
-    if (!('collectionId' in value) || value['collectionId'] === undefined) return false;
-    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+export function instanceOfProviderLayerCollectionId(value: object): boolean {
+    if (!('collectionId' in value)) return false;
+    if (!('providerId' in value)) return false;
     return true;
 }
 

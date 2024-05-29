@@ -40,8 +40,8 @@ export type ColorizerRgbaTypeEnum = typeof ColorizerRgbaTypeEnum[keyof typeof Co
 /**
  * Check if a given object implements the ColorizerRgba interface.
  */
-export function instanceOfColorizerRgba(value: object): value is ColorizerRgba {
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfColorizerRgba(value: object): boolean {
+    if (!('type' in value)) return false;
     return true;
 }
 

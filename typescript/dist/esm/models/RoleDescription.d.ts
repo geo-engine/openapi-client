@@ -32,7 +32,7 @@ export interface RoleDescription {
 /**
  * Check if a given object implements the RoleDescription interface.
  */
-export declare function instanceOfRoleDescription(value: object): value is RoleDescription;
+export declare function instanceOfRoleDescription(value: object): boolean;
 export declare function RoleDescriptionFromJSON(json: any): RoleDescription;
 export declare function RoleDescriptionFromJSONTyped(json: any, ignoreDiscriminator: boolean): RoleDescription;
 export declare function RoleDescriptionToJSON(value?: RoleDescription | null): any;

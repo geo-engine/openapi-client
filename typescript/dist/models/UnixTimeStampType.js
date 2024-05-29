@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UnixTimeStampTypeToJSON = exports.UnixTimeStampTypeFromJSONTyped = exports.UnixTimeStampTypeFromJSON = exports.instanceOfUnixTimeStampType = exports.UnixTimeStampType = void 0;
+exports.UnixTimeStampTypeToJSON = exports.UnixTimeStampTypeFromJSONTyped = exports.UnixTimeStampTypeFromJSON = exports.UnixTimeStampType = void 0;
 /**
  *
  * @export
@@ -22,17 +22,6 @@ exports.UnixTimeStampType = {
     EpochSeconds: 'epochSeconds',
     EpochMilliseconds: 'epochMilliseconds'
 };
-function instanceOfUnixTimeStampType(value) {
-    for (const key in exports.UnixTimeStampType) {
-        if (Object.prototype.hasOwnProperty.call(exports.UnixTimeStampType, key)) {
-            if (exports.UnixTimeStampType[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfUnixTimeStampType = instanceOfUnixTimeStampType;
 function UnixTimeStampTypeFromJSON(json) {
     return UnixTimeStampTypeFromJSONTyped(json, false);
 }

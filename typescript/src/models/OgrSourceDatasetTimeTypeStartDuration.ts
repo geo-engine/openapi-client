@@ -65,11 +65,11 @@ export type OgrSourceDatasetTimeTypeStartDurationTypeEnum = typeof OgrSourceData
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeStartDuration interface.
  */
-export function instanceOfOgrSourceDatasetTimeTypeStartDuration(value: object): value is OgrSourceDatasetTimeTypeStartDuration {
-    if (!('durationField' in value) || value['durationField'] === undefined) return false;
-    if (!('startField' in value) || value['startField'] === undefined) return false;
-    if (!('startFormat' in value) || value['startFormat'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfOgrSourceDatasetTimeTypeStartDuration(value: object): boolean {
+    if (!('durationField' in value)) return false;
+    if (!('startField' in value)) return false;
+    if (!('startFormat' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

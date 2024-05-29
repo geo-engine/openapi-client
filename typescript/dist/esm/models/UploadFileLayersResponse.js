@@ -15,7 +15,7 @@
  * Check if a given object implements the UploadFileLayersResponse interface.
  */
 export function instanceOfUploadFileLayersResponse(value) {
-    if (!('layers' in value) || value['layers'] === undefined)
+    if (!('layers' in value))
         return false;
     return true;
 }

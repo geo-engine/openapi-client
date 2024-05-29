@@ -11,20 +11,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { OgrSourceErrorSpecFromJSON, OgrSourceErrorSpecToJSON, } from './OgrSourceErrorSpec';
-import { VectorDataTypeFromJSON, VectorDataTypeToJSON, } from './VectorDataType';
-import { TypedGeometryFromJSON, TypedGeometryToJSON, } from './TypedGeometry';
 import { OgrSourceColumnSpecFromJSON, OgrSourceColumnSpecToJSON, } from './OgrSourceColumnSpec';
 import { OgrSourceDatasetTimeTypeFromJSON, OgrSourceDatasetTimeTypeToJSON, } from './OgrSourceDatasetTimeType';
+import { OgrSourceErrorSpecFromJSON, OgrSourceErrorSpecToJSON, } from './OgrSourceErrorSpec';
+import { TypedGeometryFromJSON, TypedGeometryToJSON, } from './TypedGeometry';
+import { VectorDataTypeFromJSON, VectorDataTypeToJSON, } from './VectorDataType';
 /**
  * Check if a given object implements the OgrSourceDataset interface.
  */
 export function instanceOfOgrSourceDataset(value) {
-    if (!('fileName' in value) || value['fileName'] === undefined)
+    if (!('fileName' in value))
         return false;
-    if (!('layerName' in value) || value['layerName'] === undefined)
+    if (!('layerName' in value))
         return false;
-    if (!('onError' in value) || value['onError'] === undefined)
+    if (!('onError' in value))
         return false;
     return true;
 }

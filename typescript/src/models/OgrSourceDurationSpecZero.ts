@@ -40,8 +40,8 @@ export type OgrSourceDurationSpecZeroTypeEnum = typeof OgrSourceDurationSpecZero
 /**
  * Check if a given object implements the OgrSourceDurationSpecZero interface.
  */
-export function instanceOfOgrSourceDurationSpecZero(value: object): value is OgrSourceDurationSpecZero {
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfOgrSourceDurationSpecZero(value: object): boolean {
+    if (!('type' in value)) return false;
     return true;
 }
 

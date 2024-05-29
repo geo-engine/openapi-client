@@ -16,7 +16,7 @@ import { CsvHeaderFromJSON, CsvHeaderToJSON, } from './CsvHeader';
  * Check if a given object implements the FormatSpecificsOneOfCsv interface.
  */
 export function instanceOfFormatSpecificsOneOfCsv(value) {
-    if (!('header' in value) || value['header'] === undefined)
+    if (!('header' in value))
         return false;
     return true;
 }

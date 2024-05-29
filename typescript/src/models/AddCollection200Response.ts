@@ -30,8 +30,8 @@ export interface AddCollection200Response {
 /**
  * Check if a given object implements the AddCollection200Response interface.
  */
-export function instanceOfAddCollection200Response(value: object): value is AddCollection200Response {
-    if (!('id' in value) || value['id'] === undefined) return false;
+export function instanceOfAddCollection200Response(value: object): boolean {
+    if (!('id' in value)) return false;
     return true;
 }
 

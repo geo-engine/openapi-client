@@ -52,9 +52,9 @@ export type MeasurementContinuousTypeEnum = typeof MeasurementContinuousTypeEnum
 /**
  * Check if a given object implements the MeasurementContinuous interface.
  */
-export function instanceOfMeasurementContinuous(value: object): value is MeasurementContinuous {
-    if (!('measurement' in value) || value['measurement'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfMeasurementContinuous(value: object): boolean {
+    if (!('measurement' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

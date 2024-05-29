@@ -19,7 +19,7 @@ const Provenance_1 = require("./Provenance");
  * Check if a given object implements the Provenances interface.
  */
 function instanceOfProvenances(value) {
-    if (!('provenances' in value) || value['provenances'] === undefined)
+    if (!('provenances' in value))
         return false;
     return true;
 }

@@ -16,13 +16,13 @@ import { BreakpointFromJSON, BreakpointToJSON, } from './Breakpoint';
  * Check if a given object implements the LogarithmicGradient interface.
  */
 export function instanceOfLogarithmicGradient(value) {
-    if (!('breakpoints' in value) || value['breakpoints'] === undefined)
+    if (!('breakpoints' in value))
         return false;
-    if (!('noDataColor' in value) || value['noDataColor'] === undefined)
+    if (!('noDataColor' in value))
         return false;
-    if (!('overColor' in value) || value['overColor'] === undefined)
+    if (!('overColor' in value))
         return false;
-    if (!('underColor' in value) || value['underColor'] === undefined)
+    if (!('underColor' in value))
         return false;
     return true;
 }

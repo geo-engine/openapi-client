@@ -23,17 +23,6 @@ export const WfsVersion = {
 export type WfsVersion = typeof WfsVersion[keyof typeof WfsVersion];
 
 
-export function instanceOfWfsVersion(value: any): boolean {
-    for (const key in WfsVersion) {
-        if (Object.prototype.hasOwnProperty.call(WfsVersion, key)) {
-            if (WfsVersion[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function WfsVersionFromJSON(json: any): WfsVersion {
     return WfsVersionFromJSONTyped(json, false);
 }

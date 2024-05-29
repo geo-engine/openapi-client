@@ -36,9 +36,9 @@ export interface ExternalDataId {
 /**
  * Check if a given object implements the ExternalDataId interface.
  */
-export function instanceOfExternalDataId(value: object): value is ExternalDataId {
-    if (!('layerId' in value) || value['layerId'] === undefined) return false;
-    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+export function instanceOfExternalDataId(value: object): boolean {
+    if (!('layerId' in value)) return false;
+    if (!('providerId' in value)) return false;
     return true;
 }
 

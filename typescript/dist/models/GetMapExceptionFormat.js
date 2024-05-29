@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetMapExceptionFormatToJSON = exports.GetMapExceptionFormatFromJSONTyped = exports.GetMapExceptionFormatFromJSON = exports.instanceOfGetMapExceptionFormat = exports.GetMapExceptionFormat = void 0;
+exports.GetMapExceptionFormatToJSON = exports.GetMapExceptionFormatFromJSONTyped = exports.GetMapExceptionFormatFromJSON = exports.GetMapExceptionFormat = void 0;
 /**
  *
  * @export
@@ -22,17 +22,6 @@ exports.GetMapExceptionFormat = {
     Xml: 'XML',
     Json: 'JSON'
 };
-function instanceOfGetMapExceptionFormat(value) {
-    for (const key in exports.GetMapExceptionFormat) {
-        if (Object.prototype.hasOwnProperty.call(exports.GetMapExceptionFormat, key)) {
-            if (exports.GetMapExceptionFormat[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfGetMapExceptionFormat = instanceOfGetMapExceptionFormat;
 function GetMapExceptionFormatFromJSON(json) {
     return GetMapExceptionFormatFromJSONTyped(json, false);
 }

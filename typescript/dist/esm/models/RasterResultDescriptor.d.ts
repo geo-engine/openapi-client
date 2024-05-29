@@ -9,11 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { SpatialResolution } from './SpatialResolution';
-import type { TimeInterval } from './TimeInterval';
 import type { RasterBandDescriptor } from './RasterBandDescriptor';
 import type { RasterDataType } from './RasterDataType';
 import type { SpatialPartition2D } from './SpatialPartition2D';
+import type { SpatialResolution } from './SpatialResolution';
+import type { TimeInterval } from './TimeInterval';
 /**
  * A `ResultDescriptor` for raster queries
  * @export
@@ -60,7 +60,7 @@ export interface RasterResultDescriptor {
 /**
  * Check if a given object implements the RasterResultDescriptor interface.
  */
-export declare function instanceOfRasterResultDescriptor(value: object): value is RasterResultDescriptor;
+export declare function instanceOfRasterResultDescriptor(value: object): boolean;
 export declare function RasterResultDescriptorFromJSON(json: any): RasterResultDescriptor;
 export declare function RasterResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterResultDescriptor;
 export declare function RasterResultDescriptorToJSON(value?: RasterResultDescriptor | null): any;

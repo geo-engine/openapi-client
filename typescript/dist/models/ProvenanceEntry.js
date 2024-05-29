@@ -14,15 +14,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProvenanceEntryToJSON = exports.ProvenanceEntryFromJSONTyped = exports.ProvenanceEntryFromJSON = exports.instanceOfProvenanceEntry = void 0;
-const Provenance_1 = require("./Provenance");
 const DataId_1 = require("./DataId");
+const Provenance_1 = require("./Provenance");
 /**
  * Check if a given object implements the ProvenanceEntry interface.
  */
 function instanceOfProvenanceEntry(value) {
-    if (!('data' in value) || value['data'] === undefined)
+    if (!('data' in value))
         return false;
-    if (!('provenance' in value) || value['provenance'] === undefined)
+    if (!('provenance' in value))
         return false;
     return true;
 }

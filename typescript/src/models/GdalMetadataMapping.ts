@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RasterPropertiesKey } from './RasterPropertiesKey';
-import {
-    RasterPropertiesKeyFromJSON,
-    RasterPropertiesKeyFromJSONTyped,
-    RasterPropertiesKeyToJSON,
-} from './RasterPropertiesKey';
 import type { RasterPropertiesEntryType } from './RasterPropertiesEntryType';
 import {
     RasterPropertiesEntryTypeFromJSON,
     RasterPropertiesEntryTypeFromJSONTyped,
     RasterPropertiesEntryTypeToJSON,
 } from './RasterPropertiesEntryType';
+import type { RasterPropertiesKey } from './RasterPropertiesKey';
+import {
+    RasterPropertiesKeyFromJSON,
+    RasterPropertiesKeyFromJSONTyped,
+    RasterPropertiesKeyToJSON,
+} from './RasterPropertiesKey';
 
 /**
  * 
@@ -55,10 +55,10 @@ export interface GdalMetadataMapping {
 /**
  * Check if a given object implements the GdalMetadataMapping interface.
  */
-export function instanceOfGdalMetadataMapping(value: object): value is GdalMetadataMapping {
-    if (!('sourceKey' in value) || value['sourceKey'] === undefined) return false;
-    if (!('targetKey' in value) || value['targetKey'] === undefined) return false;
-    if (!('targetType' in value) || value['targetType'] === undefined) return false;
+export function instanceOfGdalMetadataMapping(value: object): boolean {
+    if (!('sourceKey' in value)) return false;
+    if (!('targetKey' in value)) return false;
+    if (!('targetType' in value)) return false;
     return true;
 }
 

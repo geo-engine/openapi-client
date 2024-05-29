@@ -48,11 +48,11 @@ export interface ServerInfo {
 /**
  * Check if a given object implements the ServerInfo interface.
  */
-export function instanceOfServerInfo(value: object): value is ServerInfo {
-    if (!('buildDate' in value) || value['buildDate'] === undefined) return false;
-    if (!('commitHash' in value) || value['commitHash'] === undefined) return false;
-    if (!('features' in value) || value['features'] === undefined) return false;
-    if (!('version' in value) || value['version'] === undefined) return false;
+export function instanceOfServerInfo(value: object): boolean {
+    if (!('buildDate' in value)) return false;
+    if (!('commitHash' in value)) return false;
+    if (!('features' in value)) return false;
+    if (!('version' in value)) return false;
     return true;
 }
 

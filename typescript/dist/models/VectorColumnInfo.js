@@ -14,15 +14,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VectorColumnInfoToJSON = exports.VectorColumnInfoFromJSONTyped = exports.VectorColumnInfoFromJSON = exports.instanceOfVectorColumnInfo = void 0;
-const Measurement_1 = require("./Measurement");
 const FeatureDataType_1 = require("./FeatureDataType");
+const Measurement_1 = require("./Measurement");
 /**
  * Check if a given object implements the VectorColumnInfo interface.
  */
 function instanceOfVectorColumnInfo(value) {
-    if (!('dataType' in value) || value['dataType'] === undefined)
+    if (!('dataType' in value))
         return false;
-    if (!('measurement' in value) || value['measurement'] === undefined)
+    if (!('measurement' in value))
         return false;
     return true;
 }

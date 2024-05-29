@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeInterval } from './TimeInterval';
-import {
-    TimeIntervalFromJSON,
-    TimeIntervalFromJSONTyped,
-    TimeIntervalToJSON,
-} from './TimeInterval';
 import type { BoundingBox2D } from './BoundingBox2D';
 import {
     BoundingBox2DFromJSON,
     BoundingBox2DFromJSONTyped,
     BoundingBox2DToJSON,
 } from './BoundingBox2D';
+import type { TimeInterval } from './TimeInterval';
+import {
+    TimeIntervalFromJSON,
+    TimeIntervalFromJSONTyped,
+    TimeIntervalToJSON,
+} from './TimeInterval';
 
 /**
  * A `ResultDescriptor` for plot queries
@@ -55,8 +55,8 @@ export interface PlotResultDescriptor {
 /**
  * Check if a given object implements the PlotResultDescriptor interface.
  */
-export function instanceOfPlotResultDescriptor(value: object): value is PlotResultDescriptor {
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
+export function instanceOfPlotResultDescriptor(value: object): boolean {
+    if (!('spatialReference' in value)) return false;
     return true;
 }
 

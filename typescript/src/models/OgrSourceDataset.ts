@@ -13,24 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { OgrSourceErrorSpec } from './OgrSourceErrorSpec';
-import {
-    OgrSourceErrorSpecFromJSON,
-    OgrSourceErrorSpecFromJSONTyped,
-    OgrSourceErrorSpecToJSON,
-} from './OgrSourceErrorSpec';
-import type { VectorDataType } from './VectorDataType';
-import {
-    VectorDataTypeFromJSON,
-    VectorDataTypeFromJSONTyped,
-    VectorDataTypeToJSON,
-} from './VectorDataType';
-import type { TypedGeometry } from './TypedGeometry';
-import {
-    TypedGeometryFromJSON,
-    TypedGeometryFromJSONTyped,
-    TypedGeometryToJSON,
-} from './TypedGeometry';
 import type { OgrSourceColumnSpec } from './OgrSourceColumnSpec';
 import {
     OgrSourceColumnSpecFromJSON,
@@ -43,6 +25,24 @@ import {
     OgrSourceDatasetTimeTypeFromJSONTyped,
     OgrSourceDatasetTimeTypeToJSON,
 } from './OgrSourceDatasetTimeType';
+import type { OgrSourceErrorSpec } from './OgrSourceErrorSpec';
+import {
+    OgrSourceErrorSpecFromJSON,
+    OgrSourceErrorSpecFromJSONTyped,
+    OgrSourceErrorSpecToJSON,
+} from './OgrSourceErrorSpec';
+import type { TypedGeometry } from './TypedGeometry';
+import {
+    TypedGeometryFromJSON,
+    TypedGeometryFromJSONTyped,
+    TypedGeometryToJSON,
+} from './TypedGeometry';
+import type { VectorDataType } from './VectorDataType';
+import {
+    VectorDataTypeFromJSON,
+    VectorDataTypeFromJSONTyped,
+    VectorDataTypeToJSON,
+} from './VectorDataType';
 
 /**
  * 
@@ -127,10 +127,10 @@ export interface OgrSourceDataset {
 /**
  * Check if a given object implements the OgrSourceDataset interface.
  */
-export function instanceOfOgrSourceDataset(value: object): value is OgrSourceDataset {
-    if (!('fileName' in value) || value['fileName'] === undefined) return false;
-    if (!('layerName' in value) || value['layerName'] === undefined) return false;
-    if (!('onError' in value) || value['onError'] === undefined) return false;
+export function instanceOfOgrSourceDataset(value: object): boolean {
+    if (!('fileName' in value)) return false;
+    if (!('layerName' in value)) return false;
+    if (!('onError' in value)) return false;
     return true;
 }
 

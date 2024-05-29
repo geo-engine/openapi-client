@@ -22,9 +22,9 @@ export function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'derived':
-            return Object.assign({}, NumberParamDerivedFromJSONTyped(json, true), { type: 'derived' });
+            return Object.assign(Object.assign({}, NumberParamDerivedFromJSONTyped(json, true)), { type: 'derived' });
         case 'static':
-            return Object.assign({}, NumberParamStaticFromJSONTyped(json, true), { type: 'static' });
+            return Object.assign(Object.assign({}, NumberParamStaticFromJSONTyped(json, true)), { type: 'static' });
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }

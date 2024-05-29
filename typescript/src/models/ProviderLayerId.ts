@@ -36,9 +36,9 @@ export interface ProviderLayerId {
 /**
  * Check if a given object implements the ProviderLayerId interface.
  */
-export function instanceOfProviderLayerId(value: object): value is ProviderLayerId {
-    if (!('layerId' in value) || value['layerId'] === undefined) return false;
-    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+export function instanceOfProviderLayerId(value: object): boolean {
+    if (!('layerId' in value)) return false;
+    if (!('providerId' in value)) return false;
     return true;
 }
 

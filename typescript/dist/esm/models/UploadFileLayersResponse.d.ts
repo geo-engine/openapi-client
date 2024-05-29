@@ -25,7 +25,7 @@ export interface UploadFileLayersResponse {
 /**
  * Check if a given object implements the UploadFileLayersResponse interface.
  */
-export declare function instanceOfUploadFileLayersResponse(value: object): value is UploadFileLayersResponse;
+export declare function instanceOfUploadFileLayersResponse(value: object): boolean;
 export declare function UploadFileLayersResponseFromJSON(json: any): UploadFileLayersResponse;
 export declare function UploadFileLayersResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UploadFileLayersResponse;
 export declare function UploadFileLayersResponseToJSON(value?: UploadFileLayersResponse | null): any;

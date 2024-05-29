@@ -36,9 +36,9 @@ export interface Plot {
 /**
  * Check if a given object implements the Plot interface.
  */
-export function instanceOfPlot(value: object): value is Plot {
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('workflow' in value) || value['workflow'] === undefined) return false;
+export function instanceOfPlot(value: object): boolean {
+    if (!('name' in value)) return false;
+    if (!('workflow' in value)) return false;
     return true;
 }
 

@@ -13,30 +13,30 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TextSymbology } from './TextSymbology';
-import {
-    TextSymbologyFromJSON,
-    TextSymbologyFromJSONTyped,
-    TextSymbologyToJSON,
-} from './TextSymbology';
-import type { StrokeParam } from './StrokeParam';
-import {
-    StrokeParamFromJSON,
-    StrokeParamFromJSONTyped,
-    StrokeParamToJSON,
-} from './StrokeParam';
-import type { NumberParam } from './NumberParam';
-import {
-    NumberParamFromJSON,
-    NumberParamFromJSONTyped,
-    NumberParamToJSON,
-} from './NumberParam';
 import type { ColorParam } from './ColorParam';
 import {
     ColorParamFromJSON,
     ColorParamFromJSONTyped,
     ColorParamToJSON,
 } from './ColorParam';
+import type { NumberParam } from './NumberParam';
+import {
+    NumberParamFromJSON,
+    NumberParamFromJSONTyped,
+    NumberParamToJSON,
+} from './NumberParam';
+import type { StrokeParam } from './StrokeParam';
+import {
+    StrokeParamFromJSON,
+    StrokeParamFromJSONTyped,
+    StrokeParamToJSON,
+} from './StrokeParam';
+import type { TextSymbology } from './TextSymbology';
+import {
+    TextSymbologyFromJSON,
+    TextSymbologyFromJSONTyped,
+    TextSymbologyToJSON,
+} from './TextSymbology';
 
 /**
  * 
@@ -73,10 +73,10 @@ export interface PointSymbology {
 /**
  * Check if a given object implements the PointSymbology interface.
  */
-export function instanceOfPointSymbology(value: object): value is PointSymbology {
-    if (!('fillColor' in value) || value['fillColor'] === undefined) return false;
-    if (!('radius' in value) || value['radius'] === undefined) return false;
-    if (!('stroke' in value) || value['stroke'] === undefined) return false;
+export function instanceOfPointSymbology(value: object): boolean {
+    if (!('fillColor' in value)) return false;
+    if (!('radius' in value)) return false;
+    if (!('stroke' in value)) return false;
     return true;
 }
 

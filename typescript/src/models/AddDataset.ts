@@ -79,10 +79,10 @@ export interface AddDataset {
 /**
  * Check if a given object implements the AddDataset interface.
  */
-export function instanceOfAddDataset(value: object): value is AddDataset {
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('displayName' in value) || value['displayName'] === undefined) return false;
-    if (!('sourceOperator' in value) || value['sourceOperator'] === undefined) return false;
+export function instanceOfAddDataset(value: object): boolean {
+    if (!('description' in value)) return false;
+    if (!('displayName' in value)) return false;
+    if (!('sourceOperator' in value)) return false;
     return true;
 }
 

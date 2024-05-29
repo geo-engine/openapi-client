@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Provenance } from './Provenance';
-import {
-    ProvenanceFromJSON,
-    ProvenanceFromJSONTyped,
-    ProvenanceToJSON,
-} from './Provenance';
 import type { DataId } from './DataId';
 import {
     DataIdFromJSON,
     DataIdFromJSONTyped,
     DataIdToJSON,
 } from './DataId';
+import type { Provenance } from './Provenance';
+import {
+    ProvenanceFromJSON,
+    ProvenanceFromJSONTyped,
+    ProvenanceToJSON,
+} from './Provenance';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface ProvenanceEntry {
 /**
  * Check if a given object implements the ProvenanceEntry interface.
  */
-export function instanceOfProvenanceEntry(value: object): value is ProvenanceEntry {
-    if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('provenance' in value) || value['provenance'] === undefined) return false;
+export function instanceOfProvenanceEntry(value: object): boolean {
+    if (!('data' in value)) return false;
+    if (!('provenance' in value)) return false;
     return true;
 }
 

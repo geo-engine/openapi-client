@@ -60,11 +60,11 @@ export interface AutoCreateDataset {
 /**
  * Check if a given object implements the AutoCreateDataset interface.
  */
-export function instanceOfAutoCreateDataset(value: object): value is AutoCreateDataset {
-    if (!('datasetDescription' in value) || value['datasetDescription'] === undefined) return false;
-    if (!('datasetName' in value) || value['datasetName'] === undefined) return false;
-    if (!('mainFile' in value) || value['mainFile'] === undefined) return false;
-    if (!('upload' in value) || value['upload'] === undefined) return false;
+export function instanceOfAutoCreateDataset(value: object): boolean {
+    if (!('datasetDescription' in value)) return false;
+    if (!('datasetName' in value)) return false;
+    if (!('mainFile' in value)) return false;
+    if (!('upload' in value)) return false;
     return true;
 }
 

@@ -14,17 +14,17 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.STRectangleToJSON = exports.STRectangleFromJSONTyped = exports.STRectangleFromJSON = exports.instanceOfSTRectangle = void 0;
-const TimeInterval_1 = require("./TimeInterval");
 const BoundingBox2D_1 = require("./BoundingBox2D");
+const TimeInterval_1 = require("./TimeInterval");
 /**
  * Check if a given object implements the STRectangle interface.
  */
 function instanceOfSTRectangle(value) {
-    if (!('boundingBox' in value) || value['boundingBox'] === undefined)
+    if (!('boundingBox' in value))
         return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+    if (!('spatialReference' in value))
         return false;
-    if (!('timeInterval' in value) || value['timeInterval'] === undefined)
+    if (!('timeInterval' in value))
         return false;
     return true;
 }

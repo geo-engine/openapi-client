@@ -20,7 +20,6 @@ export declare const VectorDataType: {
     readonly MultiPolygon: "MultiPolygon";
 };
 export type VectorDataType = typeof VectorDataType[keyof typeof VectorDataType];
-export declare function instanceOfVectorDataType(value: any): boolean;
 export declare function VectorDataTypeFromJSON(json: any): VectorDataType;
 export declare function VectorDataTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): VectorDataType;
 export declare function VectorDataTypeToJSON(value?: VectorDataType | null): any;

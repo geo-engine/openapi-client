@@ -40,8 +40,8 @@ export type OgrSourceTimeFormatAutoFormatEnum = typeof OgrSourceTimeFormatAutoFo
 /**
  * Check if a given object implements the OgrSourceTimeFormatAuto interface.
  */
-export function instanceOfOgrSourceTimeFormatAuto(value: object): value is OgrSourceTimeFormatAuto {
-    if (!('format' in value) || value['format'] === undefined) return false;
+export function instanceOfOgrSourceTimeFormatAuto(value: object): boolean {
+    if (!('format' in value)) return false;
     return true;
 }
 

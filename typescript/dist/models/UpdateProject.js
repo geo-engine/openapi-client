@@ -14,15 +14,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateProjectToJSON = exports.UpdateProjectFromJSONTyped = exports.UpdateProjectFromJSON = exports.instanceOfUpdateProject = void 0;
-const TimeStep_1 = require("./TimeStep");
+const LayerUpdate_1 = require("./LayerUpdate");
 const PlotUpdate_1 = require("./PlotUpdate");
 const STRectangle_1 = require("./STRectangle");
-const LayerUpdate_1 = require("./LayerUpdate");
+const TimeStep_1 = require("./TimeStep");
 /**
  * Check if a given object implements the UpdateProject interface.
  */
 function instanceOfUpdateProject(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
     return true;
 }

@@ -42,10 +42,10 @@ export interface DerivedNumber {
 /**
  * Check if a given object implements the DerivedNumber interface.
  */
-export function instanceOfDerivedNumber(value: object): value is DerivedNumber {
-    if (!('attribute' in value) || value['attribute'] === undefined) return false;
-    if (!('defaultValue' in value) || value['defaultValue'] === undefined) return false;
-    if (!('factor' in value) || value['factor'] === undefined) return false;
+export function instanceOfDerivedNumber(value: object): boolean {
+    if (!('attribute' in value)) return false;
+    if (!('defaultValue' in value)) return false;
+    if (!('factor' in value)) return false;
     return true;
 }
 

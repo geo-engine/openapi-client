@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RasterResultDescriptor } from './RasterResultDescriptor';
-import {
-    RasterResultDescriptorFromJSON,
-    RasterResultDescriptorFromJSONTyped,
-    RasterResultDescriptorToJSON,
-} from './RasterResultDescriptor';
 import type { GdalLoadingInfoTemporalSlice } from './GdalLoadingInfoTemporalSlice';
 import {
     GdalLoadingInfoTemporalSliceFromJSON,
     GdalLoadingInfoTemporalSliceFromJSONTyped,
     GdalLoadingInfoTemporalSliceToJSON,
 } from './GdalLoadingInfoTemporalSlice';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import {
+    RasterResultDescriptorFromJSON,
+    RasterResultDescriptorFromJSONTyped,
+    RasterResultDescriptorToJSON,
+} from './RasterResultDescriptor';
 
 /**
  * 
@@ -65,10 +65,10 @@ export type MetaDataDefinitionGdalMetaDataListTypeEnum = typeof MetaDataDefiniti
 /**
  * Check if a given object implements the MetaDataDefinitionGdalMetaDataList interface.
  */
-export function instanceOfMetaDataDefinitionGdalMetaDataList(value: object): value is MetaDataDefinitionGdalMetaDataList {
-    if (!('params' in value) || value['params'] === undefined) return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfMetaDataDefinitionGdalMetaDataList(value: object): boolean {
+    if (!('params' in value)) return false;
+    if (!('resultDescriptor' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

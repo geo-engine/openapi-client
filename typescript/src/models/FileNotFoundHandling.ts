@@ -24,17 +24,6 @@ export const FileNotFoundHandling = {
 export type FileNotFoundHandling = typeof FileNotFoundHandling[keyof typeof FileNotFoundHandling];
 
 
-export function instanceOfFileNotFoundHandling(value: any): boolean {
-    for (const key in FileNotFoundHandling) {
-        if (Object.prototype.hasOwnProperty.call(FileNotFoundHandling, key)) {
-            if (FileNotFoundHandling[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function FileNotFoundHandlingFromJSON(json: any): FileNotFoundHandling {
     return FileNotFoundHandlingFromJSONTyped(json, false);
 }

@@ -31,7 +31,7 @@ export interface SearchTypes {
 /**
  * Check if a given object implements the SearchTypes interface.
  */
-export declare function instanceOfSearchTypes(value: object): value is SearchTypes;
+export declare function instanceOfSearchTypes(value: object): boolean;
 export declare function SearchTypesFromJSON(json: any): SearchTypes;
 export declare function SearchTypesFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchTypes;
 export declare function SearchTypesToJSON(value?: SearchTypes | null): any;

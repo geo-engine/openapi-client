@@ -14,15 +14,15 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatasetDefinitionToJSON = exports.DatasetDefinitionFromJSONTyped = exports.DatasetDefinitionFromJSON = exports.instanceOfDatasetDefinition = void 0;
-const MetaDataDefinition_1 = require("./MetaDataDefinition");
 const AddDataset_1 = require("./AddDataset");
+const MetaDataDefinition_1 = require("./MetaDataDefinition");
 /**
  * Check if a given object implements the DatasetDefinition interface.
  */
 function instanceOfDatasetDefinition(value) {
-    if (!('metaData' in value) || value['metaData'] === undefined)
+    if (!('metaData' in value))
         return false;
-    if (!('properties' in value) || value['properties'] === undefined)
+    if (!('properties' in value))
         return false;
     return true;
 }

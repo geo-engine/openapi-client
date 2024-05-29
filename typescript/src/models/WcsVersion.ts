@@ -24,17 +24,6 @@ export const WcsVersion = {
 export type WcsVersion = typeof WcsVersion[keyof typeof WcsVersion];
 
 
-export function instanceOfWcsVersion(value: any): boolean {
-    for (const key in WcsVersion) {
-        if (Object.prototype.hasOwnProperty.call(WcsVersion, key)) {
-            if (WcsVersion[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function WcsVersionFromJSON(json: any): WcsVersion {
     return WcsVersionFromJSONTyped(json, false);
 }

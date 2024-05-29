@@ -23,17 +23,6 @@ export const CollectionType = {
 export type CollectionType = typeof CollectionType[keyof typeof CollectionType];
 
 
-export function instanceOfCollectionType(value: any): boolean {
-    for (const key in CollectionType) {
-        if (Object.prototype.hasOwnProperty.call(CollectionType, key)) {
-            if (CollectionType[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function CollectionTypeFromJSON(json: any): CollectionType {
     return CollectionTypeFromJSONTyped(json, false);
 }

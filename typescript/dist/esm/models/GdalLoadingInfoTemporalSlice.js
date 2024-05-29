@@ -11,13 +11,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './GdalDatasetParameters';
+import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 /**
  * Check if a given object implements the GdalLoadingInfoTemporalSlice interface.
  */
 export function instanceOfGdalLoadingInfoTemporalSlice(value) {
-    if (!('time' in value) || value['time'] === undefined)
+    if (!('time' in value))
         return false;
     return true;
 }

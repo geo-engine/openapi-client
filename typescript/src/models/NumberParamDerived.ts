@@ -58,11 +58,11 @@ export type NumberParamDerivedTypeEnum = typeof NumberParamDerivedTypeEnum[keyof
 /**
  * Check if a given object implements the NumberParamDerived interface.
  */
-export function instanceOfNumberParamDerived(value: object): value is NumberParamDerived {
-    if (!('attribute' in value) || value['attribute'] === undefined) return false;
-    if (!('defaultValue' in value) || value['defaultValue'] === undefined) return false;
-    if (!('factor' in value) || value['factor'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfNumberParamDerived(value: object): boolean {
+    if (!('attribute' in value)) return false;
+    if (!('defaultValue' in value)) return false;
+    if (!('factor' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

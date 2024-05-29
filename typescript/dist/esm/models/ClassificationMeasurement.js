@@ -15,9 +15,9 @@
  * Check if a given object implements the ClassificationMeasurement interface.
  */
 export function instanceOfClassificationMeasurement(value) {
-    if (!('classes' in value) || value['classes'] === undefined)
+    if (!('classes' in value))
         return false;
-    if (!('measurement' in value) || value['measurement'] === undefined)
+    if (!('measurement' in value))
         return false;
     return true;
 }

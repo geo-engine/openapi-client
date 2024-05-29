@@ -15,7 +15,7 @@
  * Check if a given object implements the MultiPolygon interface.
  */
 export function instanceOfMultiPolygon(value) {
-    if (!('polygons' in value) || value['polygons'] === undefined)
+    if (!('polygons' in value))
         return false;
     return true;
 }

@@ -23,11 +23,11 @@ export function OgrSourceTimeFormatFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['format']) {
         case 'auto':
-            return Object.assign({}, OgrSourceTimeFormatAutoFromJSONTyped(json, true), { format: 'auto' });
+            return Object.assign(Object.assign({}, OgrSourceTimeFormatAutoFromJSONTyped(json, true)), { format: 'auto' });
         case 'custom':
-            return Object.assign({}, OgrSourceTimeFormatCustomFromJSONTyped(json, true), { format: 'custom' });
+            return Object.assign(Object.assign({}, OgrSourceTimeFormatCustomFromJSONTyped(json, true)), { format: 'custom' });
         case 'unixTimeStamp':
-            return Object.assign({}, OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, true), { format: 'unixTimeStamp' });
+            return Object.assign(Object.assign({}, OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, true)), { format: 'unixTimeStamp' });
         default:
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${json['format']}'`);
     }

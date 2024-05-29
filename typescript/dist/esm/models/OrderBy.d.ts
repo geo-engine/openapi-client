@@ -18,7 +18,6 @@ export declare const OrderBy: {
     readonly NameDesc: "NameDesc";
 };
 export type OrderBy = typeof OrderBy[keyof typeof OrderBy];
-export declare function instanceOfOrderBy(value: any): boolean;
 export declare function OrderByFromJSON(json: any): OrderBy;
 export declare function OrderByFromJSONTyped(json: any, ignoreDiscriminator: boolean): OrderBy;
 export declare function OrderByToJSON(value?: OrderBy | null): any;

@@ -20,9 +20,9 @@ const DatasetDefinition_1 = require("./DatasetDefinition");
  * Check if a given object implements the CreateDataset interface.
  */
 function instanceOfCreateDataset(value) {
-    if (!('dataPath' in value) || value['dataPath'] === undefined)
+    if (!('dataPath' in value))
         return false;
-    if (!('definition' in value) || value['definition'] === undefined)
+    if (!('definition' in value))
         return false;
     return true;
 }

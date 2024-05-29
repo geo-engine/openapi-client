@@ -14,13 +14,13 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalLoadingInfoTemporalSliceToJSON = exports.GdalLoadingInfoTemporalSliceFromJSONTyped = exports.GdalLoadingInfoTemporalSliceFromJSON = exports.instanceOfGdalLoadingInfoTemporalSlice = void 0;
-const TimeInterval_1 = require("./TimeInterval");
 const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
+const TimeInterval_1 = require("./TimeInterval");
 /**
  * Check if a given object implements the GdalLoadingInfoTemporalSlice interface.
  */
 function instanceOfGdalLoadingInfoTemporalSlice(value) {
-    if (!('time' in value) || value['time'] === undefined)
+    if (!('time' in value))
         return false;
     return true;
 }

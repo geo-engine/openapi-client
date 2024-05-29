@@ -42,10 +42,10 @@ export interface AuthCodeResponse {
 /**
  * Check if a given object implements the AuthCodeResponse interface.
  */
-export function instanceOfAuthCodeResponse(value: object): value is AuthCodeResponse {
-    if (!('code' in value) || value['code'] === undefined) return false;
-    if (!('sessionState' in value) || value['sessionState'] === undefined) return false;
-    if (!('state' in value) || value['state'] === undefined) return false;
+export function instanceOfAuthCodeResponse(value: object): boolean {
+    if (!('code' in value)) return false;
+    if (!('sessionState' in value)) return false;
+    if (!('state' in value)) return false;
     return true;
 }
 

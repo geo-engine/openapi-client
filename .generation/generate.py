@@ -156,7 +156,6 @@ def generate_python_code(*, package_name: str, package_version: str, package_url
             "podman", "run",
             "--rm",  # remove the container after running
             "-v", f"{os.getcwd()}:/local",
-            f"--env-file={CWD / 'override.env'}",
             # "docker.io/openapitools/openapi-generator-cli:v7.0.1",
             "openapi-generator-cli:patched",
             "generate",
@@ -195,7 +194,6 @@ def generate_typescript_code(*, npm_name: str, npm_version: str, repository_url:
             "podman", "run",
             "--rm",  # remove the container after running
             "-v", f"{os.getcwd()}:/local",
-            f"--env-file={CWD / 'override.env'}",
             # "docker.io/openapitools/openapi-generator-cli:v7.0.1",
             "openapi-generator-cli:patched",
             "generate",
@@ -209,8 +207,14 @@ def generate_typescript_code(*, npm_name: str, npm_version: str, repository_url:
             "--git-host", parsed_url.netloc,
             "--git-user-id", git_user_id,
             "--git-repo-id", git_repo_id,
-            "--enable-post-process-file",
             "-o", "/local/typescript/",
+        ],
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git", "apply",
+            ".generation/post-process/typescript.patch"
         ],
         check=True,
     )

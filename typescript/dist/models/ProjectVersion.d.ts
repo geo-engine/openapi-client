@@ -31,7 +31,7 @@ export interface ProjectVersion {
 /**
  * Check if a given object implements the ProjectVersion interface.
  */
-export declare function instanceOfProjectVersion(value: object): value is ProjectVersion;
+export declare function instanceOfProjectVersion(value: object): boolean;
 export declare function ProjectVersionFromJSON(json: any): ProjectVersion;
 export declare function ProjectVersionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectVersion;
 export declare function ProjectVersionToJSON(value?: ProjectVersion | null): any;

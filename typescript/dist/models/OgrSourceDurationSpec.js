@@ -27,11 +27,11 @@ function OgrSourceDurationSpecFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'infinite':
-            return Object.assign({}, (0, OgrSourceDurationSpecInfinite_1.OgrSourceDurationSpecInfiniteFromJSONTyped)(json, true), { type: 'infinite' });
+            return Object.assign(Object.assign({}, (0, OgrSourceDurationSpecInfinite_1.OgrSourceDurationSpecInfiniteFromJSONTyped)(json, true)), { type: 'infinite' });
         case 'value':
-            return Object.assign({}, (0, OgrSourceDurationSpecValue_1.OgrSourceDurationSpecValueFromJSONTyped)(json, true), { type: 'value' });
+            return Object.assign(Object.assign({}, (0, OgrSourceDurationSpecValue_1.OgrSourceDurationSpecValueFromJSONTyped)(json, true)), { type: 'value' });
         case 'zero':
-            return Object.assign({}, (0, OgrSourceDurationSpecZero_1.OgrSourceDurationSpecZeroFromJSONTyped)(json, true), { type: 'zero' });
+            return Object.assign(Object.assign({}, (0, OgrSourceDurationSpecZero_1.OgrSourceDurationSpecZeroFromJSONTyped)(json, true)), { type: 'zero' });
         default:
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${json['type']}'`);
     }

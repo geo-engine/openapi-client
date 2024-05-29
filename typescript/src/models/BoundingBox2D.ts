@@ -44,9 +44,9 @@ export interface BoundingBox2D {
 /**
  * Check if a given object implements the BoundingBox2D interface.
  */
-export function instanceOfBoundingBox2D(value: object): value is BoundingBox2D {
-    if (!('lowerLeftCoordinate' in value) || value['lowerLeftCoordinate'] === undefined) return false;
-    if (!('upperRightCoordinate' in value) || value['upperRightCoordinate'] === undefined) return false;
+export function instanceOfBoundingBox2D(value: object): boolean {
+    if (!('lowerLeftCoordinate' in value)) return false;
+    if (!('upperRightCoordinate' in value)) return false;
     return true;
 }
 

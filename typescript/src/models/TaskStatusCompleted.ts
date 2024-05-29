@@ -70,11 +70,11 @@ export type TaskStatusCompletedStatusEnum = typeof TaskStatusCompletedStatusEnum
 /**
  * Check if a given object implements the TaskStatusCompleted interface.
  */
-export function instanceOfTaskStatusCompleted(value: object): value is TaskStatusCompleted {
-    if (!('status' in value) || value['status'] === undefined) return false;
-    if (!('taskType' in value) || value['taskType'] === undefined) return false;
-    if (!('timeStarted' in value) || value['timeStarted'] === undefined) return false;
-    if (!('timeTotal' in value) || value['timeTotal'] === undefined) return false;
+export function instanceOfTaskStatusCompleted(value: object): boolean {
+    if (!('status' in value)) return false;
+    if (!('taskType' in value)) return false;
+    if (!('timeStarted' in value)) return false;
+    if (!('timeTotal' in value)) return false;
     return true;
 }
 

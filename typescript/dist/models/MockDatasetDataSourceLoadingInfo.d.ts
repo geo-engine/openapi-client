@@ -26,7 +26,7 @@ export interface MockDatasetDataSourceLoadingInfo {
 /**
  * Check if a given object implements the MockDatasetDataSourceLoadingInfo interface.
  */
-export declare function instanceOfMockDatasetDataSourceLoadingInfo(value: object): value is MockDatasetDataSourceLoadingInfo;
+export declare function instanceOfMockDatasetDataSourceLoadingInfo(value: object): boolean;
 export declare function MockDatasetDataSourceLoadingInfoFromJSON(json: any): MockDatasetDataSourceLoadingInfo;
 export declare function MockDatasetDataSourceLoadingInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): MockDatasetDataSourceLoadingInfo;
 export declare function MockDatasetDataSourceLoadingInfoToJSON(value?: MockDatasetDataSourceLoadingInfo | null): any;

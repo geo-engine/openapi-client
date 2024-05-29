@@ -52,10 +52,10 @@ export type DataIdExternalTypeEnum = typeof DataIdExternalTypeEnum[keyof typeof 
 /**
  * Check if a given object implements the DataIdExternal interface.
  */
-export function instanceOfDataIdExternal(value: object): value is DataIdExternal {
-    if (!('layerId' in value) || value['layerId'] === undefined) return false;
-    if (!('providerId' in value) || value['providerId'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfDataIdExternal(value: object): boolean {
+    if (!('layerId' in value)) return false;
+    if (!('providerId' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

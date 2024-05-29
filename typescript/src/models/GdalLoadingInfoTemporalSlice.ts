@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeInterval } from './TimeInterval';
-import {
-    TimeIntervalFromJSON,
-    TimeIntervalFromJSONTyped,
-    TimeIntervalToJSON,
-} from './TimeInterval';
 import type { GdalDatasetParameters } from './GdalDatasetParameters';
 import {
     GdalDatasetParametersFromJSON,
     GdalDatasetParametersFromJSONTyped,
     GdalDatasetParametersToJSON,
 } from './GdalDatasetParameters';
+import type { TimeInterval } from './TimeInterval';
+import {
+    TimeIntervalFromJSON,
+    TimeIntervalFromJSONTyped,
+    TimeIntervalToJSON,
+} from './TimeInterval';
 
 /**
  * one temporal slice of the dataset that requires reading from exactly one Gdal dataset
@@ -55,8 +55,8 @@ export interface GdalLoadingInfoTemporalSlice {
 /**
  * Check if a given object implements the GdalLoadingInfoTemporalSlice interface.
  */
-export function instanceOfGdalLoadingInfoTemporalSlice(value: object): value is GdalLoadingInfoTemporalSlice {
-    if (!('time' in value) || value['time'] === undefined) return false;
+export function instanceOfGdalLoadingInfoTemporalSlice(value: object): boolean {
+    if (!('time' in value)) return false;
     return true;
 }
 

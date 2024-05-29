@@ -32,7 +32,7 @@ export interface TimeStep {
 /**
  * Check if a given object implements the TimeStep interface.
  */
-export declare function instanceOfTimeStep(value: object): value is TimeStep;
+export declare function instanceOfTimeStep(value: object): boolean;
 export declare function TimeStepFromJSON(json: any): TimeStep;
 export declare function TimeStepFromJSONTyped(json: any, ignoreDiscriminator: boolean): TimeStep;
 export declare function TimeStepToJSON(value?: TimeStep | null): any;

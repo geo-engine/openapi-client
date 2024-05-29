@@ -16,7 +16,7 @@ import { FormatSpecificsOneOfCsvFromJSON, FormatSpecificsOneOfCsvToJSON, } from 
  * Check if a given object implements the FormatSpecificsOneOf interface.
  */
 export function instanceOfFormatSpecificsOneOf(value) {
-    if (!('csv' in value) || value['csv'] === undefined)
+    if (!('csv' in value))
         return false;
     return true;
 }

@@ -18,9 +18,9 @@ exports.Coordinate2DToJSON = exports.Coordinate2DFromJSONTyped = exports.Coordin
  * Check if a given object implements the Coordinate2D interface.
  */
 function instanceOfCoordinate2D(value) {
-    if (!('x' in value) || value['x'] === undefined)
+    if (!('x' in value))
         return false;
-    if (!('y' in value) || value['y'] === undefined)
+    if (!('y' in value))
         return false;
     return true;
 }

@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { OgrSourceTimeFormat } from './OgrSourceTimeFormat';
-import {
-    OgrSourceTimeFormatFromJSON,
-    OgrSourceTimeFormatFromJSONTyped,
-    OgrSourceTimeFormatToJSON,
-} from './OgrSourceTimeFormat';
 import type { OgrSourceDurationSpec } from './OgrSourceDurationSpec';
 import {
     OgrSourceDurationSpecFromJSON,
     OgrSourceDurationSpecFromJSONTyped,
     OgrSourceDurationSpecToJSON,
 } from './OgrSourceDurationSpec';
+import type { OgrSourceTimeFormat } from './OgrSourceTimeFormat';
+import {
+    OgrSourceTimeFormatFromJSON,
+    OgrSourceTimeFormatFromJSONTyped,
+    OgrSourceTimeFormatToJSON,
+} from './OgrSourceTimeFormat';
 
 /**
  * 
@@ -71,11 +71,11 @@ export type OgrSourceDatasetTimeTypeStartTypeEnum = typeof OgrSourceDatasetTimeT
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeStart interface.
  */
-export function instanceOfOgrSourceDatasetTimeTypeStart(value: object): value is OgrSourceDatasetTimeTypeStart {
-    if (!('duration' in value) || value['duration'] === undefined) return false;
-    if (!('startField' in value) || value['startField'] === undefined) return false;
-    if (!('startFormat' in value) || value['startFormat'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfOgrSourceDatasetTimeTypeStart(value: object): boolean {
+    if (!('duration' in value)) return false;
+    if (!('startField' in value)) return false;
+    if (!('startFormat' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

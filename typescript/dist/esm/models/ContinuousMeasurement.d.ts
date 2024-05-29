@@ -31,7 +31,7 @@ export interface ContinuousMeasurement {
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
-export declare function instanceOfContinuousMeasurement(value: object): value is ContinuousMeasurement;
+export declare function instanceOfContinuousMeasurement(value: object): boolean;
 export declare function ContinuousMeasurementFromJSON(json: any): ContinuousMeasurement;
 export declare function ContinuousMeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): ContinuousMeasurement;
 export declare function ContinuousMeasurementToJSON(value?: ContinuousMeasurement | null): any;

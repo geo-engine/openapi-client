@@ -37,7 +37,7 @@ export interface TypedOperatorOperator {
 /**
  * Check if a given object implements the TypedOperatorOperator interface.
  */
-export declare function instanceOfTypedOperatorOperator(value: object): value is TypedOperatorOperator;
+export declare function instanceOfTypedOperatorOperator(value: object): boolean;
 export declare function TypedOperatorOperatorFromJSON(json: any): TypedOperatorOperator;
 export declare function TypedOperatorOperatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedOperatorOperator;
 export declare function TypedOperatorOperatorToJSON(value?: TypedOperatorOperator | null): any;

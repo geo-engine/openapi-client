@@ -16,7 +16,7 @@ import { Coordinate2DFromJSON, Coordinate2DToJSON, } from './Coordinate2D';
  * Check if a given object implements the MultiPoint interface.
  */
 export function instanceOfMultiPoint(value) {
-    if (!('coordinates' in value) || value['coordinates'] === undefined)
+    if (!('coordinates' in value))
         return false;
     return true;
 }

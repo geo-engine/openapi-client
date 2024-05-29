@@ -36,8 +36,8 @@ export interface RasterPropertiesKey {
 /**
  * Check if a given object implements the RasterPropertiesKey interface.
  */
-export function instanceOfRasterPropertiesKey(value: object): value is RasterPropertiesKey {
-    if (!('key' in value) || value['key'] === undefined) return false;
+export function instanceOfRasterPropertiesKey(value: object): boolean {
+    if (!('key' in value)) return false;
     return true;
 }
 

@@ -11,24 +11,24 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { FileNotFoundHandlingFromJSON, FileNotFoundHandlingToJSON, } from './FileNotFoundHandling';
 import { GdalDatasetGeoTransformFromJSON, GdalDatasetGeoTransformToJSON, } from './GdalDatasetGeoTransform';
 import { GdalMetadataMappingFromJSON, GdalMetadataMappingToJSON, } from './GdalMetadataMapping';
-import { FileNotFoundHandlingFromJSON, FileNotFoundHandlingToJSON, } from './FileNotFoundHandling';
 /**
  * Check if a given object implements the GdalDatasetParameters interface.
  */
 export function instanceOfGdalDatasetParameters(value) {
-    if (!('fileNotFoundHandling' in value) || value['fileNotFoundHandling'] === undefined)
+    if (!('fileNotFoundHandling' in value))
         return false;
-    if (!('filePath' in value) || value['filePath'] === undefined)
+    if (!('filePath' in value))
         return false;
-    if (!('geoTransform' in value) || value['geoTransform'] === undefined)
+    if (!('geoTransform' in value))
         return false;
-    if (!('height' in value) || value['height'] === undefined)
+    if (!('height' in value))
         return false;
-    if (!('rasterbandChannel' in value) || value['rasterbandChannel'] === undefined)
+    if (!('rasterbandChannel' in value))
         return false;
-    if (!('width' in value) || value['width'] === undefined)
+    if (!('width' in value))
         return false;
     return true;
 }

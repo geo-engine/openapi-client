@@ -18,13 +18,13 @@ exports.UpdateDatasetToJSON = exports.UpdateDatasetFromJSONTyped = exports.Updat
  * Check if a given object implements the UpdateDataset interface.
  */
 function instanceOfUpdateDataset(value) {
-    if (!('description' in value) || value['description'] === undefined)
+    if (!('description' in value))
         return false;
-    if (!('displayName' in value) || value['displayName'] === undefined)
+    if (!('displayName' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
-    if (!('tags' in value) || value['tags'] === undefined)
+    if (!('tags' in value))
         return false;
     return true;
 }

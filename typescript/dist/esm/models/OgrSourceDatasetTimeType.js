@@ -24,13 +24,13 @@ export function OgrSourceDatasetTimeTypeFromJSONTyped(json, ignoreDiscriminator)
     }
     switch (json['type']) {
         case 'none':
-            return Object.assign({}, OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, true), { type: 'none' });
+            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, true)), { type: 'none' });
         case 'start':
-            return Object.assign({}, OgrSourceDatasetTimeTypeStartFromJSONTyped(json, true), { type: 'start' });
+            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeStartFromJSONTyped(json, true)), { type: 'start' });
         case 'startDuration':
-            return Object.assign({}, OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, true), { type: 'startDuration' });
+            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, true)), { type: 'startDuration' });
         case 'startEnd':
-            return Object.assign({}, OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, true), { type: 'startEnd' });
+            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, true)), { type: 'startEnd' });
         default:
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${json['type']}'`);
     }

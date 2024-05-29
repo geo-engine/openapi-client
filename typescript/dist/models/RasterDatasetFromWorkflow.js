@@ -19,9 +19,9 @@ const RasterQueryRectangle_1 = require("./RasterQueryRectangle");
  * Check if a given object implements the RasterDatasetFromWorkflow interface.
  */
 function instanceOfRasterDatasetFromWorkflow(value) {
-    if (!('displayName' in value) || value['displayName'] === undefined)
+    if (!('displayName' in value))
         return false;
-    if (!('query' in value) || value['query'] === undefined)
+    if (!('query' in value))
         return false;
     return true;
 }

@@ -18,7 +18,7 @@ exports.WcsBoundingboxToJSON = exports.WcsBoundingboxFromJSONTyped = exports.Wcs
  * Check if a given object implements the WcsBoundingbox interface.
  */
 function instanceOfWcsBoundingbox(value) {
-    if (!('bbox' in value) || value['bbox'] === undefined)
+    if (!('bbox' in value))
         return false;
     return true;
 }

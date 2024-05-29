@@ -71,12 +71,12 @@ export type ColorizerLinearGradientTypeEnum = typeof ColorizerLinearGradientType
 /**
  * Check if a given object implements the ColorizerLinearGradient interface.
  */
-export function instanceOfColorizerLinearGradient(value: object): value is ColorizerLinearGradient {
-    if (!('breakpoints' in value) || value['breakpoints'] === undefined) return false;
-    if (!('noDataColor' in value) || value['noDataColor'] === undefined) return false;
-    if (!('overColor' in value) || value['overColor'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('underColor' in value) || value['underColor'] === undefined) return false;
+export function instanceOfColorizerLinearGradient(value: object): boolean {
+    if (!('breakpoints' in value)) return false;
+    if (!('noDataColor' in value)) return false;
+    if (!('overColor' in value)) return false;
+    if (!('type' in value)) return false;
+    if (!('underColor' in value)) return false;
     return true;
 }
 

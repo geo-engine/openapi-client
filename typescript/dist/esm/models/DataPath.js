@@ -20,12 +20,7 @@ export function DataPathFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    if (instanceOfDataPathOneOf(json)) {
-        return DataPathOneOfFromJSONTyped(json, true);
-    }
-    if (instanceOfDataPathOneOf1(json)) {
-        return DataPathOneOf1FromJSONTyped(json, true);
-    }
+    return Object.assign(Object.assign({}, DataPathOneOfFromJSONTyped(json, true)), DataPathOneOf1FromJSONTyped(json, true));
 }
 export function DataPathToJSON(value) {
     if (value == null) {

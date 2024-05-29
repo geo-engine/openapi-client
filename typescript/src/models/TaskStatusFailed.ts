@@ -52,10 +52,10 @@ export type TaskStatusFailedStatusEnum = typeof TaskStatusFailedStatusEnum[keyof
 /**
  * Check if a given object implements the TaskStatusFailed interface.
  */
-export function instanceOfTaskStatusFailed(value: object): value is TaskStatusFailed {
-    if (!('cleanUp' in value) || value['cleanUp'] === undefined) return false;
-    if (!('error' in value) || value['error'] === undefined) return false;
-    if (!('status' in value) || value['status'] === undefined) return false;
+export function instanceOfTaskStatusFailed(value: object): boolean {
+    if (!('cleanUp' in value)) return false;
+    if (!('error' in value)) return false;
+    if (!('status' in value)) return false;
     return true;
 }
 

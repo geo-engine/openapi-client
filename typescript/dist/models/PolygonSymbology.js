@@ -14,18 +14,18 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PolygonSymbologyToJSON = exports.PolygonSymbologyFromJSONTyped = exports.PolygonSymbologyFromJSON = exports.instanceOfPolygonSymbology = void 0;
-const TextSymbology_1 = require("./TextSymbology");
-const StrokeParam_1 = require("./StrokeParam");
 const ColorParam_1 = require("./ColorParam");
+const StrokeParam_1 = require("./StrokeParam");
+const TextSymbology_1 = require("./TextSymbology");
 /**
  * Check if a given object implements the PolygonSymbology interface.
  */
 function instanceOfPolygonSymbology(value) {
-    if (!('autoSimplified' in value) || value['autoSimplified'] === undefined)
+    if (!('autoSimplified' in value))
         return false;
-    if (!('fillColor' in value) || value['fillColor'] === undefined)
+    if (!('fillColor' in value))
         return false;
-    if (!('stroke' in value) || value['stroke'] === undefined)
+    if (!('stroke' in value))
         return false;
     return true;
 }

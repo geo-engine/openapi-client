@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterStreamWebsocketResultTypeToJSON = exports.RasterStreamWebsocketResultTypeFromJSONTyped = exports.RasterStreamWebsocketResultTypeFromJSON = exports.instanceOfRasterStreamWebsocketResultType = exports.RasterStreamWebsocketResultType = void 0;
+exports.RasterStreamWebsocketResultTypeToJSON = exports.RasterStreamWebsocketResultTypeFromJSONTyped = exports.RasterStreamWebsocketResultTypeFromJSON = exports.RasterStreamWebsocketResultType = void 0;
 /**
  * The stream result type for `raster_stream_websocket`.
  * @export
@@ -21,17 +21,6 @@ exports.RasterStreamWebsocketResultTypeToJSON = exports.RasterStreamWebsocketRes
 exports.RasterStreamWebsocketResultType = {
     Arrow: 'arrow'
 };
-function instanceOfRasterStreamWebsocketResultType(value) {
-    for (const key in exports.RasterStreamWebsocketResultType) {
-        if (Object.prototype.hasOwnProperty.call(exports.RasterStreamWebsocketResultType, key)) {
-            if (exports.RasterStreamWebsocketResultType[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfRasterStreamWebsocketResultType = instanceOfRasterStreamWebsocketResultType;
 function RasterStreamWebsocketResultTypeFromJSON(json) {
     return RasterStreamWebsocketResultTypeFromJSONTyped(json, false);
 }

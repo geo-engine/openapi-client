@@ -37,8 +37,8 @@ export interface FormatSpecificsOneOfCsv {
 /**
  * Check if a given object implements the FormatSpecificsOneOfCsv interface.
  */
-export function instanceOfFormatSpecificsOneOfCsv(value: object): value is FormatSpecificsOneOfCsv {
-    if (!('header' in value) || value['header'] === undefined) return false;
+export function instanceOfFormatSpecificsOneOfCsv(value: object): boolean {
+    if (!('header' in value)) return false;
     return true;
 }
 

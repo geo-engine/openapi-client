@@ -23,17 +23,6 @@ export const GetFeatureRequest = {
 export type GetFeatureRequest = typeof GetFeatureRequest[keyof typeof GetFeatureRequest];
 
 
-export function instanceOfGetFeatureRequest(value: any): boolean {
-    for (const key in GetFeatureRequest) {
-        if (Object.prototype.hasOwnProperty.call(GetFeatureRequest, key)) {
-            if (GetFeatureRequest[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function GetFeatureRequestFromJSON(json: any): GetFeatureRequest {
     return GetFeatureRequestFromJSONTyped(json, false);
 }

@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetCoverageRequestToJSON = exports.GetCoverageRequestFromJSONTyped = exports.GetCoverageRequestFromJSON = exports.instanceOfGetCoverageRequest = exports.GetCoverageRequest = void 0;
+exports.GetCoverageRequestToJSON = exports.GetCoverageRequestFromJSONTyped = exports.GetCoverageRequestFromJSON = exports.GetCoverageRequest = void 0;
 /**
  *
  * @export
@@ -21,17 +21,6 @@ exports.GetCoverageRequestToJSON = exports.GetCoverageRequestFromJSONTyped = exp
 exports.GetCoverageRequest = {
     GetCoverage: 'GetCoverage'
 };
-function instanceOfGetCoverageRequest(value) {
-    for (const key in exports.GetCoverageRequest) {
-        if (Object.prototype.hasOwnProperty.call(exports.GetCoverageRequest, key)) {
-            if (exports.GetCoverageRequest[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfGetCoverageRequest = instanceOfGetCoverageRequest;
 function GetCoverageRequestFromJSON(json) {
     return GetCoverageRequestFromJSONTyped(json, false);
 }

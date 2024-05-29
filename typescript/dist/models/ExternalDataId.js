@@ -18,9 +18,9 @@ exports.ExternalDataIdToJSON = exports.ExternalDataIdFromJSONTyped = exports.Ext
  * Check if a given object implements the ExternalDataId interface.
  */
 function instanceOfExternalDataId(value) {
-    if (!('layerId' in value) || value['layerId'] === undefined)
+    if (!('layerId' in value))
         return false;
-    if (!('providerId' in value) || value['providerId'] === undefined)
+    if (!('providerId' in value))
         return false;
     return true;
 }

@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { VectorResultDescriptor } from './VectorResultDescriptor';
-import {
-    VectorResultDescriptorFromJSON,
-    VectorResultDescriptorFromJSONTyped,
-    VectorResultDescriptorToJSON,
-} from './VectorResultDescriptor';
 import type { MockDatasetDataSourceLoadingInfo } from './MockDatasetDataSourceLoadingInfo';
 import {
     MockDatasetDataSourceLoadingInfoFromJSON,
     MockDatasetDataSourceLoadingInfoFromJSONTyped,
     MockDatasetDataSourceLoadingInfoToJSON,
 } from './MockDatasetDataSourceLoadingInfo';
+import type { VectorResultDescriptor } from './VectorResultDescriptor';
+import {
+    VectorResultDescriptorFromJSON,
+    VectorResultDescriptorFromJSONTyped,
+    VectorResultDescriptorToJSON,
+} from './VectorResultDescriptor';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface MockMetaData {
 /**
  * Check if a given object implements the MockMetaData interface.
  */
-export function instanceOfMockMetaData(value: object): value is MockMetaData {
-    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined) return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
+export function instanceOfMockMetaData(value: object): boolean {
+    if (!('loadingInfo' in value)) return false;
+    if (!('resultDescriptor' in value)) return false;
     return true;
 }
 

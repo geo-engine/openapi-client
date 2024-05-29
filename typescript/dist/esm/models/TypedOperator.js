@@ -24,9 +24,9 @@ export const TypedOperatorTypeEnum = {
  * Check if a given object implements the TypedOperator interface.
  */
 export function instanceOfTypedOperator(value) {
-    if (!('operator' in value) || value['operator'] === undefined)
+    if (!('operator' in value))
         return false;
-    if (!('type' in value) || value['type'] === undefined)
+    if (!('type' in value))
         return false;
     return true;
 }

@@ -33,7 +33,7 @@ export interface CreateDataset {
 /**
  * Check if a given object implements the CreateDataset interface.
  */
-export declare function instanceOfCreateDataset(value: object): value is CreateDataset;
+export declare function instanceOfCreateDataset(value: object): boolean;
 export declare function CreateDatasetFromJSON(json: any): CreateDataset;
 export declare function CreateDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateDataset;
 export declare function CreateDatasetToJSON(value?: CreateDataset | null): any;

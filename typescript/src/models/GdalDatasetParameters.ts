@@ -13,6 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
+import type { FileNotFoundHandling } from './FileNotFoundHandling';
+import {
+    FileNotFoundHandlingFromJSON,
+    FileNotFoundHandlingFromJSONTyped,
+    FileNotFoundHandlingToJSON,
+} from './FileNotFoundHandling';
 import type { GdalDatasetGeoTransform } from './GdalDatasetGeoTransform';
 import {
     GdalDatasetGeoTransformFromJSON,
@@ -25,12 +31,6 @@ import {
     GdalMetadataMappingFromJSONTyped,
     GdalMetadataMappingToJSON,
 } from './GdalMetadataMapping';
-import type { FileNotFoundHandling } from './FileNotFoundHandling';
-import {
-    FileNotFoundHandlingFromJSON,
-    FileNotFoundHandlingFromJSONTyped,
-    FileNotFoundHandlingToJSON,
-} from './FileNotFoundHandling';
 
 /**
  * Parameters for loading data using Gdal
@@ -109,13 +109,13 @@ export interface GdalDatasetParameters {
 /**
  * Check if a given object implements the GdalDatasetParameters interface.
  */
-export function instanceOfGdalDatasetParameters(value: object): value is GdalDatasetParameters {
-    if (!('fileNotFoundHandling' in value) || value['fileNotFoundHandling'] === undefined) return false;
-    if (!('filePath' in value) || value['filePath'] === undefined) return false;
-    if (!('geoTransform' in value) || value['geoTransform'] === undefined) return false;
-    if (!('height' in value) || value['height'] === undefined) return false;
-    if (!('rasterbandChannel' in value) || value['rasterbandChannel'] === undefined) return false;
-    if (!('width' in value) || value['width'] === undefined) return false;
+export function instanceOfGdalDatasetParameters(value: object): boolean {
+    if (!('fileNotFoundHandling' in value)) return false;
+    if (!('filePath' in value)) return false;
+    if (!('geoTransform' in value)) return false;
+    if (!('height' in value)) return false;
+    if (!('rasterbandChannel' in value)) return false;
+    if (!('width' in value)) return false;
     return true;
 }
 

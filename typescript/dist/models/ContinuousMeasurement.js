@@ -18,7 +18,7 @@ exports.ContinuousMeasurementToJSON = exports.ContinuousMeasurementFromJSONTyped
  * Check if a given object implements the ContinuousMeasurement interface.
  */
 function instanceOfContinuousMeasurement(value) {
-    if (!('measurement' in value) || value['measurement'] === undefined)
+    if (!('measurement' in value))
         return false;
     return true;
 }

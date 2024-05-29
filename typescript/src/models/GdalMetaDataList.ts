@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RasterResultDescriptor } from './RasterResultDescriptor';
-import {
-    RasterResultDescriptorFromJSON,
-    RasterResultDescriptorFromJSONTyped,
-    RasterResultDescriptorToJSON,
-} from './RasterResultDescriptor';
 import type { GdalLoadingInfoTemporalSlice } from './GdalLoadingInfoTemporalSlice';
 import {
     GdalLoadingInfoTemporalSliceFromJSON,
     GdalLoadingInfoTemporalSliceFromJSONTyped,
     GdalLoadingInfoTemporalSliceToJSON,
 } from './GdalLoadingInfoTemporalSlice';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import {
+    RasterResultDescriptorFromJSON,
+    RasterResultDescriptorFromJSONTyped,
+    RasterResultDescriptorToJSON,
+} from './RasterResultDescriptor';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface GdalMetaDataList {
 /**
  * Check if a given object implements the GdalMetaDataList interface.
  */
-export function instanceOfGdalMetaDataList(value: object): value is GdalMetaDataList {
-    if (!('params' in value) || value['params'] === undefined) return false;
-    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
+export function instanceOfGdalMetaDataList(value: object): boolean {
+    if (!('params' in value)) return false;
+    if (!('resultDescriptor' in value)) return false;
     return true;
 }
 

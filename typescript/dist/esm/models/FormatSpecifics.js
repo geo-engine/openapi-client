@@ -19,9 +19,7 @@ export function FormatSpecificsFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    if (instanceOfFormatSpecificsOneOf(json)) {
-        return FormatSpecificsOneOfFromJSONTyped(json, true);
-    }
+    return Object.assign({}, FormatSpecificsOneOfFromJSONTyped(json, true));
 }
 export function FormatSpecificsToJSON(value) {
     if (value == null) {

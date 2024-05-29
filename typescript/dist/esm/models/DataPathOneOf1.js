@@ -15,7 +15,7 @@
  * Check if a given object implements the DataPathOneOf1 interface.
  */
 export function instanceOfDataPathOneOf1(value) {
-    if (!('upload' in value) || value['upload'] === undefined)
+    if (!('upload' in value))
         return false;
     return true;
 }

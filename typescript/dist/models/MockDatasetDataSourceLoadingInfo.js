@@ -19,7 +19,7 @@ const Coordinate2D_1 = require("./Coordinate2D");
  * Check if a given object implements the MockDatasetDataSourceLoadingInfo interface.
  */
 function instanceOfMockDatasetDataSourceLoadingInfo(value) {
-    if (!('points' in value) || value['points'] === undefined)
+    if (!('points' in value))
         return false;
     return true;
 }

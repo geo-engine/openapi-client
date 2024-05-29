@@ -15,9 +15,9 @@
  * Check if a given object implements the Quota interface.
  */
 export function instanceOfQuota(value) {
-    if (!('available' in value) || value['available'] === undefined)
+    if (!('available' in value))
         return false;
-    if (!('used' in value) || value['used'] === undefined)
+    if (!('used' in value))
         return false;
     return true;
 }

@@ -17,7 +17,6 @@ export declare const RasterStreamWebsocketResultType: {
     readonly Arrow: "arrow";
 };
 export type RasterStreamWebsocketResultType = typeof RasterStreamWebsocketResultType[keyof typeof RasterStreamWebsocketResultType];
-export declare function instanceOfRasterStreamWebsocketResultType(value: any): boolean;
 export declare function RasterStreamWebsocketResultTypeFromJSON(json: any): RasterStreamWebsocketResultType;
 export declare function RasterStreamWebsocketResultTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterStreamWebsocketResultType;
 export declare function RasterStreamWebsocketResultTypeToJSON(value?: RasterStreamWebsocketResultType | null): any;

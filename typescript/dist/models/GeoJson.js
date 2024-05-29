@@ -19,9 +19,9 @@ const CollectionType_1 = require("./CollectionType");
  * Check if a given object implements the GeoJson interface.
  */
 function instanceOfGeoJson(value) {
-    if (!('features' in value) || value['features'] === undefined)
+    if (!('features' in value))
         return false;
-    if (!('type' in value) || value['type'] === undefined)
+    if (!('type' in value))
         return false;
     return true;
 }

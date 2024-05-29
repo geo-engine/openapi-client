@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SpatialResolution } from './SpatialResolution';
-import {
-    SpatialResolutionFromJSON,
-    SpatialResolutionFromJSONTyped,
-    SpatialResolutionToJSON,
-} from './SpatialResolution';
-import type { TimeInterval } from './TimeInterval';
-import {
-    TimeIntervalFromJSON,
-    TimeIntervalFromJSONTyped,
-    TimeIntervalToJSON,
-} from './TimeInterval';
 import type { RasterBandDescriptor } from './RasterBandDescriptor';
 import {
     RasterBandDescriptorFromJSON,
@@ -43,6 +31,18 @@ import {
     SpatialPartition2DFromJSONTyped,
     SpatialPartition2DToJSON,
 } from './SpatialPartition2D';
+import type { SpatialResolution } from './SpatialResolution';
+import {
+    SpatialResolutionFromJSON,
+    SpatialResolutionFromJSONTyped,
+    SpatialResolutionToJSON,
+} from './SpatialResolution';
+import type { TimeInterval } from './TimeInterval';
+import {
+    TimeIntervalFromJSON,
+    TimeIntervalFromJSONTyped,
+    TimeIntervalToJSON,
+} from './TimeInterval';
 
 /**
  * A `ResultDescriptor` for raster queries
@@ -91,10 +91,10 @@ export interface RasterResultDescriptor {
 /**
  * Check if a given object implements the RasterResultDescriptor interface.
  */
-export function instanceOfRasterResultDescriptor(value: object): value is RasterResultDescriptor {
-    if (!('bands' in value) || value['bands'] === undefined) return false;
-    if (!('dataType' in value) || value['dataType'] === undefined) return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
+export function instanceOfRasterResultDescriptor(value: object): boolean {
+    if (!('bands' in value)) return false;
+    if (!('dataType' in value)) return false;
+    if (!('spatialReference' in value)) return false;
     return true;
 }
 

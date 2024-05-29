@@ -30,8 +30,8 @@ export interface UploadFilesResponse {
 /**
  * Check if a given object implements the UploadFilesResponse interface.
  */
-export function instanceOfUploadFilesResponse(value: object): value is UploadFilesResponse {
-    if (!('files' in value) || value['files'] === undefined) return false;
+export function instanceOfUploadFilesResponse(value: object): boolean {
+    if (!('files' in value)) return false;
     return true;
 }
 

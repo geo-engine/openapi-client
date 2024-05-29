@@ -14,18 +14,18 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PermissionListingToJSON = exports.PermissionListingFromJSONTyped = exports.PermissionListingFromJSON = exports.instanceOfPermissionListing = void 0;
-const Role_1 = require("./Role");
-const ResourceId_1 = require("./ResourceId");
 const Permission_1 = require("./Permission");
+const ResourceId_1 = require("./ResourceId");
+const Role_1 = require("./Role");
 /**
  * Check if a given object implements the PermissionListing interface.
  */
 function instanceOfPermissionListing(value) {
-    if (!('permission' in value) || value['permission'] === undefined)
+    if (!('permission' in value))
         return false;
-    if (!('resourceId' in value) || value['resourceId'] === undefined)
+    if (!('resourceId' in value))
         return false;
-    if (!('role' in value) || value['role'] === undefined)
+    if (!('role' in value))
         return false;
     return true;
 }

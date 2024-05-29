@@ -16,7 +16,7 @@ import { MultiPolygonFromJSON, MultiPolygonToJSON, } from './MultiPolygon';
  * Check if a given object implements the TypedGeometryOneOf3 interface.
  */
 export function instanceOfTypedGeometryOneOf3(value) {
-    if (!('multiPolygon' in value) || value['multiPolygon'] === undefined)
+    if (!('multiPolygon' in value))
         return false;
     return true;
 }

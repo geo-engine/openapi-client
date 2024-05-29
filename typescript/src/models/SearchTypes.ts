@@ -36,9 +36,9 @@ export interface SearchTypes {
 /**
  * Check if a given object implements the SearchTypes interface.
  */
-export function instanceOfSearchTypes(value: object): value is SearchTypes {
-    if (!('fulltext' in value) || value['fulltext'] === undefined) return false;
-    if (!('prefix' in value) || value['prefix'] === undefined) return false;
+export function instanceOfSearchTypes(value: object): boolean {
+    if (!('fulltext' in value)) return false;
+    if (!('prefix' in value)) return false;
     return true;
 }
 

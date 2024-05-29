@@ -36,9 +36,9 @@ export interface Quota {
 /**
  * Check if a given object implements the Quota interface.
  */
-export function instanceOfQuota(value: object): value is Quota {
-    if (!('available' in value) || value['available'] === undefined) return false;
-    if (!('used' in value) || value['used'] === undefined) return false;
+export function instanceOfQuota(value: object): boolean {
+    if (!('available' in value)) return false;
+    if (!('used' in value)) return false;
     return true;
 }
 

@@ -32,7 +32,7 @@ export interface ProviderCapabilities {
 /**
  * Check if a given object implements the ProviderCapabilities interface.
  */
-export declare function instanceOfProviderCapabilities(value: object): value is ProviderCapabilities;
+export declare function instanceOfProviderCapabilities(value: object): boolean;
 export declare function ProviderCapabilitiesFromJSON(json: any): ProviderCapabilities;
 export declare function ProviderCapabilitiesFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProviderCapabilities;
 export declare function ProviderCapabilitiesToJSON(value?: ProviderCapabilities | null): any;

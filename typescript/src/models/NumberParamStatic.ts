@@ -46,9 +46,9 @@ export type NumberParamStaticTypeEnum = typeof NumberParamStaticTypeEnum[keyof t
 /**
  * Check if a given object implements the NumberParamStatic interface.
  */
-export function instanceOfNumberParamStatic(value: object): value is NumberParamStatic {
-    if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('value' in value) || value['value'] === undefined) return false;
+export function instanceOfNumberParamStatic(value: object): boolean {
+    if (!('type' in value)) return false;
+    if (!('value' in value)) return false;
     return true;
 }
 

@@ -37,7 +37,7 @@ export interface DerivedNumber {
 /**
  * Check if a given object implements the DerivedNumber interface.
  */
-export declare function instanceOfDerivedNumber(value: object): value is DerivedNumber;
+export declare function instanceOfDerivedNumber(value: object): boolean;
 export declare function DerivedNumberFromJSON(json: any): DerivedNumber;
 export declare function DerivedNumberFromJSONTyped(json: any, ignoreDiscriminator: boolean): DerivedNumber;
 export declare function DerivedNumberToJSON(value?: DerivedNumber | null): any;

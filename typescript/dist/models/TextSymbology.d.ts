@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { StrokeParam } from './StrokeParam';
 import type { ColorParam } from './ColorParam';
+import type { StrokeParam } from './StrokeParam';
 /**
  *
  * @export
@@ -39,7 +39,7 @@ export interface TextSymbology {
 /**
  * Check if a given object implements the TextSymbology interface.
  */
-export declare function instanceOfTextSymbology(value: object): value is TextSymbology;
+export declare function instanceOfTextSymbology(value: object): boolean;
 export declare function TextSymbologyFromJSON(json: any): TextSymbology;
 export declare function TextSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): TextSymbology;
 export declare function TextSymbologyToJSON(value?: TextSymbology | null): any;

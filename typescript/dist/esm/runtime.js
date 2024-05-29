@@ -67,11 +67,7 @@ export class Configuration {
         return this.configuration.credentials;
     }
 }
-export const DefaultConfig = new Configuration({
-    headers: {
-        'User-Agent': 'geoengine/openapi-client/typescript/0.0.9'
-    }
-});
+export const DefaultConfig = new Configuration();
 /**
  * This is the base class for all generated API classes.
  */

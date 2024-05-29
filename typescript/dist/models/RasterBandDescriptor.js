@@ -19,9 +19,9 @@ const Measurement_1 = require("./Measurement");
  * Check if a given object implements the RasterBandDescriptor interface.
  */
 function instanceOfRasterBandDescriptor(value) {
-    if (!('measurement' in value) || value['measurement'] === undefined)
+    if (!('measurement' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
     return true;
 }

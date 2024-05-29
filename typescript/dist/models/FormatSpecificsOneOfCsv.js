@@ -19,7 +19,7 @@ const CsvHeader_1 = require("./CsvHeader");
  * Check if a given object implements the FormatSpecificsOneOfCsv interface.
  */
 function instanceOfFormatSpecificsOneOfCsv(value) {
-    if (!('header' in value) || value['header'] === undefined)
+    if (!('header' in value))
         return false;
     return true;
 }

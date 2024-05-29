@@ -42,8 +42,8 @@ export interface UserInfo {
 /**
  * Check if a given object implements the UserInfo interface.
  */
-export function instanceOfUserInfo(value: object): value is UserInfo {
-    if (!('id' in value) || value['id'] === undefined) return false;
+export function instanceOfUserInfo(value: object): boolean {
+    if (!('id' in value)) return false;
     return true;
 }
 

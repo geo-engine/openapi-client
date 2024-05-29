@@ -16,9 +16,9 @@ import { MeasurementFromJSON, MeasurementToJSON, } from './Measurement';
  * Check if a given object implements the RasterBandDescriptor interface.
  */
 export function instanceOfRasterBandDescriptor(value) {
-    if (!('measurement' in value) || value['measurement'] === undefined)
+    if (!('measurement' in value))
         return false;
-    if (!('name' in value) || value['name'] === undefined)
+    if (!('name' in value))
         return false;
     return true;
 }

@@ -42,9 +42,9 @@ export interface AddLayerCollection {
 /**
  * Check if a given object implements the AddLayerCollection interface.
  */
-export function instanceOfAddLayerCollection(value: object): value is AddLayerCollection {
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+export function instanceOfAddLayerCollection(value: object): boolean {
+    if (!('description' in value)) return false;
+    if (!('name' in value)) return false;
     return true;
 }
 

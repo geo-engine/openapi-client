@@ -30,8 +30,8 @@ export interface TaskResponse {
 /**
  * Check if a given object implements the TaskResponse interface.
  */
-export function instanceOfTaskResponse(value: object): value is TaskResponse {
-    if (!('taskId' in value) || value['taskId'] === undefined) return false;
+export function instanceOfTaskResponse(value: object): boolean {
+    if (!('taskId' in value)) return false;
     return true;
 }
 

@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WmsVersionToJSON = exports.WmsVersionFromJSONTyped = exports.WmsVersionFromJSON = exports.instanceOfWmsVersion = exports.WmsVersion = void 0;
+exports.WmsVersionToJSON = exports.WmsVersionFromJSONTyped = exports.WmsVersionFromJSON = exports.WmsVersion = void 0;
 /**
  *
  * @export
@@ -21,17 +21,6 @@ exports.WmsVersionToJSON = exports.WmsVersionFromJSONTyped = exports.WmsVersionF
 exports.WmsVersion = {
     _130: '1.3.0'
 };
-function instanceOfWmsVersion(value) {
-    for (const key in exports.WmsVersion) {
-        if (Object.prototype.hasOwnProperty.call(exports.WmsVersion, key)) {
-            if (exports.WmsVersion[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfWmsVersion = instanceOfWmsVersion;
 function WmsVersionFromJSON(json) {
     return WmsVersionFromJSONTyped(json, false);
 }

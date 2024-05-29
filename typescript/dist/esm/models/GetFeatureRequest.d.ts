@@ -17,7 +17,6 @@ export declare const GetFeatureRequest: {
     readonly GetFeature: "GetFeature";
 };
 export type GetFeatureRequest = typeof GetFeatureRequest[keyof typeof GetFeatureRequest];
-export declare function instanceOfGetFeatureRequest(value: any): boolean;
 export declare function GetFeatureRequestFromJSON(json: any): GetFeatureRequest;
 export declare function GetFeatureRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetFeatureRequest;
 export declare function GetFeatureRequestToJSON(value?: GetFeatureRequest | null): any;

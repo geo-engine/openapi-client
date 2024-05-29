@@ -76,7 +76,7 @@ export interface Dataset {
 /**
  * Check if a given object implements the Dataset interface.
  */
-export declare function instanceOfDataset(value: object): value is Dataset;
+export declare function instanceOfDataset(value: object): boolean;
 export declare function DatasetFromJSON(json: any): Dataset;
 export declare function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Dataset;
 export declare function DatasetToJSON(value?: Dataset | null): any;

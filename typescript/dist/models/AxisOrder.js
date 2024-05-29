@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AxisOrderToJSON = exports.AxisOrderFromJSONTyped = exports.AxisOrderFromJSON = exports.instanceOfAxisOrder = exports.AxisOrder = void 0;
+exports.AxisOrderToJSON = exports.AxisOrderFromJSONTyped = exports.AxisOrderFromJSON = exports.AxisOrder = void 0;
 /**
  *
  * @export
@@ -22,17 +22,6 @@ exports.AxisOrder = {
     NorthEast: 'northEast',
     EastNorth: 'eastNorth'
 };
-function instanceOfAxisOrder(value) {
-    for (const key in exports.AxisOrder) {
-        if (Object.prototype.hasOwnProperty.call(exports.AxisOrder, key)) {
-            if (exports.AxisOrder[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfAxisOrder = instanceOfAxisOrder;
 function AxisOrderFromJSON(json) {
     return AxisOrderFromJSONTyped(json, false);
 }

@@ -11,18 +11,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 import { SpatialResolutionFromJSON, SpatialResolutionToJSON, } from './SpatialResolution';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
-import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 /**
  * Check if a given object implements the PlotQueryRectangle interface.
  */
 export function instanceOfPlotQueryRectangle(value) {
-    if (!('spatialBounds' in value) || value['spatialBounds'] === undefined)
+    if (!('spatialBounds' in value))
         return false;
-    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined)
+    if (!('spatialResolution' in value))
         return false;
-    if (!('timeInterval' in value) || value['timeInterval'] === undefined)
+    if (!('timeInterval' in value))
         return false;
     return true;
 }

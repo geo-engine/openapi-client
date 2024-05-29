@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlotOutputFormatToJSON = exports.PlotOutputFormatFromJSONTyped = exports.PlotOutputFormatFromJSON = exports.instanceOfPlotOutputFormat = exports.PlotOutputFormat = void 0;
+exports.PlotOutputFormatToJSON = exports.PlotOutputFormatFromJSONTyped = exports.PlotOutputFormatFromJSON = exports.PlotOutputFormat = void 0;
 /**
  *
  * @export
@@ -23,17 +23,6 @@ exports.PlotOutputFormat = {
     JsonVega: 'JsonVega',
     ImagePng: 'ImagePng'
 };
-function instanceOfPlotOutputFormat(value) {
-    for (const key in exports.PlotOutputFormat) {
-        if (Object.prototype.hasOwnProperty.call(exports.PlotOutputFormat, key)) {
-            if (exports.PlotOutputFormat[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfPlotOutputFormat = instanceOfPlotOutputFormat;
 function PlotOutputFormatFromJSON(json) {
     return PlotOutputFormatFromJSONTyped(json, false);
 }

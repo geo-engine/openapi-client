@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeStep } from './TimeStep';
-import {
-    TimeStepFromJSON,
-    TimeStepFromJSONTyped,
-    TimeStepToJSON,
-} from './TimeStep';
 import type { STRectangle } from './STRectangle';
 import {
     STRectangleFromJSON,
     STRectangleFromJSONTyped,
     STRectangleToJSON,
 } from './STRectangle';
+import type { TimeStep } from './TimeStep';
+import {
+    TimeStepFromJSON,
+    TimeStepFromJSONTyped,
+    TimeStepToJSON,
+} from './TimeStep';
 
 /**
  * 
@@ -61,10 +61,10 @@ export interface CreateProject {
 /**
  * Check if a given object implements the CreateProject interface.
  */
-export function instanceOfCreateProject(value: object): value is CreateProject {
-    if (!('bounds' in value) || value['bounds'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
+export function instanceOfCreateProject(value: object): boolean {
+    if (!('bounds' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('name' in value)) return false;
     return true;
 }
 

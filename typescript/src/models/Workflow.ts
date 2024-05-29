@@ -55,9 +55,9 @@ export type WorkflowTypeEnum = typeof WorkflowTypeEnum[keyof typeof WorkflowType
 /**
  * Check if a given object implements the Workflow interface.
  */
-export function instanceOfWorkflow(value: object): value is Workflow {
-    if (!('operator' in value) || value['operator'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfWorkflow(value: object): boolean {
+    if (!('operator' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

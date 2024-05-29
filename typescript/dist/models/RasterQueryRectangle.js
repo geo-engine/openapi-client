@@ -14,18 +14,18 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RasterQueryRectangleToJSON = exports.RasterQueryRectangleFromJSONTyped = exports.RasterQueryRectangleFromJSON = exports.instanceOfRasterQueryRectangle = void 0;
+const SpatialPartition2D_1 = require("./SpatialPartition2D");
 const SpatialResolution_1 = require("./SpatialResolution");
 const TimeInterval_1 = require("./TimeInterval");
-const SpatialPartition2D_1 = require("./SpatialPartition2D");
 /**
  * Check if a given object implements the RasterQueryRectangle interface.
  */
 function instanceOfRasterQueryRectangle(value) {
-    if (!('spatialBounds' in value) || value['spatialBounds'] === undefined)
+    if (!('spatialBounds' in value))
         return false;
-    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined)
+    if (!('spatialResolution' in value))
         return false;
-    if (!('timeInterval' in value) || value['timeInterval'] === undefined)
+    if (!('timeInterval' in value))
         return false;
     return true;
 }

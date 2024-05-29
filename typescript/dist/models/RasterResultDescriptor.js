@@ -14,20 +14,20 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RasterResultDescriptorToJSON = exports.RasterResultDescriptorFromJSONTyped = exports.RasterResultDescriptorFromJSON = exports.instanceOfRasterResultDescriptor = void 0;
-const SpatialResolution_1 = require("./SpatialResolution");
-const TimeInterval_1 = require("./TimeInterval");
 const RasterBandDescriptor_1 = require("./RasterBandDescriptor");
 const RasterDataType_1 = require("./RasterDataType");
 const SpatialPartition2D_1 = require("./SpatialPartition2D");
+const SpatialResolution_1 = require("./SpatialResolution");
+const TimeInterval_1 = require("./TimeInterval");
 /**
  * Check if a given object implements the RasterResultDescriptor interface.
  */
 function instanceOfRasterResultDescriptor(value) {
-    if (!('bands' in value) || value['bands'] === undefined)
+    if (!('bands' in value))
         return false;
-    if (!('dataType' in value) || value['dataType'] === undefined)
+    if (!('dataType' in value))
         return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+    if (!('spatialReference' in value))
         return false;
     return true;
 }

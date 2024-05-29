@@ -42,12 +42,7 @@ export function DataPathFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     if (json == null) {
         return json;
     }
-    if (instanceOfDataPathOneOf(json)) {
-        return DataPathOneOfFromJSONTyped(json, true);
-    }
-    if (instanceOfDataPathOneOf1(json)) {
-        return DataPathOneOf1FromJSONTyped(json, true);
-    }
+    return { ...DataPathOneOfFromJSONTyped(json, true), ...DataPathOneOf1FromJSONTyped(json, true) };
 }
 
 export function DataPathToJSON(value?: DataPath | null): any {

@@ -53,9 +53,9 @@ export type OgrSourceTimeFormatCustomFormatEnum = typeof OgrSourceTimeFormatCust
 /**
  * Check if a given object implements the OgrSourceTimeFormatCustom interface.
  */
-export function instanceOfOgrSourceTimeFormatCustom(value: object): value is OgrSourceTimeFormatCustom {
-    if (!('customFormat' in value) || value['customFormat'] === undefined) return false;
-    if (!('format' in value) || value['format'] === undefined) return false;
+export function instanceOfOgrSourceTimeFormatCustom(value: object): boolean {
+    if (!('customFormat' in value)) return false;
+    if (!('format' in value)) return false;
     return true;
 }
 

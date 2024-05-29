@@ -33,7 +33,7 @@ export interface ClassificationMeasurement {
 /**
  * Check if a given object implements the ClassificationMeasurement interface.
  */
-export declare function instanceOfClassificationMeasurement(value: object): value is ClassificationMeasurement;
+export declare function instanceOfClassificationMeasurement(value: object): boolean;
 export declare function ClassificationMeasurementFromJSON(json: any): ClassificationMeasurement;
 export declare function ClassificationMeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): ClassificationMeasurement;
 export declare function ClassificationMeasurementToJSON(value?: ClassificationMeasurement | null): any;

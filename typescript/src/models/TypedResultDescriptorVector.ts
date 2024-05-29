@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { VectorDataType } from './VectorDataType';
+import type { BoundingBox2D } from './BoundingBox2D';
 import {
-    VectorDataTypeFromJSON,
-    VectorDataTypeFromJSONTyped,
-    VectorDataTypeToJSON,
-} from './VectorDataType';
+    BoundingBox2DFromJSON,
+    BoundingBox2DFromJSONTyped,
+    BoundingBox2DToJSON,
+} from './BoundingBox2D';
 import type { TimeInterval } from './TimeInterval';
 import {
     TimeIntervalFromJSON,
@@ -31,12 +31,12 @@ import {
     VectorColumnInfoFromJSONTyped,
     VectorColumnInfoToJSON,
 } from './VectorColumnInfo';
-import type { BoundingBox2D } from './BoundingBox2D';
+import type { VectorDataType } from './VectorDataType';
 import {
-    BoundingBox2DFromJSON,
-    BoundingBox2DFromJSONTyped,
-    BoundingBox2DToJSON,
-} from './BoundingBox2D';
+    VectorDataTypeFromJSON,
+    VectorDataTypeFromJSONTyped,
+    VectorDataTypeToJSON,
+} from './VectorDataType';
 
 /**
  * 
@@ -95,11 +95,11 @@ export type TypedResultDescriptorVectorTypeEnum = typeof TypedResultDescriptorVe
 /**
  * Check if a given object implements the TypedResultDescriptorVector interface.
  */
-export function instanceOfTypedResultDescriptorVector(value: object): value is TypedResultDescriptorVector {
-    if (!('columns' in value) || value['columns'] === undefined) return false;
-    if (!('dataType' in value) || value['dataType'] === undefined) return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfTypedResultDescriptorVector(value: object): boolean {
+    if (!('columns' in value)) return false;
+    if (!('dataType' in value)) return false;
+    if (!('spatialReference' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

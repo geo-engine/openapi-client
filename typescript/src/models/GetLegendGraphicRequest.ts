@@ -23,17 +23,6 @@ export const GetLegendGraphicRequest = {
 export type GetLegendGraphicRequest = typeof GetLegendGraphicRequest[keyof typeof GetLegendGraphicRequest];
 
 
-export function instanceOfGetLegendGraphicRequest(value: any): boolean {
-    for (const key in GetLegendGraphicRequest) {
-        if (Object.prototype.hasOwnProperty.call(GetLegendGraphicRequest, key)) {
-            if (GetLegendGraphicRequest[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function GetLegendGraphicRequestFromJSON(json: any): GetLegendGraphicRequest {
     return GetLegendGraphicRequestFromJSONTyped(json, false);
 }

@@ -11,15 +11,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MetaDataDefinitionFromJSON, MetaDataDefinitionToJSON, } from './MetaDataDefinition';
 import { AddDatasetFromJSON, AddDatasetToJSON, } from './AddDataset';
+import { MetaDataDefinitionFromJSON, MetaDataDefinitionToJSON, } from './MetaDataDefinition';
 /**
  * Check if a given object implements the DatasetDefinition interface.
  */
 export function instanceOfDatasetDefinition(value) {
-    if (!('metaData' in value) || value['metaData'] === undefined)
+    if (!('metaData' in value))
         return false;
-    if (!('properties' in value) || value['properties'] === undefined)
+    if (!('properties' in value))
         return false;
     return true;
 }

@@ -16,11 +16,11 @@ import { MetaDataDefinitionFromJSON, MetaDataDefinitionToJSON, } from './MetaDat
  * Check if a given object implements the MetaDataSuggestion interface.
  */
 export function instanceOfMetaDataSuggestion(value) {
-    if (!('layerName' in value) || value['layerName'] === undefined)
+    if (!('layerName' in value))
         return false;
-    if (!('mainFile' in value) || value['mainFile'] === undefined)
+    if (!('mainFile' in value))
         return false;
-    if (!('metaData' in value) || value['metaData'] === undefined)
+    if (!('metaData' in value))
         return false;
     return true;
 }

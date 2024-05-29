@@ -20,16 +20,6 @@ export const CsvHeader = {
     No: 'no',
     Auto: 'auto'
 };
-export function instanceOfCsvHeader(value) {
-    for (const key in CsvHeader) {
-        if (Object.prototype.hasOwnProperty.call(CsvHeader, key)) {
-            if (CsvHeader[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
 export function CsvHeaderFromJSON(json) {
     return CsvHeaderFromJSONTyped(json, false);
 }

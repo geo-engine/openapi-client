@@ -46,9 +46,9 @@ export type ColorParamStaticTypeEnum = typeof ColorParamStaticTypeEnum[keyof typ
 /**
  * Check if a given object implements the ColorParamStatic interface.
  */
-export function instanceOfColorParamStatic(value: object): value is ColorParamStatic {
-    if (!('color' in value) || value['color'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfColorParamStatic(value: object): boolean {
+    if (!('color' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

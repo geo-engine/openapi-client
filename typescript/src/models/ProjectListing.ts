@@ -60,13 +60,13 @@ export interface ProjectListing {
 /**
  * Check if a given object implements the ProjectListing interface.
  */
-export function instanceOfProjectListing(value: object): value is ProjectListing {
-    if (!('changed' in value) || value['changed'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('id' in value) || value['id'] === undefined) return false;
-    if (!('layerNames' in value) || value['layerNames'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('plotNames' in value) || value['plotNames'] === undefined) return false;
+export function instanceOfProjectListing(value: object): boolean {
+    if (!('changed' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('layerNames' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('plotNames' in value)) return false;
     return true;
 }
 

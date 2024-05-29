@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskFilterToJSON = exports.TaskFilterFromJSONTyped = exports.TaskFilterFromJSON = exports.instanceOfTaskFilter = exports.TaskFilter = void 0;
+exports.TaskFilterToJSON = exports.TaskFilterFromJSONTyped = exports.TaskFilterFromJSON = exports.TaskFilter = void 0;
 /**
  *
  * @export
@@ -24,17 +24,6 @@ exports.TaskFilter = {
     Failed: 'failed',
     Completed: 'completed'
 };
-function instanceOfTaskFilter(value) {
-    for (const key in exports.TaskFilter) {
-        if (Object.prototype.hasOwnProperty.call(exports.TaskFilter, key)) {
-            if (exports.TaskFilter[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfTaskFilter = instanceOfTaskFilter;
 function TaskFilterFromJSON(json) {
     return TaskFilterFromJSONTyped(json, false);
 }

@@ -13,6 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
+import type { SpatialPartition2D } from './SpatialPartition2D';
+import {
+    SpatialPartition2DFromJSON,
+    SpatialPartition2DFromJSONTyped,
+    SpatialPartition2DToJSON,
+} from './SpatialPartition2D';
 import type { SpatialResolution } from './SpatialResolution';
 import {
     SpatialResolutionFromJSON,
@@ -25,12 +31,6 @@ import {
     TimeIntervalFromJSONTyped,
     TimeIntervalToJSON,
 } from './TimeInterval';
-import type { SpatialPartition2D } from './SpatialPartition2D';
-import {
-    SpatialPartition2DFromJSON,
-    SpatialPartition2DFromJSONTyped,
-    SpatialPartition2DToJSON,
-} from './SpatialPartition2D';
 
 /**
  * A spatio-temporal rectangle with a specified resolution
@@ -61,10 +61,10 @@ export interface RasterQueryRectangle {
 /**
  * Check if a given object implements the RasterQueryRectangle interface.
  */
-export function instanceOfRasterQueryRectangle(value: object): value is RasterQueryRectangle {
-    if (!('spatialBounds' in value) || value['spatialBounds'] === undefined) return false;
-    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined) return false;
-    if (!('timeInterval' in value) || value['timeInterval'] === undefined) return false;
+export function instanceOfRasterQueryRectangle(value: object): boolean {
+    if (!('spatialBounds' in value)) return false;
+    if (!('spatialResolution' in value)) return false;
+    if (!('timeInterval' in value)) return false;
     return true;
 }
 

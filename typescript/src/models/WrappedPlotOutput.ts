@@ -49,10 +49,10 @@ export interface WrappedPlotOutput {
 /**
  * Check if a given object implements the WrappedPlotOutput interface.
  */
-export function instanceOfWrappedPlotOutput(value: object): value is WrappedPlotOutput {
-    if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('outputFormat' in value) || value['outputFormat'] === undefined) return false;
-    if (!('plotType' in value) || value['plotType'] === undefined) return false;
+export function instanceOfWrappedPlotOutput(value: object): boolean {
+    if (!('data' in value)) return false;
+    if (!('outputFormat' in value)) return false;
+    if (!('plotType' in value)) return false;
     return true;
 }
 

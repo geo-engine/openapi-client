@@ -44,7 +44,7 @@ export interface LayerListing {
 /**
  * Check if a given object implements the LayerListing interface.
  */
-export declare function instanceOfLayerListing(value: object): value is LayerListing;
+export declare function instanceOfLayerListing(value: object): boolean;
 export declare function LayerListingFromJSON(json: any): LayerListing;
 export declare function LayerListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerListing;
 export declare function LayerListingToJSON(value?: LayerListing | null): any;

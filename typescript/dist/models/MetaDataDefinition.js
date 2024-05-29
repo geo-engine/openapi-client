@@ -30,17 +30,17 @@ function MetaDataDefinitionFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'GdalMetaDataList':
-            return Object.assign({}, (0, MetaDataDefinitionGdalMetaDataList_1.MetaDataDefinitionGdalMetaDataListFromJSONTyped)(json, true), { type: 'GdalMetaDataList' });
+            return Object.assign(Object.assign({}, (0, MetaDataDefinitionGdalMetaDataList_1.MetaDataDefinitionGdalMetaDataListFromJSONTyped)(json, true)), { type: 'GdalMetaDataList' });
         case 'GdalMetaDataRegular':
-            return Object.assign({}, (0, MetaDataDefinitionGdalMetaDataRegular_1.MetaDataDefinitionGdalMetaDataRegularFromJSONTyped)(json, true), { type: 'GdalMetaDataRegular' });
+            return Object.assign(Object.assign({}, (0, MetaDataDefinitionGdalMetaDataRegular_1.MetaDataDefinitionGdalMetaDataRegularFromJSONTyped)(json, true)), { type: 'GdalMetaDataRegular' });
         case 'GdalMetadataNetCdfCf':
-            return Object.assign({}, (0, MetaDataDefinitionGdalMetadataNetCdfCf_1.MetaDataDefinitionGdalMetadataNetCdfCfFromJSONTyped)(json, true), { type: 'GdalMetadataNetCdfCf' });
+            return Object.assign(Object.assign({}, (0, MetaDataDefinitionGdalMetadataNetCdfCf_1.MetaDataDefinitionGdalMetadataNetCdfCfFromJSONTyped)(json, true)), { type: 'GdalMetadataNetCdfCf' });
         case 'GdalStatic':
-            return Object.assign({}, (0, MetaDataDefinitionGdalStatic_1.MetaDataDefinitionGdalStaticFromJSONTyped)(json, true), { type: 'GdalStatic' });
+            return Object.assign(Object.assign({}, (0, MetaDataDefinitionGdalStatic_1.MetaDataDefinitionGdalStaticFromJSONTyped)(json, true)), { type: 'GdalStatic' });
         case 'MockMetaData':
-            return Object.assign({}, (0, MetaDataDefinitionMockMetaData_1.MetaDataDefinitionMockMetaDataFromJSONTyped)(json, true), { type: 'MockMetaData' });
+            return Object.assign(Object.assign({}, (0, MetaDataDefinitionMockMetaData_1.MetaDataDefinitionMockMetaDataFromJSONTyped)(json, true)), { type: 'MockMetaData' });
         case 'OgrMetaData':
-            return Object.assign({}, (0, MetaDataDefinitionOgrMetaData_1.MetaDataDefinitionOgrMetaDataFromJSONTyped)(json, true), { type: 'OgrMetaData' });
+            return Object.assign(Object.assign({}, (0, MetaDataDefinitionOgrMetaData_1.MetaDataDefinitionOgrMetaDataFromJSONTyped)(json, true)), { type: 'OgrMetaData' });
         default:
             throw new Error(`No variant of MetaDataDefinition exists with 'type=${json['type']}'`);
     }

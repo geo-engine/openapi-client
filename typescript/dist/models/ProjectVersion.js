@@ -18,9 +18,9 @@ exports.ProjectVersionToJSON = exports.ProjectVersionFromJSONTyped = exports.Pro
  * Check if a given object implements the ProjectVersion interface.
  */
 function instanceOfProjectVersion(value) {
-    if (!('changed' in value) || value['changed'] === undefined)
+    if (!('changed' in value))
         return false;
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('id' in value))
         return false;
     return true;
 }

@@ -21,7 +21,7 @@ export function RasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'singleBand':
-            return Object.assign({}, RasterColorizerSingleBandFromJSONTyped(json, true), { type: 'singleBand' });
+            return Object.assign(Object.assign({}, RasterColorizerSingleBandFromJSONTyped(json, true)), { type: 'singleBand' });
         default:
             throw new Error(`No variant of RasterColorizer exists with 'type=${json['type']}'`);
     }

@@ -23,7 +23,6 @@ export declare const TimeGranularity: {
     readonly Years: "years";
 };
 export type TimeGranularity = typeof TimeGranularity[keyof typeof TimeGranularity];
-export declare function instanceOfTimeGranularity(value: any): boolean;
 export declare function TimeGranularityFromJSON(json: any): TimeGranularity;
 export declare function TimeGranularityFromJSONTyped(json: any, ignoreDiscriminator: boolean): TimeGranularity;
 export declare function TimeGranularityToJSON(value?: TimeGranularity | null): any;

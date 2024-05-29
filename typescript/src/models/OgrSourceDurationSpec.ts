@@ -51,11 +51,11 @@ export function OgrSourceDurationSpecFromJSONTyped(json: any, ignoreDiscriminato
     }
     switch (json['type']) {
         case 'infinite':
-            return Object.assign({}, OgrSourceDurationSpecInfiniteFromJSONTyped(json, true), { type: 'infinite' });
+            return {...OgrSourceDurationSpecInfiniteFromJSONTyped(json, true), type: 'infinite'};
         case 'value':
-            return Object.assign({}, OgrSourceDurationSpecValueFromJSONTyped(json, true), { type: 'value' });
+            return {...OgrSourceDurationSpecValueFromJSONTyped(json, true), type: 'value'};
         case 'zero':
-            return Object.assign({}, OgrSourceDurationSpecZeroFromJSONTyped(json, true), { type: 'zero' });
+            return {...OgrSourceDurationSpecZeroFromJSONTyped(json, true), type: 'zero'};
         default:
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${json['type']}'`);
     }

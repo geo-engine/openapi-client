@@ -42,10 +42,10 @@ export interface Provenance {
 /**
  * Check if a given object implements the Provenance interface.
  */
-export function instanceOfProvenance(value: object): value is Provenance {
-    if (!('citation' in value) || value['citation'] === undefined) return false;
-    if (!('license' in value) || value['license'] === undefined) return false;
-    if (!('uri' in value) || value['uri'] === undefined) return false;
+export function instanceOfProvenance(value: object): boolean {
+    if (!('citation' in value)) return false;
+    if (!('license' in value)) return false;
+    if (!('uri' in value)) return false;
     return true;
 }
 

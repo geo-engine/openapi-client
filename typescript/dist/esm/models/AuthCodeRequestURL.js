@@ -15,7 +15,7 @@
  * Check if a given object implements the AuthCodeRequestURL interface.
  */
 export function instanceOfAuthCodeRequestURL(value) {
-    if (!('url' in value) || value['url'] === undefined)
+    if (!('url' in value))
         return false;
     return true;
 }

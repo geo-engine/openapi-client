@@ -30,8 +30,8 @@ export interface DataPathOneOf1 {
 /**
  * Check if a given object implements the DataPathOneOf1 interface.
  */
-export function instanceOfDataPathOneOf1(value: object): value is DataPathOneOf1 {
-    if (!('upload' in value) || value['upload'] === undefined) return false;
+export function instanceOfDataPathOneOf1(value: object): boolean {
+    if (!('upload' in value)) return false;
     return true;
 }
 

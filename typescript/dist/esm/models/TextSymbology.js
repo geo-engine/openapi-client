@@ -11,17 +11,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 import { ColorParamFromJSON, ColorParamToJSON, } from './ColorParam';
+import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 /**
  * Check if a given object implements the TextSymbology interface.
  */
 export function instanceOfTextSymbology(value) {
-    if (!('attribute' in value) || value['attribute'] === undefined)
+    if (!('attribute' in value))
         return false;
-    if (!('fillColor' in value) || value['fillColor'] === undefined)
+    if (!('fillColor' in value))
         return false;
-    if (!('stroke' in value) || value['stroke'] === undefined)
+    if (!('stroke' in value))
         return false;
     return true;
 }

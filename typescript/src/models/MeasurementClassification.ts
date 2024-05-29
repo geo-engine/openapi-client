@@ -52,10 +52,10 @@ export type MeasurementClassificationTypeEnum = typeof MeasurementClassification
 /**
  * Check if a given object implements the MeasurementClassification interface.
  */
-export function instanceOfMeasurementClassification(value: object): value is MeasurementClassification {
-    if (!('classes' in value) || value['classes'] === undefined) return false;
-    if (!('measurement' in value) || value['measurement'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfMeasurementClassification(value: object): boolean {
+    if (!('classes' in value)) return false;
+    if (!('measurement' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

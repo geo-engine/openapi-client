@@ -43,9 +43,9 @@ export interface GeoJson {
 /**
  * Check if a given object implements the GeoJson interface.
  */
-export function instanceOfGeoJson(value: object): value is GeoJson {
-    if (!('features' in value) || value['features'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
+export function instanceOfGeoJson(value: object): boolean {
+    if (!('features' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 

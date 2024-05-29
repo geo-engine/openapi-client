@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FileNotFoundHandlingToJSON = exports.FileNotFoundHandlingFromJSONTyped = exports.FileNotFoundHandlingFromJSON = exports.instanceOfFileNotFoundHandling = exports.FileNotFoundHandling = void 0;
+exports.FileNotFoundHandlingToJSON = exports.FileNotFoundHandlingFromJSONTyped = exports.FileNotFoundHandlingFromJSON = exports.FileNotFoundHandling = void 0;
 /**
  *
  * @export
@@ -22,17 +22,6 @@ exports.FileNotFoundHandling = {
     NoData: 'NoData',
     Error: 'Error'
 };
-function instanceOfFileNotFoundHandling(value) {
-    for (const key in exports.FileNotFoundHandling) {
-        if (Object.prototype.hasOwnProperty.call(exports.FileNotFoundHandling, key)) {
-            if (exports.FileNotFoundHandling[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-exports.instanceOfFileNotFoundHandling = instanceOfFileNotFoundHandling;
 function FileNotFoundHandlingFromJSON(json) {
     return FileNotFoundHandlingFromJSONTyped(json, false);
 }

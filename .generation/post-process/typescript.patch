@@ -85,18 +85,3 @@ index 4e12eb0..458c424 100644
      /**
       * 
       * @type {string}
-diff --git a/python/geoengine_openapi_client/api_response.py b/python/geoengine_openapi_client/api_response.py
-index 9bc7c11..8aadb1e 100644
---- a/python/geoengine_openapi_client/api_response.py
-+++ b/python/geoengine_openapi_client/api_response.py
-@@ -13,8 +13,8 @@ class ApiResponse(BaseModel, Generic[T]):
- 
-     status_code: StrictInt = Field(description="HTTP status code")
-     headers: Optional[Mapping[str, str]] = Field(None, description="HTTP headers")
--    data: T = Field(description="Deserialized data given the data type")
--    raw_data: StrictBytes = Field(description="Raw data (HTTP response body)")
-+    data: Optional[T] = Field(description="Deserialized data given the data type")
-+    raw_data: Optional[StrictBytes] = Field(description="Raw data (HTTP response body)")
- 
-     model_config = {
-         "arbitrary_types_allowed": True

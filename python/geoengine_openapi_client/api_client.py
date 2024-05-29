@@ -1,3 +1,4 @@
+# coding: utf-8
 
 """
     Geo Engine Pro API
@@ -293,7 +294,13 @@ class ApiClient:
         """
 
         msg = "RESTResponse.read() must be called before passing it to response_deserialize()"
-        assert response_data.data is not None, msg
+        if response_data.data is None:
+            return ApiResponse(
+                status_code = response_data.status,
+                data = None,
+                headers = response_data.getheaders(),
+                raw_data=None
+            )
 
         response_type = response_types_map.get(str(response_data.status), None)
         if not response_type and isinstance(response_data.status, int) and 100 <= response_data.status <= 599:

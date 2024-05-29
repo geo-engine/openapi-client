@@ -15,21 +15,25 @@ HALF_INDENT = '  '
 
 def api_client_py(file_contents: List[str]) -> Generator[str, None, None]:
     '''Modify the api_client.py file.'''
-    for (prev_line, line) in pairwise(file_contents):
+    for line in file_contents:
         dedented_line = dedent(line)
-        dedented_prev_line = dedent(prev_line)
 
         if dedented_line.startswith('self.user_agent = '):
             line = indent(dedent(f'''\
             self.user_agent = 'geoengine/openapi-client/python/{version('python')}'
             '''), 2 * INDENT)
 
-        elif dedented_prev_line.startswith('response_data.data = response_data.data') \
-            and dedented_line.startswith('else:'):
+        elif dedented_line.startswith('assert response_data.data is not None'):
             line = indent(dedent('''\
-            elif response_data.data is not None:
-                # Note: fixed handling of empty responses
-            '''), 2 * INDENT + HALF_INDENT)
+            # Note: fixed handling of empty responses
+            if response_data.data is None:
+                return ApiResponse(
+                    status_code = response_data.status,
+                    data = None,
+                    headers = response_data.getheaders(),
+                    raw_data=None
+                )
+            '''), 2 * INDENT)
 
         elif dedented_line.startswith('config = self.configuration'):
             line = indent(dedent('''\

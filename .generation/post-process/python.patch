@@ -1,0 +1,129 @@
+diff --git a/python/geoengine_openapi_client/api_client.py b/python/geoengine_openapi_client/api_client.py
+index 1a85fe6..65f348d 100644
+--- a/python/geoengine_openapi_client/api_client.py
++++ b/python/geoengine_openapi_client/api_client.py
+@@ -88,7 +88,7 @@ class ApiClient:
+             self.default_headers[header_name] = header_value
+         self.cookie = cookie
+         # Set default User-Agent.
+-        self.user_agent = 'OpenAPI-Generator/0.0.9/python'
++        self.user_agent = 'geoengine/openapi-client/python/0.0.9'
+         self.client_side_validation = configuration.client_side_validation
+ 
+     def __enter__(self):
+@@ -173,6 +173,9 @@ class ApiClient:
+             body, post_params, files)
+         """
+ 
++        # Note: remove query string in path part for ogc endpoints
++        resource_path = resource_path.partition("?")[0]
++
+         config = self.configuration
+ 
+         # header parameters
+@@ -290,8 +293,15 @@ class ApiClient:
+         :return: ApiResponse
+         """
+ 
+-        msg = "RESTResponse.read() must be called before passing it to response_deserialize()"
+-        assert response_data.data is not None, msg
++        # RESTResponse.read() must be called before passing it to response_deserialize()
++        # Note: fixed handling of empty responses
++        if response_data.data is None:
++            return ApiResponse(
++                status_code = response_data.status,
++                data = None,
++                headers = response_data.getheaders(),
++                raw_data=None
++            )
+ 
+         response_type = response_types_map.get(str(response_data.status), None)
+         if not response_type and isinstance(response_data.status, int) and 100 <= response_data.status <= 599:
+diff --git a/python/geoengine_openapi_client/exceptions.py b/python/geoengine_openapi_client/exceptions.py
+index 6d9c478..bd7d69a 100644
+--- a/python/geoengine_openapi_client/exceptions.py
++++ b/python/geoengine_openapi_client/exceptions.py
+@@ -157,16 +157,11 @@ class ApiException(OpenApiException):
+ 
+     def __str__(self):
+         """Custom error messages for exception"""
+-        error_message = "({0})\n"\
+-                        "Reason: {1}\n".format(self.status, self.reason)
+-        if self.headers:
+-            error_message += "HTTP response headers: {0}\n".format(
+-                self.headers)
+ 
+-        if self.data or self.body:
+-            error_message += "HTTP response body: {0}\n".format(self.data or self.body)
+-
+-        return error_message
++        # Note: changed message formatting
++        import json
++        parsed_body = json.loads(self.body)
++        return f'{parsed_body["error"]}: {parsed_body["message"]}'
+ 
+ 
+ class BadRequestException(ApiException):
+diff --git a/python/geoengine_openapi_client/models/raster_dataset_from_workflow.py b/python/geoengine_openapi_client/models/raster_dataset_from_workflow.py
+index f805dab..f42861a 100644
+--- a/python/geoengine_openapi_client/models/raster_dataset_from_workflow.py
++++ b/python/geoengine_openapi_client/models/raster_dataset_from_workflow.py
+@@ -73,6 +73,8 @@ class RasterDatasetFromWorkflow(BaseModel):
+             by_alias=True,
+             exclude=excluded_fields,
+             exclude_none=True,
++            # Note: remove as_cog when set to default
++            exclude_defaults=True
+         )
+         # override the default output from pydantic by calling `to_dict()` of query
+         if self.query:
+diff --git a/python/geoengine_openapi_client/models/task_status_with_id.py b/python/geoengine_openapi_client/models/task_status_with_id.py
+index db861a9..417e39e 100644
+--- a/python/geoengine_openapi_client/models/task_status_with_id.py
++++ b/python/geoengine_openapi_client/models/task_status_with_id.py
+@@ -72,17 +72,20 @@ class TaskStatusWithId(TaskStatus):
+         )
+         # set to None if info (nullable) is None
+         # and model_fields_set contains the field
+-        if self.info is None and "info" in self.model_fields_set:
++        # Note: fixed handling of actual_instance
++        if getattr(self.actual_instance, "info", None) is None and "info" in self.actual_instance.__fields_set__:
+             _dict['info'] = None
+ 
+         # set to None if clean_up (nullable) is None
+         # and model_fields_set contains the field
+-        if self.clean_up is None and "clean_up" in self.model_fields_set:
++        # Note: fixed handling of actual_instance
++        if getattr(self.actual_instance, "clean_up", None) is None and "clean_up" in self.actual_instance.__fields_set__:
+             _dict['cleanUp'] = None
+ 
+         # set to None if error (nullable) is None
+         # and model_fields_set contains the field
+-        if self.error is None and "error" in self.model_fields_set:
++        # Note: fixed handling of actual_instance
++        if getattr(self.actual_instance, "error", None) is None and "error" in self.actual_instance.__fields_set__:
+             _dict['error'] = None
+ 
+         return _dict
+@@ -96,18 +99,10 @@ class TaskStatusWithId(TaskStatus):
+         if not isinstance(obj, dict):
+             return cls.model_validate(obj)
+ 
++        # Note: fixed handling of actual_instance
+         _obj = cls.model_validate({
+-            "description": obj.get("description"),
+-            "estimatedTimeRemaining": obj.get("estimatedTimeRemaining"),
+-            "info": obj.get("info"),
+-            "pctComplete": obj.get("pctComplete"),
+-            "status": obj.get("status"),
+-            "taskType": obj.get("taskType"),
+-            "timeStarted": obj.get("timeStarted"),
+-            "timeTotal": obj.get("timeTotal"),
+-            "cleanUp": obj.get("cleanUp"),
+-            "error": obj.get("error"),
+-            "taskId": obj.get("taskId")
++            "actual_instance": TaskStatus.from_dict(obj).actual_instance,
++            "task_id": obj.get("taskId")
+         })
+         return _obj
+ 

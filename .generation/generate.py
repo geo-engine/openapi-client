@@ -169,8 +169,14 @@ def generate_python_code(*, package_name: str, package_version: str, package_url
                 f"packageVersion={package_version}",
                 f"packageUrl={package_url}",
             ]),
-            "--enable-post-process-file",
             "-o", "/local/python/",
+        ],
+        check=True,
+    )
+    subprocess.run(
+        [
+            "git", "apply",
+            ".generation/post-process/python.patch"
         ],
         check=True,
     )

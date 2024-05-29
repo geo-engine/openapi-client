@@ -293,7 +293,8 @@ class ApiClient:
         :return: ApiResponse
         """
 
-        msg = "RESTResponse.read() must be called before passing it to response_deserialize()"
+        # RESTResponse.read() must be called before passing it to response_deserialize()
+        # Note: fixed handling of empty responses
         if response_data.data is None:
             return ApiResponse(
                 status_code = response_data.status,

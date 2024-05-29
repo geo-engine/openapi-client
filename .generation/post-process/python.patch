@@ -39,6 +39,21 @@ index 1a85fe6..65f348d 100644
  
          response_type = response_types_map.get(str(response_data.status), None)
          if not response_type and isinstance(response_data.status, int) and 100 <= response_data.status <= 599:
+diff --git a/python/geoengine_openapi_client/api_response.py b/python/geoengine_openapi_client/api_response.py
+index 9bc7c11..8aadb1e 100644
+--- a/python/geoengine_openapi_client/api_response.py
++++ b/python/geoengine_openapi_client/api_response.py
+@@ -13,8 +13,8 @@ class ApiResponse(BaseModel, Generic[T]):
+ 
+     status_code: StrictInt = Field(description="HTTP status code")
+     headers: Optional[Mapping[str, str]] = Field(None, description="HTTP headers")
+-    data: T = Field(description="Deserialized data given the data type")
+-    raw_data: StrictBytes = Field(description="Raw data (HTTP response body)")
++    data: Optional[T] = Field(description="Deserialized data given the data type")
++    raw_data: Optional[StrictBytes] = Field(description="Raw data (HTTP response body)")
+ 
+     model_config = {
+         "arbitrary_types_allowed": True
 diff --git a/python/geoengine_openapi_client/exceptions.py b/python/geoengine_openapi_client/exceptions.py
 index 6d9c478..bd7d69a 100644
 --- a/python/geoengine_openapi_client/exceptions.py

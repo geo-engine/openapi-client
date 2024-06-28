@@ -12,13 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type { NumberParamDerived } from './NumberParamDerived';
+import type { DerivedNumber } from './DerivedNumber';
 import {
-    instanceOfNumberParamDerived,
-    NumberParamDerivedFromJSON,
-    NumberParamDerivedFromJSONTyped,
-    NumberParamDerivedToJSON,
-} from './NumberParamDerived';
+    instanceOfDerivedNumber,
+    DerivedNumberFromJSON,
+    DerivedNumberFromJSONTyped,
+    DerivedNumberToJSON,
+} from './DerivedNumber';
 import type { NumberParamStatic } from './NumberParamStatic';
 import {
     instanceOfNumberParamStatic,
@@ -32,7 +32,7 @@ import {
  * 
  * @export
  */
-export type NumberParam = { type: 'derived' } & NumberParamDerived | { type: 'static' } & NumberParamStatic;
+export type NumberParam = { type: 'derived' } & DerivedNumber | { type: 'static' } & NumberParamStatic;
 
 export function NumberParamFromJSON(json: any): NumberParam {
     return NumberParamFromJSONTyped(json, false);
@@ -44,7 +44,7 @@ export function NumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     switch (json['type']) {
         case 'derived':
-            return {...NumberParamDerivedFromJSONTyped(json, true), type: 'derived'};
+            return {...DerivedNumberFromJSONTyped(json, true), type: 'derived'};
         case 'static':
             return {...NumberParamStaticFromJSONTyped(json, true), type: 'static'};
         default:
@@ -58,7 +58,7 @@ export function NumberParamToJSON(value?: NumberParam | null): any {
     }
     switch (value['type']) {
         case 'derived':
-            return NumberParamDerivedToJSON(value);
+            return DerivedNumberToJSON(value);
         case 'static':
             return NumberParamStaticToJSON(value);
         default:

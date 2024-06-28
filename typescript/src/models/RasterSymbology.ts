@@ -38,7 +38,23 @@ export interface RasterSymbology {
      * @memberof RasterSymbology
      */
     rasterColorizer: RasterColorizer;
+    /**
+     * 
+     * @type {string}
+     * @memberof RasterSymbology
+     */
+    type: RasterSymbologyTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const RasterSymbologyTypeEnum = {
+    Raster: 'raster'
+} as const;
+export type RasterSymbologyTypeEnum = typeof RasterSymbologyTypeEnum[keyof typeof RasterSymbologyTypeEnum];
+
 
 /**
  * Check if a given object implements the RasterSymbology interface.
@@ -46,6 +62,7 @@ export interface RasterSymbology {
 export function instanceOfRasterSymbology(value: object): boolean {
     if (!('opacity' in value)) return false;
     if (!('rasterColorizer' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 
@@ -61,6 +78,7 @@ export function RasterSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'opacity': json['opacity'],
         'rasterColorizer': RasterColorizerFromJSON(json['rasterColorizer']),
+        'type': json['type'],
     };
 }
 
@@ -72,6 +90,7 @@ export function RasterSymbologyToJSON(value?: RasterSymbology | null): any {
         
         'opacity': value['opacity'],
         'rasterColorizer': RasterColorizerToJSON(value['rasterColorizer']),
+        'type': value['type'],
     };
 }
 

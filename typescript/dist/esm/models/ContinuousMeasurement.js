@@ -12,10 +12,18 @@
  * Do not edit the class manually.
  */
 /**
+ * @export
+ */
+export const ContinuousMeasurementTypeEnum = {
+    Continuous: 'continuous'
+};
+/**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
 export function instanceOfContinuousMeasurement(value) {
     if (!('measurement' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -28,6 +36,7 @@ export function ContinuousMeasurementFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'measurement': json['measurement'],
+        'type': json['type'],
         'unit': json['unit'] == null ? undefined : json['unit'],
     };
 }
@@ -37,6 +46,7 @@ export function ContinuousMeasurementToJSON(value) {
     }
     return {
         'measurement': value['measurement'],
+        'type': value['type'],
         'unit': value['unit'],
     };
 }

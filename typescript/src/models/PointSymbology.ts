@@ -68,7 +68,23 @@ export interface PointSymbology {
      * @memberof PointSymbology
      */
     text?: TextSymbology;
+    /**
+     * 
+     * @type {string}
+     * @memberof PointSymbology
+     */
+    type: PointSymbologyTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const PointSymbologyTypeEnum = {
+    Point: 'point'
+} as const;
+export type PointSymbologyTypeEnum = typeof PointSymbologyTypeEnum[keyof typeof PointSymbologyTypeEnum];
+
 
 /**
  * Check if a given object implements the PointSymbology interface.
@@ -77,6 +93,7 @@ export function instanceOfPointSymbology(value: object): boolean {
     if (!('fillColor' in value)) return false;
     if (!('radius' in value)) return false;
     if (!('stroke' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 
@@ -94,6 +111,7 @@ export function PointSymbologyFromJSONTyped(json: any, ignoreDiscriminator: bool
         'radius': NumberParamFromJSON(json['radius']),
         'stroke': StrokeParamFromJSON(json['stroke']),
         'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
+        'type': json['type'],
     };
 }
 
@@ -107,6 +125,7 @@ export function PointSymbologyToJSON(value?: PointSymbology | null): any {
         'radius': NumberParamToJSON(value['radius']),
         'stroke': StrokeParamToJSON(value['stroke']),
         'text': TextSymbologyToJSON(value['text']),
+        'type': value['type'],
     };
 }
 

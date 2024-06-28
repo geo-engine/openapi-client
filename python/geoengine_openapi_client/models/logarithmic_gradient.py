@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from geoengine_openapi_client.models.breakpoint import Breakpoint
@@ -32,8 +32,16 @@ class LogarithmicGradient(BaseModel):
     breakpoints: List[Breakpoint]
     no_data_color: Annotated[List[StrictInt], Field(min_length=4, max_length=4)] = Field(alias="noDataColor")
     over_color: Annotated[List[StrictInt], Field(min_length=4, max_length=4)] = Field(alias="overColor")
+    type: StrictStr
     under_color: Annotated[List[StrictInt], Field(min_length=4, max_length=4)] = Field(alias="underColor")
-    __properties: ClassVar[List[str]] = ["breakpoints", "noDataColor", "overColor", "underColor"]
+    __properties: ClassVar[List[str]] = ["breakpoints", "noDataColor", "overColor", "type", "underColor"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['logarithmicGradient']):
+            raise ValueError("must be one of enum values ('logarithmicGradient')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,6 +104,7 @@ class LogarithmicGradient(BaseModel):
             "breakpoints": [Breakpoint.from_dict(_item) for _item in obj["breakpoints"]] if obj.get("breakpoints") is not None else None,
             "noDataColor": obj.get("noDataColor"),
             "overColor": obj.get("overColor"),
+            "type": obj.get("type"),
             "underColor": obj.get("underColor")
         })
         return _obj

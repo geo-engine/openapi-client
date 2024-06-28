@@ -31,7 +31,23 @@ export interface ClassificationMeasurement {
      * @memberof ClassificationMeasurement
      */
     measurement: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ClassificationMeasurement
+     */
+    type: ClassificationMeasurementTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const ClassificationMeasurementTypeEnum = {
+    Classification: 'classification'
+} as const;
+export type ClassificationMeasurementTypeEnum = typeof ClassificationMeasurementTypeEnum[keyof typeof ClassificationMeasurementTypeEnum];
+
 
 /**
  * Check if a given object implements the ClassificationMeasurement interface.
@@ -39,6 +55,7 @@ export interface ClassificationMeasurement {
 export function instanceOfClassificationMeasurement(value: object): boolean {
     if (!('classes' in value)) return false;
     if (!('measurement' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 
@@ -54,6 +71,7 @@ export function ClassificationMeasurementFromJSONTyped(json: any, ignoreDiscrimi
         
         'classes': json['classes'],
         'measurement': json['measurement'],
+        'type': json['type'],
     };
 }
 
@@ -65,6 +83,7 @@ export function ClassificationMeasurementToJSON(value?: ClassificationMeasuremen
         
         'classes': value['classes'],
         'measurement': value['measurement'],
+        'type': value['type'],
     };
 }
 

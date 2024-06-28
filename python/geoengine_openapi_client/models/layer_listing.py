@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from geoengine_openapi_client.models.provider_layer_id import ProviderLayerId
@@ -33,7 +33,15 @@ class LayerListing(BaseModel):
     id: ProviderLayerId
     name: StrictStr
     properties: Optional[List[Annotated[List[StrictStr], Field(min_length=2, max_length=2)]]] = Field(default=None, description="properties, for instance, to be rendered in the UI")
-    __properties: ClassVar[List[str]] = ["description", "id", "name", "properties"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["description", "id", "name", "properties", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['layer']):
+            raise ValueError("must be one of enum values ('layer')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -92,7 +100,8 @@ class LayerListing(BaseModel):
             "description": obj.get("description"),
             "id": ProviderLayerId.from_dict(obj["id"]) if obj.get("id") is not None else None,
             "name": obj.get("name"),
-            "properties": obj.get("properties")
+            "properties": obj.get("properties"),
+            "type": obj.get("type")
         })
         return _obj
 

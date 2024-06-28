@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from geoengine_openapi_client.models.colorizer import Colorizer
 from typing import Optional, Set
@@ -30,7 +30,15 @@ class DerivedColor(BaseModel):
     """ # noqa: E501
     attribute: StrictStr
     colorizer: Colorizer
-    __properties: ClassVar[List[str]] = ["attribute", "colorizer"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["attribute", "colorizer", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['derived']):
+            raise ValueError("must be one of enum values ('derived')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +95,8 @@ class DerivedColor(BaseModel):
 
         _obj = cls.model_validate({
             "attribute": obj.get("attribute"),
-            "colorizer": Colorizer.from_dict(obj["colorizer"]) if obj.get("colorizer") is not None else None
+            "colorizer": Colorizer.from_dict(obj["colorizer"]) if obj.get("colorizer") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

@@ -35,7 +35,20 @@ export interface LineSymbology {
      * @memberof LineSymbology
      */
     text?: TextSymbology;
+    /**
+     *
+     * @type {string}
+     * @memberof LineSymbology
+     */
+    type: LineSymbologyTypeEnum;
 }
+/**
+ * @export
+ */
+export declare const LineSymbologyTypeEnum: {
+    readonly Line: "line";
+};
+export type LineSymbologyTypeEnum = typeof LineSymbologyTypeEnum[keyof typeof LineSymbologyTypeEnum];
 /**
  * Check if a given object implements the LineSymbology interface.
  */

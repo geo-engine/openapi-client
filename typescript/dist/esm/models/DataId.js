@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DataIdExternalFromJSONTyped, DataIdExternalToJSON, } from './DataIdExternal';
-import { DataIdInternalFromJSONTyped, DataIdInternalToJSON, } from './DataIdInternal';
+import { ExternalDataIdFromJSONTyped, ExternalDataIdToJSON, } from './ExternalDataId';
+import { InternalDataIdFromJSONTyped, InternalDataIdToJSON, } from './InternalDataId';
 export function DataIdFromJSON(json) {
     return DataIdFromJSONTyped(json, false);
 }
@@ -22,9 +22,9 @@ export function DataIdFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'external':
-            return Object.assign(Object.assign({}, DataIdExternalFromJSONTyped(json, true)), { type: 'external' });
+            return Object.assign(Object.assign({}, ExternalDataIdFromJSONTyped(json, true)), { type: 'external' });
         case 'internal':
-            return Object.assign(Object.assign({}, DataIdInternalFromJSONTyped(json, true)), { type: 'internal' });
+            return Object.assign(Object.assign({}, InternalDataIdFromJSONTyped(json, true)), { type: 'internal' });
         default:
             throw new Error(`No variant of DataId exists with 'type=${json['type']}'`);
     }
@@ -35,9 +35,9 @@ export function DataIdToJSON(value) {
     }
     switch (value['type']) {
         case 'external':
-            return DataIdExternalToJSON(value);
+            return ExternalDataIdToJSON(value);
         case 'internal':
-            return DataIdInternalToJSON(value);
+            return InternalDataIdToJSON(value);
         default:
             throw new Error(`No variant of DataId exists with 'type=${value['type']}'`);
     }

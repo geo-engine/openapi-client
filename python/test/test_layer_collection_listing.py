@@ -45,7 +45,8 @@ class TestLayerCollectionListing(unittest.TestCase):
                     [
                         ''
                         ]
-                    ]
+                    ],
+                type = 'collection'
             )
         else:
             return LayerCollectionListing(
@@ -54,6 +55,7 @@ class TestLayerCollectionListing(unittest.TestCase):
                     collection_id = '', 
                     provider_id = '', ),
                 name = '',
+                type = 'collection',
         )
         """
 

@@ -15,12 +15,20 @@ import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './G
 import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 /**
+ * @export
+ */
+export const GdalMetaDataStaticTypeEnum = {
+    GdalStatic: 'GdalStatic'
+};
+/**
  * Check if a given object implements the GdalMetaDataStatic interface.
  */
 export function instanceOfGdalMetaDataStatic(value) {
     if (!('params' in value))
         return false;
     if (!('resultDescriptor' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -36,6 +44,7 @@ export function GdalMetaDataStaticFromJSONTyped(json, ignoreDiscriminator) {
         'params': GdalDatasetParametersFromJSON(json['params']),
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
         'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        'type': json['type'],
     };
 }
 export function GdalMetaDataStaticToJSON(value) {
@@ -47,5 +56,6 @@ export function GdalMetaDataStaticToJSON(value) {
         'params': GdalDatasetParametersToJSON(value['params']),
         'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
         'time': TimeIntervalToJSON(value['time']),
+        'type': value['type'],
     };
 }

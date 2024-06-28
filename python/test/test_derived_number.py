@@ -38,13 +38,15 @@ class TestDerivedNumber(unittest.TestCase):
             return DerivedNumber(
                 attribute = '',
                 default_value = 1.337,
-                factor = 1.337
+                factor = 1.337,
+                type = 'derived'
             )
         else:
             return DerivedNumber(
                 attribute = '',
                 default_value = 1.337,
                 factor = 1.337,
+                type = 'derived',
         )
         """
 

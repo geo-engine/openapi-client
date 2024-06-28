@@ -30,14 +30,31 @@ export interface ContinuousMeasurement {
      * @type {string}
      * @memberof ContinuousMeasurement
      */
+    type: ContinuousMeasurementTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContinuousMeasurement
+     */
     unit?: string;
 }
+
+
+/**
+ * @export
+ */
+export const ContinuousMeasurementTypeEnum = {
+    Continuous: 'continuous'
+} as const;
+export type ContinuousMeasurementTypeEnum = typeof ContinuousMeasurementTypeEnum[keyof typeof ContinuousMeasurementTypeEnum];
+
 
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
 export function instanceOfContinuousMeasurement(value: object): boolean {
     if (!('measurement' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 
@@ -52,6 +69,7 @@ export function ContinuousMeasurementFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'measurement': json['measurement'],
+        'type': json['type'],
         'unit': json['unit'] == null ? undefined : json['unit'],
     };
 }
@@ -63,6 +81,7 @@ export function ContinuousMeasurementToJSON(value?: ContinuousMeasurement | null
     return {
         
         'measurement': value['measurement'],
+        'type': value['type'],
         'unit': value['unit'],
     };
 }

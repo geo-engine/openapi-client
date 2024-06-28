@@ -14,8 +14,8 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CollectionItemToJSON = exports.CollectionItemFromJSONTyped = exports.CollectionItemFromJSON = void 0;
-const CollectionItemCollection_1 = require("./CollectionItemCollection");
-const CollectionItemLayer_1 = require("./CollectionItemLayer");
+const LayerCollectionListing_1 = require("./LayerCollectionListing");
+const LayerListing_1 = require("./LayerListing");
 function CollectionItemFromJSON(json) {
     return CollectionItemFromJSONTyped(json, false);
 }
@@ -26,9 +26,9 @@ function CollectionItemFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'collection':
-            return Object.assign(Object.assign({}, (0, CollectionItemCollection_1.CollectionItemCollectionFromJSONTyped)(json, true)), { type: 'collection' });
+            return Object.assign(Object.assign({}, (0, LayerCollectionListing_1.LayerCollectionListingFromJSONTyped)(json, true)), { type: 'collection' });
         case 'layer':
-            return Object.assign(Object.assign({}, (0, CollectionItemLayer_1.CollectionItemLayerFromJSONTyped)(json, true)), { type: 'layer' });
+            return Object.assign(Object.assign({}, (0, LayerListing_1.LayerListingFromJSONTyped)(json, true)), { type: 'layer' });
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }
@@ -40,9 +40,9 @@ function CollectionItemToJSON(value) {
     }
     switch (value['type']) {
         case 'collection':
-            return (0, CollectionItemCollection_1.CollectionItemCollectionToJSON)(value);
+            return (0, LayerCollectionListing_1.LayerCollectionListingToJSON)(value);
         case 'layer':
-            return (0, CollectionItemLayer_1.CollectionItemLayerToJSON)(value);
+            return (0, LayerListing_1.LayerListingToJSON)(value);
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${value['type']}'`);
     }

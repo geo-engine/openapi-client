@@ -37,11 +37,13 @@ class TestContinuousMeasurement(unittest.TestCase):
         if include_optional:
             return ContinuousMeasurement(
                 measurement = '',
+                type = 'continuous',
                 unit = ''
             )
         else:
             return ContinuousMeasurement(
                 measurement = '',
+                type = 'continuous',
         )
         """
 

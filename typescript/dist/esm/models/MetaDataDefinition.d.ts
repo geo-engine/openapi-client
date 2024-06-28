@@ -9,12 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { MetaDataDefinitionGdalMetaDataList } from './MetaDataDefinitionGdalMetaDataList';
-import type { MetaDataDefinitionGdalMetaDataRegular } from './MetaDataDefinitionGdalMetaDataRegular';
-import type { MetaDataDefinitionGdalMetadataNetCdfCf } from './MetaDataDefinitionGdalMetadataNetCdfCf';
-import type { MetaDataDefinitionGdalStatic } from './MetaDataDefinitionGdalStatic';
-import type { MetaDataDefinitionMockMetaData } from './MetaDataDefinitionMockMetaData';
-import type { MetaDataDefinitionOgrMetaData } from './MetaDataDefinitionOgrMetaData';
+import type { GdalMetaDataList } from './GdalMetaDataList';
+import type { GdalMetaDataRegular } from './GdalMetaDataRegular';
+import type { GdalMetaDataStatic } from './GdalMetaDataStatic';
+import type { GdalMetadataNetCdfCf } from './GdalMetadataNetCdfCf';
+import type { MockMetaData } from './MockMetaData';
+import type { OgrMetaData } from './OgrMetaData';
 /**
  * @type MetaDataDefinition
  *
@@ -22,17 +22,17 @@ import type { MetaDataDefinitionOgrMetaData } from './MetaDataDefinitionOgrMetaD
  */
 export type MetaDataDefinition = {
     type: 'GdalMetaDataList';
-} & MetaDataDefinitionGdalMetaDataList | {
+} & GdalMetaDataList | {
     type: 'GdalMetaDataRegular';
-} & MetaDataDefinitionGdalMetaDataRegular | {
+} & GdalMetaDataRegular | {
     type: 'GdalMetadataNetCdfCf';
-} & MetaDataDefinitionGdalMetadataNetCdfCf | {
+} & GdalMetadataNetCdfCf | {
     type: 'GdalStatic';
-} & MetaDataDefinitionGdalStatic | {
+} & GdalMetaDataStatic | {
     type: 'MockMetaData';
-} & MetaDataDefinitionMockMetaData | {
+} & MockMetaData | {
     type: 'OgrMetaData';
-} & MetaDataDefinitionOgrMetaData;
+} & OgrMetaData;
 export declare function MetaDataDefinitionFromJSON(json: any): MetaDataDefinition;
 export declare function MetaDataDefinitionFromJSONTyped(json: any, ignoreDiscriminator: boolean): MetaDataDefinition;
 export declare function MetaDataDefinitionToJSON(value?: MetaDataDefinition | null): any;

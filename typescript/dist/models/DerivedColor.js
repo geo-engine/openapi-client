@@ -13,8 +13,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DerivedColorToJSON = exports.DerivedColorFromJSONTyped = exports.DerivedColorFromJSON = exports.instanceOfDerivedColor = void 0;
+exports.DerivedColorToJSON = exports.DerivedColorFromJSONTyped = exports.DerivedColorFromJSON = exports.instanceOfDerivedColor = exports.DerivedColorTypeEnum = void 0;
 const Colorizer_1 = require("./Colorizer");
+/**
+ * @export
+ */
+exports.DerivedColorTypeEnum = {
+    Derived: 'derived'
+};
 /**
  * Check if a given object implements the DerivedColor interface.
  */
@@ -22,6 +28,8 @@ function instanceOfDerivedColor(value) {
     if (!('attribute' in value))
         return false;
     if (!('colorizer' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -37,6 +45,7 @@ function DerivedColorFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'attribute': json['attribute'],
         'colorizer': (0, Colorizer_1.ColorizerFromJSON)(json['colorizer']),
+        'type': json['type'],
     };
 }
 exports.DerivedColorFromJSONTyped = DerivedColorFromJSONTyped;
@@ -47,6 +56,7 @@ function DerivedColorToJSON(value) {
     return {
         'attribute': value['attribute'],
         'colorizer': (0, Colorizer_1.ColorizerToJSON)(value['colorizer']),
+        'type': value['type'],
     };
 }
 exports.DerivedColorToJSON = DerivedColorToJSON;

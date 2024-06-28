@@ -18,30 +18,30 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.colorizer_linear_gradient import ColorizerLinearGradient
-from geoengine_openapi_client.models.colorizer_logarithmic_gradient import ColorizerLogarithmicGradient
 from geoengine_openapi_client.models.colorizer_palette import ColorizerPalette
 from geoengine_openapi_client.models.colorizer_rgba import ColorizerRgba
+from geoengine_openapi_client.models.linear_gradient import LinearGradient
+from geoengine_openapi_client.models.logarithmic_gradient import LogarithmicGradient
 from pydantic import StrictStr, Field
 from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
-COLORIZER_ONE_OF_SCHEMAS = ["ColorizerLinearGradient", "ColorizerLogarithmicGradient", "ColorizerPalette", "ColorizerRgba"]
+COLORIZER_ONE_OF_SCHEMAS = ["ColorizerPalette", "ColorizerRgba", "LinearGradient", "LogarithmicGradient"]
 
 class Colorizer(BaseModel):
     """
     Colorizer
     """
-    # data type: ColorizerLinearGradient
-    oneof_schema_1_validator: Optional[ColorizerLinearGradient] = None
-    # data type: ColorizerLogarithmicGradient
-    oneof_schema_2_validator: Optional[ColorizerLogarithmicGradient] = None
+    # data type: LinearGradient
+    oneof_schema_1_validator: Optional[LinearGradient] = None
+    # data type: LogarithmicGradient
+    oneof_schema_2_validator: Optional[LogarithmicGradient] = None
     # data type: ColorizerPalette
     oneof_schema_3_validator: Optional[ColorizerPalette] = None
     # data type: ColorizerRgba
     oneof_schema_4_validator: Optional[ColorizerRgba] = None
-    actual_instance: Optional[Union[ColorizerLinearGradient, ColorizerLogarithmicGradient, ColorizerPalette, ColorizerRgba]] = None
-    one_of_schemas: List[str] = Field(default=Literal["ColorizerLinearGradient", "ColorizerLogarithmicGradient", "ColorizerPalette", "ColorizerRgba"])
+    actual_instance: Optional[Union[ColorizerPalette, ColorizerRgba, LinearGradient, LogarithmicGradient]] = None
+    one_of_schemas: List[str] = Field(default=Literal["ColorizerPalette", "ColorizerRgba", "LinearGradient", "LogarithmicGradient"])
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -67,14 +67,14 @@ class Colorizer(BaseModel):
         instance = Colorizer.model_construct()
         error_messages = []
         match = 0
-        # validate data type: ColorizerLinearGradient
-        if not isinstance(v, ColorizerLinearGradient):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ColorizerLinearGradient`")
+        # validate data type: LinearGradient
+        if not isinstance(v, LinearGradient):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LinearGradient`")
         else:
             match += 1
-        # validate data type: ColorizerLogarithmicGradient
-        if not isinstance(v, ColorizerLogarithmicGradient):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ColorizerLogarithmicGradient`")
+        # validate data type: LogarithmicGradient
+        if not isinstance(v, LogarithmicGradient):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LogarithmicGradient`")
         else:
             match += 1
         # validate data type: ColorizerPalette
@@ -89,10 +89,10 @@ class Colorizer(BaseModel):
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Colorizer with oneOf schemas: ColorizerLinearGradient, ColorizerLogarithmicGradient, ColorizerPalette, ColorizerRgba. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Colorizer with oneOf schemas: ColorizerPalette, ColorizerRgba, LinearGradient, LogarithmicGradient. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Colorizer with oneOf schemas: ColorizerLinearGradient, ColorizerLogarithmicGradient, ColorizerPalette, ColorizerRgba. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Colorizer with oneOf schemas: ColorizerPalette, ColorizerRgba, LinearGradient, LogarithmicGradient. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -112,14 +112,14 @@ class Colorizer(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `ColorizerLinearGradient`
+        # check if data type is `LinearGradient`
         if _data_type == "linearGradient":
-            instance.actual_instance = ColorizerLinearGradient.from_json(json_str)
+            instance.actual_instance = LinearGradient.from_json(json_str)
             return instance
 
-        # check if data type is `ColorizerLogarithmicGradient`
+        # check if data type is `LogarithmicGradient`
         if _data_type == "logarithmicGradient":
-            instance.actual_instance = ColorizerLogarithmicGradient.from_json(json_str)
+            instance.actual_instance = LogarithmicGradient.from_json(json_str)
             return instance
 
         # check if data type is `ColorizerPalette`
@@ -132,16 +132,6 @@ class Colorizer(BaseModel):
             instance.actual_instance = ColorizerRgba.from_json(json_str)
             return instance
 
-        # check if data type is `ColorizerLinearGradient`
-        if _data_type == "ColorizerLinearGradient":
-            instance.actual_instance = ColorizerLinearGradient.from_json(json_str)
-            return instance
-
-        # check if data type is `ColorizerLogarithmicGradient`
-        if _data_type == "ColorizerLogarithmicGradient":
-            instance.actual_instance = ColorizerLogarithmicGradient.from_json(json_str)
-            return instance
-
         # check if data type is `ColorizerPalette`
         if _data_type == "ColorizerPalette":
             instance.actual_instance = ColorizerPalette.from_json(json_str)
@@ -152,15 +142,25 @@ class Colorizer(BaseModel):
             instance.actual_instance = ColorizerRgba.from_json(json_str)
             return instance
 
-        # deserialize data into ColorizerLinearGradient
+        # check if data type is `LinearGradient`
+        if _data_type == "LinearGradient":
+            instance.actual_instance = LinearGradient.from_json(json_str)
+            return instance
+
+        # check if data type is `LogarithmicGradient`
+        if _data_type == "LogarithmicGradient":
+            instance.actual_instance = LogarithmicGradient.from_json(json_str)
+            return instance
+
+        # deserialize data into LinearGradient
         try:
-            instance.actual_instance = ColorizerLinearGradient.from_json(json_str)
+            instance.actual_instance = LinearGradient.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ColorizerLogarithmicGradient
+        # deserialize data into LogarithmicGradient
         try:
-            instance.actual_instance = ColorizerLogarithmicGradient.from_json(json_str)
+            instance.actual_instance = LogarithmicGradient.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -179,10 +179,10 @@ class Colorizer(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Colorizer with oneOf schemas: ColorizerLinearGradient, ColorizerLogarithmicGradient, ColorizerPalette, ColorizerRgba. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Colorizer with oneOf schemas: ColorizerPalette, ColorizerRgba, LinearGradient, LogarithmicGradient. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Colorizer with oneOf schemas: ColorizerLinearGradient, ColorizerLogarithmicGradient, ColorizerPalette, ColorizerRgba. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Colorizer with oneOf schemas: ColorizerPalette, ColorizerRgba, LinearGradient, LogarithmicGradient. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -196,7 +196,7 @@ class Colorizer(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], ColorizerLinearGradient, ColorizerLogarithmicGradient, ColorizerPalette, ColorizerRgba]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], ColorizerPalette, ColorizerRgba, LinearGradient, LogarithmicGradient]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -11,9 +11,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MeasurementClassificationFromJSONTyped, MeasurementClassificationToJSON, } from './MeasurementClassification';
-import { MeasurementContinuousFromJSONTyped, MeasurementContinuousToJSON, } from './MeasurementContinuous';
-import { MeasurementUnitlessFromJSONTyped, MeasurementUnitlessToJSON, } from './MeasurementUnitless';
+import { ClassificationMeasurementFromJSONTyped, ClassificationMeasurementToJSON, } from './ClassificationMeasurement';
+import { ContinuousMeasurementFromJSONTyped, ContinuousMeasurementToJSON, } from './ContinuousMeasurement';
+import { UnitlessMeasurementFromJSONTyped, UnitlessMeasurementToJSON, } from './UnitlessMeasurement';
 export function MeasurementFromJSON(json) {
     return MeasurementFromJSONTyped(json, false);
 }
@@ -23,11 +23,11 @@ export function MeasurementFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'classification':
-            return Object.assign(Object.assign({}, MeasurementClassificationFromJSONTyped(json, true)), { type: 'classification' });
+            return Object.assign(Object.assign({}, ClassificationMeasurementFromJSONTyped(json, true)), { type: 'classification' });
         case 'continuous':
-            return Object.assign(Object.assign({}, MeasurementContinuousFromJSONTyped(json, true)), { type: 'continuous' });
+            return Object.assign(Object.assign({}, ContinuousMeasurementFromJSONTyped(json, true)), { type: 'continuous' });
         case 'unitless':
-            return Object.assign(Object.assign({}, MeasurementUnitlessFromJSONTyped(json, true)), { type: 'unitless' });
+            return Object.assign(Object.assign({}, UnitlessMeasurementFromJSONTyped(json, true)), { type: 'unitless' });
         default:
             throw new Error(`No variant of Measurement exists with 'type=${json['type']}'`);
     }
@@ -38,11 +38,11 @@ export function MeasurementToJSON(value) {
     }
     switch (value['type']) {
         case 'classification':
-            return MeasurementClassificationToJSON(value);
+            return ClassificationMeasurementToJSON(value);
         case 'continuous':
-            return MeasurementContinuousToJSON(value);
+            return ContinuousMeasurementToJSON(value);
         case 'unitless':
-            return MeasurementUnitlessToJSON(value);
+            return UnitlessMeasurementToJSON(value);
         default:
             throw new Error(`No variant of Measurement exists with 'type=${value['type']}'`);
     }

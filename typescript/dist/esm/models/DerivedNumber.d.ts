@@ -33,7 +33,20 @@ export interface DerivedNumber {
      * @memberof DerivedNumber
      */
     factor: number;
+    /**
+     *
+     * @type {string}
+     * @memberof DerivedNumber
+     */
+    type: DerivedNumberTypeEnum;
 }
+/**
+ * @export
+ */
+export declare const DerivedNumberTypeEnum: {
+    readonly Derived: "derived";
+};
+export type DerivedNumberTypeEnum = typeof DerivedNumberTypeEnum[keyof typeof DerivedNumberTypeEnum];
 /**
  * Check if a given object implements the DerivedNumber interface.
  */

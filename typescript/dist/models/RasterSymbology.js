@@ -13,8 +13,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterSymbologyToJSON = exports.RasterSymbologyFromJSONTyped = exports.RasterSymbologyFromJSON = exports.instanceOfRasterSymbology = void 0;
+exports.RasterSymbologyToJSON = exports.RasterSymbologyFromJSONTyped = exports.RasterSymbologyFromJSON = exports.instanceOfRasterSymbology = exports.RasterSymbologyTypeEnum = void 0;
 const RasterColorizer_1 = require("./RasterColorizer");
+/**
+ * @export
+ */
+exports.RasterSymbologyTypeEnum = {
+    Raster: 'raster'
+};
 /**
  * Check if a given object implements the RasterSymbology interface.
  */
@@ -22,6 +28,8 @@ function instanceOfRasterSymbology(value) {
     if (!('opacity' in value))
         return false;
     if (!('rasterColorizer' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -37,6 +45,7 @@ function RasterSymbologyFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'opacity': json['opacity'],
         'rasterColorizer': (0, RasterColorizer_1.RasterColorizerFromJSON)(json['rasterColorizer']),
+        'type': json['type'],
     };
 }
 exports.RasterSymbologyFromJSONTyped = RasterSymbologyFromJSONTyped;
@@ -47,6 +56,7 @@ function RasterSymbologyToJSON(value) {
     return {
         'opacity': value['opacity'],
         'rasterColorizer': (0, RasterColorizer_1.RasterColorizerToJSON)(value['rasterColorizer']),
+        'type': value['type'],
     };
 }
 exports.RasterSymbologyToJSON = RasterSymbologyToJSON;

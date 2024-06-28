@@ -50,7 +50,23 @@ export interface LayerListing {
      * @memberof LayerListing
      */
     properties?: Array<Array<string>>;
+    /**
+     * 
+     * @type {string}
+     * @memberof LayerListing
+     */
+    type: LayerListingTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const LayerListingTypeEnum = {
+    Layer: 'layer'
+} as const;
+export type LayerListingTypeEnum = typeof LayerListingTypeEnum[keyof typeof LayerListingTypeEnum];
+
 
 /**
  * Check if a given object implements the LayerListing interface.
@@ -59,6 +75,7 @@ export function instanceOfLayerListing(value: object): boolean {
     if (!('description' in value)) return false;
     if (!('id' in value)) return false;
     if (!('name' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 
@@ -76,6 +93,7 @@ export function LayerListingFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'id': ProviderLayerIdFromJSON(json['id']),
         'name': json['name'],
         'properties': json['properties'] == null ? undefined : json['properties'],
+        'type': json['type'],
     };
 }
 
@@ -89,6 +107,7 @@ export function LayerListingToJSON(value?: LayerListing | null): any {
         'id': ProviderLayerIdToJSON(value['id']),
         'name': value['name'],
         'properties': value['properties'],
+        'type': value['type'],
     };
 }
 

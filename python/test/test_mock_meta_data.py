@@ -51,7 +51,8 @@ class TestMockMetaData(unittest.TestCase):
                         }, 
                     data_type = 'Data', 
                     spatial_reference = '', 
-                    time = null, )
+                    time = null, ),
+                type = 'MockMetaData'
             )
         else:
             return MockMetaData(
@@ -71,6 +72,7 @@ class TestMockMetaData(unittest.TestCase):
                     data_type = 'Data', 
                     spatial_reference = '', 
                     time = null, ),
+                type = 'MockMetaData',
         )
         """
 

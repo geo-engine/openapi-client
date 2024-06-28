@@ -12,34 +12,34 @@
  * Do not edit the class manually.
  */
 
-import type { TypedResultDescriptorPlot } from './TypedResultDescriptorPlot';
+import type { TypedPlotResultDescriptor } from './TypedPlotResultDescriptor';
 import {
-    instanceOfTypedResultDescriptorPlot,
-    TypedResultDescriptorPlotFromJSON,
-    TypedResultDescriptorPlotFromJSONTyped,
-    TypedResultDescriptorPlotToJSON,
-} from './TypedResultDescriptorPlot';
-import type { TypedResultDescriptorRaster } from './TypedResultDescriptorRaster';
+    instanceOfTypedPlotResultDescriptor,
+    TypedPlotResultDescriptorFromJSON,
+    TypedPlotResultDescriptorFromJSONTyped,
+    TypedPlotResultDescriptorToJSON,
+} from './TypedPlotResultDescriptor';
+import type { TypedRasterResultDescriptor } from './TypedRasterResultDescriptor';
 import {
-    instanceOfTypedResultDescriptorRaster,
-    TypedResultDescriptorRasterFromJSON,
-    TypedResultDescriptorRasterFromJSONTyped,
-    TypedResultDescriptorRasterToJSON,
-} from './TypedResultDescriptorRaster';
-import type { TypedResultDescriptorVector } from './TypedResultDescriptorVector';
+    instanceOfTypedRasterResultDescriptor,
+    TypedRasterResultDescriptorFromJSON,
+    TypedRasterResultDescriptorFromJSONTyped,
+    TypedRasterResultDescriptorToJSON,
+} from './TypedRasterResultDescriptor';
+import type { TypedVectorResultDescriptor } from './TypedVectorResultDescriptor';
 import {
-    instanceOfTypedResultDescriptorVector,
-    TypedResultDescriptorVectorFromJSON,
-    TypedResultDescriptorVectorFromJSONTyped,
-    TypedResultDescriptorVectorToJSON,
-} from './TypedResultDescriptorVector';
+    instanceOfTypedVectorResultDescriptor,
+    TypedVectorResultDescriptorFromJSON,
+    TypedVectorResultDescriptorFromJSONTyped,
+    TypedVectorResultDescriptorToJSON,
+} from './TypedVectorResultDescriptor';
 
 /**
  * @type TypedResultDescriptor
  * 
  * @export
  */
-export type TypedResultDescriptor = { type: 'plot' } & TypedResultDescriptorPlot | { type: 'raster' } & TypedResultDescriptorRaster | { type: 'vector' } & TypedResultDescriptorVector;
+export type TypedResultDescriptor = { type: 'plot' } & TypedPlotResultDescriptor | { type: 'raster' } & TypedRasterResultDescriptor | { type: 'vector' } & TypedVectorResultDescriptor;
 
 export function TypedResultDescriptorFromJSON(json: any): TypedResultDescriptor {
     return TypedResultDescriptorFromJSONTyped(json, false);
@@ -51,11 +51,11 @@ export function TypedResultDescriptorFromJSONTyped(json: any, ignoreDiscriminato
     }
     switch (json['type']) {
         case 'plot':
-            return {...TypedResultDescriptorPlotFromJSONTyped(json, true), type: 'plot'};
+            return {...TypedPlotResultDescriptorFromJSONTyped(json, true), type: 'plot'};
         case 'raster':
-            return {...TypedResultDescriptorRasterFromJSONTyped(json, true), type: 'raster'};
+            return {...TypedRasterResultDescriptorFromJSONTyped(json, true), type: 'raster'};
         case 'vector':
-            return {...TypedResultDescriptorVectorFromJSONTyped(json, true), type: 'vector'};
+            return {...TypedVectorResultDescriptorFromJSONTyped(json, true), type: 'vector'};
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${json['type']}'`);
     }
@@ -67,11 +67,11 @@ export function TypedResultDescriptorToJSON(value?: TypedResultDescriptor | null
     }
     switch (value['type']) {
         case 'plot':
-            return TypedResultDescriptorPlotToJSON(value);
+            return TypedPlotResultDescriptorToJSON(value);
         case 'raster':
-            return TypedResultDescriptorRasterToJSON(value);
+            return TypedRasterResultDescriptorToJSON(value);
         case 'vector':
-            return TypedResultDescriptorVectorToJSON(value);
+            return TypedVectorResultDescriptorToJSON(value);
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${value['type']}'`);
     }

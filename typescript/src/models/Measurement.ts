@@ -12,34 +12,34 @@
  * Do not edit the class manually.
  */
 
-import type { MeasurementClassification } from './MeasurementClassification';
+import type { ClassificationMeasurement } from './ClassificationMeasurement';
 import {
-    instanceOfMeasurementClassification,
-    MeasurementClassificationFromJSON,
-    MeasurementClassificationFromJSONTyped,
-    MeasurementClassificationToJSON,
-} from './MeasurementClassification';
-import type { MeasurementContinuous } from './MeasurementContinuous';
+    instanceOfClassificationMeasurement,
+    ClassificationMeasurementFromJSON,
+    ClassificationMeasurementFromJSONTyped,
+    ClassificationMeasurementToJSON,
+} from './ClassificationMeasurement';
+import type { ContinuousMeasurement } from './ContinuousMeasurement';
 import {
-    instanceOfMeasurementContinuous,
-    MeasurementContinuousFromJSON,
-    MeasurementContinuousFromJSONTyped,
-    MeasurementContinuousToJSON,
-} from './MeasurementContinuous';
-import type { MeasurementUnitless } from './MeasurementUnitless';
+    instanceOfContinuousMeasurement,
+    ContinuousMeasurementFromJSON,
+    ContinuousMeasurementFromJSONTyped,
+    ContinuousMeasurementToJSON,
+} from './ContinuousMeasurement';
+import type { UnitlessMeasurement } from './UnitlessMeasurement';
 import {
-    instanceOfMeasurementUnitless,
-    MeasurementUnitlessFromJSON,
-    MeasurementUnitlessFromJSONTyped,
-    MeasurementUnitlessToJSON,
-} from './MeasurementUnitless';
+    instanceOfUnitlessMeasurement,
+    UnitlessMeasurementFromJSON,
+    UnitlessMeasurementFromJSONTyped,
+    UnitlessMeasurementToJSON,
+} from './UnitlessMeasurement';
 
 /**
  * @type Measurement
  * 
  * @export
  */
-export type Measurement = { type: 'classification' } & MeasurementClassification | { type: 'continuous' } & MeasurementContinuous | { type: 'unitless' } & MeasurementUnitless;
+export type Measurement = { type: 'classification' } & ClassificationMeasurement | { type: 'continuous' } & ContinuousMeasurement | { type: 'unitless' } & UnitlessMeasurement;
 
 export function MeasurementFromJSON(json: any): Measurement {
     return MeasurementFromJSONTyped(json, false);
@@ -51,11 +51,11 @@ export function MeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     switch (json['type']) {
         case 'classification':
-            return {...MeasurementClassificationFromJSONTyped(json, true), type: 'classification'};
+            return {...ClassificationMeasurementFromJSONTyped(json, true), type: 'classification'};
         case 'continuous':
-            return {...MeasurementContinuousFromJSONTyped(json, true), type: 'continuous'};
+            return {...ContinuousMeasurementFromJSONTyped(json, true), type: 'continuous'};
         case 'unitless':
-            return {...MeasurementUnitlessFromJSONTyped(json, true), type: 'unitless'};
+            return {...UnitlessMeasurementFromJSONTyped(json, true), type: 'unitless'};
         default:
             throw new Error(`No variant of Measurement exists with 'type=${json['type']}'`);
     }
@@ -67,11 +67,11 @@ export function MeasurementToJSON(value?: Measurement | null): any {
     }
     switch (value['type']) {
         case 'classification':
-            return MeasurementClassificationToJSON(value);
+            return ClassificationMeasurementToJSON(value);
         case 'continuous':
-            return MeasurementContinuousToJSON(value);
+            return ContinuousMeasurementToJSON(value);
         case 'unitless':
-            return MeasurementUnitlessToJSON(value);
+            return UnitlessMeasurementToJSON(value);
         default:
             throw new Error(`No variant of Measurement exists with 'type=${value['type']}'`);
     }

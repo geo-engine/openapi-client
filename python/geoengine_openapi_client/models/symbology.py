@@ -18,30 +18,30 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.symbology_line import SymbologyLine
-from geoengine_openapi_client.models.symbology_point import SymbologyPoint
-from geoengine_openapi_client.models.symbology_polygon import SymbologyPolygon
-from geoengine_openapi_client.models.symbology_raster import SymbologyRaster
+from geoengine_openapi_client.models.line_symbology import LineSymbology
+from geoengine_openapi_client.models.point_symbology import PointSymbology
+from geoengine_openapi_client.models.polygon_symbology import PolygonSymbology
+from geoengine_openapi_client.models.raster_symbology import RasterSymbology
 from pydantic import StrictStr, Field
 from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
-SYMBOLOGY_ONE_OF_SCHEMAS = ["SymbologyLine", "SymbologyPoint", "SymbologyPolygon", "SymbologyRaster"]
+SYMBOLOGY_ONE_OF_SCHEMAS = ["LineSymbology", "PointSymbology", "PolygonSymbology", "RasterSymbology"]
 
 class Symbology(BaseModel):
     """
     Symbology
     """
-    # data type: SymbologyRaster
-    oneof_schema_1_validator: Optional[SymbologyRaster] = None
-    # data type: SymbologyPoint
-    oneof_schema_2_validator: Optional[SymbologyPoint] = None
-    # data type: SymbologyLine
-    oneof_schema_3_validator: Optional[SymbologyLine] = None
-    # data type: SymbologyPolygon
-    oneof_schema_4_validator: Optional[SymbologyPolygon] = None
-    actual_instance: Optional[Union[SymbologyLine, SymbologyPoint, SymbologyPolygon, SymbologyRaster]] = None
-    one_of_schemas: List[str] = Field(default=Literal["SymbologyLine", "SymbologyPoint", "SymbologyPolygon", "SymbologyRaster"])
+    # data type: RasterSymbology
+    oneof_schema_1_validator: Optional[RasterSymbology] = None
+    # data type: PointSymbology
+    oneof_schema_2_validator: Optional[PointSymbology] = None
+    # data type: LineSymbology
+    oneof_schema_3_validator: Optional[LineSymbology] = None
+    # data type: PolygonSymbology
+    oneof_schema_4_validator: Optional[PolygonSymbology] = None
+    actual_instance: Optional[Union[LineSymbology, PointSymbology, PolygonSymbology, RasterSymbology]] = None
+    one_of_schemas: List[str] = Field(default=Literal["LineSymbology", "PointSymbology", "PolygonSymbology", "RasterSymbology"])
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -67,32 +67,32 @@ class Symbology(BaseModel):
         instance = Symbology.model_construct()
         error_messages = []
         match = 0
-        # validate data type: SymbologyRaster
-        if not isinstance(v, SymbologyRaster):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `SymbologyRaster`")
+        # validate data type: RasterSymbology
+        if not isinstance(v, RasterSymbology):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `RasterSymbology`")
         else:
             match += 1
-        # validate data type: SymbologyPoint
-        if not isinstance(v, SymbologyPoint):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `SymbologyPoint`")
+        # validate data type: PointSymbology
+        if not isinstance(v, PointSymbology):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `PointSymbology`")
         else:
             match += 1
-        # validate data type: SymbologyLine
-        if not isinstance(v, SymbologyLine):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `SymbologyLine`")
+        # validate data type: LineSymbology
+        if not isinstance(v, LineSymbology):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LineSymbology`")
         else:
             match += 1
-        # validate data type: SymbologyPolygon
-        if not isinstance(v, SymbologyPolygon):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `SymbologyPolygon`")
+        # validate data type: PolygonSymbology
+        if not isinstance(v, PolygonSymbology):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `PolygonSymbology`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Symbology with oneOf schemas: SymbologyLine, SymbologyPoint, SymbologyPolygon, SymbologyRaster. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Symbology with oneOf schemas: LineSymbology, PointSymbology, PolygonSymbology, RasterSymbology. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Symbology with oneOf schemas: SymbologyLine, SymbologyPoint, SymbologyPolygon, SymbologyRaster. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Symbology with oneOf schemas: LineSymbology, PointSymbology, PolygonSymbology, RasterSymbology. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -112,77 +112,77 @@ class Symbology(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `SymbologyLine`
+        # check if data type is `LineSymbology`
         if _data_type == "line":
-            instance.actual_instance = SymbologyLine.from_json(json_str)
+            instance.actual_instance = LineSymbology.from_json(json_str)
             return instance
 
-        # check if data type is `SymbologyPoint`
+        # check if data type is `PointSymbology`
         if _data_type == "point":
-            instance.actual_instance = SymbologyPoint.from_json(json_str)
+            instance.actual_instance = PointSymbology.from_json(json_str)
             return instance
 
-        # check if data type is `SymbologyPolygon`
+        # check if data type is `PolygonSymbology`
         if _data_type == "polygon":
-            instance.actual_instance = SymbologyPolygon.from_json(json_str)
+            instance.actual_instance = PolygonSymbology.from_json(json_str)
             return instance
 
-        # check if data type is `SymbologyRaster`
+        # check if data type is `RasterSymbology`
         if _data_type == "raster":
-            instance.actual_instance = SymbologyRaster.from_json(json_str)
+            instance.actual_instance = RasterSymbology.from_json(json_str)
             return instance
 
-        # check if data type is `SymbologyLine`
-        if _data_type == "SymbologyLine":
-            instance.actual_instance = SymbologyLine.from_json(json_str)
+        # check if data type is `LineSymbology`
+        if _data_type == "LineSymbology":
+            instance.actual_instance = LineSymbology.from_json(json_str)
             return instance
 
-        # check if data type is `SymbologyPoint`
-        if _data_type == "SymbologyPoint":
-            instance.actual_instance = SymbologyPoint.from_json(json_str)
+        # check if data type is `PointSymbology`
+        if _data_type == "PointSymbology":
+            instance.actual_instance = PointSymbology.from_json(json_str)
             return instance
 
-        # check if data type is `SymbologyPolygon`
-        if _data_type == "SymbologyPolygon":
-            instance.actual_instance = SymbologyPolygon.from_json(json_str)
+        # check if data type is `PolygonSymbology`
+        if _data_type == "PolygonSymbology":
+            instance.actual_instance = PolygonSymbology.from_json(json_str)
             return instance
 
-        # check if data type is `SymbologyRaster`
-        if _data_type == "SymbologyRaster":
-            instance.actual_instance = SymbologyRaster.from_json(json_str)
+        # check if data type is `RasterSymbology`
+        if _data_type == "RasterSymbology":
+            instance.actual_instance = RasterSymbology.from_json(json_str)
             return instance
 
-        # deserialize data into SymbologyRaster
+        # deserialize data into RasterSymbology
         try:
-            instance.actual_instance = SymbologyRaster.from_json(json_str)
+            instance.actual_instance = RasterSymbology.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into SymbologyPoint
+        # deserialize data into PointSymbology
         try:
-            instance.actual_instance = SymbologyPoint.from_json(json_str)
+            instance.actual_instance = PointSymbology.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into SymbologyLine
+        # deserialize data into LineSymbology
         try:
-            instance.actual_instance = SymbologyLine.from_json(json_str)
+            instance.actual_instance = LineSymbology.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into SymbologyPolygon
+        # deserialize data into PolygonSymbology
         try:
-            instance.actual_instance = SymbologyPolygon.from_json(json_str)
+            instance.actual_instance = PolygonSymbology.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Symbology with oneOf schemas: SymbologyLine, SymbologyPoint, SymbologyPolygon, SymbologyRaster. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Symbology with oneOf schemas: LineSymbology, PointSymbology, PolygonSymbology, RasterSymbology. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Symbology with oneOf schemas: SymbologyLine, SymbologyPoint, SymbologyPolygon, SymbologyRaster. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Symbology with oneOf schemas: LineSymbology, PointSymbology, PolygonSymbology, RasterSymbology. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -196,7 +196,7 @@ class Symbology(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], SymbologyLine, SymbologyPoint, SymbologyPolygon, SymbologyRaster]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], LineSymbology, PointSymbology, PolygonSymbology, RasterSymbology]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

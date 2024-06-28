@@ -14,9 +14,9 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TypedResultDescriptorToJSON = exports.TypedResultDescriptorFromJSONTyped = exports.TypedResultDescriptorFromJSON = void 0;
-const TypedResultDescriptorPlot_1 = require("./TypedResultDescriptorPlot");
-const TypedResultDescriptorRaster_1 = require("./TypedResultDescriptorRaster");
-const TypedResultDescriptorVector_1 = require("./TypedResultDescriptorVector");
+const TypedPlotResultDescriptor_1 = require("./TypedPlotResultDescriptor");
+const TypedRasterResultDescriptor_1 = require("./TypedRasterResultDescriptor");
+const TypedVectorResultDescriptor_1 = require("./TypedVectorResultDescriptor");
 function TypedResultDescriptorFromJSON(json) {
     return TypedResultDescriptorFromJSONTyped(json, false);
 }
@@ -27,11 +27,11 @@ function TypedResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'plot':
-            return Object.assign(Object.assign({}, (0, TypedResultDescriptorPlot_1.TypedResultDescriptorPlotFromJSONTyped)(json, true)), { type: 'plot' });
+            return Object.assign(Object.assign({}, (0, TypedPlotResultDescriptor_1.TypedPlotResultDescriptorFromJSONTyped)(json, true)), { type: 'plot' });
         case 'raster':
-            return Object.assign(Object.assign({}, (0, TypedResultDescriptorRaster_1.TypedResultDescriptorRasterFromJSONTyped)(json, true)), { type: 'raster' });
+            return Object.assign(Object.assign({}, (0, TypedRasterResultDescriptor_1.TypedRasterResultDescriptorFromJSONTyped)(json, true)), { type: 'raster' });
         case 'vector':
-            return Object.assign(Object.assign({}, (0, TypedResultDescriptorVector_1.TypedResultDescriptorVectorFromJSONTyped)(json, true)), { type: 'vector' });
+            return Object.assign(Object.assign({}, (0, TypedVectorResultDescriptor_1.TypedVectorResultDescriptorFromJSONTyped)(json, true)), { type: 'vector' });
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${json['type']}'`);
     }
@@ -43,11 +43,11 @@ function TypedResultDescriptorToJSON(value) {
     }
     switch (value['type']) {
         case 'plot':
-            return (0, TypedResultDescriptorPlot_1.TypedResultDescriptorPlotToJSON)(value);
+            return (0, TypedPlotResultDescriptor_1.TypedPlotResultDescriptorToJSON)(value);
         case 'raster':
-            return (0, TypedResultDescriptorRaster_1.TypedResultDescriptorRasterToJSON)(value);
+            return (0, TypedRasterResultDescriptor_1.TypedRasterResultDescriptorToJSON)(value);
         case 'vector':
-            return (0, TypedResultDescriptorVector_1.TypedResultDescriptorVectorToJSON)(value);
+            return (0, TypedVectorResultDescriptor_1.TypedVectorResultDescriptorToJSON)(value);
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${value['type']}'`);
     }

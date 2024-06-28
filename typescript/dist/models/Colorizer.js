@@ -14,10 +14,10 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ColorizerToJSON = exports.ColorizerFromJSONTyped = exports.ColorizerFromJSON = void 0;
-const ColorizerLinearGradient_1 = require("./ColorizerLinearGradient");
-const ColorizerLogarithmicGradient_1 = require("./ColorizerLogarithmicGradient");
 const ColorizerPalette_1 = require("./ColorizerPalette");
 const ColorizerRgba_1 = require("./ColorizerRgba");
+const LinearGradient_1 = require("./LinearGradient");
+const LogarithmicGradient_1 = require("./LogarithmicGradient");
 function ColorizerFromJSON(json) {
     return ColorizerFromJSONTyped(json, false);
 }
@@ -28,9 +28,9 @@ function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'linearGradient':
-            return Object.assign(Object.assign({}, (0, ColorizerLinearGradient_1.ColorizerLinearGradientFromJSONTyped)(json, true)), { type: 'linearGradient' });
+            return Object.assign(Object.assign({}, (0, LinearGradient_1.LinearGradientFromJSONTyped)(json, true)), { type: 'linearGradient' });
         case 'logarithmicGradient':
-            return Object.assign(Object.assign({}, (0, ColorizerLogarithmicGradient_1.ColorizerLogarithmicGradientFromJSONTyped)(json, true)), { type: 'logarithmicGradient' });
+            return Object.assign(Object.assign({}, (0, LogarithmicGradient_1.LogarithmicGradientFromJSONTyped)(json, true)), { type: 'logarithmicGradient' });
         case 'palette':
             return Object.assign(Object.assign({}, (0, ColorizerPalette_1.ColorizerPaletteFromJSONTyped)(json, true)), { type: 'palette' });
         case 'rgba':
@@ -46,9 +46,9 @@ function ColorizerToJSON(value) {
     }
     switch (value['type']) {
         case 'linearGradient':
-            return (0, ColorizerLinearGradient_1.ColorizerLinearGradientToJSON)(value);
+            return (0, LinearGradient_1.LinearGradientToJSON)(value);
         case 'logarithmicGradient':
-            return (0, ColorizerLogarithmicGradient_1.ColorizerLogarithmicGradientToJSON)(value);
+            return (0, LogarithmicGradient_1.LogarithmicGradientToJSON)(value);
         case 'palette':
             return (0, ColorizerPalette_1.ColorizerPaletteToJSON)(value);
         case 'rgba':

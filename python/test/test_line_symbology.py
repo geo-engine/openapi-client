@@ -45,7 +45,8 @@ class TestLineSymbology(unittest.TestCase):
                     fill_color = null, 
                     stroke = geoengine_openapi_client.models.stroke_param.StrokeParam(
                         color = null, 
-                        width = null, ), )
+                        width = null, ), ),
+                type = 'line'
             )
         else:
             return LineSymbology(
@@ -53,6 +54,7 @@ class TestLineSymbology(unittest.TestCase):
                 stroke = geoengine_openapi_client.models.stroke_param.StrokeParam(
                     color = null, 
                     width = null, ),
+                type = 'line',
         )
         """
 

@@ -46,7 +46,8 @@ class TestPolygonSymbology(unittest.TestCase):
                     fill_color = null, 
                     stroke = geoengine_openapi_client.models.stroke_param.StrokeParam(
                         color = null, 
-                        width = null, ), )
+                        width = null, ), ),
+                type = 'polygon'
             )
         else:
             return PolygonSymbology(
@@ -55,6 +56,7 @@ class TestPolygonSymbology(unittest.TestCase):
                 stroke = geoengine_openapi_client.models.stroke_param.StrokeParam(
                     color = null, 
                     width = null, ),
+                type = 'polygon',
         )
         """
 

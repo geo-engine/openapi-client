@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { CollectionItemCollection } from './CollectionItemCollection';
-import type { CollectionItemLayer } from './CollectionItemLayer';
+import type { LayerCollectionListing } from './LayerCollectionListing';
+import type { LayerListing } from './LayerListing';
 /**
  * @type CollectionItem
  *
@@ -18,9 +18,9 @@ import type { CollectionItemLayer } from './CollectionItemLayer';
  */
 export type CollectionItem = {
     type: 'collection';
-} & CollectionItemCollection | {
+} & LayerCollectionListing | {
     type: 'layer';
-} & CollectionItemLayer;
+} & LayerListing;
 export declare function CollectionItemFromJSON(json: any): CollectionItem;
 export declare function CollectionItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): CollectionItem;
 export declare function CollectionItemToJSON(value?: CollectionItem | null): any;

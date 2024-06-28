@@ -15,6 +15,12 @@ import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './G
 import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
 import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
 /**
+ * @export
+ */
+export const GdalMetadataNetCdfCfTypeEnum = {
+    GdalMetadataNetCdfCf: 'GdalMetadataNetCdfCf'
+};
+/**
  * Check if a given object implements the GdalMetadataNetCdfCf interface.
  */
 export function instanceOfGdalMetadataNetCdfCf(value) {
@@ -29,6 +35,8 @@ export function instanceOfGdalMetadataNetCdfCf(value) {
     if (!('start' in value))
         return false;
     if (!('step' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -47,6 +55,7 @@ export function GdalMetadataNetCdfCfFromJSONTyped(json, ignoreDiscriminator) {
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
         'start': json['start'],
         'step': TimeStepFromJSON(json['step']),
+        'type': json['type'],
     };
 }
 export function GdalMetadataNetCdfCfToJSON(value) {
@@ -61,5 +70,6 @@ export function GdalMetadataNetCdfCfToJSON(value) {
         'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
         'start': value['start'],
         'step': TimeStepToJSON(value['step']),
+        'type': value['type'],
     };
 }

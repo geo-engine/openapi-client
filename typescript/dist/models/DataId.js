@@ -14,8 +14,8 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataIdToJSON = exports.DataIdFromJSONTyped = exports.DataIdFromJSON = void 0;
-const DataIdExternal_1 = require("./DataIdExternal");
-const DataIdInternal_1 = require("./DataIdInternal");
+const ExternalDataId_1 = require("./ExternalDataId");
+const InternalDataId_1 = require("./InternalDataId");
 function DataIdFromJSON(json) {
     return DataIdFromJSONTyped(json, false);
 }
@@ -26,9 +26,9 @@ function DataIdFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'external':
-            return Object.assign(Object.assign({}, (0, DataIdExternal_1.DataIdExternalFromJSONTyped)(json, true)), { type: 'external' });
+            return Object.assign(Object.assign({}, (0, ExternalDataId_1.ExternalDataIdFromJSONTyped)(json, true)), { type: 'external' });
         case 'internal':
-            return Object.assign(Object.assign({}, (0, DataIdInternal_1.DataIdInternalFromJSONTyped)(json, true)), { type: 'internal' });
+            return Object.assign(Object.assign({}, (0, InternalDataId_1.InternalDataIdFromJSONTyped)(json, true)), { type: 'internal' });
         default:
             throw new Error(`No variant of DataId exists with 'type=${json['type']}'`);
     }
@@ -40,9 +40,9 @@ function DataIdToJSON(value) {
     }
     switch (value['type']) {
         case 'external':
-            return (0, DataIdExternal_1.DataIdExternalToJSON)(value);
+            return (0, ExternalDataId_1.ExternalDataIdToJSON)(value);
         case 'internal':
-            return (0, DataIdInternal_1.DataIdInternalToJSON)(value);
+            return (0, InternalDataId_1.InternalDataIdToJSON)(value);
         default:
             throw new Error(`No variant of DataId exists with 'type=${value['type']}'`);
     }

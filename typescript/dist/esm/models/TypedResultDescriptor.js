@@ -11,9 +11,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TypedResultDescriptorPlotFromJSONTyped, TypedResultDescriptorPlotToJSON, } from './TypedResultDescriptorPlot';
-import { TypedResultDescriptorRasterFromJSONTyped, TypedResultDescriptorRasterToJSON, } from './TypedResultDescriptorRaster';
-import { TypedResultDescriptorVectorFromJSONTyped, TypedResultDescriptorVectorToJSON, } from './TypedResultDescriptorVector';
+import { TypedPlotResultDescriptorFromJSONTyped, TypedPlotResultDescriptorToJSON, } from './TypedPlotResultDescriptor';
+import { TypedRasterResultDescriptorFromJSONTyped, TypedRasterResultDescriptorToJSON, } from './TypedRasterResultDescriptor';
+import { TypedVectorResultDescriptorFromJSONTyped, TypedVectorResultDescriptorToJSON, } from './TypedVectorResultDescriptor';
 export function TypedResultDescriptorFromJSON(json) {
     return TypedResultDescriptorFromJSONTyped(json, false);
 }
@@ -23,11 +23,11 @@ export function TypedResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'plot':
-            return Object.assign(Object.assign({}, TypedResultDescriptorPlotFromJSONTyped(json, true)), { type: 'plot' });
+            return Object.assign(Object.assign({}, TypedPlotResultDescriptorFromJSONTyped(json, true)), { type: 'plot' });
         case 'raster':
-            return Object.assign(Object.assign({}, TypedResultDescriptorRasterFromJSONTyped(json, true)), { type: 'raster' });
+            return Object.assign(Object.assign({}, TypedRasterResultDescriptorFromJSONTyped(json, true)), { type: 'raster' });
         case 'vector':
-            return Object.assign(Object.assign({}, TypedResultDescriptorVectorFromJSONTyped(json, true)), { type: 'vector' });
+            return Object.assign(Object.assign({}, TypedVectorResultDescriptorFromJSONTyped(json, true)), { type: 'vector' });
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${json['type']}'`);
     }
@@ -38,11 +38,11 @@ export function TypedResultDescriptorToJSON(value) {
     }
     switch (value['type']) {
         case 'plot':
-            return TypedResultDescriptorPlotToJSON(value);
+            return TypedPlotResultDescriptorToJSON(value);
         case 'raster':
-            return TypedResultDescriptorRasterToJSON(value);
+            return TypedRasterResultDescriptorToJSON(value);
         case 'vector':
-            return TypedResultDescriptorVectorToJSON(value);
+            return TypedVectorResultDescriptorToJSON(value);
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${value['type']}'`);
     }

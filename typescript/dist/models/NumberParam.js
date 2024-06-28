@@ -14,7 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NumberParamToJSON = exports.NumberParamFromJSONTyped = exports.NumberParamFromJSON = void 0;
-const NumberParamDerived_1 = require("./NumberParamDerived");
+const DerivedNumber_1 = require("./DerivedNumber");
 const NumberParamStatic_1 = require("./NumberParamStatic");
 function NumberParamFromJSON(json) {
     return NumberParamFromJSONTyped(json, false);
@@ -26,7 +26,7 @@ function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'derived':
-            return Object.assign(Object.assign({}, (0, NumberParamDerived_1.NumberParamDerivedFromJSONTyped)(json, true)), { type: 'derived' });
+            return Object.assign(Object.assign({}, (0, DerivedNumber_1.DerivedNumberFromJSONTyped)(json, true)), { type: 'derived' });
         case 'static':
             return Object.assign(Object.assign({}, (0, NumberParamStatic_1.NumberParamStaticFromJSONTyped)(json, true)), { type: 'static' });
         default:
@@ -40,7 +40,7 @@ function NumberParamToJSON(value) {
     }
     switch (value['type']) {
         case 'derived':
-            return (0, NumberParamDerived_1.NumberParamDerivedToJSON)(value);
+            return (0, DerivedNumber_1.DerivedNumberToJSON)(value);
         case 'static':
             return (0, NumberParamStatic_1.NumberParamStaticToJSON)(value);
         default:

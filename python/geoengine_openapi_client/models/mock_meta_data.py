@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from geoengine_openapi_client.models.mock_dataset_data_source_loading_info import MockDatasetDataSourceLoadingInfo
 from geoengine_openapi_client.models.vector_result_descriptor import VectorResultDescriptor
@@ -31,7 +31,15 @@ class MockMetaData(BaseModel):
     """ # noqa: E501
     loading_info: MockDatasetDataSourceLoadingInfo = Field(alias="loadingInfo")
     result_descriptor: VectorResultDescriptor = Field(alias="resultDescriptor")
-    __properties: ClassVar[List[str]] = ["loadingInfo", "resultDescriptor"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["loadingInfo", "resultDescriptor", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['MockMetaData']):
+            raise ValueError("must be one of enum values ('MockMetaData')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,7 +99,8 @@ class MockMetaData(BaseModel):
 
         _obj = cls.model_validate({
             "loadingInfo": MockDatasetDataSourceLoadingInfo.from_dict(obj["loadingInfo"]) if obj.get("loadingInfo") is not None else None,
-            "resultDescriptor": VectorResultDescriptor.from_dict(obj["resultDescriptor"]) if obj.get("resultDescriptor") is not None else None
+            "resultDescriptor": VectorResultDescriptor.from_dict(obj["resultDescriptor"]) if obj.get("resultDescriptor") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

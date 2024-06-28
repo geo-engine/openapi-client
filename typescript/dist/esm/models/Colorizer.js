@@ -11,10 +11,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ColorizerLinearGradientFromJSONTyped, ColorizerLinearGradientToJSON, } from './ColorizerLinearGradient';
-import { ColorizerLogarithmicGradientFromJSONTyped, ColorizerLogarithmicGradientToJSON, } from './ColorizerLogarithmicGradient';
 import { ColorizerPaletteFromJSONTyped, ColorizerPaletteToJSON, } from './ColorizerPalette';
 import { ColorizerRgbaFromJSONTyped, ColorizerRgbaToJSON, } from './ColorizerRgba';
+import { LinearGradientFromJSONTyped, LinearGradientToJSON, } from './LinearGradient';
+import { LogarithmicGradientFromJSONTyped, LogarithmicGradientToJSON, } from './LogarithmicGradient';
 export function ColorizerFromJSON(json) {
     return ColorizerFromJSONTyped(json, false);
 }
@@ -24,9 +24,9 @@ export function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'linearGradient':
-            return Object.assign(Object.assign({}, ColorizerLinearGradientFromJSONTyped(json, true)), { type: 'linearGradient' });
+            return Object.assign(Object.assign({}, LinearGradientFromJSONTyped(json, true)), { type: 'linearGradient' });
         case 'logarithmicGradient':
-            return Object.assign(Object.assign({}, ColorizerLogarithmicGradientFromJSONTyped(json, true)), { type: 'logarithmicGradient' });
+            return Object.assign(Object.assign({}, LogarithmicGradientFromJSONTyped(json, true)), { type: 'logarithmicGradient' });
         case 'palette':
             return Object.assign(Object.assign({}, ColorizerPaletteFromJSONTyped(json, true)), { type: 'palette' });
         case 'rgba':
@@ -41,9 +41,9 @@ export function ColorizerToJSON(value) {
     }
     switch (value['type']) {
         case 'linearGradient':
-            return ColorizerLinearGradientToJSON(value);
+            return LinearGradientToJSON(value);
         case 'logarithmicGradient':
-            return ColorizerLogarithmicGradientToJSON(value);
+            return LogarithmicGradientToJSON(value);
         case 'palette':
             return ColorizerPaletteToJSON(value);
         case 'rgba':

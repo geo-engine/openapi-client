@@ -16,6 +16,12 @@ import { NumberParamFromJSON, NumberParamToJSON, } from './NumberParam';
 import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
 /**
+ * @export
+ */
+export const PointSymbologyTypeEnum = {
+    Point: 'point'
+};
+/**
  * Check if a given object implements the PointSymbology interface.
  */
 export function instanceOfPointSymbology(value) {
@@ -24,6 +30,8 @@ export function instanceOfPointSymbology(value) {
     if (!('radius' in value))
         return false;
     if (!('stroke' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -39,6 +47,7 @@ export function PointSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'radius': NumberParamFromJSON(json['radius']),
         'stroke': StrokeParamFromJSON(json['stroke']),
         'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
+        'type': json['type'],
     };
 }
 export function PointSymbologyToJSON(value) {
@@ -50,5 +59,6 @@ export function PointSymbologyToJSON(value) {
         'radius': NumberParamToJSON(value['radius']),
         'stroke': StrokeParamToJSON(value['stroke']),
         'text': TextSymbologyToJSON(value['text']),
+        'type': value['type'],
     };
 }

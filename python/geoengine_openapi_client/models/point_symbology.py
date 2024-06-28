@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from geoengine_openapi_client.models.color_param import ColorParam
 from geoengine_openapi_client.models.number_param import NumberParam
@@ -35,7 +35,15 @@ class PointSymbology(BaseModel):
     radius: NumberParam
     stroke: StrokeParam
     text: Optional[TextSymbology] = None
-    __properties: ClassVar[List[str]] = ["fillColor", "radius", "stroke", "text"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["fillColor", "radius", "stroke", "text", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['point']):
+            raise ValueError("must be one of enum values ('point')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,7 +116,8 @@ class PointSymbology(BaseModel):
             "fillColor": ColorParam.from_dict(obj["fillColor"]) if obj.get("fillColor") is not None else None,
             "radius": NumberParam.from_dict(obj["radius"]) if obj.get("radius") is not None else None,
             "stroke": StrokeParam.from_dict(obj["stroke"]) if obj.get("stroke") is not None else None,
-            "text": TextSymbology.from_dict(obj["text"]) if obj.get("text") is not None else None
+            "text": TextSymbology.from_dict(obj["text"]) if obj.get("text") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

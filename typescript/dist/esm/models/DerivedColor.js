@@ -13,12 +13,20 @@
  */
 import { ColorizerFromJSON, ColorizerToJSON, } from './Colorizer';
 /**
+ * @export
+ */
+export const DerivedColorTypeEnum = {
+    Derived: 'derived'
+};
+/**
  * Check if a given object implements the DerivedColor interface.
  */
 export function instanceOfDerivedColor(value) {
     if (!('attribute' in value))
         return false;
     if (!('colorizer' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -32,6 +40,7 @@ export function DerivedColorFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'attribute': json['attribute'],
         'colorizer': ColorizerFromJSON(json['colorizer']),
+        'type': json['type'],
     };
 }
 export function DerivedColorToJSON(value) {
@@ -41,5 +50,6 @@ export function DerivedColorToJSON(value) {
     return {
         'attribute': value['attribute'],
         'colorizer': ColorizerToJSON(value['colorizer']),
+        'type': value['type'],
     };
 }

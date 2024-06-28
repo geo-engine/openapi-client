@@ -15,6 +15,12 @@ import { ColorParamFromJSON, ColorParamToJSON, } from './ColorParam';
 import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
 /**
+ * @export
+ */
+export const PolygonSymbologyTypeEnum = {
+    Polygon: 'polygon'
+};
+/**
  * Check if a given object implements the PolygonSymbology interface.
  */
 export function instanceOfPolygonSymbology(value) {
@@ -23,6 +29,8 @@ export function instanceOfPolygonSymbology(value) {
     if (!('fillColor' in value))
         return false;
     if (!('stroke' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -38,6 +46,7 @@ export function PolygonSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'fillColor': ColorParamFromJSON(json['fillColor']),
         'stroke': StrokeParamFromJSON(json['stroke']),
         'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
+        'type': json['type'],
     };
 }
 export function PolygonSymbologyToJSON(value) {
@@ -49,5 +58,6 @@ export function PolygonSymbologyToJSON(value) {
         'fillColor': ColorParamToJSON(value['fillColor']),
         'stroke': StrokeParamToJSON(value['stroke']),
         'text': TextSymbologyToJSON(value['text']),
+        'type': value['type'],
     };
 }

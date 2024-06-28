@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { CollectionItemCollection } from './CollectionItemCollection';
+import type { LayerCollectionListing } from './LayerCollectionListing';
 import {
-    instanceOfCollectionItemCollection,
-    CollectionItemCollectionFromJSON,
-    CollectionItemCollectionFromJSONTyped,
-    CollectionItemCollectionToJSON,
-} from './CollectionItemCollection';
-import type { CollectionItemLayer } from './CollectionItemLayer';
+    instanceOfLayerCollectionListing,
+    LayerCollectionListingFromJSON,
+    LayerCollectionListingFromJSONTyped,
+    LayerCollectionListingToJSON,
+} from './LayerCollectionListing';
+import type { LayerListing } from './LayerListing';
 import {
-    instanceOfCollectionItemLayer,
-    CollectionItemLayerFromJSON,
-    CollectionItemLayerFromJSONTyped,
-    CollectionItemLayerToJSON,
-} from './CollectionItemLayer';
+    instanceOfLayerListing,
+    LayerListingFromJSON,
+    LayerListingFromJSONTyped,
+    LayerListingToJSON,
+} from './LayerListing';
 
 /**
  * @type CollectionItem
  * 
  * @export
  */
-export type CollectionItem = { type: 'collection' } & CollectionItemCollection | { type: 'layer' } & CollectionItemLayer;
+export type CollectionItem = { type: 'collection' } & LayerCollectionListing | { type: 'layer' } & LayerListing;
 
 export function CollectionItemFromJSON(json: any): CollectionItem {
     return CollectionItemFromJSONTyped(json, false);
@@ -44,9 +44,9 @@ export function CollectionItemFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     switch (json['type']) {
         case 'collection':
-            return {...CollectionItemCollectionFromJSONTyped(json, true), type: 'collection'};
+            return {...LayerCollectionListingFromJSONTyped(json, true), type: 'collection'};
         case 'layer':
-            return {...CollectionItemLayerFromJSONTyped(json, true), type: 'layer'};
+            return {...LayerListingFromJSONTyped(json, true), type: 'layer'};
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }
@@ -58,9 +58,9 @@ export function CollectionItemToJSON(value?: CollectionItem | null): any {
     }
     switch (value['type']) {
         case 'collection':
-            return CollectionItemCollectionToJSON(value);
+            return LayerCollectionListingToJSON(value);
         case 'layer':
-            return CollectionItemLayerToJSON(value);
+            return LayerListingToJSON(value);
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${value['type']}'`);
     }

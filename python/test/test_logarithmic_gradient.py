@@ -49,6 +49,7 @@ class TestLogarithmicGradient(unittest.TestCase):
                 over_color = [
                     56
                     ],
+                type = 'logarithmicGradient',
                 under_color = [
                     56
                     ]
@@ -68,6 +69,7 @@ class TestLogarithmicGradient(unittest.TestCase):
                 over_color = [
                     56
                     ],
+                type = 'logarithmicGradient',
                 under_color = [
                     56
                     ],

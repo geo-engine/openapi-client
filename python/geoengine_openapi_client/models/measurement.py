@@ -18,27 +18,27 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.measurement_classification import MeasurementClassification
-from geoengine_openapi_client.models.measurement_continuous import MeasurementContinuous
-from geoengine_openapi_client.models.measurement_unitless import MeasurementUnitless
+from geoengine_openapi_client.models.classification_measurement import ClassificationMeasurement
+from geoengine_openapi_client.models.continuous_measurement import ContinuousMeasurement
+from geoengine_openapi_client.models.unitless_measurement import UnitlessMeasurement
 from pydantic import StrictStr, Field
 from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
-MEASUREMENT_ONE_OF_SCHEMAS = ["MeasurementClassification", "MeasurementContinuous", "MeasurementUnitless"]
+MEASUREMENT_ONE_OF_SCHEMAS = ["ClassificationMeasurement", "ContinuousMeasurement", "UnitlessMeasurement"]
 
 class Measurement(BaseModel):
     """
     Measurement
     """
-    # data type: MeasurementUnitless
-    oneof_schema_1_validator: Optional[MeasurementUnitless] = None
-    # data type: MeasurementContinuous
-    oneof_schema_2_validator: Optional[MeasurementContinuous] = None
-    # data type: MeasurementClassification
-    oneof_schema_3_validator: Optional[MeasurementClassification] = None
-    actual_instance: Optional[Union[MeasurementClassification, MeasurementContinuous, MeasurementUnitless]] = None
-    one_of_schemas: List[str] = Field(default=Literal["MeasurementClassification", "MeasurementContinuous", "MeasurementUnitless"])
+    # data type: UnitlessMeasurement
+    oneof_schema_1_validator: Optional[UnitlessMeasurement] = None
+    # data type: ContinuousMeasurement
+    oneof_schema_2_validator: Optional[ContinuousMeasurement] = None
+    # data type: ClassificationMeasurement
+    oneof_schema_3_validator: Optional[ClassificationMeasurement] = None
+    actual_instance: Optional[Union[ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement]] = None
+    one_of_schemas: List[str] = Field(default=Literal["ClassificationMeasurement", "ContinuousMeasurement", "UnitlessMeasurement"])
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -64,27 +64,27 @@ class Measurement(BaseModel):
         instance = Measurement.model_construct()
         error_messages = []
         match = 0
-        # validate data type: MeasurementUnitless
-        if not isinstance(v, MeasurementUnitless):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `MeasurementUnitless`")
+        # validate data type: UnitlessMeasurement
+        if not isinstance(v, UnitlessMeasurement):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `UnitlessMeasurement`")
         else:
             match += 1
-        # validate data type: MeasurementContinuous
-        if not isinstance(v, MeasurementContinuous):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `MeasurementContinuous`")
+        # validate data type: ContinuousMeasurement
+        if not isinstance(v, ContinuousMeasurement):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ContinuousMeasurement`")
         else:
             match += 1
-        # validate data type: MeasurementClassification
-        if not isinstance(v, MeasurementClassification):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `MeasurementClassification`")
+        # validate data type: ClassificationMeasurement
+        if not isinstance(v, ClassificationMeasurement):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ClassificationMeasurement`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Measurement with oneOf schemas: MeasurementClassification, MeasurementContinuous, MeasurementUnitless. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Measurement with oneOf schemas: ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Measurement with oneOf schemas: MeasurementClassification, MeasurementContinuous, MeasurementUnitless. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Measurement with oneOf schemas: ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -104,61 +104,61 @@ class Measurement(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `MeasurementClassification`
+        # check if data type is `ClassificationMeasurement`
         if _data_type == "classification":
-            instance.actual_instance = MeasurementClassification.from_json(json_str)
+            instance.actual_instance = ClassificationMeasurement.from_json(json_str)
             return instance
 
-        # check if data type is `MeasurementContinuous`
+        # check if data type is `ContinuousMeasurement`
         if _data_type == "continuous":
-            instance.actual_instance = MeasurementContinuous.from_json(json_str)
+            instance.actual_instance = ContinuousMeasurement.from_json(json_str)
             return instance
 
-        # check if data type is `MeasurementUnitless`
+        # check if data type is `UnitlessMeasurement`
         if _data_type == "unitless":
-            instance.actual_instance = MeasurementUnitless.from_json(json_str)
+            instance.actual_instance = UnitlessMeasurement.from_json(json_str)
             return instance
 
-        # check if data type is `MeasurementClassification`
-        if _data_type == "MeasurementClassification":
-            instance.actual_instance = MeasurementClassification.from_json(json_str)
+        # check if data type is `ClassificationMeasurement`
+        if _data_type == "ClassificationMeasurement":
+            instance.actual_instance = ClassificationMeasurement.from_json(json_str)
             return instance
 
-        # check if data type is `MeasurementContinuous`
-        if _data_type == "MeasurementContinuous":
-            instance.actual_instance = MeasurementContinuous.from_json(json_str)
+        # check if data type is `ContinuousMeasurement`
+        if _data_type == "ContinuousMeasurement":
+            instance.actual_instance = ContinuousMeasurement.from_json(json_str)
             return instance
 
-        # check if data type is `MeasurementUnitless`
-        if _data_type == "MeasurementUnitless":
-            instance.actual_instance = MeasurementUnitless.from_json(json_str)
+        # check if data type is `UnitlessMeasurement`
+        if _data_type == "UnitlessMeasurement":
+            instance.actual_instance = UnitlessMeasurement.from_json(json_str)
             return instance
 
-        # deserialize data into MeasurementUnitless
+        # deserialize data into UnitlessMeasurement
         try:
-            instance.actual_instance = MeasurementUnitless.from_json(json_str)
+            instance.actual_instance = UnitlessMeasurement.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into MeasurementContinuous
+        # deserialize data into ContinuousMeasurement
         try:
-            instance.actual_instance = MeasurementContinuous.from_json(json_str)
+            instance.actual_instance = ContinuousMeasurement.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into MeasurementClassification
+        # deserialize data into ClassificationMeasurement
         try:
-            instance.actual_instance = MeasurementClassification.from_json(json_str)
+            instance.actual_instance = ClassificationMeasurement.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Measurement with oneOf schemas: MeasurementClassification, MeasurementContinuous, MeasurementUnitless. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Measurement with oneOf schemas: ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Measurement with oneOf schemas: MeasurementClassification, MeasurementContinuous, MeasurementUnitless. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Measurement with oneOf schemas: ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -172,7 +172,7 @@ class Measurement(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], MeasurementClassification, MeasurementContinuous, MeasurementUnitless]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

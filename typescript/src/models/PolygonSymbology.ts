@@ -62,7 +62,23 @@ export interface PolygonSymbology {
      * @memberof PolygonSymbology
      */
     text?: TextSymbology;
+    /**
+     * 
+     * @type {string}
+     * @memberof PolygonSymbology
+     */
+    type: PolygonSymbologyTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const PolygonSymbologyTypeEnum = {
+    Polygon: 'polygon'
+} as const;
+export type PolygonSymbologyTypeEnum = typeof PolygonSymbologyTypeEnum[keyof typeof PolygonSymbologyTypeEnum];
+
 
 /**
  * Check if a given object implements the PolygonSymbology interface.
@@ -71,6 +87,7 @@ export function instanceOfPolygonSymbology(value: object): boolean {
     if (!('autoSimplified' in value)) return false;
     if (!('fillColor' in value)) return false;
     if (!('stroke' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 
@@ -88,6 +105,7 @@ export function PolygonSymbologyFromJSONTyped(json: any, ignoreDiscriminator: bo
         'fillColor': ColorParamFromJSON(json['fillColor']),
         'stroke': StrokeParamFromJSON(json['stroke']),
         'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
+        'type': json['type'],
     };
 }
 
@@ -101,6 +119,7 @@ export function PolygonSymbologyToJSON(value?: PolygonSymbology | null): any {
         'fillColor': ColorParamToJSON(value['fillColor']),
         'stroke': StrokeParamToJSON(value['stroke']),
         'text': TextSymbologyToJSON(value['text']),
+        'type': value['type'],
     };
 }
 

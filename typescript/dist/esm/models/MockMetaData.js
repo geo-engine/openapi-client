@@ -14,12 +14,20 @@
 import { MockDatasetDataSourceLoadingInfoFromJSON, MockDatasetDataSourceLoadingInfoToJSON, } from './MockDatasetDataSourceLoadingInfo';
 import { VectorResultDescriptorFromJSON, VectorResultDescriptorToJSON, } from './VectorResultDescriptor';
 /**
+ * @export
+ */
+export const MockMetaDataTypeEnum = {
+    MockMetaData: 'MockMetaData'
+};
+/**
  * Check if a given object implements the MockMetaData interface.
  */
 export function instanceOfMockMetaData(value) {
     if (!('loadingInfo' in value))
         return false;
     if (!('resultDescriptor' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -33,6 +41,7 @@ export function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'loadingInfo': MockDatasetDataSourceLoadingInfoFromJSON(json['loadingInfo']),
         'resultDescriptor': VectorResultDescriptorFromJSON(json['resultDescriptor']),
+        'type': json['type'],
     };
 }
 export function MockMetaDataToJSON(value) {
@@ -42,5 +51,6 @@ export function MockMetaDataToJSON(value) {
     return {
         'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value['loadingInfo']),
         'resultDescriptor': VectorResultDescriptorToJSON(value['resultDescriptor']),
+        'type': value['type'],
     };
 }

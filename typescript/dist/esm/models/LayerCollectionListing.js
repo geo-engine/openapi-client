@@ -13,6 +13,12 @@
  */
 import { ProviderLayerCollectionIdFromJSON, ProviderLayerCollectionIdToJSON, } from './ProviderLayerCollectionId';
 /**
+ * @export
+ */
+export const LayerCollectionListingTypeEnum = {
+    Collection: 'collection'
+};
+/**
  * Check if a given object implements the LayerCollectionListing interface.
  */
 export function instanceOfLayerCollectionListing(value) {
@@ -21,6 +27,8 @@ export function instanceOfLayerCollectionListing(value) {
     if (!('id' in value))
         return false;
     if (!('name' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -36,6 +44,7 @@ export function LayerCollectionListingFromJSONTyped(json, ignoreDiscriminator) {
         'id': ProviderLayerCollectionIdFromJSON(json['id']),
         'name': json['name'],
         'properties': json['properties'] == null ? undefined : json['properties'],
+        'type': json['type'],
     };
 }
 export function LayerCollectionListingToJSON(value) {
@@ -47,5 +56,6 @@ export function LayerCollectionListingToJSON(value) {
         'id': ProviderLayerCollectionIdToJSON(value['id']),
         'name': value['name'],
         'properties': value['properties'],
+        'type': value['type'],
     };
 }

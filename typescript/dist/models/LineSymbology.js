@@ -13,9 +13,15 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LineSymbologyToJSON = exports.LineSymbologyFromJSONTyped = exports.LineSymbologyFromJSON = exports.instanceOfLineSymbology = void 0;
+exports.LineSymbologyToJSON = exports.LineSymbologyFromJSONTyped = exports.LineSymbologyFromJSON = exports.instanceOfLineSymbology = exports.LineSymbologyTypeEnum = void 0;
 const StrokeParam_1 = require("./StrokeParam");
 const TextSymbology_1 = require("./TextSymbology");
+/**
+ * @export
+ */
+exports.LineSymbologyTypeEnum = {
+    Line: 'line'
+};
 /**
  * Check if a given object implements the LineSymbology interface.
  */
@@ -23,6 +29,8 @@ function instanceOfLineSymbology(value) {
     if (!('autoSimplified' in value))
         return false;
     if (!('stroke' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -39,6 +47,7 @@ function LineSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'autoSimplified': json['autoSimplified'],
         'stroke': (0, StrokeParam_1.StrokeParamFromJSON)(json['stroke']),
         'text': json['text'] == null ? undefined : (0, TextSymbology_1.TextSymbologyFromJSON)(json['text']),
+        'type': json['type'],
     };
 }
 exports.LineSymbologyFromJSONTyped = LineSymbologyFromJSONTyped;
@@ -50,6 +59,7 @@ function LineSymbologyToJSON(value) {
         'autoSimplified': value['autoSimplified'],
         'stroke': (0, StrokeParam_1.StrokeParamToJSON)(value['stroke']),
         'text': (0, TextSymbology_1.TextSymbologyToJSON)(value['text']),
+        'type': value['type'],
     };
 }
 exports.LineSymbologyToJSON = LineSymbologyToJSON;

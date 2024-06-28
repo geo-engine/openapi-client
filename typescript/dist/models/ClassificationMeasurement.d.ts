@@ -29,7 +29,20 @@ export interface ClassificationMeasurement {
      * @memberof ClassificationMeasurement
      */
     measurement: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ClassificationMeasurement
+     */
+    type: ClassificationMeasurementTypeEnum;
 }
+/**
+ * @export
+ */
+export declare const ClassificationMeasurementTypeEnum: {
+    readonly Classification: "classification";
+};
+export type ClassificationMeasurementTypeEnum = typeof ClassificationMeasurementTypeEnum[keyof typeof ClassificationMeasurementTypeEnum];
 /**
  * Check if a given object implements the ClassificationMeasurement interface.
  */

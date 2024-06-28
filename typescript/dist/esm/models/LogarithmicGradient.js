@@ -13,6 +13,12 @@
  */
 import { BreakpointFromJSON, BreakpointToJSON, } from './Breakpoint';
 /**
+ * @export
+ */
+export const LogarithmicGradientTypeEnum = {
+    LogarithmicGradient: 'logarithmicGradient'
+};
+/**
  * Check if a given object implements the LogarithmicGradient interface.
  */
 export function instanceOfLogarithmicGradient(value) {
@@ -21,6 +27,8 @@ export function instanceOfLogarithmicGradient(value) {
     if (!('noDataColor' in value))
         return false;
     if (!('overColor' in value))
+        return false;
+    if (!('type' in value))
         return false;
     if (!('underColor' in value))
         return false;
@@ -37,6 +45,7 @@ export function LogarithmicGradientFromJSONTyped(json, ignoreDiscriminator) {
         'breakpoints': (json['breakpoints'].map(BreakpointFromJSON)),
         'noDataColor': json['noDataColor'],
         'overColor': json['overColor'],
+        'type': json['type'],
         'underColor': json['underColor'],
     };
 }
@@ -48,6 +57,7 @@ export function LogarithmicGradientToJSON(value) {
         'breakpoints': (value['breakpoints'].map(BreakpointToJSON)),
         'noDataColor': value['noDataColor'],
         'overColor': value['overColor'],
+        'type': value['type'],
         'underColor': value['underColor'],
     };
 }

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +29,15 @@ class ExternalDataId(BaseModel):
     """ # noqa: E501
     layer_id: StrictStr = Field(alias="layerId")
     provider_id: StrictStr = Field(alias="providerId")
-    __properties: ClassVar[List[str]] = ["layerId", "providerId"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["layerId", "providerId", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['external']):
+            raise ValueError("must be one of enum values ('external')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +91,8 @@ class ExternalDataId(BaseModel):
 
         _obj = cls.model_validate({
             "layerId": obj.get("layerId"),
-            "providerId": obj.get("providerId")
+            "providerId": obj.get("providerId"),
+            "type": obj.get("type")
         })
         return _obj
 

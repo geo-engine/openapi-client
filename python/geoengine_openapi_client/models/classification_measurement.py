@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +29,15 @@ class ClassificationMeasurement(BaseModel):
     """ # noqa: E501
     classes: Dict[str, StrictStr]
     measurement: StrictStr
-    __properties: ClassVar[List[str]] = ["classes", "measurement"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["classes", "measurement", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['classification']):
+            raise ValueError("must be one of enum values ('classification')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +91,8 @@ class ClassificationMeasurement(BaseModel):
 
         _obj = cls.model_validate({
             "classes": obj.get("classes"),
-            "measurement": obj.get("measurement")
+            "measurement": obj.get("measurement"),
+            "type": obj.get("type")
         })
         return _obj
 

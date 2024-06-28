@@ -13,12 +13,20 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContinuousMeasurementToJSON = exports.ContinuousMeasurementFromJSONTyped = exports.ContinuousMeasurementFromJSON = exports.instanceOfContinuousMeasurement = void 0;
+exports.ContinuousMeasurementToJSON = exports.ContinuousMeasurementFromJSONTyped = exports.ContinuousMeasurementFromJSON = exports.instanceOfContinuousMeasurement = exports.ContinuousMeasurementTypeEnum = void 0;
+/**
+ * @export
+ */
+exports.ContinuousMeasurementTypeEnum = {
+    Continuous: 'continuous'
+};
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
 function instanceOfContinuousMeasurement(value) {
     if (!('measurement' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -33,6 +41,7 @@ function ContinuousMeasurementFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'measurement': json['measurement'],
+        'type': json['type'],
         'unit': json['unit'] == null ? undefined : json['unit'],
     };
 }
@@ -43,6 +52,7 @@ function ContinuousMeasurementToJSON(value) {
     }
     return {
         'measurement': value['measurement'],
+        'type': value['type'],
         'unit': value['unit'],
     };
 }

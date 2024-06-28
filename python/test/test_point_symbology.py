@@ -46,7 +46,8 @@ class TestPointSymbology(unittest.TestCase):
                     fill_color = null, 
                     stroke = geoengine_openapi_client.models.stroke_param.StrokeParam(
                         color = null, 
-                        width = null, ), )
+                        width = null, ), ),
+                type = 'point'
             )
         else:
             return PointSymbology(
@@ -55,6 +56,7 @@ class TestPointSymbology(unittest.TestCase):
                 stroke = geoengine_openapi_client.models.stroke_param.StrokeParam(
                     color = null, 
                     width = null, ),
+                type = 'point',
         )
         """
 

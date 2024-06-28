@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from geoengine_openapi_client.models.stroke_param import StrokeParam
 from geoengine_openapi_client.models.text_symbology import TextSymbology
@@ -32,7 +32,15 @@ class LineSymbology(BaseModel):
     auto_simplified: StrictBool = Field(alias="autoSimplified")
     stroke: StrokeParam
     text: Optional[TextSymbology] = None
-    __properties: ClassVar[List[str]] = ["autoSimplified", "stroke", "text"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["autoSimplified", "stroke", "text", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['line']):
+            raise ValueError("must be one of enum values ('line')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,7 +106,8 @@ class LineSymbology(BaseModel):
         _obj = cls.model_validate({
             "autoSimplified": obj.get("autoSimplified"),
             "stroke": StrokeParam.from_dict(obj["stroke"]) if obj.get("stroke") is not None else None,
-            "text": TextSymbology.from_dict(obj["text"]) if obj.get("text") is not None else None
+            "text": TextSymbology.from_dict(obj["text"]) if obj.get("text") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

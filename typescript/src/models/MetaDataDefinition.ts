@@ -12,55 +12,55 @@
  * Do not edit the class manually.
  */
 
-import type { MetaDataDefinitionGdalMetaDataList } from './MetaDataDefinitionGdalMetaDataList';
+import type { GdalMetaDataList } from './GdalMetaDataList';
 import {
-    instanceOfMetaDataDefinitionGdalMetaDataList,
-    MetaDataDefinitionGdalMetaDataListFromJSON,
-    MetaDataDefinitionGdalMetaDataListFromJSONTyped,
-    MetaDataDefinitionGdalMetaDataListToJSON,
-} from './MetaDataDefinitionGdalMetaDataList';
-import type { MetaDataDefinitionGdalMetaDataRegular } from './MetaDataDefinitionGdalMetaDataRegular';
+    instanceOfGdalMetaDataList,
+    GdalMetaDataListFromJSON,
+    GdalMetaDataListFromJSONTyped,
+    GdalMetaDataListToJSON,
+} from './GdalMetaDataList';
+import type { GdalMetaDataRegular } from './GdalMetaDataRegular';
 import {
-    instanceOfMetaDataDefinitionGdalMetaDataRegular,
-    MetaDataDefinitionGdalMetaDataRegularFromJSON,
-    MetaDataDefinitionGdalMetaDataRegularFromJSONTyped,
-    MetaDataDefinitionGdalMetaDataRegularToJSON,
-} from './MetaDataDefinitionGdalMetaDataRegular';
-import type { MetaDataDefinitionGdalMetadataNetCdfCf } from './MetaDataDefinitionGdalMetadataNetCdfCf';
+    instanceOfGdalMetaDataRegular,
+    GdalMetaDataRegularFromJSON,
+    GdalMetaDataRegularFromJSONTyped,
+    GdalMetaDataRegularToJSON,
+} from './GdalMetaDataRegular';
+import type { GdalMetaDataStatic } from './GdalMetaDataStatic';
 import {
-    instanceOfMetaDataDefinitionGdalMetadataNetCdfCf,
-    MetaDataDefinitionGdalMetadataNetCdfCfFromJSON,
-    MetaDataDefinitionGdalMetadataNetCdfCfFromJSONTyped,
-    MetaDataDefinitionGdalMetadataNetCdfCfToJSON,
-} from './MetaDataDefinitionGdalMetadataNetCdfCf';
-import type { MetaDataDefinitionGdalStatic } from './MetaDataDefinitionGdalStatic';
+    instanceOfGdalMetaDataStatic,
+    GdalMetaDataStaticFromJSON,
+    GdalMetaDataStaticFromJSONTyped,
+    GdalMetaDataStaticToJSON,
+} from './GdalMetaDataStatic';
+import type { GdalMetadataNetCdfCf } from './GdalMetadataNetCdfCf';
 import {
-    instanceOfMetaDataDefinitionGdalStatic,
-    MetaDataDefinitionGdalStaticFromJSON,
-    MetaDataDefinitionGdalStaticFromJSONTyped,
-    MetaDataDefinitionGdalStaticToJSON,
-} from './MetaDataDefinitionGdalStatic';
-import type { MetaDataDefinitionMockMetaData } from './MetaDataDefinitionMockMetaData';
+    instanceOfGdalMetadataNetCdfCf,
+    GdalMetadataNetCdfCfFromJSON,
+    GdalMetadataNetCdfCfFromJSONTyped,
+    GdalMetadataNetCdfCfToJSON,
+} from './GdalMetadataNetCdfCf';
+import type { MockMetaData } from './MockMetaData';
 import {
-    instanceOfMetaDataDefinitionMockMetaData,
-    MetaDataDefinitionMockMetaDataFromJSON,
-    MetaDataDefinitionMockMetaDataFromJSONTyped,
-    MetaDataDefinitionMockMetaDataToJSON,
-} from './MetaDataDefinitionMockMetaData';
-import type { MetaDataDefinitionOgrMetaData } from './MetaDataDefinitionOgrMetaData';
+    instanceOfMockMetaData,
+    MockMetaDataFromJSON,
+    MockMetaDataFromJSONTyped,
+    MockMetaDataToJSON,
+} from './MockMetaData';
+import type { OgrMetaData } from './OgrMetaData';
 import {
-    instanceOfMetaDataDefinitionOgrMetaData,
-    MetaDataDefinitionOgrMetaDataFromJSON,
-    MetaDataDefinitionOgrMetaDataFromJSONTyped,
-    MetaDataDefinitionOgrMetaDataToJSON,
-} from './MetaDataDefinitionOgrMetaData';
+    instanceOfOgrMetaData,
+    OgrMetaDataFromJSON,
+    OgrMetaDataFromJSONTyped,
+    OgrMetaDataToJSON,
+} from './OgrMetaData';
 
 /**
  * @type MetaDataDefinition
  * 
  * @export
  */
-export type MetaDataDefinition = { type: 'GdalMetaDataList' } & MetaDataDefinitionGdalMetaDataList | { type: 'GdalMetaDataRegular' } & MetaDataDefinitionGdalMetaDataRegular | { type: 'GdalMetadataNetCdfCf' } & MetaDataDefinitionGdalMetadataNetCdfCf | { type: 'GdalStatic' } & MetaDataDefinitionGdalStatic | { type: 'MockMetaData' } & MetaDataDefinitionMockMetaData | { type: 'OgrMetaData' } & MetaDataDefinitionOgrMetaData;
+export type MetaDataDefinition = { type: 'GdalMetaDataList' } & GdalMetaDataList | { type: 'GdalMetaDataRegular' } & GdalMetaDataRegular | { type: 'GdalMetadataNetCdfCf' } & GdalMetadataNetCdfCf | { type: 'GdalStatic' } & GdalMetaDataStatic | { type: 'MockMetaData' } & MockMetaData | { type: 'OgrMetaData' } & OgrMetaData;
 
 export function MetaDataDefinitionFromJSON(json: any): MetaDataDefinition {
     return MetaDataDefinitionFromJSONTyped(json, false);
@@ -72,17 +72,17 @@ export function MetaDataDefinitionFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     switch (json['type']) {
         case 'GdalMetaDataList':
-            return {...MetaDataDefinitionGdalMetaDataListFromJSONTyped(json, true), type: 'GdalMetaDataList'};
+            return {...GdalMetaDataListFromJSONTyped(json, true), type: 'GdalMetaDataList'};
         case 'GdalMetaDataRegular':
-            return {...MetaDataDefinitionGdalMetaDataRegularFromJSONTyped(json, true), type: 'GdalMetaDataRegular'};
+            return {...GdalMetaDataRegularFromJSONTyped(json, true), type: 'GdalMetaDataRegular'};
         case 'GdalMetadataNetCdfCf':
-            return {...MetaDataDefinitionGdalMetadataNetCdfCfFromJSONTyped(json, true), type: 'GdalMetadataNetCdfCf'};
+            return {...GdalMetadataNetCdfCfFromJSONTyped(json, true), type: 'GdalMetadataNetCdfCf'};
         case 'GdalStatic':
-            return {...MetaDataDefinitionGdalStaticFromJSONTyped(json, true), type: 'GdalStatic'};
+            return {...GdalMetaDataStaticFromJSONTyped(json, true), type: 'GdalStatic'};
         case 'MockMetaData':
-            return {...MetaDataDefinitionMockMetaDataFromJSONTyped(json, true), type: 'MockMetaData'};
+            return {...MockMetaDataFromJSONTyped(json, true), type: 'MockMetaData'};
         case 'OgrMetaData':
-            return {...MetaDataDefinitionOgrMetaDataFromJSONTyped(json, true), type: 'OgrMetaData'};
+            return {...OgrMetaDataFromJSONTyped(json, true), type: 'OgrMetaData'};
         default:
             throw new Error(`No variant of MetaDataDefinition exists with 'type=${json['type']}'`);
     }
@@ -94,17 +94,17 @@ export function MetaDataDefinitionToJSON(value?: MetaDataDefinition | null): any
     }
     switch (value['type']) {
         case 'GdalMetaDataList':
-            return MetaDataDefinitionGdalMetaDataListToJSON(value);
+            return GdalMetaDataListToJSON(value);
         case 'GdalMetaDataRegular':
-            return MetaDataDefinitionGdalMetaDataRegularToJSON(value);
+            return GdalMetaDataRegularToJSON(value);
         case 'GdalMetadataNetCdfCf':
-            return MetaDataDefinitionGdalMetadataNetCdfCfToJSON(value);
+            return GdalMetadataNetCdfCfToJSON(value);
         case 'GdalStatic':
-            return MetaDataDefinitionGdalStaticToJSON(value);
+            return GdalMetaDataStaticToJSON(value);
         case 'MockMetaData':
-            return MetaDataDefinitionMockMetaDataToJSON(value);
+            return MockMetaDataToJSON(value);
         case 'OgrMetaData':
-            return MetaDataDefinitionOgrMetaDataToJSON(value);
+            return OgrMetaDataToJSON(value);
         default:
             throw new Error(`No variant of MetaDataDefinition exists with 'type=${value['type']}'`);
     }

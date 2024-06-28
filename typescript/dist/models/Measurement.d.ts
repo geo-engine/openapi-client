@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { MeasurementClassification } from './MeasurementClassification';
-import type { MeasurementContinuous } from './MeasurementContinuous';
-import type { MeasurementUnitless } from './MeasurementUnitless';
+import type { ClassificationMeasurement } from './ClassificationMeasurement';
+import type { ContinuousMeasurement } from './ContinuousMeasurement';
+import type { UnitlessMeasurement } from './UnitlessMeasurement';
 /**
  * @type Measurement
  *
@@ -19,11 +19,11 @@ import type { MeasurementUnitless } from './MeasurementUnitless';
  */
 export type Measurement = {
     type: 'classification';
-} & MeasurementClassification | {
+} & ClassificationMeasurement | {
     type: 'continuous';
-} & MeasurementContinuous | {
+} & ContinuousMeasurement | {
     type: 'unitless';
-} & MeasurementUnitless;
+} & UnitlessMeasurement;
 export declare function MeasurementFromJSON(json: any): Measurement;
 export declare function MeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): Measurement;
 export declare function MeasurementToJSON(value?: Measurement | null): any;

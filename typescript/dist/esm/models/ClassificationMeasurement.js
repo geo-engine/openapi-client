@@ -12,12 +12,20 @@
  * Do not edit the class manually.
  */
 /**
+ * @export
+ */
+export const ClassificationMeasurementTypeEnum = {
+    Classification: 'classification'
+};
+/**
  * Check if a given object implements the ClassificationMeasurement interface.
  */
 export function instanceOfClassificationMeasurement(value) {
     if (!('classes' in value))
         return false;
     if (!('measurement' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -31,6 +39,7 @@ export function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator
     return {
         'classes': json['classes'],
         'measurement': json['measurement'],
+        'type': json['type'],
     };
 }
 export function ClassificationMeasurementToJSON(value) {
@@ -40,5 +49,6 @@ export function ClassificationMeasurementToJSON(value) {
     return {
         'classes': value['classes'],
         'measurement': value['measurement'],
+        'type': value['type'],
     };
 }

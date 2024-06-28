@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ColorizerLinearGradient } from './ColorizerLinearGradient';
-import type { ColorizerLogarithmicGradient } from './ColorizerLogarithmicGradient';
 import type { ColorizerPalette } from './ColorizerPalette';
 import type { ColorizerRgba } from './ColorizerRgba';
+import type { LinearGradient } from './LinearGradient';
+import type { LogarithmicGradient } from './LogarithmicGradient';
 /**
  * @type Colorizer
  *
@@ -20,9 +20,9 @@ import type { ColorizerRgba } from './ColorizerRgba';
  */
 export type Colorizer = {
     type: 'linearGradient';
-} & ColorizerLinearGradient | {
+} & LinearGradient | {
     type: 'logarithmicGradient';
-} & ColorizerLogarithmicGradient | {
+} & LogarithmicGradient | {
     type: 'palette';
 } & ColorizerPalette | {
     type: 'rgba';

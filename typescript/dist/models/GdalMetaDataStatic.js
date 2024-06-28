@@ -13,10 +13,16 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GdalMetaDataStaticToJSON = exports.GdalMetaDataStaticFromJSONTyped = exports.GdalMetaDataStaticFromJSON = exports.instanceOfGdalMetaDataStatic = void 0;
+exports.GdalMetaDataStaticToJSON = exports.GdalMetaDataStaticFromJSONTyped = exports.GdalMetaDataStaticFromJSON = exports.instanceOfGdalMetaDataStatic = exports.GdalMetaDataStaticTypeEnum = void 0;
 const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
 const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
 const TimeInterval_1 = require("./TimeInterval");
+/**
+ * @export
+ */
+exports.GdalMetaDataStaticTypeEnum = {
+    GdalStatic: 'GdalStatic'
+};
 /**
  * Check if a given object implements the GdalMetaDataStatic interface.
  */
@@ -24,6 +30,8 @@ function instanceOfGdalMetaDataStatic(value) {
     if (!('params' in value))
         return false;
     if (!('resultDescriptor' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -41,6 +49,7 @@ function GdalMetaDataStaticFromJSONTyped(json, ignoreDiscriminator) {
         'params': (0, GdalDatasetParameters_1.GdalDatasetParametersFromJSON)(json['params']),
         'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorFromJSON)(json['resultDescriptor']),
         'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
+        'type': json['type'],
     };
 }
 exports.GdalMetaDataStaticFromJSONTyped = GdalMetaDataStaticFromJSONTyped;
@@ -53,6 +62,7 @@ function GdalMetaDataStaticToJSON(value) {
         'params': (0, GdalDatasetParameters_1.GdalDatasetParametersToJSON)(value['params']),
         'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorToJSON)(value['resultDescriptor']),
         'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
+        'type': value['type'],
     };
 }
 exports.GdalMetaDataStaticToJSON = GdalMetaDataStaticToJSON;

@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,8 +28,16 @@ class ContinuousMeasurement(BaseModel):
     ContinuousMeasurement
     """ # noqa: E501
     measurement: StrictStr
+    type: StrictStr
     unit: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["measurement", "unit"]
+    __properties: ClassVar[List[str]] = ["measurement", "type", "unit"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['continuous']):
+            raise ValueError("must be one of enum values ('continuous')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,6 +96,7 @@ class ContinuousMeasurement(BaseModel):
 
         _obj = cls.model_validate({
             "measurement": obj.get("measurement"),
+            "type": obj.get("type"),
             "unit": obj.get("unit")
         })
         return _obj

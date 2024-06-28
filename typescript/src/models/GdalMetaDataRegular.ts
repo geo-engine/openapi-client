@@ -86,7 +86,23 @@ export interface GdalMetaDataRegular {
      * @memberof GdalMetaDataRegular
      */
     timePlaceholders: { [key: string]: GdalSourceTimePlaceholder; };
+    /**
+     * 
+     * @type {string}
+     * @memberof GdalMetaDataRegular
+     */
+    type: GdalMetaDataRegularTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const GdalMetaDataRegularTypeEnum = {
+    GdalMetaDataRegular: 'GdalMetaDataRegular'
+} as const;
+export type GdalMetaDataRegularTypeEnum = typeof GdalMetaDataRegularTypeEnum[keyof typeof GdalMetaDataRegularTypeEnum];
+
 
 /**
  * Check if a given object implements the GdalMetaDataRegular interface.
@@ -97,6 +113,7 @@ export function instanceOfGdalMetaDataRegular(value: object): boolean {
     if (!('resultDescriptor' in value)) return false;
     if (!('step' in value)) return false;
     if (!('timePlaceholders' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 
@@ -116,6 +133,7 @@ export function GdalMetaDataRegularFromJSONTyped(json: any, ignoreDiscriminator:
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
         'step': TimeStepFromJSON(json['step']),
         'timePlaceholders': (mapValues(json['timePlaceholders'], GdalSourceTimePlaceholderFromJSON)),
+        'type': json['type'],
     };
 }
 
@@ -131,6 +149,7 @@ export function GdalMetaDataRegularToJSON(value?: GdalMetaDataRegular | null): a
         'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
         'step': TimeStepToJSON(value['step']),
         'timePlaceholders': (mapValues(value['timePlaceholders'], GdalSourceTimePlaceholderToJSON)),
+        'type': value['type'],
     };
 }
 

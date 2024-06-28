@@ -18,24 +18,24 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.data_id_external import DataIdExternal
-from geoengine_openapi_client.models.data_id_internal import DataIdInternal
+from geoengine_openapi_client.models.external_data_id import ExternalDataId
+from geoengine_openapi_client.models.internal_data_id import InternalDataId
 from pydantic import StrictStr, Field
 from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
 
-DATAID_ONE_OF_SCHEMAS = ["DataIdExternal", "DataIdInternal"]
+DATAID_ONE_OF_SCHEMAS = ["ExternalDataId", "InternalDataId"]
 
 class DataId(BaseModel):
     """
     DataId
     """
-    # data type: DataIdInternal
-    oneof_schema_1_validator: Optional[DataIdInternal] = None
-    # data type: DataIdExternal
-    oneof_schema_2_validator: Optional[DataIdExternal] = None
-    actual_instance: Optional[Union[DataIdExternal, DataIdInternal]] = None
-    one_of_schemas: List[str] = Field(default=Literal["DataIdExternal", "DataIdInternal"])
+    # data type: InternalDataId
+    oneof_schema_1_validator: Optional[InternalDataId] = None
+    # data type: ExternalDataId
+    oneof_schema_2_validator: Optional[ExternalDataId] = None
+    actual_instance: Optional[Union[ExternalDataId, InternalDataId]] = None
+    one_of_schemas: List[str] = Field(default=Literal["ExternalDataId", "InternalDataId"])
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -61,22 +61,22 @@ class DataId(BaseModel):
         instance = DataId.model_construct()
         error_messages = []
         match = 0
-        # validate data type: DataIdInternal
-        if not isinstance(v, DataIdInternal):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `DataIdInternal`")
+        # validate data type: InternalDataId
+        if not isinstance(v, InternalDataId):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `InternalDataId`")
         else:
             match += 1
-        # validate data type: DataIdExternal
-        if not isinstance(v, DataIdExternal):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `DataIdExternal`")
+        # validate data type: ExternalDataId
+        if not isinstance(v, ExternalDataId):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ExternalDataId`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in DataId with oneOf schemas: DataIdExternal, DataIdInternal. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in DataId with oneOf schemas: ExternalDataId, InternalDataId. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in DataId with oneOf schemas: DataIdExternal, DataIdInternal. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in DataId with oneOf schemas: ExternalDataId, InternalDataId. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -96,45 +96,45 @@ class DataId(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `DataIdExternal`
+        # check if data type is `ExternalDataId`
         if _data_type == "external":
-            instance.actual_instance = DataIdExternal.from_json(json_str)
+            instance.actual_instance = ExternalDataId.from_json(json_str)
             return instance
 
-        # check if data type is `DataIdInternal`
+        # check if data type is `InternalDataId`
         if _data_type == "internal":
-            instance.actual_instance = DataIdInternal.from_json(json_str)
+            instance.actual_instance = InternalDataId.from_json(json_str)
             return instance
 
-        # check if data type is `DataIdExternal`
-        if _data_type == "DataIdExternal":
-            instance.actual_instance = DataIdExternal.from_json(json_str)
+        # check if data type is `ExternalDataId`
+        if _data_type == "ExternalDataId":
+            instance.actual_instance = ExternalDataId.from_json(json_str)
             return instance
 
-        # check if data type is `DataIdInternal`
-        if _data_type == "DataIdInternal":
-            instance.actual_instance = DataIdInternal.from_json(json_str)
+        # check if data type is `InternalDataId`
+        if _data_type == "InternalDataId":
+            instance.actual_instance = InternalDataId.from_json(json_str)
             return instance
 
-        # deserialize data into DataIdInternal
+        # deserialize data into InternalDataId
         try:
-            instance.actual_instance = DataIdInternal.from_json(json_str)
+            instance.actual_instance = InternalDataId.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into DataIdExternal
+        # deserialize data into ExternalDataId
         try:
-            instance.actual_instance = DataIdExternal.from_json(json_str)
+            instance.actual_instance = ExternalDataId.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into DataId with oneOf schemas: DataIdExternal, DataIdInternal. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into DataId with oneOf schemas: ExternalDataId, InternalDataId. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into DataId with oneOf schemas: DataIdExternal, DataIdInternal. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into DataId with oneOf schemas: ExternalDataId, InternalDataId. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -148,7 +148,7 @@ class DataId(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], DataIdExternal, DataIdInternal]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], ExternalDataId, InternalDataId]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

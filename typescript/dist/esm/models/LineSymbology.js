@@ -14,12 +14,20 @@
 import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
 /**
+ * @export
+ */
+export const LineSymbologyTypeEnum = {
+    Line: 'line'
+};
+/**
  * Check if a given object implements the LineSymbology interface.
  */
 export function instanceOfLineSymbology(value) {
     if (!('autoSimplified' in value))
         return false;
     if (!('stroke' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -34,6 +42,7 @@ export function LineSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'autoSimplified': json['autoSimplified'],
         'stroke': StrokeParamFromJSON(json['stroke']),
         'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
+        'type': json['type'],
     };
 }
 export function LineSymbologyToJSON(value) {
@@ -44,5 +53,6 @@ export function LineSymbologyToJSON(value) {
         'autoSimplified': value['autoSimplified'],
         'stroke': StrokeParamToJSON(value['stroke']),
         'text': TextSymbologyToJSON(value['text']),
+        'type': value['type'],
     };
 }

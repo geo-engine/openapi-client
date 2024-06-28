@@ -13,10 +13,16 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GdalMetadataNetCdfCfToJSON = exports.GdalMetadataNetCdfCfFromJSONTyped = exports.GdalMetadataNetCdfCfFromJSON = exports.instanceOfGdalMetadataNetCdfCf = void 0;
+exports.GdalMetadataNetCdfCfToJSON = exports.GdalMetadataNetCdfCfFromJSONTyped = exports.GdalMetadataNetCdfCfFromJSON = exports.instanceOfGdalMetadataNetCdfCf = exports.GdalMetadataNetCdfCfTypeEnum = void 0;
 const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
 const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
 const TimeStep_1 = require("./TimeStep");
+/**
+ * @export
+ */
+exports.GdalMetadataNetCdfCfTypeEnum = {
+    GdalMetadataNetCdfCf: 'GdalMetadataNetCdfCf'
+};
 /**
  * Check if a given object implements the GdalMetadataNetCdfCf interface.
  */
@@ -32,6 +38,8 @@ function instanceOfGdalMetadataNetCdfCf(value) {
     if (!('start' in value))
         return false;
     if (!('step' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -52,6 +60,7 @@ function GdalMetadataNetCdfCfFromJSONTyped(json, ignoreDiscriminator) {
         'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorFromJSON)(json['resultDescriptor']),
         'start': json['start'],
         'step': (0, TimeStep_1.TimeStepFromJSON)(json['step']),
+        'type': json['type'],
     };
 }
 exports.GdalMetadataNetCdfCfFromJSONTyped = GdalMetadataNetCdfCfFromJSONTyped;
@@ -67,6 +76,7 @@ function GdalMetadataNetCdfCfToJSON(value) {
         'resultDescriptor': (0, RasterResultDescriptor_1.RasterResultDescriptorToJSON)(value['resultDescriptor']),
         'start': value['start'],
         'step': (0, TimeStep_1.TimeStepToJSON)(value['step']),
+        'type': value['type'],
     };
 }
 exports.GdalMetadataNetCdfCfToJSON = GdalMetadataNetCdfCfToJSON;

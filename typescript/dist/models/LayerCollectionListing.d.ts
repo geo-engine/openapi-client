@@ -40,7 +40,20 @@ export interface LayerCollectionListing {
      * @memberof LayerCollectionListing
      */
     properties?: Array<Array<string>>;
+    /**
+     *
+     * @type {string}
+     * @memberof LayerCollectionListing
+     */
+    type: LayerCollectionListingTypeEnum;
 }
+/**
+ * @export
+ */
+export declare const LayerCollectionListingTypeEnum: {
+    readonly Collection: "collection";
+};
+export type LayerCollectionListingTypeEnum = typeof LayerCollectionListingTypeEnum[keyof typeof LayerCollectionListingTypeEnum];
 /**
  * Check if a given object implements the LayerCollectionListing interface.
  */

@@ -49,6 +49,7 @@ class TestLinearGradient(unittest.TestCase):
                 over_color = [
                     56
                     ],
+                type = 'linearGradient',
                 under_color = [
                     56
                     ]
@@ -68,6 +69,7 @@ class TestLinearGradient(unittest.TestCase):
                 over_color = [
                     56
                     ],
+                type = 'linearGradient',
                 under_color = [
                     56
                     ],

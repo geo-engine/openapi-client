@@ -12,13 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type { ColorParamDerived } from './ColorParamDerived';
-import {
-    instanceOfColorParamDerived,
-    ColorParamDerivedFromJSON,
-    ColorParamDerivedFromJSONTyped,
-    ColorParamDerivedToJSON,
-} from './ColorParamDerived';
 import type { ColorParamStatic } from './ColorParamStatic';
 import {
     instanceOfColorParamStatic,
@@ -26,13 +19,20 @@ import {
     ColorParamStaticFromJSONTyped,
     ColorParamStaticToJSON,
 } from './ColorParamStatic';
+import type { DerivedColor } from './DerivedColor';
+import {
+    instanceOfDerivedColor,
+    DerivedColorFromJSON,
+    DerivedColorFromJSONTyped,
+    DerivedColorToJSON,
+} from './DerivedColor';
 
 /**
  * @type ColorParam
  * 
  * @export
  */
-export type ColorParam = { type: 'derived' } & ColorParamDerived | { type: 'static' } & ColorParamStatic;
+export type ColorParam = { type: 'derived' } & DerivedColor | { type: 'static' } & ColorParamStatic;
 
 export function ColorParamFromJSON(json: any): ColorParam {
     return ColorParamFromJSONTyped(json, false);
@@ -44,7 +44,7 @@ export function ColorParamFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     switch (json['type']) {
         case 'derived':
-            return {...ColorParamDerivedFromJSONTyped(json, true), type: 'derived'};
+            return {...DerivedColorFromJSONTyped(json, true), type: 'derived'};
         case 'static':
             return {...ColorParamStaticFromJSONTyped(json, true), type: 'static'};
         default:
@@ -58,7 +58,7 @@ export function ColorParamToJSON(value?: ColorParam | null): any {
     }
     switch (value['type']) {
         case 'derived':
-            return ColorParamDerivedToJSON(value);
+            return DerivedColorToJSON(value);
         case 'static':
             return ColorParamStaticToJSON(value);
         default:

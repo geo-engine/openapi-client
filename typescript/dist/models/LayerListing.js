@@ -13,8 +13,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerListingToJSON = exports.LayerListingFromJSONTyped = exports.LayerListingFromJSON = exports.instanceOfLayerListing = void 0;
+exports.LayerListingToJSON = exports.LayerListingFromJSONTyped = exports.LayerListingFromJSON = exports.instanceOfLayerListing = exports.LayerListingTypeEnum = void 0;
 const ProviderLayerId_1 = require("./ProviderLayerId");
+/**
+ * @export
+ */
+exports.LayerListingTypeEnum = {
+    Layer: 'layer'
+};
 /**
  * Check if a given object implements the LayerListing interface.
  */
@@ -24,6 +30,8 @@ function instanceOfLayerListing(value) {
     if (!('id' in value))
         return false;
     if (!('name' in value))
+        return false;
+    if (!('type' in value))
         return false;
     return true;
 }
@@ -41,6 +49,7 @@ function LayerListingFromJSONTyped(json, ignoreDiscriminator) {
         'id': (0, ProviderLayerId_1.ProviderLayerIdFromJSON)(json['id']),
         'name': json['name'],
         'properties': json['properties'] == null ? undefined : json['properties'],
+        'type': json['type'],
     };
 }
 exports.LayerListingFromJSONTyped = LayerListingFromJSONTyped;
@@ -53,6 +62,7 @@ function LayerListingToJSON(value) {
         'id': (0, ProviderLayerId_1.ProviderLayerIdToJSON)(value['id']),
         'name': value['name'],
         'properties': value['properties'],
+        'type': value['type'],
     };
 }
 exports.LayerListingToJSON = LayerListingToJSON;

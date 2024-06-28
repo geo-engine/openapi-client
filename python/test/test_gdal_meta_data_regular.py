@@ -93,7 +93,8 @@ class TestGdalMetaDataRegular(unittest.TestCase):
                             has_time = True, 
                             has_tz = True, ), 
                         reference = 'start', )
-                    }
+                    },
+                type = 'GdalMetaDataRegular'
             )
         else:
             return GdalMetaDataRegular(
@@ -154,6 +155,7 @@ class TestGdalMetaDataRegular(unittest.TestCase):
                             has_tz = True, ), 
                         reference = 'start', )
                     },
+                type = 'GdalMetaDataRegular',
         )
         """
 

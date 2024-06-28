@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Union
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,7 +30,15 @@ class DerivedNumber(BaseModel):
     attribute: StrictStr
     default_value: Union[StrictFloat, StrictInt] = Field(alias="defaultValue")
     factor: Union[StrictFloat, StrictInt]
-    __properties: ClassVar[List[str]] = ["attribute", "defaultValue", "factor"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["attribute", "defaultValue", "factor", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['derived']):
+            raise ValueError("must be one of enum values ('derived')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +93,8 @@ class DerivedNumber(BaseModel):
         _obj = cls.model_validate({
             "attribute": obj.get("attribute"),
             "defaultValue": obj.get("defaultValue"),
-            "factor": obj.get("factor")
+            "factor": obj.get("factor"),
+            "type": obj.get("type")
         })
         return _obj
 

@@ -45,7 +45,8 @@ class TestLayerListing(unittest.TestCase):
                     [
                         ''
                         ]
-                    ]
+                    ],
+                type = 'layer'
             )
         else:
             return LayerListing(
@@ -54,6 +55,7 @@ class TestLayerListing(unittest.TestCase):
                     layer_id = '', 
                     provider_id = '', ),
                 name = '',
+                type = 'layer',
         )
         """
 

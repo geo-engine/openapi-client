@@ -37,12 +37,14 @@ class TestExternalDataId(unittest.TestCase):
         if include_optional:
             return ExternalDataId(
                 layer_id = '',
-                provider_id = ''
+                provider_id = '',
+                type = 'external'
             )
         else:
             return ExternalDataId(
                 layer_id = '',
                 provider_id = '',
+                type = 'external',
         )
         """
 

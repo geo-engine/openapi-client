@@ -31,7 +31,23 @@ export interface ExternalDataId {
      * @memberof ExternalDataId
      */
     providerId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalDataId
+     */
+    type: ExternalDataIdTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const ExternalDataIdTypeEnum = {
+    External: 'external'
+} as const;
+export type ExternalDataIdTypeEnum = typeof ExternalDataIdTypeEnum[keyof typeof ExternalDataIdTypeEnum];
+
 
 /**
  * Check if a given object implements the ExternalDataId interface.
@@ -39,6 +55,7 @@ export interface ExternalDataId {
 export function instanceOfExternalDataId(value: object): boolean {
     if (!('layerId' in value)) return false;
     if (!('providerId' in value)) return false;
+    if (!('type' in value)) return false;
     return true;
 }
 
@@ -54,6 +71,7 @@ export function ExternalDataIdFromJSONTyped(json: any, ignoreDiscriminator: bool
         
         'layerId': json['layerId'],
         'providerId': json['providerId'],
+        'type': json['type'],
     };
 }
 
@@ -65,6 +83,7 @@ export function ExternalDataIdToJSON(value?: ExternalDataId | null): any {
         
         'layerId': value['layerId'],
         'providerId': value['providerId'],
+        'type': value['type'],
     };
 }
 

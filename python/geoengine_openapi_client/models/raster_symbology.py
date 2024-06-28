@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Union
 from geoengine_openapi_client.models.raster_colorizer import RasterColorizer
 from typing import Optional, Set
@@ -30,7 +30,15 @@ class RasterSymbology(BaseModel):
     """ # noqa: E501
     opacity: Union[StrictFloat, StrictInt]
     raster_colorizer: RasterColorizer = Field(alias="rasterColorizer")
-    __properties: ClassVar[List[str]] = ["opacity", "rasterColorizer"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["opacity", "rasterColorizer", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['raster']):
+            raise ValueError("must be one of enum values ('raster')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +95,8 @@ class RasterSymbology(BaseModel):
 
         _obj = cls.model_validate({
             "opacity": obj.get("opacity"),
-            "rasterColorizer": RasterColorizer.from_dict(obj["rasterColorizer"]) if obj.get("rasterColorizer") is not None else None
+            "rasterColorizer": RasterColorizer.from_dict(obj["rasterColorizer"]) if obj.get("rasterColorizer") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

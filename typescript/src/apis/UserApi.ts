@@ -75,8 +75,11 @@ export class UserApi extends runtime.BaseAPI {
      * Add a new role. Requires admin privilige.
      */
     async addRoleHandlerRaw(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        if (requestParameters.addRole === null || requestParameters.addRole === undefined) {
-            throw new runtime.RequiredError('addRole','Required parameter requestParameters.addRole was null or undefined when calling addRoleHandler.');
+        if (requestParameters['addRole'] == null) {
+            throw new runtime.RequiredError(
+                'addRole',
+                'Required parameter "addRole" was null or undefined when calling addRoleHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -98,7 +101,7 @@ export class UserApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: AddRoleToJSON(requestParameters.addRole),
+            body: AddRoleToJSON(requestParameters['addRole']),
         }, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -122,12 +125,18 @@ export class UserApi extends runtime.BaseAPI {
      * Assign a role to a user. Requires admin privilige.
      */
     async assignRoleHandlerRaw(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.user === null || requestParameters.user === undefined) {
-            throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling assignRoleHandler.');
+        if (requestParameters['user'] == null) {
+            throw new runtime.RequiredError(
+                'user',
+                'Required parameter "user" was null or undefined when calling assignRoleHandler().'
+            );
         }
 
-        if (requestParameters.role === null || requestParameters.role === undefined) {
-            throw new runtime.RequiredError('role','Required parameter requestParameters.role was null or undefined when calling assignRoleHandler.');
+        if (requestParameters['role'] == null) {
+            throw new runtime.RequiredError(
+                'role',
+                'Required parameter "role" was null or undefined when calling assignRoleHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -143,7 +152,7 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/users/{user}/roles/{role}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters.user))).replace(`{${"role"}}`, encodeURIComponent(String(requestParameters.role))),
+            path: `/users/{user}/roles/{role}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))).replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -165,8 +174,11 @@ export class UserApi extends runtime.BaseAPI {
      * Get role by name
      */
     async getRoleByNameHandlerRaw(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
-        if (requestParameters.name === null || requestParameters.name === undefined) {
-            throw new runtime.RequiredError('name','Required parameter requestParameters.name was null or undefined when calling getRoleByNameHandler.');
+        if (requestParameters['name'] == null) {
+            throw new runtime.RequiredError(
+                'name',
+                'Required parameter "name" was null or undefined when calling getRoleByNameHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -182,7 +194,7 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/roles/byName/{name}`.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters.name))),
+            path: `/roles/byName/{name}`.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters['name']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -241,8 +253,11 @@ export class UserApi extends runtime.BaseAPI {
      * Retrieves the available and used quota of a specific user.
      */
     async getUserQuotaHandlerRaw(requestParameters: GetUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quota>> {
-        if (requestParameters.user === null || requestParameters.user === undefined) {
-            throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling getUserQuotaHandler.');
+        if (requestParameters['user'] == null) {
+            throw new runtime.RequiredError(
+                'user',
+                'Required parameter "user" was null or undefined when calling getUserQuotaHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -258,7 +273,7 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/quotas/{user}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters.user))),
+            path: `/quotas/{user}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -317,8 +332,11 @@ export class UserApi extends runtime.BaseAPI {
      * Remove a role. Requires admin privilige.
      */
     async removeRoleHandlerRaw(requestParameters: RemoveRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.role === null || requestParameters.role === undefined) {
-            throw new runtime.RequiredError('role','Required parameter requestParameters.role was null or undefined when calling removeRoleHandler.');
+        if (requestParameters['role'] == null) {
+            throw new runtime.RequiredError(
+                'role',
+                'Required parameter "role" was null or undefined when calling removeRoleHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -334,7 +352,7 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/roles/{role}`.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters.role))),
+            path: `/roles/{role}`.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -356,12 +374,18 @@ export class UserApi extends runtime.BaseAPI {
      * Revoke a role from a user. Requires admin privilige.
      */
     async revokeRoleHandlerRaw(requestParameters: RevokeRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.user === null || requestParameters.user === undefined) {
-            throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling revokeRoleHandler.');
+        if (requestParameters['user'] == null) {
+            throw new runtime.RequiredError(
+                'user',
+                'Required parameter "user" was null or undefined when calling revokeRoleHandler().'
+            );
         }
 
-        if (requestParameters.role === null || requestParameters.role === undefined) {
-            throw new runtime.RequiredError('role','Required parameter requestParameters.role was null or undefined when calling revokeRoleHandler.');
+        if (requestParameters['role'] == null) {
+            throw new runtime.RequiredError(
+                'role',
+                'Required parameter "role" was null or undefined when calling revokeRoleHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -377,7 +401,7 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/users/{user}/roles/{role}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters.user))).replace(`{${"role"}}`, encodeURIComponent(String(requestParameters.role))),
+            path: `/users/{user}/roles/{role}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))).replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -399,12 +423,18 @@ export class UserApi extends runtime.BaseAPI {
      * Update the available quota of a specific user.
      */
     async updateUserQuotaHandlerRaw(requestParameters: UpdateUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.user === null || requestParameters.user === undefined) {
-            throw new runtime.RequiredError('user','Required parameter requestParameters.user was null or undefined when calling updateUserQuotaHandler.');
+        if (requestParameters['user'] == null) {
+            throw new runtime.RequiredError(
+                'user',
+                'Required parameter "user" was null or undefined when calling updateUserQuotaHandler().'
+            );
         }
 
-        if (requestParameters.updateQuota === null || requestParameters.updateQuota === undefined) {
-            throw new runtime.RequiredError('updateQuota','Required parameter requestParameters.updateQuota was null or undefined when calling updateUserQuotaHandler.');
+        if (requestParameters['updateQuota'] == null) {
+            throw new runtime.RequiredError(
+                'updateQuota',
+                'Required parameter "updateQuota" was null or undefined when calling updateUserQuotaHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -422,11 +452,11 @@ export class UserApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/quotas/{user}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters.user))),
+            path: `/quotas/{user}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateQuotaToJSON(requestParameters.updateQuota),
+            body: UpdateQuotaToJSON(requestParameters['updateQuota']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);

@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { FormatSpecificsOneOf } from './FormatSpecificsOneOf';
+import type { FormatSpecificsOneOf } from './FormatSpecificsOneOf';
 /**
  * @type FormatSpecifics
  *

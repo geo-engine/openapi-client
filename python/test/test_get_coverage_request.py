@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.get_coverage_request import GetCoverageRequest  # noqa: E501
+from geoengine_openapi_client.models.get_coverage_request import GetCoverageRequest
 
 class TestGetCoverageRequest(unittest.TestCase):
     """GetCoverageRequest unit test stubs"""

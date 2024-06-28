@@ -25,7 +25,7 @@ export interface OgrSourceDataset {
      * @type {string}
      * @memberof OgrSourceDataset
      */
-    attributeQuery?: string | null;
+    attributeQuery?: string;
     /**
      *
      * @type {number}
@@ -37,19 +37,19 @@ export interface OgrSourceDataset {
      * @type {OgrSourceColumnSpec}
      * @memberof OgrSourceDataset
      */
-    columns?: OgrSourceColumnSpec | null;
+    columns?: OgrSourceColumnSpec;
     /**
      *
      * @type {VectorDataType}
      * @memberof OgrSourceDataset
      */
-    dataType?: VectorDataType | null;
+    dataType?: VectorDataType;
     /**
      *
      * @type {TypedGeometry}
      * @memberof OgrSourceDataset
      */
-    defaultGeometry?: TypedGeometry | null;
+    defaultGeometry?: TypedGeometry;
     /**
      *
      * @type {string}
@@ -85,7 +85,7 @@ export interface OgrSourceDataset {
      * @type {string}
      * @memberof OgrSourceDataset
      */
-    sqlQuery?: string | null;
+    sqlQuery?: string;
     /**
      *
      * @type {OgrSourceDatasetTimeType}

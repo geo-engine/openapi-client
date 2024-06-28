@@ -11,43 +11,51 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { ProviderLayerCollectionIdFromJSON, ProviderLayerCollectionIdToJSON, } from './ProviderLayerCollectionId';
+/**
+ * @export
+ */
+export const LayerCollectionListingTypeEnum = {
+    Collection: 'collection'
+};
 /**
  * Check if a given object implements the LayerCollectionListing interface.
  */
 export function instanceOfLayerCollectionListing(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    return isInstance;
+    if (!('description' in value))
+        return false;
+    if (!('id' in value))
+        return false;
+    if (!('name' in value))
+        return false;
+    if (!('type' in value))
+        return false;
+    return true;
 }
 export function LayerCollectionListingFromJSON(json) {
     return LayerCollectionListingFromJSONTyped(json, false);
 }
 export function LayerCollectionListingFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
         'id': ProviderLayerCollectionIdFromJSON(json['id']),
         'name': json['name'],
-        'properties': !exists(json, 'properties') ? undefined : json['properties'],
+        'properties': json['properties'] == null ? undefined : json['properties'],
+        'type': json['type'],
     };
 }
 export function LayerCollectionListingToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'id': ProviderLayerCollectionIdToJSON(value.id),
-        'name': value.name,
-        'properties': value.properties,
+        'description': value['description'],
+        'id': ProviderLayerCollectionIdToJSON(value['id']),
+        'name': value['name'],
+        'properties': value['properties'],
+        'type': value['type'],
     };
 }

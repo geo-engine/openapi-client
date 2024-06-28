@@ -17,16 +17,17 @@ import { NumberParamFromJSON, NumberParamToJSON, } from './NumberParam';
  * Check if a given object implements the StrokeParam interface.
  */
 export function instanceOfStrokeParam(value) {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "width" in value;
-    return isInstance;
+    if (!('color' in value))
+        return false;
+    if (!('width' in value))
+        return false;
+    return true;
 }
 export function StrokeParamFromJSON(json) {
     return StrokeParamFromJSONTyped(json, false);
 }
 export function StrokeParamFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -35,14 +36,11 @@ export function StrokeParamFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function StrokeParamToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'color': ColorParamToJSON(value.color),
-        'width': NumberParamToJSON(value.width),
+        'color': ColorParamToJSON(value['color']),
+        'width': NumberParamToJSON(value['width']),
     };
 }

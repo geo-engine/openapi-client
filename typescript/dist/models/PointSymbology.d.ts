@@ -42,8 +42,21 @@ export interface PointSymbology {
      * @type {TextSymbology}
      * @memberof PointSymbology
      */
-    text?: TextSymbology | null;
+    text?: TextSymbology;
+    /**
+     *
+     * @type {string}
+     * @memberof PointSymbology
+     */
+    type: PointSymbologyTypeEnum;
 }
+/**
+ * @export
+ */
+export declare const PointSymbologyTypeEnum: {
+    readonly Point: "point";
+};
+export type PointSymbologyTypeEnum = typeof PointSymbologyTypeEnum[keyof typeof PointSymbologyTypeEnum];
 /**
  * Check if a given object implements the PointSymbology interface.
  */

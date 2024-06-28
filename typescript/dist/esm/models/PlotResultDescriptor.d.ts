@@ -22,7 +22,7 @@ export interface PlotResultDescriptor {
      * @type {BoundingBox2D}
      * @memberof PlotResultDescriptor
      */
-    bbox?: BoundingBox2D | null;
+    bbox?: BoundingBox2D;
     /**
      *
      * @type {string}
@@ -34,7 +34,7 @@ export interface PlotResultDescriptor {
      * @type {TimeInterval}
      * @memberof PlotResultDescriptor
      */
-    time?: TimeInterval | null;
+    time?: TimeInterval;
 }
 /**
  * Check if a given object implements the PlotResultDescriptor interface.

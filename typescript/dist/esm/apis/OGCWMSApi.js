@@ -31,20 +31,20 @@ export class OGCWMSApi extends runtime.BaseAPI {
      */
     wmsCapabilitiesHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
-                throw new runtime.RequiredError('workflow', 'Required parameter requestParameters.workflow was null or undefined when calling wmsCapabilitiesHandler.');
+            if (requestParameters['workflow'] == null) {
+                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wmsCapabilitiesHandler().');
             }
-            if (requestParameters.version === null || requestParameters.version === undefined) {
-                throw new runtime.RequiredError('version', 'Required parameter requestParameters.version was null or undefined when calling wmsCapabilitiesHandler.');
+            if (requestParameters['version'] == null) {
+                throw new runtime.RequiredError('version', 'Required parameter "version" was null or undefined when calling wmsCapabilitiesHandler().');
             }
-            if (requestParameters.service === null || requestParameters.service === undefined) {
-                throw new runtime.RequiredError('service', 'Required parameter requestParameters.service was null or undefined when calling wmsCapabilitiesHandler.');
+            if (requestParameters['service'] == null) {
+                throw new runtime.RequiredError('service', 'Required parameter "service" was null or undefined when calling wmsCapabilitiesHandler().');
             }
-            if (requestParameters.request === null || requestParameters.request === undefined) {
-                throw new runtime.RequiredError('request', 'Required parameter requestParameters.request was null or undefined when calling wmsCapabilitiesHandler.');
+            if (requestParameters['request'] == null) {
+                throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wmsCapabilitiesHandler().');
             }
-            if (requestParameters.format === null || requestParameters.format === undefined) {
-                throw new runtime.RequiredError('format', 'Required parameter requestParameters.format was null or undefined when calling wmsCapabilitiesHandler.');
+            if (requestParameters['format'] == null) {
+                throw new runtime.RequiredError('format', 'Required parameter "format" was null or undefined when calling wmsCapabilitiesHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -56,7 +56,7 @@ export class OGCWMSApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/wms/{workflow}?request=GetCapabilities`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters.workflow))).replace(`{${"version"}}`, encodeURIComponent(String(requestParameters.version))).replace(`{${"service"}}`, encodeURIComponent(String(requestParameters.service))).replace(`{${"request"}}`, encodeURIComponent(String(requestParameters.request))).replace(`{${"format"}}`, encodeURIComponent(String(requestParameters.format))),
+                path: `/wms/{workflow}?request=GetCapabilities`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow']))).replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version']))).replace(`{${"service"}}`, encodeURIComponent(String(requestParameters['service']))).replace(`{${"request"}}`, encodeURIComponent(String(requestParameters['request']))).replace(`{${"format"}}`, encodeURIComponent(String(requestParameters['format']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -85,20 +85,20 @@ export class OGCWMSApi extends runtime.BaseAPI {
      */
     wmsLegendGraphicHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
-                throw new runtime.RequiredError('workflow', 'Required parameter requestParameters.workflow was null or undefined when calling wmsLegendGraphicHandler.');
+            if (requestParameters['workflow'] == null) {
+                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wmsLegendGraphicHandler().');
             }
-            if (requestParameters.version === null || requestParameters.version === undefined) {
-                throw new runtime.RequiredError('version', 'Required parameter requestParameters.version was null or undefined when calling wmsLegendGraphicHandler.');
+            if (requestParameters['version'] == null) {
+                throw new runtime.RequiredError('version', 'Required parameter "version" was null or undefined when calling wmsLegendGraphicHandler().');
             }
-            if (requestParameters.service === null || requestParameters.service === undefined) {
-                throw new runtime.RequiredError('service', 'Required parameter requestParameters.service was null or undefined when calling wmsLegendGraphicHandler.');
+            if (requestParameters['service'] == null) {
+                throw new runtime.RequiredError('service', 'Required parameter "service" was null or undefined when calling wmsLegendGraphicHandler().');
             }
-            if (requestParameters.request === null || requestParameters.request === undefined) {
-                throw new runtime.RequiredError('request', 'Required parameter requestParameters.request was null or undefined when calling wmsLegendGraphicHandler.');
+            if (requestParameters['request'] == null) {
+                throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wmsLegendGraphicHandler().');
             }
-            if (requestParameters.layer === null || requestParameters.layer === undefined) {
-                throw new runtime.RequiredError('layer', 'Required parameter requestParameters.layer was null or undefined when calling wmsLegendGraphicHandler.');
+            if (requestParameters['layer'] == null) {
+                throw new runtime.RequiredError('layer', 'Required parameter "layer" was null or undefined when calling wmsLegendGraphicHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -110,7 +110,7 @@ export class OGCWMSApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/wms/{workflow}?request=GetLegendGraphic`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters.workflow))).replace(`{${"version"}}`, encodeURIComponent(String(requestParameters.version))).replace(`{${"service"}}`, encodeURIComponent(String(requestParameters.service))).replace(`{${"request"}}`, encodeURIComponent(String(requestParameters.request))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+                path: `/wms/{workflow}?request=GetLegendGraphic`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow']))).replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version']))).replace(`{${"service"}}`, encodeURIComponent(String(requestParameters['service']))).replace(`{${"request"}}`, encodeURIComponent(String(requestParameters['request']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -133,87 +133,87 @@ export class OGCWMSApi extends runtime.BaseAPI {
      */
     wmsMapHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
-                throw new runtime.RequiredError('workflow', 'Required parameter requestParameters.workflow was null or undefined when calling wmsMapHandler.');
+            if (requestParameters['workflow'] == null) {
+                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wmsMapHandler().');
             }
-            if (requestParameters.version === null || requestParameters.version === undefined) {
-                throw new runtime.RequiredError('version', 'Required parameter requestParameters.version was null or undefined when calling wmsMapHandler.');
+            if (requestParameters['version'] == null) {
+                throw new runtime.RequiredError('version', 'Required parameter "version" was null or undefined when calling wmsMapHandler().');
             }
-            if (requestParameters.service === null || requestParameters.service === undefined) {
-                throw new runtime.RequiredError('service', 'Required parameter requestParameters.service was null or undefined when calling wmsMapHandler.');
+            if (requestParameters['service'] == null) {
+                throw new runtime.RequiredError('service', 'Required parameter "service" was null or undefined when calling wmsMapHandler().');
             }
-            if (requestParameters.request === null || requestParameters.request === undefined) {
-                throw new runtime.RequiredError('request', 'Required parameter requestParameters.request was null or undefined when calling wmsMapHandler.');
+            if (requestParameters['request'] == null) {
+                throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wmsMapHandler().');
             }
-            if (requestParameters.width === null || requestParameters.width === undefined) {
-                throw new runtime.RequiredError('width', 'Required parameter requestParameters.width was null or undefined when calling wmsMapHandler.');
+            if (requestParameters['width'] == null) {
+                throw new runtime.RequiredError('width', 'Required parameter "width" was null or undefined when calling wmsMapHandler().');
             }
-            if (requestParameters.height === null || requestParameters.height === undefined) {
-                throw new runtime.RequiredError('height', 'Required parameter requestParameters.height was null or undefined when calling wmsMapHandler.');
+            if (requestParameters['height'] == null) {
+                throw new runtime.RequiredError('height', 'Required parameter "height" was null or undefined when calling wmsMapHandler().');
             }
-            if (requestParameters.bbox === null || requestParameters.bbox === undefined) {
-                throw new runtime.RequiredError('bbox', 'Required parameter requestParameters.bbox was null or undefined when calling wmsMapHandler.');
+            if (requestParameters['bbox'] == null) {
+                throw new runtime.RequiredError('bbox', 'Required parameter "bbox" was null or undefined when calling wmsMapHandler().');
             }
-            if (requestParameters.format === null || requestParameters.format === undefined) {
-                throw new runtime.RequiredError('format', 'Required parameter requestParameters.format was null or undefined when calling wmsMapHandler.');
+            if (requestParameters['format'] == null) {
+                throw new runtime.RequiredError('format', 'Required parameter "format" was null or undefined when calling wmsMapHandler().');
             }
-            if (requestParameters.layers === null || requestParameters.layers === undefined) {
-                throw new runtime.RequiredError('layers', 'Required parameter requestParameters.layers was null or undefined when calling wmsMapHandler.');
+            if (requestParameters['layers'] == null) {
+                throw new runtime.RequiredError('layers', 'Required parameter "layers" was null or undefined when calling wmsMapHandler().');
             }
-            if (requestParameters.styles === null || requestParameters.styles === undefined) {
-                throw new runtime.RequiredError('styles', 'Required parameter requestParameters.styles was null or undefined when calling wmsMapHandler.');
+            if (requestParameters['styles'] == null) {
+                throw new runtime.RequiredError('styles', 'Required parameter "styles" was null or undefined when calling wmsMapHandler().');
             }
             const queryParameters = {};
-            if (requestParameters.version !== undefined) {
-                queryParameters['version'] = requestParameters.version;
+            if (requestParameters['version'] != null) {
+                queryParameters['version'] = requestParameters['version'];
             }
-            if (requestParameters.service !== undefined) {
-                queryParameters['service'] = requestParameters.service;
+            if (requestParameters['service'] != null) {
+                queryParameters['service'] = requestParameters['service'];
             }
-            if (requestParameters.request !== undefined) {
-                queryParameters['request'] = requestParameters.request;
+            if (requestParameters['request'] != null) {
+                queryParameters['request'] = requestParameters['request'];
             }
-            if (requestParameters.width !== undefined) {
-                queryParameters['width'] = requestParameters.width;
+            if (requestParameters['width'] != null) {
+                queryParameters['width'] = requestParameters['width'];
             }
-            if (requestParameters.height !== undefined) {
-                queryParameters['height'] = requestParameters.height;
+            if (requestParameters['height'] != null) {
+                queryParameters['height'] = requestParameters['height'];
             }
-            if (requestParameters.bbox !== undefined) {
-                queryParameters['bbox'] = requestParameters.bbox;
+            if (requestParameters['bbox'] != null) {
+                queryParameters['bbox'] = requestParameters['bbox'];
             }
-            if (requestParameters.format !== undefined) {
-                queryParameters['format'] = requestParameters.format;
+            if (requestParameters['format'] != null) {
+                queryParameters['format'] = requestParameters['format'];
             }
-            if (requestParameters.layers !== undefined) {
-                queryParameters['layers'] = requestParameters.layers;
+            if (requestParameters['layers'] != null) {
+                queryParameters['layers'] = requestParameters['layers'];
             }
-            if (requestParameters.crs !== undefined) {
-                queryParameters['crs'] = requestParameters.crs;
+            if (requestParameters['crs'] != null) {
+                queryParameters['crs'] = requestParameters['crs'];
             }
-            if (requestParameters.styles !== undefined) {
-                queryParameters['styles'] = requestParameters.styles;
+            if (requestParameters['styles'] != null) {
+                queryParameters['styles'] = requestParameters['styles'];
             }
-            if (requestParameters.time !== undefined) {
-                queryParameters['time'] = requestParameters.time;
+            if (requestParameters['time'] != null) {
+                queryParameters['time'] = requestParameters['time'];
             }
-            if (requestParameters.transparent !== undefined) {
-                queryParameters['transparent'] = requestParameters.transparent;
+            if (requestParameters['transparent'] != null) {
+                queryParameters['transparent'] = requestParameters['transparent'];
             }
-            if (requestParameters.bgcolor !== undefined) {
-                queryParameters['bgcolor'] = requestParameters.bgcolor;
+            if (requestParameters['bgcolor'] != null) {
+                queryParameters['bgcolor'] = requestParameters['bgcolor'];
             }
-            if (requestParameters.sld !== undefined) {
-                queryParameters['sld'] = requestParameters.sld;
+            if (requestParameters['sld'] != null) {
+                queryParameters['sld'] = requestParameters['sld'];
             }
-            if (requestParameters.sldBody !== undefined) {
-                queryParameters['sld_body'] = requestParameters.sldBody;
+            if (requestParameters['sldBody'] != null) {
+                queryParameters['sld_body'] = requestParameters['sldBody'];
             }
-            if (requestParameters.elevation !== undefined) {
-                queryParameters['elevation'] = requestParameters.elevation;
+            if (requestParameters['elevation'] != null) {
+                queryParameters['elevation'] = requestParameters['elevation'];
             }
-            if (requestParameters.exceptions !== undefined) {
-                queryParameters['exceptions'] = requestParameters.exceptions;
+            if (requestParameters['exceptions'] != null) {
+                queryParameters['exceptions'] = requestParameters['exceptions'];
             }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
@@ -224,7 +224,7 @@ export class OGCWMSApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/wms/{workflow}?request=GetMap`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters.workflow))),
+                path: `/wms/{workflow}?request=GetMap`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,

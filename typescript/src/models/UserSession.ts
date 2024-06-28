@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { STRectangle } from './STRectangle';
 import {
     STRectangleFromJSON,
@@ -49,7 +49,7 @@ export interface UserSession {
      * @type {string}
      * @memberof UserSession
      */
-    project?: string | null;
+    project?: string;
     /**
      * 
      * @type {Array<string>}
@@ -73,21 +73,19 @@ export interface UserSession {
      * @type {STRectangle}
      * @memberof UserSession
      */
-    view?: STRectangle | null;
+    view?: STRectangle;
 }
 
 /**
  * Check if a given object implements the UserSession interface.
  */
 export function instanceOfUserSession(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "roles" in value;
-    isInstance = isInstance && "user" in value;
-    isInstance = isInstance && "validUntil" in value;
-
-    return isInstance;
+    if (!('created' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('roles' in value)) return false;
+    if (!('user' in value)) return false;
+    if (!('validUntil' in value)) return false;
+    return true;
 }
 
 export function UserSessionFromJSON(json: any): UserSession {
@@ -95,37 +93,34 @@ export function UserSessionFromJSON(json: any): UserSession {
 }
 
 export function UserSessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserSession {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'created': (new Date(json['created'])),
         'id': json['id'],
-        'project': !exists(json, 'project') ? undefined : json['project'],
+        'project': json['project'] == null ? undefined : json['project'],
         'roles': json['roles'],
         'user': UserInfoFromJSON(json['user']),
         'validUntil': (new Date(json['validUntil'])),
-        'view': !exists(json, 'view') ? undefined : STRectangleFromJSON(json['view']),
+        'view': json['view'] == null ? undefined : STRectangleFromJSON(json['view']),
     };
 }
 
 export function UserSessionToJSON(value?: UserSession | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'created': (value.created.toISOString()),
-        'id': value.id,
-        'project': value.project,
-        'roles': value.roles,
-        'user': UserInfoToJSON(value.user),
-        'validUntil': (value.validUntil.toISOString()),
-        'view': STRectangleToJSON(value.view),
+        'created': ((value['created']).toISOString()),
+        'id': value['id'],
+        'project': value['project'],
+        'roles': value['roles'],
+        'user': UserInfoToJSON(value['user']),
+        'validUntil': ((value['validUntil']).toISOString()),
+        'view': STRectangleToJSON(value['view']),
     };
 }
 

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.internal_data_id import InternalDataId  # noqa: E501
+from geoengine_openapi_client.models.internal_data_id import InternalDataId
 
 class TestInternalDataId(unittest.TestCase):
     """InternalDataId unit test stubs"""
@@ -34,7 +33,7 @@ class TestInternalDataId(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `InternalDataId`
         """
-        model = InternalDataId()  # noqa: E501
+        model = InternalDataId()
         if include_optional:
             return InternalDataId(
                 dataset_id = '',

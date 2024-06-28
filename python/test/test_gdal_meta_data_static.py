@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.gdal_meta_data_static import GdalMetaDataStatic  # noqa: E501
+from geoengine_openapi_client.models.gdal_meta_data_static import GdalMetaDataStatic
 
 class TestGdalMetaDataStatic(unittest.TestCase):
     """GdalMetaDataStatic unit test stubs"""
@@ -34,7 +33,7 @@ class TestGdalMetaDataStatic(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GdalMetaDataStatic`
         """
-        model = GdalMetaDataStatic()  # noqa: E501
+        model = GdalMetaDataStatic()
         if include_optional:
             return GdalMetaDataStatic(
                 cache_ttl = 0,
@@ -83,7 +82,8 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                     time = null, ),
                 time = geoengine_openapi_client.models.time_interval.TimeInterval(
                     end = 56, 
-                    start = 56, )
+                    start = 56, ),
+                type = 'GdalStatic'
             )
         else:
             return GdalMetaDataStatic(
@@ -130,6 +130,7 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                     resolution = null, 
                     spatial_reference = '', 
                     time = null, ),
+                type = 'GdalStatic',
         )
         """
 

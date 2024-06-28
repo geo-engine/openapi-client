@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.user_credentials import UserCredentials  # noqa: E501
+from geoengine_openapi_client.models.user_credentials import UserCredentials
 
 class TestUserCredentials(unittest.TestCase):
     """UserCredentials unit test stubs"""
@@ -34,7 +33,7 @@ class TestUserCredentials(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UserCredentials`
         """
-        model = UserCredentials()  # noqa: E501
+        model = UserCredentials()
         if include_optional:
             return UserCredentials(
                 email = '',

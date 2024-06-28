@@ -12,30 +12,24 @@
  * Do not edit the class manually.
  */
 import { instanceOfProjectLayer, ProjectLayerFromJSONTyped, ProjectLayerToJSON, } from './ProjectLayer';
-import { ProjectUpdateToken, instanceOfProjectUpdateToken, ProjectUpdateTokenToJSON, } from './ProjectUpdateToken';
+import { instanceOfProjectUpdateToken, ProjectUpdateTokenFromJSONTyped, ProjectUpdateTokenToJSON, } from './ProjectUpdateToken';
 export function LayerUpdateFromJSON(json) {
     return LayerUpdateFromJSONTyped(json, false);
 }
 export function LayerUpdateFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    if (json === ProjectUpdateToken.None) {
-        return ProjectUpdateToken.None;
+    if (instanceOfProjectLayer(json)) {
+        return ProjectLayerFromJSONTyped(json, true);
     }
-    else if (json === ProjectUpdateToken.Delete) {
-        return ProjectUpdateToken.Delete;
-    }
-    else {
-        return Object.assign({}, ProjectLayerFromJSONTyped(json, true));
+    if (instanceOfProjectUpdateToken(json)) {
+        return ProjectUpdateTokenFromJSONTyped(json, true);
     }
 }
 export function LayerUpdateToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     if (typeof value === 'object' && instanceOfProjectLayer(value)) {
         return ProjectLayerToJSON(value);

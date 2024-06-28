@@ -36,11 +36,24 @@ export interface LogarithmicGradient {
     overColor: Array<number>;
     /**
      *
+     * @type {string}
+     * @memberof LogarithmicGradient
+     */
+    type: LogarithmicGradientTypeEnum;
+    /**
+     *
      * @type {Array<number>}
      * @memberof LogarithmicGradient
      */
     underColor: Array<number>;
 }
+/**
+ * @export
+ */
+export declare const LogarithmicGradientTypeEnum: {
+    readonly LogarithmicGradient: "logarithmicGradient";
+};
+export type LogarithmicGradientTypeEnum = typeof LogarithmicGradientTypeEnum[keyof typeof LogarithmicGradientTypeEnum];
 /**
  * Check if a given object implements the LogarithmicGradient interface.
  */

@@ -12,30 +12,24 @@
  * Do not edit the class manually.
  */
 import { instanceOfPlot, PlotFromJSONTyped, PlotToJSON, } from './Plot';
-import { ProjectUpdateToken, instanceOfProjectUpdateToken, ProjectUpdateTokenToJSON, } from './ProjectUpdateToken';
+import { instanceOfProjectUpdateToken, ProjectUpdateTokenFromJSONTyped, ProjectUpdateTokenToJSON, } from './ProjectUpdateToken';
 export function PlotUpdateFromJSON(json) {
     return PlotUpdateFromJSONTyped(json, false);
 }
 export function PlotUpdateFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    if (json === ProjectUpdateToken.None) {
-        return ProjectUpdateToken.None;
+    if (instanceOfPlot(json)) {
+        return PlotFromJSONTyped(json, true);
     }
-    else if (json === ProjectUpdateToken.Delete) {
-        return ProjectUpdateToken.Delete;
-    }
-    else {
-        return Object.assign({}, PlotFromJSONTyped(json, true));
+    if (instanceOfProjectUpdateToken(json)) {
+        return ProjectUpdateTokenFromJSONTyped(json, true);
     }
 }
 export function PlotUpdateToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     if (typeof value === 'object' && instanceOfPlot(value)) {
         return PlotToJSON(value);

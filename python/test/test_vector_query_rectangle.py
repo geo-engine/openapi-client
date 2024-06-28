@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.vector_query_rectangle import VectorQueryRectangle  # noqa: E501
+from geoengine_openapi_client.models.vector_query_rectangle import VectorQueryRectangle
 
 class TestVectorQueryRectangle(unittest.TestCase):
     """VectorQueryRectangle unit test stubs"""
@@ -34,7 +33,7 @@ class TestVectorQueryRectangle(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VectorQueryRectangle`
         """
-        model = VectorQueryRectangle()  # noqa: E501
+        model = VectorQueryRectangle()
         if include_optional:
             return VectorQueryRectangle(
                 spatial_bounds = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(

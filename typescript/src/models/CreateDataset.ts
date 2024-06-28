@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { DataPath } from './DataPath';
 import {
     DataPathFromJSON,
@@ -50,11 +50,9 @@ export interface CreateDataset {
  * Check if a given object implements the CreateDataset interface.
  */
 export function instanceOfCreateDataset(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "dataPath" in value;
-    isInstance = isInstance && "definition" in value;
-
-    return isInstance;
+    if (!('dataPath' in value)) return false;
+    if (!('definition' in value)) return false;
+    return true;
 }
 
 export function CreateDatasetFromJSON(json: any): CreateDataset {
@@ -62,7 +60,7 @@ export function CreateDatasetFromJSON(json: any): CreateDataset {
 }
 
 export function CreateDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateDataset {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function CreateDatasetFromJSONTyped(json: any, ignoreDiscriminator: boole
 }
 
 export function CreateDatasetToJSON(value?: CreateDataset | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'dataPath': DataPathToJSON(value.dataPath),
-        'definition': DatasetDefinitionToJSON(value.definition),
+        'dataPath': DataPathToJSON(value['dataPath']),
+        'definition': DatasetDefinitionToJSON(value['definition']),
     };
 }
 

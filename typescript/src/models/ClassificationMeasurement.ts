@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,17 +31,32 @@ export interface ClassificationMeasurement {
      * @memberof ClassificationMeasurement
      */
     measurement: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ClassificationMeasurement
+     */
+    type: ClassificationMeasurementTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const ClassificationMeasurementTypeEnum = {
+    Classification: 'classification'
+} as const;
+export type ClassificationMeasurementTypeEnum = typeof ClassificationMeasurementTypeEnum[keyof typeof ClassificationMeasurementTypeEnum];
+
 
 /**
  * Check if a given object implements the ClassificationMeasurement interface.
  */
 export function instanceOfClassificationMeasurement(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "classes" in value;
-    isInstance = isInstance && "measurement" in value;
-
-    return isInstance;
+    if (!('classes' in value)) return false;
+    if (!('measurement' in value)) return false;
+    if (!('type' in value)) return false;
+    return true;
 }
 
 export function ClassificationMeasurementFromJSON(json: any): ClassificationMeasurement {
@@ -49,27 +64,26 @@ export function ClassificationMeasurementFromJSON(json: any): ClassificationMeas
 }
 
 export function ClassificationMeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): ClassificationMeasurement {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'classes': json['classes'],
         'measurement': json['measurement'],
+        'type': json['type'],
     };
 }
 
 export function ClassificationMeasurementToJSON(value?: ClassificationMeasurement | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'classes': value.classes,
-        'measurement': value.measurement,
+        'classes': value['classes'],
+        'measurement': value['measurement'],
+        'type': value['type'],
     };
 }
 

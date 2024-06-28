@@ -26,7 +26,7 @@ export interface WcsBoundingbox {
      * @type {string}
      * @memberof WcsBoundingbox
      */
-    spatialReference?: string | null;
+    spatialReference?: string;
 }
 /**
  * Check if a given object implements the WcsBoundingbox interface.

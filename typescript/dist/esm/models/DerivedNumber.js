@@ -12,38 +12,47 @@
  * Do not edit the class manually.
  */
 /**
+ * @export
+ */
+export const DerivedNumberTypeEnum = {
+    Derived: 'derived'
+};
+/**
  * Check if a given object implements the DerivedNumber interface.
  */
 export function instanceOfDerivedNumber(value) {
-    let isInstance = true;
-    isInstance = isInstance && "attribute" in value;
-    isInstance = isInstance && "defaultValue" in value;
-    isInstance = isInstance && "factor" in value;
-    return isInstance;
+    if (!('attribute' in value))
+        return false;
+    if (!('defaultValue' in value))
+        return false;
+    if (!('factor' in value))
+        return false;
+    if (!('type' in value))
+        return false;
+    return true;
 }
 export function DerivedNumberFromJSON(json) {
     return DerivedNumberFromJSONTyped(json, false);
 }
 export function DerivedNumberFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'attribute': json['attribute'],
         'defaultValue': json['defaultValue'],
         'factor': json['factor'],
+        'type': json['type'],
     };
 }
 export function DerivedNumberToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'attribute': value.attribute,
-        'defaultValue': value.defaultValue,
-        'factor': value.factor,
+        'attribute': value['attribute'],
+        'defaultValue': value['defaultValue'],
+        'factor': value['factor'],
+        'type': value['type'],
     };
 }

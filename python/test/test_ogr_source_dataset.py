@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.ogr_source_dataset import OgrSourceDataset  # noqa: E501
+from geoengine_openapi_client.models.ogr_source_dataset import OgrSourceDataset
 
 class TestOgrSourceDataset(unittest.TestCase):
     """OgrSourceDataset unit test stubs"""
@@ -34,7 +33,7 @@ class TestOgrSourceDataset(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `OgrSourceDataset`
         """
-        model = OgrSourceDataset()  # noqa: E501
+        model = OgrSourceDataset()
         if include_optional:
             return OgrSourceDataset(
                 attribute_query = '',

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.task_list_options import TaskListOptions  # noqa: E501
+from geoengine_openapi_client.models.task_list_options import TaskListOptions
 
 class TestTaskListOptions(unittest.TestCase):
     """TaskListOptions unit test stubs"""
@@ -34,7 +33,7 @@ class TestTaskListOptions(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TaskListOptions`
         """
-        model = TaskListOptions()  # noqa: E501
+        model = TaskListOptions()
         if include_optional:
             return TaskListOptions(
                 filter = 'running',

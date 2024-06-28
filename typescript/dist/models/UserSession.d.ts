@@ -34,7 +34,7 @@ export interface UserSession {
      * @type {string}
      * @memberof UserSession
      */
-    project?: string | null;
+    project?: string;
     /**
      *
      * @type {Array<string>}
@@ -58,7 +58,7 @@ export interface UserSession {
      * @type {STRectangle}
      * @memberof UserSession
      */
-    view?: STRectangle | null;
+    view?: STRectangle;
 }
 /**
  * Check if a given object implements the UserSession interface.

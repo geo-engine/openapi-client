@@ -36,11 +36,24 @@ export interface LinearGradient {
     overColor: Array<number>;
     /**
      *
+     * @type {string}
+     * @memberof LinearGradient
+     */
+    type: LinearGradientTypeEnum;
+    /**
+     *
      * @type {Array<number>}
      * @memberof LinearGradient
      */
     underColor: Array<number>;
 }
+/**
+ * @export
+ */
+export declare const LinearGradientTypeEnum: {
+    readonly LinearGradient: "linearGradient";
+};
+export type LinearGradientTypeEnum = typeof LinearGradientTypeEnum[keyof typeof LinearGradientTypeEnum];
 /**
  * Check if a given object implements the LinearGradient interface.
  */

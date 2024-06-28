@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -38,8 +38,7 @@ export interface InternalDataId {
  * @export
  */
 export const InternalDataIdTypeEnum = {
-    Internal: 'internal',
-    External: 'external'
+    Internal: 'internal'
 } as const;
 export type InternalDataIdTypeEnum = typeof InternalDataIdTypeEnum[keyof typeof InternalDataIdTypeEnum];
 
@@ -48,11 +47,9 @@ export type InternalDataIdTypeEnum = typeof InternalDataIdTypeEnum[keyof typeof 
  * Check if a given object implements the InternalDataId interface.
  */
 export function instanceOfInternalDataId(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "datasetId" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+    if (!('datasetId' in value)) return false;
+    if (!('type' in value)) return false;
+    return true;
 }
 
 export function InternalDataIdFromJSON(json: any): InternalDataId {
@@ -60,7 +57,7 @@ export function InternalDataIdFromJSON(json: any): InternalDataId {
 }
 
 export function InternalDataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): InternalDataId {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -71,16 +68,13 @@ export function InternalDataIdFromJSONTyped(json: any, ignoreDiscriminator: bool
 }
 
 export function InternalDataIdToJSON(value?: InternalDataId | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'datasetId': value.datasetId,
-        'type': value.type,
+        'datasetId': value['datasetId'],
+        'type': value['type'],
     };
 }
 

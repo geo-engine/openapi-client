@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.classification_measurement import ClassificationMeasurement  # noqa: E501
+from geoengine_openapi_client.models.classification_measurement import ClassificationMeasurement
 
 class TestClassificationMeasurement(unittest.TestCase):
     """ClassificationMeasurement unit test stubs"""
@@ -34,13 +33,14 @@ class TestClassificationMeasurement(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ClassificationMeasurement`
         """
-        model = ClassificationMeasurement()  # noqa: E501
+        model = ClassificationMeasurement()
         if include_optional:
             return ClassificationMeasurement(
                 classes = {
                     'key' : ''
                     },
-                measurement = ''
+                measurement = '',
+                type = 'classification'
             )
         else:
             return ClassificationMeasurement(
@@ -48,6 +48,7 @@ class TestClassificationMeasurement(unittest.TestCase):
                     'key' : ''
                     },
                 measurement = '',
+                type = 'classification',
         )
         """
 

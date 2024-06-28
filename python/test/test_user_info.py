@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.user_info import UserInfo  # noqa: E501
+from geoengine_openapi_client.models.user_info import UserInfo
 
 class TestUserInfo(unittest.TestCase):
     """UserInfo unit test stubs"""
@@ -34,7 +33,7 @@ class TestUserInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UserInfo`
         """
-        model = UserInfo()  # noqa: E501
+        model = UserInfo()
         if include_optional:
             return UserInfo(
                 email = '',

@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.ogcwfs_api import OGCWFSApi  # noqa: E501
+from geoengine_openapi_client.api.ogcwfs_api import OGCWFSApi
 
 
 class TestOGCWFSApi(unittest.TestCase):
     """OGCWFSApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = OGCWFSApi()  # noqa: E501
+        self.api = OGCWFSApi()
 
     def tearDown(self) -> None:
         pass
@@ -30,14 +30,14 @@ class TestOGCWFSApi(unittest.TestCase):
     def test_wfs_capabilities_handler(self) -> None:
         """Test case for wfs_capabilities_handler
 
-        Get WFS Capabilities  # noqa: E501
+        Get WFS Capabilities
         """
         pass
 
     def test_wfs_feature_handler(self) -> None:
         """Test case for wfs_feature_handler
 
-        Get WCS Features  # noqa: E501
+        Get WCS Features
         """
         pass
 

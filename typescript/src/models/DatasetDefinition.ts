@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AddDataset } from './AddDataset';
 import {
     AddDatasetFromJSON,
@@ -50,11 +50,9 @@ export interface DatasetDefinition {
  * Check if a given object implements the DatasetDefinition interface.
  */
 export function instanceOfDatasetDefinition(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "metaData" in value;
-    isInstance = isInstance && "properties" in value;
-
-    return isInstance;
+    if (!('metaData' in value)) return false;
+    if (!('properties' in value)) return false;
+    return true;
 }
 
 export function DatasetDefinitionFromJSON(json: any): DatasetDefinition {
@@ -62,7 +60,7 @@ export function DatasetDefinitionFromJSON(json: any): DatasetDefinition {
 }
 
 export function DatasetDefinitionFromJSONTyped(json: any, ignoreDiscriminator: boolean): DatasetDefinition {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function DatasetDefinitionFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function DatasetDefinitionToJSON(value?: DatasetDefinition | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'metaData': MetaDataDefinitionToJSON(value.metaData),
-        'properties': AddDatasetToJSON(value.properties),
+        'metaData': MetaDataDefinitionToJSON(value['metaData']),
+        'properties': AddDatasetToJSON(value['properties']),
     };
 }
 

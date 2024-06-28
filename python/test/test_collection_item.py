@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.collection_item import CollectionItem  # noqa: E501
+from geoengine_openapi_client.models.collection_item import CollectionItem
 
 class TestCollectionItem(unittest.TestCase):
     """CollectionItem unit test stubs"""
@@ -34,7 +33,7 @@ class TestCollectionItem(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CollectionItem`
         """
-        model = CollectionItem()  # noqa: E501
+        model = CollectionItem()
         if include_optional:
             return CollectionItem(
                 description = '',

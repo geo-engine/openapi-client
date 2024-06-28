@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.spatial_reference_authority import SpatialReferenceAuthority  # noqa: E501
+from geoengine_openapi_client.models.spatial_reference_authority import SpatialReferenceAuthority
 
 class TestSpatialReferenceAuthority(unittest.TestCase):
     """SpatialReferenceAuthority unit test stubs"""

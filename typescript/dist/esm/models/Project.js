@@ -20,22 +20,29 @@ import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
  * Check if a given object implements the Project interface.
  */
 export function instanceOfProject(value) {
-    let isInstance = true;
-    isInstance = isInstance && "bounds" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "layers" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "plots" in value;
-    isInstance = isInstance && "timeStep" in value;
-    isInstance = isInstance && "version" in value;
-    return isInstance;
+    if (!('bounds' in value))
+        return false;
+    if (!('description' in value))
+        return false;
+    if (!('id' in value))
+        return false;
+    if (!('layers' in value))
+        return false;
+    if (!('name' in value))
+        return false;
+    if (!('plots' in value))
+        return false;
+    if (!('timeStep' in value))
+        return false;
+    if (!('version' in value))
+        return false;
+    return true;
 }
 export function ProjectFromJSON(json) {
     return ProjectFromJSONTyped(json, false);
 }
 export function ProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -50,20 +57,17 @@ export function ProjectFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ProjectToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'bounds': STRectangleToJSON(value.bounds),
-        'description': value.description,
-        'id': value.id,
-        'layers': (value.layers.map(ProjectLayerToJSON)),
-        'name': value.name,
-        'plots': (value.plots.map(PlotToJSON)),
-        'timeStep': TimeStepToJSON(value.timeStep),
-        'version': ProjectVersionToJSON(value.version),
+        'bounds': STRectangleToJSON(value['bounds']),
+        'description': value['description'],
+        'id': value['id'],
+        'layers': (value['layers'].map(ProjectLayerToJSON)),
+        'name': value['name'],
+        'plots': (value['plots'].map(PlotToJSON)),
+        'timeStep': TimeStepToJSON(value['timeStep']),
+        'version': ProjectVersionToJSON(value['version']),
     };
 }

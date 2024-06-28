@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.update_dataset import UpdateDataset  # noqa: E501
+from geoengine_openapi_client.models.update_dataset import UpdateDataset
 
 class TestUpdateDataset(unittest.TestCase):
     """UpdateDataset unit test stubs"""
@@ -34,7 +33,7 @@ class TestUpdateDataset(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateDataset`
         """
-        model = UpdateDataset()  # noqa: E501
+        model = UpdateDataset()
         if include_optional:
             return UpdateDataset(
                 description = '',

@@ -28,7 +28,7 @@ export interface ProvenanceOutput {
      * @type {Array<Provenance>}
      * @memberof ProvenanceOutput
      */
-    provenance?: Array<Provenance> | null;
+    provenance?: Array<Provenance>;
 }
 /**
  * Check if a given object implements the ProvenanceOutput interface.

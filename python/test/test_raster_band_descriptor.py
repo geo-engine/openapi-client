@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.raster_band_descriptor import RasterBandDescriptor  # noqa: E501
+from geoengine_openapi_client.models.raster_band_descriptor import RasterBandDescriptor
 
 class TestRasterBandDescriptor(unittest.TestCase):
     """RasterBandDescriptor unit test stubs"""
@@ -34,7 +33,7 @@ class TestRasterBandDescriptor(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `RasterBandDescriptor`
         """
-        model = RasterBandDescriptor()  # noqa: E501
+        model = RasterBandDescriptor()
         if include_optional:
             return RasterBandDescriptor(
                 measurement = None,

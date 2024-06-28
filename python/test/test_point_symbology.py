@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.point_symbology import PointSymbology  # noqa: E501
+from geoengine_openapi_client.models.point_symbology import PointSymbology
 
 class TestPointSymbology(unittest.TestCase):
     """PointSymbology unit test stubs"""
@@ -34,7 +33,7 @@ class TestPointSymbology(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PointSymbology`
         """
-        model = PointSymbology()  # noqa: E501
+        model = PointSymbology()
         if include_optional:
             return PointSymbology(
                 fill_color = None,
@@ -47,7 +46,8 @@ class TestPointSymbology(unittest.TestCase):
                     fill_color = null, 
                     stroke = geoengine_openapi_client.models.stroke_param.StrokeParam(
                         color = null, 
-                        width = null, ), )
+                        width = null, ), ),
+                type = 'point'
             )
         else:
             return PointSymbology(
@@ -56,6 +56,7 @@ class TestPointSymbology(unittest.TestCase):
                 stroke = geoengine_openapi_client.models.stroke_param.StrokeParam(
                     color = null, 
                     width = null, ),
+                type = 'point',
         )
         """
 

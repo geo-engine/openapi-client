@@ -14,38 +14,36 @@
 
 
 from __future__ import annotations
-from inspect import getfullargspec
 import json
 import pprint
-import re  # noqa: F401
-
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from geoengine_openapi_client.models.derived_color_with_type import DerivedColorWithType
-from geoengine_openapi_client.models.static_color_param import StaticColorParam
-from typing import Union, Any, List, TYPE_CHECKING
+from geoengine_openapi_client.models.color_param_static import ColorParamStatic
+from geoengine_openapi_client.models.derived_color import DerivedColor
 from pydantic import StrictStr, Field
+from typing import Union, List, Optional, Dict
+from typing_extensions import Literal, Self
 
-COLORPARAM_ONE_OF_SCHEMAS = ["DerivedColorWithType", "StaticColorParam"]
+COLORPARAM_ONE_OF_SCHEMAS = ["ColorParamStatic", "DerivedColor"]
 
 class ColorParam(BaseModel):
     """
     ColorParam
     """
-    # data type: StaticColorParam
-    oneof_schema_1_validator: Optional[StaticColorParam] = None
-    # data type: DerivedColorWithType
-    oneof_schema_2_validator: Optional[DerivedColorWithType] = None
-    if TYPE_CHECKING:
-        actual_instance: Union[DerivedColorWithType, StaticColorParam]
-    else:
-        actual_instance: Any
-    one_of_schemas: List[str] = Field(COLORPARAM_ONE_OF_SCHEMAS, const=True)
+    # data type: ColorParamStatic
+    oneof_schema_1_validator: Optional[ColorParamStatic] = None
+    # data type: DerivedColor
+    oneof_schema_2_validator: Optional[DerivedColor] = None
+    actual_instance: Optional[Union[ColorParamStatic, DerivedColor]] = None
+    one_of_schemas: List[str] = Field(default=Literal["ColorParamStatic", "DerivedColor"])
 
-    class Config:
-        validate_assignment = True
+    model_config = ConfigDict(
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
-    discriminator_value_class_map = {
+
+    discriminator_value_class_map: Dict[str, str] = {
     }
 
     def __init__(self, *args, **kwargs) -> None:
@@ -58,38 +56,38 @@ class ColorParam(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @validator('actual_instance')
+    @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = ColorParam.construct()
+        instance = ColorParam.model_construct()
         error_messages = []
         match = 0
-        # validate data type: StaticColorParam
-        if not isinstance(v, StaticColorParam):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `StaticColorParam`")
+        # validate data type: ColorParamStatic
+        if not isinstance(v, ColorParamStatic):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ColorParamStatic`")
         else:
             match += 1
-        # validate data type: DerivedColorWithType
-        if not isinstance(v, DerivedColorWithType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `DerivedColorWithType`")
+        # validate data type: DerivedColor
+        if not isinstance(v, DerivedColor):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `DerivedColor`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in ColorParam with oneOf schemas: DerivedColorWithType, StaticColorParam. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in ColorParam with oneOf schemas: ColorParamStatic, DerivedColor. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in ColorParam with oneOf schemas: DerivedColorWithType, StaticColorParam. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in ColorParam with oneOf schemas: ColorParamStatic, DerivedColor. Details: " + ", ".join(error_messages))
         else:
             return v
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ColorParam:
+    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> ColorParam:
+    def from_json(cls, json_str: str) -> Self:
         """Returns the object represented by the json string"""
-        instance = ColorParam.construct()
+        instance = cls.model_construct()
         error_messages = []
         match = 0
 
@@ -98,45 +96,45 @@ class ColorParam(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `DerivedColorWithType`
-        if _data_type == "DerivedColorWithType":
-            instance.actual_instance = DerivedColorWithType.from_json(json_str)
-            return instance
-
-        # check if data type is `StaticColorParam`
-        if _data_type == "StaticColorParam":
-            instance.actual_instance = StaticColorParam.from_json(json_str)
-            return instance
-
-        # check if data type is `DerivedColorWithType`
+        # check if data type is `DerivedColor`
         if _data_type == "derived":
-            instance.actual_instance = DerivedColorWithType.from_json(json_str)
+            instance.actual_instance = DerivedColor.from_json(json_str)
             return instance
 
-        # check if data type is `StaticColorParam`
+        # check if data type is `ColorParamStatic`
         if _data_type == "static":
-            instance.actual_instance = StaticColorParam.from_json(json_str)
+            instance.actual_instance = ColorParamStatic.from_json(json_str)
             return instance
 
-        # deserialize data into StaticColorParam
+        # check if data type is `ColorParamStatic`
+        if _data_type == "ColorParamStatic":
+            instance.actual_instance = ColorParamStatic.from_json(json_str)
+            return instance
+
+        # check if data type is `DerivedColor`
+        if _data_type == "DerivedColor":
+            instance.actual_instance = DerivedColor.from_json(json_str)
+            return instance
+
+        # deserialize data into ColorParamStatic
         try:
-            instance.actual_instance = StaticColorParam.from_json(json_str)
+            instance.actual_instance = ColorParamStatic.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into DerivedColorWithType
+        # deserialize data into DerivedColor
         try:
-            instance.actual_instance = DerivedColorWithType.from_json(json_str)
+            instance.actual_instance = DerivedColor.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into ColorParam with oneOf schemas: DerivedColorWithType, StaticColorParam. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into ColorParam with oneOf schemas: ColorParamStatic, DerivedColor. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into ColorParam with oneOf schemas: DerivedColorWithType, StaticColorParam. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into ColorParam with oneOf schemas: ColorParamStatic, DerivedColor. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -145,19 +143,17 @@ class ColorParam(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        to_json = getattr(self.actual_instance, "to_json", None)
-        if callable(to_json):
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], ColorParamStatic, DerivedColor]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
-        to_dict = getattr(self.actual_instance, "to_dict", None)
-        if callable(to_dict):
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
             return self.actual_instance.to_dict()
         else:
             # primitive type
@@ -165,6 +161,6 @@ class ColorParam(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.dict())
+        return pprint.pformat(self.model_dump())
 
 

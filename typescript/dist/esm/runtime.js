@@ -67,11 +67,7 @@ export class Configuration {
         return this.configuration.credentials;
     }
 }
-export const DefaultConfig = new Configuration({
-    headers: {
-        'User-Agent': 'geoengine/openapi-client/typescript/0.0.9'
-    }
-});
+export const DefaultConfig = new Configuration();
 /**
  * This is the base class for all generated API classes.
  */
@@ -249,10 +245,6 @@ export const COLLECTION_FORMATS = {
     tsv: "\t",
     pipes: "|",
 };
-export function exists(json, key) {
-    const value = json[key];
-    return value !== null && value !== undefined;
-}
 export function querystring(params, prefix = '') {
     return Object.keys(params)
         .map(key => querystringSingleKey(key, params[key], prefix))

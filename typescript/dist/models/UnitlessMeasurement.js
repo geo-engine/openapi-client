@@ -18,17 +18,15 @@ exports.UnitlessMeasurementToJSON = exports.UnitlessMeasurementFromJSONTyped = e
  * @export
  */
 exports.UnitlessMeasurementTypeEnum = {
-    Unitless: 'unitless',
-    Continuous: 'continuous',
-    Classification: 'classification'
+    Unitless: 'unitless'
 };
 /**
  * Check if a given object implements the UnitlessMeasurement interface.
  */
 function instanceOfUnitlessMeasurement(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('type' in value))
+        return false;
+    return true;
 }
 exports.instanceOfUnitlessMeasurement = instanceOfUnitlessMeasurement;
 function UnitlessMeasurementFromJSON(json) {
@@ -36,7 +34,7 @@ function UnitlessMeasurementFromJSON(json) {
 }
 exports.UnitlessMeasurementFromJSON = UnitlessMeasurementFromJSON;
 function UnitlessMeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -45,14 +43,11 @@ function UnitlessMeasurementFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.UnitlessMeasurementFromJSONTyped = UnitlessMeasurementFromJSONTyped;
 function UnitlessMeasurementToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'type': value.type,
+        'type': value['type'],
     };
 }
 exports.UnitlessMeasurementToJSON = UnitlessMeasurementToJSON;

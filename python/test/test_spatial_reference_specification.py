@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.spatial_reference_specification import SpatialReferenceSpecification  # noqa: E501
+from geoengine_openapi_client.models.spatial_reference_specification import SpatialReferenceSpecification
 
 class TestSpatialReferenceSpecification(unittest.TestCase):
     """SpatialReferenceSpecification unit test stubs"""
@@ -34,7 +33,7 @@ class TestSpatialReferenceSpecification(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SpatialReferenceSpecification`
         """
-        model = SpatialReferenceSpecification()  # noqa: E501
+        model = SpatialReferenceSpecification()
         if include_optional:
             return SpatialReferenceSpecification(
                 axis_labels = [

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.error_response import ErrorResponse  # noqa: E501
+from geoengine_openapi_client.models.error_response import ErrorResponse
 
 class TestErrorResponse(unittest.TestCase):
     """ErrorResponse unit test stubs"""
@@ -34,7 +33,7 @@ class TestErrorResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ErrorResponse`
         """
-        model = ErrorResponse()  # noqa: E501
+        model = ErrorResponse()
         if include_optional:
             return ErrorResponse(
                 error = '',

@@ -31,7 +31,7 @@ export interface RasterResultDescriptor {
      * @type {SpatialPartition2D}
      * @memberof RasterResultDescriptor
      */
-    bbox?: SpatialPartition2D | null;
+    bbox?: SpatialPartition2D;
     /**
      *
      * @type {RasterDataType}
@@ -43,7 +43,7 @@ export interface RasterResultDescriptor {
      * @type {SpatialResolution}
      * @memberof RasterResultDescriptor
      */
-    resolution?: SpatialResolution | null;
+    resolution?: SpatialResolution;
     /**
      *
      * @type {string}
@@ -55,7 +55,7 @@ export interface RasterResultDescriptor {
      * @type {TimeInterval}
      * @memberof RasterResultDescriptor
      */
-    time?: TimeInterval | null;
+    time?: TimeInterval;
 }
 /**
  * Check if a given object implements the RasterResultDescriptor interface.

@@ -13,13 +13,10 @@
 """  # noqa: E501
 
 
+from __future__ import annotations
 import json
-import pprint
-import re  # noqa: F401
-from aenum import Enum, no_arg
-
-
-
+from enum import Enum
+from typing_extensions import Self
 
 
 class RasterDataType(str, Enum):
@@ -42,8 +39,8 @@ class RasterDataType(str, Enum):
     F64 = 'F64'
 
     @classmethod
-    def from_json(cls, json_str: str) -> RasterDataType:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of RasterDataType from a JSON string"""
-        return RasterDataType(json.loads(json_str))
+        return cls(json.loads(json_str))
 
 

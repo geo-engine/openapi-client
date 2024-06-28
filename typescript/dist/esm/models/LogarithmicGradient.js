@@ -13,41 +13,51 @@
  */
 import { BreakpointFromJSON, BreakpointToJSON, } from './Breakpoint';
 /**
+ * @export
+ */
+export const LogarithmicGradientTypeEnum = {
+    LogarithmicGradient: 'logarithmicGradient'
+};
+/**
  * Check if a given object implements the LogarithmicGradient interface.
  */
 export function instanceOfLogarithmicGradient(value) {
-    let isInstance = true;
-    isInstance = isInstance && "breakpoints" in value;
-    isInstance = isInstance && "noDataColor" in value;
-    isInstance = isInstance && "overColor" in value;
-    isInstance = isInstance && "underColor" in value;
-    return isInstance;
+    if (!('breakpoints' in value))
+        return false;
+    if (!('noDataColor' in value))
+        return false;
+    if (!('overColor' in value))
+        return false;
+    if (!('type' in value))
+        return false;
+    if (!('underColor' in value))
+        return false;
+    return true;
 }
 export function LogarithmicGradientFromJSON(json) {
     return LogarithmicGradientFromJSONTyped(json, false);
 }
 export function LogarithmicGradientFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'breakpoints': (json['breakpoints'].map(BreakpointFromJSON)),
         'noDataColor': json['noDataColor'],
         'overColor': json['overColor'],
+        'type': json['type'],
         'underColor': json['underColor'],
     };
 }
 export function LogarithmicGradientToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'breakpoints': (value.breakpoints.map(BreakpointToJSON)),
-        'noDataColor': value.noDataColor,
-        'overColor': value.overColor,
-        'underColor': value.underColor,
+        'breakpoints': (value['breakpoints'].map(BreakpointToJSON)),
+        'noDataColor': value['noDataColor'],
+        'overColor': value['overColor'],
+        'type': value['type'],
+        'underColor': value['underColor'],
     };
 }

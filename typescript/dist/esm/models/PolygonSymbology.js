@@ -11,45 +11,53 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { ColorParamFromJSON, ColorParamToJSON, } from './ColorParam';
 import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
 /**
+ * @export
+ */
+export const PolygonSymbologyTypeEnum = {
+    Polygon: 'polygon'
+};
+/**
  * Check if a given object implements the PolygonSymbology interface.
  */
 export function instanceOfPolygonSymbology(value) {
-    let isInstance = true;
-    isInstance = isInstance && "autoSimplified" in value;
-    isInstance = isInstance && "fillColor" in value;
-    isInstance = isInstance && "stroke" in value;
-    return isInstance;
+    if (!('autoSimplified' in value))
+        return false;
+    if (!('fillColor' in value))
+        return false;
+    if (!('stroke' in value))
+        return false;
+    if (!('type' in value))
+        return false;
+    return true;
 }
 export function PolygonSymbologyFromJSON(json) {
     return PolygonSymbologyFromJSONTyped(json, false);
 }
 export function PolygonSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'autoSimplified': json['autoSimplified'],
         'fillColor': ColorParamFromJSON(json['fillColor']),
         'stroke': StrokeParamFromJSON(json['stroke']),
-        'text': !exists(json, 'text') ? undefined : TextSymbologyFromJSON(json['text']),
+        'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
+        'type': json['type'],
     };
 }
 export function PolygonSymbologyToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'autoSimplified': value.autoSimplified,
-        'fillColor': ColorParamToJSON(value.fillColor),
-        'stroke': StrokeParamToJSON(value.stroke),
-        'text': TextSymbologyToJSON(value.text),
+        'autoSimplified': value['autoSimplified'],
+        'fillColor': ColorParamToJSON(value['fillColor']),
+        'stroke': StrokeParamToJSON(value['stroke']),
+        'text': TextSymbologyToJSON(value['text']),
+        'type': value['type'],
     };
 }

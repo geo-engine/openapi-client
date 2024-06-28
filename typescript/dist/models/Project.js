@@ -23,16 +23,23 @@ const TimeStep_1 = require("./TimeStep");
  * Check if a given object implements the Project interface.
  */
 function instanceOfProject(value) {
-    let isInstance = true;
-    isInstance = isInstance && "bounds" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "layers" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "plots" in value;
-    isInstance = isInstance && "timeStep" in value;
-    isInstance = isInstance && "version" in value;
-    return isInstance;
+    if (!('bounds' in value))
+        return false;
+    if (!('description' in value))
+        return false;
+    if (!('id' in value))
+        return false;
+    if (!('layers' in value))
+        return false;
+    if (!('name' in value))
+        return false;
+    if (!('plots' in value))
+        return false;
+    if (!('timeStep' in value))
+        return false;
+    if (!('version' in value))
+        return false;
+    return true;
 }
 exports.instanceOfProject = instanceOfProject;
 function ProjectFromJSON(json) {
@@ -40,7 +47,7 @@ function ProjectFromJSON(json) {
 }
 exports.ProjectFromJSON = ProjectFromJSON;
 function ProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -56,21 +63,18 @@ function ProjectFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ProjectFromJSONTyped = ProjectFromJSONTyped;
 function ProjectToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'bounds': (0, STRectangle_1.STRectangleToJSON)(value.bounds),
-        'description': value.description,
-        'id': value.id,
-        'layers': (value.layers.map(ProjectLayer_1.ProjectLayerToJSON)),
-        'name': value.name,
-        'plots': (value.plots.map(Plot_1.PlotToJSON)),
-        'timeStep': (0, TimeStep_1.TimeStepToJSON)(value.timeStep),
-        'version': (0, ProjectVersion_1.ProjectVersionToJSON)(value.version),
+        'bounds': (0, STRectangle_1.STRectangleToJSON)(value['bounds']),
+        'description': value['description'],
+        'id': value['id'],
+        'layers': (value['layers'].map(ProjectLayer_1.ProjectLayerToJSON)),
+        'name': value['name'],
+        'plots': (value['plots'].map(Plot_1.PlotToJSON)),
+        'timeStep': (0, TimeStep_1.TimeStepToJSON)(value['timeStep']),
+        'version': (0, ProjectVersion_1.ProjectVersionToJSON)(value['version']),
     };
 }
 exports.ProjectToJSON = ProjectToJSON;

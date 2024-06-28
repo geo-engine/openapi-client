@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ColorParam } from './ColorParam';
 import {
     ColorParamFromJSON,
@@ -50,11 +50,9 @@ export interface StrokeParam {
  * Check if a given object implements the StrokeParam interface.
  */
 export function instanceOfStrokeParam(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "width" in value;
-
-    return isInstance;
+    if (!('color' in value)) return false;
+    if (!('width' in value)) return false;
+    return true;
 }
 
 export function StrokeParamFromJSON(json: any): StrokeParam {
@@ -62,7 +60,7 @@ export function StrokeParamFromJSON(json: any): StrokeParam {
 }
 
 export function StrokeParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): StrokeParam {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -73,16 +71,13 @@ export function StrokeParamFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function StrokeParamToJSON(value?: StrokeParam | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'color': ColorParamToJSON(value.color),
-        'width': NumberParamToJSON(value.width),
+        'color': ColorParamToJSON(value['color']),
+        'width': NumberParamToJSON(value['width']),
     };
 }
 

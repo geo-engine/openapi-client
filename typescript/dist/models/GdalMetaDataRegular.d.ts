@@ -58,7 +58,20 @@ export interface GdalMetaDataRegular {
     timePlaceholders: {
         [key: string]: GdalSourceTimePlaceholder;
     };
+    /**
+     *
+     * @type {string}
+     * @memberof GdalMetaDataRegular
+     */
+    type: GdalMetaDataRegularTypeEnum;
 }
+/**
+ * @export
+ */
+export declare const GdalMetaDataRegularTypeEnum: {
+    readonly GdalMetaDataRegular: "GdalMetaDataRegular";
+};
+export type GdalMetaDataRegularTypeEnum = typeof GdalMetaDataRegularTypeEnum[keyof typeof GdalMetaDataRegularTypeEnum];
 /**
  * Check if a given object implements the GdalMetaDataRegular interface.
  */

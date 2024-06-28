@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.provenance_entry import ProvenanceEntry  # noqa: E501
+from geoengine_openapi_client.models.provenance_entry import ProvenanceEntry
 
 class TestProvenanceEntry(unittest.TestCase):
     """ProvenanceEntry unit test stubs"""
@@ -34,7 +33,7 @@ class TestProvenanceEntry(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ProvenanceEntry`
         """
-        model = ProvenanceEntry()  # noqa: E501
+        model = ProvenanceEntry()
         if include_optional:
             return ProvenanceEntry(
                 data = [

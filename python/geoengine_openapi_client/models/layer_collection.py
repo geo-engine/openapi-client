@@ -18,48 +18,65 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from geoengine_openapi_client.models.collection_item import CollectionItem
 from geoengine_openapi_client.models.provider_layer_collection_id import ProviderLayerCollectionId
+from typing import Optional, Set
+from typing_extensions import Self
 
 class LayerCollection(BaseModel):
     """
     LayerCollection
-    """
-    description: StrictStr = Field(...)
-    entry_label: Optional[StrictStr] = Field(None, alias="entryLabel", description="a common label for the collection's entries, if there is any")
-    id: ProviderLayerCollectionId = Field(...)
-    items: conlist(CollectionItem) = Field(...)
-    name: StrictStr = Field(...)
-    properties: conlist(conlist(StrictStr, max_items=2, min_items=2)) = Field(...)
-    __properties = ["description", "entryLabel", "id", "items", "name", "properties"]
+    """ # noqa: E501
+    description: StrictStr
+    entry_label: Optional[StrictStr] = Field(default=None, description="a common label for the collection's entries, if there is any", alias="entryLabel")
+    id: ProviderLayerCollectionId
+    items: List[CollectionItem]
+    name: StrictStr
+    properties: List[Annotated[List[StrictStr], Field(min_length=2, max_length=2)]]
+    __properties: ClassVar[List[str]] = ["description", "entryLabel", "id", "items", "name", "properties"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> LayerCollection:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of LayerCollection from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of id
         if self.id:
             _dict['id'] = self.id.to_dict()
@@ -71,26 +88,26 @@ class LayerCollection(BaseModel):
                     _items.append(_item.to_dict())
             _dict['items'] = _items
         # set to None if entry_label (nullable) is None
-        # and __fields_set__ contains the field
-        if self.entry_label is None and "entry_label" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.entry_label is None and "entry_label" in self.model_fields_set:
             _dict['entryLabel'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> LayerCollection:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of LayerCollection from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return LayerCollection.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = LayerCollection.parse_obj({
+        _obj = cls.model_validate({
             "description": obj.get("description"),
-            "entry_label": obj.get("entryLabel"),
-            "id": ProviderLayerCollectionId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
-            "items": [CollectionItem.from_dict(_item) for _item in obj.get("items")] if obj.get("items") is not None else None,
+            "entryLabel": obj.get("entryLabel"),
+            "id": ProviderLayerCollectionId.from_dict(obj["id"]) if obj.get("id") is not None else None,
+            "items": [CollectionItem.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None,
             "name": obj.get("name"),
             "properties": obj.get("properties")
         })

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Colorizer } from './Colorizer';
 import {
     ColorizerFromJSON,
@@ -38,17 +38,32 @@ export interface DerivedColor {
      * @memberof DerivedColor
      */
     colorizer: Colorizer;
+    /**
+     * 
+     * @type {string}
+     * @memberof DerivedColor
+     */
+    type: DerivedColorTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const DerivedColorTypeEnum = {
+    Derived: 'derived'
+} as const;
+export type DerivedColorTypeEnum = typeof DerivedColorTypeEnum[keyof typeof DerivedColorTypeEnum];
+
 
 /**
  * Check if a given object implements the DerivedColor interface.
  */
 export function instanceOfDerivedColor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "attribute" in value;
-    isInstance = isInstance && "colorizer" in value;
-
-    return isInstance;
+    if (!('attribute' in value)) return false;
+    if (!('colorizer' in value)) return false;
+    if (!('type' in value)) return false;
+    return true;
 }
 
 export function DerivedColorFromJSON(json: any): DerivedColor {
@@ -56,27 +71,26 @@ export function DerivedColorFromJSON(json: any): DerivedColor {
 }
 
 export function DerivedColorFromJSONTyped(json: any, ignoreDiscriminator: boolean): DerivedColor {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'attribute': json['attribute'],
         'colorizer': ColorizerFromJSON(json['colorizer']),
+        'type': json['type'],
     };
 }
 
 export function DerivedColorToJSON(value?: DerivedColor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'attribute': value.attribute,
-        'colorizer': ColorizerToJSON(value.colorizer),
+        'attribute': value['attribute'],
+        'colorizer': ColorizerToJSON(value['colorizer']),
+        'type': value['type'],
     };
 }
 

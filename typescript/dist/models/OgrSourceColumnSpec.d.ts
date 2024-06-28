@@ -39,7 +39,7 @@ export interface OgrSourceColumnSpec {
      * @type {FormatSpecifics}
      * @memberof OgrSourceColumnSpec
      */
-    formatSpecifics?: FormatSpecifics | null;
+    formatSpecifics?: FormatSpecifics;
     /**
      *
      * @type {Array<string>}
@@ -53,7 +53,7 @@ export interface OgrSourceColumnSpec {
      */
     rename?: {
         [key: string]: string;
-    } | null;
+    };
     /**
      *
      * @type {Array<string>}
@@ -71,7 +71,7 @@ export interface OgrSourceColumnSpec {
      * @type {string}
      * @memberof OgrSourceColumnSpec
      */
-    y?: string | null;
+    y?: string;
 }
 /**
  * Check if a given object implements the OgrSourceColumnSpec interface.

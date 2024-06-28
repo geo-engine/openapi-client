@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.raster_properties_key import RasterPropertiesKey  # noqa: E501
+from geoengine_openapi_client.models.raster_properties_key import RasterPropertiesKey
 
 class TestRasterPropertiesKey(unittest.TestCase):
     """RasterPropertiesKey unit test stubs"""
@@ -34,7 +33,7 @@ class TestRasterPropertiesKey(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `RasterPropertiesKey`
         """
-        model = RasterPropertiesKey()  # noqa: E501
+        model = RasterPropertiesKey()
         if include_optional:
             return RasterPropertiesKey(
                 domain = '',

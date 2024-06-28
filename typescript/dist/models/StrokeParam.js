@@ -20,10 +20,11 @@ const NumberParam_1 = require("./NumberParam");
  * Check if a given object implements the StrokeParam interface.
  */
 function instanceOfStrokeParam(value) {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "width" in value;
-    return isInstance;
+    if (!('color' in value))
+        return false;
+    if (!('width' in value))
+        return false;
+    return true;
 }
 exports.instanceOfStrokeParam = instanceOfStrokeParam;
 function StrokeParamFromJSON(json) {
@@ -31,7 +32,7 @@ function StrokeParamFromJSON(json) {
 }
 exports.StrokeParamFromJSON = StrokeParamFromJSON;
 function StrokeParamFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,15 +42,12 @@ function StrokeParamFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.StrokeParamFromJSONTyped = StrokeParamFromJSONTyped;
 function StrokeParamToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'color': (0, ColorParam_1.ColorParamToJSON)(value.color),
-        'width': (0, NumberParam_1.NumberParamToJSON)(value.width),
+        'color': (0, ColorParam_1.ColorParamToJSON)(value['color']),
+        'width': (0, NumberParam_1.NumberParamToJSON)(value['width']),
     };
 }
 exports.StrokeParamToJSON = StrokeParamToJSON;

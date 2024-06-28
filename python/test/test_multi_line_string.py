@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.multi_line_string import MultiLineString  # noqa: E501
+from geoengine_openapi_client.models.multi_line_string import MultiLineString
 
 class TestMultiLineString(unittest.TestCase):
     """MultiLineString unit test stubs"""
@@ -34,7 +33,7 @@ class TestMultiLineString(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MultiLineString`
         """
-        model = MultiLineString()  # noqa: E501
+        model = MultiLineString()
         if include_optional:
             return MultiLineString(
                 coordinates = [

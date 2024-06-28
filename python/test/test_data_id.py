@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.data_id import DataId  # noqa: E501
+from geoengine_openapi_client.models.data_id import DataId
 
 class TestDataId(unittest.TestCase):
     """DataId unit test stubs"""
@@ -34,7 +33,7 @@ class TestDataId(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DataId`
         """
-        model = DataId()  # noqa: E501
+        model = DataId()
         if include_optional:
             return DataId(
                 dataset_id = '',

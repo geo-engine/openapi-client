@@ -13,15 +13,22 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContinuousMeasurementToJSON = exports.ContinuousMeasurementFromJSONTyped = exports.ContinuousMeasurementFromJSON = exports.instanceOfContinuousMeasurement = void 0;
-const runtime_1 = require("../runtime");
+exports.ContinuousMeasurementToJSON = exports.ContinuousMeasurementFromJSONTyped = exports.ContinuousMeasurementFromJSON = exports.instanceOfContinuousMeasurement = exports.ContinuousMeasurementTypeEnum = void 0;
+/**
+ * @export
+ */
+exports.ContinuousMeasurementTypeEnum = {
+    Continuous: 'continuous'
+};
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
 function instanceOfContinuousMeasurement(value) {
-    let isInstance = true;
-    isInstance = isInstance && "measurement" in value;
-    return isInstance;
+    if (!('measurement' in value))
+        return false;
+    if (!('type' in value))
+        return false;
+    return true;
 }
 exports.instanceOfContinuousMeasurement = instanceOfContinuousMeasurement;
 function ContinuousMeasurementFromJSON(json) {
@@ -29,25 +36,24 @@ function ContinuousMeasurementFromJSON(json) {
 }
 exports.ContinuousMeasurementFromJSON = ContinuousMeasurementFromJSON;
 function ContinuousMeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'measurement': json['measurement'],
-        'unit': !(0, runtime_1.exists)(json, 'unit') ? undefined : json['unit'],
+        'type': json['type'],
+        'unit': json['unit'] == null ? undefined : json['unit'],
     };
 }
 exports.ContinuousMeasurementFromJSONTyped = ContinuousMeasurementFromJSONTyped;
 function ContinuousMeasurementToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'measurement': value.measurement,
-        'unit': value.unit,
+        'measurement': value['measurement'],
+        'type': value['type'],
+        'unit': value['unit'],
     };
 }
 exports.ContinuousMeasurementToJSON = ContinuousMeasurementToJSON;

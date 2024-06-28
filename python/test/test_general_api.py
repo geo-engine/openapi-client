@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.general_api import GeneralApi  # noqa: E501
+from geoengine_openapi_client.api.general_api import GeneralApi
 
 
 class TestGeneralApi(unittest.TestCase):
     """GeneralApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = GeneralApi()  # noqa: E501
+        self.api = GeneralApi()
 
     def tearDown(self) -> None:
         pass
@@ -30,14 +30,14 @@ class TestGeneralApi(unittest.TestCase):
     def test_available_handler(self) -> None:
         """Test case for available_handler
 
-        Server availablity check.  # noqa: E501
+        Server availablity check.
         """
         pass
 
     def test_server_info_handler(self) -> None:
         """Test case for server_info_handler
 
-        Shows information about the server software version.  # noqa: E501
+        Shows information about the server software version.
         """
         pass
 

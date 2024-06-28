@@ -33,7 +33,6 @@ export interface InternalDataId {
  */
 export declare const InternalDataIdTypeEnum: {
     readonly Internal: "internal";
-    readonly External: "external";
 };
 export type InternalDataIdTypeEnum = typeof InternalDataIdTypeEnum[keyof typeof InternalDataIdTypeEnum];
 /**

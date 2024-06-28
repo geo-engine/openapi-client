@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.update_quota import UpdateQuota  # noqa: E501
+from geoengine_openapi_client.models.update_quota import UpdateQuota
 
 class TestUpdateQuota(unittest.TestCase):
     """UpdateQuota unit test stubs"""
@@ -34,7 +33,7 @@ class TestUpdateQuota(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UpdateQuota`
         """
-        model = UpdateQuota()  # noqa: E501
+        model = UpdateQuota()
         if include_optional:
             return UpdateQuota(
                 available = 56

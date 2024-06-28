@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.spatial_resolution import SpatialResolution  # noqa: E501
+from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
 
 class TestSpatialResolution(unittest.TestCase):
     """SpatialResolution unit test stubs"""
@@ -34,7 +33,7 @@ class TestSpatialResolution(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SpatialResolution`
         """
-        model = SpatialResolution()  # noqa: E501
+        model = SpatialResolution()
         if include_optional:
             return SpatialResolution(
                 x = 1.337,

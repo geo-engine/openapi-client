@@ -16,7 +16,7 @@ export interface GetPlotHandlerRequest {
     time: string;
     spatialResolution: string;
     id: string;
-    crs?: string | null;
+    crs?: string;
 }
 /**
  *

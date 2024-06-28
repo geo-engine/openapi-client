@@ -14,35 +14,43 @@
 import { GdalLoadingInfoTemporalSliceFromJSON, GdalLoadingInfoTemporalSliceToJSON, } from './GdalLoadingInfoTemporalSlice';
 import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
 /**
+ * @export
+ */
+export const GdalMetaDataListTypeEnum = {
+    GdalMetaDataList: 'GdalMetaDataList'
+};
+/**
  * Check if a given object implements the GdalMetaDataList interface.
  */
 export function instanceOfGdalMetaDataList(value) {
-    let isInstance = true;
-    isInstance = isInstance && "params" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    return isInstance;
+    if (!('params' in value))
+        return false;
+    if (!('resultDescriptor' in value))
+        return false;
+    if (!('type' in value))
+        return false;
+    return true;
 }
 export function GdalMetaDataListFromJSON(json) {
     return GdalMetaDataListFromJSONTyped(json, false);
 }
 export function GdalMetaDataListFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'params': (json['params'].map(GdalLoadingInfoTemporalSliceFromJSON)),
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
+        'type': json['type'],
     };
 }
 export function GdalMetaDataListToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'params': (value.params.map(GdalLoadingInfoTemporalSliceToJSON)),
-        'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
+        'params': (value['params'].map(GdalLoadingInfoTemporalSliceToJSON)),
+        'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
+        'type': value['type'],
     };
 }

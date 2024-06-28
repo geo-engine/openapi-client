@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Permission } from './Permission';
 import {
     PermissionFromJSON,
@@ -62,12 +62,10 @@ export interface PermissionListing {
  * Check if a given object implements the PermissionListing interface.
  */
 export function instanceOfPermissionListing(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "permission" in value;
-    isInstance = isInstance && "resourceId" in value;
-    isInstance = isInstance && "role" in value;
-
-    return isInstance;
+    if (!('permission' in value)) return false;
+    if (!('resourceId' in value)) return false;
+    if (!('role' in value)) return false;
+    return true;
 }
 
 export function PermissionListingFromJSON(json: any): PermissionListing {
@@ -75,7 +73,7 @@ export function PermissionListingFromJSON(json: any): PermissionListing {
 }
 
 export function PermissionListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): PermissionListing {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -87,17 +85,14 @@ export function PermissionListingFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function PermissionListingToJSON(value?: PermissionListing | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'permission': PermissionToJSON(value.permission),
-        'resourceId': ResourceIdToJSON(value.resourceId),
-        'role': RoleToJSON(value.role),
+        'permission': PermissionToJSON(value['permission']),
+        'resourceId': ResourceIdToJSON(value['resourceId']),
+        'role': RoleToJSON(value['role']),
     };
 }
 

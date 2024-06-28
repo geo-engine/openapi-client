@@ -41,13 +41,13 @@ export interface GdalDatasetParameters {
      * @type {Array<Array<string>>}
      * @memberof GdalDatasetParameters
      */
-    gdalConfigOptions?: Array<Array<string>> | null;
+    gdalConfigOptions?: Array<Array<string>>;
     /**
      *
      * @type {Array<string>}
      * @memberof GdalDatasetParameters
      */
-    gdalOpenOptions?: Array<string> | null;
+    gdalOpenOptions?: Array<string>;
     /**
      *
      * @type {GdalDatasetGeoTransform}
@@ -65,13 +65,13 @@ export interface GdalDatasetParameters {
      * @type {number}
      * @memberof GdalDatasetParameters
      */
-    noDataValue?: number | null;
+    noDataValue?: number;
     /**
      *
      * @type {Array<GdalMetadataMapping>}
      * @memberof GdalDatasetParameters
      */
-    propertiesMapping?: Array<GdalMetadataMapping> | null;
+    propertiesMapping?: Array<GdalMetadataMapping>;
     /**
      *
      * @type {number}

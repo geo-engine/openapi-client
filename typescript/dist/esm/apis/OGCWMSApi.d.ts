@@ -36,14 +36,14 @@ export interface WmsMapHandlerRequest {
     format: GetMapFormat;
     layers: string;
     styles: string;
-    crs?: string | null;
+    crs?: string;
     time?: string;
-    transparent?: boolean | null;
-    bgcolor?: string | null;
-    sld?: string | null;
-    sldBody?: string | null;
-    elevation?: string | null;
-    exceptions?: GetMapExceptionFormat | null;
+    transparent?: boolean;
+    bgcolor?: string;
+    sld?: string;
+    sldBody?: string;
+    elevation?: string;
+    exceptions?: GetMapExceptionFormat;
 }
 /**
  *

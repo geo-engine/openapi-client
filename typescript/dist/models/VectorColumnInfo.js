@@ -20,10 +20,11 @@ const Measurement_1 = require("./Measurement");
  * Check if a given object implements the VectorColumnInfo interface.
  */
 function instanceOfVectorColumnInfo(value) {
-    let isInstance = true;
-    isInstance = isInstance && "dataType" in value;
-    isInstance = isInstance && "measurement" in value;
-    return isInstance;
+    if (!('dataType' in value))
+        return false;
+    if (!('measurement' in value))
+        return false;
+    return true;
 }
 exports.instanceOfVectorColumnInfo = instanceOfVectorColumnInfo;
 function VectorColumnInfoFromJSON(json) {
@@ -31,7 +32,7 @@ function VectorColumnInfoFromJSON(json) {
 }
 exports.VectorColumnInfoFromJSON = VectorColumnInfoFromJSON;
 function VectorColumnInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,15 +42,12 @@ function VectorColumnInfoFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.VectorColumnInfoFromJSONTyped = VectorColumnInfoFromJSONTyped;
 function VectorColumnInfoToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'dataType': (0, FeatureDataType_1.FeatureDataTypeToJSON)(value.dataType),
-        'measurement': (0, Measurement_1.MeasurementToJSON)(value.measurement),
+        'dataType': (0, FeatureDataType_1.FeatureDataTypeToJSON)(value['dataType']),
+        'measurement': (0, Measurement_1.MeasurementToJSON)(value['measurement']),
     };
 }
 exports.VectorColumnInfoToJSON = VectorColumnInfoToJSON;

@@ -32,12 +32,12 @@ export class TasksApi extends runtime.BaseAPI {
      */
     abortHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.id === null || requestParameters.id === undefined) {
-                throw new runtime.RequiredError('id', 'Required parameter requestParameters.id was null or undefined when calling abortHandler.');
+            if (requestParameters['id'] == null) {
+                throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling abortHandler().');
             }
             const queryParameters = {};
-            if (requestParameters.force !== undefined) {
-                queryParameters['force'] = requestParameters.force;
+            if (requestParameters['force'] != null) {
+                queryParameters['force'] = requestParameters['force'];
             }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
@@ -48,7 +48,7 @@ export class TasksApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/tasks/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+                path: `/tasks/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
@@ -71,14 +71,14 @@ export class TasksApi extends runtime.BaseAPI {
      */
     listHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.filter === null || requestParameters.filter === undefined) {
-                throw new runtime.RequiredError('filter', 'Required parameter requestParameters.filter was null or undefined when calling listHandler.');
+            if (requestParameters['filter'] == null) {
+                throw new runtime.RequiredError('filter', 'Required parameter "filter" was null or undefined when calling listHandler().');
             }
-            if (requestParameters.offset === null || requestParameters.offset === undefined) {
-                throw new runtime.RequiredError('offset', 'Required parameter requestParameters.offset was null or undefined when calling listHandler.');
+            if (requestParameters['offset'] == null) {
+                throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling listHandler().');
             }
-            if (requestParameters.limit === null || requestParameters.limit === undefined) {
-                throw new runtime.RequiredError('limit', 'Required parameter requestParameters.limit was null or undefined when calling listHandler.');
+            if (requestParameters['limit'] == null) {
+                throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling listHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -90,7 +90,7 @@ export class TasksApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/tasks/list`.replace(`{${"filter"}}`, encodeURIComponent(String(requestParameters.filter))).replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters.offset))).replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters.limit))),
+                path: `/tasks/list`.replace(`{${"filter"}}`, encodeURIComponent(String(requestParameters['filter']))).replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset']))).replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -114,8 +114,8 @@ export class TasksApi extends runtime.BaseAPI {
      */
     statusHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.id === null || requestParameters.id === undefined) {
-                throw new runtime.RequiredError('id', 'Required parameter requestParameters.id was null or undefined when calling statusHandler.');
+            if (requestParameters['id'] == null) {
+                throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling statusHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -127,7 +127,7 @@ export class TasksApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/tasks/{id}/status`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+                path: `/tasks/{id}/status`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,

@@ -9,12 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GdalMetaDataListWithType } from './GdalMetaDataListWithType';
-import { GdalMetaDataRegularWithType } from './GdalMetaDataRegularWithType';
-import { GdalMetaDataStaticWithType } from './GdalMetaDataStaticWithType';
-import { GdalMetadataNetCdfCfWithType } from './GdalMetadataNetCdfCfWithType';
-import { MockMetaDataWithType } from './MockMetaDataWithType';
-import { OgrMetaDataWithType } from './OgrMetaDataWithType';
+import type { GdalMetaDataList } from './GdalMetaDataList';
+import type { GdalMetaDataRegular } from './GdalMetaDataRegular';
+import type { GdalMetaDataStatic } from './GdalMetaDataStatic';
+import type { GdalMetadataNetCdfCf } from './GdalMetadataNetCdfCf';
+import type { MockMetaData } from './MockMetaData';
+import type { OgrMetaData } from './OgrMetaData';
 /**
  * @type MetaDataDefinition
  *
@@ -22,17 +22,17 @@ import { OgrMetaDataWithType } from './OgrMetaDataWithType';
  */
 export type MetaDataDefinition = {
     type: 'GdalMetaDataList';
-} & GdalMetaDataListWithType | {
+} & GdalMetaDataList | {
     type: 'GdalMetaDataRegular';
-} & GdalMetaDataRegularWithType | {
+} & GdalMetaDataRegular | {
     type: 'GdalMetadataNetCdfCf';
-} & GdalMetadataNetCdfCfWithType | {
+} & GdalMetadataNetCdfCf | {
     type: 'GdalStatic';
-} & GdalMetaDataStaticWithType | {
+} & GdalMetaDataStatic | {
     type: 'MockMetaData';
-} & MockMetaDataWithType | {
+} & MockMetaData | {
     type: 'OgrMetaData';
-} & OgrMetaDataWithType;
+} & OgrMetaData;
 export declare function MetaDataDefinitionFromJSON(json: any): MetaDataDefinition;
 export declare function MetaDataDefinitionFromJSONTyped(json: any, ignoreDiscriminator: boolean): MetaDataDefinition;
 export declare function MetaDataDefinitionToJSON(value?: MetaDataDefinition | null): any;

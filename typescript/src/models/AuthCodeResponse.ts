@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,12 +43,10 @@ export interface AuthCodeResponse {
  * Check if a given object implements the AuthCodeResponse interface.
  */
 export function instanceOfAuthCodeResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "code" in value;
-    isInstance = isInstance && "sessionState" in value;
-    isInstance = isInstance && "state" in value;
-
-    return isInstance;
+    if (!('code' in value)) return false;
+    if (!('sessionState' in value)) return false;
+    if (!('state' in value)) return false;
+    return true;
 }
 
 export function AuthCodeResponseFromJSON(json: any): AuthCodeResponse {
@@ -56,7 +54,7 @@ export function AuthCodeResponseFromJSON(json: any): AuthCodeResponse {
 }
 
 export function AuthCodeResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthCodeResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -68,17 +66,14 @@ export function AuthCodeResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
 }
 
 export function AuthCodeResponseToJSON(value?: AuthCodeResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'code': value.code,
-        'sessionState': value.sessionState,
-        'state': value.state,
+        'code': value['code'],
+        'sessionState': value['sessionState'],
+        'state': value['state'],
     };
 }
 

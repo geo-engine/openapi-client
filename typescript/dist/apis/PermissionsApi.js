@@ -35,8 +35,8 @@ class PermissionsApi extends runtime.BaseAPI {
      */
     addPermissionHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.permissionRequest === null || requestParameters.permissionRequest === undefined) {
-                throw new runtime.RequiredError('permissionRequest', 'Required parameter requestParameters.permissionRequest was null or undefined when calling addPermissionHandler.');
+            if (requestParameters['permissionRequest'] == null) {
+                throw new runtime.RequiredError('permissionRequest', 'Required parameter "permissionRequest" was null or undefined when calling addPermissionHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -53,7 +53,7 @@ class PermissionsApi extends runtime.BaseAPI {
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.PermissionRequestToJSON)(requestParameters.permissionRequest),
+                body: (0, index_1.PermissionRequestToJSON)(requestParameters['permissionRequest']),
             }, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
@@ -73,24 +73,24 @@ class PermissionsApi extends runtime.BaseAPI {
      */
     getResourcePermissionsHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.resourceType === null || requestParameters.resourceType === undefined) {
-                throw new runtime.RequiredError('resourceType', 'Required parameter requestParameters.resourceType was null or undefined when calling getResourcePermissionsHandler.');
+            if (requestParameters['resourceType'] == null) {
+                throw new runtime.RequiredError('resourceType', 'Required parameter "resourceType" was null or undefined when calling getResourcePermissionsHandler().');
             }
-            if (requestParameters.resourceId === null || requestParameters.resourceId === undefined) {
-                throw new runtime.RequiredError('resourceId', 'Required parameter requestParameters.resourceId was null or undefined when calling getResourcePermissionsHandler.');
+            if (requestParameters['resourceId'] == null) {
+                throw new runtime.RequiredError('resourceId', 'Required parameter "resourceId" was null or undefined when calling getResourcePermissionsHandler().');
             }
-            if (requestParameters.limit === null || requestParameters.limit === undefined) {
-                throw new runtime.RequiredError('limit', 'Required parameter requestParameters.limit was null or undefined when calling getResourcePermissionsHandler.');
+            if (requestParameters['limit'] == null) {
+                throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling getResourcePermissionsHandler().');
             }
-            if (requestParameters.offset === null || requestParameters.offset === undefined) {
-                throw new runtime.RequiredError('offset', 'Required parameter requestParameters.offset was null or undefined when calling getResourcePermissionsHandler.');
+            if (requestParameters['offset'] == null) {
+                throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling getResourcePermissionsHandler().');
             }
             const queryParameters = {};
-            if (requestParameters.limit !== undefined) {
-                queryParameters['limit'] = requestParameters.limit;
+            if (requestParameters['limit'] != null) {
+                queryParameters['limit'] = requestParameters['limit'];
             }
-            if (requestParameters.offset !== undefined) {
-                queryParameters['offset'] = requestParameters.offset;
+            if (requestParameters['offset'] != null) {
+                queryParameters['offset'] = requestParameters['offset'];
             }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
@@ -101,7 +101,7 @@ class PermissionsApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/permissions/resources/{resource_type}/{resource_id}`.replace(`{${"resource_type"}}`, encodeURIComponent(String(requestParameters.resourceType))).replace(`{${"resource_id"}}`, encodeURIComponent(String(requestParameters.resourceId))),
+                path: `/permissions/resources/{resource_type}/{resource_id}`.replace(`{${"resource_type"}}`, encodeURIComponent(String(requestParameters['resourceType']))).replace(`{${"resource_id"}}`, encodeURIComponent(String(requestParameters['resourceId']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -125,8 +125,8 @@ class PermissionsApi extends runtime.BaseAPI {
      */
     removePermissionHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.permissionRequest === null || requestParameters.permissionRequest === undefined) {
-                throw new runtime.RequiredError('permissionRequest', 'Required parameter requestParameters.permissionRequest was null or undefined when calling removePermissionHandler.');
+            if (requestParameters['permissionRequest'] == null) {
+                throw new runtime.RequiredError('permissionRequest', 'Required parameter "permissionRequest" was null or undefined when calling removePermissionHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -143,7 +143,7 @@ class PermissionsApi extends runtime.BaseAPI {
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.PermissionRequestToJSON)(requestParameters.permissionRequest),
+                body: (0, index_1.PermissionRequestToJSON)(requestParameters['permissionRequest']),
             }, initOverrides);
             return new runtime.VoidApiResponse(response);
         });

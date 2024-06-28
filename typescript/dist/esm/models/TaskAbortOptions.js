@@ -11,33 +11,28 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 /**
  * Check if a given object implements the TaskAbortOptions interface.
  */
 export function instanceOfTaskAbortOptions(value) {
-    let isInstance = true;
-    return isInstance;
+    return true;
 }
 export function TaskAbortOptionsFromJSON(json) {
     return TaskAbortOptionsFromJSONTyped(json, false);
 }
 export function TaskAbortOptionsFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'force': !exists(json, 'force') ? undefined : json['force'],
+        'force': json['force'] == null ? undefined : json['force'],
     };
 }
 export function TaskAbortOptionsToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'force': value.force,
+        'force': value['force'],
     };
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -61,15 +61,13 @@ export interface ProjectListing {
  * Check if a given object implements the ProjectListing interface.
  */
 export function instanceOfProjectListing(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "changed" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "layerNames" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "plotNames" in value;
-
-    return isInstance;
+    if (!('changed' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('id' in value)) return false;
+    if (!('layerNames' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('plotNames' in value)) return false;
+    return true;
 }
 
 export function ProjectListingFromJSON(json: any): ProjectListing {
@@ -77,7 +75,7 @@ export function ProjectListingFromJSON(json: any): ProjectListing {
 }
 
 export function ProjectListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectListing {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -92,20 +90,17 @@ export function ProjectListingFromJSONTyped(json: any, ignoreDiscriminator: bool
 }
 
 export function ProjectListingToJSON(value?: ProjectListing | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'changed': (value.changed.toISOString()),
-        'description': value.description,
-        'id': value.id,
-        'layerNames': value.layerNames,
-        'name': value.name,
-        'plotNames': value.plotNames,
+        'changed': ((value['changed']).toISOString()),
+        'description': value['description'],
+        'id': value['id'],
+        'layerNames': value['layerNames'],
+        'name': value['name'],
+        'plotNames': value['plotNames'],
     };
 }
 

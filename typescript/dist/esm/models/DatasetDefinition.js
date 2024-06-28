@@ -17,16 +17,17 @@ import { MetaDataDefinitionFromJSON, MetaDataDefinitionToJSON, } from './MetaDat
  * Check if a given object implements the DatasetDefinition interface.
  */
 export function instanceOfDatasetDefinition(value) {
-    let isInstance = true;
-    isInstance = isInstance && "metaData" in value;
-    isInstance = isInstance && "properties" in value;
-    return isInstance;
+    if (!('metaData' in value))
+        return false;
+    if (!('properties' in value))
+        return false;
+    return true;
 }
 export function DatasetDefinitionFromJSON(json) {
     return DatasetDefinitionFromJSONTyped(json, false);
 }
 export function DatasetDefinitionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -35,14 +36,11 @@ export function DatasetDefinitionFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function DatasetDefinitionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'metaData': MetaDataDefinitionToJSON(value.metaData),
-        'properties': AddDatasetToJSON(value.properties),
+        'metaData': MetaDataDefinitionToJSON(value['metaData']),
+        'properties': AddDatasetToJSON(value['properties']),
     };
 }

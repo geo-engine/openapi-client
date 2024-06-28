@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.create_dataset_handler200_response import CreateDatasetHandler200Response  # noqa: E501
+from geoengine_openapi_client.models.create_dataset_handler200_response import CreateDatasetHandler200Response
 
 class TestCreateDatasetHandler200Response(unittest.TestCase):
     """CreateDatasetHandler200Response unit test stubs"""
@@ -34,7 +33,7 @@ class TestCreateDatasetHandler200Response(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateDatasetHandler200Response`
         """
-        model = CreateDatasetHandler200Response()  # noqa: E501
+        model = CreateDatasetHandler200Response()
         if include_optional:
             return CreateDatasetHandler200Response(
                 dataset_name = ''

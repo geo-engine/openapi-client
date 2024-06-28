@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.create_project import CreateProject  # noqa: E501
+from geoengine_openapi_client.models.create_project import CreateProject
 
 class TestCreateProject(unittest.TestCase):
     """CreateProject unit test stubs"""
@@ -34,7 +33,7 @@ class TestCreateProject(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateProject`
         """
-        model = CreateProject()  # noqa: E501
+        model = CreateProject()
         if include_optional:
             return CreateProject(
                 bounds = geoengine_openapi_client.models.st_rectangle.STRectangle(

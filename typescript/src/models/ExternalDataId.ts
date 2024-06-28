@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,17 +31,32 @@ export interface ExternalDataId {
      * @memberof ExternalDataId
      */
     providerId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExternalDataId
+     */
+    type: ExternalDataIdTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const ExternalDataIdTypeEnum = {
+    External: 'external'
+} as const;
+export type ExternalDataIdTypeEnum = typeof ExternalDataIdTypeEnum[keyof typeof ExternalDataIdTypeEnum];
+
 
 /**
  * Check if a given object implements the ExternalDataId interface.
  */
 export function instanceOfExternalDataId(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "layerId" in value;
-    isInstance = isInstance && "providerId" in value;
-
-    return isInstance;
+    if (!('layerId' in value)) return false;
+    if (!('providerId' in value)) return false;
+    if (!('type' in value)) return false;
+    return true;
 }
 
 export function ExternalDataIdFromJSON(json: any): ExternalDataId {
@@ -49,27 +64,26 @@ export function ExternalDataIdFromJSON(json: any): ExternalDataId {
 }
 
 export function ExternalDataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExternalDataId {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'layerId': json['layerId'],
         'providerId': json['providerId'],
+        'type': json['type'],
     };
 }
 
 export function ExternalDataIdToJSON(value?: ExternalDataId | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'layerId': value.layerId,
-        'providerId': value.providerId,
+        'layerId': value['layerId'],
+        'providerId': value['providerId'],
+        'type': value['type'],
     };
 }
 

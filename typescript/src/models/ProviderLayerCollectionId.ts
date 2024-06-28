@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,11 +37,9 @@ export interface ProviderLayerCollectionId {
  * Check if a given object implements the ProviderLayerCollectionId interface.
  */
 export function instanceOfProviderLayerCollectionId(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "collectionId" in value;
-    isInstance = isInstance && "providerId" in value;
-
-    return isInstance;
+    if (!('collectionId' in value)) return false;
+    if (!('providerId' in value)) return false;
+    return true;
 }
 
 export function ProviderLayerCollectionIdFromJSON(json: any): ProviderLayerCollectionId {
@@ -49,7 +47,7 @@ export function ProviderLayerCollectionIdFromJSON(json: any): ProviderLayerColle
 }
 
 export function ProviderLayerCollectionIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProviderLayerCollectionId {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function ProviderLayerCollectionIdFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function ProviderLayerCollectionIdToJSON(value?: ProviderLayerCollectionId | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'collectionId': value.collectionId,
-        'providerId': value.providerId,
+        'collectionId': value['collectionId'],
+        'providerId': value['providerId'],
     };
 }
 

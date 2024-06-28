@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.auth_code_response import AuthCodeResponse  # noqa: E501
+from geoengine_openapi_client.models.auth_code_response import AuthCodeResponse
 
 class TestAuthCodeResponse(unittest.TestCase):
     """AuthCodeResponse unit test stubs"""
@@ -34,7 +33,7 @@ class TestAuthCodeResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AuthCodeResponse`
         """
-        model = AuthCodeResponse()  # noqa: E501
+        model = AuthCodeResponse()
         if include_optional:
             return AuthCodeResponse(
                 code = '',

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,11 +37,9 @@ export interface ProviderLayerId {
  * Check if a given object implements the ProviderLayerId interface.
  */
 export function instanceOfProviderLayerId(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "layerId" in value;
-    isInstance = isInstance && "providerId" in value;
-
-    return isInstance;
+    if (!('layerId' in value)) return false;
+    if (!('providerId' in value)) return false;
+    return true;
 }
 
 export function ProviderLayerIdFromJSON(json: any): ProviderLayerId {
@@ -49,7 +47,7 @@ export function ProviderLayerIdFromJSON(json: any): ProviderLayerId {
 }
 
 export function ProviderLayerIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProviderLayerId {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function ProviderLayerIdFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function ProviderLayerIdToJSON(value?: ProviderLayerId | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'layerId': value.layerId,
-        'providerId': value.providerId,
+        'layerId': value['layerId'],
+        'providerId': value['providerId'],
     };
 }
 

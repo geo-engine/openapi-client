@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.mock_meta_data import MockMetaData  # noqa: E501
+from geoengine_openapi_client.models.mock_meta_data import MockMetaData
 
 class TestMockMetaData(unittest.TestCase):
     """MockMetaData unit test stubs"""
@@ -34,7 +33,7 @@ class TestMockMetaData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MockMetaData`
         """
-        model = MockMetaData()  # noqa: E501
+        model = MockMetaData()
         if include_optional:
             return MockMetaData(
                 loading_info = geoengine_openapi_client.models.mock_dataset_data_source_loading_info.MockDatasetDataSourceLoadingInfo(
@@ -52,7 +51,8 @@ class TestMockMetaData(unittest.TestCase):
                         }, 
                     data_type = 'Data', 
                     spatial_reference = '', 
-                    time = null, )
+                    time = null, ),
+                type = 'MockMetaData'
             )
         else:
             return MockMetaData(
@@ -72,6 +72,7 @@ class TestMockMetaData(unittest.TestCase):
                     data_type = 'Data', 
                     spatial_reference = '', 
                     time = null, ),
+                type = 'MockMetaData',
         )
         """
 

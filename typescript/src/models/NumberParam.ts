@@ -12,58 +12,55 @@
  * Do not edit the class manually.
  */
 
+import type { DerivedNumber } from './DerivedNumber';
 import {
-    DerivedNumberWithType,
-    instanceOfDerivedNumberWithType,
-    DerivedNumberWithTypeFromJSON,
-    DerivedNumberWithTypeFromJSONTyped,
-    DerivedNumberWithTypeToJSON,
-} from './DerivedNumberWithType';
+    instanceOfDerivedNumber,
+    DerivedNumberFromJSON,
+    DerivedNumberFromJSONTyped,
+    DerivedNumberToJSON,
+} from './DerivedNumber';
+import type { NumberParamStatic } from './NumberParamStatic';
 import {
-    StaticNumberParam,
-    instanceOfStaticNumberParam,
-    StaticNumberParamFromJSON,
-    StaticNumberParamFromJSONTyped,
-    StaticNumberParamToJSON,
-} from './StaticNumberParam';
+    instanceOfNumberParamStatic,
+    NumberParamStaticFromJSON,
+    NumberParamStaticFromJSONTyped,
+    NumberParamStaticToJSON,
+} from './NumberParamStatic';
 
 /**
  * @type NumberParam
  * 
  * @export
  */
-export type NumberParam = { type: 'derived' } & DerivedNumberWithType | { type: 'static' } & StaticNumberParam;
+export type NumberParam = { type: 'derived' } & DerivedNumber | { type: 'static' } & NumberParamStatic;
 
 export function NumberParamFromJSON(json: any): NumberParam {
     return NumberParamFromJSONTyped(json, false);
 }
 
 export function NumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): NumberParam {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'derived':
-            return {...DerivedNumberWithTypeFromJSONTyped(json, true), type: 'derived'};
+            return {...DerivedNumberFromJSONTyped(json, true), type: 'derived'};
         case 'static':
-            return {...StaticNumberParamFromJSONTyped(json, true), type: 'static'};
+            return {...NumberParamStaticFromJSONTyped(json, true), type: 'static'};
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }
 }
 
 export function NumberParamToJSON(value?: NumberParam | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'derived':
-            return DerivedNumberWithTypeToJSON(value);
+            return DerivedNumberToJSON(value);
         case 'static':
-            return StaticNumberParamToJSON(value);
+            return NumberParamStaticToJSON(value);
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
     }

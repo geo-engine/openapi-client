@@ -18,12 +18,15 @@ exports.UpdateDatasetToJSON = exports.UpdateDatasetFromJSONTyped = exports.Updat
  * Check if a given object implements the UpdateDataset interface.
  */
 function instanceOfUpdateDataset(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "tags" in value;
-    return isInstance;
+    if (!('description' in value))
+        return false;
+    if (!('displayName' in value))
+        return false;
+    if (!('name' in value))
+        return false;
+    if (!('tags' in value))
+        return false;
+    return true;
 }
 exports.instanceOfUpdateDataset = instanceOfUpdateDataset;
 function UpdateDatasetFromJSON(json) {
@@ -31,7 +34,7 @@ function UpdateDatasetFromJSON(json) {
 }
 exports.UpdateDatasetFromJSON = UpdateDatasetFromJSON;
 function UpdateDatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +46,14 @@ function UpdateDatasetFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.UpdateDatasetFromJSONTyped = UpdateDatasetFromJSONTyped;
 function UpdateDatasetToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'display_name': value.displayName,
-        'name': value.name,
-        'tags': value.tags,
+        'description': value['description'],
+        'display_name': value['displayName'],
+        'name': value['name'],
+        'tags': value['tags'],
     };
 }
 exports.UpdateDatasetToJSON = UpdateDatasetToJSON;

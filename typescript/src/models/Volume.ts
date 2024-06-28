@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,11 +37,9 @@ export interface Volume {
  * Check if a given object implements the Volume interface.
  */
 export function instanceOfVolume(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "path" in value;
-
-    return isInstance;
+    if (!('name' in value)) return false;
+    if (!('path' in value)) return false;
+    return true;
 }
 
 export function VolumeFromJSON(json: any): Volume {
@@ -49,7 +47,7 @@ export function VolumeFromJSON(json: any): Volume {
 }
 
 export function VolumeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Volume {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function VolumeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Vo
 }
 
 export function VolumeToJSON(value?: Volume | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'name': value.name,
-        'path': value.path,
+        'name': value['name'],
+        'path': value['path'],
     };
 }
 

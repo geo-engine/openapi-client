@@ -106,4 +106,19 @@ class TaskStatusWithId(TaskStatus):
         })
         return _obj
 
+        _obj = cls.model_validate({
+            "description": obj.get("description"),
+            "estimatedTimeRemaining": obj.get("estimatedTimeRemaining"),
+            "info": obj.get("info"),
+            "pctComplete": obj.get("pctComplete"),
+            "status": obj.get("status"),
+            "taskType": obj.get("taskType"),
+            "timeStarted": obj.get("timeStarted"),
+            "timeTotal": obj.get("timeTotal"),
+            "cleanUp": obj.get("cleanUp"),
+            "error": obj.get("error"),
+            "taskId": obj.get("taskId")
+        })
+        return _obj
+
 

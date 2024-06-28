@@ -18,10 +18,10 @@ export declare const ProjectUpdateToken: {
     readonly Delete: "delete";
 };
 export type ProjectUpdateToken = typeof ProjectUpdateToken[keyof typeof ProjectUpdateToken];
+export declare function ProjectUpdateTokenFromJSON(json: any): ProjectUpdateToken;
+export declare function ProjectUpdateTokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectUpdateToken;
 /**
  * Check if a given object implements the ProjectUpdateToken interface.
  */
 export declare function instanceOfProjectUpdateToken(value: any): boolean;
-export declare function ProjectUpdateTokenFromJSON(json: any): ProjectUpdateToken;
-export declare function ProjectUpdateTokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectUpdateToken;
 export declare function ProjectUpdateTokenToJSON(value?: ProjectUpdateToken | null): any;

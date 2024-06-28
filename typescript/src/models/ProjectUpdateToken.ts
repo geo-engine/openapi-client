@@ -24,19 +24,19 @@ export const ProjectUpdateToken = {
 export type ProjectUpdateToken = typeof ProjectUpdateToken[keyof typeof ProjectUpdateToken];
 
 
-/**
- * Check if a given object implements the ProjectUpdateToken interface.
- */
-export function instanceOfProjectUpdateToken(value: any): boolean {
-    return value === ProjectUpdateToken.None || value === ProjectUpdateToken.Delete;
-}
-
 export function ProjectUpdateTokenFromJSON(json: any): ProjectUpdateToken {
     return ProjectUpdateTokenFromJSONTyped(json, false);
 }
 
 export function ProjectUpdateTokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectUpdateToken {
     return json as ProjectUpdateToken;
+}
+
+/**
+ * Check if a given object implements the ProjectUpdateToken interface.
+ */
+export function instanceOfProjectUpdateToken(value: any): boolean {
+    return value === ProjectUpdateToken.None || value === ProjectUpdateToken.Delete;
 }
 
 export function ProjectUpdateTokenToJSON(value?: ProjectUpdateToken | null): any {

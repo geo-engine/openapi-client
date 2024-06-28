@@ -19,17 +19,17 @@ export const ProjectUpdateToken = {
     None: 'none',
     Delete: 'delete'
 };
-/**
- * Check if a given object implements the ProjectUpdateToken interface.
- */
-export function instanceOfProjectUpdateToken(value) {
-    return value === ProjectUpdateToken.None || value === ProjectUpdateToken.Delete;
-}
 export function ProjectUpdateTokenFromJSON(json) {
     return ProjectUpdateTokenFromJSONTyped(json, false);
 }
 export function ProjectUpdateTokenFromJSONTyped(json, ignoreDiscriminator) {
     return json;
+}
+/**
+ * Check if a given object implements the ProjectUpdateToken interface.
+ */
+export function instanceOfProjectUpdateToken(value) {
+    return value === ProjectUpdateToken.None || value === ProjectUpdateToken.Delete;
 }
 export function ProjectUpdateTokenToJSON(value) {
     return value;

@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectUpdateTokenToJSON = exports.ProjectUpdateTokenFromJSONTyped = exports.ProjectUpdateTokenFromJSON = exports.instanceOfProjectUpdateToken = exports.ProjectUpdateToken = void 0;
+exports.ProjectUpdateTokenToJSON = exports.instanceOfProjectUpdateToken = exports.ProjectUpdateTokenFromJSONTyped = exports.ProjectUpdateTokenFromJSON = exports.ProjectUpdateToken = void 0;
 /**
  *
  * @export
@@ -22,13 +22,6 @@ exports.ProjectUpdateToken = {
     None: 'none',
     Delete: 'delete'
 };
-/**
- * Check if a given object implements the ProjectUpdateToken interface.
- */
-function instanceOfProjectUpdateToken(value) {
-    return value === exports.ProjectUpdateToken.None || value === exports.ProjectUpdateToken.Delete;
-}
-exports.instanceOfProjectUpdateToken = instanceOfProjectUpdateToken;
 function ProjectUpdateTokenFromJSON(json) {
     return ProjectUpdateTokenFromJSONTyped(json, false);
 }
@@ -37,6 +30,13 @@ function ProjectUpdateTokenFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 exports.ProjectUpdateTokenFromJSONTyped = ProjectUpdateTokenFromJSONTyped;
+/**
+ * Check if a given object implements the ProjectUpdateToken interface.
+ */
+function instanceOfProjectUpdateToken(value) {
+    return value === exports.ProjectUpdateToken.None || value === exports.ProjectUpdateToken.Delete;
+}
+exports.instanceOfProjectUpdateToken = instanceOfProjectUpdateToken;
 function ProjectUpdateTokenToJSON(value) {
     return value;
 }

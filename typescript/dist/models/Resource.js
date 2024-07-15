@@ -14,45 +14,48 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResourceToJSON = exports.ResourceFromJSONTyped = exports.ResourceFromJSON = void 0;
-const ResourceDataset_1 = require("./ResourceDataset");
-const ResourceLayer_1 = require("./ResourceLayer");
-const ResourceLayerCollection_1 = require("./ResourceLayerCollection");
-const ResourceProject_1 = require("./ResourceProject");
+const DatasetResource_1 = require("./DatasetResource");
+const LayerCollectionResource_1 = require("./LayerCollectionResource");
+const LayerResource_1 = require("./LayerResource");
+const ProjectResource_1 = require("./ProjectResource");
 function ResourceFromJSON(json) {
     return ResourceFromJSONTyped(json, false);
 }
 exports.ResourceFromJSON = ResourceFromJSON;
 function ResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'dataset':
-            return Object.assign(Object.assign({}, (0, ResourceDataset_1.ResourceDatasetFromJSONTyped)(json, true)), { type: 'dataset' });
+            return Object.assign(Object.assign({}, (0, DatasetResource_1.DatasetResourceFromJSONTyped)(json, true)), { type: 'dataset' });
         case 'layer':
-            return Object.assign(Object.assign({}, (0, ResourceLayer_1.ResourceLayerFromJSONTyped)(json, true)), { type: 'layer' });
+            return Object.assign(Object.assign({}, (0, LayerResource_1.LayerResourceFromJSONTyped)(json, true)), { type: 'layer' });
         case 'layerCollection':
-            return Object.assign(Object.assign({}, (0, ResourceLayerCollection_1.ResourceLayerCollectionFromJSONTyped)(json, true)), { type: 'layerCollection' });
+            return Object.assign(Object.assign({}, (0, LayerCollectionResource_1.LayerCollectionResourceFromJSONTyped)(json, true)), { type: 'layerCollection' });
         case 'project':
-            return Object.assign(Object.assign({}, (0, ResourceProject_1.ResourceProjectFromJSONTyped)(json, true)), { type: 'project' });
+            return Object.assign(Object.assign({}, (0, ProjectResource_1.ProjectResourceFromJSONTyped)(json, true)), { type: 'project' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }
 }
 exports.ResourceFromJSONTyped = ResourceFromJSONTyped;
 function ResourceToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'dataset':
-            return (0, ResourceDataset_1.ResourceDatasetToJSON)(value);
+            return (0, DatasetResource_1.DatasetResourceToJSON)(value);
         case 'layer':
-            return (0, ResourceLayer_1.ResourceLayerToJSON)(value);
+            return (0, LayerResource_1.LayerResourceToJSON)(value);
         case 'layerCollection':
-            return (0, ResourceLayerCollection_1.ResourceLayerCollectionToJSON)(value);
+            return (0, LayerCollectionResource_1.LayerCollectionResourceToJSON)(value);
         case 'project':
-            return (0, ResourceProject_1.ResourceProjectToJSON)(value);
+            return (0, ProjectResource_1.ProjectResourceToJSON)(value);
         default:
             throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
     }

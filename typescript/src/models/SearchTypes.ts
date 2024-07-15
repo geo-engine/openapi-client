@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,11 @@ export interface SearchTypes {
  * Check if a given object implements the SearchTypes interface.
  */
 export function instanceOfSearchTypes(value: object): boolean {
-    if (!('fulltext' in value)) return false;
-    if (!('prefix' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "fulltext" in value;
+    isInstance = isInstance && "prefix" in value;
+
+    return isInstance;
 }
 
 export function SearchTypesFromJSON(json: any): SearchTypes {
@@ -47,7 +49,7 @@ export function SearchTypesFromJSON(json: any): SearchTypes {
 }
 
 export function SearchTypesFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchTypes {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -58,13 +60,16 @@ export function SearchTypesFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function SearchTypesToJSON(value?: SearchTypes | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'fulltext': value['fulltext'],
-        'prefix': value['prefix'],
+        'fulltext': value.fulltext,
+        'prefix': value.prefix,
     };
 }
 

@@ -18,11 +18,10 @@ exports.Coordinate2DToJSON = exports.Coordinate2DFromJSONTyped = exports.Coordin
  * Check if a given object implements the Coordinate2D interface.
  */
 function instanceOfCoordinate2D(value) {
-    if (!('x' in value))
-        return false;
-    if (!('y' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "x" in value;
+    isInstance = isInstance && "y" in value;
+    return isInstance;
 }
 exports.instanceOfCoordinate2D = instanceOfCoordinate2D;
 function Coordinate2DFromJSON(json) {
@@ -30,7 +29,7 @@ function Coordinate2DFromJSON(json) {
 }
 exports.Coordinate2DFromJSON = Coordinate2DFromJSON;
 function Coordinate2DFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,12 +39,15 @@ function Coordinate2DFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.Coordinate2DFromJSONTyped = Coordinate2DFromJSONTyped;
 function Coordinate2DToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'x': value['x'],
-        'y': value['y'],
+        'x': value.x,
+        'y': value.y,
     };
 }
 exports.Coordinate2DToJSON = Coordinate2DToJSON;

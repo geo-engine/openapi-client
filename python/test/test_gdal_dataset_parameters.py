@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.gdal_dataset_parameters import GdalDatasetParameters
+from geoengine_openapi_client.models.gdal_dataset_parameters import GdalDatasetParameters  # noqa: E501
 
 class TestGdalDatasetParameters(unittest.TestCase):
     """GdalDatasetParameters unit test stubs"""
@@ -33,7 +34,7 @@ class TestGdalDatasetParameters(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GdalDatasetParameters`
         """
-        model = GdalDatasetParameters()
+        model = GdalDatasetParameters()  # noqa: E501
         if include_optional:
             return GdalDatasetParameters(
                 allow_alphaband_as_mask = True,

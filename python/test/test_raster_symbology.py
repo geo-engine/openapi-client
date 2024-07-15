@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.raster_symbology import RasterSymbology
+from geoengine_openapi_client.models.raster_symbology import RasterSymbology  # noqa: E501
 
 class TestRasterSymbology(unittest.TestCase):
     """RasterSymbology unit test stubs"""
@@ -33,18 +34,16 @@ class TestRasterSymbology(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `RasterSymbology`
         """
-        model = RasterSymbology()
+        model = RasterSymbology()  # noqa: E501
         if include_optional:
             return RasterSymbology(
                 opacity = 1.337,
-                raster_colorizer = None,
-                type = 'raster'
+                raster_colorizer = None
             )
         else:
             return RasterSymbology(
                 opacity = 1.337,
                 raster_colorizer = None,
-                type = 'raster',
         )
         """
 

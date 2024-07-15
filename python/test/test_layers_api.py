@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.layers_api import LayersApi
+from geoengine_openapi_client.api.layers_api import LayersApi  # noqa: E501
 
 
 class TestLayersApi(unittest.TestCase):
     """LayersApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = LayersApi()
+        self.api = LayersApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,70 +30,70 @@ class TestLayersApi(unittest.TestCase):
     def test_add_collection(self) -> None:
         """Test case for add_collection
 
-        Add a new collection to an existing collection
+        Add a new collection to an existing collection  # noqa: E501
         """
         pass
 
     def test_add_existing_collection_to_collection(self) -> None:
         """Test case for add_existing_collection_to_collection
 
-        Add an existing collection to a collection
+        Add an existing collection to a collection  # noqa: E501
         """
         pass
 
     def test_add_existing_layer_to_collection(self) -> None:
         """Test case for add_existing_layer_to_collection
 
-        Add an existing layer to a collection
+        Add an existing layer to a collection  # noqa: E501
         """
         pass
 
     def test_add_layer(self) -> None:
         """Test case for add_layer
 
-        Add a new layer to a collection
+        Add a new layer to a collection  # noqa: E501
         """
         pass
 
     def test_autocomplete_handler(self) -> None:
         """Test case for autocomplete_handler
 
-        Autocompletes the search on the contents of the collection of the given provider
+        Autocompletes the search on the contents of the collection of the given provider  # noqa: E501
         """
         pass
 
     def test_layer_handler(self) -> None:
         """Test case for layer_handler
 
-        Retrieves the layer of the given provider
+        Retrieves the layer of the given provider  # noqa: E501
         """
         pass
 
     def test_layer_to_dataset(self) -> None:
         """Test case for layer_to_dataset
 
-        Persist a raster layer from a provider as a dataset.
+        Persist a raster layer from a provider as a dataset.  # noqa: E501
         """
         pass
 
     def test_layer_to_workflow_id_handler(self) -> None:
         """Test case for layer_to_workflow_id_handler
 
-        Registers a layer from a provider as a workflow and returns the workflow id
+        Registers a layer from a provider as a workflow and returns the workflow id  # noqa: E501
         """
         pass
 
     def test_list_collection_handler(self) -> None:
         """Test case for list_collection_handler
 
-        List the contents of the collection of the given provider
+        List the contents of the collection of the given provider  # noqa: E501
         """
         pass
 
     def test_list_root_collections_handler(self) -> None:
         """Test case for list_root_collections_handler
 
-        List all layer collections
+        List all layer collections  # noqa: E501
         """
         pass
 
@@ -106,28 +106,28 @@ class TestLayersApi(unittest.TestCase):
     def test_remove_collection(self) -> None:
         """Test case for remove_collection
 
-        Remove a collection
+        Remove a collection  # noqa: E501
         """
         pass
 
     def test_remove_collection_from_collection(self) -> None:
         """Test case for remove_collection_from_collection
 
-        Delete a collection from a collection
+        Delete a collection from a collection  # noqa: E501
         """
         pass
 
     def test_remove_layer_from_collection(self) -> None:
         """Test case for remove_layer_from_collection
 
-        Remove a layer from a collection
+        Remove a layer from a collection  # noqa: E501
         """
         pass
 
     def test_search_handler(self) -> None:
         """Test case for search_handler
 
-        Searches the contents of the collection of the given provider
+        Searches the contents of the collection of the given provider  # noqa: E501
         """
         pass
 

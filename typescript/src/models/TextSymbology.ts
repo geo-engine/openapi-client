@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { ColorParam } from './ColorParam';
 import {
     ColorParamFromJSON,
@@ -56,10 +56,12 @@ export interface TextSymbology {
  * Check if a given object implements the TextSymbology interface.
  */
 export function instanceOfTextSymbology(value: object): boolean {
-    if (!('attribute' in value)) return false;
-    if (!('fillColor' in value)) return false;
-    if (!('stroke' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "attribute" in value;
+    isInstance = isInstance && "fillColor" in value;
+    isInstance = isInstance && "stroke" in value;
+
+    return isInstance;
 }
 
 export function TextSymbologyFromJSON(json: any): TextSymbology {
@@ -67,7 +69,7 @@ export function TextSymbologyFromJSON(json: any): TextSymbology {
 }
 
 export function TextSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): TextSymbology {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -79,14 +81,17 @@ export function TextSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boole
 }
 
 export function TextSymbologyToJSON(value?: TextSymbology | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'attribute': value['attribute'],
-        'fillColor': ColorParamToJSON(value['fillColor']),
-        'stroke': StrokeParamToJSON(value['stroke']),
+        'attribute': value.attribute,
+        'fillColor': ColorParamToJSON(value.fillColor),
+        'stroke': StrokeParamToJSON(value.stroke),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,33 +37,18 @@ export interface DerivedNumber {
      * @memberof DerivedNumber
      */
     factor: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof DerivedNumber
-     */
-    type: DerivedNumberTypeEnum;
 }
-
-
-/**
- * @export
- */
-export const DerivedNumberTypeEnum = {
-    Derived: 'derived'
-} as const;
-export type DerivedNumberTypeEnum = typeof DerivedNumberTypeEnum[keyof typeof DerivedNumberTypeEnum];
-
 
 /**
  * Check if a given object implements the DerivedNumber interface.
  */
 export function instanceOfDerivedNumber(value: object): boolean {
-    if (!('attribute' in value)) return false;
-    if (!('defaultValue' in value)) return false;
-    if (!('factor' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "attribute" in value;
+    isInstance = isInstance && "defaultValue" in value;
+    isInstance = isInstance && "factor" in value;
+
+    return isInstance;
 }
 
 export function DerivedNumberFromJSON(json: any): DerivedNumber {
@@ -71,7 +56,7 @@ export function DerivedNumberFromJSON(json: any): DerivedNumber {
 }
 
 export function DerivedNumberFromJSONTyped(json: any, ignoreDiscriminator: boolean): DerivedNumber {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -79,20 +64,21 @@ export function DerivedNumberFromJSONTyped(json: any, ignoreDiscriminator: boole
         'attribute': json['attribute'],
         'defaultValue': json['defaultValue'],
         'factor': json['factor'],
-        'type': json['type'],
     };
 }
 
 export function DerivedNumberToJSON(value?: DerivedNumber | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'attribute': value['attribute'],
-        'defaultValue': value['defaultValue'],
-        'factor': value['factor'],
-        'type': value['type'],
+        'attribute': value.attribute,
+        'defaultValue': value.defaultValue,
+        'factor': value.factor,
     };
 }
 

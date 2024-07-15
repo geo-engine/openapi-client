@@ -18,11 +18,10 @@ exports.ProviderLayerIdToJSON = exports.ProviderLayerIdFromJSONTyped = exports.P
  * Check if a given object implements the ProviderLayerId interface.
  */
 function instanceOfProviderLayerId(value) {
-    if (!('layerId' in value))
-        return false;
-    if (!('providerId' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "layerId" in value;
+    isInstance = isInstance && "providerId" in value;
+    return isInstance;
 }
 exports.instanceOfProviderLayerId = instanceOfProviderLayerId;
 function ProviderLayerIdFromJSON(json) {
@@ -30,7 +29,7 @@ function ProviderLayerIdFromJSON(json) {
 }
 exports.ProviderLayerIdFromJSON = ProviderLayerIdFromJSON;
 function ProviderLayerIdFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,12 +39,15 @@ function ProviderLayerIdFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ProviderLayerIdFromJSONTyped = ProviderLayerIdFromJSONTyped;
 function ProviderLayerIdToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'layerId': value['layerId'],
-        'providerId': value['providerId'],
+        'layerId': value.layerId,
+        'providerId': value.providerId,
     };
 }
 exports.ProviderLayerIdToJSON = ProviderLayerIdToJSON;

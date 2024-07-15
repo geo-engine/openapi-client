@@ -34,13 +34,13 @@ export interface AddDataset {
      * @type {string}
      * @memberof AddDataset
      */
-    name?: string;
+    name?: string | null;
     /**
      *
      * @type {Array<Provenance>}
      * @memberof AddDataset
      */
-    provenance?: Array<Provenance>;
+    provenance?: Array<Provenance> | null;
     /**
      *
      * @type {string}
@@ -52,13 +52,13 @@ export interface AddDataset {
      * @type {Symbology}
      * @memberof AddDataset
      */
-    symbology?: Symbology;
+    symbology?: Symbology | null;
     /**
      *
      * @type {Array<string>}
      * @memberof AddDataset
      */
-    tags?: Array<string>;
+    tags?: Array<string> | null;
 }
 /**
  * Check if a given object implements the AddDataset interface.

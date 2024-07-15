@@ -18,13 +18,11 @@ exports.AuthCodeResponseToJSON = exports.AuthCodeResponseFromJSONTyped = exports
  * Check if a given object implements the AuthCodeResponse interface.
  */
 function instanceOfAuthCodeResponse(value) {
-    if (!('code' in value))
-        return false;
-    if (!('sessionState' in value))
-        return false;
-    if (!('state' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "code" in value;
+    isInstance = isInstance && "sessionState" in value;
+    isInstance = isInstance && "state" in value;
+    return isInstance;
 }
 exports.instanceOfAuthCodeResponse = instanceOfAuthCodeResponse;
 function AuthCodeResponseFromJSON(json) {
@@ -32,7 +30,7 @@ function AuthCodeResponseFromJSON(json) {
 }
 exports.AuthCodeResponseFromJSON = AuthCodeResponseFromJSON;
 function AuthCodeResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -43,13 +41,16 @@ function AuthCodeResponseFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.AuthCodeResponseFromJSONTyped = AuthCodeResponseFromJSONTyped;
 function AuthCodeResponseToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'code': value['code'],
-        'sessionState': value['sessionState'],
-        'state': value['state'],
+        'code': value.code,
+        'sessionState': value.sessionState,
+        'state': value.state,
     };
 }
 exports.AuthCodeResponseToJSON = AuthCodeResponseToJSON;

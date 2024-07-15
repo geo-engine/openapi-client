@@ -20,13 +20,11 @@ const RasterPropertiesKey_1 = require("./RasterPropertiesKey");
  * Check if a given object implements the GdalMetadataMapping interface.
  */
 function instanceOfGdalMetadataMapping(value) {
-    if (!('sourceKey' in value))
-        return false;
-    if (!('targetKey' in value))
-        return false;
-    if (!('targetType' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "sourceKey" in value;
+    isInstance = isInstance && "targetKey" in value;
+    isInstance = isInstance && "targetType" in value;
+    return isInstance;
 }
 exports.instanceOfGdalMetadataMapping = instanceOfGdalMetadataMapping;
 function GdalMetadataMappingFromJSON(json) {
@@ -34,7 +32,7 @@ function GdalMetadataMappingFromJSON(json) {
 }
 exports.GdalMetadataMappingFromJSON = GdalMetadataMappingFromJSON;
 function GdalMetadataMappingFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -45,13 +43,16 @@ function GdalMetadataMappingFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.GdalMetadataMappingFromJSONTyped = GdalMetadataMappingFromJSONTyped;
 function GdalMetadataMappingToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'source_key': (0, RasterPropertiesKey_1.RasterPropertiesKeyToJSON)(value['sourceKey']),
-        'target_key': (0, RasterPropertiesKey_1.RasterPropertiesKeyToJSON)(value['targetKey']),
-        'target_type': (0, RasterPropertiesEntryType_1.RasterPropertiesEntryTypeToJSON)(value['targetType']),
+        'source_key': (0, RasterPropertiesKey_1.RasterPropertiesKeyToJSON)(value.sourceKey),
+        'target_key': (0, RasterPropertiesKey_1.RasterPropertiesKeyToJSON)(value.targetKey),
+        'target_type': (0, RasterPropertiesEntryType_1.RasterPropertiesEntryTypeToJSON)(value.targetType),
     };
 }
 exports.GdalMetadataMappingToJSON = GdalMetadataMappingToJSON;

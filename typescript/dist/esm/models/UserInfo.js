@@ -11,34 +11,38 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 /**
  * Check if a given object implements the UserInfo interface.
  */
 export function instanceOfUserInfo(value) {
-    if (!('id' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    return isInstance;
 }
 export function UserInfoFromJSON(json) {
     return UserInfoFromJSONTyped(json, false);
 }
 export function UserInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'email': json['email'] == null ? undefined : json['email'],
+        'email': !exists(json, 'email') ? undefined : json['email'],
         'id': json['id'],
-        'realName': json['realName'] == null ? undefined : json['realName'],
+        'realName': !exists(json, 'realName') ? undefined : json['realName'],
     };
 }
 export function UserInfoToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'email': value['email'],
-        'id': value['id'],
-        'realName': value['realName'],
+        'email': value.email,
+        'id': value.id,
+        'realName': value.realName,
     };
 }

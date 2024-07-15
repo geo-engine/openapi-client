@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.gdal_metadata_net_cdf_cf import GdalMetadataNetCdfCf
+from geoengine_openapi_client.models.gdal_metadata_net_cdf_cf import GdalMetadataNetCdfCf  # noqa: E501
 
 class TestGdalMetadataNetCdfCf(unittest.TestCase):
     """GdalMetadataNetCdfCf unit test stubs"""
@@ -33,7 +34,7 @@ class TestGdalMetadataNetCdfCf(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GdalMetadataNetCdfCf`
         """
-        model = GdalMetadataNetCdfCf()
+        model = GdalMetadataNetCdfCf()  # noqa: E501
         if include_optional:
             return GdalMetadataNetCdfCf(
                 band_offset = 0,
@@ -85,8 +86,7 @@ class TestGdalMetadataNetCdfCf(unittest.TestCase):
                 start = 56,
                 step = geoengine_openapi_client.models.time_step.TimeStep(
                     granularity = 'millis', 
-                    step = 0, ),
-                type = 'GdalMetadataNetCdfCf'
+                    step = 0, )
             )
         else:
             return GdalMetadataNetCdfCf(
@@ -139,7 +139,6 @@ class TestGdalMetadataNetCdfCf(unittest.TestCase):
                 step = geoengine_openapi_client.models.time_step.TimeStep(
                     granularity = 'millis', 
                     step = 0, ),
-                type = 'GdalMetadataNetCdfCf',
         )
         """
 

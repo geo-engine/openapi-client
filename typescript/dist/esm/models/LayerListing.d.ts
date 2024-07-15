@@ -40,20 +40,7 @@ export interface LayerListing {
      * @memberof LayerListing
      */
     properties?: Array<Array<string>>;
-    /**
-     *
-     * @type {string}
-     * @memberof LayerListing
-     */
-    type: LayerListingTypeEnum;
 }
-/**
- * @export
- */
-export declare const LayerListingTypeEnum: {
-    readonly Layer: "layer";
-};
-export type LayerListingTypeEnum = typeof LayerListingTypeEnum[keyof typeof LayerListingTypeEnum];
 /**
  * Check if a given object implements the LayerListing interface.
  */

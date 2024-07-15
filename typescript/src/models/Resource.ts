@@ -12,77 +12,80 @@
  * Do not edit the class manually.
  */
 
-import type { ResourceDataset } from './ResourceDataset';
 import {
-    instanceOfResourceDataset,
-    ResourceDatasetFromJSON,
-    ResourceDatasetFromJSONTyped,
-    ResourceDatasetToJSON,
-} from './ResourceDataset';
-import type { ResourceLayer } from './ResourceLayer';
+    DatasetResource,
+    instanceOfDatasetResource,
+    DatasetResourceFromJSON,
+    DatasetResourceFromJSONTyped,
+    DatasetResourceToJSON,
+} from './DatasetResource';
 import {
-    instanceOfResourceLayer,
-    ResourceLayerFromJSON,
-    ResourceLayerFromJSONTyped,
-    ResourceLayerToJSON,
-} from './ResourceLayer';
-import type { ResourceLayerCollection } from './ResourceLayerCollection';
+    LayerCollectionResource,
+    instanceOfLayerCollectionResource,
+    LayerCollectionResourceFromJSON,
+    LayerCollectionResourceFromJSONTyped,
+    LayerCollectionResourceToJSON,
+} from './LayerCollectionResource';
 import {
-    instanceOfResourceLayerCollection,
-    ResourceLayerCollectionFromJSON,
-    ResourceLayerCollectionFromJSONTyped,
-    ResourceLayerCollectionToJSON,
-} from './ResourceLayerCollection';
-import type { ResourceProject } from './ResourceProject';
+    LayerResource,
+    instanceOfLayerResource,
+    LayerResourceFromJSON,
+    LayerResourceFromJSONTyped,
+    LayerResourceToJSON,
+} from './LayerResource';
 import {
-    instanceOfResourceProject,
-    ResourceProjectFromJSON,
-    ResourceProjectFromJSONTyped,
-    ResourceProjectToJSON,
-} from './ResourceProject';
+    ProjectResource,
+    instanceOfProjectResource,
+    ProjectResourceFromJSON,
+    ProjectResourceFromJSONTyped,
+    ProjectResourceToJSON,
+} from './ProjectResource';
 
 /**
  * @type Resource
  * 
  * @export
  */
-export type Resource = { type: 'dataset' } & ResourceDataset | { type: 'layer' } & ResourceLayer | { type: 'layerCollection' } & ResourceLayerCollection | { type: 'project' } & ResourceProject;
+export type Resource = { type: 'dataset' } & DatasetResource | { type: 'layer' } & LayerResource | { type: 'layerCollection' } & LayerCollectionResource | { type: 'project' } & ProjectResource;
 
 export function ResourceFromJSON(json: any): Resource {
     return ResourceFromJSONTyped(json, false);
 }
 
 export function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Resource {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'dataset':
-            return {...ResourceDatasetFromJSONTyped(json, true), type: 'dataset'};
+            return {...DatasetResourceFromJSONTyped(json, true), type: 'dataset'};
         case 'layer':
-            return {...ResourceLayerFromJSONTyped(json, true), type: 'layer'};
+            return {...LayerResourceFromJSONTyped(json, true), type: 'layer'};
         case 'layerCollection':
-            return {...ResourceLayerCollectionFromJSONTyped(json, true), type: 'layerCollection'};
+            return {...LayerCollectionResourceFromJSONTyped(json, true), type: 'layerCollection'};
         case 'project':
-            return {...ResourceProjectFromJSONTyped(json, true), type: 'project'};
+            return {...ProjectResourceFromJSONTyped(json, true), type: 'project'};
         default:
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }
 }
 
 export function ResourceToJSON(value?: Resource | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'dataset':
-            return ResourceDatasetToJSON(value);
+            return DatasetResourceToJSON(value);
         case 'layer':
-            return ResourceLayerToJSON(value);
+            return LayerResourceToJSON(value);
         case 'layerCollection':
-            return ResourceLayerCollectionToJSON(value);
+            return LayerCollectionResourceToJSON(value);
         case 'project':
-            return ResourceProjectToJSON(value);
+            return ProjectResourceToJSON(value);
         default:
             throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
     }

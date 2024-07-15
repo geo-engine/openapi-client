@@ -17,17 +17,16 @@ import { TimeReferenceFromJSON, TimeReferenceToJSON, } from './TimeReference';
  * Check if a given object implements the GdalSourceTimePlaceholder interface.
  */
 export function instanceOfGdalSourceTimePlaceholder(value) {
-    if (!('format' in value))
-        return false;
-    if (!('reference' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "format" in value;
+    isInstance = isInstance && "reference" in value;
+    return isInstance;
 }
 export function GdalSourceTimePlaceholderFromJSON(json) {
     return GdalSourceTimePlaceholderFromJSONTyped(json, false);
 }
 export function GdalSourceTimePlaceholderFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -36,11 +35,14 @@ export function GdalSourceTimePlaceholderFromJSONTyped(json, ignoreDiscriminator
     };
 }
 export function GdalSourceTimePlaceholderToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'format': DateTimeParseFormatToJSON(value['format']),
-        'reference': TimeReferenceToJSON(value['reference']),
+        'format': DateTimeParseFormatToJSON(value.format),
+        'reference': TimeReferenceToJSON(value.reference),
     };
 }

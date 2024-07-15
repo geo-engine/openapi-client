@@ -18,17 +18,17 @@ exports.InternalDataIdToJSON = exports.InternalDataIdFromJSONTyped = exports.Int
  * @export
  */
 exports.InternalDataIdTypeEnum = {
-    Internal: 'internal'
+    Internal: 'internal',
+    External: 'external'
 };
 /**
  * Check if a given object implements the InternalDataId interface.
  */
 function instanceOfInternalDataId(value) {
-    if (!('datasetId' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "datasetId" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfInternalDataId = instanceOfInternalDataId;
 function InternalDataIdFromJSON(json) {
@@ -36,7 +36,7 @@ function InternalDataIdFromJSON(json) {
 }
 exports.InternalDataIdFromJSON = InternalDataIdFromJSON;
 function InternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,12 +46,15 @@ function InternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.InternalDataIdFromJSONTyped = InternalDataIdFromJSONTyped;
 function InternalDataIdToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'datasetId': value['datasetId'],
-        'type': value['type'],
+        'datasetId': value.datasetId,
+        'type': value.type,
     };
 }
 exports.InternalDataIdToJSON = InternalDataIdToJSON;

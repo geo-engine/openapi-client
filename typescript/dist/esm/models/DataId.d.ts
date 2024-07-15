@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ExternalDataId } from './ExternalDataId';
-import type { InternalDataId } from './InternalDataId';
+import { ExternalDataIdWithType } from './ExternalDataIdWithType';
+import { InternalDataId } from './InternalDataId';
 /**
  * @type DataId
  *
@@ -18,7 +18,7 @@ import type { InternalDataId } from './InternalDataId';
  */
 export type DataId = {
     type: 'external';
-} & ExternalDataId | {
+} & ExternalDataIdWithType | {
     type: 'internal';
 } & InternalDataId;
 export declare function DataIdFromJSON(json: any): DataId;

@@ -32,7 +32,7 @@ export interface AutoCreateDataset {
      * @type {string}
      * @memberof AutoCreateDataset
      */
-    layerName?: string;
+    layerName?: string | null;
     /**
      *
      * @type {string}
@@ -44,7 +44,7 @@ export interface AutoCreateDataset {
      * @type {Array<string>}
      * @memberof AutoCreateDataset
      */
-    tags?: Array<string>;
+    tags?: Array<string> | null;
     /**
      *
      * @type {string}

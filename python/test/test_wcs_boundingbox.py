@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.wcs_boundingbox import WcsBoundingbox
+from geoengine_openapi_client.models.wcs_boundingbox import WcsBoundingbox  # noqa: E501
 
 class TestWcsBoundingbox(unittest.TestCase):
     """WcsBoundingbox unit test stubs"""
@@ -33,7 +34,7 @@ class TestWcsBoundingbox(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `WcsBoundingbox`
         """
-        model = WcsBoundingbox()
+        model = WcsBoundingbox()  # noqa: E501
         if include_optional:
             return WcsBoundingbox(
                 bbox = [

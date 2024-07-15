@@ -11,33 +11,36 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ColorParamStaticFromJSONTyped, ColorParamStaticToJSON, } from './ColorParamStatic';
-import { DerivedColorFromJSONTyped, DerivedColorToJSON, } from './DerivedColor';
+import { DerivedColorWithTypeFromJSONTyped, DerivedColorWithTypeToJSON, } from './DerivedColorWithType';
+import { StaticColorParamFromJSONTyped, StaticColorParamToJSON, } from './StaticColorParam';
 export function ColorParamFromJSON(json) {
     return ColorParamFromJSONTyped(json, false);
 }
 export function ColorParamFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'derived':
-            return Object.assign(Object.assign({}, DerivedColorFromJSONTyped(json, true)), { type: 'derived' });
+            return Object.assign(Object.assign({}, DerivedColorWithTypeFromJSONTyped(json, true)), { type: 'derived' });
         case 'static':
-            return Object.assign(Object.assign({}, ColorParamStaticFromJSONTyped(json, true)), { type: 'static' });
+            return Object.assign(Object.assign({}, StaticColorParamFromJSONTyped(json, true)), { type: 'static' });
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${json['type']}'`);
     }
 }
 export function ColorParamToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'derived':
-            return DerivedColorToJSON(value);
+            return DerivedColorWithTypeToJSON(value);
         case 'static':
-            return ColorParamStaticToJSON(value);
+            return StaticColorParamToJSON(value);
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${value['type']}'`);
     }

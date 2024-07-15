@@ -15,21 +15,18 @@
  * Check if a given object implements the ServerInfo interface.
  */
 export function instanceOfServerInfo(value) {
-    if (!('buildDate' in value))
-        return false;
-    if (!('commitHash' in value))
-        return false;
-    if (!('features' in value))
-        return false;
-    if (!('version' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "buildDate" in value;
+    isInstance = isInstance && "commitHash" in value;
+    isInstance = isInstance && "features" in value;
+    isInstance = isInstance && "version" in value;
+    return isInstance;
 }
 export function ServerInfoFromJSON(json) {
     return ServerInfoFromJSONTyped(json, false);
 }
 export function ServerInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,13 +37,16 @@ export function ServerInfoFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ServerInfoToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'buildDate': value['buildDate'],
-        'commitHash': value['commitHash'],
-        'features': value['features'],
-        'version': value['version'],
+        'buildDate': value.buildDate,
+        'commitHash': value.commitHash,
+        'features': value.features,
+        'version': value.version,
     };
 }

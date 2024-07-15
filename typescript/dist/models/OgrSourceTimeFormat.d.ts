@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { OgrSourceTimeFormatAuto } from './OgrSourceTimeFormatAuto';
-import type { OgrSourceTimeFormatCustom } from './OgrSourceTimeFormatCustom';
-import type { OgrSourceTimeFormatUnixTimeStamp } from './OgrSourceTimeFormatUnixTimeStamp';
+import { AutoOgrSourceTimeFormat } from './AutoOgrSourceTimeFormat';
+import { CustomOgrSourceTimeFormat } from './CustomOgrSourceTimeFormat';
+import { UnixTimeStampOgrSourceTimeFormat } from './UnixTimeStampOgrSourceTimeFormat';
 /**
  * @type OgrSourceTimeFormat
  *
@@ -19,11 +19,11 @@ import type { OgrSourceTimeFormatUnixTimeStamp } from './OgrSourceTimeFormatUnix
  */
 export type OgrSourceTimeFormat = {
     format: 'auto';
-} & OgrSourceTimeFormatAuto | {
+} & AutoOgrSourceTimeFormat | {
     format: 'custom';
-} & OgrSourceTimeFormatCustom | {
+} & CustomOgrSourceTimeFormat | {
     format: 'unixTimeStamp';
-} & OgrSourceTimeFormatUnixTimeStamp;
+} & UnixTimeStampOgrSourceTimeFormat;
 export declare function OgrSourceTimeFormatFromJSON(json: any): OgrSourceTimeFormat;
 export declare function OgrSourceTimeFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceTimeFormat;
 export declare function OgrSourceTimeFormatToJSON(value?: OgrSourceTimeFormat | null): any;

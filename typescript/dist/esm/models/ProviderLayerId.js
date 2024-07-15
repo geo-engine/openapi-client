@@ -15,17 +15,16 @@
  * Check if a given object implements the ProviderLayerId interface.
  */
 export function instanceOfProviderLayerId(value) {
-    if (!('layerId' in value))
-        return false;
-    if (!('providerId' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "layerId" in value;
+    isInstance = isInstance && "providerId" in value;
+    return isInstance;
 }
 export function ProviderLayerIdFromJSON(json) {
     return ProviderLayerIdFromJSONTyped(json, false);
 }
 export function ProviderLayerIdFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -34,11 +33,14 @@ export function ProviderLayerIdFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ProviderLayerIdToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'layerId': value['layerId'],
-        'providerId': value['providerId'],
+        'layerId': value.layerId,
+        'providerId': value.providerId,
     };
 }

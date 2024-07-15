@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.project_listing import ProjectListing
+from geoengine_openapi_client.models.project_listing import ProjectListing  # noqa: E501
 
 class TestProjectListing(unittest.TestCase):
     """ProjectListing unit test stubs"""
@@ -33,7 +34,7 @@ class TestProjectListing(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ProjectListing`
         """
-        model = ProjectListing()
+        model = ProjectListing()  # noqa: E501
         if include_optional:
             return ProjectListing(
                 changed = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

@@ -12,88 +12,91 @@
  * Do not edit the class manually.
  */
 
-import type { ResourceIdDatasetId } from './ResourceIdDatasetId';
 import {
-    instanceOfResourceIdDatasetId,
-    ResourceIdDatasetIdFromJSON,
-    ResourceIdDatasetIdFromJSONTyped,
-    ResourceIdDatasetIdToJSON,
-} from './ResourceIdDatasetId';
-import type { ResourceIdLayer } from './ResourceIdLayer';
+    DatasetIdResourceId,
+    instanceOfDatasetIdResourceId,
+    DatasetIdResourceIdFromJSON,
+    DatasetIdResourceIdFromJSONTyped,
+    DatasetIdResourceIdToJSON,
+} from './DatasetIdResourceId';
 import {
-    instanceOfResourceIdLayer,
-    ResourceIdLayerFromJSON,
-    ResourceIdLayerFromJSONTyped,
-    ResourceIdLayerToJSON,
-} from './ResourceIdLayer';
-import type { ResourceIdLayerCollection } from './ResourceIdLayerCollection';
+    LayerCollectionResourceId,
+    instanceOfLayerCollectionResourceId,
+    LayerCollectionResourceIdFromJSON,
+    LayerCollectionResourceIdFromJSONTyped,
+    LayerCollectionResourceIdToJSON,
+} from './LayerCollectionResourceId';
 import {
-    instanceOfResourceIdLayerCollection,
-    ResourceIdLayerCollectionFromJSON,
-    ResourceIdLayerCollectionFromJSONTyped,
-    ResourceIdLayerCollectionToJSON,
-} from './ResourceIdLayerCollection';
-import type { ResourceIdModelId } from './ResourceIdModelId';
+    LayerResourceId,
+    instanceOfLayerResourceId,
+    LayerResourceIdFromJSON,
+    LayerResourceIdFromJSONTyped,
+    LayerResourceIdToJSON,
+} from './LayerResourceId';
 import {
-    instanceOfResourceIdModelId,
-    ResourceIdModelIdFromJSON,
-    ResourceIdModelIdFromJSONTyped,
-    ResourceIdModelIdToJSON,
-} from './ResourceIdModelId';
-import type { ResourceIdProject } from './ResourceIdProject';
+    ModelIdResourceId,
+    instanceOfModelIdResourceId,
+    ModelIdResourceIdFromJSON,
+    ModelIdResourceIdFromJSONTyped,
+    ModelIdResourceIdToJSON,
+} from './ModelIdResourceId';
 import {
-    instanceOfResourceIdProject,
-    ResourceIdProjectFromJSON,
-    ResourceIdProjectFromJSONTyped,
-    ResourceIdProjectToJSON,
-} from './ResourceIdProject';
+    ProjectResourceId,
+    instanceOfProjectResourceId,
+    ProjectResourceIdFromJSON,
+    ProjectResourceIdFromJSONTyped,
+    ProjectResourceIdToJSON,
+} from './ProjectResourceId';
 
 /**
  * @type ResourceId
  * 
  * @export
  */
-export type ResourceId = { type: 'DatasetId' } & ResourceIdDatasetId | { type: 'Layer' } & ResourceIdLayer | { type: 'LayerCollection' } & ResourceIdLayerCollection | { type: 'ModelId' } & ResourceIdModelId | { type: 'Project' } & ResourceIdProject;
+export type ResourceId = { type: 'DatasetId' } & DatasetIdResourceId | { type: 'Layer' } & LayerResourceId | { type: 'LayerCollection' } & LayerCollectionResourceId | { type: 'ModelId' } & ModelIdResourceId | { type: 'Project' } & ProjectResourceId;
 
 export function ResourceIdFromJSON(json: any): ResourceId {
     return ResourceIdFromJSONTyped(json, false);
 }
 
 export function ResourceIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceId {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'DatasetId':
-            return {...ResourceIdDatasetIdFromJSONTyped(json, true), type: 'DatasetId'};
+            return {...DatasetIdResourceIdFromJSONTyped(json, true), type: 'DatasetId'};
         case 'Layer':
-            return {...ResourceIdLayerFromJSONTyped(json, true), type: 'Layer'};
+            return {...LayerResourceIdFromJSONTyped(json, true), type: 'Layer'};
         case 'LayerCollection':
-            return {...ResourceIdLayerCollectionFromJSONTyped(json, true), type: 'LayerCollection'};
+            return {...LayerCollectionResourceIdFromJSONTyped(json, true), type: 'LayerCollection'};
         case 'ModelId':
-            return {...ResourceIdModelIdFromJSONTyped(json, true), type: 'ModelId'};
+            return {...ModelIdResourceIdFromJSONTyped(json, true), type: 'ModelId'};
         case 'Project':
-            return {...ResourceIdProjectFromJSONTyped(json, true), type: 'Project'};
+            return {...ProjectResourceIdFromJSONTyped(json, true), type: 'Project'};
         default:
             throw new Error(`No variant of ResourceId exists with 'type=${json['type']}'`);
     }
 }
 
 export function ResourceIdToJSON(value?: ResourceId | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'DatasetId':
-            return ResourceIdDatasetIdToJSON(value);
+            return DatasetIdResourceIdToJSON(value);
         case 'Layer':
-            return ResourceIdLayerToJSON(value);
+            return LayerResourceIdToJSON(value);
         case 'LayerCollection':
-            return ResourceIdLayerCollectionToJSON(value);
+            return LayerCollectionResourceIdToJSON(value);
         case 'ModelId':
-            return ResourceIdModelIdToJSON(value);
+            return ModelIdResourceIdToJSON(value);
         case 'Project':
-            return ResourceIdProjectToJSON(value);
+            return ProjectResourceIdToJSON(value);
         default:
             throw new Error(`No variant of ResourceId exists with 'type=${value['type']}'`);
     }

@@ -13,24 +13,15 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClassificationMeasurementToJSON = exports.ClassificationMeasurementFromJSONTyped = exports.ClassificationMeasurementFromJSON = exports.instanceOfClassificationMeasurement = exports.ClassificationMeasurementTypeEnum = void 0;
-/**
- * @export
- */
-exports.ClassificationMeasurementTypeEnum = {
-    Classification: 'classification'
-};
+exports.ClassificationMeasurementToJSON = exports.ClassificationMeasurementFromJSONTyped = exports.ClassificationMeasurementFromJSON = exports.instanceOfClassificationMeasurement = void 0;
 /**
  * Check if a given object implements the ClassificationMeasurement interface.
  */
 function instanceOfClassificationMeasurement(value) {
-    if (!('classes' in value))
-        return false;
-    if (!('measurement' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "classes" in value;
+    isInstance = isInstance && "measurement" in value;
+    return isInstance;
 }
 exports.instanceOfClassificationMeasurement = instanceOfClassificationMeasurement;
 function ClassificationMeasurementFromJSON(json) {
@@ -38,24 +29,25 @@ function ClassificationMeasurementFromJSON(json) {
 }
 exports.ClassificationMeasurementFromJSON = ClassificationMeasurementFromJSON;
 function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'classes': json['classes'],
         'measurement': json['measurement'],
-        'type': json['type'],
     };
 }
 exports.ClassificationMeasurementFromJSONTyped = ClassificationMeasurementFromJSONTyped;
 function ClassificationMeasurementToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'classes': value['classes'],
-        'measurement': value['measurement'],
-        'type': value['type'],
+        'classes': value.classes,
+        'measurement': value.measurement,
     };
 }
 exports.ClassificationMeasurementToJSON = ClassificationMeasurementToJSON;

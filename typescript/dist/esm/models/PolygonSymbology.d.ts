@@ -41,21 +41,8 @@ export interface PolygonSymbology {
      * @type {TextSymbology}
      * @memberof PolygonSymbology
      */
-    text?: TextSymbology;
-    /**
-     *
-     * @type {string}
-     * @memberof PolygonSymbology
-     */
-    type: PolygonSymbologyTypeEnum;
+    text?: TextSymbology | null;
 }
-/**
- * @export
- */
-export declare const PolygonSymbologyTypeEnum: {
-    readonly Polygon: "polygon";
-};
-export type PolygonSymbologyTypeEnum = typeof PolygonSymbologyTypeEnum[keyof typeof PolygonSymbologyTypeEnum];
 /**
  * Check if a given object implements the PolygonSymbology interface.
  */

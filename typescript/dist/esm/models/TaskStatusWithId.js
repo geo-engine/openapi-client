@@ -16,22 +16,25 @@ import { TaskStatusFromJSONTyped, TaskStatusToJSON, } from './TaskStatus';
  * Check if a given object implements the TaskStatusWithId interface.
  */
 export function instanceOfTaskStatusWithId(value) {
-    if (!('taskId' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "taskId" in value;
+    return isInstance;
 }
 export function TaskStatusWithIdFromJSON(json) {
     return TaskStatusWithIdFromJSONTyped(json, false);
 }
 export function TaskStatusWithIdFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return Object.assign(Object.assign({}, TaskStatusFromJSONTyped(json, ignoreDiscriminator)), { 'taskId': json['taskId'] });
 }
 export function TaskStatusWithIdToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
     }
-    return Object.assign(Object.assign({}, TaskStatusToJSON(value)), { 'taskId': value['taskId'] });
+    if (value === null) {
+        return null;
+    }
+    return Object.assign(Object.assign({}, TaskStatusToJSON(value)), { 'taskId': value.taskId });
 }

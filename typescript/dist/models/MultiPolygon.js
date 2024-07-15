@@ -18,9 +18,9 @@ exports.MultiPolygonToJSON = exports.MultiPolygonFromJSONTyped = exports.MultiPo
  * Check if a given object implements the MultiPolygon interface.
  */
 function instanceOfMultiPolygon(value) {
-    if (!('polygons' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "polygons" in value;
+    return isInstance;
 }
 exports.instanceOfMultiPolygon = instanceOfMultiPolygon;
 function MultiPolygonFromJSON(json) {
@@ -28,7 +28,7 @@ function MultiPolygonFromJSON(json) {
 }
 exports.MultiPolygonFromJSON = MultiPolygonFromJSON;
 function MultiPolygonFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -37,11 +37,14 @@ function MultiPolygonFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.MultiPolygonFromJSONTyped = MultiPolygonFromJSONTyped;
 function MultiPolygonToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'polygons': value['polygons'],
+        'polygons': value.polygons,
     };
 }
 exports.MultiPolygonToJSON = MultiPolygonToJSON;

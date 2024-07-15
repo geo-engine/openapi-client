@@ -28,20 +28,7 @@ export interface RasterSymbology {
      * @memberof RasterSymbology
      */
     rasterColorizer: RasterColorizer;
-    /**
-     *
-     * @type {string}
-     * @memberof RasterSymbology
-     */
-    type: RasterSymbologyTypeEnum;
 }
-/**
- * @export
- */
-export declare const RasterSymbologyTypeEnum: {
-    readonly Raster: "raster";
-};
-export type RasterSymbologyTypeEnum = typeof RasterSymbologyTypeEnum[keyof typeof RasterSymbologyTypeEnum];
 /**
  * Check if a given object implements the RasterSymbology interface.
  */

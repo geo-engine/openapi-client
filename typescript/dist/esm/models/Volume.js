@@ -11,34 +11,36 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 /**
  * Check if a given object implements the Volume interface.
  */
 export function instanceOfVolume(value) {
-    if (!('name' in value))
-        return false;
-    if (!('path' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "name" in value;
+    return isInstance;
 }
 export function VolumeFromJSON(json) {
     return VolumeFromJSONTyped(json, false);
 }
 export function VolumeFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'name': json['name'],
-        'path': json['path'],
+        'path': !exists(json, 'path') ? undefined : json['path'],
     };
 }
 export function VolumeToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'name': value['name'],
-        'path': value['path'],
+        'name': value.name,
+        'path': value.path,
     };
 }

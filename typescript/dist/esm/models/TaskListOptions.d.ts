@@ -21,7 +21,7 @@ export interface TaskListOptions {
      * @type {TaskFilter}
      * @memberof TaskListOptions
      */
-    filter?: TaskFilter;
+    filter?: TaskFilter | null;
     /**
      *
      * @type {number}

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { AxisOrder } from './AxisOrder';
 import {
     AxisOrderFromJSON,
@@ -38,13 +38,13 @@ export interface SpatialReferenceSpecification {
      * @type {Array<string>}
      * @memberof SpatialReferenceSpecification
      */
-    axisLabels?: Array<string>;
+    axisLabels?: Array<string> | null;
     /**
      * 
      * @type {AxisOrder}
      * @memberof SpatialReferenceSpecification
      */
-    axisOrder?: AxisOrder;
+    axisOrder?: AxisOrder | null;
     /**
      * 
      * @type {BoundingBox2D}
@@ -75,11 +75,13 @@ export interface SpatialReferenceSpecification {
  * Check if a given object implements the SpatialReferenceSpecification interface.
  */
 export function instanceOfSpatialReferenceSpecification(value: object): boolean {
-    if (!('extent' in value)) return false;
-    if (!('name' in value)) return false;
-    if (!('projString' in value)) return false;
-    if (!('spatialReference' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "extent" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "projString" in value;
+    isInstance = isInstance && "spatialReference" in value;
+
+    return isInstance;
 }
 
 export function SpatialReferenceSpecificationFromJSON(json: any): SpatialReferenceSpecification {
@@ -87,13 +89,13 @@ export function SpatialReferenceSpecificationFromJSON(json: any): SpatialReferen
 }
 
 export function SpatialReferenceSpecificationFromJSONTyped(json: any, ignoreDiscriminator: boolean): SpatialReferenceSpecification {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'axisLabels': json['axisLabels'] == null ? undefined : json['axisLabels'],
-        'axisOrder': json['axisOrder'] == null ? undefined : AxisOrderFromJSON(json['axisOrder']),
+        'axisLabels': !exists(json, 'axisLabels') ? undefined : json['axisLabels'],
+        'axisOrder': !exists(json, 'axisOrder') ? undefined : AxisOrderFromJSON(json['axisOrder']),
         'extent': BoundingBox2DFromJSON(json['extent']),
         'name': json['name'],
         'projString': json['projString'],
@@ -102,17 +104,20 @@ export function SpatialReferenceSpecificationFromJSONTyped(json: any, ignoreDisc
 }
 
 export function SpatialReferenceSpecificationToJSON(value?: SpatialReferenceSpecification | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'axisLabels': value['axisLabels'],
-        'axisOrder': AxisOrderToJSON(value['axisOrder']),
-        'extent': BoundingBox2DToJSON(value['extent']),
-        'name': value['name'],
-        'projString': value['projString'],
-        'spatialReference': value['spatialReference'],
+        'axisLabels': value.axisLabels,
+        'axisOrder': AxisOrderToJSON(value.axisOrder),
+        'extent': BoundingBox2DToJSON(value.extent),
+        'name': value.name,
+        'projString': value.projString,
+        'spatialReference': value.spatialReference,
     };
 }
 

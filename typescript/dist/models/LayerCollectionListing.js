@@ -13,27 +13,18 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerCollectionListingToJSON = exports.LayerCollectionListingFromJSONTyped = exports.LayerCollectionListingFromJSON = exports.instanceOfLayerCollectionListing = exports.LayerCollectionListingTypeEnum = void 0;
+exports.LayerCollectionListingToJSON = exports.LayerCollectionListingFromJSONTyped = exports.LayerCollectionListingFromJSON = exports.instanceOfLayerCollectionListing = void 0;
+const runtime_1 = require("../runtime");
 const ProviderLayerCollectionId_1 = require("./ProviderLayerCollectionId");
-/**
- * @export
- */
-exports.LayerCollectionListingTypeEnum = {
-    Collection: 'collection'
-};
 /**
  * Check if a given object implements the LayerCollectionListing interface.
  */
 function instanceOfLayerCollectionListing(value) {
-    if (!('description' in value))
-        return false;
-    if (!('id' in value))
-        return false;
-    if (!('name' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    return isInstance;
 }
 exports.instanceOfLayerCollectionListing = instanceOfLayerCollectionListing;
 function LayerCollectionListingFromJSON(json) {
@@ -41,28 +32,29 @@ function LayerCollectionListingFromJSON(json) {
 }
 exports.LayerCollectionListingFromJSON = LayerCollectionListingFromJSON;
 function LayerCollectionListingFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'description': json['description'],
         'id': (0, ProviderLayerCollectionId_1.ProviderLayerCollectionIdFromJSON)(json['id']),
         'name': json['name'],
-        'properties': json['properties'] == null ? undefined : json['properties'],
-        'type': json['type'],
+        'properties': !(0, runtime_1.exists)(json, 'properties') ? undefined : json['properties'],
     };
 }
 exports.LayerCollectionListingFromJSONTyped = LayerCollectionListingFromJSONTyped;
 function LayerCollectionListingToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'description': value['description'],
-        'id': (0, ProviderLayerCollectionId_1.ProviderLayerCollectionIdToJSON)(value['id']),
-        'name': value['name'],
-        'properties': value['properties'],
-        'type': value['type'],
+        'description': value.description,
+        'id': (0, ProviderLayerCollectionId_1.ProviderLayerCollectionIdToJSON)(value.id),
+        'name': value.name,
+        'properties': value.properties,
     };
 }
 exports.LayerCollectionListingToJSON = LayerCollectionListingToJSON;

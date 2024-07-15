@@ -61,20 +61,7 @@ export interface GdalMetadataNetCdfCf {
      * @memberof GdalMetadataNetCdfCf
      */
     step: TimeStep;
-    /**
-     *
-     * @type {string}
-     * @memberof GdalMetadataNetCdfCf
-     */
-    type: GdalMetadataNetCdfCfTypeEnum;
 }
-/**
- * @export
- */
-export declare const GdalMetadataNetCdfCfTypeEnum: {
-    readonly GdalMetadataNetCdfCf: "GdalMetadataNetCdfCf";
-};
-export type GdalMetadataNetCdfCfTypeEnum = typeof GdalMetadataNetCdfCfTypeEnum[keyof typeof GdalMetadataNetCdfCfTypeEnum];
 /**
  * Check if a given object implements the GdalMetadataNetCdfCf interface.
  */

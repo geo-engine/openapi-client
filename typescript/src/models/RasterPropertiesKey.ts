@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -24,7 +24,7 @@ export interface RasterPropertiesKey {
      * @type {string}
      * @memberof RasterPropertiesKey
      */
-    domain?: string;
+    domain?: string | null;
     /**
      * 
      * @type {string}
@@ -37,8 +37,10 @@ export interface RasterPropertiesKey {
  * Check if a given object implements the RasterPropertiesKey interface.
  */
 export function instanceOfRasterPropertiesKey(value: object): boolean {
-    if (!('key' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "key" in value;
+
+    return isInstance;
 }
 
 export function RasterPropertiesKeyFromJSON(json: any): RasterPropertiesKey {
@@ -46,24 +48,27 @@ export function RasterPropertiesKeyFromJSON(json: any): RasterPropertiesKey {
 }
 
 export function RasterPropertiesKeyFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterPropertiesKey {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'domain': json['domain'] == null ? undefined : json['domain'],
+        'domain': !exists(json, 'domain') ? undefined : json['domain'],
         'key': json['key'],
     };
 }
 
 export function RasterPropertiesKeyToJSON(value?: RasterPropertiesKey | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'domain': value['domain'],
-        'key': value['key'],
+        'domain': value.domain,
+        'key': value.key,
     };
 }
 

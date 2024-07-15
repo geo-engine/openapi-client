@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.raster_properties_entry_type import RasterPropertiesEntryType
+from geoengine_openapi_client.models.raster_properties_entry_type import RasterPropertiesEntryType  # noqa: E501
 
 class TestRasterPropertiesEntryType(unittest.TestCase):
     """RasterPropertiesEntryType unit test stubs"""

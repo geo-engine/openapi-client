@@ -18,9 +18,9 @@ exports.UpdateQuotaToJSON = exports.UpdateQuotaFromJSONTyped = exports.UpdateQuo
  * Check if a given object implements the UpdateQuota interface.
  */
 function instanceOfUpdateQuota(value) {
-    if (!('available' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "available" in value;
+    return isInstance;
 }
 exports.instanceOfUpdateQuota = instanceOfUpdateQuota;
 function UpdateQuotaFromJSON(json) {
@@ -28,7 +28,7 @@ function UpdateQuotaFromJSON(json) {
 }
 exports.UpdateQuotaFromJSON = UpdateQuotaFromJSON;
 function UpdateQuotaFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -37,11 +37,14 @@ function UpdateQuotaFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.UpdateQuotaFromJSONTyped = UpdateQuotaFromJSONTyped;
 function UpdateQuotaToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'available': value['available'],
+        'available': value.available,
     };
 }
 exports.UpdateQuotaToJSON = UpdateQuotaToJSON;

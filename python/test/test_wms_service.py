@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.wms_service import WmsService
+from geoengine_openapi_client.models.wms_service import WmsService  # noqa: E501
 
 class TestWmsService(unittest.TestCase):
     """WmsService unit test stubs"""

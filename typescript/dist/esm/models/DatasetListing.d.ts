@@ -58,7 +58,7 @@ export interface DatasetListing {
      * @type {Symbology}
      * @memberof DatasetListing
      */
-    symbology?: Symbology;
+    symbology?: Symbology | null;
     /**
      *
      * @type {Array<string>}

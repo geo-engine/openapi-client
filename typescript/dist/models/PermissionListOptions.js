@@ -18,11 +18,10 @@ exports.PermissionListOptionsToJSON = exports.PermissionListOptionsFromJSONTyped
  * Check if a given object implements the PermissionListOptions interface.
  */
 function instanceOfPermissionListOptions(value) {
-    if (!('limit' in value))
-        return false;
-    if (!('offset' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "limit" in value;
+    isInstance = isInstance && "offset" in value;
+    return isInstance;
 }
 exports.instanceOfPermissionListOptions = instanceOfPermissionListOptions;
 function PermissionListOptionsFromJSON(json) {
@@ -30,7 +29,7 @@ function PermissionListOptionsFromJSON(json) {
 }
 exports.PermissionListOptionsFromJSON = PermissionListOptionsFromJSON;
 function PermissionListOptionsFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,12 +39,15 @@ function PermissionListOptionsFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.PermissionListOptionsFromJSONTyped = PermissionListOptionsFromJSONTyped;
 function PermissionListOptionsToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'limit': value['limit'],
-        'offset': value['offset'],
+        'limit': value.limit,
+        'offset': value.offset,
     };
 }
 exports.PermissionListOptionsToJSON = PermissionListOptionsToJSON;

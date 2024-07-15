@@ -20,13 +20,11 @@ const TimeInterval_1 = require("./TimeInterval");
  * Check if a given object implements the STRectangle interface.
  */
 function instanceOfSTRectangle(value) {
-    if (!('boundingBox' in value))
-        return false;
-    if (!('spatialReference' in value))
-        return false;
-    if (!('timeInterval' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "boundingBox" in value;
+    isInstance = isInstance && "spatialReference" in value;
+    isInstance = isInstance && "timeInterval" in value;
+    return isInstance;
 }
 exports.instanceOfSTRectangle = instanceOfSTRectangle;
 function STRectangleFromJSON(json) {
@@ -34,7 +32,7 @@ function STRectangleFromJSON(json) {
 }
 exports.STRectangleFromJSON = STRectangleFromJSON;
 function STRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -45,13 +43,16 @@ function STRectangleFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.STRectangleFromJSONTyped = STRectangleFromJSONTyped;
 function STRectangleToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'boundingBox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value['boundingBox']),
-        'spatialReference': value['spatialReference'],
-        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
+        'boundingBox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value.boundingBox),
+        'spatialReference': value.spatialReference,
+        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value.timeInterval),
     };
 }
 exports.STRectangleToJSON = STRectangleToJSON;

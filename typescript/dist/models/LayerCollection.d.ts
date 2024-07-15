@@ -28,7 +28,7 @@ export interface LayerCollection {
      * @type {string}
      * @memberof LayerCollection
      */
-    entryLabel?: string;
+    entryLabel?: string | null;
     /**
      *
      * @type {ProviderLayerCollectionId}

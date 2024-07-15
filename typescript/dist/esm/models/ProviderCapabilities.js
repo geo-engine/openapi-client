@@ -16,17 +16,16 @@ import { SearchCapabilitiesFromJSON, SearchCapabilitiesToJSON, } from './SearchC
  * Check if a given object implements the ProviderCapabilities interface.
  */
 export function instanceOfProviderCapabilities(value) {
-    if (!('listing' in value))
-        return false;
-    if (!('search' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "listing" in value;
+    isInstance = isInstance && "search" in value;
+    return isInstance;
 }
 export function ProviderCapabilitiesFromJSON(json) {
     return ProviderCapabilitiesFromJSONTyped(json, false);
 }
 export function ProviderCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -35,11 +34,14 @@ export function ProviderCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ProviderCapabilitiesToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'listing': value['listing'],
-        'search': SearchCapabilitiesToJSON(value['search']),
+        'listing': value.listing,
+        'search': SearchCapabilitiesToJSON(value.search),
     };
 }

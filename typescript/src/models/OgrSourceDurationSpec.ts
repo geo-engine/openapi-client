@@ -12,66 +12,69 @@
  * Do not edit the class manually.
  */
 
-import type { OgrSourceDurationSpecInfinite } from './OgrSourceDurationSpecInfinite';
 import {
-    instanceOfOgrSourceDurationSpecInfinite,
-    OgrSourceDurationSpecInfiniteFromJSON,
-    OgrSourceDurationSpecInfiniteFromJSONTyped,
-    OgrSourceDurationSpecInfiniteToJSON,
-} from './OgrSourceDurationSpecInfinite';
-import type { OgrSourceDurationSpecValue } from './OgrSourceDurationSpecValue';
+    InfiniteOgrSourceDurationSpec,
+    instanceOfInfiniteOgrSourceDurationSpec,
+    InfiniteOgrSourceDurationSpecFromJSON,
+    InfiniteOgrSourceDurationSpecFromJSONTyped,
+    InfiniteOgrSourceDurationSpecToJSON,
+} from './InfiniteOgrSourceDurationSpec';
 import {
-    instanceOfOgrSourceDurationSpecValue,
-    OgrSourceDurationSpecValueFromJSON,
-    OgrSourceDurationSpecValueFromJSONTyped,
-    OgrSourceDurationSpecValueToJSON,
-} from './OgrSourceDurationSpecValue';
-import type { OgrSourceDurationSpecZero } from './OgrSourceDurationSpecZero';
+    TimeStepWithType,
+    instanceOfTimeStepWithType,
+    TimeStepWithTypeFromJSON,
+    TimeStepWithTypeFromJSONTyped,
+    TimeStepWithTypeToJSON,
+} from './TimeStepWithType';
 import {
-    instanceOfOgrSourceDurationSpecZero,
-    OgrSourceDurationSpecZeroFromJSON,
-    OgrSourceDurationSpecZeroFromJSONTyped,
-    OgrSourceDurationSpecZeroToJSON,
-} from './OgrSourceDurationSpecZero';
+    ZeroOgrSourceDurationSpec,
+    instanceOfZeroOgrSourceDurationSpec,
+    ZeroOgrSourceDurationSpecFromJSON,
+    ZeroOgrSourceDurationSpecFromJSONTyped,
+    ZeroOgrSourceDurationSpecToJSON,
+} from './ZeroOgrSourceDurationSpec';
 
 /**
  * @type OgrSourceDurationSpec
  * 
  * @export
  */
-export type OgrSourceDurationSpec = { type: 'infinite' } & OgrSourceDurationSpecInfinite | { type: 'value' } & OgrSourceDurationSpecValue | { type: 'zero' } & OgrSourceDurationSpecZero;
+export type OgrSourceDurationSpec = { type: 'infinite' } & InfiniteOgrSourceDurationSpec | { type: 'value' } & TimeStepWithType | { type: 'zero' } & ZeroOgrSourceDurationSpec;
 
 export function OgrSourceDurationSpecFromJSON(json: any): OgrSourceDurationSpec {
     return OgrSourceDurationSpecFromJSONTyped(json, false);
 }
 
 export function OgrSourceDurationSpecFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpec {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'infinite':
-            return {...OgrSourceDurationSpecInfiniteFromJSONTyped(json, true), type: 'infinite'};
+            return {...InfiniteOgrSourceDurationSpecFromJSONTyped(json, true), type: 'infinite'};
         case 'value':
-            return {...OgrSourceDurationSpecValueFromJSONTyped(json, true), type: 'value'};
+            return {...TimeStepWithTypeFromJSONTyped(json, true), type: 'value'};
         case 'zero':
-            return {...OgrSourceDurationSpecZeroFromJSONTyped(json, true), type: 'zero'};
+            return {...ZeroOgrSourceDurationSpecFromJSONTyped(json, true), type: 'zero'};
         default:
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${json['type']}'`);
     }
 }
 
 export function OgrSourceDurationSpecToJSON(value?: OgrSourceDurationSpec | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'infinite':
-            return OgrSourceDurationSpecInfiniteToJSON(value);
+            return InfiniteOgrSourceDurationSpecToJSON(value);
         case 'value':
-            return OgrSourceDurationSpecValueToJSON(value);
+            return TimeStepWithTypeToJSON(value);
         case 'zero':
-            return OgrSourceDurationSpecZeroToJSON(value);
+            return ZeroOgrSourceDurationSpecToJSON(value);
         default:
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${value['type']}'`);
     }

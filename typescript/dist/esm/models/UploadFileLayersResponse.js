@@ -15,15 +15,15 @@
  * Check if a given object implements the UploadFileLayersResponse interface.
  */
 export function instanceOfUploadFileLayersResponse(value) {
-    if (!('layers' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "layers" in value;
+    return isInstance;
 }
 export function UploadFileLayersResponseFromJSON(json) {
     return UploadFileLayersResponseFromJSONTyped(json, false);
 }
 export function UploadFileLayersResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -31,10 +31,13 @@ export function UploadFileLayersResponseFromJSONTyped(json, ignoreDiscriminator)
     };
 }
 export function UploadFileLayersResponseToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'layers': value['layers'],
+        'layers': value.layers,
     };
 }

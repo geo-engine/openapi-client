@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { STRectangle } from './STRectangle';
 import {
     STRectangleFromJSON,
@@ -55,17 +55,19 @@ export interface CreateProject {
      * @type {TimeStep}
      * @memberof CreateProject
      */
-    timeStep?: TimeStep;
+    timeStep?: TimeStep | null;
 }
 
 /**
  * Check if a given object implements the CreateProject interface.
  */
 export function instanceOfCreateProject(value: object): boolean {
-    if (!('bounds' in value)) return false;
-    if (!('description' in value)) return false;
-    if (!('name' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "bounds" in value;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "name" in value;
+
+    return isInstance;
 }
 
 export function CreateProjectFromJSON(json: any): CreateProject {
@@ -73,7 +75,7 @@ export function CreateProjectFromJSON(json: any): CreateProject {
 }
 
 export function CreateProjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateProject {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -81,20 +83,23 @@ export function CreateProjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'bounds': STRectangleFromJSON(json['bounds']),
         'description': json['description'],
         'name': json['name'],
-        'timeStep': json['timeStep'] == null ? undefined : TimeStepFromJSON(json['timeStep']),
+        'timeStep': !exists(json, 'timeStep') ? undefined : TimeStepFromJSON(json['timeStep']),
     };
 }
 
 export function CreateProjectToJSON(value?: CreateProject | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'bounds': STRectangleToJSON(value['bounds']),
-        'description': value['description'],
-        'name': value['name'],
-        'timeStep': TimeStepToJSON(value['timeStep']),
+        'bounds': STRectangleToJSON(value.bounds),
+        'description': value.description,
+        'name': value.name,
+        'timeStep': TimeStepToJSON(value.timeStep),
     };
 }
 

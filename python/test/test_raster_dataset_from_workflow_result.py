@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.raster_dataset_from_workflow_result import RasterDatasetFromWorkflowResult
+from geoengine_openapi_client.models.raster_dataset_from_workflow_result import RasterDatasetFromWorkflowResult  # noqa: E501
 
 class TestRasterDatasetFromWorkflowResult(unittest.TestCase):
     """RasterDatasetFromWorkflowResult unit test stubs"""
@@ -33,7 +34,7 @@ class TestRasterDatasetFromWorkflowResult(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `RasterDatasetFromWorkflowResult`
         """
-        model = RasterDatasetFromWorkflowResult()
+        model = RasterDatasetFromWorkflowResult()  # noqa: E501
         if include_optional:
             return RasterDatasetFromWorkflowResult(
                 dataset = '',

@@ -12,66 +12,69 @@
  * Do not edit the class manually.
  */
 
-import type { TypedPlotResultDescriptor } from './TypedPlotResultDescriptor';
 import {
-    instanceOfTypedPlotResultDescriptor,
-    TypedPlotResultDescriptorFromJSON,
-    TypedPlotResultDescriptorFromJSONTyped,
-    TypedPlotResultDescriptorToJSON,
-} from './TypedPlotResultDescriptor';
-import type { TypedRasterResultDescriptor } from './TypedRasterResultDescriptor';
+    PlotResultDescriptorWithType,
+    instanceOfPlotResultDescriptorWithType,
+    PlotResultDescriptorWithTypeFromJSON,
+    PlotResultDescriptorWithTypeFromJSONTyped,
+    PlotResultDescriptorWithTypeToJSON,
+} from './PlotResultDescriptorWithType';
 import {
-    instanceOfTypedRasterResultDescriptor,
-    TypedRasterResultDescriptorFromJSON,
-    TypedRasterResultDescriptorFromJSONTyped,
-    TypedRasterResultDescriptorToJSON,
-} from './TypedRasterResultDescriptor';
-import type { TypedVectorResultDescriptor } from './TypedVectorResultDescriptor';
+    RasterResultDescriptorWithType,
+    instanceOfRasterResultDescriptorWithType,
+    RasterResultDescriptorWithTypeFromJSON,
+    RasterResultDescriptorWithTypeFromJSONTyped,
+    RasterResultDescriptorWithTypeToJSON,
+} from './RasterResultDescriptorWithType';
 import {
-    instanceOfTypedVectorResultDescriptor,
-    TypedVectorResultDescriptorFromJSON,
-    TypedVectorResultDescriptorFromJSONTyped,
-    TypedVectorResultDescriptorToJSON,
-} from './TypedVectorResultDescriptor';
+    VectorResultDescriptorWithType,
+    instanceOfVectorResultDescriptorWithType,
+    VectorResultDescriptorWithTypeFromJSON,
+    VectorResultDescriptorWithTypeFromJSONTyped,
+    VectorResultDescriptorWithTypeToJSON,
+} from './VectorResultDescriptorWithType';
 
 /**
  * @type TypedResultDescriptor
  * 
  * @export
  */
-export type TypedResultDescriptor = { type: 'plot' } & TypedPlotResultDescriptor | { type: 'raster' } & TypedRasterResultDescriptor | { type: 'vector' } & TypedVectorResultDescriptor;
+export type TypedResultDescriptor = { type: 'plot' } & PlotResultDescriptorWithType | { type: 'raster' } & RasterResultDescriptorWithType | { type: 'vector' } & VectorResultDescriptorWithType;
 
 export function TypedResultDescriptorFromJSON(json: any): TypedResultDescriptor {
     return TypedResultDescriptorFromJSONTyped(json, false);
 }
 
 export function TypedResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedResultDescriptor {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'plot':
-            return {...TypedPlotResultDescriptorFromJSONTyped(json, true), type: 'plot'};
+            return {...PlotResultDescriptorWithTypeFromJSONTyped(json, true), type: 'plot'};
         case 'raster':
-            return {...TypedRasterResultDescriptorFromJSONTyped(json, true), type: 'raster'};
+            return {...RasterResultDescriptorWithTypeFromJSONTyped(json, true), type: 'raster'};
         case 'vector':
-            return {...TypedVectorResultDescriptorFromJSONTyped(json, true), type: 'vector'};
+            return {...VectorResultDescriptorWithTypeFromJSONTyped(json, true), type: 'vector'};
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${json['type']}'`);
     }
 }
 
 export function TypedResultDescriptorToJSON(value?: TypedResultDescriptor | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'plot':
-            return TypedPlotResultDescriptorToJSON(value);
+            return PlotResultDescriptorWithTypeToJSON(value);
         case 'raster':
-            return TypedRasterResultDescriptorToJSON(value);
+            return RasterResultDescriptorWithTypeToJSON(value);
         case 'vector':
-            return TypedVectorResultDescriptorToJSON(value);
+            return VectorResultDescriptorWithTypeToJSON(value);
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${value['type']}'`);
     }

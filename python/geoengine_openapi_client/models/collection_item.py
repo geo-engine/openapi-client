@@ -14,36 +14,38 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
 import json
 import pprint
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
-from typing import Any, List, Optional
-from geoengine_openapi_client.models.layer_collection_listing import LayerCollectionListing
-from geoengine_openapi_client.models.layer_listing import LayerListing
-from pydantic import StrictStr, Field
-from typing import Union, List, Optional, Dict
-from typing_extensions import Literal, Self
+import re  # noqa: F401
 
-COLLECTIONITEM_ONE_OF_SCHEMAS = ["LayerCollectionListing", "LayerListing"]
+from typing import Any, List, Optional
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from geoengine_openapi_client.models.layer_collection_listing_with_type import LayerCollectionListingWithType
+from geoengine_openapi_client.models.layer_listing_with_type import LayerListingWithType
+from typing import Union, Any, List, TYPE_CHECKING
+from pydantic import StrictStr, Field
+
+COLLECTIONITEM_ONE_OF_SCHEMAS = ["LayerCollectionListingWithType", "LayerListingWithType"]
 
 class CollectionItem(BaseModel):
     """
     CollectionItem
     """
-    # data type: LayerCollectionListing
-    oneof_schema_1_validator: Optional[LayerCollectionListing] = None
-    # data type: LayerListing
-    oneof_schema_2_validator: Optional[LayerListing] = None
-    actual_instance: Optional[Union[LayerCollectionListing, LayerListing]] = None
-    one_of_schemas: List[str] = Field(default=Literal["LayerCollectionListing", "LayerListing"])
+    # data type: LayerCollectionListingWithType
+    oneof_schema_1_validator: Optional[LayerCollectionListingWithType] = None
+    # data type: LayerListingWithType
+    oneof_schema_2_validator: Optional[LayerListingWithType] = None
+    if TYPE_CHECKING:
+        actual_instance: Union[LayerCollectionListingWithType, LayerListingWithType]
+    else:
+        actual_instance: Any
+    one_of_schemas: List[str] = Field(COLLECTIONITEM_ONE_OF_SCHEMAS, const=True)
 
-    model_config = ConfigDict(
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    class Config:
+        validate_assignment = True
 
-
-    discriminator_value_class_map: Dict[str, str] = {
+    discriminator_value_class_map = {
     }
 
     def __init__(self, *args, **kwargs) -> None:
@@ -56,38 +58,38 @@ class CollectionItem(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = CollectionItem.model_construct()
+        instance = CollectionItem.construct()
         error_messages = []
         match = 0
-        # validate data type: LayerCollectionListing
-        if not isinstance(v, LayerCollectionListing):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `LayerCollectionListing`")
+        # validate data type: LayerCollectionListingWithType
+        if not isinstance(v, LayerCollectionListingWithType):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LayerCollectionListingWithType`")
         else:
             match += 1
-        # validate data type: LayerListing
-        if not isinstance(v, LayerListing):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `LayerListing`")
+        # validate data type: LayerListingWithType
+        if not isinstance(v, LayerListingWithType):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LayerListingWithType`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in CollectionItem with oneOf schemas: LayerCollectionListing, LayerListing. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in CollectionItem with oneOf schemas: LayerCollectionListingWithType, LayerListingWithType. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in CollectionItem with oneOf schemas: LayerCollectionListing, LayerListing. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in CollectionItem with oneOf schemas: LayerCollectionListingWithType, LayerListingWithType. Details: " + ", ".join(error_messages))
         else:
             return v
 
     @classmethod
-    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
+    def from_dict(cls, obj: dict) -> CollectionItem:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> CollectionItem:
         """Returns the object represented by the json string"""
-        instance = cls.model_construct()
+        instance = CollectionItem.construct()
         error_messages = []
         match = 0
 
@@ -96,45 +98,45 @@ class CollectionItem(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `LayerCollectionListing`
+        # check if data type is `LayerCollectionListingWithType`
+        if _data_type == "LayerCollectionListingWithType":
+            instance.actual_instance = LayerCollectionListingWithType.from_json(json_str)
+            return instance
+
+        # check if data type is `LayerListingWithType`
+        if _data_type == "LayerListingWithType":
+            instance.actual_instance = LayerListingWithType.from_json(json_str)
+            return instance
+
+        # check if data type is `LayerCollectionListingWithType`
         if _data_type == "collection":
-            instance.actual_instance = LayerCollectionListing.from_json(json_str)
+            instance.actual_instance = LayerCollectionListingWithType.from_json(json_str)
             return instance
 
-        # check if data type is `LayerListing`
+        # check if data type is `LayerListingWithType`
         if _data_type == "layer":
-            instance.actual_instance = LayerListing.from_json(json_str)
+            instance.actual_instance = LayerListingWithType.from_json(json_str)
             return instance
 
-        # check if data type is `LayerCollectionListing`
-        if _data_type == "LayerCollectionListing":
-            instance.actual_instance = LayerCollectionListing.from_json(json_str)
-            return instance
-
-        # check if data type is `LayerListing`
-        if _data_type == "LayerListing":
-            instance.actual_instance = LayerListing.from_json(json_str)
-            return instance
-
-        # deserialize data into LayerCollectionListing
+        # deserialize data into LayerCollectionListingWithType
         try:
-            instance.actual_instance = LayerCollectionListing.from_json(json_str)
+            instance.actual_instance = LayerCollectionListingWithType.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into LayerListing
+        # deserialize data into LayerListingWithType
         try:
-            instance.actual_instance = LayerListing.from_json(json_str)
+            instance.actual_instance = LayerListingWithType.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into CollectionItem with oneOf schemas: LayerCollectionListing, LayerListing. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into CollectionItem with oneOf schemas: LayerCollectionListingWithType, LayerListingWithType. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into CollectionItem with oneOf schemas: LayerCollectionListing, LayerListing. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into CollectionItem with oneOf schemas: LayerCollectionListingWithType, LayerListingWithType. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -143,17 +145,19 @@ class CollectionItem(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+        to_json = getattr(self.actual_instance, "to_json", None)
+        if callable(to_json):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], LayerCollectionListing, LayerListing]]:
+    def to_dict(self) -> dict:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
-        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+        to_dict = getattr(self.actual_instance, "to_dict", None)
+        if callable(to_dict):
             return self.actual_instance.to_dict()
         else:
             # primitive type
@@ -161,6 +165,6 @@ class CollectionItem(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.model_dump())
+        return pprint.pformat(self.dict())
 
 

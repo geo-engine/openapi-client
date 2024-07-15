@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.layer_collection import LayerCollection
+from geoengine_openapi_client.models.layer_collection import LayerCollection  # noqa: E501
 
 class TestLayerCollection(unittest.TestCase):
     """LayerCollection unit test stubs"""
@@ -33,7 +34,7 @@ class TestLayerCollection(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LayerCollection`
         """
-        model = LayerCollection()
+        model = LayerCollection()  # noqa: E501
         if include_optional:
             return LayerCollection(
                 description = '',

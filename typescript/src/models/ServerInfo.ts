@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -49,11 +49,13 @@ export interface ServerInfo {
  * Check if a given object implements the ServerInfo interface.
  */
 export function instanceOfServerInfo(value: object): boolean {
-    if (!('buildDate' in value)) return false;
-    if (!('commitHash' in value)) return false;
-    if (!('features' in value)) return false;
-    if (!('version' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "buildDate" in value;
+    isInstance = isInstance && "commitHash" in value;
+    isInstance = isInstance && "features" in value;
+    isInstance = isInstance && "version" in value;
+
+    return isInstance;
 }
 
 export function ServerInfoFromJSON(json: any): ServerInfo {
@@ -61,7 +63,7 @@ export function ServerInfoFromJSON(json: any): ServerInfo {
 }
 
 export function ServerInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServerInfo {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -74,15 +76,18 @@ export function ServerInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 }
 
 export function ServerInfoToJSON(value?: ServerInfo | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'buildDate': value['buildDate'],
-        'commitHash': value['commitHash'],
-        'features': value['features'],
-        'version': value['version'],
+        'buildDate': value.buildDate,
+        'commitHash': value.commitHash,
+        'features': value.features,
+        'version': value.version,
     };
 }
 

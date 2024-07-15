@@ -11,32 +11,36 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 /**
  * Check if a given object implements the WcsBoundingbox interface.
  */
 export function instanceOfWcsBoundingbox(value) {
-    if (!('bbox' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "bbox" in value;
+    return isInstance;
 }
 export function WcsBoundingboxFromJSON(json) {
     return WcsBoundingboxFromJSONTyped(json, false);
 }
 export function WcsBoundingboxFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'bbox': json['bbox'],
-        'spatialReference': json['spatial_reference'] == null ? undefined : json['spatial_reference'],
+        'spatialReference': !exists(json, 'spatial_reference') ? undefined : json['spatial_reference'],
     };
 }
 export function WcsBoundingboxToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bbox': value['bbox'],
-        'spatial_reference': value['spatialReference'],
+        'bbox': value.bbox,
+        'spatial_reference': value.spatialReference,
     };
 }

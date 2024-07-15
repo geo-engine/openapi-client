@@ -16,19 +16,17 @@ import { PlotOutputFormatFromJSON, PlotOutputFormatToJSON, } from './PlotOutputF
  * Check if a given object implements the WrappedPlotOutput interface.
  */
 export function instanceOfWrappedPlotOutput(value) {
-    if (!('data' in value))
-        return false;
-    if (!('outputFormat' in value))
-        return false;
-    if (!('plotType' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "data" in value;
+    isInstance = isInstance && "outputFormat" in value;
+    isInstance = isInstance && "plotType" in value;
+    return isInstance;
 }
 export function WrappedPlotOutputFromJSON(json) {
     return WrappedPlotOutputFromJSONTyped(json, false);
 }
 export function WrappedPlotOutputFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -38,12 +36,15 @@ export function WrappedPlotOutputFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function WrappedPlotOutputToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'data': value['data'],
-        'outputFormat': PlotOutputFormatToJSON(value['outputFormat']),
-        'plotType': value['plotType'],
+        'data': value.data,
+        'outputFormat': PlotOutputFormatToJSON(value.outputFormat),
+        'plotType': value.plotType,
     };
 }

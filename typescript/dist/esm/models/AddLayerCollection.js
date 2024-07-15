@@ -11,36 +11,39 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 /**
  * Check if a given object implements the AddLayerCollection interface.
  */
 export function instanceOfAddLayerCollection(value) {
-    if (!('description' in value))
-        return false;
-    if (!('name' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "name" in value;
+    return isInstance;
 }
 export function AddLayerCollectionFromJSON(json) {
     return AddLayerCollectionFromJSONTyped(json, false);
 }
 export function AddLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'description': json['description'],
         'name': json['name'],
-        'properties': json['properties'] == null ? undefined : json['properties'],
+        'properties': !exists(json, 'properties') ? undefined : json['properties'],
     };
 }
 export function AddLayerCollectionToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'description': value['description'],
-        'name': value['name'],
-        'properties': value['properties'],
+        'description': value.description,
+        'name': value.name,
+        'properties': value.properties,
     };
 }

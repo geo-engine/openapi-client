@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.typed_operator import TypedOperator
+from geoengine_openapi_client.models.typed_operator import TypedOperator  # noqa: E501
 
 class TestTypedOperator(unittest.TestCase):
     """TypedOperator unit test stubs"""
@@ -33,7 +34,7 @@ class TestTypedOperator(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TypedOperator`
         """
-        model = TypedOperator()
+        model = TypedOperator()  # noqa: E501
         if include_optional:
             return TypedOperator(
                 operator = geoengine_openapi_client.models.typed_operator_operator.TypedOperator_operator(

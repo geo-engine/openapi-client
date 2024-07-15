@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.order_by import OrderBy
+from geoengine_openapi_client.models.order_by import OrderBy  # noqa: E501
 
 class TestOrderBy(unittest.TestCase):
     """OrderBy unit test stubs"""

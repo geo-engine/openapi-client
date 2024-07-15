@@ -15,19 +15,17 @@
  * Check if a given object implements the UserRegistration interface.
  */
 export function instanceOfUserRegistration(value) {
-    if (!('email' in value))
-        return false;
-    if (!('password' in value))
-        return false;
-    if (!('realName' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "email" in value;
+    isInstance = isInstance && "password" in value;
+    isInstance = isInstance && "realName" in value;
+    return isInstance;
 }
 export function UserRegistrationFromJSON(json) {
     return UserRegistrationFromJSONTyped(json, false);
 }
 export function UserRegistrationFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -37,12 +35,15 @@ export function UserRegistrationFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function UserRegistrationToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'email': value['email'],
-        'password': value['password'],
-        'realName': value['realName'],
+        'email': value.email,
+        'password': value.password,
+        'realName': value.realName,
     };
 }

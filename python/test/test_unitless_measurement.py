@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.unitless_measurement import UnitlessMeasurement
+from geoengine_openapi_client.models.unitless_measurement import UnitlessMeasurement  # noqa: E501
 
 class TestUnitlessMeasurement(unittest.TestCase):
     """UnitlessMeasurement unit test stubs"""
@@ -33,7 +34,7 @@ class TestUnitlessMeasurement(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UnitlessMeasurement`
         """
-        model = UnitlessMeasurement()
+        model = UnitlessMeasurement()  # noqa: E501
         if include_optional:
             return UnitlessMeasurement(
                 type = 'unitless'

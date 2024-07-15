@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { Symbology } from './Symbology';
 import {
     SymbologyFromJSON,
@@ -73,7 +73,7 @@ export interface DatasetListing {
      * @type {Symbology}
      * @memberof DatasetListing
      */
-    symbology?: Symbology;
+    symbology?: Symbology | null;
     /**
      * 
      * @type {Array<string>}
@@ -86,14 +86,16 @@ export interface DatasetListing {
  * Check if a given object implements the DatasetListing interface.
  */
 export function instanceOfDatasetListing(value: object): boolean {
-    if (!('description' in value)) return false;
-    if (!('displayName' in value)) return false;
-    if (!('id' in value)) return false;
-    if (!('name' in value)) return false;
-    if (!('resultDescriptor' in value)) return false;
-    if (!('sourceOperator' in value)) return false;
-    if (!('tags' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "displayName" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "sourceOperator" in value;
+    isInstance = isInstance && "tags" in value;
+
+    return isInstance;
 }
 
 export function DatasetListingFromJSON(json: any): DatasetListing {
@@ -101,7 +103,7 @@ export function DatasetListingFromJSON(json: any): DatasetListing {
 }
 
 export function DatasetListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): DatasetListing {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -112,25 +114,28 @@ export function DatasetListingFromJSONTyped(json: any, ignoreDiscriminator: bool
         'name': json['name'],
         'resultDescriptor': TypedResultDescriptorFromJSON(json['resultDescriptor']),
         'sourceOperator': json['sourceOperator'],
-        'symbology': json['symbology'] == null ? undefined : SymbologyFromJSON(json['symbology']),
+        'symbology': !exists(json, 'symbology') ? undefined : SymbologyFromJSON(json['symbology']),
         'tags': json['tags'],
     };
 }
 
 export function DatasetListingToJSON(value?: DatasetListing | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'description': value['description'],
-        'displayName': value['displayName'],
-        'id': value['id'],
-        'name': value['name'],
-        'resultDescriptor': TypedResultDescriptorToJSON(value['resultDescriptor']),
-        'sourceOperator': value['sourceOperator'],
-        'symbology': SymbologyToJSON(value['symbology']),
-        'tags': value['tags'],
+        'description': value.description,
+        'displayName': value.displayName,
+        'id': value.id,
+        'name': value.name,
+        'resultDescriptor': TypedResultDescriptorToJSON(value.resultDescriptor),
+        'sourceOperator': value.sourceOperator,
+        'symbology': SymbologyToJSON(value.symbology),
+        'tags': value.tags,
     };
 }
 

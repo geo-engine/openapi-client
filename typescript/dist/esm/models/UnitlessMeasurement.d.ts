@@ -27,6 +27,8 @@ export interface UnitlessMeasurement {
  */
 export declare const UnitlessMeasurementTypeEnum: {
     readonly Unitless: "unitless";
+    readonly Continuous: "continuous";
+    readonly Classification: "classification";
 };
 export type UnitlessMeasurementTypeEnum = typeof UnitlessMeasurementTypeEnum[keyof typeof UnitlessMeasurementTypeEnum];
 /**

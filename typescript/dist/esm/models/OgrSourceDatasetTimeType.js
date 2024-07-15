@@ -11,43 +11,46 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { OgrSourceDatasetTimeTypeNoneFromJSONTyped, OgrSourceDatasetTimeTypeNoneToJSON, } from './OgrSourceDatasetTimeTypeNone';
-import { OgrSourceDatasetTimeTypeStartFromJSONTyped, OgrSourceDatasetTimeTypeStartToJSON, } from './OgrSourceDatasetTimeTypeStart';
-import { OgrSourceDatasetTimeTypeStartDurationFromJSONTyped, OgrSourceDatasetTimeTypeStartDurationToJSON, } from './OgrSourceDatasetTimeTypeStartDuration';
-import { OgrSourceDatasetTimeTypeStartEndFromJSONTyped, OgrSourceDatasetTimeTypeStartEndToJSON, } from './OgrSourceDatasetTimeTypeStartEnd';
+import { NoneOgrSourceDatasetTimeTypeFromJSONTyped, NoneOgrSourceDatasetTimeTypeToJSON, } from './NoneOgrSourceDatasetTimeType';
+import { StartDurationOgrSourceDatasetTimeTypeFromJSONTyped, StartDurationOgrSourceDatasetTimeTypeToJSON, } from './StartDurationOgrSourceDatasetTimeType';
+import { StartEndOgrSourceDatasetTimeTypeFromJSONTyped, StartEndOgrSourceDatasetTimeTypeToJSON, } from './StartEndOgrSourceDatasetTimeType';
+import { StartOgrSourceDatasetTimeTypeFromJSONTyped, StartOgrSourceDatasetTimeTypeToJSON, } from './StartOgrSourceDatasetTimeType';
 export function OgrSourceDatasetTimeTypeFromJSON(json) {
     return OgrSourceDatasetTimeTypeFromJSONTyped(json, false);
 }
 export function OgrSourceDatasetTimeTypeFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'none':
-            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, true)), { type: 'none' });
+            return Object.assign(Object.assign({}, NoneOgrSourceDatasetTimeTypeFromJSONTyped(json, true)), { type: 'none' });
         case 'start':
-            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeStartFromJSONTyped(json, true)), { type: 'start' });
+            return Object.assign(Object.assign({}, StartOgrSourceDatasetTimeTypeFromJSONTyped(json, true)), { type: 'start' });
         case 'startDuration':
-            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, true)), { type: 'startDuration' });
+            return Object.assign(Object.assign({}, StartDurationOgrSourceDatasetTimeTypeFromJSONTyped(json, true)), { type: 'startDuration' });
         case 'startEnd':
-            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, true)), { type: 'startEnd' });
+            return Object.assign(Object.assign({}, StartEndOgrSourceDatasetTimeTypeFromJSONTyped(json, true)), { type: 'startEnd' });
         default:
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${json['type']}'`);
     }
 }
 export function OgrSourceDatasetTimeTypeToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'none':
-            return OgrSourceDatasetTimeTypeNoneToJSON(value);
+            return NoneOgrSourceDatasetTimeTypeToJSON(value);
         case 'start':
-            return OgrSourceDatasetTimeTypeStartToJSON(value);
+            return StartOgrSourceDatasetTimeTypeToJSON(value);
         case 'startDuration':
-            return OgrSourceDatasetTimeTypeStartDurationToJSON(value);
+            return StartDurationOgrSourceDatasetTimeTypeToJSON(value);
         case 'startEnd':
-            return OgrSourceDatasetTimeTypeStartEndToJSON(value);
+            return StartEndOgrSourceDatasetTimeTypeToJSON(value);
         default:
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${value['type']}'`);
     }

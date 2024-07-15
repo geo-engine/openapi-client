@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { RasterColorizer } from './RasterColorizer';
 import {
     RasterColorizerFromJSON,
@@ -38,32 +38,17 @@ export interface RasterSymbology {
      * @memberof RasterSymbology
      */
     rasterColorizer: RasterColorizer;
-    /**
-     * 
-     * @type {string}
-     * @memberof RasterSymbology
-     */
-    type: RasterSymbologyTypeEnum;
 }
-
-
-/**
- * @export
- */
-export const RasterSymbologyTypeEnum = {
-    Raster: 'raster'
-} as const;
-export type RasterSymbologyTypeEnum = typeof RasterSymbologyTypeEnum[keyof typeof RasterSymbologyTypeEnum];
-
 
 /**
  * Check if a given object implements the RasterSymbology interface.
  */
 export function instanceOfRasterSymbology(value: object): boolean {
-    if (!('opacity' in value)) return false;
-    if (!('rasterColorizer' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "opacity" in value;
+    isInstance = isInstance && "rasterColorizer" in value;
+
+    return isInstance;
 }
 
 export function RasterSymbologyFromJSON(json: any): RasterSymbology {
@@ -71,26 +56,27 @@ export function RasterSymbologyFromJSON(json: any): RasterSymbology {
 }
 
 export function RasterSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterSymbology {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'opacity': json['opacity'],
         'rasterColorizer': RasterColorizerFromJSON(json['rasterColorizer']),
-        'type': json['type'],
     };
 }
 
 export function RasterSymbologyToJSON(value?: RasterSymbology | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'opacity': value['opacity'],
-        'rasterColorizer': RasterColorizerToJSON(value['rasterColorizer']),
-        'type': value['type'],
+        'opacity': value.opacity,
+        'rasterColorizer': RasterColorizerToJSON(value.rasterColorizer),
     };
 }
 

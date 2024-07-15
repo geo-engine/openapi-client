@@ -14,39 +14,41 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
 import json
 import pprint
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
-from typing import Any, List, Optional
-from geoengine_openapi_client.models.ogr_source_duration_spec_infinite import OgrSourceDurationSpecInfinite
-from geoengine_openapi_client.models.ogr_source_duration_spec_value import OgrSourceDurationSpecValue
-from geoengine_openapi_client.models.ogr_source_duration_spec_zero import OgrSourceDurationSpecZero
-from pydantic import StrictStr, Field
-from typing import Union, List, Optional, Dict
-from typing_extensions import Literal, Self
+import re  # noqa: F401
 
-OGRSOURCEDURATIONSPEC_ONE_OF_SCHEMAS = ["OgrSourceDurationSpecInfinite", "OgrSourceDurationSpecValue", "OgrSourceDurationSpecZero"]
+from typing import Any, List, Optional
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from geoengine_openapi_client.models.infinite_ogr_source_duration_spec import InfiniteOgrSourceDurationSpec
+from geoengine_openapi_client.models.time_step_with_type import TimeStepWithType
+from geoengine_openapi_client.models.zero_ogr_source_duration_spec import ZeroOgrSourceDurationSpec
+from typing import Union, Any, List, TYPE_CHECKING
+from pydantic import StrictStr, Field
+
+OGRSOURCEDURATIONSPEC_ONE_OF_SCHEMAS = ["InfiniteOgrSourceDurationSpec", "TimeStepWithType", "ZeroOgrSourceDurationSpec"]
 
 class OgrSourceDurationSpec(BaseModel):
     """
     OgrSourceDurationSpec
     """
-    # data type: OgrSourceDurationSpecInfinite
-    oneof_schema_1_validator: Optional[OgrSourceDurationSpecInfinite] = None
-    # data type: OgrSourceDurationSpecZero
-    oneof_schema_2_validator: Optional[OgrSourceDurationSpecZero] = None
-    # data type: OgrSourceDurationSpecValue
-    oneof_schema_3_validator: Optional[OgrSourceDurationSpecValue] = None
-    actual_instance: Optional[Union[OgrSourceDurationSpecInfinite, OgrSourceDurationSpecValue, OgrSourceDurationSpecZero]] = None
-    one_of_schemas: List[str] = Field(default=Literal["OgrSourceDurationSpecInfinite", "OgrSourceDurationSpecValue", "OgrSourceDurationSpecZero"])
+    # data type: InfiniteOgrSourceDurationSpec
+    oneof_schema_1_validator: Optional[InfiniteOgrSourceDurationSpec] = None
+    # data type: ZeroOgrSourceDurationSpec
+    oneof_schema_2_validator: Optional[ZeroOgrSourceDurationSpec] = None
+    # data type: TimeStepWithType
+    oneof_schema_3_validator: Optional[TimeStepWithType] = None
+    if TYPE_CHECKING:
+        actual_instance: Union[InfiniteOgrSourceDurationSpec, TimeStepWithType, ZeroOgrSourceDurationSpec]
+    else:
+        actual_instance: Any
+    one_of_schemas: List[str] = Field(OGRSOURCEDURATIONSPEC_ONE_OF_SCHEMAS, const=True)
 
-    model_config = ConfigDict(
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    class Config:
+        validate_assignment = True
 
-
-    discriminator_value_class_map: Dict[str, str] = {
+    discriminator_value_class_map = {
     }
 
     def __init__(self, *args, **kwargs) -> None:
@@ -59,43 +61,43 @@ class OgrSourceDurationSpec(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = OgrSourceDurationSpec.model_construct()
+        instance = OgrSourceDurationSpec.construct()
         error_messages = []
         match = 0
-        # validate data type: OgrSourceDurationSpecInfinite
-        if not isinstance(v, OgrSourceDurationSpecInfinite):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `OgrSourceDurationSpecInfinite`")
+        # validate data type: InfiniteOgrSourceDurationSpec
+        if not isinstance(v, InfiniteOgrSourceDurationSpec):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `InfiniteOgrSourceDurationSpec`")
         else:
             match += 1
-        # validate data type: OgrSourceDurationSpecZero
-        if not isinstance(v, OgrSourceDurationSpecZero):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `OgrSourceDurationSpecZero`")
+        # validate data type: ZeroOgrSourceDurationSpec
+        if not isinstance(v, ZeroOgrSourceDurationSpec):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ZeroOgrSourceDurationSpec`")
         else:
             match += 1
-        # validate data type: OgrSourceDurationSpecValue
-        if not isinstance(v, OgrSourceDurationSpecValue):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `OgrSourceDurationSpecValue`")
+        # validate data type: TimeStepWithType
+        if not isinstance(v, TimeStepWithType):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TimeStepWithType`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in OgrSourceDurationSpec with oneOf schemas: OgrSourceDurationSpecInfinite, OgrSourceDurationSpecValue, OgrSourceDurationSpecZero. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in OgrSourceDurationSpec with oneOf schemas: InfiniteOgrSourceDurationSpec, TimeStepWithType, ZeroOgrSourceDurationSpec. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in OgrSourceDurationSpec with oneOf schemas: OgrSourceDurationSpecInfinite, OgrSourceDurationSpecValue, OgrSourceDurationSpecZero. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in OgrSourceDurationSpec with oneOf schemas: InfiniteOgrSourceDurationSpec, TimeStepWithType, ZeroOgrSourceDurationSpec. Details: " + ", ".join(error_messages))
         else:
             return v
 
     @classmethod
-    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
+    def from_dict(cls, obj: dict) -> OgrSourceDurationSpec:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> OgrSourceDurationSpec:
         """Returns the object represented by the json string"""
-        instance = cls.model_construct()
+        instance = OgrSourceDurationSpec.construct()
         error_messages = []
         match = 0
 
@@ -104,61 +106,61 @@ class OgrSourceDurationSpec(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `OgrSourceDurationSpecInfinite`
+        # check if data type is `InfiniteOgrSourceDurationSpec`
+        if _data_type == "InfiniteOgrSourceDurationSpec":
+            instance.actual_instance = InfiniteOgrSourceDurationSpec.from_json(json_str)
+            return instance
+
+        # check if data type is `TimeStepWithType`
+        if _data_type == "TimeStepWithType":
+            instance.actual_instance = TimeStepWithType.from_json(json_str)
+            return instance
+
+        # check if data type is `ZeroOgrSourceDurationSpec`
+        if _data_type == "ZeroOgrSourceDurationSpec":
+            instance.actual_instance = ZeroOgrSourceDurationSpec.from_json(json_str)
+            return instance
+
+        # check if data type is `InfiniteOgrSourceDurationSpec`
         if _data_type == "infinite":
-            instance.actual_instance = OgrSourceDurationSpecInfinite.from_json(json_str)
+            instance.actual_instance = InfiniteOgrSourceDurationSpec.from_json(json_str)
             return instance
 
-        # check if data type is `OgrSourceDurationSpecValue`
+        # check if data type is `TimeStepWithType`
         if _data_type == "value":
-            instance.actual_instance = OgrSourceDurationSpecValue.from_json(json_str)
+            instance.actual_instance = TimeStepWithType.from_json(json_str)
             return instance
 
-        # check if data type is `OgrSourceDurationSpecZero`
+        # check if data type is `ZeroOgrSourceDurationSpec`
         if _data_type == "zero":
-            instance.actual_instance = OgrSourceDurationSpecZero.from_json(json_str)
+            instance.actual_instance = ZeroOgrSourceDurationSpec.from_json(json_str)
             return instance
 
-        # check if data type is `OgrSourceDurationSpecInfinite`
-        if _data_type == "OgrSourceDurationSpecInfinite":
-            instance.actual_instance = OgrSourceDurationSpecInfinite.from_json(json_str)
-            return instance
-
-        # check if data type is `OgrSourceDurationSpecValue`
-        if _data_type == "OgrSourceDurationSpecValue":
-            instance.actual_instance = OgrSourceDurationSpecValue.from_json(json_str)
-            return instance
-
-        # check if data type is `OgrSourceDurationSpecZero`
-        if _data_type == "OgrSourceDurationSpecZero":
-            instance.actual_instance = OgrSourceDurationSpecZero.from_json(json_str)
-            return instance
-
-        # deserialize data into OgrSourceDurationSpecInfinite
+        # deserialize data into InfiniteOgrSourceDurationSpec
         try:
-            instance.actual_instance = OgrSourceDurationSpecInfinite.from_json(json_str)
+            instance.actual_instance = InfiniteOgrSourceDurationSpec.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into OgrSourceDurationSpecZero
+        # deserialize data into ZeroOgrSourceDurationSpec
         try:
-            instance.actual_instance = OgrSourceDurationSpecZero.from_json(json_str)
+            instance.actual_instance = ZeroOgrSourceDurationSpec.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into OgrSourceDurationSpecValue
+        # deserialize data into TimeStepWithType
         try:
-            instance.actual_instance = OgrSourceDurationSpecValue.from_json(json_str)
+            instance.actual_instance = TimeStepWithType.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into OgrSourceDurationSpec with oneOf schemas: OgrSourceDurationSpecInfinite, OgrSourceDurationSpecValue, OgrSourceDurationSpecZero. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into OgrSourceDurationSpec with oneOf schemas: InfiniteOgrSourceDurationSpec, TimeStepWithType, ZeroOgrSourceDurationSpec. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into OgrSourceDurationSpec with oneOf schemas: OgrSourceDurationSpecInfinite, OgrSourceDurationSpecValue, OgrSourceDurationSpecZero. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into OgrSourceDurationSpec with oneOf schemas: InfiniteOgrSourceDurationSpec, TimeStepWithType, ZeroOgrSourceDurationSpec. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -167,17 +169,19 @@ class OgrSourceDurationSpec(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+        to_json = getattr(self.actual_instance, "to_json", None)
+        if callable(to_json):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], OgrSourceDurationSpecInfinite, OgrSourceDurationSpecValue, OgrSourceDurationSpecZero]]:
+    def to_dict(self) -> dict:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
-        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+        to_dict = getattr(self.actual_instance, "to_dict", None)
+        if callable(to_dict):
             return self.actual_instance.to_dict()
         else:
             # primitive type
@@ -185,6 +189,6 @@ class OgrSourceDurationSpec(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.model_dump())
+        return pprint.pformat(self.dict())
 
 

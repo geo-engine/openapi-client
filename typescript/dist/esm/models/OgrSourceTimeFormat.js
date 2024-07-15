@@ -11,38 +11,41 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { OgrSourceTimeFormatAutoFromJSONTyped, OgrSourceTimeFormatAutoToJSON, } from './OgrSourceTimeFormatAuto';
-import { OgrSourceTimeFormatCustomFromJSONTyped, OgrSourceTimeFormatCustomToJSON, } from './OgrSourceTimeFormatCustom';
-import { OgrSourceTimeFormatUnixTimeStampFromJSONTyped, OgrSourceTimeFormatUnixTimeStampToJSON, } from './OgrSourceTimeFormatUnixTimeStamp';
+import { AutoOgrSourceTimeFormatFromJSONTyped, AutoOgrSourceTimeFormatToJSON, } from './AutoOgrSourceTimeFormat';
+import { CustomOgrSourceTimeFormatFromJSONTyped, CustomOgrSourceTimeFormatToJSON, } from './CustomOgrSourceTimeFormat';
+import { UnixTimeStampOgrSourceTimeFormatFromJSONTyped, UnixTimeStampOgrSourceTimeFormatToJSON, } from './UnixTimeStampOgrSourceTimeFormat';
 export function OgrSourceTimeFormatFromJSON(json) {
     return OgrSourceTimeFormatFromJSONTyped(json, false);
 }
 export function OgrSourceTimeFormatFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['format']) {
         case 'auto':
-            return Object.assign(Object.assign({}, OgrSourceTimeFormatAutoFromJSONTyped(json, true)), { format: 'auto' });
+            return Object.assign(Object.assign({}, AutoOgrSourceTimeFormatFromJSONTyped(json, true)), { format: 'auto' });
         case 'custom':
-            return Object.assign(Object.assign({}, OgrSourceTimeFormatCustomFromJSONTyped(json, true)), { format: 'custom' });
+            return Object.assign(Object.assign({}, CustomOgrSourceTimeFormatFromJSONTyped(json, true)), { format: 'custom' });
         case 'unixTimeStamp':
-            return Object.assign(Object.assign({}, OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, true)), { format: 'unixTimeStamp' });
+            return Object.assign(Object.assign({}, UnixTimeStampOgrSourceTimeFormatFromJSONTyped(json, true)), { format: 'unixTimeStamp' });
         default:
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${json['format']}'`);
     }
 }
 export function OgrSourceTimeFormatToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['format']) {
         case 'auto':
-            return OgrSourceTimeFormatAutoToJSON(value);
+            return AutoOgrSourceTimeFormatToJSON(value);
         case 'custom':
-            return OgrSourceTimeFormatCustomToJSON(value);
+            return CustomOgrSourceTimeFormatToJSON(value);
         case 'unixTimeStamp':
-            return OgrSourceTimeFormatUnixTimeStampToJSON(value);
+            return UnixTimeStampOgrSourceTimeFormatToJSON(value);
         default:
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${value['format']}'`);
     }

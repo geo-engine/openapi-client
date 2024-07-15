@@ -19,9 +19,9 @@ const MultiLineString_1 = require("./MultiLineString");
  * Check if a given object implements the TypedGeometryOneOf2 interface.
  */
 function instanceOfTypedGeometryOneOf2(value) {
-    if (!('multiLineString' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "multiLineString" in value;
+    return isInstance;
 }
 exports.instanceOfTypedGeometryOneOf2 = instanceOfTypedGeometryOneOf2;
 function TypedGeometryOneOf2FromJSON(json) {
@@ -29,7 +29,7 @@ function TypedGeometryOneOf2FromJSON(json) {
 }
 exports.TypedGeometryOneOf2FromJSON = TypedGeometryOneOf2FromJSON;
 function TypedGeometryOneOf2FromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -38,11 +38,14 @@ function TypedGeometryOneOf2FromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.TypedGeometryOneOf2FromJSONTyped = TypedGeometryOneOf2FromJSONTyped;
 function TypedGeometryOneOf2ToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'MultiLineString': (0, MultiLineString_1.MultiLineStringToJSON)(value['multiLineString']),
+        'MultiLineString': (0, MultiLineString_1.MultiLineStringToJSON)(value.multiLineString),
     };
 }
 exports.TypedGeometryOneOf2ToJSON = TypedGeometryOneOf2ToJSON;

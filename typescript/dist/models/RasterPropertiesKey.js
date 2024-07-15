@@ -14,13 +14,14 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RasterPropertiesKeyToJSON = exports.RasterPropertiesKeyFromJSONTyped = exports.RasterPropertiesKeyFromJSON = exports.instanceOfRasterPropertiesKey = void 0;
+const runtime_1 = require("../runtime");
 /**
  * Check if a given object implements the RasterPropertiesKey interface.
  */
 function instanceOfRasterPropertiesKey(value) {
-    if (!('key' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "key" in value;
+    return isInstance;
 }
 exports.instanceOfRasterPropertiesKey = instanceOfRasterPropertiesKey;
 function RasterPropertiesKeyFromJSON(json) {
@@ -28,22 +29,25 @@ function RasterPropertiesKeyFromJSON(json) {
 }
 exports.RasterPropertiesKeyFromJSON = RasterPropertiesKeyFromJSON;
 function RasterPropertiesKeyFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'domain': json['domain'] == null ? undefined : json['domain'],
+        'domain': !(0, runtime_1.exists)(json, 'domain') ? undefined : json['domain'],
         'key': json['key'],
     };
 }
 exports.RasterPropertiesKeyFromJSONTyped = RasterPropertiesKeyFromJSONTyped;
 function RasterPropertiesKeyToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'domain': value['domain'],
-        'key': value['key'],
+        'domain': value.domain,
+        'key': value.key,
     };
 }
 exports.RasterPropertiesKeyToJSON = RasterPropertiesKeyToJSON;

@@ -11,33 +11,36 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DerivedNumberFromJSONTyped, DerivedNumberToJSON, } from './DerivedNumber';
-import { NumberParamStaticFromJSONTyped, NumberParamStaticToJSON, } from './NumberParamStatic';
+import { DerivedNumberWithTypeFromJSONTyped, DerivedNumberWithTypeToJSON, } from './DerivedNumberWithType';
+import { StaticNumberParamFromJSONTyped, StaticNumberParamToJSON, } from './StaticNumberParam';
 export function NumberParamFromJSON(json) {
     return NumberParamFromJSONTyped(json, false);
 }
 export function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'derived':
-            return Object.assign(Object.assign({}, DerivedNumberFromJSONTyped(json, true)), { type: 'derived' });
+            return Object.assign(Object.assign({}, DerivedNumberWithTypeFromJSONTyped(json, true)), { type: 'derived' });
         case 'static':
-            return Object.assign(Object.assign({}, NumberParamStaticFromJSONTyped(json, true)), { type: 'static' });
+            return Object.assign(Object.assign({}, StaticNumberParamFromJSONTyped(json, true)), { type: 'static' });
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }
 }
 export function NumberParamToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'derived':
-            return DerivedNumberToJSON(value);
+            return DerivedNumberWithTypeToJSON(value);
         case 'static':
-            return NumberParamStaticToJSON(value);
+            return StaticNumberParamToJSON(value);
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
     }

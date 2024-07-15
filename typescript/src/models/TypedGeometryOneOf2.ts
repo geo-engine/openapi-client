@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { MultiLineString } from './MultiLineString';
 import {
     MultiLineStringFromJSON,
@@ -38,8 +38,10 @@ export interface TypedGeometryOneOf2 {
  * Check if a given object implements the TypedGeometryOneOf2 interface.
  */
 export function instanceOfTypedGeometryOneOf2(value: object): boolean {
-    if (!('multiLineString' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "multiLineString" in value;
+
+    return isInstance;
 }
 
 export function TypedGeometryOneOf2FromJSON(json: any): TypedGeometryOneOf2 {
@@ -47,7 +49,7 @@ export function TypedGeometryOneOf2FromJSON(json: any): TypedGeometryOneOf2 {
 }
 
 export function TypedGeometryOneOf2FromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedGeometryOneOf2 {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -57,12 +59,15 @@ export function TypedGeometryOneOf2FromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function TypedGeometryOneOf2ToJSON(value?: TypedGeometryOneOf2 | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'MultiLineString': MultiLineStringToJSON(value['multiLineString']),
+        'MultiLineString': MultiLineStringToJSON(value.multiLineString),
     };
 }
 

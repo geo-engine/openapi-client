@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.gdal_meta_data_list import GdalMetaDataList
+from geoengine_openapi_client.models.gdal_meta_data_list import GdalMetaDataList  # noqa: E501
 
 class TestGdalMetaDataList(unittest.TestCase):
     """GdalMetaDataList unit test stubs"""
@@ -33,7 +34,7 @@ class TestGdalMetaDataList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GdalMetaDataList`
         """
-        model = GdalMetaDataList()
+        model = GdalMetaDataList()  # noqa: E501
         if include_optional:
             return GdalMetaDataList(
                 params = [
@@ -54,8 +55,7 @@ class TestGdalMetaDataList(unittest.TestCase):
                     data_type = 'U8', 
                     resolution = null, 
                     spatial_reference = '', 
-                    time = null, ),
-                type = 'GdalMetaDataList'
+                    time = null, )
             )
         else:
             return GdalMetaDataList(
@@ -78,7 +78,6 @@ class TestGdalMetaDataList(unittest.TestCase):
                     resolution = null, 
                     spatial_reference = '', 
                     time = null, ),
-                type = 'GdalMetaDataList',
         )
         """
 

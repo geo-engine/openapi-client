@@ -14,40 +14,43 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OgrSourceTimeFormatToJSON = exports.OgrSourceTimeFormatFromJSONTyped = exports.OgrSourceTimeFormatFromJSON = void 0;
-const OgrSourceTimeFormatAuto_1 = require("./OgrSourceTimeFormatAuto");
-const OgrSourceTimeFormatCustom_1 = require("./OgrSourceTimeFormatCustom");
-const OgrSourceTimeFormatUnixTimeStamp_1 = require("./OgrSourceTimeFormatUnixTimeStamp");
+const AutoOgrSourceTimeFormat_1 = require("./AutoOgrSourceTimeFormat");
+const CustomOgrSourceTimeFormat_1 = require("./CustomOgrSourceTimeFormat");
+const UnixTimeStampOgrSourceTimeFormat_1 = require("./UnixTimeStampOgrSourceTimeFormat");
 function OgrSourceTimeFormatFromJSON(json) {
     return OgrSourceTimeFormatFromJSONTyped(json, false);
 }
 exports.OgrSourceTimeFormatFromJSON = OgrSourceTimeFormatFromJSON;
 function OgrSourceTimeFormatFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['format']) {
         case 'auto':
-            return Object.assign(Object.assign({}, (0, OgrSourceTimeFormatAuto_1.OgrSourceTimeFormatAutoFromJSONTyped)(json, true)), { format: 'auto' });
+            return Object.assign(Object.assign({}, (0, AutoOgrSourceTimeFormat_1.AutoOgrSourceTimeFormatFromJSONTyped)(json, true)), { format: 'auto' });
         case 'custom':
-            return Object.assign(Object.assign({}, (0, OgrSourceTimeFormatCustom_1.OgrSourceTimeFormatCustomFromJSONTyped)(json, true)), { format: 'custom' });
+            return Object.assign(Object.assign({}, (0, CustomOgrSourceTimeFormat_1.CustomOgrSourceTimeFormatFromJSONTyped)(json, true)), { format: 'custom' });
         case 'unixTimeStamp':
-            return Object.assign(Object.assign({}, (0, OgrSourceTimeFormatUnixTimeStamp_1.OgrSourceTimeFormatUnixTimeStampFromJSONTyped)(json, true)), { format: 'unixTimeStamp' });
+            return Object.assign(Object.assign({}, (0, UnixTimeStampOgrSourceTimeFormat_1.UnixTimeStampOgrSourceTimeFormatFromJSONTyped)(json, true)), { format: 'unixTimeStamp' });
         default:
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${json['format']}'`);
     }
 }
 exports.OgrSourceTimeFormatFromJSONTyped = OgrSourceTimeFormatFromJSONTyped;
 function OgrSourceTimeFormatToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['format']) {
         case 'auto':
-            return (0, OgrSourceTimeFormatAuto_1.OgrSourceTimeFormatAutoToJSON)(value);
+            return (0, AutoOgrSourceTimeFormat_1.AutoOgrSourceTimeFormatToJSON)(value);
         case 'custom':
-            return (0, OgrSourceTimeFormatCustom_1.OgrSourceTimeFormatCustomToJSON)(value);
+            return (0, CustomOgrSourceTimeFormat_1.CustomOgrSourceTimeFormatToJSON)(value);
         case 'unixTimeStamp':
-            return (0, OgrSourceTimeFormatUnixTimeStamp_1.OgrSourceTimeFormatUnixTimeStampToJSON)(value);
+            return (0, UnixTimeStampOgrSourceTimeFormat_1.UnixTimeStampOgrSourceTimeFormatToJSON)(value);
         default:
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${value['format']}'`);
     }

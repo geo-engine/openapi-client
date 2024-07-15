@@ -29,20 +29,7 @@ export interface GdalMetaDataList {
      * @memberof GdalMetaDataList
      */
     resultDescriptor: RasterResultDescriptor;
-    /**
-     *
-     * @type {string}
-     * @memberof GdalMetaDataList
-     */
-    type: GdalMetaDataListTypeEnum;
 }
-/**
- * @export
- */
-export declare const GdalMetaDataListTypeEnum: {
-    readonly GdalMetaDataList: "GdalMetaDataList";
-};
-export type GdalMetaDataListTypeEnum = typeof GdalMetaDataListTypeEnum[keyof typeof GdalMetaDataListTypeEnum];
 /**
  * Check if a given object implements the GdalMetaDataList interface.
  */

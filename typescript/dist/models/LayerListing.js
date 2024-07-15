@@ -13,27 +13,18 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerListingToJSON = exports.LayerListingFromJSONTyped = exports.LayerListingFromJSON = exports.instanceOfLayerListing = exports.LayerListingTypeEnum = void 0;
+exports.LayerListingToJSON = exports.LayerListingFromJSONTyped = exports.LayerListingFromJSON = exports.instanceOfLayerListing = void 0;
+const runtime_1 = require("../runtime");
 const ProviderLayerId_1 = require("./ProviderLayerId");
-/**
- * @export
- */
-exports.LayerListingTypeEnum = {
-    Layer: 'layer'
-};
 /**
  * Check if a given object implements the LayerListing interface.
  */
 function instanceOfLayerListing(value) {
-    if (!('description' in value))
-        return false;
-    if (!('id' in value))
-        return false;
-    if (!('name' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    return isInstance;
 }
 exports.instanceOfLayerListing = instanceOfLayerListing;
 function LayerListingFromJSON(json) {
@@ -41,28 +32,29 @@ function LayerListingFromJSON(json) {
 }
 exports.LayerListingFromJSON = LayerListingFromJSON;
 function LayerListingFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'description': json['description'],
         'id': (0, ProviderLayerId_1.ProviderLayerIdFromJSON)(json['id']),
         'name': json['name'],
-        'properties': json['properties'] == null ? undefined : json['properties'],
-        'type': json['type'],
+        'properties': !(0, runtime_1.exists)(json, 'properties') ? undefined : json['properties'],
     };
 }
 exports.LayerListingFromJSONTyped = LayerListingFromJSONTyped;
 function LayerListingToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'description': value['description'],
-        'id': (0, ProviderLayerId_1.ProviderLayerIdToJSON)(value['id']),
-        'name': value['name'],
-        'properties': value['properties'],
-        'type': value['type'],
+        'description': value.description,
+        'id': (0, ProviderLayerId_1.ProviderLayerIdToJSON)(value.id),
+        'name': value.name,
+        'properties': value.properties,
     };
 }
 exports.LayerListingToJSON = LayerListingToJSON;

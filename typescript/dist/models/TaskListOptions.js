@@ -14,12 +14,14 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TaskListOptionsToJSON = exports.TaskListOptionsFromJSONTyped = exports.TaskListOptionsFromJSON = exports.instanceOfTaskListOptions = void 0;
+const runtime_1 = require("../runtime");
 const TaskFilter_1 = require("./TaskFilter");
 /**
  * Check if a given object implements the TaskListOptions interface.
  */
 function instanceOfTaskListOptions(value) {
-    return true;
+    let isInstance = true;
+    return isInstance;
 }
 exports.instanceOfTaskListOptions = instanceOfTaskListOptions;
 function TaskListOptionsFromJSON(json) {
@@ -27,24 +29,27 @@ function TaskListOptionsFromJSON(json) {
 }
 exports.TaskListOptionsFromJSON = TaskListOptionsFromJSON;
 function TaskListOptionsFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'filter': json['filter'] == null ? undefined : (0, TaskFilter_1.TaskFilterFromJSON)(json['filter']),
-        'limit': json['limit'] == null ? undefined : json['limit'],
-        'offset': json['offset'] == null ? undefined : json['offset'],
+        'filter': !(0, runtime_1.exists)(json, 'filter') ? undefined : (0, TaskFilter_1.TaskFilterFromJSON)(json['filter']),
+        'limit': !(0, runtime_1.exists)(json, 'limit') ? undefined : json['limit'],
+        'offset': !(0, runtime_1.exists)(json, 'offset') ? undefined : json['offset'],
     };
 }
 exports.TaskListOptionsFromJSONTyped = TaskListOptionsFromJSONTyped;
 function TaskListOptionsToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'filter': (0, TaskFilter_1.TaskFilterToJSON)(value['filter']),
-        'limit': value['limit'],
-        'offset': value['offset'],
+        'filter': (0, TaskFilter_1.TaskFilterToJSON)(value.filter),
+        'limit': value.limit,
+        'offset': value.offset,
     };
 }
 exports.TaskListOptionsToJSON = TaskListOptionsToJSON;

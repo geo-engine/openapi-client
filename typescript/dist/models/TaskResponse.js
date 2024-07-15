@@ -18,9 +18,9 @@ exports.TaskResponseToJSON = exports.TaskResponseFromJSONTyped = exports.TaskRes
  * Check if a given object implements the TaskResponse interface.
  */
 function instanceOfTaskResponse(value) {
-    if (!('taskId' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "taskId" in value;
+    return isInstance;
 }
 exports.instanceOfTaskResponse = instanceOfTaskResponse;
 function TaskResponseFromJSON(json) {
@@ -28,7 +28,7 @@ function TaskResponseFromJSON(json) {
 }
 exports.TaskResponseFromJSON = TaskResponseFromJSON;
 function TaskResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -37,11 +37,14 @@ function TaskResponseFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.TaskResponseFromJSONTyped = TaskResponseFromJSONTyped;
 function TaskResponseToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'taskId': value['taskId'],
+        'taskId': value.taskId,
     };
 }
 exports.TaskResponseToJSON = TaskResponseToJSON;

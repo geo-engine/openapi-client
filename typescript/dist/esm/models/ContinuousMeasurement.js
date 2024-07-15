@@ -11,42 +11,36 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-/**
- * @export
- */
-export const ContinuousMeasurementTypeEnum = {
-    Continuous: 'continuous'
-};
+import { exists } from '../runtime';
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
 export function instanceOfContinuousMeasurement(value) {
-    if (!('measurement' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "measurement" in value;
+    return isInstance;
 }
 export function ContinuousMeasurementFromJSON(json) {
     return ContinuousMeasurementFromJSONTyped(json, false);
 }
 export function ContinuousMeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'measurement': json['measurement'],
-        'type': json['type'],
-        'unit': json['unit'] == null ? undefined : json['unit'],
+        'unit': !exists(json, 'unit') ? undefined : json['unit'],
     };
 }
 export function ContinuousMeasurementToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'measurement': value['measurement'],
-        'type': value['type'],
-        'unit': value['unit'],
+        'measurement': value.measurement,
+        'unit': value.unit,
     };
 }

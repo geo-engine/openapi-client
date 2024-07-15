@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,7 +31,9 @@ export interface TaskAbortOptions {
  * Check if a given object implements the TaskAbortOptions interface.
  */
 export function instanceOfTaskAbortOptions(value: object): boolean {
-    return true;
+    let isInstance = true;
+
+    return isInstance;
 }
 
 export function TaskAbortOptionsFromJSON(json: any): TaskAbortOptions {
@@ -39,22 +41,25 @@ export function TaskAbortOptionsFromJSON(json: any): TaskAbortOptions {
 }
 
 export function TaskAbortOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskAbortOptions {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'force': json['force'] == null ? undefined : json['force'],
+        'force': !exists(json, 'force') ? undefined : json['force'],
     };
 }
 
 export function TaskAbortOptionsToJSON(value?: TaskAbortOptions | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'force': value['force'],
+        'force': value.force,
     };
 }
 

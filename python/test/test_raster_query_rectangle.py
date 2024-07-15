@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.raster_query_rectangle import RasterQueryRectangle
+from geoengine_openapi_client.models.raster_query_rectangle import RasterQueryRectangle  # noqa: E501
 
 class TestRasterQueryRectangle(unittest.TestCase):
     """RasterQueryRectangle unit test stubs"""
@@ -33,7 +34,7 @@ class TestRasterQueryRectangle(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `RasterQueryRectangle`
         """
-        model = RasterQueryRectangle()
+        model = RasterQueryRectangle()  # noqa: E501
         if include_optional:
             return RasterQueryRectangle(
                 spatial_bounds = geoengine_openapi_client.models.spatial_partition2_d.SpatialPartition2D(

@@ -15,17 +15,16 @@
  * Check if a given object implements the SpatialResolution interface.
  */
 export function instanceOfSpatialResolution(value) {
-    if (!('x' in value))
-        return false;
-    if (!('y' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "x" in value;
+    isInstance = isInstance && "y" in value;
+    return isInstance;
 }
 export function SpatialResolutionFromJSON(json) {
     return SpatialResolutionFromJSONTyped(json, false);
 }
 export function SpatialResolutionFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -34,11 +33,14 @@ export function SpatialResolutionFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function SpatialResolutionToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'x': value['x'],
-        'y': value['y'],
+        'x': value.x,
+        'y': value.y,
     };
 }

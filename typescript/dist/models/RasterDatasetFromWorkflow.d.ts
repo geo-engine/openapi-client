@@ -27,7 +27,7 @@ export interface RasterDatasetFromWorkflow {
      * @type {string}
      * @memberof RasterDatasetFromWorkflow
      */
-    description?: string;
+    description?: string | null;
     /**
      *
      * @type {string}
@@ -39,7 +39,7 @@ export interface RasterDatasetFromWorkflow {
      * @type {string}
      * @memberof RasterDatasetFromWorkflow
      */
-    name?: string;
+    name?: string | null;
     /**
      *
      * @type {RasterQueryRectangle}

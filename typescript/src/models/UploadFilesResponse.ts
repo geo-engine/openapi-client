@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,8 +31,10 @@ export interface UploadFilesResponse {
  * Check if a given object implements the UploadFilesResponse interface.
  */
 export function instanceOfUploadFilesResponse(value: object): boolean {
-    if (!('files' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "files" in value;
+
+    return isInstance;
 }
 
 export function UploadFilesResponseFromJSON(json: any): UploadFilesResponse {
@@ -40,7 +42,7 @@ export function UploadFilesResponseFromJSON(json: any): UploadFilesResponse {
 }
 
 export function UploadFilesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UploadFilesResponse {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function UploadFilesResponseFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function UploadFilesResponseToJSON(value?: UploadFilesResponse | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'files': value['files'],
+        'files': value.files,
     };
 }
 

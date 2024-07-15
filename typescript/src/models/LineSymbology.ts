@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { StrokeParam } from './StrokeParam';
 import {
     StrokeParamFromJSON,
@@ -49,33 +49,18 @@ export interface LineSymbology {
      * @type {TextSymbology}
      * @memberof LineSymbology
      */
-    text?: TextSymbology;
-    /**
-     * 
-     * @type {string}
-     * @memberof LineSymbology
-     */
-    type: LineSymbologyTypeEnum;
+    text?: TextSymbology | null;
 }
-
-
-/**
- * @export
- */
-export const LineSymbologyTypeEnum = {
-    Line: 'line'
-} as const;
-export type LineSymbologyTypeEnum = typeof LineSymbologyTypeEnum[keyof typeof LineSymbologyTypeEnum];
-
 
 /**
  * Check if a given object implements the LineSymbology interface.
  */
 export function instanceOfLineSymbology(value: object): boolean {
-    if (!('autoSimplified' in value)) return false;
-    if (!('stroke' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "autoSimplified" in value;
+    isInstance = isInstance && "stroke" in value;
+
+    return isInstance;
 }
 
 export function LineSymbologyFromJSON(json: any): LineSymbology {
@@ -83,28 +68,29 @@ export function LineSymbologyFromJSON(json: any): LineSymbology {
 }
 
 export function LineSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): LineSymbology {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'autoSimplified': json['autoSimplified'],
         'stroke': StrokeParamFromJSON(json['stroke']),
-        'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
-        'type': json['type'],
+        'text': !exists(json, 'text') ? undefined : TextSymbologyFromJSON(json['text']),
     };
 }
 
 export function LineSymbologyToJSON(value?: LineSymbology | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'autoSimplified': value['autoSimplified'],
-        'stroke': StrokeParamToJSON(value['stroke']),
-        'text': TextSymbologyToJSON(value['text']),
-        'type': value['type'],
+        'autoSimplified': value.autoSimplified,
+        'stroke': StrokeParamToJSON(value.stroke),
+        'text': TextSymbologyToJSON(value.text),
     };
 }
 

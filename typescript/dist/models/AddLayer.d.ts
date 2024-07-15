@@ -48,7 +48,7 @@ export interface AddLayer {
      * @type {Symbology}
      * @memberof AddLayer
      */
-    symbology?: Symbology;
+    symbology?: Symbology | null;
     /**
      *
      * @type {Workflow}

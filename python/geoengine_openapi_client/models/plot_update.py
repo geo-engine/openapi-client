@@ -14,15 +14,17 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
 import json
 import pprint
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+import re  # noqa: F401
+
 from typing import Any, List, Optional
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from geoengine_openapi_client.models.plot import Plot
 from geoengine_openapi_client.models.project_update_token import ProjectUpdateToken
+from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
-from typing import Union, List, Optional, Dict
-from typing_extensions import Literal, Self
 
 PLOTUPDATE_ONE_OF_SCHEMAS = ["Plot", "ProjectUpdateToken"]
 
@@ -34,14 +36,14 @@ class PlotUpdate(BaseModel):
     oneof_schema_1_validator: Optional[ProjectUpdateToken] = None
     # data type: Plot
     oneof_schema_2_validator: Optional[Plot] = None
-    actual_instance: Optional[Union[Plot, ProjectUpdateToken]] = None
-    one_of_schemas: List[str] = Field(default=Literal["Plot", "ProjectUpdateToken"])
+    if TYPE_CHECKING:
+        actual_instance: Union[Plot, ProjectUpdateToken]
+    else:
+        actual_instance: Any
+    one_of_schemas: List[str] = Field(PLOTUPDATE_ONE_OF_SCHEMAS, const=True)
 
-    model_config = ConfigDict(
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
-
+    class Config:
+        validate_assignment = True
 
     def __init__(self, *args, **kwargs) -> None:
         if args:
@@ -53,9 +55,9 @@ class PlotUpdate(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = PlotUpdate.model_construct()
+        instance = PlotUpdate.construct()
         error_messages = []
         match = 0
         # validate data type: ProjectUpdateToken
@@ -78,13 +80,13 @@ class PlotUpdate(BaseModel):
             return v
 
     @classmethod
-    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
+    def from_dict(cls, obj: dict) -> PlotUpdate:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> PlotUpdate:
         """Returns the object represented by the json string"""
-        instance = cls.model_construct()
+        instance = PlotUpdate.construct()
         error_messages = []
         match = 0
 
@@ -115,17 +117,19 @@ class PlotUpdate(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+        to_json = getattr(self.actual_instance, "to_json", None)
+        if callable(to_json):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], Plot, ProjectUpdateToken]]:
+    def to_dict(self) -> dict:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
-        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+        to_dict = getattr(self.actual_instance, "to_dict", None)
+        if callable(to_dict):
             return self.actual_instance.to_dict()
         else:
             # primitive type
@@ -133,6 +137,6 @@ class PlotUpdate(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.model_dump())
+        return pprint.pformat(self.dict())
 
 

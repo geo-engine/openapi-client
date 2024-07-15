@@ -12,66 +12,69 @@
  * Do not edit the class manually.
  */
 
-import type { OgrSourceTimeFormatAuto } from './OgrSourceTimeFormatAuto';
 import {
-    instanceOfOgrSourceTimeFormatAuto,
-    OgrSourceTimeFormatAutoFromJSON,
-    OgrSourceTimeFormatAutoFromJSONTyped,
-    OgrSourceTimeFormatAutoToJSON,
-} from './OgrSourceTimeFormatAuto';
-import type { OgrSourceTimeFormatCustom } from './OgrSourceTimeFormatCustom';
+    AutoOgrSourceTimeFormat,
+    instanceOfAutoOgrSourceTimeFormat,
+    AutoOgrSourceTimeFormatFromJSON,
+    AutoOgrSourceTimeFormatFromJSONTyped,
+    AutoOgrSourceTimeFormatToJSON,
+} from './AutoOgrSourceTimeFormat';
 import {
-    instanceOfOgrSourceTimeFormatCustom,
-    OgrSourceTimeFormatCustomFromJSON,
-    OgrSourceTimeFormatCustomFromJSONTyped,
-    OgrSourceTimeFormatCustomToJSON,
-} from './OgrSourceTimeFormatCustom';
-import type { OgrSourceTimeFormatUnixTimeStamp } from './OgrSourceTimeFormatUnixTimeStamp';
+    CustomOgrSourceTimeFormat,
+    instanceOfCustomOgrSourceTimeFormat,
+    CustomOgrSourceTimeFormatFromJSON,
+    CustomOgrSourceTimeFormatFromJSONTyped,
+    CustomOgrSourceTimeFormatToJSON,
+} from './CustomOgrSourceTimeFormat';
 import {
-    instanceOfOgrSourceTimeFormatUnixTimeStamp,
-    OgrSourceTimeFormatUnixTimeStampFromJSON,
-    OgrSourceTimeFormatUnixTimeStampFromJSONTyped,
-    OgrSourceTimeFormatUnixTimeStampToJSON,
-} from './OgrSourceTimeFormatUnixTimeStamp';
+    UnixTimeStampOgrSourceTimeFormat,
+    instanceOfUnixTimeStampOgrSourceTimeFormat,
+    UnixTimeStampOgrSourceTimeFormatFromJSON,
+    UnixTimeStampOgrSourceTimeFormatFromJSONTyped,
+    UnixTimeStampOgrSourceTimeFormatToJSON,
+} from './UnixTimeStampOgrSourceTimeFormat';
 
 /**
  * @type OgrSourceTimeFormat
  * 
  * @export
  */
-export type OgrSourceTimeFormat = { format: 'auto' } & OgrSourceTimeFormatAuto | { format: 'custom' } & OgrSourceTimeFormatCustom | { format: 'unixTimeStamp' } & OgrSourceTimeFormatUnixTimeStamp;
+export type OgrSourceTimeFormat = { format: 'auto' } & AutoOgrSourceTimeFormat | { format: 'custom' } & CustomOgrSourceTimeFormat | { format: 'unixTimeStamp' } & UnixTimeStampOgrSourceTimeFormat;
 
 export function OgrSourceTimeFormatFromJSON(json: any): OgrSourceTimeFormat {
     return OgrSourceTimeFormatFromJSONTyped(json, false);
 }
 
 export function OgrSourceTimeFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceTimeFormat {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['format']) {
         case 'auto':
-            return {...OgrSourceTimeFormatAutoFromJSONTyped(json, true), format: 'auto'};
+            return {...AutoOgrSourceTimeFormatFromJSONTyped(json, true), format: 'auto'};
         case 'custom':
-            return {...OgrSourceTimeFormatCustomFromJSONTyped(json, true), format: 'custom'};
+            return {...CustomOgrSourceTimeFormatFromJSONTyped(json, true), format: 'custom'};
         case 'unixTimeStamp':
-            return {...OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, true), format: 'unixTimeStamp'};
+            return {...UnixTimeStampOgrSourceTimeFormatFromJSONTyped(json, true), format: 'unixTimeStamp'};
         default:
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${json['format']}'`);
     }
 }
 
 export function OgrSourceTimeFormatToJSON(value?: OgrSourceTimeFormat | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['format']) {
         case 'auto':
-            return OgrSourceTimeFormatAutoToJSON(value);
+            return AutoOgrSourceTimeFormatToJSON(value);
         case 'custom':
-            return OgrSourceTimeFormatCustomToJSON(value);
+            return CustomOgrSourceTimeFormatToJSON(value);
         case 'unixTimeStamp':
-            return OgrSourceTimeFormatUnixTimeStampToJSON(value);
+            return UnixTimeStampOgrSourceTimeFormatToJSON(value);
         default:
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${value['format']}'`);
     }

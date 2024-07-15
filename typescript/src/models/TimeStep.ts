@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { TimeGranularity } from './TimeGranularity';
 import {
     TimeGranularityFromJSON,
@@ -44,9 +44,11 @@ export interface TimeStep {
  * Check if a given object implements the TimeStep interface.
  */
 export function instanceOfTimeStep(value: object): boolean {
-    if (!('granularity' in value)) return false;
-    if (!('step' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "granularity" in value;
+    isInstance = isInstance && "step" in value;
+
+    return isInstance;
 }
 
 export function TimeStepFromJSON(json: any): TimeStep {
@@ -54,7 +56,7 @@ export function TimeStepFromJSON(json: any): TimeStep {
 }
 
 export function TimeStepFromJSONTyped(json: any, ignoreDiscriminator: boolean): TimeStep {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -65,13 +67,16 @@ export function TimeStepFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
 }
 
 export function TimeStepToJSON(value?: TimeStep | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'granularity': TimeGranularityToJSON(value['granularity']),
-        'step': value['step'],
+        'granularity': TimeGranularityToJSON(value.granularity),
+        'step': value.step,
     };
 }
 

@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { OgrSourceDurationSpecInfinite } from './OgrSourceDurationSpecInfinite';
-import type { OgrSourceDurationSpecValue } from './OgrSourceDurationSpecValue';
-import type { OgrSourceDurationSpecZero } from './OgrSourceDurationSpecZero';
+import { InfiniteOgrSourceDurationSpec } from './InfiniteOgrSourceDurationSpec';
+import { TimeStepWithType } from './TimeStepWithType';
+import { ZeroOgrSourceDurationSpec } from './ZeroOgrSourceDurationSpec';
 /**
  * @type OgrSourceDurationSpec
  *
@@ -19,11 +19,11 @@ import type { OgrSourceDurationSpecZero } from './OgrSourceDurationSpecZero';
  */
 export type OgrSourceDurationSpec = {
     type: 'infinite';
-} & OgrSourceDurationSpecInfinite | {
+} & InfiniteOgrSourceDurationSpec | {
     type: 'value';
-} & OgrSourceDurationSpecValue | {
+} & TimeStepWithType | {
     type: 'zero';
-} & OgrSourceDurationSpecZero;
+} & ZeroOgrSourceDurationSpec;
 export declare function OgrSourceDurationSpecFromJSON(json: any): OgrSourceDurationSpec;
 export declare function OgrSourceDurationSpecFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpec;
 export declare function OgrSourceDurationSpecToJSON(value?: OgrSourceDurationSpec | null): any;

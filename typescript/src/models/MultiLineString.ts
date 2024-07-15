@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { Coordinate2D } from './Coordinate2D';
 import {
     Coordinate2DFromJSON,
@@ -38,8 +38,10 @@ export interface MultiLineString {
  * Check if a given object implements the MultiLineString interface.
  */
 export function instanceOfMultiLineString(value: object): boolean {
-    if (!('coordinates' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "coordinates" in value;
+
+    return isInstance;
 }
 
 export function MultiLineStringFromJSON(json: any): MultiLineString {
@@ -47,7 +49,7 @@ export function MultiLineStringFromJSON(json: any): MultiLineString {
 }
 
 export function MultiLineStringFromJSONTyped(json: any, ignoreDiscriminator: boolean): MultiLineString {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -57,12 +59,15 @@ export function MultiLineStringFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function MultiLineStringToJSON(value?: MultiLineString | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'coordinates': value['coordinates'],
+        'coordinates': value.coordinates,
     };
 }
 

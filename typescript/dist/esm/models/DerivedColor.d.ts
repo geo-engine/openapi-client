@@ -28,20 +28,7 @@ export interface DerivedColor {
      * @memberof DerivedColor
      */
     colorizer: Colorizer;
-    /**
-     *
-     * @type {string}
-     * @memberof DerivedColor
-     */
-    type: DerivedColorTypeEnum;
 }
-/**
- * @export
- */
-export declare const DerivedColorTypeEnum: {
-    readonly Derived: "derived";
-};
-export type DerivedColorTypeEnum = typeof DerivedColorTypeEnum[keyof typeof DerivedColorTypeEnum];
 /**
  * Check if a given object implements the DerivedColor interface.
  */

@@ -16,15 +16,15 @@ import { Coordinate2DFromJSON, Coordinate2DToJSON, } from './Coordinate2D';
  * Check if a given object implements the MockDatasetDataSourceLoadingInfo interface.
  */
 export function instanceOfMockDatasetDataSourceLoadingInfo(value) {
-    if (!('points' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "points" in value;
+    return isInstance;
 }
 export function MockDatasetDataSourceLoadingInfoFromJSON(json) {
     return MockDatasetDataSourceLoadingInfoFromJSONTyped(json, false);
 }
 export function MockDatasetDataSourceLoadingInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -32,10 +32,13 @@ export function MockDatasetDataSourceLoadingInfoFromJSONTyped(json, ignoreDiscri
     };
 }
 export function MockDatasetDataSourceLoadingInfoToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'points': (value['points'].map(Coordinate2DToJSON)),
+        'points': (value.points.map(Coordinate2DToJSON)),
     };
 }

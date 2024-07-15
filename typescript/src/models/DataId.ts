@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
-import type { ExternalDataId } from './ExternalDataId';
 import {
-    instanceOfExternalDataId,
-    ExternalDataIdFromJSON,
-    ExternalDataIdFromJSONTyped,
-    ExternalDataIdToJSON,
-} from './ExternalDataId';
-import type { InternalDataId } from './InternalDataId';
+    ExternalDataIdWithType,
+    instanceOfExternalDataIdWithType,
+    ExternalDataIdWithTypeFromJSON,
+    ExternalDataIdWithTypeFromJSONTyped,
+    ExternalDataIdWithTypeToJSON,
+} from './ExternalDataIdWithType';
 import {
+    InternalDataId,
     instanceOfInternalDataId,
     InternalDataIdFromJSON,
     InternalDataIdFromJSONTyped,
@@ -32,19 +32,19 @@ import {
  * 
  * @export
  */
-export type DataId = { type: 'external' } & ExternalDataId | { type: 'internal' } & InternalDataId;
+export type DataId = { type: 'external' } & ExternalDataIdWithType | { type: 'internal' } & InternalDataId;
 
 export function DataIdFromJSON(json: any): DataId {
     return DataIdFromJSONTyped(json, false);
 }
 
 export function DataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataId {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'external':
-            return {...ExternalDataIdFromJSONTyped(json, true), type: 'external'};
+            return {...ExternalDataIdWithTypeFromJSONTyped(json, true), type: 'external'};
         case 'internal':
             return {...InternalDataIdFromJSONTyped(json, true), type: 'internal'};
         default:
@@ -53,12 +53,15 @@ export function DataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): Da
 }
 
 export function DataIdToJSON(value?: DataId | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'external':
-            return ExternalDataIdToJSON(value);
+            return ExternalDataIdWithTypeToJSON(value);
         case 'internal':
             return InternalDataIdToJSON(value);
         default:

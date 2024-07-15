@@ -13,26 +13,16 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DerivedNumberToJSON = exports.DerivedNumberFromJSONTyped = exports.DerivedNumberFromJSON = exports.instanceOfDerivedNumber = exports.DerivedNumberTypeEnum = void 0;
-/**
- * @export
- */
-exports.DerivedNumberTypeEnum = {
-    Derived: 'derived'
-};
+exports.DerivedNumberToJSON = exports.DerivedNumberFromJSONTyped = exports.DerivedNumberFromJSON = exports.instanceOfDerivedNumber = void 0;
 /**
  * Check if a given object implements the DerivedNumber interface.
  */
 function instanceOfDerivedNumber(value) {
-    if (!('attribute' in value))
-        return false;
-    if (!('defaultValue' in value))
-        return false;
-    if (!('factor' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "attribute" in value;
+    isInstance = isInstance && "defaultValue" in value;
+    isInstance = isInstance && "factor" in value;
+    return isInstance;
 }
 exports.instanceOfDerivedNumber = instanceOfDerivedNumber;
 function DerivedNumberFromJSON(json) {
@@ -40,26 +30,27 @@ function DerivedNumberFromJSON(json) {
 }
 exports.DerivedNumberFromJSON = DerivedNumberFromJSON;
 function DerivedNumberFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'attribute': json['attribute'],
         'defaultValue': json['defaultValue'],
         'factor': json['factor'],
-        'type': json['type'],
     };
 }
 exports.DerivedNumberFromJSONTyped = DerivedNumberFromJSONTyped;
 function DerivedNumberToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'attribute': value['attribute'],
-        'defaultValue': value['defaultValue'],
-        'factor': value['factor'],
-        'type': value['type'],
+        'attribute': value.attribute,
+        'defaultValue': value.defaultValue,
+        'factor': value.factor,
     };
 }
 exports.DerivedNumberToJSON = DerivedNumberToJSON;

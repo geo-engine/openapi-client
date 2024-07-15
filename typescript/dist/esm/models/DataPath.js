@@ -17,14 +17,17 @@ export function DataPathFromJSON(json) {
     return DataPathFromJSONTyped(json, false);
 }
 export function DataPathFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return Object.assign(Object.assign({}, DataPathOneOfFromJSONTyped(json, true)), DataPathOneOf1FromJSONTyped(json, true));
 }
 export function DataPathToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     if (instanceOfDataPathOneOf(value)) {
         return DataPathOneOfToJSON(value);

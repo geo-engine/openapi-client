@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.stroke_param import StrokeParam
+from geoengine_openapi_client.models.stroke_param import StrokeParam  # noqa: E501
 
 class TestStrokeParam(unittest.TestCase):
     """StrokeParam unit test stubs"""
@@ -33,7 +34,7 @@ class TestStrokeParam(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `StrokeParam`
         """
-        model = StrokeParam()
+        model = StrokeParam()  # noqa: E501
         if include_optional:
             return StrokeParam(
                 color = None,

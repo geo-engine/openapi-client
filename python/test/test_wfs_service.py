@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.wfs_service import WfsService
+from geoengine_openapi_client.models.wfs_service import WfsService  # noqa: E501
 
 class TestWfsService(unittest.TestCase):
     """WfsService unit test stubs"""

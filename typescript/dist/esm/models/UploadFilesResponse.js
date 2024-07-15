@@ -15,15 +15,15 @@
  * Check if a given object implements the UploadFilesResponse interface.
  */
 export function instanceOfUploadFilesResponse(value) {
-    if (!('files' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "files" in value;
+    return isInstance;
 }
 export function UploadFilesResponseFromJSON(json) {
     return UploadFilesResponseFromJSONTyped(json, false);
 }
 export function UploadFilesResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -31,10 +31,13 @@ export function UploadFilesResponseFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function UploadFilesResponseToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'files': value['files'],
+        'files': value.files,
     };
 }

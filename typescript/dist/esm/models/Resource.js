@@ -11,43 +11,46 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ResourceDatasetFromJSONTyped, ResourceDatasetToJSON, } from './ResourceDataset';
-import { ResourceLayerFromJSONTyped, ResourceLayerToJSON, } from './ResourceLayer';
-import { ResourceLayerCollectionFromJSONTyped, ResourceLayerCollectionToJSON, } from './ResourceLayerCollection';
-import { ResourceProjectFromJSONTyped, ResourceProjectToJSON, } from './ResourceProject';
+import { DatasetResourceFromJSONTyped, DatasetResourceToJSON, } from './DatasetResource';
+import { LayerCollectionResourceFromJSONTyped, LayerCollectionResourceToJSON, } from './LayerCollectionResource';
+import { LayerResourceFromJSONTyped, LayerResourceToJSON, } from './LayerResource';
+import { ProjectResourceFromJSONTyped, ProjectResourceToJSON, } from './ProjectResource';
 export function ResourceFromJSON(json) {
     return ResourceFromJSONTyped(json, false);
 }
 export function ResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'dataset':
-            return Object.assign(Object.assign({}, ResourceDatasetFromJSONTyped(json, true)), { type: 'dataset' });
+            return Object.assign(Object.assign({}, DatasetResourceFromJSONTyped(json, true)), { type: 'dataset' });
         case 'layer':
-            return Object.assign(Object.assign({}, ResourceLayerFromJSONTyped(json, true)), { type: 'layer' });
+            return Object.assign(Object.assign({}, LayerResourceFromJSONTyped(json, true)), { type: 'layer' });
         case 'layerCollection':
-            return Object.assign(Object.assign({}, ResourceLayerCollectionFromJSONTyped(json, true)), { type: 'layerCollection' });
+            return Object.assign(Object.assign({}, LayerCollectionResourceFromJSONTyped(json, true)), { type: 'layerCollection' });
         case 'project':
-            return Object.assign(Object.assign({}, ResourceProjectFromJSONTyped(json, true)), { type: 'project' });
+            return Object.assign(Object.assign({}, ProjectResourceFromJSONTyped(json, true)), { type: 'project' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }
 }
 export function ResourceToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'dataset':
-            return ResourceDatasetToJSON(value);
+            return DatasetResourceToJSON(value);
         case 'layer':
-            return ResourceLayerToJSON(value);
+            return LayerResourceToJSON(value);
         case 'layerCollection':
-            return ResourceLayerCollectionToJSON(value);
+            return LayerCollectionResourceToJSON(value);
         case 'project':
-            return ResourceProjectToJSON(value);
+            return ProjectResourceToJSON(value);
         default:
             throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
     }

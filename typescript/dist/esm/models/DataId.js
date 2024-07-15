@@ -11,18 +11,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ExternalDataIdFromJSONTyped, ExternalDataIdToJSON, } from './ExternalDataId';
+import { ExternalDataIdWithTypeFromJSONTyped, ExternalDataIdWithTypeToJSON, } from './ExternalDataIdWithType';
 import { InternalDataIdFromJSONTyped, InternalDataIdToJSON, } from './InternalDataId';
 export function DataIdFromJSON(json) {
     return DataIdFromJSONTyped(json, false);
 }
 export function DataIdFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'external':
-            return Object.assign(Object.assign({}, ExternalDataIdFromJSONTyped(json, true)), { type: 'external' });
+            return Object.assign(Object.assign({}, ExternalDataIdWithTypeFromJSONTyped(json, true)), { type: 'external' });
         case 'internal':
             return Object.assign(Object.assign({}, InternalDataIdFromJSONTyped(json, true)), { type: 'internal' });
         default:
@@ -30,12 +30,15 @@ export function DataIdFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function DataIdToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'external':
-            return ExternalDataIdToJSON(value);
+            return ExternalDataIdWithTypeToJSON(value);
         case 'internal':
             return InternalDataIdToJSON(value);
         default:

@@ -18,15 +18,12 @@ exports.ServerInfoToJSON = exports.ServerInfoFromJSONTyped = exports.ServerInfoF
  * Check if a given object implements the ServerInfo interface.
  */
 function instanceOfServerInfo(value) {
-    if (!('buildDate' in value))
-        return false;
-    if (!('commitHash' in value))
-        return false;
-    if (!('features' in value))
-        return false;
-    if (!('version' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "buildDate" in value;
+    isInstance = isInstance && "commitHash" in value;
+    isInstance = isInstance && "features" in value;
+    isInstance = isInstance && "version" in value;
+    return isInstance;
 }
 exports.instanceOfServerInfo = instanceOfServerInfo;
 function ServerInfoFromJSON(json) {
@@ -34,7 +31,7 @@ function ServerInfoFromJSON(json) {
 }
 exports.ServerInfoFromJSON = ServerInfoFromJSON;
 function ServerInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,14 +43,17 @@ function ServerInfoFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ServerInfoFromJSONTyped = ServerInfoFromJSONTyped;
 function ServerInfoToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'buildDate': value['buildDate'],
-        'commitHash': value['commitHash'],
-        'features': value['features'],
-        'version': value['version'],
+        'buildDate': value.buildDate,
+        'commitHash': value.commitHash,
+        'features': value.features,
+        'version': value.version,
     };
 }
 exports.ServerInfoToJSON = ServerInfoToJSON;

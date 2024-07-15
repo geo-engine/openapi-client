@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.breakpoint import Breakpoint
+from geoengine_openapi_client.models.breakpoint import Breakpoint  # noqa: E501
 
 class TestBreakpoint(unittest.TestCase):
     """Breakpoint unit test stubs"""
@@ -33,7 +34,7 @@ class TestBreakpoint(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Breakpoint`
         """
-        model = Breakpoint()
+        model = Breakpoint()  # noqa: E501
         if include_optional:
             return Breakpoint(
                 color = [

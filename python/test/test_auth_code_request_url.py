@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.auth_code_request_url import AuthCodeRequestURL
+from geoengine_openapi_client.models.auth_code_request_url import AuthCodeRequestURL  # noqa: E501
 
 class TestAuthCodeRequestURL(unittest.TestCase):
     """AuthCodeRequestURL unit test stubs"""
@@ -33,7 +34,7 @@ class TestAuthCodeRequestURL(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AuthCodeRequestURL`
         """
-        model = AuthCodeRequestURL()
+        model = AuthCodeRequestURL()  # noqa: E501
         if include_optional:
             return AuthCodeRequestURL(
                 url = ''

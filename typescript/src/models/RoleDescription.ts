@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { Role } from './Role';
 import {
     RoleFromJSON,
@@ -44,9 +44,11 @@ export interface RoleDescription {
  * Check if a given object implements the RoleDescription interface.
  */
 export function instanceOfRoleDescription(value: object): boolean {
-    if (!('individual' in value)) return false;
-    if (!('role' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "individual" in value;
+    isInstance = isInstance && "role" in value;
+
+    return isInstance;
 }
 
 export function RoleDescriptionFromJSON(json: any): RoleDescription {
@@ -54,7 +56,7 @@ export function RoleDescriptionFromJSON(json: any): RoleDescription {
 }
 
 export function RoleDescriptionFromJSONTyped(json: any, ignoreDiscriminator: boolean): RoleDescription {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -65,13 +67,16 @@ export function RoleDescriptionFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function RoleDescriptionToJSON(value?: RoleDescription | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'individual': value['individual'],
-        'role': RoleToJSON(value['role']),
+        'individual': value.individual,
+        'role': RoleToJSON(value.role),
     };
 }
 

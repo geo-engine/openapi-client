@@ -9,11 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ResourceIdDatasetId } from './ResourceIdDatasetId';
-import type { ResourceIdLayer } from './ResourceIdLayer';
-import type { ResourceIdLayerCollection } from './ResourceIdLayerCollection';
-import type { ResourceIdModelId } from './ResourceIdModelId';
-import type { ResourceIdProject } from './ResourceIdProject';
+import { DatasetIdResourceId } from './DatasetIdResourceId';
+import { LayerCollectionResourceId } from './LayerCollectionResourceId';
+import { LayerResourceId } from './LayerResourceId';
+import { ModelIdResourceId } from './ModelIdResourceId';
+import { ProjectResourceId } from './ProjectResourceId';
 /**
  * @type ResourceId
  *
@@ -21,15 +21,15 @@ import type { ResourceIdProject } from './ResourceIdProject';
  */
 export type ResourceId = {
     type: 'DatasetId';
-} & ResourceIdDatasetId | {
+} & DatasetIdResourceId | {
     type: 'Layer';
-} & ResourceIdLayer | {
+} & LayerResourceId | {
     type: 'LayerCollection';
-} & ResourceIdLayerCollection | {
+} & LayerCollectionResourceId | {
     type: 'ModelId';
-} & ResourceIdModelId | {
+} & ModelIdResourceId | {
     type: 'Project';
-} & ResourceIdProject;
+} & ProjectResourceId;
 export declare function ResourceIdFromJSON(json: any): ResourceId;
 export declare function ResourceIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceId;
 export declare function ResourceIdToJSON(value?: ResourceId | null): any;

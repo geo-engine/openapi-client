@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { GdalDatasetParameters } from './GdalDatasetParameters';
 import {
     GdalDatasetParametersFromJSON,
@@ -43,7 +43,7 @@ export interface GdalLoadingInfoTemporalSlice {
      * @type {GdalDatasetParameters}
      * @memberof GdalLoadingInfoTemporalSlice
      */
-    params?: GdalDatasetParameters;
+    params?: GdalDatasetParameters | null;
     /**
      * 
      * @type {TimeInterval}
@@ -56,8 +56,10 @@ export interface GdalLoadingInfoTemporalSlice {
  * Check if a given object implements the GdalLoadingInfoTemporalSlice interface.
  */
 export function instanceOfGdalLoadingInfoTemporalSlice(value: object): boolean {
-    if (!('time' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "time" in value;
+
+    return isInstance;
 }
 
 export function GdalLoadingInfoTemporalSliceFromJSON(json: any): GdalLoadingInfoTemporalSlice {
@@ -65,26 +67,29 @@ export function GdalLoadingInfoTemporalSliceFromJSON(json: any): GdalLoadingInfo
 }
 
 export function GdalLoadingInfoTemporalSliceFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalLoadingInfoTemporalSlice {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
-        'params': json['params'] == null ? undefined : GdalDatasetParametersFromJSON(json['params']),
+        'cacheTtl': !exists(json, 'cacheTtl') ? undefined : json['cacheTtl'],
+        'params': !exists(json, 'params') ? undefined : GdalDatasetParametersFromJSON(json['params']),
         'time': TimeIntervalFromJSON(json['time']),
     };
 }
 
 export function GdalLoadingInfoTemporalSliceToJSON(value?: GdalLoadingInfoTemporalSlice | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'cacheTtl': value['cacheTtl'],
-        'params': GdalDatasetParametersToJSON(value['params']),
-        'time': TimeIntervalToJSON(value['time']),
+        'cacheTtl': value.cacheTtl,
+        'params': GdalDatasetParametersToJSON(value.params),
+        'time': TimeIntervalToJSON(value.time),
     };
 }
 

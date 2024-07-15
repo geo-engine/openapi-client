@@ -21,13 +21,11 @@ const TimeInterval_1 = require("./TimeInterval");
  * Check if a given object implements the PlotQueryRectangle interface.
  */
 function instanceOfPlotQueryRectangle(value) {
-    if (!('spatialBounds' in value))
-        return false;
-    if (!('spatialResolution' in value))
-        return false;
-    if (!('timeInterval' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "spatialBounds" in value;
+    isInstance = isInstance && "spatialResolution" in value;
+    isInstance = isInstance && "timeInterval" in value;
+    return isInstance;
 }
 exports.instanceOfPlotQueryRectangle = instanceOfPlotQueryRectangle;
 function PlotQueryRectangleFromJSON(json) {
@@ -35,7 +33,7 @@ function PlotQueryRectangleFromJSON(json) {
 }
 exports.PlotQueryRectangleFromJSON = PlotQueryRectangleFromJSON;
 function PlotQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,13 +44,16 @@ function PlotQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.PlotQueryRectangleFromJSONTyped = PlotQueryRectangleFromJSONTyped;
 function PlotQueryRectangleToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'spatialBounds': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value['spatialBounds']),
-        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value['spatialResolution']),
-        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
+        'spatialBounds': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value.spatialBounds),
+        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value.spatialResolution),
+        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value.timeInterval),
     };
 }
 exports.PlotQueryRectangleToJSON = PlotQueryRectangleToJSON;

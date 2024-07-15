@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,8 +31,10 @@ export interface AddCollection200Response {
  * Check if a given object implements the AddCollection200Response interface.
  */
 export function instanceOfAddCollection200Response(value: object): boolean {
-    if (!('id' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+
+    return isInstance;
 }
 
 export function AddCollection200ResponseFromJSON(json: any): AddCollection200Response {
@@ -40,7 +42,7 @@ export function AddCollection200ResponseFromJSON(json: any): AddCollection200Res
 }
 
 export function AddCollection200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddCollection200Response {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function AddCollection200ResponseFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function AddCollection200ResponseToJSON(value?: AddCollection200Response | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'id': value['id'],
+        'id': value.id,
     };
 }
 

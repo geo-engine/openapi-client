@@ -21,7 +21,7 @@ function PlotUpdateFromJSON(json) {
 }
 exports.PlotUpdateFromJSON = PlotUpdateFromJSON;
 function PlotUpdateFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     if ((0, Plot_1.instanceOfPlot)(json)) {
@@ -33,8 +33,11 @@ function PlotUpdateFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.PlotUpdateFromJSONTyped = PlotUpdateFromJSONTyped;
 function PlotUpdateToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     if (typeof value === 'object' && (0, Plot_1.instanceOfPlot)(value)) {
         return (0, Plot_1.PlotToJSON)(value);

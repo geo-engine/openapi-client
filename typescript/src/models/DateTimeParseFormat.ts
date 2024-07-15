@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,10 +43,12 @@ export interface DateTimeParseFormat {
  * Check if a given object implements the DateTimeParseFormat interface.
  */
 export function instanceOfDateTimeParseFormat(value: object): boolean {
-    if (!('fmt' in value)) return false;
-    if (!('hasTime' in value)) return false;
-    if (!('hasTz' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "fmt" in value;
+    isInstance = isInstance && "hasTime" in value;
+    isInstance = isInstance && "hasTz" in value;
+
+    return isInstance;
 }
 
 export function DateTimeParseFormatFromJSON(json: any): DateTimeParseFormat {
@@ -54,7 +56,7 @@ export function DateTimeParseFormatFromJSON(json: any): DateTimeParseFormat {
 }
 
 export function DateTimeParseFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): DateTimeParseFormat {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -66,14 +68,17 @@ export function DateTimeParseFormatFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function DateTimeParseFormatToJSON(value?: DateTimeParseFormat | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'fmt': value['fmt'],
-        'has_time': value['hasTime'],
-        'has_tz': value['hasTz'],
+        'fmt': value.fmt,
+        'has_time': value.hasTime,
+        'has_tz': value.hasTz,
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,11 @@ export interface UserCredentials {
  * Check if a given object implements the UserCredentials interface.
  */
 export function instanceOfUserCredentials(value: object): boolean {
-    if (!('email' in value)) return false;
-    if (!('password' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "email" in value;
+    isInstance = isInstance && "password" in value;
+
+    return isInstance;
 }
 
 export function UserCredentialsFromJSON(json: any): UserCredentials {
@@ -47,7 +49,7 @@ export function UserCredentialsFromJSON(json: any): UserCredentials {
 }
 
 export function UserCredentialsFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserCredentials {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -58,13 +60,16 @@ export function UserCredentialsFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function UserCredentialsToJSON(value?: UserCredentials | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'email': value['email'],
-        'password': value['password'],
+        'email': value.email,
+        'password': value.password,
     };
 }
 

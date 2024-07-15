@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,8 +31,10 @@ export interface DataPathOneOf1 {
  * Check if a given object implements the DataPathOneOf1 interface.
  */
 export function instanceOfDataPathOneOf1(value: object): boolean {
-    if (!('upload' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "upload" in value;
+
+    return isInstance;
 }
 
 export function DataPathOneOf1FromJSON(json: any): DataPathOneOf1 {
@@ -40,7 +42,7 @@ export function DataPathOneOf1FromJSON(json: any): DataPathOneOf1 {
 }
 
 export function DataPathOneOf1FromJSONTyped(json: any, ignoreDiscriminator: boolean): DataPathOneOf1 {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function DataPathOneOf1FromJSONTyped(json: any, ignoreDiscriminator: bool
 }
 
 export function DataPathOneOf1ToJSON(value?: DataPathOneOf1 | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'upload': value['upload'],
+        'upload': value.upload,
     };
 }
 

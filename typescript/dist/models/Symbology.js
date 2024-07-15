@@ -14,45 +14,48 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SymbologyToJSON = exports.SymbologyFromJSONTyped = exports.SymbologyFromJSON = void 0;
-const LineSymbology_1 = require("./LineSymbology");
-const PointSymbology_1 = require("./PointSymbology");
-const PolygonSymbology_1 = require("./PolygonSymbology");
-const RasterSymbology_1 = require("./RasterSymbology");
+const LineSymbologyWithType_1 = require("./LineSymbologyWithType");
+const PointSymbologyWithType_1 = require("./PointSymbologyWithType");
+const PolygonSymbologyWithType_1 = require("./PolygonSymbologyWithType");
+const RasterSymbologyWithType_1 = require("./RasterSymbologyWithType");
 function SymbologyFromJSON(json) {
     return SymbologyFromJSONTyped(json, false);
 }
 exports.SymbologyFromJSON = SymbologyFromJSON;
 function SymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'line':
-            return Object.assign(Object.assign({}, (0, LineSymbology_1.LineSymbologyFromJSONTyped)(json, true)), { type: 'line' });
+            return Object.assign(Object.assign({}, (0, LineSymbologyWithType_1.LineSymbologyWithTypeFromJSONTyped)(json, true)), { type: 'line' });
         case 'point':
-            return Object.assign(Object.assign({}, (0, PointSymbology_1.PointSymbologyFromJSONTyped)(json, true)), { type: 'point' });
+            return Object.assign(Object.assign({}, (0, PointSymbologyWithType_1.PointSymbologyWithTypeFromJSONTyped)(json, true)), { type: 'point' });
         case 'polygon':
-            return Object.assign(Object.assign({}, (0, PolygonSymbology_1.PolygonSymbologyFromJSONTyped)(json, true)), { type: 'polygon' });
+            return Object.assign(Object.assign({}, (0, PolygonSymbologyWithType_1.PolygonSymbologyWithTypeFromJSONTyped)(json, true)), { type: 'polygon' });
         case 'raster':
-            return Object.assign(Object.assign({}, (0, RasterSymbology_1.RasterSymbologyFromJSONTyped)(json, true)), { type: 'raster' });
+            return Object.assign(Object.assign({}, (0, RasterSymbologyWithType_1.RasterSymbologyWithTypeFromJSONTyped)(json, true)), { type: 'raster' });
         default:
             throw new Error(`No variant of Symbology exists with 'type=${json['type']}'`);
     }
 }
 exports.SymbologyFromJSONTyped = SymbologyFromJSONTyped;
 function SymbologyToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'line':
-            return (0, LineSymbology_1.LineSymbologyToJSON)(value);
+            return (0, LineSymbologyWithType_1.LineSymbologyWithTypeToJSON)(value);
         case 'point':
-            return (0, PointSymbology_1.PointSymbologyToJSON)(value);
+            return (0, PointSymbologyWithType_1.PointSymbologyWithTypeToJSON)(value);
         case 'polygon':
-            return (0, PolygonSymbology_1.PolygonSymbologyToJSON)(value);
+            return (0, PolygonSymbologyWithType_1.PolygonSymbologyWithTypeToJSON)(value);
         case 'raster':
-            return (0, RasterSymbology_1.RasterSymbologyToJSON)(value);
+            return (0, RasterSymbologyWithType_1.RasterSymbologyWithTypeToJSON)(value);
         default:
             throw new Error(`No variant of Symbology exists with 'type=${value['type']}'`);
     }

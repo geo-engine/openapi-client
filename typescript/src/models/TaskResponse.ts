@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * Create a task somewhere and respond with a task id to query the task status.
  * @export
@@ -31,8 +31,10 @@ export interface TaskResponse {
  * Check if a given object implements the TaskResponse interface.
  */
 export function instanceOfTaskResponse(value: object): boolean {
-    if (!('taskId' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "taskId" in value;
+
+    return isInstance;
 }
 
 export function TaskResponseFromJSON(json: any): TaskResponse {
@@ -40,7 +42,7 @@ export function TaskResponseFromJSON(json: any): TaskResponse {
 }
 
 export function TaskResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskResponse {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function TaskResponseFromJSONTyped(json: any, ignoreDiscriminator: boolea
 }
 
 export function TaskResponseToJSON(value?: TaskResponse | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'taskId': value['taskId'],
+        'taskId': value.taskId,
     };
 }
 

@@ -14,16 +14,16 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SearchCapabilitiesToJSON = exports.SearchCapabilitiesFromJSONTyped = exports.SearchCapabilitiesFromJSON = exports.instanceOfSearchCapabilities = void 0;
+const runtime_1 = require("../runtime");
 const SearchTypes_1 = require("./SearchTypes");
 /**
  * Check if a given object implements the SearchCapabilities interface.
  */
 function instanceOfSearchCapabilities(value) {
-    if (!('autocomplete' in value))
-        return false;
-    if (!('searchTypes' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "autocomplete" in value;
+    isInstance = isInstance && "searchTypes" in value;
+    return isInstance;
 }
 exports.instanceOfSearchCapabilities = instanceOfSearchCapabilities;
 function SearchCapabilitiesFromJSON(json) {
@@ -31,24 +31,27 @@ function SearchCapabilitiesFromJSON(json) {
 }
 exports.SearchCapabilitiesFromJSON = SearchCapabilitiesFromJSON;
 function SearchCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'autocomplete': json['autocomplete'],
-        'filters': json['filters'] == null ? undefined : json['filters'],
+        'filters': !(0, runtime_1.exists)(json, 'filters') ? undefined : json['filters'],
         'searchTypes': (0, SearchTypes_1.SearchTypesFromJSON)(json['searchTypes']),
     };
 }
 exports.SearchCapabilitiesFromJSONTyped = SearchCapabilitiesFromJSONTyped;
 function SearchCapabilitiesToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'autocomplete': value['autocomplete'],
-        'filters': value['filters'],
-        'searchTypes': (0, SearchTypes_1.SearchTypesToJSON)(value['searchTypes']),
+        'autocomplete': value.autocomplete,
+        'filters': value.filters,
+        'searchTypes': (0, SearchTypes_1.SearchTypesToJSON)(value.searchTypes),
     };
 }
 exports.SearchCapabilitiesToJSON = SearchCapabilitiesToJSON;

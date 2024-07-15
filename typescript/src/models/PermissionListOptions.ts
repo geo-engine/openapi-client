@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,11 @@ export interface PermissionListOptions {
  * Check if a given object implements the PermissionListOptions interface.
  */
 export function instanceOfPermissionListOptions(value: object): boolean {
-    if (!('limit' in value)) return false;
-    if (!('offset' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "limit" in value;
+    isInstance = isInstance && "offset" in value;
+
+    return isInstance;
 }
 
 export function PermissionListOptionsFromJSON(json: any): PermissionListOptions {
@@ -47,7 +49,7 @@ export function PermissionListOptionsFromJSON(json: any): PermissionListOptions 
 }
 
 export function PermissionListOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): PermissionListOptions {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -58,13 +60,16 @@ export function PermissionListOptionsFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function PermissionListOptionsToJSON(value?: PermissionListOptions | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'limit': value['limit'],
-        'offset': value['offset'],
+        'limit': value.limit,
+        'offset': value.offset,
     };
 }
 

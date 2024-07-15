@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { CsvHeader } from './CsvHeader';
 import {
     CsvHeaderFromJSON,
@@ -38,8 +38,10 @@ export interface FormatSpecificsOneOfCsv {
  * Check if a given object implements the FormatSpecificsOneOfCsv interface.
  */
 export function instanceOfFormatSpecificsOneOfCsv(value: object): boolean {
-    if (!('header' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "header" in value;
+
+    return isInstance;
 }
 
 export function FormatSpecificsOneOfCsvFromJSON(json: any): FormatSpecificsOneOfCsv {
@@ -47,7 +49,7 @@ export function FormatSpecificsOneOfCsvFromJSON(json: any): FormatSpecificsOneOf
 }
 
 export function FormatSpecificsOneOfCsvFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatSpecificsOneOfCsv {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -57,12 +59,15 @@ export function FormatSpecificsOneOfCsvFromJSONTyped(json: any, ignoreDiscrimina
 }
 
 export function FormatSpecificsOneOfCsvToJSON(value?: FormatSpecificsOneOfCsv | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'header': CsvHeaderToJSON(value['header']),
+        'header': CsvHeaderToJSON(value.header),
     };
 }
 

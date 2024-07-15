@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { Coordinate2D } from './Coordinate2D';
 import {
     Coordinate2DFromJSON,
@@ -38,8 +38,10 @@ export interface MultiPolygon {
  * Check if a given object implements the MultiPolygon interface.
  */
 export function instanceOfMultiPolygon(value: object): boolean {
-    if (!('polygons' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "polygons" in value;
+
+    return isInstance;
 }
 
 export function MultiPolygonFromJSON(json: any): MultiPolygon {
@@ -47,7 +49,7 @@ export function MultiPolygonFromJSON(json: any): MultiPolygon {
 }
 
 export function MultiPolygonFromJSONTyped(json: any, ignoreDiscriminator: boolean): MultiPolygon {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -57,12 +59,15 @@ export function MultiPolygonFromJSONTyped(json: any, ignoreDiscriminator: boolea
 }
 
 export function MultiPolygonToJSON(value?: MultiPolygon | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'polygons': value['polygons'],
+        'polygons': value.polygons,
     };
 }
 

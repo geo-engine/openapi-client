@@ -11,42 +11,44 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 import { STRectangleFromJSON, STRectangleToJSON, } from './STRectangle';
 import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
 /**
  * Check if a given object implements the CreateProject interface.
  */
 export function instanceOfCreateProject(value) {
-    if (!('bounds' in value))
-        return false;
-    if (!('description' in value))
-        return false;
-    if (!('name' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "bounds" in value;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "name" in value;
+    return isInstance;
 }
 export function CreateProjectFromJSON(json) {
     return CreateProjectFromJSONTyped(json, false);
 }
 export function CreateProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'bounds': STRectangleFromJSON(json['bounds']),
         'description': json['description'],
         'name': json['name'],
-        'timeStep': json['timeStep'] == null ? undefined : TimeStepFromJSON(json['timeStep']),
+        'timeStep': !exists(json, 'timeStep') ? undefined : TimeStepFromJSON(json['timeStep']),
     };
 }
 export function CreateProjectToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bounds': STRectangleToJSON(value['bounds']),
-        'description': value['description'],
-        'name': value['name'],
-        'timeStep': TimeStepToJSON(value['timeStep']),
+        'bounds': STRectangleToJSON(value.bounds),
+        'description': value.description,
+        'name': value.name,
+        'timeStep': TimeStepToJSON(value.timeStep),
     };
 }

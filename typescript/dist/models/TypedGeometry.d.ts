@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TypedGeometryOneOf } from './TypedGeometryOneOf';
-import type { TypedGeometryOneOf1 } from './TypedGeometryOneOf1';
-import type { TypedGeometryOneOf2 } from './TypedGeometryOneOf2';
-import type { TypedGeometryOneOf3 } from './TypedGeometryOneOf3';
+import { TypedGeometryOneOf } from './TypedGeometryOneOf';
+import { TypedGeometryOneOf1 } from './TypedGeometryOneOf1';
+import { TypedGeometryOneOf2 } from './TypedGeometryOneOf2';
+import { TypedGeometryOneOf3 } from './TypedGeometryOneOf3';
 /**
  * @type TypedGeometry
  *

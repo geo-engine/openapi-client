@@ -12,29 +12,29 @@
  * Do not edit the class manually.
  */
 
-import type { TypedGeometryOneOf } from './TypedGeometryOneOf';
 import {
+    TypedGeometryOneOf,
     instanceOfTypedGeometryOneOf,
     TypedGeometryOneOfFromJSON,
     TypedGeometryOneOfFromJSONTyped,
     TypedGeometryOneOfToJSON,
 } from './TypedGeometryOneOf';
-import type { TypedGeometryOneOf1 } from './TypedGeometryOneOf1';
 import {
+    TypedGeometryOneOf1,
     instanceOfTypedGeometryOneOf1,
     TypedGeometryOneOf1FromJSON,
     TypedGeometryOneOf1FromJSONTyped,
     TypedGeometryOneOf1ToJSON,
 } from './TypedGeometryOneOf1';
-import type { TypedGeometryOneOf2 } from './TypedGeometryOneOf2';
 import {
+    TypedGeometryOneOf2,
     instanceOfTypedGeometryOneOf2,
     TypedGeometryOneOf2FromJSON,
     TypedGeometryOneOf2FromJSONTyped,
     TypedGeometryOneOf2ToJSON,
 } from './TypedGeometryOneOf2';
-import type { TypedGeometryOneOf3 } from './TypedGeometryOneOf3';
 import {
+    TypedGeometryOneOf3,
     instanceOfTypedGeometryOneOf3,
     TypedGeometryOneOf3FromJSON,
     TypedGeometryOneOf3FromJSONTyped,
@@ -53,15 +53,18 @@ export function TypedGeometryFromJSON(json: any): TypedGeometry {
 }
 
 export function TypedGeometryFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedGeometry {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return { ...TypedGeometryOneOfFromJSONTyped(json, true), ...TypedGeometryOneOf1FromJSONTyped(json, true), ...TypedGeometryOneOf2FromJSONTyped(json, true), ...TypedGeometryOneOf3FromJSONTyped(json, true) };
 }
 
 export function TypedGeometryToJSON(value?: TypedGeometry | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
 
     if (instanceOfTypedGeometryOneOf(value)) {

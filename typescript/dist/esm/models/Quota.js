@@ -15,17 +15,16 @@
  * Check if a given object implements the Quota interface.
  */
 export function instanceOfQuota(value) {
-    if (!('available' in value))
-        return false;
-    if (!('used' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "available" in value;
+    isInstance = isInstance && "used" in value;
+    return isInstance;
 }
 export function QuotaFromJSON(json) {
     return QuotaFromJSONTyped(json, false);
 }
 export function QuotaFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -34,11 +33,14 @@ export function QuotaFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function QuotaToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'available': value['available'],
-        'used': value['used'],
+        'available': value.available,
+        'used': value.used,
     };
 }

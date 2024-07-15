@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { BoundingBox2D } from './BoundingBox2D';
 import {
     BoundingBox2DFromJSON,
@@ -56,10 +56,12 @@ export interface STRectangle {
  * Check if a given object implements the STRectangle interface.
  */
 export function instanceOfSTRectangle(value: object): boolean {
-    if (!('boundingBox' in value)) return false;
-    if (!('spatialReference' in value)) return false;
-    if (!('timeInterval' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "boundingBox" in value;
+    isInstance = isInstance && "spatialReference" in value;
+    isInstance = isInstance && "timeInterval" in value;
+
+    return isInstance;
 }
 
 export function STRectangleFromJSON(json: any): STRectangle {
@@ -67,7 +69,7 @@ export function STRectangleFromJSON(json: any): STRectangle {
 }
 
 export function STRectangleFromJSONTyped(json: any, ignoreDiscriminator: boolean): STRectangle {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -79,14 +81,17 @@ export function STRectangleFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function STRectangleToJSON(value?: STRectangle | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'boundingBox': BoundingBox2DToJSON(value['boundingBox']),
-        'spatialReference': value['spatialReference'],
-        'timeInterval': TimeIntervalToJSON(value['timeInterval']),
+        'boundingBox': BoundingBox2DToJSON(value.boundingBox),
+        'spatialReference': value.spatialReference,
+        'timeInterval': TimeIntervalToJSON(value.timeInterval),
     };
 }
 

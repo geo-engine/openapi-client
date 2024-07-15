@@ -19,9 +19,9 @@ const MultiPoint_1 = require("./MultiPoint");
  * Check if a given object implements the TypedGeometryOneOf1 interface.
  */
 function instanceOfTypedGeometryOneOf1(value) {
-    if (!('multiPoint' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "multiPoint" in value;
+    return isInstance;
 }
 exports.instanceOfTypedGeometryOneOf1 = instanceOfTypedGeometryOneOf1;
 function TypedGeometryOneOf1FromJSON(json) {
@@ -29,7 +29,7 @@ function TypedGeometryOneOf1FromJSON(json) {
 }
 exports.TypedGeometryOneOf1FromJSON = TypedGeometryOneOf1FromJSON;
 function TypedGeometryOneOf1FromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -38,11 +38,14 @@ function TypedGeometryOneOf1FromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.TypedGeometryOneOf1FromJSONTyped = TypedGeometryOneOf1FromJSONTyped;
 function TypedGeometryOneOf1ToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'MultiPoint': (0, MultiPoint_1.MultiPointToJSON)(value['multiPoint']),
+        'MultiPoint': (0, MultiPoint_1.MultiPointToJSON)(value.multiPoint),
     };
 }
 exports.TypedGeometryOneOf1ToJSON = TypedGeometryOneOf1ToJSON;

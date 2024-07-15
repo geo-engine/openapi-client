@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.ogr_meta_data import OgrMetaData
+from geoengine_openapi_client.models.ogr_meta_data import OgrMetaData  # noqa: E501
 
 class TestOgrMetaData(unittest.TestCase):
     """OgrMetaData unit test stubs"""
@@ -33,7 +34,7 @@ class TestOgrMetaData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `OgrMetaData`
         """
-        model = OgrMetaData()
+        model = OgrMetaData()  # noqa: E501
         if include_optional:
             return OgrMetaData(
                 loading_info = geoengine_openapi_client.models.ogr_source_dataset.OgrSourceDataset(
@@ -58,8 +59,7 @@ class TestOgrMetaData(unittest.TestCase):
                         }, 
                     data_type = 'Data', 
                     spatial_reference = '', 
-                    time = null, ),
-                type = 'OgrMetaData'
+                    time = null, )
             )
         else:
             return OgrMetaData(
@@ -86,7 +86,6 @@ class TestOgrMetaData(unittest.TestCase):
                     data_type = 'Data', 
                     spatial_reference = '', 
                     time = null, ),
-                type = 'OgrMetaData',
         )
         """
 

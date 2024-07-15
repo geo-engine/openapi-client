@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,11 @@ export interface ProjectVersion {
  * Check if a given object implements the ProjectVersion interface.
  */
 export function instanceOfProjectVersion(value: object): boolean {
-    if (!('changed' in value)) return false;
-    if (!('id' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "changed" in value;
+    isInstance = isInstance && "id" in value;
+
+    return isInstance;
 }
 
 export function ProjectVersionFromJSON(json: any): ProjectVersion {
@@ -47,7 +49,7 @@ export function ProjectVersionFromJSON(json: any): ProjectVersion {
 }
 
 export function ProjectVersionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectVersion {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -58,13 +60,16 @@ export function ProjectVersionFromJSONTyped(json: any, ignoreDiscriminator: bool
 }
 
 export function ProjectVersionToJSON(value?: ProjectVersion | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'changed': ((value['changed']).toISOString()),
-        'id': value['id'],
+        'changed': (value.changed.toISOString()),
+        'id': value.id,
     };
 }
 

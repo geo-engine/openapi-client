@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { TaskStatus } from './TaskStatus';
 import {
     TaskStatusFromJSON,
@@ -42,8 +42,10 @@ export interface _TaskStatusWithId /* extends TaskStatus */ {
  * Check if a given object implements the TaskStatusWithId interface.
  */
 export function instanceOfTaskStatusWithId(value: object): boolean {
-    if (!('taskId' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "taskId" in value;
+
+    return isInstance;
 }
 
 export function TaskStatusWithIdFromJSON(json: any): TaskStatusWithId {
@@ -51,7 +53,7 @@ export function TaskStatusWithIdFromJSON(json: any): TaskStatusWithId {
 }
 
 export function TaskStatusWithIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatusWithId {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -61,12 +63,15 @@ export function TaskStatusWithIdFromJSONTyped(json: any, ignoreDiscriminator: bo
 }
 
 export function TaskStatusWithIdToJSON(value?: TaskStatusWithId | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         ...TaskStatusToJSON(value),
-        'taskId': value['taskId'],
+        'taskId': value.taskId,
     };
 }
 

@@ -29,20 +29,7 @@ export interface MockMetaData {
      * @memberof MockMetaData
      */
     resultDescriptor: VectorResultDescriptor;
-    /**
-     *
-     * @type {string}
-     * @memberof MockMetaData
-     */
-    type: MockMetaDataTypeEnum;
 }
-/**
- * @export
- */
-export declare const MockMetaDataTypeEnum: {
-    readonly MockMetaData: "MockMetaData";
-};
-export type MockMetaDataTypeEnum = typeof MockMetaDataTypeEnum[keyof typeof MockMetaDataTypeEnum];
 /**
  * Check if a given object implements the MockMetaData interface.
  */

@@ -11,33 +11,36 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { LayerCollectionListingFromJSONTyped, LayerCollectionListingToJSON, } from './LayerCollectionListing';
-import { LayerListingFromJSONTyped, LayerListingToJSON, } from './LayerListing';
+import { LayerCollectionListingWithTypeFromJSONTyped, LayerCollectionListingWithTypeToJSON, } from './LayerCollectionListingWithType';
+import { LayerListingWithTypeFromJSONTyped, LayerListingWithTypeToJSON, } from './LayerListingWithType';
 export function CollectionItemFromJSON(json) {
     return CollectionItemFromJSONTyped(json, false);
 }
 export function CollectionItemFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'collection':
-            return Object.assign(Object.assign({}, LayerCollectionListingFromJSONTyped(json, true)), { type: 'collection' });
+            return Object.assign(Object.assign({}, LayerCollectionListingWithTypeFromJSONTyped(json, true)), { type: 'collection' });
         case 'layer':
-            return Object.assign(Object.assign({}, LayerListingFromJSONTyped(json, true)), { type: 'layer' });
+            return Object.assign(Object.assign({}, LayerListingWithTypeFromJSONTyped(json, true)), { type: 'layer' });
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }
 }
 export function CollectionItemToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'collection':
-            return LayerCollectionListingToJSON(value);
+            return LayerCollectionListingWithTypeToJSON(value);
         case 'layer':
-            return LayerListingToJSON(value);
+            return LayerListingWithTypeToJSON(value);
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${value['type']}'`);
     }

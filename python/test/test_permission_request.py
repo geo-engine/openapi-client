@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.permission_request import PermissionRequest
+from geoengine_openapi_client.models.permission_request import PermissionRequest  # noqa: E501
 
 class TestPermissionRequest(unittest.TestCase):
     """PermissionRequest unit test stubs"""
@@ -33,7 +34,7 @@ class TestPermissionRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PermissionRequest`
         """
-        model = PermissionRequest()
+        model = PermissionRequest()  # noqa: E501
         if include_optional:
             return PermissionRequest(
                 permission = 'Read',

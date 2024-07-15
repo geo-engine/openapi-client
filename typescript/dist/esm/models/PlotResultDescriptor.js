@@ -11,36 +11,40 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 /**
  * Check if a given object implements the PlotResultDescriptor interface.
  */
 export function instanceOfPlotResultDescriptor(value) {
-    if (!('spatialReference' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "spatialReference" in value;
+    return isInstance;
 }
 export function PlotResultDescriptorFromJSON(json) {
     return PlotResultDescriptorFromJSONTyped(json, false);
 }
 export function PlotResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'bbox': json['bbox'] == null ? undefined : BoundingBox2DFromJSON(json['bbox']),
+        'bbox': !exists(json, 'bbox') ? undefined : BoundingBox2DFromJSON(json['bbox']),
         'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
     };
 }
 export function PlotResultDescriptorToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bbox': BoundingBox2DToJSON(value['bbox']),
-        'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
+        'bbox': BoundingBox2DToJSON(value.bbox),
+        'spatialReference': value.spatialReference,
+        'time': TimeIntervalToJSON(value.time),
     };
 }

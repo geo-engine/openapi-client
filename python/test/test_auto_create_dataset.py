@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.auto_create_dataset import AutoCreateDataset
+from geoengine_openapi_client.models.auto_create_dataset import AutoCreateDataset  # noqa: E501
 
 class TestAutoCreateDataset(unittest.TestCase):
     """AutoCreateDataset unit test stubs"""
@@ -33,7 +34,7 @@ class TestAutoCreateDataset(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AutoCreateDataset`
         """
-        model = AutoCreateDataset()
+        model = AutoCreateDataset()  # noqa: E501
         if include_optional:
             return AutoCreateDataset(
                 dataset_description = '',

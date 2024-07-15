@@ -12,77 +12,80 @@
  * Do not edit the class manually.
  */
 
-import type { TaskStatusAborted } from './TaskStatusAborted';
 import {
-    instanceOfTaskStatusAborted,
-    TaskStatusAbortedFromJSON,
-    TaskStatusAbortedFromJSONTyped,
-    TaskStatusAbortedToJSON,
-} from './TaskStatusAborted';
-import type { TaskStatusCompleted } from './TaskStatusCompleted';
+    AbortedTaskStatus,
+    instanceOfAbortedTaskStatus,
+    AbortedTaskStatusFromJSON,
+    AbortedTaskStatusFromJSONTyped,
+    AbortedTaskStatusToJSON,
+} from './AbortedTaskStatus';
 import {
-    instanceOfTaskStatusCompleted,
-    TaskStatusCompletedFromJSON,
-    TaskStatusCompletedFromJSONTyped,
-    TaskStatusCompletedToJSON,
-} from './TaskStatusCompleted';
-import type { TaskStatusFailed } from './TaskStatusFailed';
+    CompletedTaskStatus,
+    instanceOfCompletedTaskStatus,
+    CompletedTaskStatusFromJSON,
+    CompletedTaskStatusFromJSONTyped,
+    CompletedTaskStatusToJSON,
+} from './CompletedTaskStatus';
 import {
-    instanceOfTaskStatusFailed,
-    TaskStatusFailedFromJSON,
-    TaskStatusFailedFromJSONTyped,
-    TaskStatusFailedToJSON,
-} from './TaskStatusFailed';
-import type { TaskStatusRunning } from './TaskStatusRunning';
+    FailedTaskStatus,
+    instanceOfFailedTaskStatus,
+    FailedTaskStatusFromJSON,
+    FailedTaskStatusFromJSONTyped,
+    FailedTaskStatusToJSON,
+} from './FailedTaskStatus';
 import {
-    instanceOfTaskStatusRunning,
-    TaskStatusRunningFromJSON,
-    TaskStatusRunningFromJSONTyped,
-    TaskStatusRunningToJSON,
-} from './TaskStatusRunning';
+    RunningTaskStatus,
+    instanceOfRunningTaskStatus,
+    RunningTaskStatusFromJSON,
+    RunningTaskStatusFromJSONTyped,
+    RunningTaskStatusToJSON,
+} from './RunningTaskStatus';
 
 /**
  * @type TaskStatus
  * 
  * @export
  */
-export type TaskStatus = { status: 'aborted' } & TaskStatusAborted | { status: 'completed' } & TaskStatusCompleted | { status: 'failed' } & TaskStatusFailed | { status: 'running' } & TaskStatusRunning;
+export type TaskStatus = { status: 'aborted' } & AbortedTaskStatus | { status: 'completed' } & CompletedTaskStatus | { status: 'failed' } & FailedTaskStatus | { status: 'running' } & RunningTaskStatus;
 
 export function TaskStatusFromJSON(json: any): TaskStatus {
     return TaskStatusFromJSONTyped(json, false);
 }
 
 export function TaskStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatus {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['status']) {
         case 'aborted':
-            return {...TaskStatusAbortedFromJSONTyped(json, true), status: 'aborted'};
+            return {...AbortedTaskStatusFromJSONTyped(json, true), status: 'aborted'};
         case 'completed':
-            return {...TaskStatusCompletedFromJSONTyped(json, true), status: 'completed'};
+            return {...CompletedTaskStatusFromJSONTyped(json, true), status: 'completed'};
         case 'failed':
-            return {...TaskStatusFailedFromJSONTyped(json, true), status: 'failed'};
+            return {...FailedTaskStatusFromJSONTyped(json, true), status: 'failed'};
         case 'running':
-            return {...TaskStatusRunningFromJSONTyped(json, true), status: 'running'};
+            return {...RunningTaskStatusFromJSONTyped(json, true), status: 'running'};
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${json['status']}'`);
     }
 }
 
 export function TaskStatusToJSON(value?: TaskStatus | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['status']) {
         case 'aborted':
-            return TaskStatusAbortedToJSON(value);
+            return AbortedTaskStatusToJSON(value);
         case 'completed':
-            return TaskStatusCompletedToJSON(value);
+            return CompletedTaskStatusToJSON(value);
         case 'failed':
-            return TaskStatusFailedToJSON(value);
+            return FailedTaskStatusToJSON(value);
         case 'running':
-            return TaskStatusRunningToJSON(value);
+            return RunningTaskStatusToJSON(value);
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${value['status']}'`);
     }

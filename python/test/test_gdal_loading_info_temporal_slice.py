@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.gdal_loading_info_temporal_slice import GdalLoadingInfoTemporalSlice
+from geoengine_openapi_client.models.gdal_loading_info_temporal_slice import GdalLoadingInfoTemporalSlice  # noqa: E501
 
 class TestGdalLoadingInfoTemporalSlice(unittest.TestCase):
     """GdalLoadingInfoTemporalSlice unit test stubs"""
@@ -33,7 +34,7 @@ class TestGdalLoadingInfoTemporalSlice(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GdalLoadingInfoTemporalSlice`
         """
-        model = GdalLoadingInfoTemporalSlice()
+        model = GdalLoadingInfoTemporalSlice()  # noqa: E501
         if include_optional:
             return GdalLoadingInfoTemporalSlice(
                 cache_ttl = 0,

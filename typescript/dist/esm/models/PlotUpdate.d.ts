@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Plot } from './Plot';
-import type { ProjectUpdateToken } from './ProjectUpdateToken';
+import { Plot } from './Plot';
+import { ProjectUpdateToken } from './ProjectUpdateToken';
 /**
  * @type PlotUpdate
  *

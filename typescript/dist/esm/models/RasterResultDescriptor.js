@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 import { RasterBandDescriptorFromJSON, RasterBandDescriptorToJSON, } from './RasterBandDescriptor';
 import { RasterDataTypeFromJSON, RasterDataTypeToJSON, } from './RasterDataType';
 import { SpatialPartition2DFromJSON, SpatialPartition2DToJSON, } from './SpatialPartition2D';
@@ -20,40 +21,41 @@ import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
  * Check if a given object implements the RasterResultDescriptor interface.
  */
 export function instanceOfRasterResultDescriptor(value) {
-    if (!('bands' in value))
-        return false;
-    if (!('dataType' in value))
-        return false;
-    if (!('spatialReference' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "bands" in value;
+    isInstance = isInstance && "dataType" in value;
+    isInstance = isInstance && "spatialReference" in value;
+    return isInstance;
 }
 export function RasterResultDescriptorFromJSON(json) {
     return RasterResultDescriptorFromJSONTyped(json, false);
 }
 export function RasterResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'bands': (json['bands'].map(RasterBandDescriptorFromJSON)),
-        'bbox': json['bbox'] == null ? undefined : SpatialPartition2DFromJSON(json['bbox']),
+        'bbox': !exists(json, 'bbox') ? undefined : SpatialPartition2DFromJSON(json['bbox']),
         'dataType': RasterDataTypeFromJSON(json['dataType']),
-        'resolution': json['resolution'] == null ? undefined : SpatialResolutionFromJSON(json['resolution']),
+        'resolution': !exists(json, 'resolution') ? undefined : SpatialResolutionFromJSON(json['resolution']),
         'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
     };
 }
 export function RasterResultDescriptorToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bands': (value['bands'].map(RasterBandDescriptorToJSON)),
-        'bbox': SpatialPartition2DToJSON(value['bbox']),
-        'dataType': RasterDataTypeToJSON(value['dataType']),
-        'resolution': SpatialResolutionToJSON(value['resolution']),
-        'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
+        'bands': (value.bands.map(RasterBandDescriptorToJSON)),
+        'bbox': SpatialPartition2DToJSON(value.bbox),
+        'dataType': RasterDataTypeToJSON(value.dataType),
+        'resolution': SpatialResolutionToJSON(value.resolution),
+        'spatialReference': value.spatialReference,
+        'time': TimeIntervalToJSON(value.time),
     };
 }

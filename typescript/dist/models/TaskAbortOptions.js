@@ -14,11 +14,13 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TaskAbortOptionsToJSON = exports.TaskAbortOptionsFromJSONTyped = exports.TaskAbortOptionsFromJSON = exports.instanceOfTaskAbortOptions = void 0;
+const runtime_1 = require("../runtime");
 /**
  * Check if a given object implements the TaskAbortOptions interface.
  */
 function instanceOfTaskAbortOptions(value) {
-    return true;
+    let isInstance = true;
+    return isInstance;
 }
 exports.instanceOfTaskAbortOptions = instanceOfTaskAbortOptions;
 function TaskAbortOptionsFromJSON(json) {
@@ -26,20 +28,23 @@ function TaskAbortOptionsFromJSON(json) {
 }
 exports.TaskAbortOptionsFromJSON = TaskAbortOptionsFromJSON;
 function TaskAbortOptionsFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'force': json['force'] == null ? undefined : json['force'],
+        'force': !(0, runtime_1.exists)(json, 'force') ? undefined : json['force'],
     };
 }
 exports.TaskAbortOptionsFromJSONTyped = TaskAbortOptionsFromJSONTyped;
 function TaskAbortOptionsToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'force': value['force'],
+        'force': value.force,
     };
 }
 exports.TaskAbortOptionsToJSON = TaskAbortOptionsToJSON;

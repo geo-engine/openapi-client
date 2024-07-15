@@ -17,19 +17,17 @@ import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
  * Check if a given object implements the STRectangle interface.
  */
 export function instanceOfSTRectangle(value) {
-    if (!('boundingBox' in value))
-        return false;
-    if (!('spatialReference' in value))
-        return false;
-    if (!('timeInterval' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "boundingBox" in value;
+    isInstance = isInstance && "spatialReference" in value;
+    isInstance = isInstance && "timeInterval" in value;
+    return isInstance;
 }
 export function STRectangleFromJSON(json) {
     return STRectangleFromJSONTyped(json, false);
 }
 export function STRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -39,12 +37,15 @@ export function STRectangleFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function STRectangleToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'boundingBox': BoundingBox2DToJSON(value['boundingBox']),
-        'spatialReference': value['spatialReference'],
-        'timeInterval': TimeIntervalToJSON(value['timeInterval']),
+        'boundingBox': BoundingBox2DToJSON(value.boundingBox),
+        'spatialReference': value.spatialReference,
+        'timeInterval': TimeIntervalToJSON(value.timeInterval),
     };
 }

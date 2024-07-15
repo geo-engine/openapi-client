@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.datasets_api import DatasetsApi
+from geoengine_openapi_client.api.datasets_api import DatasetsApi  # noqa: E501
 
 
 class TestDatasetsApi(unittest.TestCase):
     """DatasetsApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = DatasetsApi()
+        self.api = DatasetsApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,63 +30,63 @@ class TestDatasetsApi(unittest.TestCase):
     def test_auto_create_dataset_handler(self) -> None:
         """Test case for auto_create_dataset_handler
 
-        Creates a new dataset using previously uploaded files.
+        Creates a new dataset using previously uploaded files.  # noqa: E501
         """
         pass
 
     def test_create_dataset_handler(self) -> None:
         """Test case for create_dataset_handler
 
-        Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+        Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.  # noqa: E501
         """
         pass
 
     def test_delete_dataset_handler(self) -> None:
         """Test case for delete_dataset_handler
 
-        Delete a dataset
+        Delete a dataset  # noqa: E501
         """
         pass
 
     def test_get_dataset_handler(self) -> None:
         """Test case for get_dataset_handler
 
-        Retrieves details about a dataset using the internal name.
+        Retrieves details about a dataset using the internal name.  # noqa: E501
         """
         pass
 
     def test_get_loading_info_handler(self) -> None:
         """Test case for get_loading_info_handler
 
-        Retrieves the loading information of a dataset
+        Retrieves the loading information of a dataset  # noqa: E501
         """
         pass
 
     def test_list_datasets_handler(self) -> None:
         """Test case for list_datasets_handler
 
-        Lists available datasets.
+        Lists available datasets.  # noqa: E501
         """
         pass
 
     def test_list_volumes_handler(self) -> None:
         """Test case for list_volumes_handler
 
-        Lists available volumes.
+        Lists available volumes.  # noqa: E501
         """
         pass
 
     def test_suggest_meta_data_handler(self) -> None:
         """Test case for suggest_meta_data_handler
 
-        Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+        Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.  # noqa: E501
         """
         pass
 
     def test_update_dataset_handler(self) -> None:
         """Test case for update_dataset_handler
 
-        Update details about a dataset using the internal name.
+        Update details about a dataset using the internal name.  # noqa: E501
         """
         pass
 
@@ -99,7 +99,14 @@ class TestDatasetsApi(unittest.TestCase):
     def test_update_dataset_symbology_handler(self) -> None:
         """Test case for update_dataset_symbology_handler
 
-        Updates the dataset's symbology
+        Updates the dataset's symbology  # noqa: E501
+        """
+        pass
+
+    def test_update_loading_info_handler(self) -> None:
+        """Test case for update_loading_info_handler
+
+        Updates the dataset's loading info  # noqa: E501
         """
         pass
 

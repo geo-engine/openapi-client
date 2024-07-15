@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ColorParamStatic } from './ColorParamStatic';
-import type { DerivedColor } from './DerivedColor';
+import { DerivedColorWithType } from './DerivedColorWithType';
+import { StaticColorParam } from './StaticColorParam';
 /**
  * @type ColorParam
  *
@@ -18,9 +18,9 @@ import type { DerivedColor } from './DerivedColor';
  */
 export type ColorParam = {
     type: 'derived';
-} & DerivedColor | {
+} & DerivedColorWithType | {
     type: 'static';
-} & ColorParamStatic;
+} & StaticColorParam;
 export declare function ColorParamFromJSON(json: any): ColorParam;
 export declare function ColorParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): ColorParam;
 export declare function ColorParamToJSON(value?: ColorParam | null): any;

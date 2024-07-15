@@ -14,35 +14,38 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ColorParamToJSON = exports.ColorParamFromJSONTyped = exports.ColorParamFromJSON = void 0;
-const ColorParamStatic_1 = require("./ColorParamStatic");
-const DerivedColor_1 = require("./DerivedColor");
+const DerivedColorWithType_1 = require("./DerivedColorWithType");
+const StaticColorParam_1 = require("./StaticColorParam");
 function ColorParamFromJSON(json) {
     return ColorParamFromJSONTyped(json, false);
 }
 exports.ColorParamFromJSON = ColorParamFromJSON;
 function ColorParamFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'derived':
-            return Object.assign(Object.assign({}, (0, DerivedColor_1.DerivedColorFromJSONTyped)(json, true)), { type: 'derived' });
+            return Object.assign(Object.assign({}, (0, DerivedColorWithType_1.DerivedColorWithTypeFromJSONTyped)(json, true)), { type: 'derived' });
         case 'static':
-            return Object.assign(Object.assign({}, (0, ColorParamStatic_1.ColorParamStaticFromJSONTyped)(json, true)), { type: 'static' });
+            return Object.assign(Object.assign({}, (0, StaticColorParam_1.StaticColorParamFromJSONTyped)(json, true)), { type: 'static' });
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${json['type']}'`);
     }
 }
 exports.ColorParamFromJSONTyped = ColorParamFromJSONTyped;
 function ColorParamToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'derived':
-            return (0, DerivedColor_1.DerivedColorToJSON)(value);
+            return (0, DerivedColorWithType_1.DerivedColorWithTypeToJSON)(value);
         case 'static':
-            return (0, ColorParamStatic_1.ColorParamStaticToJSON)(value);
+            return (0, StaticColorParam_1.StaticColorParamToJSON)(value);
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${value['type']}'`);
     }

@@ -12,44 +12,47 @@
  * Do not edit the class manually.
  */
 
-import type { RasterColorizerSingleBand } from './RasterColorizerSingleBand';
 import {
-    instanceOfRasterColorizerSingleBand,
-    RasterColorizerSingleBandFromJSON,
-    RasterColorizerSingleBandFromJSONTyped,
-    RasterColorizerSingleBandToJSON,
-} from './RasterColorizerSingleBand';
+    SingleBandRasterColorizer,
+    instanceOfSingleBandRasterColorizer,
+    SingleBandRasterColorizerFromJSON,
+    SingleBandRasterColorizerFromJSONTyped,
+    SingleBandRasterColorizerToJSON,
+} from './SingleBandRasterColorizer';
 
 /**
  * @type RasterColorizer
  * 
  * @export
  */
-export type RasterColorizer = { type: 'singleBand' } & RasterColorizerSingleBand;
+export type RasterColorizer = { type: 'singleBand' } & SingleBandRasterColorizer;
 
 export function RasterColorizerFromJSON(json: any): RasterColorizer {
     return RasterColorizerFromJSONTyped(json, false);
 }
 
 export function RasterColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterColorizer {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'singleBand':
-            return {...RasterColorizerSingleBandFromJSONTyped(json, true), type: 'singleBand'};
+            return {...SingleBandRasterColorizerFromJSONTyped(json, true), type: 'singleBand'};
         default:
             throw new Error(`No variant of RasterColorizer exists with 'type=${json['type']}'`);
     }
 }
 
 export function RasterColorizerToJSON(value?: RasterColorizer | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'singleBand':
-            return RasterColorizerSingleBandToJSON(value);
+            return SingleBandRasterColorizerToJSON(value);
         default:
             throw new Error(`No variant of RasterColorizer exists with 'type=${value['type']}'`);
     }

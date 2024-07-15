@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * response of the dataset from workflow handler
  * @export
@@ -37,9 +37,11 @@ export interface RasterDatasetFromWorkflowResult {
  * Check if a given object implements the RasterDatasetFromWorkflowResult interface.
  */
 export function instanceOfRasterDatasetFromWorkflowResult(value: object): boolean {
-    if (!('dataset' in value)) return false;
-    if (!('upload' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "dataset" in value;
+    isInstance = isInstance && "upload" in value;
+
+    return isInstance;
 }
 
 export function RasterDatasetFromWorkflowResultFromJSON(json: any): RasterDatasetFromWorkflowResult {
@@ -47,7 +49,7 @@ export function RasterDatasetFromWorkflowResultFromJSON(json: any): RasterDatase
 }
 
 export function RasterDatasetFromWorkflowResultFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterDatasetFromWorkflowResult {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -58,13 +60,16 @@ export function RasterDatasetFromWorkflowResultFromJSONTyped(json: any, ignoreDi
 }
 
 export function RasterDatasetFromWorkflowResultToJSON(value?: RasterDatasetFromWorkflowResult | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'dataset': value['dataset'],
-        'upload': value['upload'],
+        'dataset': value.dataset,
+        'upload': value.upload,
     };
 }
 

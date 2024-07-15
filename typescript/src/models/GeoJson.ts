@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { CollectionType } from './CollectionType';
 import {
     CollectionTypeFromJSON,
@@ -44,9 +44,11 @@ export interface GeoJson {
  * Check if a given object implements the GeoJson interface.
  */
 export function instanceOfGeoJson(value: object): boolean {
-    if (!('features' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "features" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function GeoJsonFromJSON(json: any): GeoJson {
@@ -54,7 +56,7 @@ export function GeoJsonFromJSON(json: any): GeoJson {
 }
 
 export function GeoJsonFromJSONTyped(json: any, ignoreDiscriminator: boolean): GeoJson {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -65,13 +67,16 @@ export function GeoJsonFromJSONTyped(json: any, ignoreDiscriminator: boolean): G
 }
 
 export function GeoJsonToJSON(value?: GeoJson | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'features': value['features'],
-        'type': CollectionTypeToJSON(value['type']),
+        'features': value.features,
+        'type': CollectionTypeToJSON(value.type),
     };
 }
 

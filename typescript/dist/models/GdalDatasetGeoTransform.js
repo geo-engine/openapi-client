@@ -19,13 +19,11 @@ const Coordinate2D_1 = require("./Coordinate2D");
  * Check if a given object implements the GdalDatasetGeoTransform interface.
  */
 function instanceOfGdalDatasetGeoTransform(value) {
-    if (!('originCoordinate' in value))
-        return false;
-    if (!('xPixelSize' in value))
-        return false;
-    if (!('yPixelSize' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "originCoordinate" in value;
+    isInstance = isInstance && "xPixelSize" in value;
+    isInstance = isInstance && "yPixelSize" in value;
+    return isInstance;
 }
 exports.instanceOfGdalDatasetGeoTransform = instanceOfGdalDatasetGeoTransform;
 function GdalDatasetGeoTransformFromJSON(json) {
@@ -33,7 +31,7 @@ function GdalDatasetGeoTransformFromJSON(json) {
 }
 exports.GdalDatasetGeoTransformFromJSON = GdalDatasetGeoTransformFromJSON;
 function GdalDatasetGeoTransformFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -44,13 +42,16 @@ function GdalDatasetGeoTransformFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.GdalDatasetGeoTransformFromJSONTyped = GdalDatasetGeoTransformFromJSONTyped;
 function GdalDatasetGeoTransformToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'originCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value['originCoordinate']),
-        'xPixelSize': value['xPixelSize'],
-        'yPixelSize': value['yPixelSize'],
+        'originCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value.originCoordinate),
+        'xPixelSize': value.xPixelSize,
+        'yPixelSize': value.yPixelSize,
     };
 }
 exports.GdalDatasetGeoTransformToJSON = GdalDatasetGeoTransformToJSON;

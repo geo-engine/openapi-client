@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.ogcwms_api import OGCWMSApi
+from geoengine_openapi_client.api.ogcwms_api import OGCWMSApi  # noqa: E501
 
 
 class TestOGCWMSApi(unittest.TestCase):
     """OGCWMSApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = OGCWMSApi()
+        self.api = OGCWMSApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,21 +30,21 @@ class TestOGCWMSApi(unittest.TestCase):
     def test_wms_capabilities_handler(self) -> None:
         """Test case for wms_capabilities_handler
 
-        Get WMS Capabilities
+        Get WMS Capabilities  # noqa: E501
         """
         pass
 
     def test_wms_legend_graphic_handler(self) -> None:
         """Test case for wms_legend_graphic_handler
 
-        Get WMS Legend Graphic
+        Get WMS Legend Graphic  # noqa: E501
         """
         pass
 
     def test_wms_map_handler(self) -> None:
         """Test case for wms_map_handler
 
-        Get WMS Map
+        Get WMS Map  # noqa: E501
         """
         pass
 

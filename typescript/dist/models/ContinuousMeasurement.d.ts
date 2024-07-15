@@ -26,21 +26,8 @@ export interface ContinuousMeasurement {
      * @type {string}
      * @memberof ContinuousMeasurement
      */
-    type: ContinuousMeasurementTypeEnum;
-    /**
-     *
-     * @type {string}
-     * @memberof ContinuousMeasurement
-     */
-    unit?: string;
+    unit?: string | null;
 }
-/**
- * @export
- */
-export declare const ContinuousMeasurementTypeEnum: {
-    readonly Continuous: "continuous";
-};
-export type ContinuousMeasurementTypeEnum = typeof ContinuousMeasurementTypeEnum[keyof typeof ContinuousMeasurementTypeEnum];
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */

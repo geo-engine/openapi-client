@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.continuous_measurement import ContinuousMeasurement
+from geoengine_openapi_client.models.continuous_measurement import ContinuousMeasurement  # noqa: E501
 
 class TestContinuousMeasurement(unittest.TestCase):
     """ContinuousMeasurement unit test stubs"""
@@ -33,17 +34,15 @@ class TestContinuousMeasurement(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ContinuousMeasurement`
         """
-        model = ContinuousMeasurement()
+        model = ContinuousMeasurement()  # noqa: E501
         if include_optional:
             return ContinuousMeasurement(
                 measurement = '',
-                type = 'continuous',
                 unit = ''
             )
         else:
             return ContinuousMeasurement(
                 measurement = '',
-                type = 'continuous',
         )
         """
 

@@ -14,15 +14,14 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VolumeToJSON = exports.VolumeFromJSONTyped = exports.VolumeFromJSON = exports.instanceOfVolume = void 0;
+const runtime_1 = require("../runtime");
 /**
  * Check if a given object implements the Volume interface.
  */
 function instanceOfVolume(value) {
-    if (!('name' in value))
-        return false;
-    if (!('path' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "name" in value;
+    return isInstance;
 }
 exports.instanceOfVolume = instanceOfVolume;
 function VolumeFromJSON(json) {
@@ -30,22 +29,25 @@ function VolumeFromJSON(json) {
 }
 exports.VolumeFromJSON = VolumeFromJSON;
 function VolumeFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'name': json['name'],
-        'path': json['path'],
+        'path': !(0, runtime_1.exists)(json, 'path') ? undefined : json['path'],
     };
 }
 exports.VolumeFromJSONTyped = VolumeFromJSONTyped;
 function VolumeToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'name': value['name'],
-        'path': value['path'],
+        'name': value.name,
+        'path': value.path,
     };
 }
 exports.VolumeToJSON = VolumeToJSON;

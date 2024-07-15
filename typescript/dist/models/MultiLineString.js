@@ -18,9 +18,9 @@ exports.MultiLineStringToJSON = exports.MultiLineStringFromJSONTyped = exports.M
  * Check if a given object implements the MultiLineString interface.
  */
 function instanceOfMultiLineString(value) {
-    if (!('coordinates' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "coordinates" in value;
+    return isInstance;
 }
 exports.instanceOfMultiLineString = instanceOfMultiLineString;
 function MultiLineStringFromJSON(json) {
@@ -28,7 +28,7 @@ function MultiLineStringFromJSON(json) {
 }
 exports.MultiLineStringFromJSON = MultiLineStringFromJSON;
 function MultiLineStringFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -37,11 +37,14 @@ function MultiLineStringFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.MultiLineStringFromJSONTyped = MultiLineStringFromJSONTyped;
 function MultiLineStringToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'coordinates': value['coordinates'],
+        'coordinates': value.coordinates,
     };
 }
 exports.MultiLineStringToJSON = MultiLineStringToJSON;

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { SpatialPartition2D } from './SpatialPartition2D';
 import {
     SpatialPartition2DFromJSON,
@@ -62,10 +62,12 @@ export interface RasterQueryRectangle {
  * Check if a given object implements the RasterQueryRectangle interface.
  */
 export function instanceOfRasterQueryRectangle(value: object): boolean {
-    if (!('spatialBounds' in value)) return false;
-    if (!('spatialResolution' in value)) return false;
-    if (!('timeInterval' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "spatialBounds" in value;
+    isInstance = isInstance && "spatialResolution" in value;
+    isInstance = isInstance && "timeInterval" in value;
+
+    return isInstance;
 }
 
 export function RasterQueryRectangleFromJSON(json: any): RasterQueryRectangle {
@@ -73,7 +75,7 @@ export function RasterQueryRectangleFromJSON(json: any): RasterQueryRectangle {
 }
 
 export function RasterQueryRectangleFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterQueryRectangle {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -85,14 +87,17 @@ export function RasterQueryRectangleFromJSONTyped(json: any, ignoreDiscriminator
 }
 
 export function RasterQueryRectangleToJSON(value?: RasterQueryRectangle | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'spatialBounds': SpatialPartition2DToJSON(value['spatialBounds']),
-        'spatialResolution': SpatialResolutionToJSON(value['spatialResolution']),
-        'timeInterval': TimeIntervalToJSON(value['timeInterval']),
+        'spatialBounds': SpatialPartition2DToJSON(value.spatialBounds),
+        'spatialResolution': SpatialResolutionToJSON(value.spatialResolution),
+        'timeInterval': TimeIntervalToJSON(value.timeInterval),
     };
 }
 

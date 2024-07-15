@@ -19,14 +19,17 @@ export function TypedGeometryFromJSON(json) {
     return TypedGeometryFromJSONTyped(json, false);
 }
 export function TypedGeometryFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return Object.assign(Object.assign(Object.assign(Object.assign({}, TypedGeometryOneOfFromJSONTyped(json, true)), TypedGeometryOneOf1FromJSONTyped(json, true)), TypedGeometryOneOf2FromJSONTyped(json, true)), TypedGeometryOneOf3FromJSONTyped(json, true));
 }
 export function TypedGeometryToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     if (instanceOfTypedGeometryOneOf(value)) {
         return TypedGeometryOneOfToJSON(value);

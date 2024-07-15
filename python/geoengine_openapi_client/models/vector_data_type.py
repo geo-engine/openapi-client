@@ -13,10 +13,13 @@
 """  # noqa: E501
 
 
-from __future__ import annotations
 import json
-from enum import Enum
-from typing_extensions import Self
+import pprint
+import re  # noqa: F401
+from aenum import Enum, no_arg
+
+
+
 
 
 class VectorDataType(str, Enum):
@@ -33,8 +36,8 @@ class VectorDataType(str, Enum):
     MULTIPOLYGON = 'MultiPolygon'
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> VectorDataType:
         """Create an instance of VectorDataType from a JSON string"""
-        return cls(json.loads(json_str))
+        return VectorDataType(json.loads(json_str))
 
 

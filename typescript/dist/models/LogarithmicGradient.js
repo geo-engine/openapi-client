@@ -13,29 +13,18 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogarithmicGradientToJSON = exports.LogarithmicGradientFromJSONTyped = exports.LogarithmicGradientFromJSON = exports.instanceOfLogarithmicGradient = exports.LogarithmicGradientTypeEnum = void 0;
+exports.LogarithmicGradientToJSON = exports.LogarithmicGradientFromJSONTyped = exports.LogarithmicGradientFromJSON = exports.instanceOfLogarithmicGradient = void 0;
 const Breakpoint_1 = require("./Breakpoint");
-/**
- * @export
- */
-exports.LogarithmicGradientTypeEnum = {
-    LogarithmicGradient: 'logarithmicGradient'
-};
 /**
  * Check if a given object implements the LogarithmicGradient interface.
  */
 function instanceOfLogarithmicGradient(value) {
-    if (!('breakpoints' in value))
-        return false;
-    if (!('noDataColor' in value))
-        return false;
-    if (!('overColor' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    if (!('underColor' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "breakpoints" in value;
+    isInstance = isInstance && "noDataColor" in value;
+    isInstance = isInstance && "overColor" in value;
+    isInstance = isInstance && "underColor" in value;
+    return isInstance;
 }
 exports.instanceOfLogarithmicGradient = instanceOfLogarithmicGradient;
 function LogarithmicGradientFromJSON(json) {
@@ -43,28 +32,29 @@ function LogarithmicGradientFromJSON(json) {
 }
 exports.LogarithmicGradientFromJSON = LogarithmicGradientFromJSON;
 function LogarithmicGradientFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'breakpoints': (json['breakpoints'].map(Breakpoint_1.BreakpointFromJSON)),
         'noDataColor': json['noDataColor'],
         'overColor': json['overColor'],
-        'type': json['type'],
         'underColor': json['underColor'],
     };
 }
 exports.LogarithmicGradientFromJSONTyped = LogarithmicGradientFromJSONTyped;
 function LogarithmicGradientToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'breakpoints': (value['breakpoints'].map(Breakpoint_1.BreakpointToJSON)),
-        'noDataColor': value['noDataColor'],
-        'overColor': value['overColor'],
-        'type': value['type'],
-        'underColor': value['underColor'],
+        'breakpoints': (value.breakpoints.map(Breakpoint_1.BreakpointToJSON)),
+        'noDataColor': value.noDataColor,
+        'overColor': value.overColor,
+        'underColor': value.underColor,
     };
 }
 exports.LogarithmicGradientToJSON = LogarithmicGradientToJSON;

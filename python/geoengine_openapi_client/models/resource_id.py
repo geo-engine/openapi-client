@@ -14,45 +14,47 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
 import json
 import pprint
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
-from typing import Any, List, Optional
-from geoengine_openapi_client.models.resource_id_dataset_id import ResourceIdDatasetId
-from geoengine_openapi_client.models.resource_id_layer import ResourceIdLayer
-from geoengine_openapi_client.models.resource_id_layer_collection import ResourceIdLayerCollection
-from geoengine_openapi_client.models.resource_id_model_id import ResourceIdModelId
-from geoengine_openapi_client.models.resource_id_project import ResourceIdProject
-from pydantic import StrictStr, Field
-from typing import Union, List, Optional, Dict
-from typing_extensions import Literal, Self
+import re  # noqa: F401
 
-RESOURCEID_ONE_OF_SCHEMAS = ["ResourceIdDatasetId", "ResourceIdLayer", "ResourceIdLayerCollection", "ResourceIdModelId", "ResourceIdProject"]
+from typing import Any, List, Optional
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from geoengine_openapi_client.models.dataset_id_resource_id import DatasetIdResourceId
+from geoengine_openapi_client.models.layer_collection_resource_id import LayerCollectionResourceId
+from geoengine_openapi_client.models.layer_resource_id import LayerResourceId
+from geoengine_openapi_client.models.model_id_resource_id import ModelIdResourceId
+from geoengine_openapi_client.models.project_resource_id import ProjectResourceId
+from typing import Union, Any, List, TYPE_CHECKING
+from pydantic import StrictStr, Field
+
+RESOURCEID_ONE_OF_SCHEMAS = ["DatasetIdResourceId", "LayerCollectionResourceId", "LayerResourceId", "ModelIdResourceId", "ProjectResourceId"]
 
 class ResourceId(BaseModel):
     """
     ResourceId
     """
-    # data type: ResourceIdLayer
-    oneof_schema_1_validator: Optional[ResourceIdLayer] = None
-    # data type: ResourceIdLayerCollection
-    oneof_schema_2_validator: Optional[ResourceIdLayerCollection] = None
-    # data type: ResourceIdProject
-    oneof_schema_3_validator: Optional[ResourceIdProject] = None
-    # data type: ResourceIdDatasetId
-    oneof_schema_4_validator: Optional[ResourceIdDatasetId] = None
-    # data type: ResourceIdModelId
-    oneof_schema_5_validator: Optional[ResourceIdModelId] = None
-    actual_instance: Optional[Union[ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject]] = None
-    one_of_schemas: List[str] = Field(default=Literal["ResourceIdDatasetId", "ResourceIdLayer", "ResourceIdLayerCollection", "ResourceIdModelId", "ResourceIdProject"])
+    # data type: LayerResourceId
+    oneof_schema_1_validator: Optional[LayerResourceId] = None
+    # data type: LayerCollectionResourceId
+    oneof_schema_2_validator: Optional[LayerCollectionResourceId] = None
+    # data type: ProjectResourceId
+    oneof_schema_3_validator: Optional[ProjectResourceId] = None
+    # data type: DatasetIdResourceId
+    oneof_schema_4_validator: Optional[DatasetIdResourceId] = None
+    # data type: ModelIdResourceId
+    oneof_schema_5_validator: Optional[ModelIdResourceId] = None
+    if TYPE_CHECKING:
+        actual_instance: Union[DatasetIdResourceId, LayerCollectionResourceId, LayerResourceId, ModelIdResourceId, ProjectResourceId]
+    else:
+        actual_instance: Any
+    one_of_schemas: List[str] = Field(RESOURCEID_ONE_OF_SCHEMAS, const=True)
 
-    model_config = ConfigDict(
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    class Config:
+        validate_assignment = True
 
-
-    discriminator_value_class_map: Dict[str, str] = {
+    discriminator_value_class_map = {
     }
 
     def __init__(self, *args, **kwargs) -> None:
@@ -65,53 +67,53 @@ class ResourceId(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = ResourceId.model_construct()
+        instance = ResourceId.construct()
         error_messages = []
         match = 0
-        # validate data type: ResourceIdLayer
-        if not isinstance(v, ResourceIdLayer):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceIdLayer`")
+        # validate data type: LayerResourceId
+        if not isinstance(v, LayerResourceId):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LayerResourceId`")
         else:
             match += 1
-        # validate data type: ResourceIdLayerCollection
-        if not isinstance(v, ResourceIdLayerCollection):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceIdLayerCollection`")
+        # validate data type: LayerCollectionResourceId
+        if not isinstance(v, LayerCollectionResourceId):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LayerCollectionResourceId`")
         else:
             match += 1
-        # validate data type: ResourceIdProject
-        if not isinstance(v, ResourceIdProject):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceIdProject`")
+        # validate data type: ProjectResourceId
+        if not isinstance(v, ProjectResourceId):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ProjectResourceId`")
         else:
             match += 1
-        # validate data type: ResourceIdDatasetId
-        if not isinstance(v, ResourceIdDatasetId):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceIdDatasetId`")
+        # validate data type: DatasetIdResourceId
+        if not isinstance(v, DatasetIdResourceId):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `DatasetIdResourceId`")
         else:
             match += 1
-        # validate data type: ResourceIdModelId
-        if not isinstance(v, ResourceIdModelId):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceIdModelId`")
+        # validate data type: ModelIdResourceId
+        if not isinstance(v, ModelIdResourceId):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ModelIdResourceId`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in ResourceId with oneOf schemas: DatasetIdResourceId, LayerCollectionResourceId, LayerResourceId, ModelIdResourceId, ProjectResourceId. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in ResourceId with oneOf schemas: DatasetIdResourceId, LayerCollectionResourceId, LayerResourceId, ModelIdResourceId, ProjectResourceId. Details: " + ", ".join(error_messages))
         else:
             return v
 
     @classmethod
-    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
+    def from_dict(cls, obj: dict) -> ResourceId:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> ResourceId:
         """Returns the object represented by the json string"""
-        instance = cls.model_construct()
+        instance = ResourceId.construct()
         error_messages = []
         match = 0
 
@@ -120,93 +122,93 @@ class ResourceId(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `ResourceIdDatasetId`
+        # check if data type is `DatasetIdResourceId`
         if _data_type == "DatasetId":
-            instance.actual_instance = ResourceIdDatasetId.from_json(json_str)
+            instance.actual_instance = DatasetIdResourceId.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceIdLayer`
+        # check if data type is `DatasetIdResourceId`
+        if _data_type == "DatasetIdResourceId":
+            instance.actual_instance = DatasetIdResourceId.from_json(json_str)
+            return instance
+
+        # check if data type is `LayerResourceId`
         if _data_type == "Layer":
-            instance.actual_instance = ResourceIdLayer.from_json(json_str)
+            instance.actual_instance = LayerResourceId.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceIdLayerCollection`
+        # check if data type is `LayerCollectionResourceId`
         if _data_type == "LayerCollection":
-            instance.actual_instance = ResourceIdLayerCollection.from_json(json_str)
+            instance.actual_instance = LayerCollectionResourceId.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceIdModelId`
+        # check if data type is `LayerCollectionResourceId`
+        if _data_type == "LayerCollectionResourceId":
+            instance.actual_instance = LayerCollectionResourceId.from_json(json_str)
+            return instance
+
+        # check if data type is `LayerResourceId`
+        if _data_type == "LayerResourceId":
+            instance.actual_instance = LayerResourceId.from_json(json_str)
+            return instance
+
+        # check if data type is `ModelIdResourceId`
         if _data_type == "ModelId":
-            instance.actual_instance = ResourceIdModelId.from_json(json_str)
+            instance.actual_instance = ModelIdResourceId.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceIdProject`
+        # check if data type is `ModelIdResourceId`
+        if _data_type == "ModelIdResourceId":
+            instance.actual_instance = ModelIdResourceId.from_json(json_str)
+            return instance
+
+        # check if data type is `ProjectResourceId`
         if _data_type == "Project":
-            instance.actual_instance = ResourceIdProject.from_json(json_str)
+            instance.actual_instance = ProjectResourceId.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceIdDatasetId`
-        if _data_type == "ResourceIdDatasetId":
-            instance.actual_instance = ResourceIdDatasetId.from_json(json_str)
+        # check if data type is `ProjectResourceId`
+        if _data_type == "ProjectResourceId":
+            instance.actual_instance = ProjectResourceId.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceIdLayer`
-        if _data_type == "ResourceIdLayer":
-            instance.actual_instance = ResourceIdLayer.from_json(json_str)
-            return instance
-
-        # check if data type is `ResourceIdLayerCollection`
-        if _data_type == "ResourceIdLayerCollection":
-            instance.actual_instance = ResourceIdLayerCollection.from_json(json_str)
-            return instance
-
-        # check if data type is `ResourceIdModelId`
-        if _data_type == "ResourceIdModelId":
-            instance.actual_instance = ResourceIdModelId.from_json(json_str)
-            return instance
-
-        # check if data type is `ResourceIdProject`
-        if _data_type == "ResourceIdProject":
-            instance.actual_instance = ResourceIdProject.from_json(json_str)
-            return instance
-
-        # deserialize data into ResourceIdLayer
+        # deserialize data into LayerResourceId
         try:
-            instance.actual_instance = ResourceIdLayer.from_json(json_str)
+            instance.actual_instance = LayerResourceId.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ResourceIdLayerCollection
+        # deserialize data into LayerCollectionResourceId
         try:
-            instance.actual_instance = ResourceIdLayerCollection.from_json(json_str)
+            instance.actual_instance = LayerCollectionResourceId.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ResourceIdProject
+        # deserialize data into ProjectResourceId
         try:
-            instance.actual_instance = ResourceIdProject.from_json(json_str)
+            instance.actual_instance = ProjectResourceId.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ResourceIdDatasetId
+        # deserialize data into DatasetIdResourceId
         try:
-            instance.actual_instance = ResourceIdDatasetId.from_json(json_str)
+            instance.actual_instance = DatasetIdResourceId.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ResourceIdModelId
+        # deserialize data into ModelIdResourceId
         try:
-            instance.actual_instance = ResourceIdModelId.from_json(json_str)
+            instance.actual_instance = ModelIdResourceId.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into ResourceId with oneOf schemas: DatasetIdResourceId, LayerCollectionResourceId, LayerResourceId, ModelIdResourceId, ProjectResourceId. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into ResourceId with oneOf schemas: DatasetIdResourceId, LayerCollectionResourceId, LayerResourceId, ModelIdResourceId, ProjectResourceId. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -215,17 +217,19 @@ class ResourceId(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+        to_json = getattr(self.actual_instance, "to_json", None)
+        if callable(to_json):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject]]:
+    def to_dict(self) -> dict:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
-        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+        to_dict = getattr(self.actual_instance, "to_dict", None)
+        if callable(to_dict):
             return self.actual_instance.to_dict()
         else:
             # primitive type
@@ -233,6 +237,6 @@ class ResourceId(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.model_dump())
+        return pprint.pformat(self.dict())
 
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { ProviderLayerId } from './ProviderLayerId';
 import {
     ProviderLayerIdFromJSON,
@@ -73,7 +73,7 @@ export interface Layer {
      * @type {Symbology}
      * @memberof Layer
      */
-    symbology?: Symbology;
+    symbology?: Symbology | null;
     /**
      * 
      * @type {Workflow}
@@ -86,11 +86,13 @@ export interface Layer {
  * Check if a given object implements the Layer interface.
  */
 export function instanceOfLayer(value: object): boolean {
-    if (!('description' in value)) return false;
-    if (!('id' in value)) return false;
-    if (!('name' in value)) return false;
-    if (!('workflow' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "workflow" in value;
+
+    return isInstance;
 }
 
 export function LayerFromJSON(json: any): Layer {
@@ -98,34 +100,37 @@ export function LayerFromJSON(json: any): Layer {
 }
 
 export function LayerFromJSONTyped(json: any, ignoreDiscriminator: boolean): Layer {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'description': json['description'],
         'id': ProviderLayerIdFromJSON(json['id']),
-        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'metadata': !exists(json, 'metadata') ? undefined : json['metadata'],
         'name': json['name'],
-        'properties': json['properties'] == null ? undefined : json['properties'],
-        'symbology': json['symbology'] == null ? undefined : SymbologyFromJSON(json['symbology']),
+        'properties': !exists(json, 'properties') ? undefined : json['properties'],
+        'symbology': !exists(json, 'symbology') ? undefined : SymbologyFromJSON(json['symbology']),
         'workflow': WorkflowFromJSON(json['workflow']),
     };
 }
 
 export function LayerToJSON(value?: Layer | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'description': value['description'],
-        'id': ProviderLayerIdToJSON(value['id']),
-        'metadata': value['metadata'],
-        'name': value['name'],
-        'properties': value['properties'],
-        'symbology': SymbologyToJSON(value['symbology']),
-        'workflow': WorkflowToJSON(value['workflow']),
+        'description': value.description,
+        'id': ProviderLayerIdToJSON(value.id),
+        'metadata': value.metadata,
+        'name': value.name,
+        'properties': value.properties,
+        'symbology': SymbologyToJSON(value.symbology),
+        'workflow': WorkflowToJSON(value.workflow),
     };
 }
 

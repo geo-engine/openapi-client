@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 import { LayerUpdateFromJSON, LayerUpdateToJSON, } from './LayerUpdate';
 import { PlotUpdateFromJSON, PlotUpdateToJSON, } from './PlotUpdate';
 import { STRectangleFromJSON, STRectangleToJSON, } from './STRectangle';
@@ -19,38 +20,41 @@ import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
  * Check if a given object implements the UpdateProject interface.
  */
 export function instanceOfUpdateProject(value) {
-    if (!('id' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    return isInstance;
 }
 export function UpdateProjectFromJSON(json) {
     return UpdateProjectFromJSONTyped(json, false);
 }
 export function UpdateProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'bounds': json['bounds'] == null ? undefined : STRectangleFromJSON(json['bounds']),
-        'description': json['description'] == null ? undefined : json['description'],
+        'bounds': !exists(json, 'bounds') ? undefined : STRectangleFromJSON(json['bounds']),
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'id': json['id'],
-        'layers': json['layers'] == null ? undefined : (json['layers'].map(LayerUpdateFromJSON)),
-        'name': json['name'] == null ? undefined : json['name'],
-        'plots': json['plots'] == null ? undefined : (json['plots'].map(PlotUpdateFromJSON)),
-        'timeStep': json['timeStep'] == null ? undefined : TimeStepFromJSON(json['timeStep']),
+        'layers': !exists(json, 'layers') ? undefined : (json['layers'] === null ? null : json['layers'].map(LayerUpdateFromJSON)),
+        'name': !exists(json, 'name') ? undefined : json['name'],
+        'plots': !exists(json, 'plots') ? undefined : (json['plots'] === null ? null : json['plots'].map(PlotUpdateFromJSON)),
+        'timeStep': !exists(json, 'timeStep') ? undefined : TimeStepFromJSON(json['timeStep']),
     };
 }
 export function UpdateProjectToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bounds': STRectangleToJSON(value['bounds']),
-        'description': value['description'],
-        'id': value['id'],
-        'layers': value['layers'] == null ? undefined : (value['layers'].map(LayerUpdateToJSON)),
-        'name': value['name'],
-        'plots': value['plots'] == null ? undefined : (value['plots'].map(PlotUpdateToJSON)),
-        'timeStep': TimeStepToJSON(value['timeStep']),
+        'bounds': STRectangleToJSON(value.bounds),
+        'description': value.description,
+        'id': value.id,
+        'layers': value.layers === undefined ? undefined : (value.layers === null ? null : value.layers.map(LayerUpdateToJSON)),
+        'name': value.name,
+        'plots': value.plots === undefined ? undefined : (value.plots === null ? null : value.plots.map(PlotUpdateToJSON)),
+        'timeStep': TimeStepToJSON(value.timeStep),
     };
 }

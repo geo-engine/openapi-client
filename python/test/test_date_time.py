@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.date_time import DateTime
+from geoengine_openapi_client.models.date_time import DateTime  # noqa: E501
 
 class TestDateTime(unittest.TestCase):
     """DateTime unit test stubs"""
@@ -33,7 +34,7 @@ class TestDateTime(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DateTime`
         """
-        model = DateTime()
+        model = DateTime()  # noqa: E501
         if include_optional:
             return DateTime(
                 datetime = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')

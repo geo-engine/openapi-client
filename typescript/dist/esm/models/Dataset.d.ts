@@ -47,7 +47,7 @@ export interface Dataset {
      * @type {Array<Provenance>}
      * @memberof Dataset
      */
-    provenance?: Array<Provenance>;
+    provenance?: Array<Provenance> | null;
     /**
      *
      * @type {TypedResultDescriptor}
@@ -65,13 +65,13 @@ export interface Dataset {
      * @type {Symbology}
      * @memberof Dataset
      */
-    symbology?: Symbology;
+    symbology?: Symbology | null;
     /**
      *
      * @type {Array<string>}
      * @memberof Dataset
      */
-    tags?: Array<string>;
+    tags?: Array<string> | null;
 }
 /**
  * Check if a given object implements the Dataset interface.

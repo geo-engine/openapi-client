@@ -18,9 +18,9 @@ exports.DateTimeToJSON = exports.DateTimeFromJSONTyped = exports.DateTimeFromJSO
  * Check if a given object implements the DateTime interface.
  */
 function instanceOfDateTime(value) {
-    if (!('datetime' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "datetime" in value;
+    return isInstance;
 }
 exports.instanceOfDateTime = instanceOfDateTime;
 function DateTimeFromJSON(json) {
@@ -28,7 +28,7 @@ function DateTimeFromJSON(json) {
 }
 exports.DateTimeFromJSON = DateTimeFromJSON;
 function DateTimeFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -37,11 +37,14 @@ function DateTimeFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.DateTimeFromJSONTyped = DateTimeFromJSONTyped;
 function DateTimeToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'datetime': ((value['datetime']).toISOString()),
+        'datetime': (value.datetime.toISOString()),
     };
 }
 exports.DateTimeToJSON = DateTimeToJSON;

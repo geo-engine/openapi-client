@@ -11,43 +11,46 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TaskStatusAbortedFromJSONTyped, TaskStatusAbortedToJSON, } from './TaskStatusAborted';
-import { TaskStatusCompletedFromJSONTyped, TaskStatusCompletedToJSON, } from './TaskStatusCompleted';
-import { TaskStatusFailedFromJSONTyped, TaskStatusFailedToJSON, } from './TaskStatusFailed';
-import { TaskStatusRunningFromJSONTyped, TaskStatusRunningToJSON, } from './TaskStatusRunning';
+import { AbortedTaskStatusFromJSONTyped, AbortedTaskStatusToJSON, } from './AbortedTaskStatus';
+import { CompletedTaskStatusFromJSONTyped, CompletedTaskStatusToJSON, } from './CompletedTaskStatus';
+import { FailedTaskStatusFromJSONTyped, FailedTaskStatusToJSON, } from './FailedTaskStatus';
+import { RunningTaskStatusFromJSONTyped, RunningTaskStatusToJSON, } from './RunningTaskStatus';
 export function TaskStatusFromJSON(json) {
     return TaskStatusFromJSONTyped(json, false);
 }
 export function TaskStatusFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['status']) {
         case 'aborted':
-            return Object.assign(Object.assign({}, TaskStatusAbortedFromJSONTyped(json, true)), { status: 'aborted' });
+            return Object.assign(Object.assign({}, AbortedTaskStatusFromJSONTyped(json, true)), { status: 'aborted' });
         case 'completed':
-            return Object.assign(Object.assign({}, TaskStatusCompletedFromJSONTyped(json, true)), { status: 'completed' });
+            return Object.assign(Object.assign({}, CompletedTaskStatusFromJSONTyped(json, true)), { status: 'completed' });
         case 'failed':
-            return Object.assign(Object.assign({}, TaskStatusFailedFromJSONTyped(json, true)), { status: 'failed' });
+            return Object.assign(Object.assign({}, FailedTaskStatusFromJSONTyped(json, true)), { status: 'failed' });
         case 'running':
-            return Object.assign(Object.assign({}, TaskStatusRunningFromJSONTyped(json, true)), { status: 'running' });
+            return Object.assign(Object.assign({}, RunningTaskStatusFromJSONTyped(json, true)), { status: 'running' });
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${json['status']}'`);
     }
 }
 export function TaskStatusToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['status']) {
         case 'aborted':
-            return TaskStatusAbortedToJSON(value);
+            return AbortedTaskStatusToJSON(value);
         case 'completed':
-            return TaskStatusCompletedToJSON(value);
+            return CompletedTaskStatusToJSON(value);
         case 'failed':
-            return TaskStatusFailedToJSON(value);
+            return FailedTaskStatusToJSON(value);
         case 'running':
-            return TaskStatusRunningToJSON(value);
+            return RunningTaskStatusToJSON(value);
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${value['status']}'`);
     }

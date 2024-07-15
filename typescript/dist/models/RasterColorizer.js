@@ -14,30 +14,33 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RasterColorizerToJSON = exports.RasterColorizerFromJSONTyped = exports.RasterColorizerFromJSON = void 0;
-const RasterColorizerSingleBand_1 = require("./RasterColorizerSingleBand");
+const SingleBandRasterColorizer_1 = require("./SingleBandRasterColorizer");
 function RasterColorizerFromJSON(json) {
     return RasterColorizerFromJSONTyped(json, false);
 }
 exports.RasterColorizerFromJSON = RasterColorizerFromJSON;
 function RasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
         case 'singleBand':
-            return Object.assign(Object.assign({}, (0, RasterColorizerSingleBand_1.RasterColorizerSingleBandFromJSONTyped)(json, true)), { type: 'singleBand' });
+            return Object.assign(Object.assign({}, (0, SingleBandRasterColorizer_1.SingleBandRasterColorizerFromJSONTyped)(json, true)), { type: 'singleBand' });
         default:
             throw new Error(`No variant of RasterColorizer exists with 'type=${json['type']}'`);
     }
 }
 exports.RasterColorizerFromJSONTyped = RasterColorizerFromJSONTyped;
 function RasterColorizerToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'singleBand':
-            return (0, RasterColorizerSingleBand_1.RasterColorizerSingleBandToJSON)(value);
+            return (0, SingleBandRasterColorizer_1.SingleBandRasterColorizerToJSON)(value);
         default:
             throw new Error(`No variant of RasterColorizer exists with 'type=${value['type']}'`);
     }

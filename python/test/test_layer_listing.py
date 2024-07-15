@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.layer_listing import LayerListing
+from geoengine_openapi_client.models.layer_listing import LayerListing  # noqa: E501
 
 class TestLayerListing(unittest.TestCase):
     """LayerListing unit test stubs"""
@@ -33,7 +34,7 @@ class TestLayerListing(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LayerListing`
         """
-        model = LayerListing()
+        model = LayerListing()  # noqa: E501
         if include_optional:
             return LayerListing(
                 description = '',
@@ -45,8 +46,7 @@ class TestLayerListing(unittest.TestCase):
                     [
                         ''
                         ]
-                    ],
-                type = 'layer'
+                    ]
             )
         else:
             return LayerListing(
@@ -55,7 +55,6 @@ class TestLayerListing(unittest.TestCase):
                     layer_id = '', 
                     provider_id = '', ),
                 name = '',
-                type = 'layer',
         )
         """
 

@@ -21,7 +21,7 @@ function LayerUpdateFromJSON(json) {
 }
 exports.LayerUpdateFromJSON = LayerUpdateFromJSON;
 function LayerUpdateFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     if ((0, ProjectLayer_1.instanceOfProjectLayer)(json)) {
@@ -33,8 +33,11 @@ function LayerUpdateFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.LayerUpdateFromJSONTyped = LayerUpdateFromJSONTyped;
 function LayerUpdateToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     if (typeof value === 'object' && (0, ProjectLayer_1.instanceOfProjectLayer)(value)) {
         return (0, ProjectLayer_1.ProjectLayerToJSON)(value);

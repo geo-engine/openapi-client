@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.text_symbology import TextSymbology
+from geoengine_openapi_client.models.text_symbology import TextSymbology  # noqa: E501
 
 class TestTextSymbology(unittest.TestCase):
     """TextSymbology unit test stubs"""
@@ -33,7 +34,7 @@ class TestTextSymbology(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TextSymbology`
         """
-        model = TextSymbology()
+        model = TextSymbology()  # noqa: E501
         if include_optional:
             return TextSymbology(
                 attribute = '',

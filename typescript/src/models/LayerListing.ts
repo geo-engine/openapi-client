@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { ProviderLayerId } from './ProviderLayerId';
 import {
     ProviderLayerIdFromJSON,
@@ -72,11 +72,13 @@ export type LayerListingTypeEnum = typeof LayerListingTypeEnum[keyof typeof Laye
  * Check if a given object implements the LayerListing interface.
  */
 export function instanceOfLayerListing(value: object): boolean {
-    if (!('description' in value)) return false;
-    if (!('id' in value)) return false;
-    if (!('name' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function LayerListingFromJSON(json: any): LayerListing {
@@ -84,7 +86,7 @@ export function LayerListingFromJSON(json: any): LayerListing {
 }
 
 export function LayerListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerListing {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -92,22 +94,25 @@ export function LayerListingFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'description': json['description'],
         'id': ProviderLayerIdFromJSON(json['id']),
         'name': json['name'],
-        'properties': json['properties'] == null ? undefined : json['properties'],
+        'properties': !exists(json, 'properties') ? undefined : json['properties'],
         'type': json['type'],
     };
 }
 
 export function LayerListingToJSON(value?: LayerListing | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'description': value['description'],
-        'id': ProviderLayerIdToJSON(value['id']),
-        'name': value['name'],
-        'properties': value['properties'],
-        'type': value['type'],
+        'description': value.description,
+        'id': ProviderLayerIdToJSON(value.id),
+        'name': value.name,
+        'properties': value.properties,
+        'type': value.type,
     };
 }
 

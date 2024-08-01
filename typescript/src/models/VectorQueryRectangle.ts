@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { BoundingBox2D } from './BoundingBox2D';
 import {
     BoundingBox2DFromJSON,
@@ -62,10 +62,12 @@ export interface VectorQueryRectangle {
  * Check if a given object implements the VectorQueryRectangle interface.
  */
 export function instanceOfVectorQueryRectangle(value: object): boolean {
-    if (!('spatialBounds' in value)) return false;
-    if (!('spatialResolution' in value)) return false;
-    if (!('timeInterval' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "spatialBounds" in value;
+    isInstance = isInstance && "spatialResolution" in value;
+    isInstance = isInstance && "timeInterval" in value;
+
+    return isInstance;
 }
 
 export function VectorQueryRectangleFromJSON(json: any): VectorQueryRectangle {
@@ -73,7 +75,7 @@ export function VectorQueryRectangleFromJSON(json: any): VectorQueryRectangle {
 }
 
 export function VectorQueryRectangleFromJSONTyped(json: any, ignoreDiscriminator: boolean): VectorQueryRectangle {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -85,14 +87,17 @@ export function VectorQueryRectangleFromJSONTyped(json: any, ignoreDiscriminator
 }
 
 export function VectorQueryRectangleToJSON(value?: VectorQueryRectangle | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'spatialBounds': BoundingBox2DToJSON(value['spatialBounds']),
-        'spatialResolution': SpatialResolutionToJSON(value['spatialResolution']),
-        'timeInterval': TimeIntervalToJSON(value['timeInterval']),
+        'spatialBounds': BoundingBox2DToJSON(value.spatialBounds),
+        'spatialResolution': SpatialResolutionToJSON(value.spatialResolution),
+        'timeInterval': TimeIntervalToJSON(value.timeInterval),
     };
 }
 

@@ -20,7 +20,7 @@ export function ResourceIdFromJSON(json) {
     return ResourceIdFromJSONTyped(json, false);
 }
 export function ResourceIdFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -39,8 +39,11 @@ export function ResourceIdFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function ResourceIdToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'DatasetId':

@@ -12,29 +12,29 @@
  * Do not edit the class manually.
  */
 
-import type { ColorizerPalette } from './ColorizerPalette';
 import {
+    ColorizerPalette,
     instanceOfColorizerPalette,
     ColorizerPaletteFromJSON,
     ColorizerPaletteFromJSONTyped,
     ColorizerPaletteToJSON,
 } from './ColorizerPalette';
-import type { ColorizerRgba } from './ColorizerRgba';
 import {
+    ColorizerRgba,
     instanceOfColorizerRgba,
     ColorizerRgbaFromJSON,
     ColorizerRgbaFromJSONTyped,
     ColorizerRgbaToJSON,
 } from './ColorizerRgba';
-import type { LinearGradient } from './LinearGradient';
 import {
+    LinearGradient,
     instanceOfLinearGradient,
     LinearGradientFromJSON,
     LinearGradientFromJSONTyped,
     LinearGradientToJSON,
 } from './LinearGradient';
-import type { LogarithmicGradient } from './LogarithmicGradient';
 import {
+    LogarithmicGradient,
     instanceOfLogarithmicGradient,
     LogarithmicGradientFromJSON,
     LogarithmicGradientFromJSONTyped,
@@ -53,7 +53,7 @@ export function ColorizerFromJSON(json: any): Colorizer {
 }
 
 export function ColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): Colorizer {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -71,8 +71,11 @@ export function ColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean):
 }
 
 export function ColorizerToJSON(value?: Colorizer | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'linearGradient':

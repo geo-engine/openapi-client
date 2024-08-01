@@ -17,17 +17,16 @@ import { DatasetDefinitionFromJSON, DatasetDefinitionToJSON, } from './DatasetDe
  * Check if a given object implements the CreateDataset interface.
  */
 export function instanceOfCreateDataset(value) {
-    if (!('dataPath' in value))
-        return false;
-    if (!('definition' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "dataPath" in value;
+    isInstance = isInstance && "definition" in value;
+    return isInstance;
 }
 export function CreateDatasetFromJSON(json) {
     return CreateDatasetFromJSONTyped(json, false);
 }
 export function CreateDatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -36,11 +35,14 @@ export function CreateDatasetFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function CreateDatasetToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'dataPath': DataPathToJSON(value['dataPath']),
-        'definition': DatasetDefinitionToJSON(value['definition']),
+        'dataPath': DataPathToJSON(value.dataPath),
+        'definition': DatasetDefinitionToJSON(value.definition),
     };
 }

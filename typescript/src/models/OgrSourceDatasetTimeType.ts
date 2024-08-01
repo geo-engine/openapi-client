@@ -12,29 +12,29 @@
  * Do not edit the class manually.
  */
 
-import type { OgrSourceDatasetTimeTypeNone } from './OgrSourceDatasetTimeTypeNone';
 import {
+    OgrSourceDatasetTimeTypeNone,
     instanceOfOgrSourceDatasetTimeTypeNone,
     OgrSourceDatasetTimeTypeNoneFromJSON,
     OgrSourceDatasetTimeTypeNoneFromJSONTyped,
     OgrSourceDatasetTimeTypeNoneToJSON,
 } from './OgrSourceDatasetTimeTypeNone';
-import type { OgrSourceDatasetTimeTypeStart } from './OgrSourceDatasetTimeTypeStart';
 import {
+    OgrSourceDatasetTimeTypeStart,
     instanceOfOgrSourceDatasetTimeTypeStart,
     OgrSourceDatasetTimeTypeStartFromJSON,
     OgrSourceDatasetTimeTypeStartFromJSONTyped,
     OgrSourceDatasetTimeTypeStartToJSON,
 } from './OgrSourceDatasetTimeTypeStart';
-import type { OgrSourceDatasetTimeTypeStartDuration } from './OgrSourceDatasetTimeTypeStartDuration';
 import {
+    OgrSourceDatasetTimeTypeStartDuration,
     instanceOfOgrSourceDatasetTimeTypeStartDuration,
     OgrSourceDatasetTimeTypeStartDurationFromJSON,
     OgrSourceDatasetTimeTypeStartDurationFromJSONTyped,
     OgrSourceDatasetTimeTypeStartDurationToJSON,
 } from './OgrSourceDatasetTimeTypeStartDuration';
-import type { OgrSourceDatasetTimeTypeStartEnd } from './OgrSourceDatasetTimeTypeStartEnd';
 import {
+    OgrSourceDatasetTimeTypeStartEnd,
     instanceOfOgrSourceDatasetTimeTypeStartEnd,
     OgrSourceDatasetTimeTypeStartEndFromJSON,
     OgrSourceDatasetTimeTypeStartEndFromJSONTyped,
@@ -53,7 +53,7 @@ export function OgrSourceDatasetTimeTypeFromJSON(json: any): OgrSourceDatasetTim
 }
 
 export function OgrSourceDatasetTimeTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDatasetTimeType {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -71,8 +71,11 @@ export function OgrSourceDatasetTimeTypeFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function OgrSourceDatasetTimeTypeToJSON(value?: OgrSourceDatasetTimeType | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'none':

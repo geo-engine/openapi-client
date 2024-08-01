@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TypedPlotResultDescriptor } from './TypedPlotResultDescriptor';
-import type { TypedRasterResultDescriptor } from './TypedRasterResultDescriptor';
-import type { TypedVectorResultDescriptor } from './TypedVectorResultDescriptor';
+import { TypedPlotResultDescriptor } from './TypedPlotResultDescriptor';
+import { TypedRasterResultDescriptor } from './TypedRasterResultDescriptor';
+import { TypedVectorResultDescriptor } from './TypedVectorResultDescriptor';
 /**
  * @type TypedResultDescriptor
  *

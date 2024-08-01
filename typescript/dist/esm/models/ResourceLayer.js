@@ -15,23 +15,25 @@
  * @export
  */
 export const ResourceLayerTypeEnum = {
-    Layer: 'layer'
+    Layer: 'layer',
+    LayerCollection: 'layerCollection',
+    Project: 'project',
+    Dataset: 'dataset'
 };
 /**
  * Check if a given object implements the ResourceLayer interface.
  */
 export function instanceOfResourceLayer(value) {
-    if (!('id' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function ResourceLayerFromJSON(json) {
     return ResourceLayerFromJSONTyped(json, false);
 }
 export function ResourceLayerFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,11 +42,14 @@ export function ResourceLayerFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ResourceLayerToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }

@@ -24,9 +24,9 @@ exports.OgrSourceDurationSpecZeroTypeEnum = {
  * Check if a given object implements the OgrSourceDurationSpecZero interface.
  */
 function instanceOfOgrSourceDurationSpecZero(value) {
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfOgrSourceDurationSpecZero = instanceOfOgrSourceDurationSpecZero;
 function OgrSourceDurationSpecZeroFromJSON(json) {
@@ -34,7 +34,7 @@ function OgrSourceDurationSpecZeroFromJSON(json) {
 }
 exports.OgrSourceDurationSpecZeroFromJSON = OgrSourceDurationSpecZeroFromJSON;
 function OgrSourceDurationSpecZeroFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -43,11 +43,14 @@ function OgrSourceDurationSpecZeroFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.OgrSourceDurationSpecZeroFromJSONTyped = OgrSourceDurationSpecZeroFromJSONTyped;
 function OgrSourceDurationSpecZeroToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'type': value['type'],
+        'type': value.type,
     };
 }
 exports.OgrSourceDurationSpecZeroToJSON = OgrSourceDurationSpecZeroToJSON;

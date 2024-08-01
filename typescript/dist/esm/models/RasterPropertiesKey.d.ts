@@ -20,7 +20,7 @@ export interface RasterPropertiesKey {
      * @type {string}
      * @memberof RasterPropertiesKey
      */
-    domain?: string;
+    domain?: string | null;
     /**
      *
      * @type {string}

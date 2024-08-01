@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.meta_data_suggestion import MetaDataSuggestion
+from geoengine_openapi_client.models.meta_data_suggestion import MetaDataSuggestion  # noqa: E501
 
 class TestMetaDataSuggestion(unittest.TestCase):
     """MetaDataSuggestion unit test stubs"""
@@ -33,7 +34,7 @@ class TestMetaDataSuggestion(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MetaDataSuggestion`
         """
-        model = MetaDataSuggestion()
+        model = MetaDataSuggestion()  # noqa: E501
         if include_optional:
             return MetaDataSuggestion(
                 layer_name = '',

@@ -34,11 +34,8 @@ export class SpatialReferencesApi extends runtime.BaseAPI {
     /**
      */
     async getSpatialReferenceSpecificationHandlerRaw(requestParameters: GetSpatialReferenceSpecificationHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SpatialReferenceSpecification>> {
-        if (requestParameters['srsString'] == null) {
-            throw new runtime.RequiredError(
-                'srsString',
-                'Required parameter "srsString" was null or undefined when calling getSpatialReferenceSpecificationHandler().'
-            );
+        if (requestParameters.srsString === null || requestParameters.srsString === undefined) {
+            throw new runtime.RequiredError('srsString','Required parameter requestParameters.srsString was null or undefined when calling getSpatialReferenceSpecificationHandler.');
         }
 
         const queryParameters: any = {};
@@ -54,7 +51,7 @@ export class SpatialReferencesApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/spatialReferenceSpecification/{srsString}`.replace(`{${"srsString"}}`, encodeURIComponent(String(requestParameters['srsString']))),
+            path: `/spatialReferenceSpecification/{srsString}`.replace(`{${"srsString"}}`, encodeURIComponent(String(requestParameters.srsString))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

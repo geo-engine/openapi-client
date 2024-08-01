@@ -17,7 +17,7 @@ export function ColorParamFromJSON(json) {
     return ColorParamFromJSONTyped(json, false);
 }
 export function ColorParamFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -30,8 +30,11 @@ export function ColorParamFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function ColorParamToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'derived':

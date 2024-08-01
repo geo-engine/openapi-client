@@ -25,11 +25,10 @@ exports.OgrSourceTimeFormatCustomFormatEnum = {
  * Check if a given object implements the OgrSourceTimeFormatCustom interface.
  */
 function instanceOfOgrSourceTimeFormatCustom(value) {
-    if (!('customFormat' in value))
-        return false;
-    if (!('format' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "customFormat" in value;
+    isInstance = isInstance && "format" in value;
+    return isInstance;
 }
 exports.instanceOfOgrSourceTimeFormatCustom = instanceOfOgrSourceTimeFormatCustom;
 function OgrSourceTimeFormatCustomFromJSON(json) {
@@ -37,7 +36,7 @@ function OgrSourceTimeFormatCustomFromJSON(json) {
 }
 exports.OgrSourceTimeFormatCustomFromJSON = OgrSourceTimeFormatCustomFromJSON;
 function OgrSourceTimeFormatCustomFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -47,12 +46,15 @@ function OgrSourceTimeFormatCustomFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.OgrSourceTimeFormatCustomFromJSONTyped = OgrSourceTimeFormatCustomFromJSONTyped;
 function OgrSourceTimeFormatCustomToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'customFormat': (0, DateTimeParseFormat_1.DateTimeParseFormatToJSON)(value['customFormat']),
-        'format': value['format'],
+        'customFormat': (0, DateTimeParseFormat_1.DateTimeParseFormatToJSON)(value.customFormat),
+        'format': value.format,
     };
 }
 exports.OgrSourceTimeFormatCustomToJSON = OgrSourceTimeFormatCustomToJSON;

@@ -16,7 +16,7 @@ export function RasterColorizerFromJSON(json) {
     return RasterColorizerFromJSONTyped(json, false);
 }
 export function RasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -27,8 +27,11 @@ export function RasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function RasterColorizerToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'singleBand':

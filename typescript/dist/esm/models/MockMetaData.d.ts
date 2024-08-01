@@ -41,6 +41,11 @@ export interface MockMetaData {
  */
 export declare const MockMetaDataTypeEnum: {
     readonly MockMetaData: "MockMetaData";
+    readonly OgrMetaData: "OgrMetaData";
+    readonly GdalMetaDataRegular: "GdalMetaDataRegular";
+    readonly GdalStatic: "GdalStatic";
+    readonly GdalMetadataNetCdfCf: "GdalMetadataNetCdfCf";
+    readonly GdalMetaDataList: "GdalMetaDataList";
 };
 export type MockMetaDataTypeEnum = typeof MockMetaDataTypeEnum[keyof typeof MockMetaDataTypeEnum];
 /**

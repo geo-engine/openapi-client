@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 /**
  * @export
  */
@@ -21,29 +22,25 @@ export const TaskStatusRunningStatusEnum = {
  * Check if a given object implements the TaskStatusRunning interface.
  */
 export function instanceOfTaskStatusRunning(value) {
-    if (!('estimatedTimeRemaining' in value))
-        return false;
-    if (!('pctComplete' in value))
-        return false;
-    if (!('status' in value))
-        return false;
-    if (!('taskType' in value))
-        return false;
-    if (!('timeStarted' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "estimatedTimeRemaining" in value;
+    isInstance = isInstance && "pctComplete" in value;
+    isInstance = isInstance && "status" in value;
+    isInstance = isInstance && "taskType" in value;
+    isInstance = isInstance && "timeStarted" in value;
+    return isInstance;
 }
 export function TaskStatusRunningFromJSON(json) {
     return TaskStatusRunningFromJSONTyped(json, false);
 }
 export function TaskStatusRunningFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'description': json['description'] == null ? undefined : json['description'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'estimatedTimeRemaining': json['estimatedTimeRemaining'],
-        'info': json['info'] == null ? undefined : json['info'],
+        'info': !exists(json, 'info') ? undefined : json['info'],
         'pctComplete': json['pctComplete'],
         'status': json['status'],
         'taskType': json['taskType'],
@@ -51,16 +48,19 @@ export function TaskStatusRunningFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function TaskStatusRunningToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'description': value['description'],
-        'estimatedTimeRemaining': value['estimatedTimeRemaining'],
-        'info': value['info'],
-        'pctComplete': value['pctComplete'],
-        'status': value['status'],
-        'taskType': value['taskType'],
-        'timeStarted': value['timeStarted'],
+        'description': value.description,
+        'estimatedTimeRemaining': value.estimatedTimeRemaining,
+        'info': value.info,
+        'pctComplete': value.pctComplete,
+        'status': value.status,
+        'taskType': value.taskType,
+        'timeStarted': value.timeStarted,
     };
 }

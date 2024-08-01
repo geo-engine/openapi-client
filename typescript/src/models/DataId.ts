@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
-import type { ExternalDataId } from './ExternalDataId';
 import {
+    ExternalDataId,
     instanceOfExternalDataId,
     ExternalDataIdFromJSON,
     ExternalDataIdFromJSONTyped,
     ExternalDataIdToJSON,
 } from './ExternalDataId';
-import type { InternalDataId } from './InternalDataId';
 import {
+    InternalDataId,
     instanceOfInternalDataId,
     InternalDataIdFromJSON,
     InternalDataIdFromJSONTyped,
@@ -39,7 +39,7 @@ export function DataIdFromJSON(json: any): DataId {
 }
 
 export function DataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataId {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -53,8 +53,11 @@ export function DataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): Da
 }
 
 export function DataIdToJSON(value?: DataId | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'external':

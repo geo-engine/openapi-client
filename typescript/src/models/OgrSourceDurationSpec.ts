@@ -12,22 +12,22 @@
  * Do not edit the class manually.
  */
 
-import type { OgrSourceDurationSpecInfinite } from './OgrSourceDurationSpecInfinite';
 import {
+    OgrSourceDurationSpecInfinite,
     instanceOfOgrSourceDurationSpecInfinite,
     OgrSourceDurationSpecInfiniteFromJSON,
     OgrSourceDurationSpecInfiniteFromJSONTyped,
     OgrSourceDurationSpecInfiniteToJSON,
 } from './OgrSourceDurationSpecInfinite';
-import type { OgrSourceDurationSpecValue } from './OgrSourceDurationSpecValue';
 import {
+    OgrSourceDurationSpecValue,
     instanceOfOgrSourceDurationSpecValue,
     OgrSourceDurationSpecValueFromJSON,
     OgrSourceDurationSpecValueFromJSONTyped,
     OgrSourceDurationSpecValueToJSON,
 } from './OgrSourceDurationSpecValue';
-import type { OgrSourceDurationSpecZero } from './OgrSourceDurationSpecZero';
 import {
+    OgrSourceDurationSpecZero,
     instanceOfOgrSourceDurationSpecZero,
     OgrSourceDurationSpecZeroFromJSON,
     OgrSourceDurationSpecZeroFromJSONTyped,
@@ -46,7 +46,7 @@ export function OgrSourceDurationSpecFromJSON(json: any): OgrSourceDurationSpec 
 }
 
 export function OgrSourceDurationSpecFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpec {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -62,8 +62,11 @@ export function OgrSourceDurationSpecFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function OgrSourceDurationSpecToJSON(value?: OgrSourceDurationSpec | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'infinite':

@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.collection_type import CollectionType
+from geoengine_openapi_client.models.collection_type import CollectionType  # noqa: E501
 
 class TestCollectionType(unittest.TestCase):
     """CollectionType unit test stubs"""

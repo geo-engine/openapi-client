@@ -9,12 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { GdalMetaDataList } from './GdalMetaDataList';
-import type { GdalMetaDataRegular } from './GdalMetaDataRegular';
-import type { GdalMetaDataStatic } from './GdalMetaDataStatic';
-import type { GdalMetadataNetCdfCf } from './GdalMetadataNetCdfCf';
-import type { MockMetaData } from './MockMetaData';
-import type { OgrMetaData } from './OgrMetaData';
+import { GdalMetaDataList } from './GdalMetaDataList';
+import { GdalMetaDataRegular } from './GdalMetaDataRegular';
+import { GdalMetaDataStatic } from './GdalMetaDataStatic';
+import { GdalMetadataNetCdfCf } from './GdalMetadataNetCdfCf';
+import { MockMetaData } from './MockMetaData';
+import { OgrMetaData } from './OgrMetaData';
 /**
  * @type MetaDataDefinition
  *

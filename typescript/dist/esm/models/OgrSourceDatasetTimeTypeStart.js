@@ -23,21 +23,18 @@ export const OgrSourceDatasetTimeTypeStartTypeEnum = {
  * Check if a given object implements the OgrSourceDatasetTimeTypeStart interface.
  */
 export function instanceOfOgrSourceDatasetTimeTypeStart(value) {
-    if (!('duration' in value))
-        return false;
-    if (!('startField' in value))
-        return false;
-    if (!('startFormat' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "duration" in value;
+    isInstance = isInstance && "startField" in value;
+    isInstance = isInstance && "startFormat" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function OgrSourceDatasetTimeTypeStartFromJSON(json) {
     return OgrSourceDatasetTimeTypeStartFromJSONTyped(json, false);
 }
 export function OgrSourceDatasetTimeTypeStartFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -48,13 +45,16 @@ export function OgrSourceDatasetTimeTypeStartFromJSONTyped(json, ignoreDiscrimin
     };
 }
 export function OgrSourceDatasetTimeTypeStartToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'duration': OgrSourceDurationSpecToJSON(value['duration']),
-        'startField': value['startField'],
-        'startFormat': OgrSourceTimeFormatToJSON(value['startFormat']),
-        'type': value['type'],
+        'duration': OgrSourceDurationSpecToJSON(value.duration),
+        'startField': value.startField,
+        'startFormat': OgrSourceTimeFormatToJSON(value.startFormat),
+        'type': value.type,
     };
 }

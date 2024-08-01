@@ -21,19 +21,17 @@ export const TaskStatusFailedStatusEnum = {
  * Check if a given object implements the TaskStatusFailed interface.
  */
 export function instanceOfTaskStatusFailed(value) {
-    if (!('cleanUp' in value))
-        return false;
-    if (!('error' in value))
-        return false;
-    if (!('status' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "cleanUp" in value;
+    isInstance = isInstance && "error" in value;
+    isInstance = isInstance && "status" in value;
+    return isInstance;
 }
 export function TaskStatusFailedFromJSON(json) {
     return TaskStatusFailedFromJSONTyped(json, false);
 }
 export function TaskStatusFailedFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -43,12 +41,15 @@ export function TaskStatusFailedFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function TaskStatusFailedToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'cleanUp': value['cleanUp'],
-        'error': value['error'],
-        'status': value['status'],
+        'cleanUp': value.cleanUp,
+        'error': value.error,
+        'status': value.status,
     };
 }

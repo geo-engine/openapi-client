@@ -28,7 +28,7 @@ export interface GdalLoadingInfoTemporalSlice {
      * @type {GdalDatasetParameters}
      * @memberof GdalLoadingInfoTemporalSlice
      */
-    params?: GdalDatasetParameters;
+    params?: GdalDatasetParameters | null;
     /**
      *
      * @type {TimeInterval}

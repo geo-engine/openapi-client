@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.symbology import Symbology
+from geoengine_openapi_client.models.symbology import Symbology  # noqa: E501
 
 class TestSymbology(unittest.TestCase):
     """Symbology unit test stubs"""
@@ -33,7 +34,7 @@ class TestSymbology(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Symbology`
         """
-        model = Symbology()
+        model = Symbology()  # noqa: E501
         if include_optional:
             return Symbology(
                 opacity = 1.337,

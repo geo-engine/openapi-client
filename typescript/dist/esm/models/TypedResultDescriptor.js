@@ -18,7 +18,7 @@ export function TypedResultDescriptorFromJSON(json) {
     return TypedResultDescriptorFromJSONTyped(json, false);
 }
 export function TypedResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -33,8 +33,11 @@ export function TypedResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function TypedResultDescriptorToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'plot':

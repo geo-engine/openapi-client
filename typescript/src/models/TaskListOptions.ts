@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { TaskFilter } from './TaskFilter';
 import {
     TaskFilterFromJSON,
@@ -31,7 +31,7 @@ export interface TaskListOptions {
      * @type {TaskFilter}
      * @memberof TaskListOptions
      */
-    filter?: TaskFilter;
+    filter?: TaskFilter | null;
     /**
      * 
      * @type {number}
@@ -50,7 +50,9 @@ export interface TaskListOptions {
  * Check if a given object implements the TaskListOptions interface.
  */
 export function instanceOfTaskListOptions(value: object): boolean {
-    return true;
+    let isInstance = true;
+
+    return isInstance;
 }
 
 export function TaskListOptionsFromJSON(json: any): TaskListOptions {
@@ -58,26 +60,29 @@ export function TaskListOptionsFromJSON(json: any): TaskListOptions {
 }
 
 export function TaskListOptionsFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskListOptions {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'filter': json['filter'] == null ? undefined : TaskFilterFromJSON(json['filter']),
-        'limit': json['limit'] == null ? undefined : json['limit'],
-        'offset': json['offset'] == null ? undefined : json['offset'],
+        'filter': !exists(json, 'filter') ? undefined : TaskFilterFromJSON(json['filter']),
+        'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'offset': !exists(json, 'offset') ? undefined : json['offset'],
     };
 }
 
 export function TaskListOptionsToJSON(value?: TaskListOptions | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'filter': TaskFilterToJSON(value['filter']),
-        'limit': value['limit'],
-        'offset': value['offset'],
+        'filter': TaskFilterToJSON(value.filter),
+        'limit': value.limit,
+        'offset': value.offset,
     };
 }
 

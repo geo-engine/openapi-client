@@ -24,13 +24,11 @@ exports.ExternalDataIdTypeEnum = {
  * Check if a given object implements the ExternalDataId interface.
  */
 function instanceOfExternalDataId(value) {
-    if (!('layerId' in value))
-        return false;
-    if (!('providerId' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "layerId" in value;
+    isInstance = isInstance && "providerId" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfExternalDataId = instanceOfExternalDataId;
 function ExternalDataIdFromJSON(json) {
@@ -38,7 +36,7 @@ function ExternalDataIdFromJSON(json) {
 }
 exports.ExternalDataIdFromJSON = ExternalDataIdFromJSON;
 function ExternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -49,13 +47,16 @@ function ExternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ExternalDataIdFromJSONTyped = ExternalDataIdFromJSONTyped;
 function ExternalDataIdToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'layerId': value['layerId'],
-        'providerId': value['providerId'],
-        'type': value['type'],
+        'layerId': value.layerId,
+        'providerId': value.providerId,
+        'type': value.type,
     };
 }
 exports.ExternalDataIdToJSON = ExternalDataIdToJSON;

@@ -12,43 +12,43 @@
  * Do not edit the class manually.
  */
 
-import type { GdalMetaDataList } from './GdalMetaDataList';
 import {
+    GdalMetaDataList,
     instanceOfGdalMetaDataList,
     GdalMetaDataListFromJSON,
     GdalMetaDataListFromJSONTyped,
     GdalMetaDataListToJSON,
 } from './GdalMetaDataList';
-import type { GdalMetaDataRegular } from './GdalMetaDataRegular';
 import {
+    GdalMetaDataRegular,
     instanceOfGdalMetaDataRegular,
     GdalMetaDataRegularFromJSON,
     GdalMetaDataRegularFromJSONTyped,
     GdalMetaDataRegularToJSON,
 } from './GdalMetaDataRegular';
-import type { GdalMetaDataStatic } from './GdalMetaDataStatic';
 import {
+    GdalMetaDataStatic,
     instanceOfGdalMetaDataStatic,
     GdalMetaDataStaticFromJSON,
     GdalMetaDataStaticFromJSONTyped,
     GdalMetaDataStaticToJSON,
 } from './GdalMetaDataStatic';
-import type { GdalMetadataNetCdfCf } from './GdalMetadataNetCdfCf';
 import {
+    GdalMetadataNetCdfCf,
     instanceOfGdalMetadataNetCdfCf,
     GdalMetadataNetCdfCfFromJSON,
     GdalMetadataNetCdfCfFromJSONTyped,
     GdalMetadataNetCdfCfToJSON,
 } from './GdalMetadataNetCdfCf';
-import type { MockMetaData } from './MockMetaData';
 import {
+    MockMetaData,
     instanceOfMockMetaData,
     MockMetaDataFromJSON,
     MockMetaDataFromJSONTyped,
     MockMetaDataToJSON,
 } from './MockMetaData';
-import type { OgrMetaData } from './OgrMetaData';
 import {
+    OgrMetaData,
     instanceOfOgrMetaData,
     OgrMetaDataFromJSON,
     OgrMetaDataFromJSONTyped,
@@ -67,7 +67,7 @@ export function MetaDataDefinitionFromJSON(json: any): MetaDataDefinition {
 }
 
 export function MetaDataDefinitionFromJSONTyped(json: any, ignoreDiscriminator: boolean): MetaDataDefinition {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -89,8 +89,11 @@ export function MetaDataDefinitionFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function MetaDataDefinitionToJSON(value?: MetaDataDefinition | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'GdalMetaDataList':

@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.resource_dataset import ResourceDataset
+from geoengine_openapi_client.models.resource_dataset import ResourceDataset  # noqa: E501
 
 class TestResourceDataset(unittest.TestCase):
     """ResourceDataset unit test stubs"""
@@ -33,7 +34,7 @@ class TestResourceDataset(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ResourceDataset`
         """
-        model = ResourceDataset()
+        model = ResourceDataset()  # noqa: E501
         if include_optional:
             return ResourceDataset(
                 id = '',

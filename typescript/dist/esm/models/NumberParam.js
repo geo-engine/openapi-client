@@ -17,7 +17,7 @@ export function NumberParamFromJSON(json) {
     return NumberParamFromJSONTyped(json, false);
 }
 export function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -30,8 +30,11 @@ export function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function NumberParamToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'derived':

@@ -12,29 +12,29 @@
  * Do not edit the class manually.
  */
 
-import type { LineSymbology } from './LineSymbology';
 import {
+    LineSymbology,
     instanceOfLineSymbology,
     LineSymbologyFromJSON,
     LineSymbologyFromJSONTyped,
     LineSymbologyToJSON,
 } from './LineSymbology';
-import type { PointSymbology } from './PointSymbology';
 import {
+    PointSymbology,
     instanceOfPointSymbology,
     PointSymbologyFromJSON,
     PointSymbologyFromJSONTyped,
     PointSymbologyToJSON,
 } from './PointSymbology';
-import type { PolygonSymbology } from './PolygonSymbology';
 import {
+    PolygonSymbology,
     instanceOfPolygonSymbology,
     PolygonSymbologyFromJSON,
     PolygonSymbologyFromJSONTyped,
     PolygonSymbologyToJSON,
 } from './PolygonSymbology';
-import type { RasterSymbology } from './RasterSymbology';
 import {
+    RasterSymbology,
     instanceOfRasterSymbology,
     RasterSymbologyFromJSON,
     RasterSymbologyFromJSONTyped,
@@ -53,7 +53,7 @@ export function SymbologyFromJSON(json: any): Symbology {
 }
 
 export function SymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): Symbology {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -71,8 +71,11 @@ export function SymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean):
 }
 
 export function SymbologyToJSON(value?: Symbology | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'line':

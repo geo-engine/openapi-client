@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -32,7 +32,10 @@ export interface OgrSourceDatasetTimeTypeNone {
  * @export
  */
 export const OgrSourceDatasetTimeTypeNoneTypeEnum = {
-    None: 'none'
+    None: 'none',
+    Start: 'start',
+    StartEnd: 'startEnd',
+    StartDuration: 'startDuration'
 } as const;
 export type OgrSourceDatasetTimeTypeNoneTypeEnum = typeof OgrSourceDatasetTimeTypeNoneTypeEnum[keyof typeof OgrSourceDatasetTimeTypeNoneTypeEnum];
 
@@ -41,8 +44,10 @@ export type OgrSourceDatasetTimeTypeNoneTypeEnum = typeof OgrSourceDatasetTimeTy
  * Check if a given object implements the OgrSourceDatasetTimeTypeNone interface.
  */
 export function instanceOfOgrSourceDatasetTimeTypeNone(value: object): boolean {
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function OgrSourceDatasetTimeTypeNoneFromJSON(json: any): OgrSourceDatasetTimeTypeNone {
@@ -50,7 +55,7 @@ export function OgrSourceDatasetTimeTypeNoneFromJSON(json: any): OgrSourceDatase
 }
 
 export function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDatasetTimeTypeNone {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -60,12 +65,15 @@ export function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json: any, ignoreDiscr
 }
 
 export function OgrSourceDatasetTimeTypeNoneToJSON(value?: OgrSourceDatasetTimeTypeNone | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'type': value['type'],
+        'type': value.type,
     };
 }
 

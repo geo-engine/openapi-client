@@ -24,11 +24,10 @@ exports.ResourceDatasetTypeEnum = {
  * Check if a given object implements the ResourceDataset interface.
  */
 function instanceOfResourceDataset(value) {
-    if (!('id' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfResourceDataset = instanceOfResourceDataset;
 function ResourceDatasetFromJSON(json) {
@@ -36,7 +35,7 @@ function ResourceDatasetFromJSON(json) {
 }
 exports.ResourceDatasetFromJSON = ResourceDatasetFromJSON;
 function ResourceDatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,12 +45,15 @@ function ResourceDatasetFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ResourceDatasetFromJSONTyped = ResourceDatasetFromJSONTyped;
 function ResourceDatasetToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 exports.ResourceDatasetToJSON = ResourceDatasetToJSON;

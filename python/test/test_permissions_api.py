@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.permissions_api import PermissionsApi
+from geoengine_openapi_client.api.permissions_api import PermissionsApi  # noqa: E501
 
 
 class TestPermissionsApi(unittest.TestCase):
     """PermissionsApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = PermissionsApi()
+        self.api = PermissionsApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,21 +30,21 @@ class TestPermissionsApi(unittest.TestCase):
     def test_add_permission_handler(self) -> None:
         """Test case for add_permission_handler
 
-        Adds a new permission.
+        Adds a new permission.  # noqa: E501
         """
         pass
 
     def test_get_resource_permissions_handler(self) -> None:
         """Test case for get_resource_permissions_handler
 
-        Lists permission for a given resource.
+        Lists permission for a given resource.  # noqa: E501
         """
         pass
 
     def test_remove_permission_handler(self) -> None:
         """Test case for remove_permission_handler
 
-        Removes an existing permission.
+        Removes an existing permission.  # noqa: E501
         """
         pass
 

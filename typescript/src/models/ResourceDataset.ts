@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -47,9 +47,11 @@ export type ResourceDatasetTypeEnum = typeof ResourceDatasetTypeEnum[keyof typeo
  * Check if a given object implements the ResourceDataset interface.
  */
 export function instanceOfResourceDataset(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function ResourceDatasetFromJSON(json: any): ResourceDataset {
@@ -57,7 +59,7 @@ export function ResourceDatasetFromJSON(json: any): ResourceDataset {
 }
 
 export function ResourceDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceDataset {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -68,13 +70,16 @@ export function ResourceDatasetFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function ResourceDatasetToJSON(value?: ResourceDataset | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 

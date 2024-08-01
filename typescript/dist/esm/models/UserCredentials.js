@@ -15,17 +15,16 @@
  * Check if a given object implements the UserCredentials interface.
  */
 export function instanceOfUserCredentials(value) {
-    if (!('email' in value))
-        return false;
-    if (!('password' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "email" in value;
+    isInstance = isInstance && "password" in value;
+    return isInstance;
 }
 export function UserCredentialsFromJSON(json) {
     return UserCredentialsFromJSONTyped(json, false);
 }
 export function UserCredentialsFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -34,11 +33,14 @@ export function UserCredentialsFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function UserCredentialsToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'email': value['email'],
-        'password': value['password'],
+        'email': value.email,
+        'password': value.password,
     };
 }

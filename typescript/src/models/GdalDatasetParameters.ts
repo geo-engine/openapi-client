@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { FileNotFoundHandling } from './FileNotFoundHandling';
 import {
     FileNotFoundHandlingFromJSON,
@@ -61,13 +61,13 @@ export interface GdalDatasetParameters {
      * @type {Array<Array<string>>}
      * @memberof GdalDatasetParameters
      */
-    gdalConfigOptions?: Array<Array<string>>;
+    gdalConfigOptions?: Array<Array<string>> | null;
     /**
      * 
      * @type {Array<string>}
      * @memberof GdalDatasetParameters
      */
-    gdalOpenOptions?: Array<string>;
+    gdalOpenOptions?: Array<string> | null;
     /**
      * 
      * @type {GdalDatasetGeoTransform}
@@ -85,13 +85,13 @@ export interface GdalDatasetParameters {
      * @type {number}
      * @memberof GdalDatasetParameters
      */
-    noDataValue?: number;
+    noDataValue?: number | null;
     /**
      * 
      * @type {Array<GdalMetadataMapping>}
      * @memberof GdalDatasetParameters
      */
-    propertiesMapping?: Array<GdalMetadataMapping>;
+    propertiesMapping?: Array<GdalMetadataMapping> | null;
     /**
      * 
      * @type {number}
@@ -110,13 +110,15 @@ export interface GdalDatasetParameters {
  * Check if a given object implements the GdalDatasetParameters interface.
  */
 export function instanceOfGdalDatasetParameters(value: object): boolean {
-    if (!('fileNotFoundHandling' in value)) return false;
-    if (!('filePath' in value)) return false;
-    if (!('geoTransform' in value)) return false;
-    if (!('height' in value)) return false;
-    if (!('rasterbandChannel' in value)) return false;
-    if (!('width' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "fileNotFoundHandling" in value;
+    isInstance = isInstance && "filePath" in value;
+    isInstance = isInstance && "geoTransform" in value;
+    isInstance = isInstance && "height" in value;
+    isInstance = isInstance && "rasterbandChannel" in value;
+    isInstance = isInstance && "width" in value;
+
+    return isInstance;
 }
 
 export function GdalDatasetParametersFromJSON(json: any): GdalDatasetParameters {
@@ -124,42 +126,45 @@ export function GdalDatasetParametersFromJSON(json: any): GdalDatasetParameters 
 }
 
 export function GdalDatasetParametersFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalDatasetParameters {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'allowAlphabandAsMask': json['allowAlphabandAsMask'] == null ? undefined : json['allowAlphabandAsMask'],
+        'allowAlphabandAsMask': !exists(json, 'allowAlphabandAsMask') ? undefined : json['allowAlphabandAsMask'],
         'fileNotFoundHandling': FileNotFoundHandlingFromJSON(json['fileNotFoundHandling']),
         'filePath': json['filePath'],
-        'gdalConfigOptions': json['gdalConfigOptions'] == null ? undefined : json['gdalConfigOptions'],
-        'gdalOpenOptions': json['gdalOpenOptions'] == null ? undefined : json['gdalOpenOptions'],
+        'gdalConfigOptions': !exists(json, 'gdalConfigOptions') ? undefined : json['gdalConfigOptions'],
+        'gdalOpenOptions': !exists(json, 'gdalOpenOptions') ? undefined : json['gdalOpenOptions'],
         'geoTransform': GdalDatasetGeoTransformFromJSON(json['geoTransform']),
         'height': json['height'],
-        'noDataValue': json['noDataValue'] == null ? undefined : json['noDataValue'],
-        'propertiesMapping': json['propertiesMapping'] == null ? undefined : ((json['propertiesMapping'] as Array<any>).map(GdalMetadataMappingFromJSON)),
+        'noDataValue': !exists(json, 'noDataValue') ? undefined : json['noDataValue'],
+        'propertiesMapping': !exists(json, 'propertiesMapping') ? undefined : (json['propertiesMapping'] === null ? null : (json['propertiesMapping'] as Array<any>).map(GdalMetadataMappingFromJSON)),
         'rasterbandChannel': json['rasterbandChannel'],
         'width': json['width'],
     };
 }
 
 export function GdalDatasetParametersToJSON(value?: GdalDatasetParameters | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'allowAlphabandAsMask': value['allowAlphabandAsMask'],
-        'fileNotFoundHandling': FileNotFoundHandlingToJSON(value['fileNotFoundHandling']),
-        'filePath': value['filePath'],
-        'gdalConfigOptions': value['gdalConfigOptions'],
-        'gdalOpenOptions': value['gdalOpenOptions'],
-        'geoTransform': GdalDatasetGeoTransformToJSON(value['geoTransform']),
-        'height': value['height'],
-        'noDataValue': value['noDataValue'],
-        'propertiesMapping': value['propertiesMapping'] == null ? undefined : ((value['propertiesMapping'] as Array<any>).map(GdalMetadataMappingToJSON)),
-        'rasterbandChannel': value['rasterbandChannel'],
-        'width': value['width'],
+        'allowAlphabandAsMask': value.allowAlphabandAsMask,
+        'fileNotFoundHandling': FileNotFoundHandlingToJSON(value.fileNotFoundHandling),
+        'filePath': value.filePath,
+        'gdalConfigOptions': value.gdalConfigOptions,
+        'gdalOpenOptions': value.gdalOpenOptions,
+        'geoTransform': GdalDatasetGeoTransformToJSON(value.geoTransform),
+        'height': value.height,
+        'noDataValue': value.noDataValue,
+        'propertiesMapping': value.propertiesMapping === undefined ? undefined : (value.propertiesMapping === null ? null : (value.propertiesMapping as Array<any>).map(GdalMetadataMappingToJSON)),
+        'rasterbandChannel': value.rasterbandChannel,
+        'width': value.width,
     };
 }
 

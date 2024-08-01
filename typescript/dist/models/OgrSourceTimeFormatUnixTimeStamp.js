@@ -25,11 +25,10 @@ exports.OgrSourceTimeFormatUnixTimeStampFormatEnum = {
  * Check if a given object implements the OgrSourceTimeFormatUnixTimeStamp interface.
  */
 function instanceOfOgrSourceTimeFormatUnixTimeStamp(value) {
-    if (!('format' in value))
-        return false;
-    if (!('timestampType' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "format" in value;
+    isInstance = isInstance && "timestampType" in value;
+    return isInstance;
 }
 exports.instanceOfOgrSourceTimeFormatUnixTimeStamp = instanceOfOgrSourceTimeFormatUnixTimeStamp;
 function OgrSourceTimeFormatUnixTimeStampFromJSON(json) {
@@ -37,7 +36,7 @@ function OgrSourceTimeFormatUnixTimeStampFromJSON(json) {
 }
 exports.OgrSourceTimeFormatUnixTimeStampFromJSON = OgrSourceTimeFormatUnixTimeStampFromJSON;
 function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -47,12 +46,15 @@ function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, ignoreDiscriminator
 }
 exports.OgrSourceTimeFormatUnixTimeStampFromJSONTyped = OgrSourceTimeFormatUnixTimeStampFromJSONTyped;
 function OgrSourceTimeFormatUnixTimeStampToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'format': value['format'],
-        'timestampType': (0, UnixTimeStampType_1.UnixTimeStampTypeToJSON)(value['timestampType']),
+        'format': value.format,
+        'timestampType': (0, UnixTimeStampType_1.UnixTimeStampTypeToJSON)(value.timestampType),
     };
 }
 exports.OgrSourceTimeFormatUnixTimeStampToJSON = OgrSourceTimeFormatUnixTimeStampToJSON;

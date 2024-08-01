@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { MultiPoint } from './MultiPoint';
 import {
     MultiPointFromJSON,
@@ -38,8 +38,10 @@ export interface TypedGeometryOneOf1 {
  * Check if a given object implements the TypedGeometryOneOf1 interface.
  */
 export function instanceOfTypedGeometryOneOf1(value: object): boolean {
-    if (!('multiPoint' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "multiPoint" in value;
+
+    return isInstance;
 }
 
 export function TypedGeometryOneOf1FromJSON(json: any): TypedGeometryOneOf1 {
@@ -47,7 +49,7 @@ export function TypedGeometryOneOf1FromJSON(json: any): TypedGeometryOneOf1 {
 }
 
 export function TypedGeometryOneOf1FromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedGeometryOneOf1 {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -57,12 +59,15 @@ export function TypedGeometryOneOf1FromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function TypedGeometryOneOf1ToJSON(value?: TypedGeometryOneOf1 | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'MultiPoint': MultiPointToJSON(value['multiPoint']),
+        'MultiPoint': MultiPointToJSON(value.multiPoint),
     };
 }
 

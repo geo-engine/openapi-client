@@ -12,22 +12,22 @@
  * Do not edit the class manually.
  */
 
-import type { TypedPlotResultDescriptor } from './TypedPlotResultDescriptor';
 import {
+    TypedPlotResultDescriptor,
     instanceOfTypedPlotResultDescriptor,
     TypedPlotResultDescriptorFromJSON,
     TypedPlotResultDescriptorFromJSONTyped,
     TypedPlotResultDescriptorToJSON,
 } from './TypedPlotResultDescriptor';
-import type { TypedRasterResultDescriptor } from './TypedRasterResultDescriptor';
 import {
+    TypedRasterResultDescriptor,
     instanceOfTypedRasterResultDescriptor,
     TypedRasterResultDescriptorFromJSON,
     TypedRasterResultDescriptorFromJSONTyped,
     TypedRasterResultDescriptorToJSON,
 } from './TypedRasterResultDescriptor';
-import type { TypedVectorResultDescriptor } from './TypedVectorResultDescriptor';
 import {
+    TypedVectorResultDescriptor,
     instanceOfTypedVectorResultDescriptor,
     TypedVectorResultDescriptorFromJSON,
     TypedVectorResultDescriptorFromJSONTyped,
@@ -46,7 +46,7 @@ export function TypedResultDescriptorFromJSON(json: any): TypedResultDescriptor 
 }
 
 export function TypedResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedResultDescriptor {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -62,8 +62,11 @@ export function TypedResultDescriptorFromJSONTyped(json: any, ignoreDiscriminato
 }
 
 export function TypedResultDescriptorToJSON(value?: TypedResultDescriptor | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'plot':

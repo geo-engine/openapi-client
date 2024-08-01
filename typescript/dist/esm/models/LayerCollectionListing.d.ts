@@ -52,6 +52,7 @@ export interface LayerCollectionListing {
  */
 export declare const LayerCollectionListingTypeEnum: {
     readonly Collection: "collection";
+    readonly Layer: "layer";
 };
 export type LayerCollectionListingTypeEnum = typeof LayerCollectionListingTypeEnum[keyof typeof LayerCollectionListingTypeEnum];
 /**

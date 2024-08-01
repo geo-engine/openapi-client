@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -41,8 +41,10 @@ export type OgrSourceTimeFormatAutoFormatEnum = typeof OgrSourceTimeFormatAutoFo
  * Check if a given object implements the OgrSourceTimeFormatAuto interface.
  */
 export function instanceOfOgrSourceTimeFormatAuto(value: object): boolean {
-    if (!('format' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "format" in value;
+
+    return isInstance;
 }
 
 export function OgrSourceTimeFormatAutoFromJSON(json: any): OgrSourceTimeFormatAuto {
@@ -50,7 +52,7 @@ export function OgrSourceTimeFormatAutoFromJSON(json: any): OgrSourceTimeFormatA
 }
 
 export function OgrSourceTimeFormatAutoFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceTimeFormatAuto {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -60,12 +62,15 @@ export function OgrSourceTimeFormatAutoFromJSONTyped(json: any, ignoreDiscrimina
 }
 
 export function OgrSourceTimeFormatAutoToJSON(value?: OgrSourceTimeFormatAuto | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'format': value['format'],
+        'format': value.format,
     };
 }
 

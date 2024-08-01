@@ -18,11 +18,10 @@ exports.SearchTypesToJSON = exports.SearchTypesFromJSONTyped = exports.SearchTyp
  * Check if a given object implements the SearchTypes interface.
  */
 function instanceOfSearchTypes(value) {
-    if (!('fulltext' in value))
-        return false;
-    if (!('prefix' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "fulltext" in value;
+    isInstance = isInstance && "prefix" in value;
+    return isInstance;
 }
 exports.instanceOfSearchTypes = instanceOfSearchTypes;
 function SearchTypesFromJSON(json) {
@@ -30,7 +29,7 @@ function SearchTypesFromJSON(json) {
 }
 exports.SearchTypesFromJSON = SearchTypesFromJSON;
 function SearchTypesFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,12 +39,15 @@ function SearchTypesFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.SearchTypesFromJSONTyped = SearchTypesFromJSONTyped;
 function SearchTypesToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'fulltext': value['fulltext'],
-        'prefix': value['prefix'],
+        'fulltext': value.fulltext,
+        'prefix': value.prefix,
     };
 }
 exports.SearchTypesToJSON = SearchTypesToJSON;

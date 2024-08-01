@@ -33,6 +33,7 @@ export interface NumberParamStatic {
  */
 export declare const NumberParamStaticTypeEnum: {
     readonly Static: "static";
+    readonly Derived: "derived";
 };
 export type NumberParamStaticTypeEnum = typeof NumberParamStaticTypeEnum[keyof typeof NumberParamStaticTypeEnum];
 /**

@@ -21,20 +21,26 @@ function PlotUpdateFromJSON(json) {
 }
 exports.PlotUpdateFromJSON = PlotUpdateFromJSON;
 function PlotUpdateFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
-    if ((0, Plot_1.instanceOfPlot)(json)) {
-        return (0, Plot_1.PlotFromJSONTyped)(json, true);
+    if (json === ProjectUpdateToken_1.ProjectUpdateToken.None) {
+        return ProjectUpdateToken_1.ProjectUpdateToken.None;
     }
-    if ((0, ProjectUpdateToken_1.instanceOfProjectUpdateToken)(json)) {
-        return (0, ProjectUpdateToken_1.ProjectUpdateTokenFromJSONTyped)(json, true);
+    else if (json === ProjectUpdateToken_1.ProjectUpdateToken.Delete) {
+        return ProjectUpdateToken_1.ProjectUpdateToken.Delete;
+    }
+    else {
+        return Object.assign({}, (0, Plot_1.PlotFromJSONTyped)(json, true));
     }
 }
 exports.PlotUpdateFromJSONTyped = PlotUpdateFromJSONTyped;
 function PlotUpdateToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     if (typeof value === 'object' && (0, Plot_1.instanceOfPlot)(value)) {
         return (0, Plot_1.PlotToJSON)(value);

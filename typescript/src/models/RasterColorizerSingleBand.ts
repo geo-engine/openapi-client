@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { Colorizer } from './Colorizer';
 import {
     ColorizerFromJSON,
@@ -60,10 +60,12 @@ export type RasterColorizerSingleBandTypeEnum = typeof RasterColorizerSingleBand
  * Check if a given object implements the RasterColorizerSingleBand interface.
  */
 export function instanceOfRasterColorizerSingleBand(value: object): boolean {
-    if (!('band' in value)) return false;
-    if (!('bandColorizer' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "band" in value;
+    isInstance = isInstance && "bandColorizer" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function RasterColorizerSingleBandFromJSON(json: any): RasterColorizerSingleBand {
@@ -71,7 +73,7 @@ export function RasterColorizerSingleBandFromJSON(json: any): RasterColorizerSin
 }
 
 export function RasterColorizerSingleBandFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterColorizerSingleBand {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -83,14 +85,17 @@ export function RasterColorizerSingleBandFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function RasterColorizerSingleBandToJSON(value?: RasterColorizerSingleBand | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'band': value['band'],
-        'bandColorizer': ColorizerToJSON(value['bandColorizer']),
-        'type': value['type'],
+        'band': value.band,
+        'bandColorizer': ColorizerToJSON(value.bandColorizer),
+        'type': value.type,
     };
 }
 

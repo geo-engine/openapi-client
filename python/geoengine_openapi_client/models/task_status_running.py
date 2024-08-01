@@ -18,94 +18,78 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from typing import Optional, Set
-from typing_extensions import Self
+
+from typing import Any, Optional
+from pydantic import BaseModel, Field, StrictStr, validator
 
 class TaskStatusRunning(BaseModel):
     """
     TaskStatusRunning
-    """ # noqa: E501
+    """
     description: Optional[StrictStr] = None
-    estimated_time_remaining: StrictStr = Field(alias="estimatedTimeRemaining")
+    estimated_time_remaining: StrictStr = Field(..., alias="estimatedTimeRemaining")
     info: Optional[Any] = None
-    pct_complete: StrictStr = Field(alias="pctComplete")
-    status: StrictStr
-    task_type: StrictStr = Field(alias="taskType")
-    time_started: StrictStr = Field(alias="timeStarted")
-    __properties: ClassVar[List[str]] = ["description", "estimatedTimeRemaining", "info", "pctComplete", "status", "taskType", "timeStarted"]
+    pct_complete: StrictStr = Field(..., alias="pctComplete")
+    status: StrictStr = Field(...)
+    task_type: StrictStr = Field(..., alias="taskType")
+    time_started: StrictStr = Field(..., alias="timeStarted")
+    __properties = ["description", "estimatedTimeRemaining", "info", "pctComplete", "status", "taskType", "timeStarted"]
 
-    @field_validator('status')
+    @validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['running']):
+        if value not in ('running'):
             raise ValueError("must be one of enum values ('running')")
         return value
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> TaskStatusRunning:
         """Create an instance of TaskStatusRunning from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # set to None if info (nullable) is None
-        # and model_fields_set contains the field
-        if self.info is None and "info" in self.model_fields_set:
+        # and __fields_set__ contains the field
+        if self.info is None and "info" in self.__fields_set__:
             _dict['info'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> TaskStatusRunning:
         """Create an instance of TaskStatusRunning from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return TaskStatusRunning.parse_obj(obj)
 
-        _obj = cls.model_validate({
+        _obj = TaskStatusRunning.parse_obj({
             "description": obj.get("description"),
-            "estimatedTimeRemaining": obj.get("estimatedTimeRemaining"),
+            "estimated_time_remaining": obj.get("estimatedTimeRemaining"),
             "info": obj.get("info"),
-            "pctComplete": obj.get("pctComplete"),
+            "pct_complete": obj.get("pctComplete"),
             "status": obj.get("status"),
-            "taskType": obj.get("taskType"),
-            "timeStarted": obj.get("timeStarted")
+            "task_type": obj.get("taskType"),
+            "time_started": obj.get("timeStarted")
         })
         return _obj
 

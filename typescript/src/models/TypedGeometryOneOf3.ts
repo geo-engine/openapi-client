@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { MultiPolygon } from './MultiPolygon';
 import {
     MultiPolygonFromJSON,
@@ -38,8 +38,10 @@ export interface TypedGeometryOneOf3 {
  * Check if a given object implements the TypedGeometryOneOf3 interface.
  */
 export function instanceOfTypedGeometryOneOf3(value: object): boolean {
-    if (!('multiPolygon' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "multiPolygon" in value;
+
+    return isInstance;
 }
 
 export function TypedGeometryOneOf3FromJSON(json: any): TypedGeometryOneOf3 {
@@ -47,7 +49,7 @@ export function TypedGeometryOneOf3FromJSON(json: any): TypedGeometryOneOf3 {
 }
 
 export function TypedGeometryOneOf3FromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedGeometryOneOf3 {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -57,12 +59,15 @@ export function TypedGeometryOneOf3FromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function TypedGeometryOneOf3ToJSON(value?: TypedGeometryOneOf3 | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'MultiPolygon': MultiPolygonToJSON(value['multiPolygon']),
+        'MultiPolygon': MultiPolygonToJSON(value.multiPolygon),
     };
 }
 

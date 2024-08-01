@@ -18,9 +18,9 @@ exports.DataPathOneOfToJSON = exports.DataPathOneOfFromJSONTyped = exports.DataP
  * Check if a given object implements the DataPathOneOf interface.
  */
 function instanceOfDataPathOneOf(value) {
-    if (!('volume' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "volume" in value;
+    return isInstance;
 }
 exports.instanceOfDataPathOneOf = instanceOfDataPathOneOf;
 function DataPathOneOfFromJSON(json) {
@@ -28,7 +28,7 @@ function DataPathOneOfFromJSON(json) {
 }
 exports.DataPathOneOfFromJSON = DataPathOneOfFromJSON;
 function DataPathOneOfFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -37,11 +37,14 @@ function DataPathOneOfFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.DataPathOneOfFromJSONTyped = DataPathOneOfFromJSONTyped;
 function DataPathOneOfToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'volume': value['volume'],
+        'volume': value.volume,
     };
 }
 exports.DataPathOneOfToJSON = DataPathOneOfToJSON;

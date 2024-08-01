@@ -12,36 +12,36 @@
  * Do not edit the class manually.
  */
 
-import type { ResourceIdDatasetId } from './ResourceIdDatasetId';
 import {
+    ResourceIdDatasetId,
     instanceOfResourceIdDatasetId,
     ResourceIdDatasetIdFromJSON,
     ResourceIdDatasetIdFromJSONTyped,
     ResourceIdDatasetIdToJSON,
 } from './ResourceIdDatasetId';
-import type { ResourceIdLayer } from './ResourceIdLayer';
 import {
+    ResourceIdLayer,
     instanceOfResourceIdLayer,
     ResourceIdLayerFromJSON,
     ResourceIdLayerFromJSONTyped,
     ResourceIdLayerToJSON,
 } from './ResourceIdLayer';
-import type { ResourceIdLayerCollection } from './ResourceIdLayerCollection';
 import {
+    ResourceIdLayerCollection,
     instanceOfResourceIdLayerCollection,
     ResourceIdLayerCollectionFromJSON,
     ResourceIdLayerCollectionFromJSONTyped,
     ResourceIdLayerCollectionToJSON,
 } from './ResourceIdLayerCollection';
-import type { ResourceIdModelId } from './ResourceIdModelId';
 import {
+    ResourceIdModelId,
     instanceOfResourceIdModelId,
     ResourceIdModelIdFromJSON,
     ResourceIdModelIdFromJSONTyped,
     ResourceIdModelIdToJSON,
 } from './ResourceIdModelId';
-import type { ResourceIdProject } from './ResourceIdProject';
 import {
+    ResourceIdProject,
     instanceOfResourceIdProject,
     ResourceIdProjectFromJSON,
     ResourceIdProjectFromJSONTyped,
@@ -60,7 +60,7 @@ export function ResourceIdFromJSON(json: any): ResourceId {
 }
 
 export function ResourceIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceId {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -80,8 +80,11 @@ export function ResourceIdFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 }
 
 export function ResourceIdToJSON(value?: ResourceId | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'DatasetId':

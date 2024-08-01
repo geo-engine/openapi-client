@@ -17,7 +17,7 @@ export function CollectionItemFromJSON(json) {
     return CollectionItemFromJSONTyped(json, false);
 }
 export function CollectionItemFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -30,8 +30,11 @@ export function CollectionItemFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function CollectionItemToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'collection':

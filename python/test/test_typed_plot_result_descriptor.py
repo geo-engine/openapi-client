@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.typed_plot_result_descriptor import TypedPlotResultDescriptor
+from geoengine_openapi_client.models.typed_plot_result_descriptor import TypedPlotResultDescriptor  # noqa: E501
 
 class TestTypedPlotResultDescriptor(unittest.TestCase):
     """TypedPlotResultDescriptor unit test stubs"""
@@ -33,7 +34,7 @@ class TestTypedPlotResultDescriptor(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TypedPlotResultDescriptor`
         """
-        model = TypedPlotResultDescriptor()
+        model = TypedPlotResultDescriptor()  # noqa: E501
         if include_optional:
             return TypedPlotResultDescriptor(
                 bbox = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(

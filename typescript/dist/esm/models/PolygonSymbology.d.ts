@@ -41,7 +41,7 @@ export interface PolygonSymbology {
      * @type {TextSymbology}
      * @memberof PolygonSymbology
      */
-    text?: TextSymbology;
+    text?: TextSymbology | null;
     /**
      *
      * @type {string}

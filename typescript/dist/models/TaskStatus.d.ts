@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TaskStatusAborted } from './TaskStatusAborted';
-import type { TaskStatusCompleted } from './TaskStatusCompleted';
-import type { TaskStatusFailed } from './TaskStatusFailed';
-import type { TaskStatusRunning } from './TaskStatusRunning';
+import { TaskStatusAborted } from './TaskStatusAborted';
+import { TaskStatusCompleted } from './TaskStatusCompleted';
+import { TaskStatusFailed } from './TaskStatusFailed';
+import { TaskStatusRunning } from './TaskStatusRunning';
 /**
  * @type TaskStatus
  *

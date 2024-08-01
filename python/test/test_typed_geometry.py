@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.typed_geometry import TypedGeometry
+from geoengine_openapi_client.models.typed_geometry import TypedGeometry  # noqa: E501
 
 class TestTypedGeometry(unittest.TestCase):
     """TypedGeometry unit test stubs"""
@@ -33,7 +34,7 @@ class TestTypedGeometry(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TypedGeometry`
         """
-        model = TypedGeometry()
+        model = TypedGeometry()  # noqa: E501
         if include_optional:
             return TypedGeometry(
                 data = None,

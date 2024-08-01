@@ -17,7 +17,7 @@ export function DataIdFromJSON(json) {
     return DataIdFromJSONTyped(json, false);
 }
 export function DataIdFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -30,8 +30,11 @@ export function DataIdFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function DataIdToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'external':

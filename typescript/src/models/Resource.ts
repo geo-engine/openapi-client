@@ -12,29 +12,29 @@
  * Do not edit the class manually.
  */
 
-import type { ResourceDataset } from './ResourceDataset';
 import {
+    ResourceDataset,
     instanceOfResourceDataset,
     ResourceDatasetFromJSON,
     ResourceDatasetFromJSONTyped,
     ResourceDatasetToJSON,
 } from './ResourceDataset';
-import type { ResourceLayer } from './ResourceLayer';
 import {
+    ResourceLayer,
     instanceOfResourceLayer,
     ResourceLayerFromJSON,
     ResourceLayerFromJSONTyped,
     ResourceLayerToJSON,
 } from './ResourceLayer';
-import type { ResourceLayerCollection } from './ResourceLayerCollection';
 import {
+    ResourceLayerCollection,
     instanceOfResourceLayerCollection,
     ResourceLayerCollectionFromJSON,
     ResourceLayerCollectionFromJSONTyped,
     ResourceLayerCollectionToJSON,
 } from './ResourceLayerCollection';
-import type { ResourceProject } from './ResourceProject';
 import {
+    ResourceProject,
     instanceOfResourceProject,
     ResourceProjectFromJSON,
     ResourceProjectFromJSONTyped,
@@ -53,7 +53,7 @@ export function ResourceFromJSON(json: any): Resource {
 }
 
 export function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Resource {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -71,8 +71,11 @@ export function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
 }
 
 export function ResourceToJSON(value?: Resource | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'dataset':

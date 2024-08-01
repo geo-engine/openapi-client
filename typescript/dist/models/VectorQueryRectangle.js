@@ -21,13 +21,11 @@ const TimeInterval_1 = require("./TimeInterval");
  * Check if a given object implements the VectorQueryRectangle interface.
  */
 function instanceOfVectorQueryRectangle(value) {
-    if (!('spatialBounds' in value))
-        return false;
-    if (!('spatialResolution' in value))
-        return false;
-    if (!('timeInterval' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "spatialBounds" in value;
+    isInstance = isInstance && "spatialResolution" in value;
+    isInstance = isInstance && "timeInterval" in value;
+    return isInstance;
 }
 exports.instanceOfVectorQueryRectangle = instanceOfVectorQueryRectangle;
 function VectorQueryRectangleFromJSON(json) {
@@ -35,7 +33,7 @@ function VectorQueryRectangleFromJSON(json) {
 }
 exports.VectorQueryRectangleFromJSON = VectorQueryRectangleFromJSON;
 function VectorQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,13 +44,16 @@ function VectorQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.VectorQueryRectangleFromJSONTyped = VectorQueryRectangleFromJSONTyped;
 function VectorQueryRectangleToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'spatialBounds': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value['spatialBounds']),
-        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value['spatialResolution']),
-        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
+        'spatialBounds': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value.spatialBounds),
+        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value.spatialResolution),
+        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value.timeInterval),
     };
 }
 exports.VectorQueryRectangleToJSON = VectorQueryRectangleToJSON;

@@ -16,15 +16,15 @@ import { MultiPolygonFromJSON, MultiPolygonToJSON, } from './MultiPolygon';
  * Check if a given object implements the TypedGeometryOneOf3 interface.
  */
 export function instanceOfTypedGeometryOneOf3(value) {
-    if (!('multiPolygon' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "multiPolygon" in value;
+    return isInstance;
 }
 export function TypedGeometryOneOf3FromJSON(json) {
     return TypedGeometryOneOf3FromJSONTyped(json, false);
 }
 export function TypedGeometryOneOf3FromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -32,10 +32,13 @@ export function TypedGeometryOneOf3FromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function TypedGeometryOneOf3ToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'MultiPolygon': MultiPolygonToJSON(value['multiPolygon']),
+        'MultiPolygon': MultiPolygonToJSON(value.multiPolygon),
     };
 }

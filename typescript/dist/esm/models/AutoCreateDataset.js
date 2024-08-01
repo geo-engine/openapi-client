@@ -11,46 +11,47 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 /**
  * Check if a given object implements the AutoCreateDataset interface.
  */
 export function instanceOfAutoCreateDataset(value) {
-    if (!('datasetDescription' in value))
-        return false;
-    if (!('datasetName' in value))
-        return false;
-    if (!('mainFile' in value))
-        return false;
-    if (!('upload' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "datasetDescription" in value;
+    isInstance = isInstance && "datasetName" in value;
+    isInstance = isInstance && "mainFile" in value;
+    isInstance = isInstance && "upload" in value;
+    return isInstance;
 }
 export function AutoCreateDatasetFromJSON(json) {
     return AutoCreateDatasetFromJSONTyped(json, false);
 }
 export function AutoCreateDatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'datasetDescription': json['datasetDescription'],
         'datasetName': json['datasetName'],
-        'layerName': json['layerName'] == null ? undefined : json['layerName'],
+        'layerName': !exists(json, 'layerName') ? undefined : json['layerName'],
         'mainFile': json['mainFile'],
-        'tags': json['tags'] == null ? undefined : json['tags'],
+        'tags': !exists(json, 'tags') ? undefined : json['tags'],
         'upload': json['upload'],
     };
 }
 export function AutoCreateDatasetToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'datasetDescription': value['datasetDescription'],
-        'datasetName': value['datasetName'],
-        'layerName': value['layerName'],
-        'mainFile': value['mainFile'],
-        'tags': value['tags'],
-        'upload': value['upload'],
+        'datasetDescription': value.datasetDescription,
+        'datasetName': value.datasetName,
+        'layerName': value.layerName,
+        'mainFile': value.mainFile,
+        'tags': value.tags,
+        'upload': value.upload,
     };
 }

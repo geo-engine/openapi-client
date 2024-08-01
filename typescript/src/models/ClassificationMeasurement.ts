@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -53,10 +53,12 @@ export type ClassificationMeasurementTypeEnum = typeof ClassificationMeasurement
  * Check if a given object implements the ClassificationMeasurement interface.
  */
 export function instanceOfClassificationMeasurement(value: object): boolean {
-    if (!('classes' in value)) return false;
-    if (!('measurement' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "classes" in value;
+    isInstance = isInstance && "measurement" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function ClassificationMeasurementFromJSON(json: any): ClassificationMeasurement {
@@ -64,7 +66,7 @@ export function ClassificationMeasurementFromJSON(json: any): ClassificationMeas
 }
 
 export function ClassificationMeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): ClassificationMeasurement {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -76,14 +78,17 @@ export function ClassificationMeasurementFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function ClassificationMeasurementToJSON(value?: ClassificationMeasurement | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'classes': value['classes'],
-        'measurement': value['measurement'],
-        'type': value['type'],
+        'classes': value.classes,
+        'measurement': value.measurement,
+        'type': value.type,
     };
 }
 

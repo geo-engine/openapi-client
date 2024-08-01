@@ -35,8 +35,8 @@ class UserApi extends runtime.BaseAPI {
      */
     addRoleHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters['addRole'] == null) {
-                throw new runtime.RequiredError('addRole', 'Required parameter "addRole" was null or undefined when calling addRoleHandler().');
+            if (requestParameters.addRole === null || requestParameters.addRole === undefined) {
+                throw new runtime.RequiredError('addRole', 'Required parameter requestParameters.addRole was null or undefined when calling addRoleHandler.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -53,7 +53,7 @@ class UserApi extends runtime.BaseAPI {
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.AddRoleToJSON)(requestParameters['addRole']),
+                body: (0, index_1.AddRoleToJSON)(requestParameters.addRole),
             }, initOverrides);
             if (this.isJsonMime(response.headers.get('content-type'))) {
                 return new runtime.JSONApiResponse(response);
@@ -79,11 +79,11 @@ class UserApi extends runtime.BaseAPI {
      */
     assignRoleHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters['user'] == null) {
-                throw new runtime.RequiredError('user', 'Required parameter "user" was null or undefined when calling assignRoleHandler().');
+            if (requestParameters.user === null || requestParameters.user === undefined) {
+                throw new runtime.RequiredError('user', 'Required parameter requestParameters.user was null or undefined when calling assignRoleHandler.');
             }
-            if (requestParameters['role'] == null) {
-                throw new runtime.RequiredError('role', 'Required parameter "role" was null or undefined when calling assignRoleHandler().');
+            if (requestParameters.role === null || requestParameters.role === undefined) {
+                throw new runtime.RequiredError('role', 'Required parameter requestParameters.role was null or undefined when calling assignRoleHandler.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -95,7 +95,7 @@ class UserApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/users/{user}/roles/{role}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))).replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role']))),
+                path: `/users/{user}/roles/{role}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters.user))).replace(`{${"role"}}`, encodeURIComponent(String(requestParameters.role))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -118,8 +118,8 @@ class UserApi extends runtime.BaseAPI {
      */
     getRoleByNameHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters['name'] == null) {
-                throw new runtime.RequiredError('name', 'Required parameter "name" was null or undefined when calling getRoleByNameHandler().');
+            if (requestParameters.name === null || requestParameters.name === undefined) {
+                throw new runtime.RequiredError('name', 'Required parameter requestParameters.name was null or undefined when calling getRoleByNameHandler.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -131,7 +131,7 @@ class UserApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/roles/byName/{name}`.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters['name']))),
+                path: `/roles/byName/{name}`.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters.name))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -189,8 +189,8 @@ class UserApi extends runtime.BaseAPI {
      */
     getUserQuotaHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters['user'] == null) {
-                throw new runtime.RequiredError('user', 'Required parameter "user" was null or undefined when calling getUserQuotaHandler().');
+            if (requestParameters.user === null || requestParameters.user === undefined) {
+                throw new runtime.RequiredError('user', 'Required parameter requestParameters.user was null or undefined when calling getUserQuotaHandler.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -202,7 +202,7 @@ class UserApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/quotas/{user}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))),
+                path: `/quotas/{user}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters.user))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -260,8 +260,8 @@ class UserApi extends runtime.BaseAPI {
      */
     removeRoleHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters['role'] == null) {
-                throw new runtime.RequiredError('role', 'Required parameter "role" was null or undefined when calling removeRoleHandler().');
+            if (requestParameters.role === null || requestParameters.role === undefined) {
+                throw new runtime.RequiredError('role', 'Required parameter requestParameters.role was null or undefined when calling removeRoleHandler.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -273,7 +273,7 @@ class UserApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/roles/{role}`.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role']))),
+                path: `/roles/{role}`.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters.role))),
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
@@ -296,11 +296,11 @@ class UserApi extends runtime.BaseAPI {
      */
     revokeRoleHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters['user'] == null) {
-                throw new runtime.RequiredError('user', 'Required parameter "user" was null or undefined when calling revokeRoleHandler().');
+            if (requestParameters.user === null || requestParameters.user === undefined) {
+                throw new runtime.RequiredError('user', 'Required parameter requestParameters.user was null or undefined when calling revokeRoleHandler.');
             }
-            if (requestParameters['role'] == null) {
-                throw new runtime.RequiredError('role', 'Required parameter "role" was null or undefined when calling revokeRoleHandler().');
+            if (requestParameters.role === null || requestParameters.role === undefined) {
+                throw new runtime.RequiredError('role', 'Required parameter requestParameters.role was null or undefined when calling revokeRoleHandler.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -312,7 +312,7 @@ class UserApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/users/{user}/roles/{role}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))).replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role']))),
+                path: `/users/{user}/roles/{role}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters.user))).replace(`{${"role"}}`, encodeURIComponent(String(requestParameters.role))),
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
@@ -335,11 +335,11 @@ class UserApi extends runtime.BaseAPI {
      */
     updateUserQuotaHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters['user'] == null) {
-                throw new runtime.RequiredError('user', 'Required parameter "user" was null or undefined when calling updateUserQuotaHandler().');
+            if (requestParameters.user === null || requestParameters.user === undefined) {
+                throw new runtime.RequiredError('user', 'Required parameter requestParameters.user was null or undefined when calling updateUserQuotaHandler.');
             }
-            if (requestParameters['updateQuota'] == null) {
-                throw new runtime.RequiredError('updateQuota', 'Required parameter "updateQuota" was null or undefined when calling updateUserQuotaHandler().');
+            if (requestParameters.updateQuota === null || requestParameters.updateQuota === undefined) {
+                throw new runtime.RequiredError('updateQuota', 'Required parameter requestParameters.updateQuota was null or undefined when calling updateUserQuotaHandler.');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -352,11 +352,11 @@ class UserApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/quotas/{user}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))),
+                path: `/quotas/{user}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters.user))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.UpdateQuotaToJSON)(requestParameters['updateQuota']),
+                body: (0, index_1.UpdateQuotaToJSON)(requestParameters.updateQuota),
             }, initOverrides);
             return new runtime.VoidApiResponse(response);
         });

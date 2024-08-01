@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.resource_layer_collection import ResourceLayerCollection
+from geoengine_openapi_client.models.resource_layer_collection import ResourceLayerCollection  # noqa: E501
 
 class TestResourceLayerCollection(unittest.TestCase):
     """ResourceLayerCollection unit test stubs"""
@@ -33,7 +34,7 @@ class TestResourceLayerCollection(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ResourceLayerCollection`
         """
-        model = ResourceLayerCollection()
+        model = ResourceLayerCollection()  # noqa: E501
         if include_optional:
             return ResourceLayerCollection(
                 id = '',

@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.data_path import DataPath
+from geoengine_openapi_client.models.data_path import DataPath  # noqa: E501
 
 class TestDataPath(unittest.TestCase):
     """DataPath unit test stubs"""
@@ -33,7 +34,7 @@ class TestDataPath(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DataPath`
         """
-        model = DataPath()
+        model = DataPath()  # noqa: E501
         if include_optional:
             return DataPath(
                 volume = '',

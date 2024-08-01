@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -47,9 +47,11 @@ export type ResourceProjectTypeEnum = typeof ResourceProjectTypeEnum[keyof typeo
  * Check if a given object implements the ResourceProject interface.
  */
 export function instanceOfResourceProject(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function ResourceProjectFromJSON(json: any): ResourceProject {
@@ -57,7 +59,7 @@ export function ResourceProjectFromJSON(json: any): ResourceProject {
 }
 
 export function ResourceProjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceProject {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -68,13 +70,16 @@ export function ResourceProjectFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function ResourceProjectToJSON(value?: ResourceProject | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 

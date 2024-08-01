@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.plot import Plot
+from geoengine_openapi_client.models.plot import Plot  # noqa: E501
 
 class TestPlot(unittest.TestCase):
     """Plot unit test stubs"""
@@ -33,7 +34,7 @@ class TestPlot(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Plot`
         """
-        model = Plot()
+        model = Plot()  # noqa: E501
         if include_optional:
             return Plot(
                 name = '',

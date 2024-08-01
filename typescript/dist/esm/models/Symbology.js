@@ -19,7 +19,7 @@ export function SymbologyFromJSON(json) {
     return SymbologyFromJSONTyped(json, false);
 }
 export function SymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -36,8 +36,11 @@ export function SymbologyFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function SymbologyToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'line':

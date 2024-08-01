@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
 /**
@@ -23,36 +24,37 @@ export const LineSymbologyTypeEnum = {
  * Check if a given object implements the LineSymbology interface.
  */
 export function instanceOfLineSymbology(value) {
-    if (!('autoSimplified' in value))
-        return false;
-    if (!('stroke' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "autoSimplified" in value;
+    isInstance = isInstance && "stroke" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function LineSymbologyFromJSON(json) {
     return LineSymbologyFromJSONTyped(json, false);
 }
 export function LineSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'autoSimplified': json['autoSimplified'],
         'stroke': StrokeParamFromJSON(json['stroke']),
-        'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
+        'text': !exists(json, 'text') ? undefined : TextSymbologyFromJSON(json['text']),
         'type': json['type'],
     };
 }
 export function LineSymbologyToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'autoSimplified': value['autoSimplified'],
-        'stroke': StrokeParamToJSON(value['stroke']),
-        'text': TextSymbologyToJSON(value['text']),
-        'type': value['type'],
+        'autoSimplified': value.autoSimplified,
+        'stroke': StrokeParamToJSON(value.stroke),
+        'text': TextSymbologyToJSON(value.text),
+        'type': value.type,
     };
 }

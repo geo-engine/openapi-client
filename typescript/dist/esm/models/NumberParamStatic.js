@@ -15,23 +15,23 @@
  * @export
  */
 export const NumberParamStaticTypeEnum = {
-    Static: 'static'
+    Static: 'static',
+    Derived: 'derived'
 };
 /**
  * Check if a given object implements the NumberParamStatic interface.
  */
 export function instanceOfNumberParamStatic(value) {
-    if (!('type' in value))
-        return false;
-    if (!('value' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+    isInstance = isInstance && "value" in value;
+    return isInstance;
 }
 export function NumberParamStaticFromJSON(json) {
     return NumberParamStaticFromJSONTyped(json, false);
 }
 export function NumberParamStaticFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,11 +40,14 @@ export function NumberParamStaticFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function NumberParamStaticToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'type': value['type'],
-        'value': value['value'],
+        'type': value.type,
+        'value': value.value,
     };
 }

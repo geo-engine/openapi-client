@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,8 +31,10 @@ export interface CreateDatasetHandler200Response {
  * Check if a given object implements the CreateDatasetHandler200Response interface.
  */
 export function instanceOfCreateDatasetHandler200Response(value: object): boolean {
-    if (!('datasetName' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "datasetName" in value;
+
+    return isInstance;
 }
 
 export function CreateDatasetHandler200ResponseFromJSON(json: any): CreateDatasetHandler200Response {
@@ -40,7 +42,7 @@ export function CreateDatasetHandler200ResponseFromJSON(json: any): CreateDatase
 }
 
 export function CreateDatasetHandler200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateDatasetHandler200Response {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function CreateDatasetHandler200ResponseFromJSONTyped(json: any, ignoreDi
 }
 
 export function CreateDatasetHandler200ResponseToJSON(value?: CreateDatasetHandler200Response | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'datasetName': value['datasetName'],
+        'datasetName': value.datasetName,
     };
 }
 

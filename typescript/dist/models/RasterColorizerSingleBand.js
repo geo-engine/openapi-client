@@ -25,13 +25,11 @@ exports.RasterColorizerSingleBandTypeEnum = {
  * Check if a given object implements the RasterColorizerSingleBand interface.
  */
 function instanceOfRasterColorizerSingleBand(value) {
-    if (!('band' in value))
-        return false;
-    if (!('bandColorizer' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "band" in value;
+    isInstance = isInstance && "bandColorizer" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfRasterColorizerSingleBand = instanceOfRasterColorizerSingleBand;
 function RasterColorizerSingleBandFromJSON(json) {
@@ -39,7 +37,7 @@ function RasterColorizerSingleBandFromJSON(json) {
 }
 exports.RasterColorizerSingleBandFromJSON = RasterColorizerSingleBandFromJSON;
 function RasterColorizerSingleBandFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,13 +48,16 @@ function RasterColorizerSingleBandFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.RasterColorizerSingleBandFromJSONTyped = RasterColorizerSingleBandFromJSONTyped;
 function RasterColorizerSingleBandToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'band': value['band'],
-        'bandColorizer': (0, Colorizer_1.ColorizerToJSON)(value['bandColorizer']),
-        'type': value['type'],
+        'band': value.band,
+        'bandColorizer': (0, Colorizer_1.ColorizerToJSON)(value.bandColorizer),
+        'type': value.type,
     };
 }
 exports.RasterColorizerSingleBandToJSON = RasterColorizerSingleBandToJSON;

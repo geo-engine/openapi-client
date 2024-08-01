@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,8 +31,10 @@ export interface UploadFileLayersResponse {
  * Check if a given object implements the UploadFileLayersResponse interface.
  */
 export function instanceOfUploadFileLayersResponse(value: object): boolean {
-    if (!('layers' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "layers" in value;
+
+    return isInstance;
 }
 
 export function UploadFileLayersResponseFromJSON(json: any): UploadFileLayersResponse {
@@ -40,7 +42,7 @@ export function UploadFileLayersResponseFromJSON(json: any): UploadFileLayersRes
 }
 
 export function UploadFileLayersResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UploadFileLayersResponse {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function UploadFileLayersResponseFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function UploadFileLayersResponseToJSON(value?: UploadFileLayersResponse | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'layers': value['layers'],
+        'layers': value.layers,
     };
 }
 

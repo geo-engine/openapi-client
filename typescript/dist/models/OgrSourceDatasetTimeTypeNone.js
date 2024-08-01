@@ -18,15 +18,18 @@ exports.OgrSourceDatasetTimeTypeNoneToJSON = exports.OgrSourceDatasetTimeTypeNon
  * @export
  */
 exports.OgrSourceDatasetTimeTypeNoneTypeEnum = {
-    None: 'none'
+    None: 'none',
+    Start: 'start',
+    StartEnd: 'startEnd',
+    StartDuration: 'startDuration'
 };
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeNone interface.
  */
 function instanceOfOgrSourceDatasetTimeTypeNone(value) {
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfOgrSourceDatasetTimeTypeNone = instanceOfOgrSourceDatasetTimeTypeNone;
 function OgrSourceDatasetTimeTypeNoneFromJSON(json) {
@@ -34,7 +37,7 @@ function OgrSourceDatasetTimeTypeNoneFromJSON(json) {
 }
 exports.OgrSourceDatasetTimeTypeNoneFromJSON = OgrSourceDatasetTimeTypeNoneFromJSON;
 function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -43,11 +46,14 @@ function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.OgrSourceDatasetTimeTypeNoneFromJSONTyped = OgrSourceDatasetTimeTypeNoneFromJSONTyped;
 function OgrSourceDatasetTimeTypeNoneToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'type': value['type'],
+        'type': value.type,
     };
 }
 exports.OgrSourceDatasetTimeTypeNoneToJSON = OgrSourceDatasetTimeTypeNoneToJSON;

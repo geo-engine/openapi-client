@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TextApiResponse = exports.BlobApiResponse = exports.VoidApiResponse = exports.JSONApiResponse = exports.canConsumeForm = exports.mapValues = exports.querystring = exports.COLLECTION_FORMATS = exports.RequiredError = exports.FetchError = exports.ResponseError = exports.BaseAPI = exports.DefaultConfig = exports.Configuration = exports.BASE_PATH = void 0;
+exports.TextApiResponse = exports.BlobApiResponse = exports.VoidApiResponse = exports.JSONApiResponse = exports.canConsumeForm = exports.mapValues = exports.querystring = exports.exists = exports.COLLECTION_FORMATS = exports.RequiredError = exports.FetchError = exports.ResponseError = exports.BaseAPI = exports.DefaultConfig = exports.Configuration = exports.BASE_PATH = void 0;
 exports.BASE_PATH = "http://127.0.0.1:3030/api".replace(/\/+$/, "");
 class Configuration {
     constructor(configuration = {}) {
@@ -71,7 +71,11 @@ class Configuration {
     }
 }
 exports.Configuration = Configuration;
-exports.DefaultConfig = new Configuration();
+exports.DefaultConfig = new Configuration({
+    headers: {
+        'User-Agent': 'geoengine/openapi-client/typescript/0.0.9'
+    }
+});
 /**
  * This is the base class for all generated API classes.
  */
@@ -253,6 +257,11 @@ exports.COLLECTION_FORMATS = {
     tsv: "\t",
     pipes: "|",
 };
+function exists(json, key) {
+    const value = json[key];
+    return value !== null && value !== undefined;
+}
+exports.exists = exists;
 function querystring(params, prefix = '') {
     return Object.keys(params)
         .map(key => querystringSingleKey(key, params[key], prefix))

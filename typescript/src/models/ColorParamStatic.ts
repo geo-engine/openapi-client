@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -38,7 +38,8 @@ export interface ColorParamStatic {
  * @export
  */
 export const ColorParamStaticTypeEnum = {
-    Static: 'static'
+    Static: 'static',
+    Derived: 'derived'
 } as const;
 export type ColorParamStaticTypeEnum = typeof ColorParamStaticTypeEnum[keyof typeof ColorParamStaticTypeEnum];
 
@@ -47,9 +48,11 @@ export type ColorParamStaticTypeEnum = typeof ColorParamStaticTypeEnum[keyof typ
  * Check if a given object implements the ColorParamStatic interface.
  */
 export function instanceOfColorParamStatic(value: object): boolean {
-    if (!('color' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "color" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function ColorParamStaticFromJSON(json: any): ColorParamStatic {
@@ -57,7 +60,7 @@ export function ColorParamStaticFromJSON(json: any): ColorParamStatic {
 }
 
 export function ColorParamStaticFromJSONTyped(json: any, ignoreDiscriminator: boolean): ColorParamStatic {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -68,13 +71,16 @@ export function ColorParamStaticFromJSONTyped(json: any, ignoreDiscriminator: bo
 }
 
 export function ColorParamStaticToJSON(value?: ColorParamStatic | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'color': value['color'],
-        'type': value['type'],
+        'color': value.color,
+        'type': value.type,
     };
 }
 

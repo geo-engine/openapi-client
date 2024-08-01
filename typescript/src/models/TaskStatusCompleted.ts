@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,7 +30,7 @@ export interface TaskStatusCompleted {
      * @type {any}
      * @memberof TaskStatusCompleted
      */
-    info?: any;
+    info?: any | null;
     /**
      * 
      * @type {string}
@@ -71,11 +71,13 @@ export type TaskStatusCompletedStatusEnum = typeof TaskStatusCompletedStatusEnum
  * Check if a given object implements the TaskStatusCompleted interface.
  */
 export function instanceOfTaskStatusCompleted(value: object): boolean {
-    if (!('status' in value)) return false;
-    if (!('taskType' in value)) return false;
-    if (!('timeStarted' in value)) return false;
-    if (!('timeTotal' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "status" in value;
+    isInstance = isInstance && "taskType" in value;
+    isInstance = isInstance && "timeStarted" in value;
+    isInstance = isInstance && "timeTotal" in value;
+
+    return isInstance;
 }
 
 export function TaskStatusCompletedFromJSON(json: any): TaskStatusCompleted {
@@ -83,13 +85,13 @@ export function TaskStatusCompletedFromJSON(json: any): TaskStatusCompleted {
 }
 
 export function TaskStatusCompletedFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatusCompleted {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'description': json['description'] == null ? undefined : json['description'],
-        'info': json['info'] == null ? undefined : json['info'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'info': !exists(json, 'info') ? undefined : json['info'],
         'status': json['status'],
         'taskType': json['taskType'],
         'timeStarted': json['timeStarted'],
@@ -98,17 +100,20 @@ export function TaskStatusCompletedFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function TaskStatusCompletedToJSON(value?: TaskStatusCompleted | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'description': value['description'],
-        'info': value['info'],
-        'status': value['status'],
-        'taskType': value['taskType'],
-        'timeStarted': value['timeStarted'],
-        'timeTotal': value['timeTotal'],
+        'description': value.description,
+        'info': value.info,
+        'status': value.status,
+        'taskType': value.taskType,
+        'timeStarted': value.timeStarted,
+        'timeTotal': value.timeTotal,
     };
 }
 

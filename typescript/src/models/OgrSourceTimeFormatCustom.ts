@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { DateTimeParseFormat } from './DateTimeParseFormat';
 import {
     DateTimeParseFormatFromJSON,
@@ -54,9 +54,11 @@ export type OgrSourceTimeFormatCustomFormatEnum = typeof OgrSourceTimeFormatCust
  * Check if a given object implements the OgrSourceTimeFormatCustom interface.
  */
 export function instanceOfOgrSourceTimeFormatCustom(value: object): boolean {
-    if (!('customFormat' in value)) return false;
-    if (!('format' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "customFormat" in value;
+    isInstance = isInstance && "format" in value;
+
+    return isInstance;
 }
 
 export function OgrSourceTimeFormatCustomFromJSON(json: any): OgrSourceTimeFormatCustom {
@@ -64,7 +66,7 @@ export function OgrSourceTimeFormatCustomFromJSON(json: any): OgrSourceTimeForma
 }
 
 export function OgrSourceTimeFormatCustomFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceTimeFormatCustom {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -75,13 +77,16 @@ export function OgrSourceTimeFormatCustomFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function OgrSourceTimeFormatCustomToJSON(value?: OgrSourceTimeFormatCustom | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'customFormat': DateTimeParseFormatToJSON(value['customFormat']),
-        'format': value['format'],
+        'customFormat': DateTimeParseFormatToJSON(value.customFormat),
+        'format': value.format,
     };
 }
 

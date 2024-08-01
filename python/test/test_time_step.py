@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.time_step import TimeStep
+from geoengine_openapi_client.models.time_step import TimeStep  # noqa: E501
 
 class TestTimeStep(unittest.TestCase):
     """TimeStep unit test stubs"""
@@ -33,7 +34,7 @@ class TestTimeStep(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TimeStep`
         """
-        model = TimeStep()
+        model = TimeStep()  # noqa: E501
         if include_optional:
             return TimeStep(
                 granularity = 'millis',

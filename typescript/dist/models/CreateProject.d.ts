@@ -40,7 +40,7 @@ export interface CreateProject {
      * @type {TimeStep}
      * @memberof CreateProject
      */
-    timeStep?: TimeStep;
+    timeStep?: TimeStep | null;
 }
 /**
  * Check if a given object implements the CreateProject interface.

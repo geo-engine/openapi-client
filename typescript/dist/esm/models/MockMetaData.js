@@ -17,25 +17,28 @@ import { VectorResultDescriptorFromJSON, VectorResultDescriptorToJSON, } from '.
  * @export
  */
 export const MockMetaDataTypeEnum = {
-    MockMetaData: 'MockMetaData'
+    MockMetaData: 'MockMetaData',
+    OgrMetaData: 'OgrMetaData',
+    GdalMetaDataRegular: 'GdalMetaDataRegular',
+    GdalStatic: 'GdalStatic',
+    GdalMetadataNetCdfCf: 'GdalMetadataNetCdfCf',
+    GdalMetaDataList: 'GdalMetaDataList'
 };
 /**
  * Check if a given object implements the MockMetaData interface.
  */
 export function instanceOfMockMetaData(value) {
-    if (!('loadingInfo' in value))
-        return false;
-    if (!('resultDescriptor' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "loadingInfo" in value;
+    isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function MockMetaDataFromJSON(json) {
     return MockMetaDataFromJSONTyped(json, false);
 }
 export function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -45,12 +48,15 @@ export function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function MockMetaDataToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value['loadingInfo']),
-        'resultDescriptor': VectorResultDescriptorToJSON(value['resultDescriptor']),
-        'type': value['type'],
+        'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value.loadingInfo),
+        'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
+        'type': value.type,
     };
 }

@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.ogr_source_duration_spec_value import OgrSourceDurationSpecValue
+from geoengine_openapi_client.models.ogr_source_duration_spec_value import OgrSourceDurationSpecValue  # noqa: E501
 
 class TestOgrSourceDurationSpecValue(unittest.TestCase):
     """OgrSourceDurationSpecValue unit test stubs"""
@@ -33,7 +34,7 @@ class TestOgrSourceDurationSpecValue(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `OgrSourceDurationSpecValue`
         """
-        model = OgrSourceDurationSpecValue()
+        model = OgrSourceDurationSpecValue()  # noqa: E501
         if include_optional:
             return OgrSourceDurationSpecValue(
                 granularity = 'millis',

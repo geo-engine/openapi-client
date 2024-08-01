@@ -11,47 +11,51 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 import { FormatSpecificsFromJSON, FormatSpecificsToJSON, } from './FormatSpecifics';
 /**
  * Check if a given object implements the OgrSourceColumnSpec interface.
  */
 export function instanceOfOgrSourceColumnSpec(value) {
-    if (!('x' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "x" in value;
+    return isInstance;
 }
 export function OgrSourceColumnSpecFromJSON(json) {
     return OgrSourceColumnSpecFromJSONTyped(json, false);
 }
 export function OgrSourceColumnSpecFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'bool': json['bool'] == null ? undefined : json['bool'],
-        'datetime': json['datetime'] == null ? undefined : json['datetime'],
-        '_float': json['float'] == null ? undefined : json['float'],
-        'formatSpecifics': json['formatSpecifics'] == null ? undefined : FormatSpecificsFromJSON(json['formatSpecifics']),
-        '_int': json['int'] == null ? undefined : json['int'],
-        'rename': json['rename'] == null ? undefined : json['rename'],
-        'text': json['text'] == null ? undefined : json['text'],
+        'bool': !exists(json, 'bool') ? undefined : json['bool'],
+        'datetime': !exists(json, 'datetime') ? undefined : json['datetime'],
+        '_float': !exists(json, 'float') ? undefined : json['float'],
+        'formatSpecifics': !exists(json, 'formatSpecifics') ? undefined : FormatSpecificsFromJSON(json['formatSpecifics']),
+        '_int': !exists(json, 'int') ? undefined : json['int'],
+        'rename': !exists(json, 'rename') ? undefined : json['rename'],
+        'text': !exists(json, 'text') ? undefined : json['text'],
         'x': json['x'],
-        'y': json['y'] == null ? undefined : json['y'],
+        'y': !exists(json, 'y') ? undefined : json['y'],
     };
 }
 export function OgrSourceColumnSpecToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bool': value['bool'],
-        'datetime': value['datetime'],
-        'float': value['_float'],
-        'formatSpecifics': FormatSpecificsToJSON(value['formatSpecifics']),
-        'int': value['_int'],
-        'rename': value['rename'],
-        'text': value['text'],
-        'x': value['x'],
-        'y': value['y'],
+        'bool': value.bool,
+        'datetime': value.datetime,
+        'float': value._float,
+        'formatSpecifics': FormatSpecificsToJSON(value.formatSpecifics),
+        'int': value._int,
+        'rename': value.rename,
+        'text': value.text,
+        'x': value.x,
+        'y': value.y,
     };
 }

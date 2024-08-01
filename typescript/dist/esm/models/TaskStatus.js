@@ -19,7 +19,7 @@ export function TaskStatusFromJSON(json) {
     return TaskStatusFromJSONTyped(json, false);
 }
 export function TaskStatusFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['status']) {
@@ -36,8 +36,11 @@ export function TaskStatusFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function TaskStatusToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['status']) {
         case 'aborted':

@@ -33,6 +33,9 @@ export interface ResourceLayer {
  */
 export declare const ResourceLayerTypeEnum: {
     readonly Layer: "layer";
+    readonly LayerCollection: "layerCollection";
+    readonly Project: "project";
+    readonly Dataset: "dataset";
 };
 export type ResourceLayerTypeEnum = typeof ResourceLayerTypeEnum[keyof typeof ResourceLayerTypeEnum];
 /**

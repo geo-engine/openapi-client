@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.tasks_api import TasksApi
+from geoengine_openapi_client.api.tasks_api import TasksApi  # noqa: E501
 
 
 class TestTasksApi(unittest.TestCase):
     """TasksApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = TasksApi()
+        self.api = TasksApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,21 +30,21 @@ class TestTasksApi(unittest.TestCase):
     def test_abort_handler(self) -> None:
         """Test case for abort_handler
 
-        Abort a running task.
+        Abort a running task.  # noqa: E501
         """
         pass
 
     def test_list_handler(self) -> None:
         """Test case for list_handler
 
-        Retrieve the status of all tasks.
+        Retrieve the status of all tasks.  # noqa: E501
         """
         pass
 
     def test_status_handler(self) -> None:
         """Test case for status_handler
 
-        Retrieve the status of a task.
+        Retrieve the status of a task.  # noqa: E501
         """
         pass
 

@@ -15,23 +15,26 @@
  * @export
  */
 export const ResourceIdLayerTypeEnum = {
-    Layer: 'Layer'
+    Layer: 'Layer',
+    LayerCollection: 'LayerCollection',
+    Project: 'Project',
+    DatasetId: 'DatasetId',
+    ModelId: 'ModelId'
 };
 /**
  * Check if a given object implements the ResourceIdLayer interface.
  */
 export function instanceOfResourceIdLayer(value) {
-    if (!('id' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function ResourceIdLayerFromJSON(json) {
     return ResourceIdLayerFromJSONTyped(json, false);
 }
 export function ResourceIdLayerFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,11 +43,14 @@ export function ResourceIdLayerFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ResourceIdLayerToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }

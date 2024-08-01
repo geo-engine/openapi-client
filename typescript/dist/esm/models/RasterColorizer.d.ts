@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { RasterColorizerSingleBand } from './RasterColorizerSingleBand';
+import { RasterColorizerSingleBand } from './RasterColorizerSingleBand';
 /**
  * @type RasterColorizer
  *

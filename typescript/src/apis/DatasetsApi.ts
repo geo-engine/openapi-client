@@ -82,14 +82,14 @@ export interface ListDatasetsHandlerRequest {
     order: OrderBy;
     offset: number;
     limit: number;
-    filter?: string;
-    tags?: Array<string>;
+    filter?: string | null;
+    tags?: Array<string> | null;
 }
 
 export interface SuggestMetaDataHandlerRequest {
     upload: string;
-    mainFile?: string;
-    layerName?: string;
+    mainFile?: string | null;
+    layerName?: string | null;
 }
 
 export interface UpdateDatasetHandlerRequest {
@@ -117,11 +117,8 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Creates a new dataset using previously uploaded files.
      */
     async autoCreateDatasetHandlerRaw(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDatasetHandler200Response>> {
-        if (requestParameters['autoCreateDataset'] == null) {
-            throw new runtime.RequiredError(
-                'autoCreateDataset',
-                'Required parameter "autoCreateDataset" was null or undefined when calling autoCreateDatasetHandler().'
-            );
+        if (requestParameters.autoCreateDataset === null || requestParameters.autoCreateDataset === undefined) {
+            throw new runtime.RequiredError('autoCreateDataset','Required parameter requestParameters.autoCreateDataset was null or undefined when calling autoCreateDatasetHandler.');
         }
 
         const queryParameters: any = {};
@@ -143,7 +140,7 @@ export class DatasetsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AutoCreateDatasetToJSON(requestParameters['autoCreateDataset']),
+            body: AutoCreateDatasetToJSON(requestParameters.autoCreateDataset),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateDatasetHandler200ResponseFromJSON(jsonValue));
@@ -163,11 +160,8 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     async createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDatasetHandler200Response>> {
-        if (requestParameters['createDataset'] == null) {
-            throw new runtime.RequiredError(
-                'createDataset',
-                'Required parameter "createDataset" was null or undefined when calling createDatasetHandler().'
-            );
+        if (requestParameters.createDataset === null || requestParameters.createDataset === undefined) {
+            throw new runtime.RequiredError('createDataset','Required parameter requestParameters.createDataset was null or undefined when calling createDatasetHandler.');
         }
 
         const queryParameters: any = {};
@@ -189,7 +183,7 @@ export class DatasetsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateDatasetToJSON(requestParameters['createDataset']),
+            body: CreateDatasetToJSON(requestParameters.createDataset),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateDatasetHandler200ResponseFromJSON(jsonValue));
@@ -209,11 +203,8 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Delete a dataset
      */
     async deleteDatasetHandlerRaw(requestParameters: DeleteDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['dataset'] == null) {
-            throw new runtime.RequiredError(
-                'dataset',
-                'Required parameter "dataset" was null or undefined when calling deleteDatasetHandler().'
-            );
+        if (requestParameters.dataset === null || requestParameters.dataset === undefined) {
+            throw new runtime.RequiredError('dataset','Required parameter requestParameters.dataset was null or undefined when calling deleteDatasetHandler.');
         }
 
         const queryParameters: any = {};
@@ -229,7 +220,7 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/dataset/{dataset}`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+            path: `/dataset/{dataset}`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters.dataset))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -251,11 +242,8 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Retrieves details about a dataset using the internal name.
      */
     async getDatasetHandlerRaw(requestParameters: GetDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Dataset>> {
-        if (requestParameters['dataset'] == null) {
-            throw new runtime.RequiredError(
-                'dataset',
-                'Required parameter "dataset" was null or undefined when calling getDatasetHandler().'
-            );
+        if (requestParameters.dataset === null || requestParameters.dataset === undefined) {
+            throw new runtime.RequiredError('dataset','Required parameter requestParameters.dataset was null or undefined when calling getDatasetHandler.');
         }
 
         const queryParameters: any = {};
@@ -271,7 +259,7 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/dataset/{dataset}`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+            path: `/dataset/{dataset}`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters.dataset))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -294,11 +282,8 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Retrieves the loading information of a dataset
      */
     async getLoadingInfoHandlerRaw(requestParameters: GetLoadingInfoHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetaDataDefinition>> {
-        if (requestParameters['dataset'] == null) {
-            throw new runtime.RequiredError(
-                'dataset',
-                'Required parameter "dataset" was null or undefined when calling getLoadingInfoHandler().'
-            );
+        if (requestParameters.dataset === null || requestParameters.dataset === undefined) {
+            throw new runtime.RequiredError('dataset','Required parameter requestParameters.dataset was null or undefined when calling getLoadingInfoHandler.');
         }
 
         const queryParameters: any = {};
@@ -314,7 +299,7 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/dataset/{dataset}/loadingInfo`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+            path: `/dataset/{dataset}/loadingInfo`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters.dataset))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -337,47 +322,38 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Lists available datasets.
      */
     async listDatasetsHandlerRaw(requestParameters: ListDatasetsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DatasetListing>>> {
-        if (requestParameters['order'] == null) {
-            throw new runtime.RequiredError(
-                'order',
-                'Required parameter "order" was null or undefined when calling listDatasetsHandler().'
-            );
+        if (requestParameters.order === null || requestParameters.order === undefined) {
+            throw new runtime.RequiredError('order','Required parameter requestParameters.order was null or undefined when calling listDatasetsHandler.');
         }
 
-        if (requestParameters['offset'] == null) {
-            throw new runtime.RequiredError(
-                'offset',
-                'Required parameter "offset" was null or undefined when calling listDatasetsHandler().'
-            );
+        if (requestParameters.offset === null || requestParameters.offset === undefined) {
+            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling listDatasetsHandler.');
         }
 
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError(
-                'limit',
-                'Required parameter "limit" was null or undefined when calling listDatasetsHandler().'
-            );
+        if (requestParameters.limit === null || requestParameters.limit === undefined) {
+            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling listDatasetsHandler.');
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters['filter'] != null) {
-            queryParameters['filter'] = requestParameters['filter'];
+        if (requestParameters.filter !== undefined) {
+            queryParameters['filter'] = requestParameters.filter;
         }
 
-        if (requestParameters['order'] != null) {
-            queryParameters['order'] = requestParameters['order'];
+        if (requestParameters.order !== undefined) {
+            queryParameters['order'] = requestParameters.order;
         }
 
-        if (requestParameters['offset'] != null) {
-            queryParameters['offset'] = requestParameters['offset'];
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
         }
 
-        if (requestParameters['limit'] != null) {
-            queryParameters['limit'] = requestParameters['limit'];
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
         }
 
-        if (requestParameters['tags'] != null) {
-            queryParameters['tags'] = requestParameters['tags'];
+        if (requestParameters.tags) {
+            queryParameters['tags'] = requestParameters.tags;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -450,25 +426,22 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
      */
     async suggestMetaDataHandlerRaw(requestParameters: SuggestMetaDataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetaDataSuggestion>> {
-        if (requestParameters['upload'] == null) {
-            throw new runtime.RequiredError(
-                'upload',
-                'Required parameter "upload" was null or undefined when calling suggestMetaDataHandler().'
-            );
+        if (requestParameters.upload === null || requestParameters.upload === undefined) {
+            throw new runtime.RequiredError('upload','Required parameter requestParameters.upload was null or undefined when calling suggestMetaDataHandler.');
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters['upload'] != null) {
-            queryParameters['upload'] = requestParameters['upload'];
+        if (requestParameters.upload !== undefined) {
+            queryParameters['upload'] = requestParameters.upload;
         }
 
-        if (requestParameters['mainFile'] != null) {
-            queryParameters['mainFile'] = requestParameters['mainFile'];
+        if (requestParameters.mainFile !== undefined) {
+            queryParameters['mainFile'] = requestParameters.mainFile;
         }
 
-        if (requestParameters['layerName'] != null) {
-            queryParameters['layerName'] = requestParameters['layerName'];
+        if (requestParameters.layerName !== undefined) {
+            queryParameters['layerName'] = requestParameters.layerName;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -505,18 +478,12 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Update details about a dataset using the internal name.
      */
     async updateDatasetHandlerRaw(requestParameters: UpdateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['dataset'] == null) {
-            throw new runtime.RequiredError(
-                'dataset',
-                'Required parameter "dataset" was null or undefined when calling updateDatasetHandler().'
-            );
+        if (requestParameters.dataset === null || requestParameters.dataset === undefined) {
+            throw new runtime.RequiredError('dataset','Required parameter requestParameters.dataset was null or undefined when calling updateDatasetHandler.');
         }
 
-        if (requestParameters['updateDataset'] == null) {
-            throw new runtime.RequiredError(
-                'updateDataset',
-                'Required parameter "updateDataset" was null or undefined when calling updateDatasetHandler().'
-            );
+        if (requestParameters.updateDataset === null || requestParameters.updateDataset === undefined) {
+            throw new runtime.RequiredError('updateDataset','Required parameter requestParameters.updateDataset was null or undefined when calling updateDatasetHandler.');
         }
 
         const queryParameters: any = {};
@@ -534,11 +501,11 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/dataset/{dataset}`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+            path: `/dataset/{dataset}`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters.dataset))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateDatasetToJSON(requestParameters['updateDataset']),
+            body: UpdateDatasetToJSON(requestParameters.updateDataset),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -555,18 +522,12 @@ export class DatasetsApi extends runtime.BaseAPI {
     /**
      */
     async updateDatasetProvenanceHandlerRaw(requestParameters: UpdateDatasetProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['dataset'] == null) {
-            throw new runtime.RequiredError(
-                'dataset',
-                'Required parameter "dataset" was null or undefined when calling updateDatasetProvenanceHandler().'
-            );
+        if (requestParameters.dataset === null || requestParameters.dataset === undefined) {
+            throw new runtime.RequiredError('dataset','Required parameter requestParameters.dataset was null or undefined when calling updateDatasetProvenanceHandler.');
         }
 
-        if (requestParameters['provenances'] == null) {
-            throw new runtime.RequiredError(
-                'provenances',
-                'Required parameter "provenances" was null or undefined when calling updateDatasetProvenanceHandler().'
-            );
+        if (requestParameters.provenances === null || requestParameters.provenances === undefined) {
+            throw new runtime.RequiredError('provenances','Required parameter requestParameters.provenances was null or undefined when calling updateDatasetProvenanceHandler.');
         }
 
         const queryParameters: any = {};
@@ -584,11 +545,11 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/dataset/{dataset}/provenance`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+            path: `/dataset/{dataset}/provenance`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters.dataset))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: ProvenancesToJSON(requestParameters['provenances']),
+            body: ProvenancesToJSON(requestParameters.provenances),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -605,18 +566,12 @@ export class DatasetsApi extends runtime.BaseAPI {
      * Updates the dataset\'s symbology
      */
     async updateDatasetSymbologyHandlerRaw(requestParameters: UpdateDatasetSymbologyHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['dataset'] == null) {
-            throw new runtime.RequiredError(
-                'dataset',
-                'Required parameter "dataset" was null or undefined when calling updateDatasetSymbologyHandler().'
-            );
+        if (requestParameters.dataset === null || requestParameters.dataset === undefined) {
+            throw new runtime.RequiredError('dataset','Required parameter requestParameters.dataset was null or undefined when calling updateDatasetSymbologyHandler.');
         }
 
-        if (requestParameters['symbology'] == null) {
-            throw new runtime.RequiredError(
-                'symbology',
-                'Required parameter "symbology" was null or undefined when calling updateDatasetSymbologyHandler().'
-            );
+        if (requestParameters.symbology === null || requestParameters.symbology === undefined) {
+            throw new runtime.RequiredError('symbology','Required parameter requestParameters.symbology was null or undefined when calling updateDatasetSymbologyHandler.');
         }
 
         const queryParameters: any = {};
@@ -634,11 +589,11 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/dataset/{dataset}/symbology`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+            path: `/dataset/{dataset}/symbology`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters.dataset))),
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: SymbologyToJSON(requestParameters['symbology']),
+            body: SymbologyToJSON(requestParameters.symbology),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);

@@ -21,7 +21,7 @@ export function MetaDataDefinitionFromJSON(json) {
     return MetaDataDefinitionFromJSONTyped(json, false);
 }
 export function MetaDataDefinitionFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -42,8 +42,11 @@ export function MetaDataDefinitionFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function MetaDataDefinitionToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'GdalMetaDataList':

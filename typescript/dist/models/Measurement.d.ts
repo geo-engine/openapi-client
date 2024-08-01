@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ClassificationMeasurement } from './ClassificationMeasurement';
-import type { ContinuousMeasurement } from './ContinuousMeasurement';
-import type { UnitlessMeasurement } from './UnitlessMeasurement';
+import { ClassificationMeasurement } from './ClassificationMeasurement';
+import { ContinuousMeasurement } from './ContinuousMeasurement';
+import { UnitlessMeasurement } from './UnitlessMeasurement';
 /**
  * @type Measurement
  *

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * An object that composes the date and a timestamp with time zone.
  * @export
@@ -31,8 +31,10 @@ export interface DateTime {
  * Check if a given object implements the DateTime interface.
  */
 export function instanceOfDateTime(value: object): boolean {
-    if (!('datetime' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "datetime" in value;
+
+    return isInstance;
 }
 
 export function DateTimeFromJSON(json: any): DateTime {
@@ -40,7 +42,7 @@ export function DateTimeFromJSON(json: any): DateTime {
 }
 
 export function DateTimeFromJSONTyped(json: any, ignoreDiscriminator: boolean): DateTime {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function DateTimeFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
 }
 
 export function DateTimeToJSON(value?: DateTime | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'datetime': ((value['datetime']).toISOString()),
+        'datetime': (value.datetime.toISOString()),
     };
 }
 

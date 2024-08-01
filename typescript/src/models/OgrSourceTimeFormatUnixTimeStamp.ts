@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { UnixTimeStampType } from './UnixTimeStampType';
 import {
     UnixTimeStampTypeFromJSON,
@@ -54,9 +54,11 @@ export type OgrSourceTimeFormatUnixTimeStampFormatEnum = typeof OgrSourceTimeFor
  * Check if a given object implements the OgrSourceTimeFormatUnixTimeStamp interface.
  */
 export function instanceOfOgrSourceTimeFormatUnixTimeStamp(value: object): boolean {
-    if (!('format' in value)) return false;
-    if (!('timestampType' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "format" in value;
+    isInstance = isInstance && "timestampType" in value;
+
+    return isInstance;
 }
 
 export function OgrSourceTimeFormatUnixTimeStampFromJSON(json: any): OgrSourceTimeFormatUnixTimeStamp {
@@ -64,7 +66,7 @@ export function OgrSourceTimeFormatUnixTimeStampFromJSON(json: any): OgrSourceTi
 }
 
 export function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceTimeFormatUnixTimeStamp {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -75,13 +77,16 @@ export function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json: any, ignoreD
 }
 
 export function OgrSourceTimeFormatUnixTimeStampToJSON(value?: OgrSourceTimeFormatUnixTimeStamp | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'format': value['format'],
-        'timestampType': UnixTimeStampTypeToJSON(value['timestampType']),
+        'format': value.format,
+        'timestampType': UnixTimeStampTypeToJSON(value.timestampType),
     };
 }
 

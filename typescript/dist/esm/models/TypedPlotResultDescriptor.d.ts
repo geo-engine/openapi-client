@@ -22,7 +22,7 @@ export interface TypedPlotResultDescriptor {
      * @type {BoundingBox2D}
      * @memberof TypedPlotResultDescriptor
      */
-    bbox?: BoundingBox2D;
+    bbox?: BoundingBox2D | null;
     /**
      *
      * @type {string}
@@ -34,7 +34,7 @@ export interface TypedPlotResultDescriptor {
      * @type {TimeInterval}
      * @memberof TypedPlotResultDescriptor
      */
-    time?: TimeInterval;
+    time?: TimeInterval | null;
     /**
      *
      * @type {string}

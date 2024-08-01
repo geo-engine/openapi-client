@@ -27,6 +27,8 @@ export interface OgrSourceDurationSpecInfinite {
  */
 export declare const OgrSourceDurationSpecInfiniteTypeEnum: {
     readonly Infinite: "infinite";
+    readonly Zero: "zero";
+    readonly Value: "value";
 };
 export type OgrSourceDurationSpecInfiniteTypeEnum = typeof OgrSourceDurationSpecInfiniteTypeEnum[keyof typeof OgrSourceDurationSpecInfiniteTypeEnum];
 /**

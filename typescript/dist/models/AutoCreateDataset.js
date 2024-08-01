@@ -14,19 +14,17 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutoCreateDatasetToJSON = exports.AutoCreateDatasetFromJSONTyped = exports.AutoCreateDatasetFromJSON = exports.instanceOfAutoCreateDataset = void 0;
+const runtime_1 = require("../runtime");
 /**
  * Check if a given object implements the AutoCreateDataset interface.
  */
 function instanceOfAutoCreateDataset(value) {
-    if (!('datasetDescription' in value))
-        return false;
-    if (!('datasetName' in value))
-        return false;
-    if (!('mainFile' in value))
-        return false;
-    if (!('upload' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "datasetDescription" in value;
+    isInstance = isInstance && "datasetName" in value;
+    isInstance = isInstance && "mainFile" in value;
+    isInstance = isInstance && "upload" in value;
+    return isInstance;
 }
 exports.instanceOfAutoCreateDataset = instanceOfAutoCreateDataset;
 function AutoCreateDatasetFromJSON(json) {
@@ -34,30 +32,33 @@ function AutoCreateDatasetFromJSON(json) {
 }
 exports.AutoCreateDatasetFromJSON = AutoCreateDatasetFromJSON;
 function AutoCreateDatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'datasetDescription': json['datasetDescription'],
         'datasetName': json['datasetName'],
-        'layerName': json['layerName'] == null ? undefined : json['layerName'],
+        'layerName': !(0, runtime_1.exists)(json, 'layerName') ? undefined : json['layerName'],
         'mainFile': json['mainFile'],
-        'tags': json['tags'] == null ? undefined : json['tags'],
+        'tags': !(0, runtime_1.exists)(json, 'tags') ? undefined : json['tags'],
         'upload': json['upload'],
     };
 }
 exports.AutoCreateDatasetFromJSONTyped = AutoCreateDatasetFromJSONTyped;
 function AutoCreateDatasetToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'datasetDescription': value['datasetDescription'],
-        'datasetName': value['datasetName'],
-        'layerName': value['layerName'],
-        'mainFile': value['mainFile'],
-        'tags': value['tags'],
-        'upload': value['upload'],
+        'datasetDescription': value.datasetDescription,
+        'datasetName': value.datasetName,
+        'layerName': value.layerName,
+        'mainFile': value.mainFile,
+        'tags': value.tags,
+        'upload': value.upload,
     };
 }
 exports.AutoCreateDatasetToJSON = AutoCreateDatasetToJSON;

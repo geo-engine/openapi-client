@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 /**
@@ -23,34 +24,36 @@ export const TypedPlotResultDescriptorTypeEnum = {
  * Check if a given object implements the TypedPlotResultDescriptor interface.
  */
 export function instanceOfTypedPlotResultDescriptor(value) {
-    if (!('spatialReference' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "spatialReference" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function TypedPlotResultDescriptorFromJSON(json) {
     return TypedPlotResultDescriptorFromJSONTyped(json, false);
 }
 export function TypedPlotResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'bbox': json['bbox'] == null ? undefined : BoundingBox2DFromJSON(json['bbox']),
+        'bbox': !exists(json, 'bbox') ? undefined : BoundingBox2DFromJSON(json['bbox']),
         'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
         'type': json['type'],
     };
 }
 export function TypedPlotResultDescriptorToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bbox': BoundingBox2DToJSON(value['bbox']),
-        'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
-        'type': value['type'],
+        'bbox': BoundingBox2DToJSON(value.bbox),
+        'spatialReference': value.spatialReference,
+        'time': TimeIntervalToJSON(value.time),
+        'type': value.type,
     };
 }

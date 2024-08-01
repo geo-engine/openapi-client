@@ -12,8 +12,8 @@
  * Do not edit the class manually.
  */
 
-import type { RasterColorizerSingleBand } from './RasterColorizerSingleBand';
 import {
+    RasterColorizerSingleBand,
     instanceOfRasterColorizerSingleBand,
     RasterColorizerSingleBandFromJSON,
     RasterColorizerSingleBandFromJSONTyped,
@@ -32,7 +32,7 @@ export function RasterColorizerFromJSON(json: any): RasterColorizer {
 }
 
 export function RasterColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterColorizer {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -44,8 +44,11 @@ export function RasterColorizerFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function RasterColorizerToJSON(value?: RasterColorizer | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'singleBand':

@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ResourceDataset } from './ResourceDataset';
-import type { ResourceLayer } from './ResourceLayer';
-import type { ResourceLayerCollection } from './ResourceLayerCollection';
-import type { ResourceProject } from './ResourceProject';
+import { ResourceDataset } from './ResourceDataset';
+import { ResourceLayer } from './ResourceLayer';
+import { ResourceLayerCollection } from './ResourceLayerCollection';
+import { ResourceProject } from './ResourceProject';
 /**
  * @type Resource
  *

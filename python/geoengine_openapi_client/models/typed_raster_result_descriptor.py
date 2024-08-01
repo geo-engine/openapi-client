@@ -18,75 +18,59 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+
+from typing import List, Optional
+from pydantic import BaseModel, Field, StrictStr, conlist, validator
 from geoengine_openapi_client.models.raster_band_descriptor import RasterBandDescriptor
 from geoengine_openapi_client.models.raster_data_type import RasterDataType
 from geoengine_openapi_client.models.spatial_partition2_d import SpatialPartition2D
 from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
 from geoengine_openapi_client.models.time_interval import TimeInterval
-from typing import Optional, Set
-from typing_extensions import Self
 
 class TypedRasterResultDescriptor(BaseModel):
     """
-    A `ResultDescriptor` for raster queries
-    """ # noqa: E501
-    bands: List[RasterBandDescriptor]
+    A `ResultDescriptor` for raster queries  # noqa: E501
+    """
+    bands: conlist(RasterBandDescriptor) = Field(...)
     bbox: Optional[SpatialPartition2D] = None
-    data_type: RasterDataType = Field(alias="dataType")
+    data_type: RasterDataType = Field(..., alias="dataType")
     resolution: Optional[SpatialResolution] = None
-    spatial_reference: StrictStr = Field(alias="spatialReference")
+    spatial_reference: StrictStr = Field(..., alias="spatialReference")
     time: Optional[TimeInterval] = None
-    type: StrictStr
-    __properties: ClassVar[List[str]] = ["bands", "bbox", "dataType", "resolution", "spatialReference", "time", "type"]
+    type: StrictStr = Field(...)
+    __properties = ["bands", "bbox", "dataType", "resolution", "spatialReference", "time", "type"]
 
-    @field_validator('type')
+    @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['raster']):
+        if value not in ('raster'):
             raise ValueError("must be one of enum values ('raster')")
         return value
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> TypedRasterResultDescriptor:
         """Create an instance of TypedRasterResultDescriptor from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in bands (list)
         _items = []
         if self.bands:
@@ -104,38 +88,38 @@ class TypedRasterResultDescriptor(BaseModel):
         if self.time:
             _dict['time'] = self.time.to_dict()
         # set to None if bbox (nullable) is None
-        # and model_fields_set contains the field
-        if self.bbox is None and "bbox" in self.model_fields_set:
+        # and __fields_set__ contains the field
+        if self.bbox is None and "bbox" in self.__fields_set__:
             _dict['bbox'] = None
 
         # set to None if resolution (nullable) is None
-        # and model_fields_set contains the field
-        if self.resolution is None and "resolution" in self.model_fields_set:
+        # and __fields_set__ contains the field
+        if self.resolution is None and "resolution" in self.__fields_set__:
             _dict['resolution'] = None
 
         # set to None if time (nullable) is None
-        # and model_fields_set contains the field
-        if self.time is None and "time" in self.model_fields_set:
+        # and __fields_set__ contains the field
+        if self.time is None and "time" in self.__fields_set__:
             _dict['time'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> TypedRasterResultDescriptor:
         """Create an instance of TypedRasterResultDescriptor from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return TypedRasterResultDescriptor.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "bands": [RasterBandDescriptor.from_dict(_item) for _item in obj["bands"]] if obj.get("bands") is not None else None,
-            "bbox": SpatialPartition2D.from_dict(obj["bbox"]) if obj.get("bbox") is not None else None,
-            "dataType": obj.get("dataType"),
-            "resolution": SpatialResolution.from_dict(obj["resolution"]) if obj.get("resolution") is not None else None,
-            "spatialReference": obj.get("spatialReference"),
-            "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
+        _obj = TypedRasterResultDescriptor.parse_obj({
+            "bands": [RasterBandDescriptor.from_dict(_item) for _item in obj.get("bands")] if obj.get("bands") is not None else None,
+            "bbox": SpatialPartition2D.from_dict(obj.get("bbox")) if obj.get("bbox") is not None else None,
+            "data_type": obj.get("dataType"),
+            "resolution": SpatialResolution.from_dict(obj.get("resolution")) if obj.get("resolution") is not None else None,
+            "spatial_reference": obj.get("spatialReference"),
+            "time": TimeInterval.from_dict(obj.get("time")) if obj.get("time") is not None else None,
             "type": obj.get("type")
         })
         return _obj

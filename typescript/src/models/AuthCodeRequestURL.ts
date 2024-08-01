@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,8 +31,10 @@ export interface AuthCodeRequestURL {
  * Check if a given object implements the AuthCodeRequestURL interface.
  */
 export function instanceOfAuthCodeRequestURL(value: object): boolean {
-    if (!('url' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "url" in value;
+
+    return isInstance;
 }
 
 export function AuthCodeRequestURLFromJSON(json: any): AuthCodeRequestURL {
@@ -40,7 +42,7 @@ export function AuthCodeRequestURLFromJSON(json: any): AuthCodeRequestURL {
 }
 
 export function AuthCodeRequestURLFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthCodeRequestURL {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function AuthCodeRequestURLFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function AuthCodeRequestURLToJSON(value?: AuthCodeRequestURL | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'url': value['url'],
+        'url': value.url,
     };
 }
 

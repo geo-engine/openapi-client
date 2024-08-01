@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.task_filter import TaskFilter
+from geoengine_openapi_client.models.task_filter import TaskFilter  # noqa: E501
 
 class TestTaskFilter(unittest.TestCase):
     """TaskFilter unit test stubs"""

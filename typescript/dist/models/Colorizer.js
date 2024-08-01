@@ -23,7 +23,7 @@ function ColorizerFromJSON(json) {
 }
 exports.ColorizerFromJSON = ColorizerFromJSON;
 function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -41,8 +41,11 @@ function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ColorizerFromJSONTyped = ColorizerFromJSONTyped;
 function ColorizerToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'linearGradient':

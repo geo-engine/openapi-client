@@ -17,17 +17,16 @@ import { ProvenanceFromJSON, ProvenanceToJSON, } from './Provenance';
  * Check if a given object implements the ProvenanceEntry interface.
  */
 export function instanceOfProvenanceEntry(value) {
-    if (!('data' in value))
-        return false;
-    if (!('provenance' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "data" in value;
+    isInstance = isInstance && "provenance" in value;
+    return isInstance;
 }
 export function ProvenanceEntryFromJSON(json) {
     return ProvenanceEntryFromJSONTyped(json, false);
 }
 export function ProvenanceEntryFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -36,11 +35,14 @@ export function ProvenanceEntryFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ProvenanceEntryToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'data': (value['data'].map(DataIdToJSON)),
-        'provenance': ProvenanceToJSON(value['provenance']),
+        'data': (value.data.map(DataIdToJSON)),
+        'provenance': ProvenanceToJSON(value.provenance),
     };
 }

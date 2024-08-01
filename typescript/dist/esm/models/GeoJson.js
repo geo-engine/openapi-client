@@ -16,17 +16,16 @@ import { CollectionTypeFromJSON, CollectionTypeToJSON, } from './CollectionType'
  * Check if a given object implements the GeoJson interface.
  */
 export function instanceOfGeoJson(value) {
-    if (!('features' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "features" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function GeoJsonFromJSON(json) {
     return GeoJsonFromJSONTyped(json, false);
 }
 export function GeoJsonFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -35,11 +34,14 @@ export function GeoJsonFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function GeoJsonToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'features': value['features'],
-        'type': CollectionTypeToJSON(value['type']),
+        'features': value.features,
+        'type': CollectionTypeToJSON(value.type),
     };
 }

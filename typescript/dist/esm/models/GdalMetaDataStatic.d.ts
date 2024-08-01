@@ -41,7 +41,7 @@ export interface GdalMetaDataStatic {
      * @type {TimeInterval}
      * @memberof GdalMetaDataStatic
      */
-    time?: TimeInterval;
+    time?: TimeInterval | null;
     /**
      *
      * @type {string}

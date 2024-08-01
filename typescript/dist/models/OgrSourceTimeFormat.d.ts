@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { OgrSourceTimeFormatAuto } from './OgrSourceTimeFormatAuto';
-import type { OgrSourceTimeFormatCustom } from './OgrSourceTimeFormatCustom';
-import type { OgrSourceTimeFormatUnixTimeStamp } from './OgrSourceTimeFormatUnixTimeStamp';
+import { OgrSourceTimeFormatAuto } from './OgrSourceTimeFormatAuto';
+import { OgrSourceTimeFormatCustom } from './OgrSourceTimeFormatCustom';
+import { OgrSourceTimeFormatUnixTimeStamp } from './OgrSourceTimeFormatUnixTimeStamp';
 /**
  * @type OgrSourceTimeFormat
  *

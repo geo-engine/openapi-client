@@ -25,13 +25,11 @@ exports.DerivedColorTypeEnum = {
  * Check if a given object implements the DerivedColor interface.
  */
 function instanceOfDerivedColor(value) {
-    if (!('attribute' in value))
-        return false;
-    if (!('colorizer' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "attribute" in value;
+    isInstance = isInstance && "colorizer" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfDerivedColor = instanceOfDerivedColor;
 function DerivedColorFromJSON(json) {
@@ -39,7 +37,7 @@ function DerivedColorFromJSON(json) {
 }
 exports.DerivedColorFromJSON = DerivedColorFromJSON;
 function DerivedColorFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,13 +48,16 @@ function DerivedColorFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.DerivedColorFromJSONTyped = DerivedColorFromJSONTyped;
 function DerivedColorToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'attribute': value['attribute'],
-        'colorizer': (0, Colorizer_1.ColorizerToJSON)(value['colorizer']),
-        'type': value['type'],
+        'attribute': value.attribute,
+        'colorizer': (0, Colorizer_1.ColorizerToJSON)(value.colorizer),
+        'type': value.type,
     };
 }
 exports.DerivedColorToJSON = DerivedColorToJSON;

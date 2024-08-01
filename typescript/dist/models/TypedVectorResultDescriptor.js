@@ -29,15 +29,12 @@ exports.TypedVectorResultDescriptorTypeEnum = {
  * Check if a given object implements the TypedVectorResultDescriptor interface.
  */
 function instanceOfTypedVectorResultDescriptor(value) {
-    if (!('columns' in value))
-        return false;
-    if (!('dataType' in value))
-        return false;
-    if (!('spatialReference' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "columns" in value;
+    isInstance = isInstance && "dataType" in value;
+    isInstance = isInstance && "spatialReference" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfTypedVectorResultDescriptor = instanceOfTypedVectorResultDescriptor;
 function TypedVectorResultDescriptorFromJSON(json) {
@@ -45,30 +42,33 @@ function TypedVectorResultDescriptorFromJSON(json) {
 }
 exports.TypedVectorResultDescriptorFromJSON = TypedVectorResultDescriptorFromJSON;
 function TypedVectorResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'bbox': json['bbox'] == null ? undefined : (0, BoundingBox2D_1.BoundingBox2DFromJSON)(json['bbox']),
+        'bbox': !(0, runtime_1.exists)(json, 'bbox') ? undefined : (0, BoundingBox2D_1.BoundingBox2DFromJSON)(json['bbox']),
         'columns': ((0, runtime_1.mapValues)(json['columns'], VectorColumnInfo_1.VectorColumnInfoFromJSON)),
         'dataType': (0, VectorDataType_1.VectorDataTypeFromJSON)(json['dataType']),
         'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
+        'time': !(0, runtime_1.exists)(json, 'time') ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
         'type': json['type'],
     };
 }
 exports.TypedVectorResultDescriptorFromJSONTyped = TypedVectorResultDescriptorFromJSONTyped;
 function TypedVectorResultDescriptorToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bbox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value['bbox']),
-        'columns': ((0, runtime_1.mapValues)(value['columns'], VectorColumnInfo_1.VectorColumnInfoToJSON)),
-        'dataType': (0, VectorDataType_1.VectorDataTypeToJSON)(value['dataType']),
-        'spatialReference': value['spatialReference'],
-        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
-        'type': value['type'],
+        'bbox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value.bbox),
+        'columns': ((0, runtime_1.mapValues)(value.columns, VectorColumnInfo_1.VectorColumnInfoToJSON)),
+        'dataType': (0, VectorDataType_1.VectorDataTypeToJSON)(value.dataType),
+        'spatialReference': value.spatialReference,
+        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value.time),
+        'type': value.type,
     };
 }
 exports.TypedVectorResultDescriptorToJSON = TypedVectorResultDescriptorToJSON;

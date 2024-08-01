@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.ogr_source_duration_spec_zero import OgrSourceDurationSpecZero
+from geoengine_openapi_client.models.ogr_source_duration_spec_zero import OgrSourceDurationSpecZero  # noqa: E501
 
 class TestOgrSourceDurationSpecZero(unittest.TestCase):
     """OgrSourceDurationSpecZero unit test stubs"""
@@ -33,7 +34,7 @@ class TestOgrSourceDurationSpecZero(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `OgrSourceDurationSpecZero`
         """
-        model = OgrSourceDurationSpecZero()
+        model = OgrSourceDurationSpecZero()  # noqa: E501
         if include_optional:
             return OgrSourceDurationSpecZero(
                 type = 'zero'

@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { DataPathOneOf } from './DataPathOneOf';
-import type { DataPathOneOf1 } from './DataPathOneOf1';
+import { DataPathOneOf } from './DataPathOneOf';
+import { DataPathOneOf1 } from './DataPathOneOf1';
 /**
  * @type DataPath
  *

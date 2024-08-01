@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -41,8 +41,10 @@ export type ColorizerRgbaTypeEnum = typeof ColorizerRgbaTypeEnum[keyof typeof Co
  * Check if a given object implements the ColorizerRgba interface.
  */
 export function instanceOfColorizerRgba(value: object): boolean {
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function ColorizerRgbaFromJSON(json: any): ColorizerRgba {
@@ -50,7 +52,7 @@ export function ColorizerRgbaFromJSON(json: any): ColorizerRgba {
 }
 
 export function ColorizerRgbaFromJSONTyped(json: any, ignoreDiscriminator: boolean): ColorizerRgba {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -60,12 +62,15 @@ export function ColorizerRgbaFromJSONTyped(json: any, ignoreDiscriminator: boole
 }
 
 export function ColorizerRgbaToJSON(value?: ColorizerRgba | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'type': value['type'],
+        'type': value.type,
     };
 }
 

@@ -22,23 +22,19 @@ export const OgrSourceDatasetTimeTypeStartEndTypeEnum = {
  * Check if a given object implements the OgrSourceDatasetTimeTypeStartEnd interface.
  */
 export function instanceOfOgrSourceDatasetTimeTypeStartEnd(value) {
-    if (!('endField' in value))
-        return false;
-    if (!('endFormat' in value))
-        return false;
-    if (!('startField' in value))
-        return false;
-    if (!('startFormat' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "endField" in value;
+    isInstance = isInstance && "endFormat" in value;
+    isInstance = isInstance && "startField" in value;
+    isInstance = isInstance && "startFormat" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function OgrSourceDatasetTimeTypeStartEndFromJSON(json) {
     return OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, false);
 }
 export function OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,14 +46,17 @@ export function OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, ignoreDiscri
     };
 }
 export function OgrSourceDatasetTimeTypeStartEndToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'endField': value['endField'],
-        'endFormat': OgrSourceTimeFormatToJSON(value['endFormat']),
-        'startField': value['startField'],
-        'startFormat': OgrSourceTimeFormatToJSON(value['startFormat']),
-        'type': value['type'],
+        'endField': value.endField,
+        'endFormat': OgrSourceTimeFormatToJSON(value.endFormat),
+        'startField': value.startField,
+        'startFormat': OgrSourceTimeFormatToJSON(value.startFormat),
+        'type': value.type,
     };
 }

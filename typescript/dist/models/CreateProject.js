@@ -14,19 +14,18 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateProjectToJSON = exports.CreateProjectFromJSONTyped = exports.CreateProjectFromJSON = exports.instanceOfCreateProject = void 0;
+const runtime_1 = require("../runtime");
 const STRectangle_1 = require("./STRectangle");
 const TimeStep_1 = require("./TimeStep");
 /**
  * Check if a given object implements the CreateProject interface.
  */
 function instanceOfCreateProject(value) {
-    if (!('bounds' in value))
-        return false;
-    if (!('description' in value))
-        return false;
-    if (!('name' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "bounds" in value;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "name" in value;
+    return isInstance;
 }
 exports.instanceOfCreateProject = instanceOfCreateProject;
 function CreateProjectFromJSON(json) {
@@ -34,26 +33,29 @@ function CreateProjectFromJSON(json) {
 }
 exports.CreateProjectFromJSON = CreateProjectFromJSON;
 function CreateProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'bounds': (0, STRectangle_1.STRectangleFromJSON)(json['bounds']),
         'description': json['description'],
         'name': json['name'],
-        'timeStep': json['timeStep'] == null ? undefined : (0, TimeStep_1.TimeStepFromJSON)(json['timeStep']),
+        'timeStep': !(0, runtime_1.exists)(json, 'timeStep') ? undefined : (0, TimeStep_1.TimeStepFromJSON)(json['timeStep']),
     };
 }
 exports.CreateProjectFromJSONTyped = CreateProjectFromJSONTyped;
 function CreateProjectToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bounds': (0, STRectangle_1.STRectangleToJSON)(value['bounds']),
-        'description': value['description'],
-        'name': value['name'],
-        'timeStep': (0, TimeStep_1.TimeStepToJSON)(value['timeStep']),
+        'bounds': (0, STRectangle_1.STRectangleToJSON)(value.bounds),
+        'description': value.description,
+        'name': value.name,
+        'timeStep': (0, TimeStep_1.TimeStepToJSON)(value.timeStep),
     };
 }
 exports.CreateProjectToJSON = CreateProjectToJSON;

@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.raster_result_descriptor import RasterResultDescriptor
+from geoengine_openapi_client.models.raster_result_descriptor import RasterResultDescriptor  # noqa: E501
 
 class TestRasterResultDescriptor(unittest.TestCase):
     """RasterResultDescriptor unit test stubs"""
@@ -33,7 +34,7 @@ class TestRasterResultDescriptor(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `RasterResultDescriptor`
         """
-        model = RasterResultDescriptor()
+        model = RasterResultDescriptor()  # noqa: E501
         if include_optional:
             return RasterResultDescriptor(
                 bands = [

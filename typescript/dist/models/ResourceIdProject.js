@@ -24,11 +24,10 @@ exports.ResourceIdProjectTypeEnum = {
  * Check if a given object implements the ResourceIdProject interface.
  */
 function instanceOfResourceIdProject(value) {
-    if (!('id' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfResourceIdProject = instanceOfResourceIdProject;
 function ResourceIdProjectFromJSON(json) {
@@ -36,7 +35,7 @@ function ResourceIdProjectFromJSON(json) {
 }
 exports.ResourceIdProjectFromJSON = ResourceIdProjectFromJSON;
 function ResourceIdProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,12 +45,15 @@ function ResourceIdProjectFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ResourceIdProjectFromJSONTyped = ResourceIdProjectFromJSONTyped;
 function ResourceIdProjectToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 exports.ResourceIdProjectToJSON = ResourceIdProjectToJSON;

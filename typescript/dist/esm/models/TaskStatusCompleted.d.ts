@@ -26,7 +26,7 @@ export interface TaskStatusCompleted {
      * @type {any}
      * @memberof TaskStatusCompleted
      */
-    info?: any;
+    info?: any | null;
     /**
      *
      * @type {string}

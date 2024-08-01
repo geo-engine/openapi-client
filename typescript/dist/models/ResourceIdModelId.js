@@ -24,11 +24,10 @@ exports.ResourceIdModelIdTypeEnum = {
  * Check if a given object implements the ResourceIdModelId interface.
  */
 function instanceOfResourceIdModelId(value) {
-    if (!('id' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfResourceIdModelId = instanceOfResourceIdModelId;
 function ResourceIdModelIdFromJSON(json) {
@@ -36,7 +35,7 @@ function ResourceIdModelIdFromJSON(json) {
 }
 exports.ResourceIdModelIdFromJSON = ResourceIdModelIdFromJSON;
 function ResourceIdModelIdFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,12 +45,15 @@ function ResourceIdModelIdFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ResourceIdModelIdFromJSONTyped = ResourceIdModelIdFromJSONTyped;
 function ResourceIdModelIdToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 exports.ResourceIdModelIdToJSON = ResourceIdModelIdToJSON;

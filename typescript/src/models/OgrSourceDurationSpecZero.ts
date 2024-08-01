@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -41,8 +41,10 @@ export type OgrSourceDurationSpecZeroTypeEnum = typeof OgrSourceDurationSpecZero
  * Check if a given object implements the OgrSourceDurationSpecZero interface.
  */
 export function instanceOfOgrSourceDurationSpecZero(value: object): boolean {
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function OgrSourceDurationSpecZeroFromJSON(json: any): OgrSourceDurationSpecZero {
@@ -50,7 +52,7 @@ export function OgrSourceDurationSpecZeroFromJSON(json: any): OgrSourceDurationS
 }
 
 export function OgrSourceDurationSpecZeroFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpecZero {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -60,12 +62,15 @@ export function OgrSourceDurationSpecZeroFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function OgrSourceDurationSpecZeroToJSON(value?: OgrSourceDurationSpecZero | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'type': value['type'],
+        'type': value.type,
     };
 }
 

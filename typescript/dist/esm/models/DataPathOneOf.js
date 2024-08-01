@@ -15,15 +15,15 @@
  * Check if a given object implements the DataPathOneOf interface.
  */
 export function instanceOfDataPathOneOf(value) {
-    if (!('volume' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "volume" in value;
+    return isInstance;
 }
 export function DataPathOneOfFromJSON(json) {
     return DataPathOneOfFromJSONTyped(json, false);
 }
 export function DataPathOneOfFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -31,10 +31,13 @@ export function DataPathOneOfFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function DataPathOneOfToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'volume': value['volume'],
+        'volume': value.volume,
     };
 }

@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.vector_result_descriptor import VectorResultDescriptor
+from geoengine_openapi_client.models.vector_result_descriptor import VectorResultDescriptor  # noqa: E501
 
 class TestVectorResultDescriptor(unittest.TestCase):
     """VectorResultDescriptor unit test stubs"""
@@ -33,7 +34,7 @@ class TestVectorResultDescriptor(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VectorResultDescriptor`
         """
-        model = VectorResultDescriptor()
+        model = VectorResultDescriptor()  # noqa: E501
         if include_optional:
             return VectorResultDescriptor(
                 bbox = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(

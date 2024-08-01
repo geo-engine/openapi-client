@@ -12,22 +12,22 @@
  * Do not edit the class manually.
  */
 
-import type { OgrSourceTimeFormatAuto } from './OgrSourceTimeFormatAuto';
 import {
+    OgrSourceTimeFormatAuto,
     instanceOfOgrSourceTimeFormatAuto,
     OgrSourceTimeFormatAutoFromJSON,
     OgrSourceTimeFormatAutoFromJSONTyped,
     OgrSourceTimeFormatAutoToJSON,
 } from './OgrSourceTimeFormatAuto';
-import type { OgrSourceTimeFormatCustom } from './OgrSourceTimeFormatCustom';
 import {
+    OgrSourceTimeFormatCustom,
     instanceOfOgrSourceTimeFormatCustom,
     OgrSourceTimeFormatCustomFromJSON,
     OgrSourceTimeFormatCustomFromJSONTyped,
     OgrSourceTimeFormatCustomToJSON,
 } from './OgrSourceTimeFormatCustom';
-import type { OgrSourceTimeFormatUnixTimeStamp } from './OgrSourceTimeFormatUnixTimeStamp';
 import {
+    OgrSourceTimeFormatUnixTimeStamp,
     instanceOfOgrSourceTimeFormatUnixTimeStamp,
     OgrSourceTimeFormatUnixTimeStampFromJSON,
     OgrSourceTimeFormatUnixTimeStampFromJSONTyped,
@@ -46,7 +46,7 @@ export function OgrSourceTimeFormatFromJSON(json: any): OgrSourceTimeFormat {
 }
 
 export function OgrSourceTimeFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceTimeFormat {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['format']) {
@@ -62,8 +62,11 @@ export function OgrSourceTimeFormatFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function OgrSourceTimeFormatToJSON(value?: OgrSourceTimeFormat | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['format']) {
         case 'auto':

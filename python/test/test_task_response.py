@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.task_response import TaskResponse
+from geoengine_openapi_client.models.task_response import TaskResponse  # noqa: E501
 
 class TestTaskResponse(unittest.TestCase):
     """TaskResponse unit test stubs"""
@@ -33,7 +34,7 @@ class TestTaskResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TaskResponse`
         """
-        model = TaskResponse()
+        model = TaskResponse()  # noqa: E501
         if include_optional:
             return TaskResponse(
                 task_id = ''

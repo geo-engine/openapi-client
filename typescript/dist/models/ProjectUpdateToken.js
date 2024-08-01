@@ -30,9 +30,6 @@ function ProjectUpdateTokenFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 exports.ProjectUpdateTokenFromJSONTyped = ProjectUpdateTokenFromJSONTyped;
-/**
- * Check if a given object implements the ProjectUpdateToken interface.
- */
 function instanceOfProjectUpdateToken(value) {
     return value === exports.ProjectUpdateToken.None || value === exports.ProjectUpdateToken.Delete;
 }

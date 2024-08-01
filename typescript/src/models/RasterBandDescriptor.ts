@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { Measurement } from './Measurement';
 import {
     MeasurementFromJSON,
@@ -44,9 +44,11 @@ export interface RasterBandDescriptor {
  * Check if a given object implements the RasterBandDescriptor interface.
  */
 export function instanceOfRasterBandDescriptor(value: object): boolean {
-    if (!('measurement' in value)) return false;
-    if (!('name' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "measurement" in value;
+    isInstance = isInstance && "name" in value;
+
+    return isInstance;
 }
 
 export function RasterBandDescriptorFromJSON(json: any): RasterBandDescriptor {
@@ -54,7 +56,7 @@ export function RasterBandDescriptorFromJSON(json: any): RasterBandDescriptor {
 }
 
 export function RasterBandDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterBandDescriptor {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -65,13 +67,16 @@ export function RasterBandDescriptorFromJSONTyped(json: any, ignoreDiscriminator
 }
 
 export function RasterBandDescriptorToJSON(value?: RasterBandDescriptor | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'measurement': MeasurementToJSON(value['measurement']),
-        'name': value['name'],
+        'measurement': MeasurementToJSON(value.measurement),
+        'name': value.name,
     };
 }
 

@@ -33,6 +33,7 @@ export interface ColorParamStatic {
  */
 export declare const ColorParamStaticTypeEnum: {
     readonly Static: "static";
+    readonly Derived: "derived";
 };
 export type ColorParamStaticTypeEnum = typeof ColorParamStaticTypeEnum[keyof typeof ColorParamStaticTypeEnum];
 /**

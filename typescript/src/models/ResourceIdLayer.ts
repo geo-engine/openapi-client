@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -38,7 +38,11 @@ export interface ResourceIdLayer {
  * @export
  */
 export const ResourceIdLayerTypeEnum = {
-    Layer: 'Layer'
+    Layer: 'Layer',
+    LayerCollection: 'LayerCollection',
+    Project: 'Project',
+    DatasetId: 'DatasetId',
+    ModelId: 'ModelId'
 } as const;
 export type ResourceIdLayerTypeEnum = typeof ResourceIdLayerTypeEnum[keyof typeof ResourceIdLayerTypeEnum];
 
@@ -47,9 +51,11 @@ export type ResourceIdLayerTypeEnum = typeof ResourceIdLayerTypeEnum[keyof typeo
  * Check if a given object implements the ResourceIdLayer interface.
  */
 export function instanceOfResourceIdLayer(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function ResourceIdLayerFromJSON(json: any): ResourceIdLayer {
@@ -57,7 +63,7 @@ export function ResourceIdLayerFromJSON(json: any): ResourceIdLayer {
 }
 
 export function ResourceIdLayerFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceIdLayer {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -68,13 +74,16 @@ export function ResourceIdLayerFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function ResourceIdLayerToJSON(value?: ResourceIdLayer | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 

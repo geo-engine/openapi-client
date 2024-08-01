@@ -11,7 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 import { VectorColumnInfoFromJSON, VectorColumnInfoToJSON, } from './VectorColumnInfo';
@@ -26,42 +26,42 @@ export const TypedVectorResultDescriptorTypeEnum = {
  * Check if a given object implements the TypedVectorResultDescriptor interface.
  */
 export function instanceOfTypedVectorResultDescriptor(value) {
-    if (!('columns' in value))
-        return false;
-    if (!('dataType' in value))
-        return false;
-    if (!('spatialReference' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "columns" in value;
+    isInstance = isInstance && "dataType" in value;
+    isInstance = isInstance && "spatialReference" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function TypedVectorResultDescriptorFromJSON(json) {
     return TypedVectorResultDescriptorFromJSONTyped(json, false);
 }
 export function TypedVectorResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'bbox': json['bbox'] == null ? undefined : BoundingBox2DFromJSON(json['bbox']),
+        'bbox': !exists(json, 'bbox') ? undefined : BoundingBox2DFromJSON(json['bbox']),
         'columns': (mapValues(json['columns'], VectorColumnInfoFromJSON)),
         'dataType': VectorDataTypeFromJSON(json['dataType']),
         'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
         'type': json['type'],
     };
 }
 export function TypedVectorResultDescriptorToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bbox': BoundingBox2DToJSON(value['bbox']),
-        'columns': (mapValues(value['columns'], VectorColumnInfoToJSON)),
-        'dataType': VectorDataTypeToJSON(value['dataType']),
-        'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
-        'type': value['type'],
+        'bbox': BoundingBox2DToJSON(value.bbox),
+        'columns': (mapValues(value.columns, VectorColumnInfoToJSON)),
+        'dataType': VectorDataTypeToJSON(value.dataType),
+        'spatialReference': value.spatialReference,
+        'time': TimeIntervalToJSON(value.time),
+        'type': value.type,
     };
 }

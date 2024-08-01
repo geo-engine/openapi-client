@@ -13,10 +13,13 @@
 """  # noqa: E501
 
 
-from __future__ import annotations
 import json
-from enum import Enum
-from typing_extensions import Self
+import pprint
+import re  # noqa: F401
+from aenum import Enum, no_arg
+
+
+
 
 
 class WfsVersion(str, Enum):
@@ -30,8 +33,8 @@ class WfsVersion(str, Enum):
     ENUM_2_DOT_0_DOT_0 = '2.0.0'
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> WfsVersion:
         """Create an instance of WfsVersion from a JSON string"""
-        return cls(json.loads(json_str))
+        return WfsVersion(json.loads(json_str))
 
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { DataId } from './DataId';
 import {
     DataIdFromJSON,
@@ -50,9 +50,11 @@ export interface ProvenanceEntry {
  * Check if a given object implements the ProvenanceEntry interface.
  */
 export function instanceOfProvenanceEntry(value: object): boolean {
-    if (!('data' in value)) return false;
-    if (!('provenance' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "data" in value;
+    isInstance = isInstance && "provenance" in value;
+
+    return isInstance;
 }
 
 export function ProvenanceEntryFromJSON(json: any): ProvenanceEntry {
@@ -60,7 +62,7 @@ export function ProvenanceEntryFromJSON(json: any): ProvenanceEntry {
 }
 
 export function ProvenanceEntryFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProvenanceEntry {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -71,13 +73,16 @@ export function ProvenanceEntryFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function ProvenanceEntryToJSON(value?: ProvenanceEntry | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'data': ((value['data'] as Array<any>).map(DataIdToJSON)),
-        'provenance': ProvenanceToJSON(value['provenance']),
+        'data': ((value.data as Array<any>).map(DataIdToJSON)),
+        'provenance': ProvenanceToJSON(value.provenance),
     };
 }
 

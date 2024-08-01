@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,10 +43,12 @@ export interface Provenance {
  * Check if a given object implements the Provenance interface.
  */
 export function instanceOfProvenance(value: object): boolean {
-    if (!('citation' in value)) return false;
-    if (!('license' in value)) return false;
-    if (!('uri' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "citation" in value;
+    isInstance = isInstance && "license" in value;
+    isInstance = isInstance && "uri" in value;
+
+    return isInstance;
 }
 
 export function ProvenanceFromJSON(json: any): Provenance {
@@ -54,7 +56,7 @@ export function ProvenanceFromJSON(json: any): Provenance {
 }
 
 export function ProvenanceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Provenance {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -66,14 +68,17 @@ export function ProvenanceFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 }
 
 export function ProvenanceToJSON(value?: Provenance | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'citation': value['citation'],
-        'license': value['license'],
-        'uri': value['uri'],
+        'citation': value.citation,
+        'license': value.license,
+        'uri': value.uri,
     };
 }
 

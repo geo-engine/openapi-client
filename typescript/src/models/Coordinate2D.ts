@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,11 @@ export interface Coordinate2D {
  * Check if a given object implements the Coordinate2D interface.
  */
 export function instanceOfCoordinate2D(value: object): boolean {
-    if (!('x' in value)) return false;
-    if (!('y' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "x" in value;
+    isInstance = isInstance && "y" in value;
+
+    return isInstance;
 }
 
 export function Coordinate2DFromJSON(json: any): Coordinate2D {
@@ -47,7 +49,7 @@ export function Coordinate2DFromJSON(json: any): Coordinate2D {
 }
 
 export function Coordinate2DFromJSONTyped(json: any, ignoreDiscriminator: boolean): Coordinate2D {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -58,13 +60,16 @@ export function Coordinate2DFromJSONTyped(json: any, ignoreDiscriminator: boolea
 }
 
 export function Coordinate2DToJSON(value?: Coordinate2D | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'x': value['x'],
-        'y': value['y'],
+        'x': value.x,
+        'y': value.y,
     };
 }
 

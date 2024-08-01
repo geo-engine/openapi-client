@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { GdalLoadingInfoTemporalSlice } from './GdalLoadingInfoTemporalSlice';
 import {
     GdalLoadingInfoTemporalSliceFromJSON,
@@ -66,10 +66,12 @@ export type GdalMetaDataListTypeEnum = typeof GdalMetaDataListTypeEnum[keyof typ
  * Check if a given object implements the GdalMetaDataList interface.
  */
 export function instanceOfGdalMetaDataList(value: object): boolean {
-    if (!('params' in value)) return false;
-    if (!('resultDescriptor' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "params" in value;
+    isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function GdalMetaDataListFromJSON(json: any): GdalMetaDataList {
@@ -77,7 +79,7 @@ export function GdalMetaDataListFromJSON(json: any): GdalMetaDataList {
 }
 
 export function GdalMetaDataListFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalMetaDataList {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -89,14 +91,17 @@ export function GdalMetaDataListFromJSONTyped(json: any, ignoreDiscriminator: bo
 }
 
 export function GdalMetaDataListToJSON(value?: GdalMetaDataList | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'params': ((value['params'] as Array<any>).map(GdalLoadingInfoTemporalSliceToJSON)),
-        'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
-        'type': value['type'],
+        'params': ((value.params as Array<any>).map(GdalLoadingInfoTemporalSliceToJSON)),
+        'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
+        'type': value.type,
     };
 }
 

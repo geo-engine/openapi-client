@@ -32,9 +32,6 @@ export function ProjectUpdateTokenFromJSONTyped(json: any, ignoreDiscriminator: 
     return json as ProjectUpdateToken;
 }
 
-/**
- * Check if a given object implements the ProjectUpdateToken interface.
- */
 export function instanceOfProjectUpdateToken(value: any): boolean {
     return value === ProjectUpdateToken.None || value === ProjectUpdateToken.Delete;
 }

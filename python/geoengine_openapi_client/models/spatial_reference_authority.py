@@ -13,10 +13,13 @@
 """  # noqa: E501
 
 
-from __future__ import annotations
 import json
-from enum import Enum
-from typing_extensions import Self
+import pprint
+import re  # noqa: F401
+from aenum import Enum, no_arg
+
+
+
 
 
 class SpatialReferenceAuthority(str, Enum):
@@ -33,8 +36,8 @@ class SpatialReferenceAuthority(str, Enum):
     ESRI = 'ESRI'
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> SpatialReferenceAuthority:
         """Create an instance of SpatialReferenceAuthority from a JSON string"""
-        return cls(json.loads(json_str))
+        return SpatialReferenceAuthority(json.loads(json_str))
 
 

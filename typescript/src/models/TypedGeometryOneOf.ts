@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,8 +31,10 @@ export interface TypedGeometryOneOf {
  * Check if a given object implements the TypedGeometryOneOf interface.
  */
 export function instanceOfTypedGeometryOneOf(value: object): boolean {
-    if (!('data' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "data" in value;
+
+    return isInstance;
 }
 
 export function TypedGeometryOneOfFromJSON(json: any): TypedGeometryOneOf {
@@ -40,7 +42,7 @@ export function TypedGeometryOneOfFromJSON(json: any): TypedGeometryOneOf {
 }
 
 export function TypedGeometryOneOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedGeometryOneOf {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function TypedGeometryOneOfFromJSONTyped(json: any, ignoreDiscriminator: 
 }
 
 export function TypedGeometryOneOfToJSON(value?: TypedGeometryOneOf | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'Data': value['data'],
+        'Data': value.data,
     };
 }
 

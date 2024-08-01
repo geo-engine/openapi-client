@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
-import type { LayerCollectionListing } from './LayerCollectionListing';
 import {
+    LayerCollectionListing,
     instanceOfLayerCollectionListing,
     LayerCollectionListingFromJSON,
     LayerCollectionListingFromJSONTyped,
     LayerCollectionListingToJSON,
 } from './LayerCollectionListing';
-import type { LayerListing } from './LayerListing';
 import {
+    LayerListing,
     instanceOfLayerListing,
     LayerListingFromJSON,
     LayerListingFromJSONTyped,
@@ -39,7 +39,7 @@ export function CollectionItemFromJSON(json: any): CollectionItem {
 }
 
 export function CollectionItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): CollectionItem {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -53,8 +53,11 @@ export function CollectionItemFromJSONTyped(json: any, ignoreDiscriminator: bool
 }
 
 export function CollectionItemToJSON(value?: CollectionItem | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'collection':

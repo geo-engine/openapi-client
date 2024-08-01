@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -47,9 +47,11 @@ export type ResourceIdLayerCollectionTypeEnum = typeof ResourceIdLayerCollection
  * Check if a given object implements the ResourceIdLayerCollection interface.
  */
 export function instanceOfResourceIdLayerCollection(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function ResourceIdLayerCollectionFromJSON(json: any): ResourceIdLayerCollection {
@@ -57,7 +59,7 @@ export function ResourceIdLayerCollectionFromJSON(json: any): ResourceIdLayerCol
 }
 
 export function ResourceIdLayerCollectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceIdLayerCollection {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -68,13 +70,16 @@ export function ResourceIdLayerCollectionFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function ResourceIdLayerCollectionToJSON(value?: ResourceIdLayerCollection | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 

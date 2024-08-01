@@ -12,29 +12,29 @@
  * Do not edit the class manually.
  */
 
-import type { TaskStatusAborted } from './TaskStatusAborted';
 import {
+    TaskStatusAborted,
     instanceOfTaskStatusAborted,
     TaskStatusAbortedFromJSON,
     TaskStatusAbortedFromJSONTyped,
     TaskStatusAbortedToJSON,
 } from './TaskStatusAborted';
-import type { TaskStatusCompleted } from './TaskStatusCompleted';
 import {
+    TaskStatusCompleted,
     instanceOfTaskStatusCompleted,
     TaskStatusCompletedFromJSON,
     TaskStatusCompletedFromJSONTyped,
     TaskStatusCompletedToJSON,
 } from './TaskStatusCompleted';
-import type { TaskStatusFailed } from './TaskStatusFailed';
 import {
+    TaskStatusFailed,
     instanceOfTaskStatusFailed,
     TaskStatusFailedFromJSON,
     TaskStatusFailedFromJSONTyped,
     TaskStatusFailedToJSON,
 } from './TaskStatusFailed';
-import type { TaskStatusRunning } from './TaskStatusRunning';
 import {
+    TaskStatusRunning,
     instanceOfTaskStatusRunning,
     TaskStatusRunningFromJSON,
     TaskStatusRunningFromJSONTyped,
@@ -53,7 +53,7 @@ export function TaskStatusFromJSON(json: any): TaskStatus {
 }
 
 export function TaskStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatus {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['status']) {
@@ -71,8 +71,11 @@ export function TaskStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 }
 
 export function TaskStatusToJSON(value?: TaskStatus | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['status']) {
         case 'aborted':

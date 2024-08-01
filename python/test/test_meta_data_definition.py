@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.meta_data_definition import MetaDataDefinition
+from geoengine_openapi_client.models.meta_data_definition import MetaDataDefinition  # noqa: E501
 
 class TestMetaDataDefinition(unittest.TestCase):
     """MetaDataDefinition unit test stubs"""
@@ -33,7 +34,7 @@ class TestMetaDataDefinition(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MetaDataDefinition`
         """
-        model = MetaDataDefinition()
+        model = MetaDataDefinition()  # noqa: E501
         if include_optional:
             return MetaDataDefinition(
                 loading_info = geoengine_openapi_client.models.ogr_source_dataset.OgrSourceDataset(

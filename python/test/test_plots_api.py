@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.plots_api import PlotsApi
+from geoengine_openapi_client.api.plots_api import PlotsApi  # noqa: E501
 
 
 class TestPlotsApi(unittest.TestCase):
     """PlotsApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = PlotsApi()
+        self.api = PlotsApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass
@@ -30,7 +30,7 @@ class TestPlotsApi(unittest.TestCase):
     def test_get_plot_handler(self) -> None:
         """Test case for get_plot_handler
 
-        Generates a plot.
+        Generates a plot.  # noqa: E501
         """
         pass
 

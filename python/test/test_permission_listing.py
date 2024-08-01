@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.permission_listing import PermissionListing
+from geoengine_openapi_client.models.permission_listing import PermissionListing  # noqa: E501
 
 class TestPermissionListing(unittest.TestCase):
     """PermissionListing unit test stubs"""
@@ -33,7 +34,7 @@ class TestPermissionListing(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PermissionListing`
         """
-        model = PermissionListing()
+        model = PermissionListing()  # noqa: E501
         if include_optional:
             return PermissionListing(
                 permission = 'Read',

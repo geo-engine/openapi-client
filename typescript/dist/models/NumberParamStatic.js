@@ -18,17 +18,17 @@ exports.NumberParamStaticToJSON = exports.NumberParamStaticFromJSONTyped = expor
  * @export
  */
 exports.NumberParamStaticTypeEnum = {
-    Static: 'static'
+    Static: 'static',
+    Derived: 'derived'
 };
 /**
  * Check if a given object implements the NumberParamStatic interface.
  */
 function instanceOfNumberParamStatic(value) {
-    if (!('type' in value))
-        return false;
-    if (!('value' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+    isInstance = isInstance && "value" in value;
+    return isInstance;
 }
 exports.instanceOfNumberParamStatic = instanceOfNumberParamStatic;
 function NumberParamStaticFromJSON(json) {
@@ -36,7 +36,7 @@ function NumberParamStaticFromJSON(json) {
 }
 exports.NumberParamStaticFromJSON = NumberParamStaticFromJSON;
 function NumberParamStaticFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,12 +46,15 @@ function NumberParamStaticFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.NumberParamStaticFromJSONTyped = NumberParamStaticFromJSONTyped;
 function NumberParamStaticToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'type': value['type'],
-        'value': value['value'],
+        'type': value.type,
+        'value': value.value,
     };
 }
 exports.NumberParamStaticToJSON = NumberParamStaticToJSON;

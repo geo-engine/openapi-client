@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ColorParamStatic } from './ColorParamStatic';
-import type { DerivedColor } from './DerivedColor';
+import { ColorParamStatic } from './ColorParamStatic';
+import { DerivedColor } from './DerivedColor';
 /**
  * @type ColorParam
  *

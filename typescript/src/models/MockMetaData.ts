@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { MockDatasetDataSourceLoadingInfo } from './MockDatasetDataSourceLoadingInfo';
 import {
     MockDatasetDataSourceLoadingInfoFromJSON,
@@ -57,7 +57,12 @@ export interface MockMetaData {
  * @export
  */
 export const MockMetaDataTypeEnum = {
-    MockMetaData: 'MockMetaData'
+    MockMetaData: 'MockMetaData',
+    OgrMetaData: 'OgrMetaData',
+    GdalMetaDataRegular: 'GdalMetaDataRegular',
+    GdalStatic: 'GdalStatic',
+    GdalMetadataNetCdfCf: 'GdalMetadataNetCdfCf',
+    GdalMetaDataList: 'GdalMetaDataList'
 } as const;
 export type MockMetaDataTypeEnum = typeof MockMetaDataTypeEnum[keyof typeof MockMetaDataTypeEnum];
 
@@ -66,10 +71,12 @@ export type MockMetaDataTypeEnum = typeof MockMetaDataTypeEnum[keyof typeof Mock
  * Check if a given object implements the MockMetaData interface.
  */
 export function instanceOfMockMetaData(value: object): boolean {
-    if (!('loadingInfo' in value)) return false;
-    if (!('resultDescriptor' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "loadingInfo" in value;
+    isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function MockMetaDataFromJSON(json: any): MockMetaData {
@@ -77,7 +84,7 @@ export function MockMetaDataFromJSON(json: any): MockMetaData {
 }
 
 export function MockMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): MockMetaData {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -89,14 +96,17 @@ export function MockMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolea
 }
 
 export function MockMetaDataToJSON(value?: MockMetaData | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value['loadingInfo']),
-        'resultDescriptor': VectorResultDescriptorToJSON(value['resultDescriptor']),
-        'type': value['type'],
+        'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value.loadingInfo),
+        'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
+        'type': value.type,
     };
 }
 

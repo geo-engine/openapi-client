@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { LayerCollectionListing } from './LayerCollectionListing';
-import type { LayerListing } from './LayerListing';
+import { LayerCollectionListing } from './LayerCollectionListing';
+import { LayerListing } from './LayerListing';
 /**
  * @type CollectionItem
  *

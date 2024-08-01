@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.ogr_source_duration_spec_infinite import OgrSourceDurationSpecInfinite
+from geoengine_openapi_client.models.ogr_source_duration_spec_infinite import OgrSourceDurationSpecInfinite  # noqa: E501
 
 class TestOgrSourceDurationSpecInfinite(unittest.TestCase):
     """OgrSourceDurationSpecInfinite unit test stubs"""
@@ -33,7 +34,7 @@ class TestOgrSourceDurationSpecInfinite(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `OgrSourceDurationSpecInfinite`
         """
-        model = OgrSourceDurationSpecInfinite()
+        model = OgrSourceDurationSpecInfinite()  # noqa: E501
         if include_optional:
             return OgrSourceDurationSpecInfinite(
                 type = 'infinite'

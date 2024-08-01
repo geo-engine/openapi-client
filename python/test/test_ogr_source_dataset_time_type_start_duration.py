@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.ogr_source_dataset_time_type_start_duration import OgrSourceDatasetTimeTypeStartDuration
+from geoengine_openapi_client.models.ogr_source_dataset_time_type_start_duration import OgrSourceDatasetTimeTypeStartDuration  # noqa: E501
 
 class TestOgrSourceDatasetTimeTypeStartDuration(unittest.TestCase):
     """OgrSourceDatasetTimeTypeStartDuration unit test stubs"""
@@ -33,7 +34,7 @@ class TestOgrSourceDatasetTimeTypeStartDuration(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `OgrSourceDatasetTimeTypeStartDuration`
         """
-        model = OgrSourceDatasetTimeTypeStartDuration()
+        model = OgrSourceDatasetTimeTypeStartDuration()  # noqa: E501
         if include_optional:
             return OgrSourceDatasetTimeTypeStartDuration(
                 duration_field = '',

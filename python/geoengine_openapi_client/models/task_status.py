@@ -14,17 +14,19 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
 import json
 import pprint
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+import re  # noqa: F401
+
 from typing import Any, List, Optional
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from geoengine_openapi_client.models.task_status_aborted import TaskStatusAborted
 from geoengine_openapi_client.models.task_status_completed import TaskStatusCompleted
 from geoengine_openapi_client.models.task_status_failed import TaskStatusFailed
 from geoengine_openapi_client.models.task_status_running import TaskStatusRunning
+from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
-from typing import Union, List, Optional, Dict
-from typing_extensions import Literal, Self
 
 TASKSTATUS_ONE_OF_SCHEMAS = ["TaskStatusAborted", "TaskStatusCompleted", "TaskStatusFailed", "TaskStatusRunning"]
 
@@ -40,16 +42,16 @@ class TaskStatus(BaseModel):
     oneof_schema_3_validator: Optional[TaskStatusAborted] = None
     # data type: TaskStatusFailed
     oneof_schema_4_validator: Optional[TaskStatusFailed] = None
-    actual_instance: Optional[Union[TaskStatusAborted, TaskStatusCompleted, TaskStatusFailed, TaskStatusRunning]] = None
-    one_of_schemas: List[str] = Field(default=Literal["TaskStatusAborted", "TaskStatusCompleted", "TaskStatusFailed", "TaskStatusRunning"])
+    if TYPE_CHECKING:
+        actual_instance: Union[TaskStatusAborted, TaskStatusCompleted, TaskStatusFailed, TaskStatusRunning]
+    else:
+        actual_instance: Any
+    one_of_schemas: List[str] = Field(TASKSTATUS_ONE_OF_SCHEMAS, const=True)
 
-    model_config = ConfigDict(
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    class Config:
+        validate_assignment = True
 
-
-    discriminator_value_class_map: Dict[str, str] = {
+    discriminator_value_class_map = {
         'TaskStatusWithId': 'TaskStatusWithId'
     }
 
@@ -63,9 +65,9 @@ class TaskStatus(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = TaskStatus.model_construct()
+        instance = TaskStatus.construct()
         error_messages = []
         match = 0
         # validate data type: TaskStatusRunning
@@ -98,13 +100,13 @@ class TaskStatus(BaseModel):
             return v
 
     @classmethod
-    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
+    def from_dict(cls, obj: dict) -> TaskStatus:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> TaskStatus:
         """Returns the object represented by the json string"""
-        instance = cls.model_construct()
+        instance = TaskStatus.construct()
         error_messages = []
         match = 0
 
@@ -112,26 +114,6 @@ class TaskStatus(BaseModel):
         _data_type = json.loads(json_str).get("status")
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `status` in the input.")
-
-        # check if data type is `TaskStatusAborted`
-        if _data_type == "aborted":
-            instance.actual_instance = TaskStatusAborted.from_json(json_str)
-            return instance
-
-        # check if data type is `TaskStatusCompleted`
-        if _data_type == "completed":
-            instance.actual_instance = TaskStatusCompleted.from_json(json_str)
-            return instance
-
-        # check if data type is `TaskStatusFailed`
-        if _data_type == "failed":
-            instance.actual_instance = TaskStatusFailed.from_json(json_str)
-            return instance
-
-        # check if data type is `TaskStatusRunning`
-        if _data_type == "running":
-            instance.actual_instance = TaskStatusRunning.from_json(json_str)
-            return instance
 
         # check if data type is `TaskStatusAborted`
         if _data_type == "TaskStatusAborted":
@@ -156,6 +138,26 @@ class TaskStatus(BaseModel):
         # check if data type is `TaskStatusWithId`
         if _data_type == "TaskStatusWithId":
             instance.actual_instance = TaskStatusWithId.from_json(json_str)
+            return instance
+
+        # check if data type is `TaskStatusAborted`
+        if _data_type == "aborted":
+            instance.actual_instance = TaskStatusAborted.from_json(json_str)
+            return instance
+
+        # check if data type is `TaskStatusCompleted`
+        if _data_type == "completed":
+            instance.actual_instance = TaskStatusCompleted.from_json(json_str)
+            return instance
+
+        # check if data type is `TaskStatusFailed`
+        if _data_type == "failed":
+            instance.actual_instance = TaskStatusFailed.from_json(json_str)
+            return instance
+
+        # check if data type is `TaskStatusRunning`
+        if _data_type == "running":
+            instance.actual_instance = TaskStatusRunning.from_json(json_str)
             return instance
 
         # deserialize data into TaskStatusRunning
@@ -197,17 +199,19 @@ class TaskStatus(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+        to_json = getattr(self.actual_instance, "to_json", None)
+        if callable(to_json):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], TaskStatusAborted, TaskStatusCompleted, TaskStatusFailed, TaskStatusRunning]]:
+    def to_dict(self) -> dict:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
-        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+        to_dict = getattr(self.actual_instance, "to_dict", None)
+        if callable(to_dict):
             return self.actual_instance.to_dict()
         else:
             # primitive type
@@ -215,6 +219,6 @@ class TaskStatus(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.model_dump())
+        return pprint.pformat(self.dict())
 
 

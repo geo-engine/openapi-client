@@ -19,9 +19,9 @@ const CsvHeader_1 = require("./CsvHeader");
  * Check if a given object implements the FormatSpecificsOneOfCsv interface.
  */
 function instanceOfFormatSpecificsOneOfCsv(value) {
-    if (!('header' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "header" in value;
+    return isInstance;
 }
 exports.instanceOfFormatSpecificsOneOfCsv = instanceOfFormatSpecificsOneOfCsv;
 function FormatSpecificsOneOfCsvFromJSON(json) {
@@ -29,7 +29,7 @@ function FormatSpecificsOneOfCsvFromJSON(json) {
 }
 exports.FormatSpecificsOneOfCsvFromJSON = FormatSpecificsOneOfCsvFromJSON;
 function FormatSpecificsOneOfCsvFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -38,11 +38,14 @@ function FormatSpecificsOneOfCsvFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.FormatSpecificsOneOfCsvFromJSONTyped = FormatSpecificsOneOfCsvFromJSONTyped;
 function FormatSpecificsOneOfCsvToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'header': (0, CsvHeader_1.CsvHeaderToJSON)(value['header']),
+        'header': (0, CsvHeader_1.CsvHeaderToJSON)(value.header),
     };
 }
 exports.FormatSpecificsOneOfCsvToJSON = FormatSpecificsOneOfCsvToJSON;

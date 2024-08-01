@@ -18,17 +18,17 @@ exports.ColorParamStaticToJSON = exports.ColorParamStaticFromJSONTyped = exports
  * @export
  */
 exports.ColorParamStaticTypeEnum = {
-    Static: 'static'
+    Static: 'static',
+    Derived: 'derived'
 };
 /**
  * Check if a given object implements the ColorParamStatic interface.
  */
 function instanceOfColorParamStatic(value) {
-    if (!('color' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "color" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfColorParamStatic = instanceOfColorParamStatic;
 function ColorParamStaticFromJSON(json) {
@@ -36,7 +36,7 @@ function ColorParamStaticFromJSON(json) {
 }
 exports.ColorParamStaticFromJSON = ColorParamStaticFromJSON;
 function ColorParamStaticFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,12 +46,15 @@ function ColorParamStaticFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ColorParamStaticFromJSONTyped = ColorParamStaticFromJSONTyped;
 function ColorParamStaticToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'color': value['color'],
-        'type': value['type'],
+        'color': value.color,
+        'type': value.type,
     };
 }
 exports.ColorParamStaticToJSON = ColorParamStaticToJSON;

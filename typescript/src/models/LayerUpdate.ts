@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
-import type { ProjectLayer } from './ProjectLayer';
 import {
+    ProjectLayer,
     instanceOfProjectLayer,
     ProjectLayerFromJSON,
     ProjectLayerFromJSONTyped,
     ProjectLayerToJSON,
 } from './ProjectLayer';
-import type { ProjectUpdateToken } from './ProjectUpdateToken';
 import {
+    ProjectUpdateToken,
     instanceOfProjectUpdateToken,
     ProjectUpdateTokenFromJSON,
     ProjectUpdateTokenFromJSONTyped,
@@ -39,20 +39,24 @@ export function LayerUpdateFromJSON(json: any): LayerUpdate {
 }
 
 export function LayerUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerUpdate {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
-    if (instanceOfProjectLayer(json)) {
-        return ProjectLayerFromJSONTyped(json, true);
-    }
-    if (instanceOfProjectUpdateToken(json)) {
-        return ProjectUpdateTokenFromJSONTyped(json, true);
+    if (json === ProjectUpdateToken.None) {
+        return ProjectUpdateToken.None;
+    } else if (json === ProjectUpdateToken.Delete) {
+        return ProjectUpdateToken.Delete;
+    } else {
+        return { ...ProjectLayerFromJSONTyped(json, true) };
     }
 }
 
 export function LayerUpdateToJSON(value?: LayerUpdate | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
 
     if (typeof value === 'object' && instanceOfProjectLayer(value)) {

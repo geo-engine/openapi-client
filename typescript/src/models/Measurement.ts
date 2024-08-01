@@ -12,22 +12,22 @@
  * Do not edit the class manually.
  */
 
-import type { ClassificationMeasurement } from './ClassificationMeasurement';
 import {
+    ClassificationMeasurement,
     instanceOfClassificationMeasurement,
     ClassificationMeasurementFromJSON,
     ClassificationMeasurementFromJSONTyped,
     ClassificationMeasurementToJSON,
 } from './ClassificationMeasurement';
-import type { ContinuousMeasurement } from './ContinuousMeasurement';
 import {
+    ContinuousMeasurement,
     instanceOfContinuousMeasurement,
     ContinuousMeasurementFromJSON,
     ContinuousMeasurementFromJSONTyped,
     ContinuousMeasurementToJSON,
 } from './ContinuousMeasurement';
-import type { UnitlessMeasurement } from './UnitlessMeasurement';
 import {
+    UnitlessMeasurement,
     instanceOfUnitlessMeasurement,
     UnitlessMeasurementFromJSON,
     UnitlessMeasurementFromJSONTyped,
@@ -46,7 +46,7 @@ export function MeasurementFromJSON(json: any): Measurement {
 }
 
 export function MeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): Measurement {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -62,8 +62,11 @@ export function MeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function MeasurementToJSON(value?: Measurement | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'classification':

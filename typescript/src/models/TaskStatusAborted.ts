@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -47,9 +47,11 @@ export type TaskStatusAbortedStatusEnum = typeof TaskStatusAbortedStatusEnum[key
  * Check if a given object implements the TaskStatusAborted interface.
  */
 export function instanceOfTaskStatusAborted(value: object): boolean {
-    if (!('cleanUp' in value)) return false;
-    if (!('status' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "cleanUp" in value;
+    isInstance = isInstance && "status" in value;
+
+    return isInstance;
 }
 
 export function TaskStatusAbortedFromJSON(json: any): TaskStatusAborted {
@@ -57,7 +59,7 @@ export function TaskStatusAbortedFromJSON(json: any): TaskStatusAborted {
 }
 
 export function TaskStatusAbortedFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatusAborted {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -68,13 +70,16 @@ export function TaskStatusAbortedFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function TaskStatusAbortedToJSON(value?: TaskStatusAborted | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'cleanUp': value['cleanUp'],
-        'status': value['status'],
+        'cleanUp': value.cleanUp,
+        'status': value.status,
     };
 }
 

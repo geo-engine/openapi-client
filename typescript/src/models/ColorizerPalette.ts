@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -61,11 +61,13 @@ export type ColorizerPaletteTypeEnum = typeof ColorizerPaletteTypeEnum[keyof typ
  * Check if a given object implements the ColorizerPalette interface.
  */
 export function instanceOfColorizerPalette(value: object): boolean {
-    if (!('colors' in value)) return false;
-    if (!('defaultColor' in value)) return false;
-    if (!('noDataColor' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "colors" in value;
+    isInstance = isInstance && "defaultColor" in value;
+    isInstance = isInstance && "noDataColor" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function ColorizerPaletteFromJSON(json: any): ColorizerPalette {
@@ -73,7 +75,7 @@ export function ColorizerPaletteFromJSON(json: any): ColorizerPalette {
 }
 
 export function ColorizerPaletteFromJSONTyped(json: any, ignoreDiscriminator: boolean): ColorizerPalette {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -86,15 +88,18 @@ export function ColorizerPaletteFromJSONTyped(json: any, ignoreDiscriminator: bo
 }
 
 export function ColorizerPaletteToJSON(value?: ColorizerPalette | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'colors': value['colors'],
-        'defaultColor': value['defaultColor'],
-        'noDataColor': value['noDataColor'],
-        'type': value['type'],
+        'colors': value.colors,
+        'defaultColor': value.defaultColor,
+        'noDataColor': value.noDataColor,
+        'type': value.type,
     };
 }
 

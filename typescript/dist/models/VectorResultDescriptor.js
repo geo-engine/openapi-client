@@ -23,13 +23,11 @@ const VectorDataType_1 = require("./VectorDataType");
  * Check if a given object implements the VectorResultDescriptor interface.
  */
 function instanceOfVectorResultDescriptor(value) {
-    if (!('columns' in value))
-        return false;
-    if (!('dataType' in value))
-        return false;
-    if (!('spatialReference' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "columns" in value;
+    isInstance = isInstance && "dataType" in value;
+    isInstance = isInstance && "spatialReference" in value;
+    return isInstance;
 }
 exports.instanceOfVectorResultDescriptor = instanceOfVectorResultDescriptor;
 function VectorResultDescriptorFromJSON(json) {
@@ -37,28 +35,31 @@ function VectorResultDescriptorFromJSON(json) {
 }
 exports.VectorResultDescriptorFromJSON = VectorResultDescriptorFromJSON;
 function VectorResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'bbox': json['bbox'] == null ? undefined : (0, BoundingBox2D_1.BoundingBox2DFromJSON)(json['bbox']),
+        'bbox': !(0, runtime_1.exists)(json, 'bbox') ? undefined : (0, BoundingBox2D_1.BoundingBox2DFromJSON)(json['bbox']),
         'columns': ((0, runtime_1.mapValues)(json['columns'], VectorColumnInfo_1.VectorColumnInfoFromJSON)),
         'dataType': (0, VectorDataType_1.VectorDataTypeFromJSON)(json['dataType']),
         'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
+        'time': !(0, runtime_1.exists)(json, 'time') ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
     };
 }
 exports.VectorResultDescriptorFromJSONTyped = VectorResultDescriptorFromJSONTyped;
 function VectorResultDescriptorToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bbox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value['bbox']),
-        'columns': ((0, runtime_1.mapValues)(value['columns'], VectorColumnInfo_1.VectorColumnInfoToJSON)),
-        'dataType': (0, VectorDataType_1.VectorDataTypeToJSON)(value['dataType']),
-        'spatialReference': value['spatialReference'],
-        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
+        'bbox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value.bbox),
+        'columns': ((0, runtime_1.mapValues)(value.columns, VectorColumnInfo_1.VectorColumnInfoToJSON)),
+        'dataType': (0, VectorDataType_1.VectorDataTypeToJSON)(value.dataType),
+        'spatialReference': value.spatialReference,
+        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value.time),
     };
 }
 exports.VectorResultDescriptorToJSON = VectorResultDescriptorToJSON;

@@ -22,19 +22,17 @@ export const RasterSymbologyTypeEnum = {
  * Check if a given object implements the RasterSymbology interface.
  */
 export function instanceOfRasterSymbology(value) {
-    if (!('opacity' in value))
-        return false;
-    if (!('rasterColorizer' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "opacity" in value;
+    isInstance = isInstance && "rasterColorizer" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function RasterSymbologyFromJSON(json) {
     return RasterSymbologyFromJSONTyped(json, false);
 }
 export function RasterSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -44,12 +42,15 @@ export function RasterSymbologyFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function RasterSymbologyToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'opacity': value['opacity'],
-        'rasterColorizer': RasterColorizerToJSON(value['rasterColorizer']),
-        'type': value['type'],
+        'opacity': value.opacity,
+        'rasterColorizer': RasterColorizerToJSON(value.rasterColorizer),
+        'type': value.type,
     };
 }

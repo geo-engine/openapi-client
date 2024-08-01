@@ -19,9 +19,9 @@ const FormatSpecificsOneOfCsv_1 = require("./FormatSpecificsOneOfCsv");
  * Check if a given object implements the FormatSpecificsOneOf interface.
  */
 function instanceOfFormatSpecificsOneOf(value) {
-    if (!('csv' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "csv" in value;
+    return isInstance;
 }
 exports.instanceOfFormatSpecificsOneOf = instanceOfFormatSpecificsOneOf;
 function FormatSpecificsOneOfFromJSON(json) {
@@ -29,7 +29,7 @@ function FormatSpecificsOneOfFromJSON(json) {
 }
 exports.FormatSpecificsOneOfFromJSON = FormatSpecificsOneOfFromJSON;
 function FormatSpecificsOneOfFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -38,11 +38,14 @@ function FormatSpecificsOneOfFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.FormatSpecificsOneOfFromJSONTyped = FormatSpecificsOneOfFromJSONTyped;
 function FormatSpecificsOneOfToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'csv': (0, FormatSpecificsOneOfCsv_1.FormatSpecificsOneOfCsvToJSON)(value['csv']),
+        'csv': (0, FormatSpecificsOneOfCsv_1.FormatSpecificsOneOfCsvToJSON)(value.csv),
     };
 }
 exports.FormatSpecificsOneOfToJSON = FormatSpecificsOneOfToJSON;

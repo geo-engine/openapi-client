@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -38,7 +38,8 @@ export interface NumberParamStatic {
  * @export
  */
 export const NumberParamStaticTypeEnum = {
-    Static: 'static'
+    Static: 'static',
+    Derived: 'derived'
 } as const;
 export type NumberParamStaticTypeEnum = typeof NumberParamStaticTypeEnum[keyof typeof NumberParamStaticTypeEnum];
 
@@ -47,9 +48,11 @@ export type NumberParamStaticTypeEnum = typeof NumberParamStaticTypeEnum[keyof t
  * Check if a given object implements the NumberParamStatic interface.
  */
 export function instanceOfNumberParamStatic(value: object): boolean {
-    if (!('type' in value)) return false;
-    if (!('value' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+    isInstance = isInstance && "value" in value;
+
+    return isInstance;
 }
 
 export function NumberParamStaticFromJSON(json: any): NumberParamStatic {
@@ -57,7 +60,7 @@ export function NumberParamStaticFromJSON(json: any): NumberParamStatic {
 }
 
 export function NumberParamStaticFromJSONTyped(json: any, ignoreDiscriminator: boolean): NumberParamStatic {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -68,13 +71,16 @@ export function NumberParamStaticFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function NumberParamStaticToJSON(value?: NumberParamStatic | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'type': value['type'],
-        'value': value['value'],
+        'type': value.type,
+        'value': value.value,
     };
 }
 

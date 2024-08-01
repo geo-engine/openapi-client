@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,8 +43,10 @@ export interface TypedOperatorOperator {
  * Check if a given object implements the TypedOperatorOperator interface.
  */
 export function instanceOfTypedOperatorOperator(value: object): boolean {
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function TypedOperatorOperatorFromJSON(json: any): TypedOperatorOperator {
@@ -52,26 +54,29 @@ export function TypedOperatorOperatorFromJSON(json: any): TypedOperatorOperator 
 }
 
 export function TypedOperatorOperatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedOperatorOperator {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'params': json['params'] == null ? undefined : json['params'],
-        'sources': json['sources'] == null ? undefined : json['sources'],
+        'params': !exists(json, 'params') ? undefined : json['params'],
+        'sources': !exists(json, 'sources') ? undefined : json['sources'],
         'type': json['type'],
     };
 }
 
 export function TypedOperatorOperatorToJSON(value?: TypedOperatorOperator | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'params': value['params'],
-        'sources': value['sources'],
-        'type': value['type'],
+        'params': value.params,
+        'sources': value.sources,
+        'type': value.type,
     };
 }
 

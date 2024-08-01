@@ -18,15 +18,17 @@ exports.OgrSourceDurationSpecInfiniteToJSON = exports.OgrSourceDurationSpecInfin
  * @export
  */
 exports.OgrSourceDurationSpecInfiniteTypeEnum = {
-    Infinite: 'infinite'
+    Infinite: 'infinite',
+    Zero: 'zero',
+    Value: 'value'
 };
 /**
  * Check if a given object implements the OgrSourceDurationSpecInfinite interface.
  */
 function instanceOfOgrSourceDurationSpecInfinite(value) {
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfOgrSourceDurationSpecInfinite = instanceOfOgrSourceDurationSpecInfinite;
 function OgrSourceDurationSpecInfiniteFromJSON(json) {
@@ -34,7 +36,7 @@ function OgrSourceDurationSpecInfiniteFromJSON(json) {
 }
 exports.OgrSourceDurationSpecInfiniteFromJSON = OgrSourceDurationSpecInfiniteFromJSON;
 function OgrSourceDurationSpecInfiniteFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -43,11 +45,14 @@ function OgrSourceDurationSpecInfiniteFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.OgrSourceDurationSpecInfiniteFromJSONTyped = OgrSourceDurationSpecInfiniteFromJSONTyped;
 function OgrSourceDurationSpecInfiniteToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'type': value['type'],
+        'type': value.type,
     };
 }
 exports.OgrSourceDurationSpecInfiniteToJSON = OgrSourceDurationSpecInfiniteToJSON;

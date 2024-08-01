@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,8 +31,10 @@ export interface AddRole {
  * Check if a given object implements the AddRole interface.
  */
 export function instanceOfAddRole(value: object): boolean {
-    if (!('name' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "name" in value;
+
+    return isInstance;
 }
 
 export function AddRoleFromJSON(json: any): AddRole {
@@ -40,7 +42,7 @@ export function AddRoleFromJSON(json: any): AddRole {
 }
 
 export function AddRoleFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddRole {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function AddRoleFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
 }
 
 export function AddRoleToJSON(value?: AddRole | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'name': value['name'],
+        'name': value.name,
     };
 }
 

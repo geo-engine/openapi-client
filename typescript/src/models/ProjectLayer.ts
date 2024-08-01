@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { LayerVisibility } from './LayerVisibility';
 import {
     LayerVisibilityFromJSON,
@@ -62,11 +62,13 @@ export interface ProjectLayer {
  * Check if a given object implements the ProjectLayer interface.
  */
 export function instanceOfProjectLayer(value: object): boolean {
-    if (!('name' in value)) return false;
-    if (!('symbology' in value)) return false;
-    if (!('visibility' in value)) return false;
-    if (!('workflow' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "symbology" in value;
+    isInstance = isInstance && "visibility" in value;
+    isInstance = isInstance && "workflow" in value;
+
+    return isInstance;
 }
 
 export function ProjectLayerFromJSON(json: any): ProjectLayer {
@@ -74,7 +76,7 @@ export function ProjectLayerFromJSON(json: any): ProjectLayer {
 }
 
 export function ProjectLayerFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectLayer {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -87,15 +89,18 @@ export function ProjectLayerFromJSONTyped(json: any, ignoreDiscriminator: boolea
 }
 
 export function ProjectLayerToJSON(value?: ProjectLayer | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'name': value['name'],
-        'symbology': SymbologyToJSON(value['symbology']),
-        'visibility': LayerVisibilityToJSON(value['visibility']),
-        'workflow': value['workflow'],
+        'name': value.name,
+        'symbology': SymbologyToJSON(value.symbology),
+        'visibility': LayerVisibilityToJSON(value.visibility),
+        'workflow': value.workflow,
     };
 }
 

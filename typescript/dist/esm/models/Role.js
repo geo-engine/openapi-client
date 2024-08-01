@@ -15,17 +15,16 @@
  * Check if a given object implements the Role interface.
  */
 export function instanceOfRole(value) {
-    if (!('id' in value))
-        return false;
-    if (!('name' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    return isInstance;
 }
 export function RoleFromJSON(json) {
     return RoleFromJSONTyped(json, false);
 }
 export function RoleFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -34,11 +33,14 @@ export function RoleFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function RoleToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'id': value['id'],
-        'name': value['name'],
+        'id': value.id,
+        'name': value.name,
     };
 }

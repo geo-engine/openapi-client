@@ -22,7 +22,7 @@ export interface ConfigurationParameters {
     queryParamsStringify?: (params: HTTPQuery) => string; // stringify function for query strings
     username?: string; // parameter for basic security
     password?: string; // parameter for basic security
-    apiKey?: string | Promise<string> | ((name: string) => string | Promise<string>); // parameter for apiKey security
+    apiKey?: string | ((name: string) => string); // parameter for apiKey security
     accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string | Promise<string>); // parameter for oauth2 security
     headers?: HTTPHeaders; //header params we want to use on every request
     credentials?: RequestCredentials; //value for the credentials param we want to use on each request
@@ -59,7 +59,7 @@ export class Configuration {
         return this.configuration.password;
     }
 
-    get apiKey(): ((name: string) => string | Promise<string>) | undefined {
+    get apiKey(): ((name: string) => string) | undefined {
         const apiKey = this.configuration.apiKey;
         if (apiKey) {
             return typeof apiKey === 'function' ? apiKey : () => apiKey;
@@ -84,14 +84,18 @@ export class Configuration {
     }
 }
 
-export const DefaultConfig = new Configuration();
+export const DefaultConfig = new Configuration({
+    headers: {
+        'User-Agent': 'geoengine/openapi-client/typescript/0.0.9'
+    }
+});
 
 /**
  * This is the base class for all generated API classes.
  */
 export class BaseAPI {
 
-    private static readonly jsonRegex = new RegExp('^(:?application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(:?;.*)?$', 'i');
+	 private static readonly jsonRegex = new RegExp('^(:?application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(:?;.*)?$', 'i');
     private middleware: Middleware[];
 
     constructor(protected configuration = DefaultConfig) {
@@ -308,6 +312,11 @@ export interface RequestOpts {
     headers: HTTPHeaders;
     query?: HTTPQuery;
     body?: HTTPBody;
+}
+
+export function exists(json: any, key: string) {
+    const value = json[key];
+    return value !== null && value !== undefined;
 }
 
 export function querystring(params: HTTPQuery, prefix: string = ''): string {

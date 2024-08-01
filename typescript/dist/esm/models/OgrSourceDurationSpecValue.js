@@ -22,19 +22,17 @@ export const OgrSourceDurationSpecValueTypeEnum = {
  * Check if a given object implements the OgrSourceDurationSpecValue interface.
  */
 export function instanceOfOgrSourceDurationSpecValue(value) {
-    if (!('granularity' in value))
-        return false;
-    if (!('step' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "granularity" in value;
+    isInstance = isInstance && "step" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function OgrSourceDurationSpecValueFromJSON(json) {
     return OgrSourceDurationSpecValueFromJSONTyped(json, false);
 }
 export function OgrSourceDurationSpecValueFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -44,12 +42,15 @@ export function OgrSourceDurationSpecValueFromJSONTyped(json, ignoreDiscriminato
     };
 }
 export function OgrSourceDurationSpecValueToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'granularity': TimeGranularityToJSON(value['granularity']),
-        'step': value['step'],
-        'type': value['type'],
+        'granularity': TimeGranularityToJSON(value.granularity),
+        'step': value.step,
+        'type': value.type,
     };
 }

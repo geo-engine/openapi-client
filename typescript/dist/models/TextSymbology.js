@@ -20,13 +20,11 @@ const StrokeParam_1 = require("./StrokeParam");
  * Check if a given object implements the TextSymbology interface.
  */
 function instanceOfTextSymbology(value) {
-    if (!('attribute' in value))
-        return false;
-    if (!('fillColor' in value))
-        return false;
-    if (!('stroke' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "attribute" in value;
+    isInstance = isInstance && "fillColor" in value;
+    isInstance = isInstance && "stroke" in value;
+    return isInstance;
 }
 exports.instanceOfTextSymbology = instanceOfTextSymbology;
 function TextSymbologyFromJSON(json) {
@@ -34,7 +32,7 @@ function TextSymbologyFromJSON(json) {
 }
 exports.TextSymbologyFromJSON = TextSymbologyFromJSON;
 function TextSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -45,13 +43,16 @@ function TextSymbologyFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.TextSymbologyFromJSONTyped = TextSymbologyFromJSONTyped;
 function TextSymbologyToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'attribute': value['attribute'],
-        'fillColor': (0, ColorParam_1.ColorParamToJSON)(value['fillColor']),
-        'stroke': (0, StrokeParam_1.StrokeParamToJSON)(value['stroke']),
+        'attribute': value.attribute,
+        'fillColor': (0, ColorParam_1.ColorParamToJSON)(value.fillColor),
+        'stroke': (0, StrokeParam_1.StrokeParamToJSON)(value.stroke),
     };
 }
 exports.TextSymbologyToJSON = TextSymbologyToJSON;

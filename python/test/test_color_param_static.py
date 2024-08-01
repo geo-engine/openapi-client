@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.color_param_static import ColorParamStatic
+from geoengine_openapi_client.models.color_param_static import ColorParamStatic  # noqa: E501
 
 class TestColorParamStatic(unittest.TestCase):
     """ColorParamStatic unit test stubs"""
@@ -33,7 +34,7 @@ class TestColorParamStatic(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ColorParamStatic`
         """
-        model = ColorParamStatic()
+        model = ColorParamStatic()  # noqa: E501
         if include_optional:
             return ColorParamStatic(
                 color = [

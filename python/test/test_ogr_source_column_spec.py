@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.ogr_source_column_spec import OgrSourceColumnSpec
+from geoengine_openapi_client.models.ogr_source_column_spec import OgrSourceColumnSpec  # noqa: E501
 
 class TestOgrSourceColumnSpec(unittest.TestCase):
     """OgrSourceColumnSpec unit test stubs"""
@@ -33,7 +34,7 @@ class TestOgrSourceColumnSpec(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `OgrSourceColumnSpec`
         """
-        model = OgrSourceColumnSpec()
+        model = OgrSourceColumnSpec()  # noqa: E501
         if include_optional:
             return OgrSourceColumnSpec(
                 bool = [
@@ -42,7 +43,7 @@ class TestOgrSourceColumnSpec(unittest.TestCase):
                 datetime = [
                     ''
                     ],
-                var_float = [
+                float = [
                     ''
                     ],
                 format_specifics = None,

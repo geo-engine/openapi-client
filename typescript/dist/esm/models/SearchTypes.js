@@ -15,17 +15,16 @@
  * Check if a given object implements the SearchTypes interface.
  */
 export function instanceOfSearchTypes(value) {
-    if (!('fulltext' in value))
-        return false;
-    if (!('prefix' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "fulltext" in value;
+    isInstance = isInstance && "prefix" in value;
+    return isInstance;
 }
 export function SearchTypesFromJSON(json) {
     return SearchTypesFromJSONTyped(json, false);
 }
 export function SearchTypesFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -34,11 +33,14 @@ export function SearchTypesFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function SearchTypesToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'fulltext': value['fulltext'],
-        'prefix': value['prefix'],
+        'fulltext': value.fulltext,
+        'prefix': value.prefix,
     };
 }

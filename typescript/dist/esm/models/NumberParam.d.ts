@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { DerivedNumber } from './DerivedNumber';
-import type { NumberParamStatic } from './NumberParamStatic';
+import { DerivedNumber } from './DerivedNumber';
+import { NumberParamStatic } from './NumberParamStatic';
 /**
  * @type NumberParam
  *

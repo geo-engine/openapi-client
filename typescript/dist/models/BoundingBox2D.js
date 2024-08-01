@@ -19,11 +19,10 @@ const Coordinate2D_1 = require("./Coordinate2D");
  * Check if a given object implements the BoundingBox2D interface.
  */
 function instanceOfBoundingBox2D(value) {
-    if (!('lowerLeftCoordinate' in value))
-        return false;
-    if (!('upperRightCoordinate' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "lowerLeftCoordinate" in value;
+    isInstance = isInstance && "upperRightCoordinate" in value;
+    return isInstance;
 }
 exports.instanceOfBoundingBox2D = instanceOfBoundingBox2D;
 function BoundingBox2DFromJSON(json) {
@@ -31,7 +30,7 @@ function BoundingBox2DFromJSON(json) {
 }
 exports.BoundingBox2DFromJSON = BoundingBox2DFromJSON;
 function BoundingBox2DFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -41,12 +40,15 @@ function BoundingBox2DFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.BoundingBox2DFromJSONTyped = BoundingBox2DFromJSONTyped;
 function BoundingBox2DToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'lowerLeftCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value['lowerLeftCoordinate']),
-        'upperRightCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value['upperRightCoordinate']),
+        'lowerLeftCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value.lowerLeftCoordinate),
+        'upperRightCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value.upperRightCoordinate),
     };
 }
 exports.BoundingBox2DToJSON = BoundingBox2DToJSON;

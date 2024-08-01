@@ -19,7 +19,7 @@ export function ResourceFromJSON(json) {
     return ResourceFromJSONTyped(json, false);
 }
 export function ResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -36,8 +36,11 @@ export function ResourceFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function ResourceToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'dataset':

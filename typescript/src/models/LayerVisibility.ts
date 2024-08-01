@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,11 @@ export interface LayerVisibility {
  * Check if a given object implements the LayerVisibility interface.
  */
 export function instanceOfLayerVisibility(value: object): boolean {
-    if (!('data' in value)) return false;
-    if (!('legend' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "data" in value;
+    isInstance = isInstance && "legend" in value;
+
+    return isInstance;
 }
 
 export function LayerVisibilityFromJSON(json: any): LayerVisibility {
@@ -47,7 +49,7 @@ export function LayerVisibilityFromJSON(json: any): LayerVisibility {
 }
 
 export function LayerVisibilityFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerVisibility {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -58,13 +60,16 @@ export function LayerVisibilityFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function LayerVisibilityToJSON(value?: LayerVisibility | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'data': value['data'],
-        'legend': value['legend'],
+        'data': value.data,
+        'legend': value.legend,
     };
 }
 

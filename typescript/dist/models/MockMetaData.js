@@ -20,19 +20,22 @@ const VectorResultDescriptor_1 = require("./VectorResultDescriptor");
  * @export
  */
 exports.MockMetaDataTypeEnum = {
-    MockMetaData: 'MockMetaData'
+    MockMetaData: 'MockMetaData',
+    OgrMetaData: 'OgrMetaData',
+    GdalMetaDataRegular: 'GdalMetaDataRegular',
+    GdalStatic: 'GdalStatic',
+    GdalMetadataNetCdfCf: 'GdalMetadataNetCdfCf',
+    GdalMetaDataList: 'GdalMetaDataList'
 };
 /**
  * Check if a given object implements the MockMetaData interface.
  */
 function instanceOfMockMetaData(value) {
-    if (!('loadingInfo' in value))
-        return false;
-    if (!('resultDescriptor' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "loadingInfo" in value;
+    isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfMockMetaData = instanceOfMockMetaData;
 function MockMetaDataFromJSON(json) {
@@ -40,7 +43,7 @@ function MockMetaDataFromJSON(json) {
 }
 exports.MockMetaDataFromJSON = MockMetaDataFromJSON;
 function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -51,13 +54,16 @@ function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.MockMetaDataFromJSONTyped = MockMetaDataFromJSONTyped;
 function MockMetaDataToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'loadingInfo': (0, MockDatasetDataSourceLoadingInfo_1.MockDatasetDataSourceLoadingInfoToJSON)(value['loadingInfo']),
-        'resultDescriptor': (0, VectorResultDescriptor_1.VectorResultDescriptorToJSON)(value['resultDescriptor']),
-        'type': value['type'],
+        'loadingInfo': (0, MockDatasetDataSourceLoadingInfo_1.MockDatasetDataSourceLoadingInfoToJSON)(value.loadingInfo),
+        'resultDescriptor': (0, VectorResultDescriptor_1.VectorResultDescriptorToJSON)(value.resultDescriptor),
+        'type': value.type,
     };
 }
 exports.MockMetaDataToJSON = MockMetaDataToJSON;

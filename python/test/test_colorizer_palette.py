@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.colorizer_palette import ColorizerPalette
+from geoengine_openapi_client.models.colorizer_palette import ColorizerPalette  # noqa: E501
 
 class TestColorizerPalette(unittest.TestCase):
     """ColorizerPalette unit test stubs"""
@@ -33,7 +34,7 @@ class TestColorizerPalette(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ColorizerPalette`
         """
-        model = ColorizerPalette()
+        model = ColorizerPalette()  # noqa: E501
         if include_optional:
             return ColorizerPalette(
                 colors = {

@@ -18,19 +18,17 @@ import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
  * Check if a given object implements the RasterQueryRectangle interface.
  */
 export function instanceOfRasterQueryRectangle(value) {
-    if (!('spatialBounds' in value))
-        return false;
-    if (!('spatialResolution' in value))
-        return false;
-    if (!('timeInterval' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "spatialBounds" in value;
+    isInstance = isInstance && "spatialResolution" in value;
+    isInstance = isInstance && "timeInterval" in value;
+    return isInstance;
 }
 export function RasterQueryRectangleFromJSON(json) {
     return RasterQueryRectangleFromJSONTyped(json, false);
 }
 export function RasterQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,12 +38,15 @@ export function RasterQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function RasterQueryRectangleToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'spatialBounds': SpatialPartition2DToJSON(value['spatialBounds']),
-        'spatialResolution': SpatialResolutionToJSON(value['spatialResolution']),
-        'timeInterval': TimeIntervalToJSON(value['timeInterval']),
+        'spatialBounds': SpatialPartition2DToJSON(value.spatialBounds),
+        'spatialResolution': SpatialResolutionToJSON(value.spatialResolution),
+        'timeInterval': TimeIntervalToJSON(value.timeInterval),
     };
 }

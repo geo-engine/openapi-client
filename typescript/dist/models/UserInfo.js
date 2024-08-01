@@ -14,13 +14,14 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserInfoToJSON = exports.UserInfoFromJSONTyped = exports.UserInfoFromJSON = exports.instanceOfUserInfo = void 0;
+const runtime_1 = require("../runtime");
 /**
  * Check if a given object implements the UserInfo interface.
  */
 function instanceOfUserInfo(value) {
-    if (!('id' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    return isInstance;
 }
 exports.instanceOfUserInfo = instanceOfUserInfo;
 function UserInfoFromJSON(json) {
@@ -28,24 +29,27 @@ function UserInfoFromJSON(json) {
 }
 exports.UserInfoFromJSON = UserInfoFromJSON;
 function UserInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'email': json['email'] == null ? undefined : json['email'],
+        'email': !(0, runtime_1.exists)(json, 'email') ? undefined : json['email'],
         'id': json['id'],
-        'realName': json['realName'] == null ? undefined : json['realName'],
+        'realName': !(0, runtime_1.exists)(json, 'realName') ? undefined : json['realName'],
     };
 }
 exports.UserInfoFromJSONTyped = UserInfoFromJSONTyped;
 function UserInfoToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'email': value['email'],
-        'id': value['id'],
-        'realName': value['realName'],
+        'email': value.email,
+        'id': value.id,
+        'realName': value.realName,
     };
 }
 exports.UserInfoToJSON = UserInfoToJSON;

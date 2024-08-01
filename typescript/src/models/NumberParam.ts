@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
-import type { DerivedNumber } from './DerivedNumber';
 import {
+    DerivedNumber,
     instanceOfDerivedNumber,
     DerivedNumberFromJSON,
     DerivedNumberFromJSONTyped,
     DerivedNumberToJSON,
 } from './DerivedNumber';
-import type { NumberParamStatic } from './NumberParamStatic';
 import {
+    NumberParamStatic,
     instanceOfNumberParamStatic,
     NumberParamStaticFromJSON,
     NumberParamStaticFromJSONTyped,
@@ -39,7 +39,7 @@ export function NumberParamFromJSON(json: any): NumberParam {
 }
 
 export function NumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): NumberParam {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -53,8 +53,11 @@ export function NumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function NumberParamToJSON(value?: NumberParam | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'derived':

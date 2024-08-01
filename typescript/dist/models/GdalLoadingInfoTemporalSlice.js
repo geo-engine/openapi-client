@@ -14,15 +14,16 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalLoadingInfoTemporalSliceToJSON = exports.GdalLoadingInfoTemporalSliceFromJSONTyped = exports.GdalLoadingInfoTemporalSliceFromJSON = exports.instanceOfGdalLoadingInfoTemporalSlice = void 0;
+const runtime_1 = require("../runtime");
 const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
 const TimeInterval_1 = require("./TimeInterval");
 /**
  * Check if a given object implements the GdalLoadingInfoTemporalSlice interface.
  */
 function instanceOfGdalLoadingInfoTemporalSlice(value) {
-    if (!('time' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "time" in value;
+    return isInstance;
 }
 exports.instanceOfGdalLoadingInfoTemporalSlice = instanceOfGdalLoadingInfoTemporalSlice;
 function GdalLoadingInfoTemporalSliceFromJSON(json) {
@@ -30,24 +31,27 @@ function GdalLoadingInfoTemporalSliceFromJSON(json) {
 }
 exports.GdalLoadingInfoTemporalSliceFromJSON = GdalLoadingInfoTemporalSliceFromJSON;
 function GdalLoadingInfoTemporalSliceFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
-        'params': json['params'] == null ? undefined : (0, GdalDatasetParameters_1.GdalDatasetParametersFromJSON)(json['params']),
+        'cacheTtl': !(0, runtime_1.exists)(json, 'cacheTtl') ? undefined : json['cacheTtl'],
+        'params': !(0, runtime_1.exists)(json, 'params') ? undefined : (0, GdalDatasetParameters_1.GdalDatasetParametersFromJSON)(json['params']),
         'time': (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
     };
 }
 exports.GdalLoadingInfoTemporalSliceFromJSONTyped = GdalLoadingInfoTemporalSliceFromJSONTyped;
 function GdalLoadingInfoTemporalSliceToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'cacheTtl': value['cacheTtl'],
-        'params': (0, GdalDatasetParameters_1.GdalDatasetParametersToJSON)(value['params']),
-        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
+        'cacheTtl': value.cacheTtl,
+        'params': (0, GdalDatasetParameters_1.GdalDatasetParametersToJSON)(value.params),
+        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value.time),
     };
 }
 exports.GdalLoadingInfoTemporalSliceToJSON = GdalLoadingInfoTemporalSliceToJSON;

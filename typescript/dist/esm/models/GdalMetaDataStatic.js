@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './GdalDatasetParameters';
 import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
@@ -24,38 +25,39 @@ export const GdalMetaDataStaticTypeEnum = {
  * Check if a given object implements the GdalMetaDataStatic interface.
  */
 export function instanceOfGdalMetaDataStatic(value) {
-    if (!('params' in value))
-        return false;
-    if (!('resultDescriptor' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "params" in value;
+    isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function GdalMetaDataStaticFromJSON(json) {
     return GdalMetaDataStaticFromJSONTyped(json, false);
 }
 export function GdalMetaDataStaticFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
+        'cacheTtl': !exists(json, 'cacheTtl') ? undefined : json['cacheTtl'],
         'params': GdalDatasetParametersFromJSON(json['params']),
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
         'type': json['type'],
     };
 }
 export function GdalMetaDataStaticToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'cacheTtl': value['cacheTtl'],
-        'params': GdalDatasetParametersToJSON(value['params']),
-        'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
-        'time': TimeIntervalToJSON(value['time']),
-        'type': value['type'],
+        'cacheTtl': value.cacheTtl,
+        'params': GdalDatasetParametersToJSON(value.params),
+        'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
+        'time': TimeIntervalToJSON(value.time),
+        'type': value.type,
     };
 }

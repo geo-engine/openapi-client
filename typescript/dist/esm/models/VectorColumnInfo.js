@@ -17,17 +17,16 @@ import { MeasurementFromJSON, MeasurementToJSON, } from './Measurement';
  * Check if a given object implements the VectorColumnInfo interface.
  */
 export function instanceOfVectorColumnInfo(value) {
-    if (!('dataType' in value))
-        return false;
-    if (!('measurement' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "dataType" in value;
+    isInstance = isInstance && "measurement" in value;
+    return isInstance;
 }
 export function VectorColumnInfoFromJSON(json) {
     return VectorColumnInfoFromJSONTyped(json, false);
 }
 export function VectorColumnInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -36,11 +35,14 @@ export function VectorColumnInfoFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function VectorColumnInfoToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'dataType': FeatureDataTypeToJSON(value['dataType']),
-        'measurement': MeasurementToJSON(value['measurement']),
+        'dataType': FeatureDataTypeToJSON(value.dataType),
+        'measurement': MeasurementToJSON(value.measurement),
     };
 }

@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.external_data_id import ExternalDataId
+from geoengine_openapi_client.models.external_data_id import ExternalDataId  # noqa: E501
 
 class TestExternalDataId(unittest.TestCase):
     """ExternalDataId unit test stubs"""
@@ -33,7 +34,7 @@ class TestExternalDataId(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ExternalDataId`
         """
-        model = ExternalDataId()
+        model = ExternalDataId()  # noqa: E501
         if include_optional:
             return ExternalDataId(
                 layer_id = '',

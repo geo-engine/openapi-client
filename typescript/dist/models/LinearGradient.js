@@ -19,23 +19,22 @@ const Breakpoint_1 = require("./Breakpoint");
  * @export
  */
 exports.LinearGradientTypeEnum = {
-    LinearGradient: 'linearGradient'
+    LinearGradient: 'linearGradient',
+    LogarithmicGradient: 'logarithmicGradient',
+    Palette: 'palette',
+    Rgba: 'rgba'
 };
 /**
  * Check if a given object implements the LinearGradient interface.
  */
 function instanceOfLinearGradient(value) {
-    if (!('breakpoints' in value))
-        return false;
-    if (!('noDataColor' in value))
-        return false;
-    if (!('overColor' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    if (!('underColor' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "breakpoints" in value;
+    isInstance = isInstance && "noDataColor" in value;
+    isInstance = isInstance && "overColor" in value;
+    isInstance = isInstance && "type" in value;
+    isInstance = isInstance && "underColor" in value;
+    return isInstance;
 }
 exports.instanceOfLinearGradient = instanceOfLinearGradient;
 function LinearGradientFromJSON(json) {
@@ -43,7 +42,7 @@ function LinearGradientFromJSON(json) {
 }
 exports.LinearGradientFromJSON = LinearGradientFromJSON;
 function LinearGradientFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -56,15 +55,18 @@ function LinearGradientFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.LinearGradientFromJSONTyped = LinearGradientFromJSONTyped;
 function LinearGradientToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'breakpoints': (value['breakpoints'].map(Breakpoint_1.BreakpointToJSON)),
-        'noDataColor': value['noDataColor'],
-        'overColor': value['overColor'],
-        'type': value['type'],
-        'underColor': value['underColor'],
+        'breakpoints': (value.breakpoints.map(Breakpoint_1.BreakpointToJSON)),
+        'noDataColor': value.noDataColor,
+        'overColor': value.overColor,
+        'type': value.type,
+        'underColor': value.underColor,
     };
 }
 exports.LinearGradientToJSON = LinearGradientToJSON;

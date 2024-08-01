@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.task_status_completed import TaskStatusCompleted
+from geoengine_openapi_client.models.task_status_completed import TaskStatusCompleted  # noqa: E501
 
 class TestTaskStatusCompleted(unittest.TestCase):
     """TaskStatusCompleted unit test stubs"""
@@ -33,7 +34,7 @@ class TestTaskStatusCompleted(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TaskStatusCompleted`
         """
-        model = TaskStatusCompleted()
+        model = TaskStatusCompleted()  # noqa: E501
         if include_optional:
             return TaskStatusCompleted(
                 description = '',

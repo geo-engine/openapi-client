@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,8 +31,10 @@ export interface UpdateQuota {
  * Check if a given object implements the UpdateQuota interface.
  */
 export function instanceOfUpdateQuota(value: object): boolean {
-    if (!('available' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "available" in value;
+
+    return isInstance;
 }
 
 export function UpdateQuotaFromJSON(json: any): UpdateQuota {
@@ -40,7 +42,7 @@ export function UpdateQuotaFromJSON(json: any): UpdateQuota {
 }
 
 export function UpdateQuotaFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateQuota {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -50,12 +52,15 @@ export function UpdateQuotaFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function UpdateQuotaToJSON(value?: UpdateQuota | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'available': value['available'],
+        'available': value.available,
     };
 }
 

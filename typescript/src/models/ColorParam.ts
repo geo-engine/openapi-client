@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
-import type { ColorParamStatic } from './ColorParamStatic';
 import {
+    ColorParamStatic,
     instanceOfColorParamStatic,
     ColorParamStaticFromJSON,
     ColorParamStaticFromJSONTyped,
     ColorParamStaticToJSON,
 } from './ColorParamStatic';
-import type { DerivedColor } from './DerivedColor';
 import {
+    DerivedColor,
     instanceOfDerivedColor,
     DerivedColorFromJSON,
     DerivedColorFromJSONTyped,
@@ -39,7 +39,7 @@ export function ColorParamFromJSON(json: any): ColorParam {
 }
 
 export function ColorParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): ColorParam {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -53,8 +53,11 @@ export function ColorParamFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 }
 
 export function ColorParamToJSON(value?: ColorParam | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'derived':

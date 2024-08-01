@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { OgrSourceTimeFormat } from './OgrSourceTimeFormat';
 import {
     OgrSourceTimeFormatFromJSON,
@@ -66,11 +66,13 @@ export type OgrSourceDatasetTimeTypeStartDurationTypeEnum = typeof OgrSourceData
  * Check if a given object implements the OgrSourceDatasetTimeTypeStartDuration interface.
  */
 export function instanceOfOgrSourceDatasetTimeTypeStartDuration(value: object): boolean {
-    if (!('durationField' in value)) return false;
-    if (!('startField' in value)) return false;
-    if (!('startFormat' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "durationField" in value;
+    isInstance = isInstance && "startField" in value;
+    isInstance = isInstance && "startFormat" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function OgrSourceDatasetTimeTypeStartDurationFromJSON(json: any): OgrSourceDatasetTimeTypeStartDuration {
@@ -78,7 +80,7 @@ export function OgrSourceDatasetTimeTypeStartDurationFromJSON(json: any): OgrSou
 }
 
 export function OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDatasetTimeTypeStartDuration {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -91,15 +93,18 @@ export function OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json: any, ig
 }
 
 export function OgrSourceDatasetTimeTypeStartDurationToJSON(value?: OgrSourceDatasetTimeTypeStartDuration | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'durationField': value['durationField'],
-        'startField': value['startField'],
-        'startFormat': OgrSourceTimeFormatToJSON(value['startFormat']),
-        'type': value['type'],
+        'durationField': value.durationField,
+        'startField': value.startField,
+        'startFormat': OgrSourceTimeFormatToJSON(value.startFormat),
+        'type': value.type,
     };
 }
 

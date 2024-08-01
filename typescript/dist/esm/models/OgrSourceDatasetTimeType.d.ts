@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { OgrSourceDatasetTimeTypeNone } from './OgrSourceDatasetTimeTypeNone';
-import type { OgrSourceDatasetTimeTypeStart } from './OgrSourceDatasetTimeTypeStart';
-import type { OgrSourceDatasetTimeTypeStartDuration } from './OgrSourceDatasetTimeTypeStartDuration';
-import type { OgrSourceDatasetTimeTypeStartEnd } from './OgrSourceDatasetTimeTypeStartEnd';
+import { OgrSourceDatasetTimeTypeNone } from './OgrSourceDatasetTimeTypeNone';
+import { OgrSourceDatasetTimeTypeStart } from './OgrSourceDatasetTimeTypeStart';
+import { OgrSourceDatasetTimeTypeStartDuration } from './OgrSourceDatasetTimeTypeStartDuration';
+import { OgrSourceDatasetTimeTypeStartEnd } from './OgrSourceDatasetTimeTypeStartEnd';
 /**
  * @type OgrSourceDatasetTimeType
  *

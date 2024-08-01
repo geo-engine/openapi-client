@@ -21,20 +21,26 @@ function LayerUpdateFromJSON(json) {
 }
 exports.LayerUpdateFromJSON = LayerUpdateFromJSON;
 function LayerUpdateFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
-    if ((0, ProjectLayer_1.instanceOfProjectLayer)(json)) {
-        return (0, ProjectLayer_1.ProjectLayerFromJSONTyped)(json, true);
+    if (json === ProjectUpdateToken_1.ProjectUpdateToken.None) {
+        return ProjectUpdateToken_1.ProjectUpdateToken.None;
     }
-    if ((0, ProjectUpdateToken_1.instanceOfProjectUpdateToken)(json)) {
-        return (0, ProjectUpdateToken_1.ProjectUpdateTokenFromJSONTyped)(json, true);
+    else if (json === ProjectUpdateToken_1.ProjectUpdateToken.Delete) {
+        return ProjectUpdateToken_1.ProjectUpdateToken.Delete;
+    }
+    else {
+        return Object.assign({}, (0, ProjectLayer_1.ProjectLayerFromJSONTyped)(json, true));
     }
 }
 exports.LayerUpdateFromJSONTyped = LayerUpdateFromJSONTyped;
 function LayerUpdateToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     if (typeof value === 'object' && (0, ProjectLayer_1.instanceOfProjectLayer)(value)) {
         return (0, ProjectLayer_1.ProjectLayerToJSON)(value);

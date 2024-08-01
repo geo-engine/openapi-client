@@ -14,6 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateProjectToJSON = exports.UpdateProjectFromJSONTyped = exports.UpdateProjectFromJSON = exports.instanceOfUpdateProject = void 0;
+const runtime_1 = require("../runtime");
 const LayerUpdate_1 = require("./LayerUpdate");
 const PlotUpdate_1 = require("./PlotUpdate");
 const STRectangle_1 = require("./STRectangle");
@@ -22,9 +23,9 @@ const TimeStep_1 = require("./TimeStep");
  * Check if a given object implements the UpdateProject interface.
  */
 function instanceOfUpdateProject(value) {
-    if (!('id' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    return isInstance;
 }
 exports.instanceOfUpdateProject = instanceOfUpdateProject;
 function UpdateProjectFromJSON(json) {
@@ -32,32 +33,35 @@ function UpdateProjectFromJSON(json) {
 }
 exports.UpdateProjectFromJSON = UpdateProjectFromJSON;
 function UpdateProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'bounds': json['bounds'] == null ? undefined : (0, STRectangle_1.STRectangleFromJSON)(json['bounds']),
-        'description': json['description'] == null ? undefined : json['description'],
+        'bounds': !(0, runtime_1.exists)(json, 'bounds') ? undefined : (0, STRectangle_1.STRectangleFromJSON)(json['bounds']),
+        'description': !(0, runtime_1.exists)(json, 'description') ? undefined : json['description'],
         'id': json['id'],
-        'layers': json['layers'] == null ? undefined : (json['layers'].map(LayerUpdate_1.LayerUpdateFromJSON)),
-        'name': json['name'] == null ? undefined : json['name'],
-        'plots': json['plots'] == null ? undefined : (json['plots'].map(PlotUpdate_1.PlotUpdateFromJSON)),
-        'timeStep': json['timeStep'] == null ? undefined : (0, TimeStep_1.TimeStepFromJSON)(json['timeStep']),
+        'layers': !(0, runtime_1.exists)(json, 'layers') ? undefined : (json['layers'] === null ? null : json['layers'].map(LayerUpdate_1.LayerUpdateFromJSON)),
+        'name': !(0, runtime_1.exists)(json, 'name') ? undefined : json['name'],
+        'plots': !(0, runtime_1.exists)(json, 'plots') ? undefined : (json['plots'] === null ? null : json['plots'].map(PlotUpdate_1.PlotUpdateFromJSON)),
+        'timeStep': !(0, runtime_1.exists)(json, 'timeStep') ? undefined : (0, TimeStep_1.TimeStepFromJSON)(json['timeStep']),
     };
 }
 exports.UpdateProjectFromJSONTyped = UpdateProjectFromJSONTyped;
 function UpdateProjectToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'bounds': (0, STRectangle_1.STRectangleToJSON)(value['bounds']),
-        'description': value['description'],
-        'id': value['id'],
-        'layers': value['layers'] == null ? undefined : (value['layers'].map(LayerUpdate_1.LayerUpdateToJSON)),
-        'name': value['name'],
-        'plots': value['plots'] == null ? undefined : (value['plots'].map(PlotUpdate_1.PlotUpdateToJSON)),
-        'timeStep': (0, TimeStep_1.TimeStepToJSON)(value['timeStep']),
+        'bounds': (0, STRectangle_1.STRectangleToJSON)(value.bounds),
+        'description': value.description,
+        'id': value.id,
+        'layers': value.layers === undefined ? undefined : (value.layers === null ? null : value.layers.map(LayerUpdate_1.LayerUpdateToJSON)),
+        'name': value.name,
+        'plots': value.plots === undefined ? undefined : (value.plots === null ? null : value.plots.map(PlotUpdate_1.PlotUpdateToJSON)),
+        'timeStep': (0, TimeStep_1.TimeStepToJSON)(value.timeStep),
     };
 }
 exports.UpdateProjectToJSON = UpdateProjectToJSON;

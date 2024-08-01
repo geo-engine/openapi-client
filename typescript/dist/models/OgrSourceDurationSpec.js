@@ -22,7 +22,7 @@ function OgrSourceDurationSpecFromJSON(json) {
 }
 exports.OgrSourceDurationSpecFromJSON = OgrSourceDurationSpecFromJSON;
 function OgrSourceDurationSpecFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -38,8 +38,11 @@ function OgrSourceDurationSpecFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.OgrSourceDurationSpecFromJSONTyped = OgrSourceDurationSpecFromJSONTyped;
 function OgrSourceDurationSpecToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'infinite':

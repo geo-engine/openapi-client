@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -32,7 +32,9 @@ export interface OgrSourceDurationSpecInfinite {
  * @export
  */
 export const OgrSourceDurationSpecInfiniteTypeEnum = {
-    Infinite: 'infinite'
+    Infinite: 'infinite',
+    Zero: 'zero',
+    Value: 'value'
 } as const;
 export type OgrSourceDurationSpecInfiniteTypeEnum = typeof OgrSourceDurationSpecInfiniteTypeEnum[keyof typeof OgrSourceDurationSpecInfiniteTypeEnum];
 
@@ -41,8 +43,10 @@ export type OgrSourceDurationSpecInfiniteTypeEnum = typeof OgrSourceDurationSpec
  * Check if a given object implements the OgrSourceDurationSpecInfinite interface.
  */
 export function instanceOfOgrSourceDurationSpecInfinite(value: object): boolean {
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function OgrSourceDurationSpecInfiniteFromJSON(json: any): OgrSourceDurationSpecInfinite {
@@ -50,7 +54,7 @@ export function OgrSourceDurationSpecInfiniteFromJSON(json: any): OgrSourceDurat
 }
 
 export function OgrSourceDurationSpecInfiniteFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpecInfinite {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -60,12 +64,15 @@ export function OgrSourceDurationSpecInfiniteFromJSONTyped(json: any, ignoreDisc
 }
 
 export function OgrSourceDurationSpecInfiniteToJSON(value?: OgrSourceDurationSpecInfinite | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'type': value['type'],
+        'type': value.type,
     };
 }
 

@@ -42,7 +42,7 @@ export interface PointSymbology {
      * @type {TextSymbology}
      * @memberof PointSymbology
      */
-    text?: TextSymbology;
+    text?: TextSymbology | null;
     /**
      *
      * @type {string}

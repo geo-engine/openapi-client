@@ -19,7 +19,7 @@ export function OgrSourceDatasetTimeTypeFromJSON(json) {
     return OgrSourceDatasetTimeTypeFromJSONTyped(json, false);
 }
 export function OgrSourceDatasetTimeTypeFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -36,8 +36,11 @@ export function OgrSourceDatasetTimeTypeFromJSONTyped(json, ignoreDiscriminator)
     }
 }
 export function OgrSourceDatasetTimeTypeToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'none':

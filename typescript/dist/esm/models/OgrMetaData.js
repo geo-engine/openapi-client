@@ -23,19 +23,17 @@ export const OgrMetaDataTypeEnum = {
  * Check if a given object implements the OgrMetaData interface.
  */
 export function instanceOfOgrMetaData(value) {
-    if (!('loadingInfo' in value))
-        return false;
-    if (!('resultDescriptor' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "loadingInfo" in value;
+    isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function OgrMetaDataFromJSON(json) {
     return OgrMetaDataFromJSONTyped(json, false);
 }
 export function OgrMetaDataFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -45,12 +43,15 @@ export function OgrMetaDataFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function OgrMetaDataToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'loadingInfo': OgrSourceDatasetToJSON(value['loadingInfo']),
-        'resultDescriptor': VectorResultDescriptorToJSON(value['resultDescriptor']),
-        'type': value['type'],
+        'loadingInfo': OgrSourceDatasetToJSON(value.loadingInfo),
+        'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
+        'type': value.type,
     };
 }

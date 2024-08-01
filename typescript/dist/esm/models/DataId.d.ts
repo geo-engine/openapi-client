@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ExternalDataId } from './ExternalDataId';
-import type { InternalDataId } from './InternalDataId';
+import { ExternalDataId } from './ExternalDataId';
+import { InternalDataId } from './InternalDataId';
 /**
  * @type DataId
  *

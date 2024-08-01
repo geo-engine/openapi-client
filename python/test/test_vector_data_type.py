@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.vector_data_type import VectorDataType
+from geoengine_openapi_client.models.vector_data_type import VectorDataType  # noqa: E501
 
 class TestVectorDataType(unittest.TestCase):
     """VectorDataType unit test stubs"""

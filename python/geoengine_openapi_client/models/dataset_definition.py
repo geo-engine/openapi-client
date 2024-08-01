@@ -18,60 +18,44 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+
+
+from pydantic import BaseModel, Field
 from geoengine_openapi_client.models.add_dataset import AddDataset
 from geoengine_openapi_client.models.meta_data_definition import MetaDataDefinition
-from typing import Optional, Set
-from typing_extensions import Self
 
 class DatasetDefinition(BaseModel):
     """
     DatasetDefinition
-    """ # noqa: E501
-    meta_data: MetaDataDefinition = Field(alias="metaData")
-    properties: AddDataset
-    __properties: ClassVar[List[str]] = ["metaData", "properties"]
+    """
+    meta_data: MetaDataDefinition = Field(..., alias="metaData")
+    properties: AddDataset = Field(...)
+    __properties = ["metaData", "properties"]
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> DatasetDefinition:
         """Create an instance of DatasetDefinition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of meta_data
         if self.meta_data:
             _dict['metaData'] = self.meta_data.to_dict()
@@ -81,17 +65,17 @@ class DatasetDefinition(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> DatasetDefinition:
         """Create an instance of DatasetDefinition from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return DatasetDefinition.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "metaData": MetaDataDefinition.from_dict(obj["metaData"]) if obj.get("metaData") is not None else None,
-            "properties": AddDataset.from_dict(obj["properties"]) if obj.get("properties") is not None else None
+        _obj = DatasetDefinition.parse_obj({
+            "meta_data": MetaDataDefinition.from_dict(obj.get("metaData")) if obj.get("metaData") is not None else None,
+            "properties": AddDataset.from_dict(obj.get("properties")) if obj.get("properties") is not None else None
         })
         return _obj
 

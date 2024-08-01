@@ -24,7 +24,7 @@ export interface TypedVectorResultDescriptor {
      * @type {BoundingBox2D}
      * @memberof TypedVectorResultDescriptor
      */
-    bbox?: BoundingBox2D;
+    bbox?: BoundingBox2D | null;
     /**
      *
      * @type {{ [key: string]: VectorColumnInfo; }}
@@ -50,7 +50,7 @@ export interface TypedVectorResultDescriptor {
      * @type {TimeInterval}
      * @memberof TypedVectorResultDescriptor
      */
-    time?: TimeInterval;
+    time?: TimeInterval | null;
     /**
      *
      * @type {string}

@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.user_session import UserSession
+from geoengine_openapi_client.models.user_session import UserSession  # noqa: E501
 
 class TestUserSession(unittest.TestCase):
     """UserSession unit test stubs"""
@@ -33,7 +34,7 @@ class TestUserSession(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UserSession`
         """
-        model = UserSession()
+        model = UserSession()  # noqa: E501
         if include_optional:
             return UserSession(
                 created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

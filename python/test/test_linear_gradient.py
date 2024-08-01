@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.linear_gradient import LinearGradient
+from geoengine_openapi_client.models.linear_gradient import LinearGradient  # noqa: E501
 
 class TestLinearGradient(unittest.TestCase):
     """LinearGradient unit test stubs"""
@@ -33,7 +34,7 @@ class TestLinearGradient(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LinearGradient`
         """
-        model = LinearGradient()
+        model = LinearGradient()  # noqa: E501
         if include_optional:
             return LinearGradient(
                 breakpoints = [

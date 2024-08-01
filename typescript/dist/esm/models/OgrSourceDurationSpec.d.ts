@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { OgrSourceDurationSpecInfinite } from './OgrSourceDurationSpecInfinite';
-import type { OgrSourceDurationSpecValue } from './OgrSourceDurationSpecValue';
-import type { OgrSourceDurationSpecZero } from './OgrSourceDurationSpecZero';
+import { OgrSourceDurationSpecInfinite } from './OgrSourceDurationSpecInfinite';
+import { OgrSourceDurationSpecValue } from './OgrSourceDurationSpecValue';
+import { OgrSourceDurationSpecZero } from './OgrSourceDurationSpecZero';
 /**
  * @type OgrSourceDurationSpec
  *

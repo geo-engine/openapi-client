@@ -24,11 +24,10 @@ exports.ResourceLayerCollectionTypeEnum = {
  * Check if a given object implements the ResourceLayerCollection interface.
  */
 function instanceOfResourceLayerCollection(value) {
-    if (!('id' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfResourceLayerCollection = instanceOfResourceLayerCollection;
 function ResourceLayerCollectionFromJSON(json) {
@@ -36,7 +35,7 @@ function ResourceLayerCollectionFromJSON(json) {
 }
 exports.ResourceLayerCollectionFromJSON = ResourceLayerCollectionFromJSON;
 function ResourceLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,12 +45,15 @@ function ResourceLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ResourceLayerCollectionFromJSONTyped = ResourceLayerCollectionFromJSONTyped;
 function ResourceLayerCollectionToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 exports.ResourceLayerCollectionToJSON = ResourceLayerCollectionToJSON;

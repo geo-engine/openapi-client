@@ -14,27 +14,22 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatasetListingToJSON = exports.DatasetListingFromJSONTyped = exports.DatasetListingFromJSON = exports.instanceOfDatasetListing = void 0;
+const runtime_1 = require("../runtime");
 const Symbology_1 = require("./Symbology");
 const TypedResultDescriptor_1 = require("./TypedResultDescriptor");
 /**
  * Check if a given object implements the DatasetListing interface.
  */
 function instanceOfDatasetListing(value) {
-    if (!('description' in value))
-        return false;
-    if (!('displayName' in value))
-        return false;
-    if (!('id' in value))
-        return false;
-    if (!('name' in value))
-        return false;
-    if (!('resultDescriptor' in value))
-        return false;
-    if (!('sourceOperator' in value))
-        return false;
-    if (!('tags' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "displayName" in value;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "sourceOperator" in value;
+    isInstance = isInstance && "tags" in value;
+    return isInstance;
 }
 exports.instanceOfDatasetListing = instanceOfDatasetListing;
 function DatasetListingFromJSON(json) {
@@ -42,7 +37,7 @@ function DatasetListingFromJSON(json) {
 }
 exports.DatasetListingFromJSON = DatasetListingFromJSON;
 function DatasetListingFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -52,24 +47,27 @@ function DatasetListingFromJSONTyped(json, ignoreDiscriminator) {
         'name': json['name'],
         'resultDescriptor': (0, TypedResultDescriptor_1.TypedResultDescriptorFromJSON)(json['resultDescriptor']),
         'sourceOperator': json['sourceOperator'],
-        'symbology': json['symbology'] == null ? undefined : (0, Symbology_1.SymbologyFromJSON)(json['symbology']),
+        'symbology': !(0, runtime_1.exists)(json, 'symbology') ? undefined : (0, Symbology_1.SymbologyFromJSON)(json['symbology']),
         'tags': json['tags'],
     };
 }
 exports.DatasetListingFromJSONTyped = DatasetListingFromJSONTyped;
 function DatasetListingToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'description': value['description'],
-        'displayName': value['displayName'],
-        'id': value['id'],
-        'name': value['name'],
-        'resultDescriptor': (0, TypedResultDescriptor_1.TypedResultDescriptorToJSON)(value['resultDescriptor']),
-        'sourceOperator': value['sourceOperator'],
-        'symbology': (0, Symbology_1.SymbologyToJSON)(value['symbology']),
-        'tags': value['tags'],
+        'description': value.description,
+        'displayName': value.displayName,
+        'id': value.id,
+        'name': value.name,
+        'resultDescriptor': (0, TypedResultDescriptor_1.TypedResultDescriptorToJSON)(value.resultDescriptor),
+        'sourceOperator': value.sourceOperator,
+        'symbology': (0, Symbology_1.SymbologyToJSON)(value.symbology),
+        'tags': value.tags,
     };
 }
 exports.DatasetListingToJSON = DatasetListingToJSON;

@@ -18,62 +18,45 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
+
+from typing import Optional
+from pydantic import BaseModel, Field, conint
 from geoengine_openapi_client.models.gdal_dataset_parameters import GdalDatasetParameters
 from geoengine_openapi_client.models.time_interval import TimeInterval
-from typing import Optional, Set
-from typing_extensions import Self
 
 class GdalLoadingInfoTemporalSlice(BaseModel):
     """
-    one temporal slice of the dataset that requires reading from exactly one Gdal dataset
-    """ # noqa: E501
-    cache_ttl: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, alias="cacheTtl")
+    one temporal slice of the dataset that requires reading from exactly one Gdal dataset  # noqa: E501
+    """
+    cache_ttl: Optional[conint(strict=True, ge=0)] = Field(None, alias="cacheTtl")
     params: Optional[GdalDatasetParameters] = None
-    time: TimeInterval
-    __properties: ClassVar[List[str]] = ["cacheTtl", "params", "time"]
+    time: TimeInterval = Field(...)
+    __properties = ["cacheTtl", "params", "time"]
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> GdalLoadingInfoTemporalSlice:
         """Create an instance of GdalLoadingInfoTemporalSlice from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of params
         if self.params:
             _dict['params'] = self.params.to_dict()
@@ -81,25 +64,25 @@ class GdalLoadingInfoTemporalSlice(BaseModel):
         if self.time:
             _dict['time'] = self.time.to_dict()
         # set to None if params (nullable) is None
-        # and model_fields_set contains the field
-        if self.params is None and "params" in self.model_fields_set:
+        # and __fields_set__ contains the field
+        if self.params is None and "params" in self.__fields_set__:
             _dict['params'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> GdalLoadingInfoTemporalSlice:
         """Create an instance of GdalLoadingInfoTemporalSlice from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return GdalLoadingInfoTemporalSlice.parse_obj(obj)
 
-        _obj = cls.model_validate({
-            "cacheTtl": obj.get("cacheTtl"),
-            "params": GdalDatasetParameters.from_dict(obj["params"]) if obj.get("params") is not None else None,
-            "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None
+        _obj = GdalLoadingInfoTemporalSlice.parse_obj({
+            "cache_ttl": obj.get("cacheTtl"),
+            "params": GdalDatasetParameters.from_dict(obj.get("params")) if obj.get("params") is not None else None,
+            "time": TimeInterval.from_dict(obj.get("time")) if obj.get("time") is not None else None
         })
         return _obj
 

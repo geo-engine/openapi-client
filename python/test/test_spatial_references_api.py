@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.spatial_references_api import SpatialReferencesApi
+from geoengine_openapi_client.api.spatial_references_api import SpatialReferencesApi  # noqa: E501
 
 
 class TestSpatialReferencesApi(unittest.TestCase):
     """SpatialReferencesApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = SpatialReferencesApi()
+        self.api = SpatialReferencesApi()  # noqa: E501
 
     def tearDown(self) -> None:
         pass

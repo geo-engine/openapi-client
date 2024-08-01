@@ -21,17 +21,16 @@ export const ResourceProjectTypeEnum = {
  * Check if a given object implements the ResourceProject interface.
  */
 export function instanceOfResourceProject(value) {
-    if (!('id' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function ResourceProjectFromJSON(json) {
     return ResourceProjectFromJSONTyped(json, false);
 }
 export function ResourceProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,11 +39,14 @@ export function ResourceProjectFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ResourceProjectToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }

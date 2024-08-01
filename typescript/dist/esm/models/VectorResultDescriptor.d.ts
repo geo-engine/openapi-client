@@ -24,7 +24,7 @@ export interface VectorResultDescriptor {
      * @type {BoundingBox2D}
      * @memberof VectorResultDescriptor
      */
-    bbox?: BoundingBox2D;
+    bbox?: BoundingBox2D | null;
     /**
      *
      * @type {{ [key: string]: VectorColumnInfo; }}
@@ -50,7 +50,7 @@ export interface VectorResultDescriptor {
      * @type {TimeInterval}
      * @memberof VectorResultDescriptor
      */
-    time?: TimeInterval;
+    time?: TimeInterval | null;
 }
 /**
  * Check if a given object implements the VectorResultDescriptor interface.

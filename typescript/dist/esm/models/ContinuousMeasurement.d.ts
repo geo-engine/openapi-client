@@ -32,7 +32,7 @@ export interface ContinuousMeasurement {
      * @type {string}
      * @memberof ContinuousMeasurement
      */
-    unit?: string;
+    unit?: string | null;
 }
 /**
  * @export

@@ -20,11 +20,10 @@ const Provenance_1 = require("./Provenance");
  * Check if a given object implements the ProvenanceEntry interface.
  */
 function instanceOfProvenanceEntry(value) {
-    if (!('data' in value))
-        return false;
-    if (!('provenance' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "data" in value;
+    isInstance = isInstance && "provenance" in value;
+    return isInstance;
 }
 exports.instanceOfProvenanceEntry = instanceOfProvenanceEntry;
 function ProvenanceEntryFromJSON(json) {
@@ -32,7 +31,7 @@ function ProvenanceEntryFromJSON(json) {
 }
 exports.ProvenanceEntryFromJSON = ProvenanceEntryFromJSON;
 function ProvenanceEntryFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -42,12 +41,15 @@ function ProvenanceEntryFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ProvenanceEntryFromJSONTyped = ProvenanceEntryFromJSONTyped;
 function ProvenanceEntryToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'data': (value['data'].map(DataId_1.DataIdToJSON)),
-        'provenance': (0, Provenance_1.ProvenanceToJSON)(value['provenance']),
+        'data': (value.data.map(DataId_1.DataIdToJSON)),
+        'provenance': (0, Provenance_1.ProvenanceToJSON)(value.provenance),
     };
 }
 exports.ProvenanceEntryToJSON = ProvenanceEntryToJSON;

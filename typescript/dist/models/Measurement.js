@@ -22,7 +22,7 @@ function MeasurementFromJSON(json) {
 }
 exports.MeasurementFromJSON = MeasurementFromJSON;
 function MeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['type']) {
@@ -38,8 +38,11 @@ function MeasurementFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.MeasurementFromJSONTyped = MeasurementFromJSONTyped;
 function MeasurementToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['type']) {
         case 'classification':

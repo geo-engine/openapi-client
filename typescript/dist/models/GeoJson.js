@@ -19,11 +19,10 @@ const CollectionType_1 = require("./CollectionType");
  * Check if a given object implements the GeoJson interface.
  */
 function instanceOfGeoJson(value) {
-    if (!('features' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "features" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfGeoJson = instanceOfGeoJson;
 function GeoJsonFromJSON(json) {
@@ -31,7 +30,7 @@ function GeoJsonFromJSON(json) {
 }
 exports.GeoJsonFromJSON = GeoJsonFromJSON;
 function GeoJsonFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -41,12 +40,15 @@ function GeoJsonFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.GeoJsonFromJSONTyped = GeoJsonFromJSONTyped;
 function GeoJsonToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'features': value['features'],
-        'type': (0, CollectionType_1.CollectionTypeToJSON)(value['type']),
+        'features': value.features,
+        'type': (0, CollectionType_1.CollectionTypeToJSON)(value.type),
     };
 }
 exports.GeoJsonToJSON = GeoJsonToJSON;

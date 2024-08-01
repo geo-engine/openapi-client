@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { LineSymbology } from './LineSymbology';
-import type { PointSymbology } from './PointSymbology';
-import type { PolygonSymbology } from './PolygonSymbology';
-import type { RasterSymbology } from './RasterSymbology';
+import { LineSymbology } from './LineSymbology';
+import { PointSymbology } from './PointSymbology';
+import { PolygonSymbology } from './PolygonSymbology';
+import { RasterSymbology } from './RasterSymbology';
 /**
  * @type Symbology
  *

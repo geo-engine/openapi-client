@@ -31,7 +31,7 @@ export interface TypedRasterResultDescriptor {
      * @type {SpatialPartition2D}
      * @memberof TypedRasterResultDescriptor
      */
-    bbox?: SpatialPartition2D;
+    bbox?: SpatialPartition2D | null;
     /**
      *
      * @type {RasterDataType}
@@ -43,7 +43,7 @@ export interface TypedRasterResultDescriptor {
      * @type {SpatialResolution}
      * @memberof TypedRasterResultDescriptor
      */
-    resolution?: SpatialResolution;
+    resolution?: SpatialResolution | null;
     /**
      *
      * @type {string}
@@ -55,7 +55,7 @@ export interface TypedRasterResultDescriptor {
      * @type {TimeInterval}
      * @memberof TypedRasterResultDescriptor
      */
-    time?: TimeInterval;
+    time?: TimeInterval | null;
     /**
      *
      * @type {string}

@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.ogr_source_time_format_auto import OgrSourceTimeFormatAuto
+from geoengine_openapi_client.models.ogr_source_time_format_auto import OgrSourceTimeFormatAuto  # noqa: E501
 
 class TestOgrSourceTimeFormatAuto(unittest.TestCase):
     """OgrSourceTimeFormatAuto unit test stubs"""
@@ -33,7 +34,7 @@ class TestOgrSourceTimeFormatAuto(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `OgrSourceTimeFormatAuto`
         """
-        model = OgrSourceTimeFormatAuto()
+        model = OgrSourceTimeFormatAuto()  # noqa: E501
         if include_optional:
             return OgrSourceTimeFormatAuto(
                 format = 'auto'

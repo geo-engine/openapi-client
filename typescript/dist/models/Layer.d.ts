@@ -55,7 +55,7 @@ export interface Layer {
      * @type {Symbology}
      * @memberof Layer
      */
-    symbology?: Symbology;
+    symbology?: Symbology | null;
     /**
      *
      * @type {Workflow}

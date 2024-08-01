@@ -21,15 +21,15 @@ export const ColorizerRgbaTypeEnum = {
  * Check if a given object implements the ColorizerRgba interface.
  */
 export function instanceOfColorizerRgba(value) {
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 export function ColorizerRgbaFromJSON(json) {
     return ColorizerRgbaFromJSONTyped(json, false);
 }
 export function ColorizerRgbaFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -37,10 +37,13 @@ export function ColorizerRgbaFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function ColorizerRgbaToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'type': value['type'],
+        'type': value.type,
     };
 }

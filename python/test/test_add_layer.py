@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.add_layer import AddLayer
+from geoengine_openapi_client.models.add_layer import AddLayer  # noqa: E501
 
 class TestAddLayer(unittest.TestCase):
     """AddLayer unit test stubs"""
@@ -33,7 +34,7 @@ class TestAddLayer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AddLayer`
         """
-        model = AddLayer()
+        model = AddLayer()  # noqa: E501
         if include_optional:
             return AddLayer(
                 description = 'Example layer description',

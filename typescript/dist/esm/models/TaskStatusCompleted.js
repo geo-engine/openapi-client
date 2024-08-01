@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { exists } from '../runtime';
 /**
  * @export
  */
@@ -21,26 +22,23 @@ export const TaskStatusCompletedStatusEnum = {
  * Check if a given object implements the TaskStatusCompleted interface.
  */
 export function instanceOfTaskStatusCompleted(value) {
-    if (!('status' in value))
-        return false;
-    if (!('taskType' in value))
-        return false;
-    if (!('timeStarted' in value))
-        return false;
-    if (!('timeTotal' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "status" in value;
+    isInstance = isInstance && "taskType" in value;
+    isInstance = isInstance && "timeStarted" in value;
+    isInstance = isInstance && "timeTotal" in value;
+    return isInstance;
 }
 export function TaskStatusCompletedFromJSON(json) {
     return TaskStatusCompletedFromJSONTyped(json, false);
 }
 export function TaskStatusCompletedFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'description': json['description'] == null ? undefined : json['description'],
-        'info': json['info'] == null ? undefined : json['info'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
+        'info': !exists(json, 'info') ? undefined : json['info'],
         'status': json['status'],
         'taskType': json['taskType'],
         'timeStarted': json['timeStarted'],
@@ -48,15 +46,18 @@ export function TaskStatusCompletedFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function TaskStatusCompletedToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'description': value['description'],
-        'info': value['info'],
-        'status': value['status'],
-        'taskType': value['taskType'],
-        'timeStarted': value['timeStarted'],
-        'timeTotal': value['timeTotal'],
+        'description': value.description,
+        'info': value.info,
+        'status': value.status,
+        'taskType': value.taskType,
+        'timeStarted': value.timeStarted,
+        'timeTotal': value.timeTotal,
     };
 }

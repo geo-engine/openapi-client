@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.user_registration import UserRegistration
+from geoengine_openapi_client.models.user_registration import UserRegistration  # noqa: E501
 
 class TestUserRegistration(unittest.TestCase):
     """UserRegistration unit test stubs"""
@@ -33,7 +34,7 @@ class TestUserRegistration(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UserRegistration`
         """
-        model = UserRegistration()
+        model = UserRegistration()  # noqa: E501
         if include_optional:
             return UserRegistration(
                 email = '',

@@ -21,13 +21,11 @@ const TimeInterval_1 = require("./TimeInterval");
  * Check if a given object implements the RasterQueryRectangle interface.
  */
 function instanceOfRasterQueryRectangle(value) {
-    if (!('spatialBounds' in value))
-        return false;
-    if (!('spatialResolution' in value))
-        return false;
-    if (!('timeInterval' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "spatialBounds" in value;
+    isInstance = isInstance && "spatialResolution" in value;
+    isInstance = isInstance && "timeInterval" in value;
+    return isInstance;
 }
 exports.instanceOfRasterQueryRectangle = instanceOfRasterQueryRectangle;
 function RasterQueryRectangleFromJSON(json) {
@@ -35,7 +33,7 @@ function RasterQueryRectangleFromJSON(json) {
 }
 exports.RasterQueryRectangleFromJSON = RasterQueryRectangleFromJSON;
 function RasterQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,13 +44,16 @@ function RasterQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.RasterQueryRectangleFromJSONTyped = RasterQueryRectangleFromJSONTyped;
 function RasterQueryRectangleToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'spatialBounds': (0, SpatialPartition2D_1.SpatialPartition2DToJSON)(value['spatialBounds']),
-        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value['spatialResolution']),
-        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
+        'spatialBounds': (0, SpatialPartition2D_1.SpatialPartition2DToJSON)(value.spatialBounds),
+        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value.spatialResolution),
+        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value.timeInterval),
     };
 }
 exports.RasterQueryRectangleToJSON = RasterQueryRectangleToJSON;

@@ -15,19 +15,17 @@
  * Check if a given object implements the DateTimeParseFormat interface.
  */
 export function instanceOfDateTimeParseFormat(value) {
-    if (!('fmt' in value))
-        return false;
-    if (!('hasTime' in value))
-        return false;
-    if (!('hasTz' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "fmt" in value;
+    isInstance = isInstance && "hasTime" in value;
+    isInstance = isInstance && "hasTz" in value;
+    return isInstance;
 }
 export function DateTimeParseFormatFromJSON(json) {
     return DateTimeParseFormatFromJSONTyped(json, false);
 }
 export function DateTimeParseFormatFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -37,12 +35,15 @@ export function DateTimeParseFormatFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function DateTimeParseFormatToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'fmt': value['fmt'],
-        'has_time': value['hasTime'],
-        'has_tz': value['hasTz'],
+        'fmt': value.fmt,
+        'has_time': value.hasTime,
+        'has_tz': value.hasTz,
     };
 }

@@ -12,8 +12,8 @@
  * Do not edit the class manually.
  */
 
-import type { FormatSpecificsOneOf } from './FormatSpecificsOneOf';
 import {
+    FormatSpecificsOneOf,
     instanceOfFormatSpecificsOneOf,
     FormatSpecificsOneOfFromJSON,
     FormatSpecificsOneOfFromJSONTyped,
@@ -32,15 +32,18 @@ export function FormatSpecificsFromJSON(json: any): FormatSpecifics {
 }
 
 export function FormatSpecificsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatSpecifics {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return { ...FormatSpecificsOneOfFromJSONTyped(json, true) };
 }
 
 export function FormatSpecificsToJSON(value?: FormatSpecifics | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
 
     if (instanceOfFormatSpecificsOneOf(value)) {

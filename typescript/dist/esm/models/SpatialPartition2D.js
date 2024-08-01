@@ -16,17 +16,16 @@ import { Coordinate2DFromJSON, Coordinate2DToJSON, } from './Coordinate2D';
  * Check if a given object implements the SpatialPartition2D interface.
  */
 export function instanceOfSpatialPartition2D(value) {
-    if (!('lowerRightCoordinate' in value))
-        return false;
-    if (!('upperLeftCoordinate' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "lowerRightCoordinate" in value;
+    isInstance = isInstance && "upperLeftCoordinate" in value;
+    return isInstance;
 }
 export function SpatialPartition2DFromJSON(json) {
     return SpatialPartition2DFromJSONTyped(json, false);
 }
 export function SpatialPartition2DFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -35,11 +34,14 @@ export function SpatialPartition2DFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function SpatialPartition2DToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'lowerRightCoordinate': Coordinate2DToJSON(value['lowerRightCoordinate']),
-        'upperLeftCoordinate': Coordinate2DToJSON(value['upperLeftCoordinate']),
+        'lowerRightCoordinate': Coordinate2DToJSON(value.lowerRightCoordinate),
+        'upperLeftCoordinate': Coordinate2DToJSON(value.upperLeftCoordinate),
     };
 }

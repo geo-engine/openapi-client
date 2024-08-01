@@ -27,7 +27,7 @@ export interface SearchCapabilities {
      * @type {Array<string>}
      * @memberof SearchCapabilities
      */
-    filters?: Array<string>;
+    filters?: Array<string> | null;
     /**
      *
      * @type {SearchTypes}

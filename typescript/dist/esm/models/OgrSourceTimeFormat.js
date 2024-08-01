@@ -18,7 +18,7 @@ export function OgrSourceTimeFormatFromJSON(json) {
     return OgrSourceTimeFormatFromJSONTyped(json, false);
 }
 export function OgrSourceTimeFormatFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     switch (json['format']) {
@@ -33,8 +33,11 @@ export function OgrSourceTimeFormatFromJSONTyped(json, ignoreDiscriminator) {
     }
 }
 export function OgrSourceTimeFormatToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     switch (value['format']) {
         case 'auto':

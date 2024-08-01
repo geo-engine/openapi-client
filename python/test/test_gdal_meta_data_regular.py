@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.gdal_meta_data_regular import GdalMetaDataRegular
+from geoengine_openapi_client.models.gdal_meta_data_regular import GdalMetaDataRegular  # noqa: E501
 
 class TestGdalMetaDataRegular(unittest.TestCase):
     """GdalMetaDataRegular unit test stubs"""
@@ -33,7 +34,7 @@ class TestGdalMetaDataRegular(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GdalMetaDataRegular`
         """
-        model = GdalMetaDataRegular()
+        model = GdalMetaDataRegular()  # noqa: E501
         if include_optional:
             return GdalMetaDataRegular(
                 cache_ttl = 0,

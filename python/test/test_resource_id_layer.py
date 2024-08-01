@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.resource_id_layer import ResourceIdLayer
+from geoengine_openapi_client.models.resource_id_layer import ResourceIdLayer  # noqa: E501
 
 class TestResourceIdLayer(unittest.TestCase):
     """ResourceIdLayer unit test stubs"""
@@ -33,7 +34,7 @@ class TestResourceIdLayer(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ResourceIdLayer`
         """
-        model = ResourceIdLayer()
+        model = ResourceIdLayer()  # noqa: E501
         if include_optional:
             return ResourceIdLayer(
                 id = '',

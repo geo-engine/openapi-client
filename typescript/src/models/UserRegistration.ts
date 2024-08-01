@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,10 +43,12 @@ export interface UserRegistration {
  * Check if a given object implements the UserRegistration interface.
  */
 export function instanceOfUserRegistration(value: object): boolean {
-    if (!('email' in value)) return false;
-    if (!('password' in value)) return false;
-    if (!('realName' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "email" in value;
+    isInstance = isInstance && "password" in value;
+    isInstance = isInstance && "realName" in value;
+
+    return isInstance;
 }
 
 export function UserRegistrationFromJSON(json: any): UserRegistration {
@@ -54,7 +56,7 @@ export function UserRegistrationFromJSON(json: any): UserRegistration {
 }
 
 export function UserRegistrationFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserRegistration {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -66,14 +68,17 @@ export function UserRegistrationFromJSONTyped(json: any, ignoreDiscriminator: bo
 }
 
 export function UserRegistrationToJSON(value?: UserRegistration | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'email': value['email'],
-        'password': value['password'],
-        'realName': value['realName'],
+        'email': value.email,
+        'password': value.password,
+        'realName': value.realName,
     };
 }
 

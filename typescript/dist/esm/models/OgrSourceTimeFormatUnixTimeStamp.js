@@ -22,17 +22,16 @@ export const OgrSourceTimeFormatUnixTimeStampFormatEnum = {
  * Check if a given object implements the OgrSourceTimeFormatUnixTimeStamp interface.
  */
 export function instanceOfOgrSourceTimeFormatUnixTimeStamp(value) {
-    if (!('format' in value))
-        return false;
-    if (!('timestampType' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "format" in value;
+    isInstance = isInstance && "timestampType" in value;
+    return isInstance;
 }
 export function OgrSourceTimeFormatUnixTimeStampFromJSON(json) {
     return OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, false);
 }
 export function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -41,11 +40,14 @@ export function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, ignoreDiscri
     };
 }
 export function OgrSourceTimeFormatUnixTimeStampToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'format': value['format'],
-        'timestampType': UnixTimeStampTypeToJSON(value['timestampType']),
+        'format': value.format,
+        'timestampType': UnixTimeStampTypeToJSON(value.timestampType),
     };
 }

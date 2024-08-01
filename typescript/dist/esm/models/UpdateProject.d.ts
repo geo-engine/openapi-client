@@ -24,13 +24,13 @@ export interface UpdateProject {
      * @type {STRectangle}
      * @memberof UpdateProject
      */
-    bounds?: STRectangle;
+    bounds?: STRectangle | null;
     /**
      *
      * @type {string}
      * @memberof UpdateProject
      */
-    description?: string;
+    description?: string | null;
     /**
      *
      * @type {string}
@@ -42,25 +42,25 @@ export interface UpdateProject {
      * @type {Array<LayerUpdate>}
      * @memberof UpdateProject
      */
-    layers?: Array<LayerUpdate>;
+    layers?: Array<LayerUpdate> | null;
     /**
      *
      * @type {string}
      * @memberof UpdateProject
      */
-    name?: string;
+    name?: string | null;
     /**
      *
      * @type {Array<PlotUpdate>}
      * @memberof UpdateProject
      */
-    plots?: Array<PlotUpdate>;
+    plots?: Array<PlotUpdate> | null;
     /**
      *
      * @type {TimeStep}
      * @memberof UpdateProject
      */
-    timeStep?: TimeStep;
+    timeStep?: TimeStep | null;
 }
 /**
  * Check if a given object implements the UpdateProject interface.

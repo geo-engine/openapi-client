@@ -16,17 +16,16 @@ import { Coordinate2DFromJSON, Coordinate2DToJSON, } from './Coordinate2D';
  * Check if a given object implements the BoundingBox2D interface.
  */
 export function instanceOfBoundingBox2D(value) {
-    if (!('lowerLeftCoordinate' in value))
-        return false;
-    if (!('upperRightCoordinate' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "lowerLeftCoordinate" in value;
+    isInstance = isInstance && "upperRightCoordinate" in value;
+    return isInstance;
 }
 export function BoundingBox2DFromJSON(json) {
     return BoundingBox2DFromJSONTyped(json, false);
 }
 export function BoundingBox2DFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -35,11 +34,14 @@ export function BoundingBox2DFromJSONTyped(json, ignoreDiscriminator) {
     };
 }
 export function BoundingBox2DToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'lowerLeftCoordinate': Coordinate2DToJSON(value['lowerLeftCoordinate']),
-        'upperRightCoordinate': Coordinate2DToJSON(value['upperRightCoordinate']),
+        'lowerLeftCoordinate': Coordinate2DToJSON(value.lowerLeftCoordinate),
+        'upperRightCoordinate': Coordinate2DToJSON(value.upperRightCoordinate),
     };
 }

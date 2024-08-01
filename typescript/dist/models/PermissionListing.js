@@ -21,13 +21,11 @@ const Role_1 = require("./Role");
  * Check if a given object implements the PermissionListing interface.
  */
 function instanceOfPermissionListing(value) {
-    if (!('permission' in value))
-        return false;
-    if (!('resourceId' in value))
-        return false;
-    if (!('role' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "permission" in value;
+    isInstance = isInstance && "resourceId" in value;
+    isInstance = isInstance && "role" in value;
+    return isInstance;
 }
 exports.instanceOfPermissionListing = instanceOfPermissionListing;
 function PermissionListingFromJSON(json) {
@@ -35,7 +33,7 @@ function PermissionListingFromJSON(json) {
 }
 exports.PermissionListingFromJSON = PermissionListingFromJSON;
 function PermissionListingFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,13 +44,16 @@ function PermissionListingFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.PermissionListingFromJSONTyped = PermissionListingFromJSONTyped;
 function PermissionListingToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'permission': (0, Permission_1.PermissionToJSON)(value['permission']),
-        'resourceId': (0, ResourceId_1.ResourceIdToJSON)(value['resourceId']),
-        'role': (0, Role_1.RoleToJSON)(value['role']),
+        'permission': (0, Permission_1.PermissionToJSON)(value.permission),
+        'resourceId': (0, ResourceId_1.ResourceIdToJSON)(value.resourceId),
+        'role': (0, Role_1.RoleToJSON)(value.role),
     };
 }
 exports.PermissionListingToJSON = PermissionListingToJSON;

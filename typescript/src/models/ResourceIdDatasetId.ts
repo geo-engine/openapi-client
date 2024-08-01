@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -47,9 +47,11 @@ export type ResourceIdDatasetIdTypeEnum = typeof ResourceIdDatasetIdTypeEnum[key
  * Check if a given object implements the ResourceIdDatasetId interface.
  */
 export function instanceOfResourceIdDatasetId(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function ResourceIdDatasetIdFromJSON(json: any): ResourceIdDatasetId {
@@ -57,7 +59,7 @@ export function ResourceIdDatasetIdFromJSON(json: any): ResourceIdDatasetId {
 }
 
 export function ResourceIdDatasetIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceIdDatasetId {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -68,13 +70,16 @@ export function ResourceIdDatasetIdFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function ResourceIdDatasetIdToJSON(value?: ResourceIdDatasetId | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 

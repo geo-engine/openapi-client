@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 import type { RasterBandDescriptor } from './RasterBandDescriptor';
 import {
     RasterBandDescriptorFromJSON,
@@ -61,7 +61,7 @@ export interface TypedRasterResultDescriptor {
      * @type {SpatialPartition2D}
      * @memberof TypedRasterResultDescriptor
      */
-    bbox?: SpatialPartition2D;
+    bbox?: SpatialPartition2D | null;
     /**
      * 
      * @type {RasterDataType}
@@ -73,7 +73,7 @@ export interface TypedRasterResultDescriptor {
      * @type {SpatialResolution}
      * @memberof TypedRasterResultDescriptor
      */
-    resolution?: SpatialResolution;
+    resolution?: SpatialResolution | null;
     /**
      * 
      * @type {string}
@@ -85,7 +85,7 @@ export interface TypedRasterResultDescriptor {
      * @type {TimeInterval}
      * @memberof TypedRasterResultDescriptor
      */
-    time?: TimeInterval;
+    time?: TimeInterval | null;
     /**
      * 
      * @type {string}
@@ -108,11 +108,13 @@ export type TypedRasterResultDescriptorTypeEnum = typeof TypedRasterResultDescri
  * Check if a given object implements the TypedRasterResultDescriptor interface.
  */
 export function instanceOfTypedRasterResultDescriptor(value: object): boolean {
-    if (!('bands' in value)) return false;
-    if (!('dataType' in value)) return false;
-    if (!('spatialReference' in value)) return false;
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "bands" in value;
+    isInstance = isInstance && "dataType" in value;
+    isInstance = isInstance && "spatialReference" in value;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function TypedRasterResultDescriptorFromJSON(json: any): TypedRasterResultDescriptor {
@@ -120,34 +122,37 @@ export function TypedRasterResultDescriptorFromJSON(json: any): TypedRasterResul
 }
 
 export function TypedRasterResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedRasterResultDescriptor {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'bands': ((json['bands'] as Array<any>).map(RasterBandDescriptorFromJSON)),
-        'bbox': json['bbox'] == null ? undefined : SpatialPartition2DFromJSON(json['bbox']),
+        'bbox': !exists(json, 'bbox') ? undefined : SpatialPartition2DFromJSON(json['bbox']),
         'dataType': RasterDataTypeFromJSON(json['dataType']),
-        'resolution': json['resolution'] == null ? undefined : SpatialResolutionFromJSON(json['resolution']),
+        'resolution': !exists(json, 'resolution') ? undefined : SpatialResolutionFromJSON(json['resolution']),
         'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
         'type': json['type'],
     };
 }
 
 export function TypedRasterResultDescriptorToJSON(value?: TypedRasterResultDescriptor | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'bands': ((value['bands'] as Array<any>).map(RasterBandDescriptorToJSON)),
-        'bbox': SpatialPartition2DToJSON(value['bbox']),
-        'dataType': RasterDataTypeToJSON(value['dataType']),
-        'resolution': SpatialResolutionToJSON(value['resolution']),
-        'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
-        'type': value['type'],
+        'bands': ((value.bands as Array<any>).map(RasterBandDescriptorToJSON)),
+        'bbox': SpatialPartition2DToJSON(value.bbox),
+        'dataType': RasterDataTypeToJSON(value.dataType),
+        'resolution': SpatialResolutionToJSON(value.resolution),
+        'spatialReference': value.spatialReference,
+        'time': TimeIntervalToJSON(value.time),
+        'type': value.type,
     };
 }
 

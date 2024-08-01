@@ -14,17 +14,19 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
 import json
 import pprint
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+import re  # noqa: F401
+
 from typing import Any, List, Optional
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from geoengine_openapi_client.models.resource_dataset import ResourceDataset
 from geoengine_openapi_client.models.resource_layer import ResourceLayer
 from geoengine_openapi_client.models.resource_layer_collection import ResourceLayerCollection
 from geoengine_openapi_client.models.resource_project import ResourceProject
+from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
-from typing import Union, List, Optional, Dict
-from typing_extensions import Literal, Self
 
 RESOURCE_ONE_OF_SCHEMAS = ["ResourceDataset", "ResourceLayer", "ResourceLayerCollection", "ResourceProject"]
 
@@ -40,16 +42,16 @@ class Resource(BaseModel):
     oneof_schema_3_validator: Optional[ResourceProject] = None
     # data type: ResourceDataset
     oneof_schema_4_validator: Optional[ResourceDataset] = None
-    actual_instance: Optional[Union[ResourceDataset, ResourceLayer, ResourceLayerCollection, ResourceProject]] = None
-    one_of_schemas: List[str] = Field(default=Literal["ResourceDataset", "ResourceLayer", "ResourceLayerCollection", "ResourceProject"])
+    if TYPE_CHECKING:
+        actual_instance: Union[ResourceDataset, ResourceLayer, ResourceLayerCollection, ResourceProject]
+    else:
+        actual_instance: Any
+    one_of_schemas: List[str] = Field(RESOURCE_ONE_OF_SCHEMAS, const=True)
 
-    model_config = ConfigDict(
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    class Config:
+        validate_assignment = True
 
-
-    discriminator_value_class_map: Dict[str, str] = {
+    discriminator_value_class_map = {
     }
 
     def __init__(self, *args, **kwargs) -> None:
@@ -62,9 +64,9 @@ class Resource(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @field_validator('actual_instance')
+    @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = Resource.model_construct()
+        instance = Resource.construct()
         error_messages = []
         match = 0
         # validate data type: ResourceLayer
@@ -97,13 +99,13 @@ class Resource(BaseModel):
             return v
 
     @classmethod
-    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
+    def from_dict(cls, obj: dict) -> Resource:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Resource:
         """Returns the object represented by the json string"""
-        instance = cls.model_construct()
+        instance = Resource.construct()
         error_messages = []
         match = 0
 
@@ -111,26 +113,6 @@ class Resource(BaseModel):
         _data_type = json.loads(json_str).get("type")
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
-
-        # check if data type is `ResourceDataset`
-        if _data_type == "dataset":
-            instance.actual_instance = ResourceDataset.from_json(json_str)
-            return instance
-
-        # check if data type is `ResourceLayer`
-        if _data_type == "layer":
-            instance.actual_instance = ResourceLayer.from_json(json_str)
-            return instance
-
-        # check if data type is `ResourceLayerCollection`
-        if _data_type == "layerCollection":
-            instance.actual_instance = ResourceLayerCollection.from_json(json_str)
-            return instance
-
-        # check if data type is `ResourceProject`
-        if _data_type == "project":
-            instance.actual_instance = ResourceProject.from_json(json_str)
-            return instance
 
         # check if data type is `ResourceDataset`
         if _data_type == "ResourceDataset":
@@ -149,6 +131,26 @@ class Resource(BaseModel):
 
         # check if data type is `ResourceProject`
         if _data_type == "ResourceProject":
+            instance.actual_instance = ResourceProject.from_json(json_str)
+            return instance
+
+        # check if data type is `ResourceDataset`
+        if _data_type == "dataset":
+            instance.actual_instance = ResourceDataset.from_json(json_str)
+            return instance
+
+        # check if data type is `ResourceLayer`
+        if _data_type == "layer":
+            instance.actual_instance = ResourceLayer.from_json(json_str)
+            return instance
+
+        # check if data type is `ResourceLayerCollection`
+        if _data_type == "layerCollection":
+            instance.actual_instance = ResourceLayerCollection.from_json(json_str)
+            return instance
+
+        # check if data type is `ResourceProject`
+        if _data_type == "project":
             instance.actual_instance = ResourceProject.from_json(json_str)
             return instance
 
@@ -191,17 +193,19 @@ class Resource(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+        to_json = getattr(self.actual_instance, "to_json", None)
+        if callable(to_json):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], ResourceDataset, ResourceLayer, ResourceLayerCollection, ResourceProject]]:
+    def to_dict(self) -> dict:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
-        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+        to_dict = getattr(self.actual_instance, "to_dict", None)
+        if callable(to_dict):
             return self.actual_instance.to_dict()
         else:
             # primitive type
@@ -209,6 +213,6 @@ class Resource(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.model_dump())
+        return pprint.pformat(self.dict())
 
 

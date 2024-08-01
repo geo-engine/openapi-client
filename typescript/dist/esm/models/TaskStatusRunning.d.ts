@@ -32,7 +32,7 @@ export interface TaskStatusRunning {
      * @type {any}
      * @memberof TaskStatusRunning
      */
-    info?: any;
+    info?: any | null;
     /**
      *
      * @type {string}

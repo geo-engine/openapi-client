@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.colorizer_rgba import ColorizerRgba
+from geoengine_openapi_client.models.colorizer_rgba import ColorizerRgba  # noqa: E501
 
 class TestColorizerRgba(unittest.TestCase):
     """ColorizerRgba unit test stubs"""
@@ -33,7 +34,7 @@ class TestColorizerRgba(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ColorizerRgba`
         """
-        model = ColorizerRgba()
+        model = ColorizerRgba()  # noqa: E501
         if include_optional:
             return ColorizerRgba(
                 type = 'rgba'

@@ -18,17 +18,19 @@ exports.ResourceLayerToJSON = exports.ResourceLayerFromJSONTyped = exports.Resou
  * @export
  */
 exports.ResourceLayerTypeEnum = {
-    Layer: 'layer'
+    Layer: 'layer',
+    LayerCollection: 'layerCollection',
+    Project: 'project',
+    Dataset: 'dataset'
 };
 /**
  * Check if a given object implements the ResourceLayer interface.
  */
 function instanceOfResourceLayer(value) {
-    if (!('id' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfResourceLayer = instanceOfResourceLayer;
 function ResourceLayerFromJSON(json) {
@@ -36,7 +38,7 @@ function ResourceLayerFromJSON(json) {
 }
 exports.ResourceLayerFromJSON = ResourceLayerFromJSON;
 function ResourceLayerFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,12 +48,15 @@ function ResourceLayerFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ResourceLayerFromJSONTyped = ResourceLayerFromJSONTyped;
 function ResourceLayerToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 exports.ResourceLayerToJSON = ResourceLayerToJSON;

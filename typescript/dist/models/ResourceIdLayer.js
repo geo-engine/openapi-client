@@ -18,17 +18,20 @@ exports.ResourceIdLayerToJSON = exports.ResourceIdLayerFromJSONTyped = exports.R
  * @export
  */
 exports.ResourceIdLayerTypeEnum = {
-    Layer: 'Layer'
+    Layer: 'Layer',
+    LayerCollection: 'LayerCollection',
+    Project: 'Project',
+    DatasetId: 'DatasetId',
+    ModelId: 'ModelId'
 };
 /**
  * Check if a given object implements the ResourceIdLayer interface.
  */
 function instanceOfResourceIdLayer(value) {
-    if (!('id' in value))
-        return false;
-    if (!('type' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "id" in value;
+    isInstance = isInstance && "type" in value;
+    return isInstance;
 }
 exports.instanceOfResourceIdLayer = instanceOfResourceIdLayer;
 function ResourceIdLayerFromJSON(json) {
@@ -36,7 +39,7 @@ function ResourceIdLayerFromJSON(json) {
 }
 exports.ResourceIdLayerFromJSON = ResourceIdLayerFromJSON;
 function ResourceIdLayerFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -46,12 +49,15 @@ function ResourceIdLayerFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ResourceIdLayerFromJSONTyped = ResourceIdLayerFromJSONTyped;
 function ResourceIdLayerToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'id': value['id'],
-        'type': value['type'],
+        'id': value.id,
+        'type': value.type,
     };
 }
 exports.ResourceIdLayerToJSON = ResourceIdLayerToJSON;

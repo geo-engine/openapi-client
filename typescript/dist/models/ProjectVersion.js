@@ -18,11 +18,10 @@ exports.ProjectVersionToJSON = exports.ProjectVersionFromJSONTyped = exports.Pro
  * Check if a given object implements the ProjectVersion interface.
  */
 function instanceOfProjectVersion(value) {
-    if (!('changed' in value))
-        return false;
-    if (!('id' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "changed" in value;
+    isInstance = isInstance && "id" in value;
+    return isInstance;
 }
 exports.instanceOfProjectVersion = instanceOfProjectVersion;
 function ProjectVersionFromJSON(json) {
@@ -30,7 +29,7 @@ function ProjectVersionFromJSON(json) {
 }
 exports.ProjectVersionFromJSON = ProjectVersionFromJSON;
 function ProjectVersionFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,12 +39,15 @@ function ProjectVersionFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.ProjectVersionFromJSONTyped = ProjectVersionFromJSONTyped;
 function ProjectVersionToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'changed': ((value['changed']).toISOString()),
-        'id': value['id'],
+        'changed': (value.changed.toISOString()),
+        'id': value.id,
     };
 }
 exports.ProjectVersionToJSON = ProjectVersionToJSON;

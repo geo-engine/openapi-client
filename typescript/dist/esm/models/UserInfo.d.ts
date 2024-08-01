@@ -20,7 +20,7 @@ export interface UserInfo {
      * @type {string}
      * @memberof UserInfo
      */
-    email?: string;
+    email?: string | null;
     /**
      *
      * @type {string}
@@ -32,7 +32,7 @@ export interface UserInfo {
      * @type {string}
      * @memberof UserInfo
      */
-    realName?: string;
+    realName?: string | null;
 }
 /**
  * Check if a given object implements the UserInfo interface.

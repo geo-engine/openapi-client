@@ -18,72 +18,56 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+
+
+from pydantic import Field, StrictStr
 from geoengine_openapi_client.models.task_status import TaskStatus
-from typing import Optional, Set
-from typing_extensions import Self
 
 class TaskStatusWithId(TaskStatus):
     """
     TaskStatusWithId
-    """ # noqa: E501
-    task_id: StrictStr = Field(alias="taskId")
-    __properties: ClassVar[List[str]] = ["description", "estimatedTimeRemaining", "info", "pctComplete", "status", "taskType", "timeStarted", "timeTotal", "cleanUp", "error", "taskId"]
+    """
+    task_id: StrictStr = Field(..., alias="taskId")
+    __properties = ["description", "estimatedTimeRemaining", "info", "pctComplete", "status", "taskType", "timeStarted", "timeTotal", "cleanUp", "error", "taskId"]
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
-
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> TaskStatusWithId:
         """Create an instance of TaskStatusWithId from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
         # set to None if info (nullable) is None
-        # and model_fields_set contains the field
+        # and __fields_set__ contains the field
         # Note: fixed handling of actual_instance
         if getattr(self.actual_instance, "info", None) is None and "info" in self.actual_instance.__fields_set__:
             _dict['info'] = None
 
         # set to None if clean_up (nullable) is None
-        # and model_fields_set contains the field
+        # and __fields_set__ contains the field
         # Note: fixed handling of actual_instance
         if getattr(self.actual_instance, "clean_up", None) is None and "clean_up" in self.actual_instance.__fields_set__:
             _dict['cleanUp'] = None
 
         # set to None if error (nullable) is None
-        # and model_fields_set contains the field
+        # and __fields_set__ contains the field
         # Note: fixed handling of actual_instance
         if getattr(self.actual_instance, "error", None) is None and "error" in self.actual_instance.__fields_set__:
             _dict['error'] = None
@@ -91,33 +75,33 @@ class TaskStatusWithId(TaskStatus):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: dict) -> TaskStatusWithId:
         """Create an instance of TaskStatusWithId from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            return TaskStatusWithId.parse_obj(obj)
 
         # Note: fixed handling of actual_instance
-        _obj = cls.model_validate({
+        _obj = TaskStatusWithId.parse_obj({
             "actual_instance": TaskStatus.from_dict(obj).actual_instance,
             "task_id": obj.get("taskId")
         })
         return _obj
 
-        _obj = cls.model_validate({
+        _obj = TaskStatusWithId.parse_obj({
             "description": obj.get("description"),
-            "estimatedTimeRemaining": obj.get("estimatedTimeRemaining"),
+            "estimated_time_remaining": obj.get("estimatedTimeRemaining"),
             "info": obj.get("info"),
-            "pctComplete": obj.get("pctComplete"),
+            "pct_complete": obj.get("pctComplete"),
             "status": obj.get("status"),
-            "taskType": obj.get("taskType"),
-            "timeStarted": obj.get("timeStarted"),
-            "timeTotal": obj.get("timeTotal"),
-            "cleanUp": obj.get("cleanUp"),
+            "task_type": obj.get("taskType"),
+            "time_started": obj.get("timeStarted"),
+            "time_total": obj.get("timeTotal"),
+            "clean_up": obj.get("cleanUp"),
             "error": obj.get("error"),
-            "taskId": obj.get("taskId")
+            "task_id": obj.get("taskId")
         })
         return _obj
 

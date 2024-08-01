@@ -34,7 +34,7 @@ export interface LineSymbology {
      * @type {TextSymbology}
      * @memberof LineSymbology
      */
-    text?: TextSymbology;
+    text?: TextSymbology | null;
     /**
      *
      * @type {string}

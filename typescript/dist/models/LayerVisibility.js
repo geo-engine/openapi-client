@@ -18,11 +18,10 @@ exports.LayerVisibilityToJSON = exports.LayerVisibilityFromJSONTyped = exports.L
  * Check if a given object implements the LayerVisibility interface.
  */
 function instanceOfLayerVisibility(value) {
-    if (!('data' in value))
-        return false;
-    if (!('legend' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "data" in value;
+    isInstance = isInstance && "legend" in value;
+    return isInstance;
 }
 exports.instanceOfLayerVisibility = instanceOfLayerVisibility;
 function LayerVisibilityFromJSON(json) {
@@ -30,7 +29,7 @@ function LayerVisibilityFromJSON(json) {
 }
 exports.LayerVisibilityFromJSON = LayerVisibilityFromJSON;
 function LayerVisibilityFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -40,12 +39,15 @@ function LayerVisibilityFromJSONTyped(json, ignoreDiscriminator) {
 }
 exports.LayerVisibilityFromJSONTyped = LayerVisibilityFromJSONTyped;
 function LayerVisibilityToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'data': value['data'],
-        'legend': value['legend'],
+        'data': value.data,
+        'legend': value.legend,
     };
 }
 exports.LayerVisibilityToJSON = LayerVisibilityToJSON;

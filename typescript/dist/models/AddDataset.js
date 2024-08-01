@@ -14,19 +14,18 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AddDatasetToJSON = exports.AddDatasetFromJSONTyped = exports.AddDatasetFromJSON = exports.instanceOfAddDataset = void 0;
+const runtime_1 = require("../runtime");
 const Provenance_1 = require("./Provenance");
 const Symbology_1 = require("./Symbology");
 /**
  * Check if a given object implements the AddDataset interface.
  */
 function instanceOfAddDataset(value) {
-    if (!('description' in value))
-        return false;
-    if (!('displayName' in value))
-        return false;
-    if (!('sourceOperator' in value))
-        return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "displayName" in value;
+    isInstance = isInstance && "sourceOperator" in value;
+    return isInstance;
 }
 exports.instanceOfAddDataset = instanceOfAddDataset;
 function AddDatasetFromJSON(json) {
@@ -34,32 +33,35 @@ function AddDatasetFromJSON(json) {
 }
 exports.AddDatasetFromJSON = AddDatasetFromJSON;
 function AddDatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         'description': json['description'],
         'displayName': json['displayName'],
-        'name': json['name'] == null ? undefined : json['name'],
-        'provenance': json['provenance'] == null ? undefined : (json['provenance'].map(Provenance_1.ProvenanceFromJSON)),
+        'name': !(0, runtime_1.exists)(json, 'name') ? undefined : json['name'],
+        'provenance': !(0, runtime_1.exists)(json, 'provenance') ? undefined : (json['provenance'] === null ? null : json['provenance'].map(Provenance_1.ProvenanceFromJSON)),
         'sourceOperator': json['sourceOperator'],
-        'symbology': json['symbology'] == null ? undefined : (0, Symbology_1.SymbologyFromJSON)(json['symbology']),
-        'tags': json['tags'] == null ? undefined : json['tags'],
+        'symbology': !(0, runtime_1.exists)(json, 'symbology') ? undefined : (0, Symbology_1.SymbologyFromJSON)(json['symbology']),
+        'tags': !(0, runtime_1.exists)(json, 'tags') ? undefined : json['tags'],
     };
 }
 exports.AddDatasetFromJSONTyped = AddDatasetFromJSONTyped;
 function AddDatasetToJSON(value) {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
-        'description': value['description'],
-        'displayName': value['displayName'],
-        'name': value['name'],
-        'provenance': value['provenance'] == null ? undefined : (value['provenance'].map(Provenance_1.ProvenanceToJSON)),
-        'sourceOperator': value['sourceOperator'],
-        'symbology': (0, Symbology_1.SymbologyToJSON)(value['symbology']),
-        'tags': value['tags'],
+        'description': value.description,
+        'displayName': value.displayName,
+        'name': value.name,
+        'provenance': value.provenance === undefined ? undefined : (value.provenance === null ? null : value.provenance.map(Provenance_1.ProvenanceToJSON)),
+        'sourceOperator': value.sourceOperator,
+        'symbology': (0, Symbology_1.SymbologyToJSON)(value.symbology),
+        'tags': value.tags,
     };
 }
 exports.AddDatasetToJSON = AddDatasetToJSON;

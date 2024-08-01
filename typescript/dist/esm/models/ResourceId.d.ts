@@ -9,11 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ResourceIdDatasetId } from './ResourceIdDatasetId';
-import type { ResourceIdLayer } from './ResourceIdLayer';
-import type { ResourceIdLayerCollection } from './ResourceIdLayerCollection';
-import type { ResourceIdModelId } from './ResourceIdModelId';
-import type { ResourceIdProject } from './ResourceIdProject';
+import { ResourceIdDatasetId } from './ResourceIdDatasetId';
+import { ResourceIdLayer } from './ResourceIdLayer';
+import { ResourceIdLayerCollection } from './ResourceIdLayerCollection';
+import { ResourceIdModelId } from './ResourceIdModelId';
+import { ResourceIdProject } from './ResourceIdProject';
 /**
  * @type ResourceId
  *

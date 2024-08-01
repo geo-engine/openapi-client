@@ -27,6 +27,9 @@ export interface OgrSourceDatasetTimeTypeNone {
  */
 export declare const OgrSourceDatasetTimeTypeNoneTypeEnum: {
     readonly None: "none";
+    readonly Start: "start";
+    readonly StartEnd: "startEnd";
+    readonly StartDuration: "startDuration";
 };
 export type OgrSourceDatasetTimeTypeNoneTypeEnum = typeof OgrSourceDatasetTimeTypeNoneTypeEnum[keyof typeof OgrSourceDatasetTimeTypeNoneTypeEnum];
 /**

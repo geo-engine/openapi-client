@@ -14,8 +14,9 @@
 
 
 import unittest
+import datetime
 
-from geoengine_openapi_client.models.task_status_failed import TaskStatusFailed
+from geoengine_openapi_client.models.task_status_failed import TaskStatusFailed  # noqa: E501
 
 class TestTaskStatusFailed(unittest.TestCase):
     """TaskStatusFailed unit test stubs"""
@@ -33,7 +34,7 @@ class TestTaskStatusFailed(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TaskStatusFailed`
         """
-        model = TaskStatusFailed()
+        model = TaskStatusFailed()  # noqa: E501
         if include_optional:
             return TaskStatusFailed(
                 clean_up = None,

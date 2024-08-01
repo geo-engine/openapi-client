@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -32,7 +32,9 @@ export interface UnitlessMeasurement {
  * @export
  */
 export const UnitlessMeasurementTypeEnum = {
-    Unitless: 'unitless'
+    Unitless: 'unitless',
+    Continuous: 'continuous',
+    Classification: 'classification'
 } as const;
 export type UnitlessMeasurementTypeEnum = typeof UnitlessMeasurementTypeEnum[keyof typeof UnitlessMeasurementTypeEnum];
 
@@ -41,8 +43,10 @@ export type UnitlessMeasurementTypeEnum = typeof UnitlessMeasurementTypeEnum[key
  * Check if a given object implements the UnitlessMeasurement interface.
  */
 export function instanceOfUnitlessMeasurement(value: object): boolean {
-    if (!('type' in value)) return false;
-    return true;
+    let isInstance = true;
+    isInstance = isInstance && "type" in value;
+
+    return isInstance;
 }
 
 export function UnitlessMeasurementFromJSON(json: any): UnitlessMeasurement {
@@ -50,7 +54,7 @@ export function UnitlessMeasurementFromJSON(json: any): UnitlessMeasurement {
 }
 
 export function UnitlessMeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): UnitlessMeasurement {
-    if (json == null) {
+    if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
@@ -60,12 +64,15 @@ export function UnitlessMeasurementFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function UnitlessMeasurementToJSON(value?: UnitlessMeasurement | null): any {
-    if (value == null) {
-        return value;
+    if (value === undefined) {
+        return undefined;
+    }
+    if (value === null) {
+        return null;
     }
     return {
         
-        'type': value['type'],
+        'type': value.type,
     };
 }
 

@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ColorizerPalette } from './ColorizerPalette';
-import { ColorizerRgba } from './ColorizerRgba';
 import { LinearGradient } from './LinearGradient';
 import { LogarithmicGradient } from './LogarithmicGradient';
+import { PaletteColorizer } from './PaletteColorizer';
+import { RgbaColorizer } from './RgbaColorizer';
 /**
  * @type Colorizer
  *
@@ -24,9 +24,9 @@ export type Colorizer = {
     type: 'logarithmicGradient';
 } & LogarithmicGradient | {
     type: 'palette';
-} & ColorizerPalette | {
+} & PaletteColorizer | {
     type: 'rgba';
-} & ColorizerRgba;
+} & RgbaColorizer;
 export declare function ColorizerFromJSON(json: any): Colorizer;
 export declare function ColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): Colorizer;
 export declare function ColorizerToJSON(value?: Colorizer | null): any;

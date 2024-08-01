@@ -5249,10 +5249,10 @@
             "$ref": "#/components/schemas/LogarithmicGradient"
           },
           {
-            "$ref": "#/components/schemas/ColorizerPalette"
+            "$ref": "#/components/schemas/PaletteColorizer"
           },
           {
-            "$ref": "#/components/schemas/ColorizerRgba"
+            "$ref": "#/components/schemas/RgbaColorizer"
           }
         ],
         "discriminator": {
@@ -5260,48 +5260,8 @@
           "mapping": {
             "linearGradient": "#/components/schemas/LinearGradient",
             "logarithmicGradient": "#/components/schemas/LogarithmicGradient",
-            "palette": "#/components/schemas/ColorizerPalette",
-            "rgba": "#/components/schemas/ColorizerRgba"
-          }
-        }
-      },
-      "ColorizerPalette": {
-        "type": "object",
-        "required": [
-          "colors",
-          "noDataColor",
-          "defaultColor",
-          "type"
-        ],
-        "properties": {
-          "colors": {
-            "$ref": "#/components/schemas/Palette"
-          },
-          "defaultColor": {
-            "$ref": "#/components/schemas/RgbaColor"
-          },
-          "noDataColor": {
-            "$ref": "#/components/schemas/RgbaColor"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "palette"
-            ]
-          }
-        }
-      },
-      "ColorizerRgba": {
-        "type": "object",
-        "required": [
-          "type"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "rgba"
-            ]
+            "palette": "#/components/schemas/PaletteColorizer",
+            "rgba": "#/components/schemas/RgbaColorizer"
           }
         }
       },
@@ -5586,6 +5546,25 @@
       },
       "DatasetName": {
         "type": "string"
+      },
+      "DatasetResource": {
+        "type": "object",
+        "title": "DatasetResource",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/DatasetId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "dataset"
+            ]
+          }
+        }
       },
       "DateTime": {
         "type": "object",
@@ -6253,6 +6232,25 @@
           }
         }
       },
+      "LayerCollectionResource": {
+        "type": "object",
+        "title": "LayerCollectionResource",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/LayerCollectionId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "layerCollection"
+            ]
+          }
+        }
+      },
       "LayerId": {
         "type": "string"
       },
@@ -6280,6 +6278,25 @@
               "$ref": "#/components/schemas/Property"
             },
             "description": "properties, for instance, to be rendered in the UI"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "layer"
+            ]
+          }
+        }
+      },
+      "LayerResource": {
+        "type": "object",
+        "title": "LayerResource",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/LayerId"
           },
           "type": {
             "type": "string",
@@ -6584,7 +6601,7 @@
       "NumberParam": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/NumberParamStatic"
+            "$ref": "#/components/schemas/StaticNumberParam"
           },
           {
             "$ref": "#/components/schemas/DerivedNumber"
@@ -6594,26 +6611,7 @@
           "propertyName": "type",
           "mapping": {
             "derived": "#/components/schemas/DerivedNumber",
-            "static": "#/components/schemas/NumberParamStatic"
-          }
-        }
-      },
-      "NumberParamStatic": {
-        "type": "object",
-        "required": [
-          "value",
-          "type"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "static"
-            ]
-          },
-          "value": {
-            "type": "integer",
-            "minimum": 0
+            "static": "#/components/schemas/StaticNumberParam"
           }
         }
       },
@@ -7051,6 +7049,33 @@
           "$ref": "#/components/schemas/RgbaColor"
         }
       },
+      "PaletteColorizer": {
+        "type": "object",
+        "title": "PaletteColorizer",
+        "required": [
+          "colors",
+          "noDataColor",
+          "defaultColor",
+          "type"
+        ],
+        "properties": {
+          "colors": {
+            "$ref": "#/components/schemas/Palette"
+          },
+          "defaultColor": {
+            "$ref": "#/components/schemas/RgbaColor"
+          },
+          "noDataColor": {
+            "$ref": "#/components/schemas/RgbaColor"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "palette"
+            ]
+          }
+        }
+      },
       "Permission": {
         "type": "string",
         "enum": [
@@ -7375,6 +7400,25 @@
           }
         }
       },
+      "ProjectResource": {
+        "type": "object",
+        "title": "ProjectResource",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ProjectId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "project"
+            ]
+          }
+        }
+      },
       "ProjectUpdateToken": {
         "type": "string",
         "enum": [
@@ -7566,37 +7610,13 @@
       "RasterColorizer": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/RasterColorizerSingleBand"
+            "$ref": "#/components/schemas/SingleBandRasterColorizer"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "singleBand": "#/components/schemas/RasterColorizerSingleBand"
-          }
-        }
-      },
-      "RasterColorizerSingleBand": {
-        "type": "object",
-        "required": [
-          "band",
-          "bandColorizer",
-          "type"
-        ],
-        "properties": {
-          "band": {
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0
-          },
-          "bandColorizer": {
-            "$ref": "#/components/schemas/Colorizer"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "singleBand"
-            ]
+            "singleBand": "#/components/schemas/SingleBandRasterColorizer"
           }
         }
       },
@@ -7807,43 +7827,25 @@
       "Resource": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/ResourceLayer"
+            "$ref": "#/components/schemas/LayerResource"
           },
           {
-            "$ref": "#/components/schemas/ResourceLayerCollection"
+            "$ref": "#/components/schemas/LayerCollectionResource"
           },
           {
-            "$ref": "#/components/schemas/ResourceProject"
+            "$ref": "#/components/schemas/ProjectResource"
           },
           {
-            "$ref": "#/components/schemas/ResourceDataset"
+            "$ref": "#/components/schemas/DatasetResource"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "dataset": "#/components/schemas/ResourceDataset",
-            "layer": "#/components/schemas/ResourceLayer",
-            "layerCollection": "#/components/schemas/ResourceLayerCollection",
-            "project": "#/components/schemas/ResourceProject"
-          }
-        }
-      },
-      "ResourceDataset": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/DatasetId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "dataset"
-            ]
+            "dataset": "#/components/schemas/DatasetResource",
+            "layer": "#/components/schemas/LayerResource",
+            "layerCollection": "#/components/schemas/LayerCollectionResource",
+            "project": "#/components/schemas/ProjectResource"
           }
         }
       },
@@ -7966,60 +7968,6 @@
           }
         }
       },
-      "ResourceLayer": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/LayerId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "layer"
-            ]
-          }
-        }
-      },
-      "ResourceLayerCollection": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/LayerCollectionId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "layerCollection"
-            ]
-          }
-        }
-      },
-      "ResourceProject": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ProjectId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "project"
-            ]
-          }
-        }
-      },
       "RgbaColor": {
         "type": "array",
         "items": {
@@ -8027,6 +7975,21 @@
         },
         "maxItems": 4,
         "minItems": 4
+      },
+      "RgbaColorizer": {
+        "type": "object",
+        "title": "RgbaColorizer",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "rgba"
+            ]
+          }
+        }
       },
       "Role": {
         "type": "object",
@@ -8152,6 +8115,31 @@
         "type": "string",
         "format": "uuid"
       },
+      "SingleBandRasterColorizer": {
+        "type": "object",
+        "title": "SingleBandRasterColorizer",
+        "required": [
+          "band",
+          "bandColorizer",
+          "type"
+        ],
+        "properties": {
+          "band": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "bandColorizer": {
+            "$ref": "#/components/schemas/Colorizer"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "singleBand"
+            ]
+          }
+        }
+      },
       "SpatialPartition2D": {
         "type": "object",
         "description": "A partition of space that include the upper left but excludes the lower right coordinate",
@@ -8233,6 +8221,26 @@
           "y": {
             "type": "number",
             "format": "double"
+          }
+        }
+      },
+      "StaticNumberParam": {
+        "type": "object",
+        "title": "StaticNumberParam",
+        "required": [
+          "value",
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "static"
+            ]
+          },
+          "value": {
+            "type": "integer",
+            "minimum": 0
           }
         }
       },

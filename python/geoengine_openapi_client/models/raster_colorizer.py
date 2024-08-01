@@ -21,20 +21,20 @@ import re  # noqa: F401
 
 from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from geoengine_openapi_client.models.raster_colorizer_single_band import RasterColorizerSingleBand
+from geoengine_openapi_client.models.single_band_raster_colorizer import SingleBandRasterColorizer
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-RASTERCOLORIZER_ONE_OF_SCHEMAS = ["RasterColorizerSingleBand"]
+RASTERCOLORIZER_ONE_OF_SCHEMAS = ["SingleBandRasterColorizer"]
 
 class RasterColorizer(BaseModel):
     """
     RasterColorizer
     """
-    # data type: RasterColorizerSingleBand
-    oneof_schema_1_validator: Optional[RasterColorizerSingleBand] = None
+    # data type: SingleBandRasterColorizer
+    oneof_schema_1_validator: Optional[SingleBandRasterColorizer] = None
     if TYPE_CHECKING:
-        actual_instance: Union[RasterColorizerSingleBand]
+        actual_instance: Union[SingleBandRasterColorizer]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(RASTERCOLORIZER_ONE_OF_SCHEMAS, const=True)
@@ -60,17 +60,17 @@ class RasterColorizer(BaseModel):
         instance = RasterColorizer.construct()
         error_messages = []
         match = 0
-        # validate data type: RasterColorizerSingleBand
-        if not isinstance(v, RasterColorizerSingleBand):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `RasterColorizerSingleBand`")
+        # validate data type: SingleBandRasterColorizer
+        if not isinstance(v, SingleBandRasterColorizer):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `SingleBandRasterColorizer`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in RasterColorizer with oneOf schemas: RasterColorizerSingleBand. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in RasterColorizer with oneOf schemas: SingleBandRasterColorizer. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in RasterColorizer with oneOf schemas: RasterColorizerSingleBand. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in RasterColorizer with oneOf schemas: SingleBandRasterColorizer. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -90,29 +90,29 @@ class RasterColorizer(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `RasterColorizerSingleBand`
-        if _data_type == "RasterColorizerSingleBand":
-            instance.actual_instance = RasterColorizerSingleBand.from_json(json_str)
+        # check if data type is `SingleBandRasterColorizer`
+        if _data_type == "SingleBandRasterColorizer":
+            instance.actual_instance = SingleBandRasterColorizer.from_json(json_str)
             return instance
 
-        # check if data type is `RasterColorizerSingleBand`
+        # check if data type is `SingleBandRasterColorizer`
         if _data_type == "singleBand":
-            instance.actual_instance = RasterColorizerSingleBand.from_json(json_str)
+            instance.actual_instance = SingleBandRasterColorizer.from_json(json_str)
             return instance
 
-        # deserialize data into RasterColorizerSingleBand
+        # deserialize data into SingleBandRasterColorizer
         try:
-            instance.actual_instance = RasterColorizerSingleBand.from_json(json_str)
+            instance.actual_instance = SingleBandRasterColorizer.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into RasterColorizer with oneOf schemas: RasterColorizerSingleBand. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into RasterColorizer with oneOf schemas: SingleBandRasterColorizer. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into RasterColorizer with oneOf schemas: RasterColorizerSingleBand. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into RasterColorizer with oneOf schemas: SingleBandRasterColorizer. Details: " + ", ".join(error_messages))
         else:
             return instance
 

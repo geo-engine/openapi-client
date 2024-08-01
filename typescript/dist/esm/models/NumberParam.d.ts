@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import { DerivedNumber } from './DerivedNumber';
-import { NumberParamStatic } from './NumberParamStatic';
+import { StaticNumberParam } from './StaticNumberParam';
 /**
  * @type NumberParam
  *
@@ -20,7 +20,7 @@ export type NumberParam = {
     type: 'derived';
 } & DerivedNumber | {
     type: 'static';
-} & NumberParamStatic;
+} & StaticNumberParam;
 export declare function NumberParamFromJSON(json: any): NumberParam;
 export declare function NumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): NumberParam;
 export declare function NumberParamToJSON(value?: NumberParam | null): any;

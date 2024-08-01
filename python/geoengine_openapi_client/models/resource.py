@@ -21,29 +21,29 @@ import re  # noqa: F401
 
 from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from geoengine_openapi_client.models.resource_dataset import ResourceDataset
-from geoengine_openapi_client.models.resource_layer import ResourceLayer
-from geoengine_openapi_client.models.resource_layer_collection import ResourceLayerCollection
-from geoengine_openapi_client.models.resource_project import ResourceProject
+from geoengine_openapi_client.models.dataset_resource import DatasetResource
+from geoengine_openapi_client.models.layer_collection_resource import LayerCollectionResource
+from geoengine_openapi_client.models.layer_resource import LayerResource
+from geoengine_openapi_client.models.project_resource import ProjectResource
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-RESOURCE_ONE_OF_SCHEMAS = ["ResourceDataset", "ResourceLayer", "ResourceLayerCollection", "ResourceProject"]
+RESOURCE_ONE_OF_SCHEMAS = ["DatasetResource", "LayerCollectionResource", "LayerResource", "ProjectResource"]
 
 class Resource(BaseModel):
     """
     Resource
     """
-    # data type: ResourceLayer
-    oneof_schema_1_validator: Optional[ResourceLayer] = None
-    # data type: ResourceLayerCollection
-    oneof_schema_2_validator: Optional[ResourceLayerCollection] = None
-    # data type: ResourceProject
-    oneof_schema_3_validator: Optional[ResourceProject] = None
-    # data type: ResourceDataset
-    oneof_schema_4_validator: Optional[ResourceDataset] = None
+    # data type: LayerResource
+    oneof_schema_1_validator: Optional[LayerResource] = None
+    # data type: LayerCollectionResource
+    oneof_schema_2_validator: Optional[LayerCollectionResource] = None
+    # data type: ProjectResource
+    oneof_schema_3_validator: Optional[ProjectResource] = None
+    # data type: DatasetResource
+    oneof_schema_4_validator: Optional[DatasetResource] = None
     if TYPE_CHECKING:
-        actual_instance: Union[ResourceDataset, ResourceLayer, ResourceLayerCollection, ResourceProject]
+        actual_instance: Union[DatasetResource, LayerCollectionResource, LayerResource, ProjectResource]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(RESOURCE_ONE_OF_SCHEMAS, const=True)
@@ -69,32 +69,32 @@ class Resource(BaseModel):
         instance = Resource.construct()
         error_messages = []
         match = 0
-        # validate data type: ResourceLayer
-        if not isinstance(v, ResourceLayer):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceLayer`")
+        # validate data type: LayerResource
+        if not isinstance(v, LayerResource):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LayerResource`")
         else:
             match += 1
-        # validate data type: ResourceLayerCollection
-        if not isinstance(v, ResourceLayerCollection):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceLayerCollection`")
+        # validate data type: LayerCollectionResource
+        if not isinstance(v, LayerCollectionResource):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `LayerCollectionResource`")
         else:
             match += 1
-        # validate data type: ResourceProject
-        if not isinstance(v, ResourceProject):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceProject`")
+        # validate data type: ProjectResource
+        if not isinstance(v, ProjectResource):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ProjectResource`")
         else:
             match += 1
-        # validate data type: ResourceDataset
-        if not isinstance(v, ResourceDataset):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceDataset`")
+        # validate data type: DatasetResource
+        if not isinstance(v, DatasetResource):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `DatasetResource`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Resource with oneOf schemas: ResourceDataset, ResourceLayer, ResourceLayerCollection, ResourceProject. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, ProjectResource. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Resource with oneOf schemas: ResourceDataset, ResourceLayer, ResourceLayerCollection, ResourceProject. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, ProjectResource. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -114,77 +114,77 @@ class Resource(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `ResourceDataset`
-        if _data_type == "ResourceDataset":
-            instance.actual_instance = ResourceDataset.from_json(json_str)
+        # check if data type is `DatasetResource`
+        if _data_type == "DatasetResource":
+            instance.actual_instance = DatasetResource.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceLayer`
-        if _data_type == "ResourceLayer":
-            instance.actual_instance = ResourceLayer.from_json(json_str)
+        # check if data type is `LayerCollectionResource`
+        if _data_type == "LayerCollectionResource":
+            instance.actual_instance = LayerCollectionResource.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceLayerCollection`
-        if _data_type == "ResourceLayerCollection":
-            instance.actual_instance = ResourceLayerCollection.from_json(json_str)
+        # check if data type is `LayerResource`
+        if _data_type == "LayerResource":
+            instance.actual_instance = LayerResource.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceProject`
-        if _data_type == "ResourceProject":
-            instance.actual_instance = ResourceProject.from_json(json_str)
+        # check if data type is `ProjectResource`
+        if _data_type == "ProjectResource":
+            instance.actual_instance = ProjectResource.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceDataset`
+        # check if data type is `DatasetResource`
         if _data_type == "dataset":
-            instance.actual_instance = ResourceDataset.from_json(json_str)
+            instance.actual_instance = DatasetResource.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceLayer`
+        # check if data type is `LayerResource`
         if _data_type == "layer":
-            instance.actual_instance = ResourceLayer.from_json(json_str)
+            instance.actual_instance = LayerResource.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceLayerCollection`
+        # check if data type is `LayerCollectionResource`
         if _data_type == "layerCollection":
-            instance.actual_instance = ResourceLayerCollection.from_json(json_str)
+            instance.actual_instance = LayerCollectionResource.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceProject`
+        # check if data type is `ProjectResource`
         if _data_type == "project":
-            instance.actual_instance = ResourceProject.from_json(json_str)
+            instance.actual_instance = ProjectResource.from_json(json_str)
             return instance
 
-        # deserialize data into ResourceLayer
+        # deserialize data into LayerResource
         try:
-            instance.actual_instance = ResourceLayer.from_json(json_str)
+            instance.actual_instance = LayerResource.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ResourceLayerCollection
+        # deserialize data into LayerCollectionResource
         try:
-            instance.actual_instance = ResourceLayerCollection.from_json(json_str)
+            instance.actual_instance = LayerCollectionResource.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ResourceProject
+        # deserialize data into ProjectResource
         try:
-            instance.actual_instance = ResourceProject.from_json(json_str)
+            instance.actual_instance = ProjectResource.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ResourceDataset
+        # deserialize data into DatasetResource
         try:
-            instance.actual_instance = ResourceDataset.from_json(json_str)
+            instance.actual_instance = DatasetResource.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Resource with oneOf schemas: ResourceDataset, ResourceLayer, ResourceLayerCollection, ResourceProject. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, ProjectResource. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Resource with oneOf schemas: ResourceDataset, ResourceLayer, ResourceLayerCollection, ResourceProject. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, ProjectResource. Details: " + ", ".join(error_messages))
         else:
             return instance
 

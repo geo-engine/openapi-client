@@ -15,7 +15,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NumberParamToJSON = exports.NumberParamFromJSONTyped = exports.NumberParamFromJSON = void 0;
 const DerivedNumber_1 = require("./DerivedNumber");
-const NumberParamStatic_1 = require("./NumberParamStatic");
+const StaticNumberParam_1 = require("./StaticNumberParam");
 function NumberParamFromJSON(json) {
     return NumberParamFromJSONTyped(json, false);
 }
@@ -28,7 +28,7 @@ function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
         case 'derived':
             return Object.assign(Object.assign({}, (0, DerivedNumber_1.DerivedNumberFromJSONTyped)(json, true)), { type: 'derived' });
         case 'static':
-            return Object.assign(Object.assign({}, (0, NumberParamStatic_1.NumberParamStaticFromJSONTyped)(json, true)), { type: 'static' });
+            return Object.assign(Object.assign({}, (0, StaticNumberParam_1.StaticNumberParamFromJSONTyped)(json, true)), { type: 'static' });
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }
@@ -45,7 +45,7 @@ function NumberParamToJSON(value) {
         case 'derived':
             return (0, DerivedNumber_1.DerivedNumberToJSON)(value);
         case 'static':
-            return (0, NumberParamStatic_1.NumberParamStaticToJSON)(value);
+            return (0, StaticNumberParam_1.StaticNumberParamToJSON)(value);
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
     }

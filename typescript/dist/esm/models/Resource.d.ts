@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ResourceDataset } from './ResourceDataset';
-import { ResourceLayer } from './ResourceLayer';
-import { ResourceLayerCollection } from './ResourceLayerCollection';
-import { ResourceProject } from './ResourceProject';
+import { DatasetResource } from './DatasetResource';
+import { LayerCollectionResource } from './LayerCollectionResource';
+import { LayerResource } from './LayerResource';
+import { ProjectResource } from './ProjectResource';
 /**
  * @type Resource
  *
@@ -20,13 +20,13 @@ import { ResourceProject } from './ResourceProject';
  */
 export type Resource = {
     type: 'dataset';
-} & ResourceDataset | {
+} & DatasetResource | {
     type: 'layer';
-} & ResourceLayer | {
+} & LayerResource | {
     type: 'layerCollection';
-} & ResourceLayerCollection | {
+} & LayerCollectionResource | {
     type: 'project';
-} & ResourceProject;
+} & ProjectResource;
 export declare function ResourceFromJSON(json: any): Resource;
 export declare function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Resource;
 export declare function ResourceToJSON(value?: Resource | null): any;

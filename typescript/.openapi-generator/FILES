@@ -1,5 +1,6 @@
 .gitignore
 .npmignore
+.openapi-generator-ignore
 README.md
 package.json
 src/apis/DatasetsApi.ts
@@ -36,8 +37,6 @@ src/models/CollectionType.ts
 src/models/ColorParam.ts
 src/models/ColorParamStatic.ts
 src/models/Colorizer.ts
-src/models/ColorizerPalette.ts
-src/models/ColorizerRgba.ts
 src/models/ContinuousMeasurement.ts
 src/models/Coordinate2D.ts
 src/models/CreateDataset.ts
@@ -51,6 +50,7 @@ src/models/DataPathOneOf1.ts
 src/models/Dataset.ts
 src/models/DatasetDefinition.ts
 src/models/DatasetListing.ts
+src/models/DatasetResource.ts
 src/models/DateTime.ts
 src/models/DateTimeParseFormat.ts
 src/models/DerivedColor.ts
@@ -86,7 +86,9 @@ src/models/InternalDataId.ts
 src/models/Layer.ts
 src/models/LayerCollection.ts
 src/models/LayerCollectionListing.ts
+src/models/LayerCollectionResource.ts
 src/models/LayerListing.ts
+src/models/LayerResource.ts
 src/models/LayerUpdate.ts
 src/models/LayerVisibility.ts
 src/models/LineSymbology.ts
@@ -101,7 +103,6 @@ src/models/MultiLineString.ts
 src/models/MultiPoint.ts
 src/models/MultiPolygon.ts
 src/models/NumberParam.ts
-src/models/NumberParamStatic.ts
 src/models/OgrMetaData.ts
 src/models/OgrSourceColumnSpec.ts
 src/models/OgrSourceDataset.ts
@@ -120,6 +121,7 @@ src/models/OgrSourceTimeFormatAuto.ts
 src/models/OgrSourceTimeFormatCustom.ts
 src/models/OgrSourceTimeFormatUnixTimeStamp.ts
 src/models/OrderBy.ts
+src/models/PaletteColorizer.ts
 src/models/Permission.ts
 src/models/PermissionListOptions.ts
 src/models/PermissionListing.ts
@@ -134,6 +136,7 @@ src/models/PolygonSymbology.ts
 src/models/Project.ts
 src/models/ProjectLayer.ts
 src/models/ProjectListing.ts
+src/models/ProjectResource.ts
 src/models/ProjectUpdateToken.ts
 src/models/ProjectVersion.ts
 src/models/Provenance.ts
@@ -146,7 +149,6 @@ src/models/ProviderLayerId.ts
 src/models/Quota.ts
 src/models/RasterBandDescriptor.ts
 src/models/RasterColorizer.ts
-src/models/RasterColorizerSingleBand.ts
 src/models/RasterDataType.ts
 src/models/RasterDatasetFromWorkflow.ts
 src/models/RasterDatasetFromWorkflowResult.ts
@@ -157,16 +159,13 @@ src/models/RasterResultDescriptor.ts
 src/models/RasterStreamWebsocketResultType.ts
 src/models/RasterSymbology.ts
 src/models/Resource.ts
-src/models/ResourceDataset.ts
 src/models/ResourceId.ts
 src/models/ResourceIdDatasetId.ts
 src/models/ResourceIdLayer.ts
 src/models/ResourceIdLayerCollection.ts
 src/models/ResourceIdModelId.ts
 src/models/ResourceIdProject.ts
-src/models/ResourceLayer.ts
-src/models/ResourceLayerCollection.ts
-src/models/ResourceProject.ts
+src/models/RgbaColorizer.ts
 src/models/Role.ts
 src/models/RoleDescription.ts
 src/models/STRectangle.ts
@@ -174,10 +173,12 @@ src/models/SearchCapabilities.ts
 src/models/SearchType.ts
 src/models/SearchTypes.ts
 src/models/ServerInfo.ts
+src/models/SingleBandRasterColorizer.ts
 src/models/SpatialPartition2D.ts
 src/models/SpatialReferenceAuthority.ts
 src/models/SpatialReferenceSpecification.ts
 src/models/SpatialResolution.ts
+src/models/StaticNumberParam.ts
 src/models/StrokeParam.ts
 src/models/Symbology.ts
 src/models/TaskAbortOptions.ts

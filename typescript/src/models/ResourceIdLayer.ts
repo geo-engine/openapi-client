@@ -41,8 +41,7 @@ export const ResourceIdLayerTypeEnum = {
     Layer: 'Layer',
     LayerCollection: 'LayerCollection',
     Project: 'Project',
-    DatasetId: 'DatasetId',
-    ModelId: 'ModelId'
+    DatasetId: 'DatasetId'
 } as const;
 export type ResourceIdLayerTypeEnum = typeof ResourceIdLayerTypeEnum[keyof typeof ResourceIdLayerTypeEnum];
 

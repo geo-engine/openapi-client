@@ -86,7 +86,7 @@ export interface RegisterWorkflowHandlerRequest {
 export class WorkflowsApi extends runtime.BaseAPI {
 
     /**
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
+     * Returns the id of the created task
      * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
      */
     async datasetFromWorkflowHandlerRaw(requestParameters: DatasetFromWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskResponse>> {
@@ -124,7 +124,7 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
+     * Returns the id of the created task
      * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
      */
     async datasetFromWorkflowHandler(requestParameters: DatasetFromWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaskResponse> {
@@ -133,7 +133,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gets a ZIP archive of the worklow, its provenance and the output metadata.
      * Gets a ZIP archive of the worklow, its provenance and the output metadata.
      */
     async getWorkflowAllMetadataZipHandlerRaw(requestParameters: GetWorkflowAllMetadataZipHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
@@ -165,7 +164,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
 
     /**
      * Gets a ZIP archive of the worklow, its provenance and the output metadata.
-     * Gets a ZIP archive of the worklow, its provenance and the output metadata.
      */
     async getWorkflowAllMetadataZipHandler(requestParameters: GetWorkflowAllMetadataZipHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
         const response = await this.getWorkflowAllMetadataZipHandlerRaw(requestParameters, initOverrides);
@@ -173,7 +171,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gets the metadata of a workflow
      * Gets the metadata of a workflow
      */
     async getWorkflowMetadataHandlerRaw(requestParameters: GetWorkflowMetadataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TypedResultDescriptor>> {
@@ -205,7 +202,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
 
     /**
      * Gets the metadata of a workflow
-     * Gets the metadata of a workflow
      */
     async getWorkflowMetadataHandler(requestParameters: GetWorkflowMetadataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TypedResultDescriptor> {
         const response = await this.getWorkflowMetadataHandlerRaw(requestParameters, initOverrides);
@@ -213,7 +209,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gets the provenance of all datasets used in a workflow.
      * Gets the provenance of all datasets used in a workflow.
      */
     async getWorkflowProvenanceHandlerRaw(requestParameters: GetWorkflowProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProvenanceEntry>>> {
@@ -245,7 +240,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
 
     /**
      * Gets the provenance of all datasets used in a workflow.
-     * Gets the provenance of all datasets used in a workflow.
      */
     async getWorkflowProvenanceHandler(requestParameters: GetWorkflowProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProvenanceEntry>> {
         const response = await this.getWorkflowProvenanceHandlerRaw(requestParameters, initOverrides);
@@ -253,7 +247,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves an existing Workflow.
      * Retrieves an existing Workflow.
      */
     async loadWorkflowHandlerRaw(requestParameters: LoadWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Workflow>> {
@@ -285,7 +278,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
 
     /**
      * Retrieves an existing Workflow.
-     * Retrieves an existing Workflow.
      */
     async loadWorkflowHandler(requestParameters: LoadWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Workflow> {
         const response = await this.loadWorkflowHandlerRaw(requestParameters, initOverrides);
@@ -293,7 +285,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Query a workflow raster result as a stream of tiles via a websocket connection.
      * Query a workflow raster result as a stream of tiles via a websocket connection.
      */
     async rasterStreamWebsocketRaw(requestParameters: RasterStreamWebsocketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -365,14 +356,12 @@ export class WorkflowsApi extends runtime.BaseAPI {
 
     /**
      * Query a workflow raster result as a stream of tiles via a websocket connection.
-     * Query a workflow raster result as a stream of tiles via a websocket connection.
      */
     async rasterStreamWebsocket(requestParameters: RasterStreamWebsocketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.rasterStreamWebsocketRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Registers a new Workflow.
      * Registers a new Workflow.
      */
     async registerWorkflowHandlerRaw(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
@@ -406,7 +395,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Registers a new Workflow.
      * Registers a new Workflow.
      */
     async registerWorkflowHandler(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {

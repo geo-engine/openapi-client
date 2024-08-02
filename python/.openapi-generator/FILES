@@ -156,7 +156,6 @@ docs/ResourceId.md
 docs/ResourceIdDatasetId.md
 docs/ResourceIdLayer.md
 docs/ResourceIdLayerCollection.md
-docs/ResourceIdModelId.md
 docs/ResourceIdProject.md
 docs/RgbaColorizer.md
 docs/Role.md
@@ -175,6 +174,7 @@ docs/SpatialReferencesApi.md
 docs/SpatialResolution.md
 docs/StaticNumberParam.md
 docs/StrokeParam.md
+docs/SuggestMetaData.md
 docs/Symbology.md
 docs/TaskAbortOptions.md
 docs/TaskFilter.md
@@ -396,7 +396,6 @@ geoengine_openapi_client/models/resource_id.py
 geoengine_openapi_client/models/resource_id_dataset_id.py
 geoengine_openapi_client/models/resource_id_layer.py
 geoengine_openapi_client/models/resource_id_layer_collection.py
-geoengine_openapi_client/models/resource_id_model_id.py
 geoengine_openapi_client/models/resource_id_project.py
 geoengine_openapi_client/models/rgba_colorizer.py
 geoengine_openapi_client/models/role.py
@@ -413,6 +412,7 @@ geoengine_openapi_client/models/spatial_resolution.py
 geoengine_openapi_client/models/st_rectangle.py
 geoengine_openapi_client/models/static_number_param.py
 geoengine_openapi_client/models/stroke_param.py
+geoengine_openapi_client/models/suggest_meta_data.py
 geoengine_openapi_client/models/symbology.py
 geoengine_openapi_client/models/task_abort_options.py
 geoengine_openapi_client/models/task_filter.py
@@ -626,7 +626,6 @@ test/test_resource_id.py
 test/test_resource_id_dataset_id.py
 test/test_resource_id_layer.py
 test/test_resource_id_layer_collection.py
-test/test_resource_id_model_id.py
 test/test_resource_id_project.py
 test/test_rgba_colorizer.py
 test/test_role.py
@@ -645,6 +644,7 @@ test/test_spatial_resolution.py
 test/test_st_rectangle.py
 test/test_static_number_param.py
 test/test_stroke_param.py
+test/test_suggest_meta_data.py
 test/test_symbology.py
 test/test_task_abort_options.py
 test/test_task_filter.py

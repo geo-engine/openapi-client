@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AutoCreateDataset, CreateDataset, CreateDatasetHandler200Response, Dataset, DatasetListing, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, Symbology, UpdateDataset, Volume } from '../models/index';
+import type { AutoCreateDataset, CreateDataset, CreateDatasetHandler200Response, Dataset, DatasetListing, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, Volume } from '../models/index';
 export interface AutoCreateDatasetHandlerRequest {
     autoCreateDataset: AutoCreateDataset;
 }
@@ -34,9 +34,7 @@ export interface ListDatasetsHandlerRequest {
     tags?: Array<string> | null;
 }
 export interface SuggestMetaDataHandlerRequest {
-    upload: string;
-    mainFile?: string | null;
-    layerName?: string | null;
+    suggestMetaData: SuggestMetaData;
 }
 export interface UpdateDatasetHandlerRequest {
     dataset: string;
@@ -50,97 +48,87 @@ export interface UpdateDatasetSymbologyHandlerRequest {
     dataset: string;
     symbology: Symbology;
 }
+export interface UpdateLoadingInfoHandlerRequest {
+    dataset: string;
+    metaDataDefinition: MetaDataDefinition;
+}
 /**
  *
  */
 export declare class DatasetsApi extends runtime.BaseAPI {
     /**
-     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
+     * The format of the files will be automatically detected when possible.
      * Creates a new dataset using previously uploaded files.
      */
     autoCreateDatasetHandlerRaw(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDatasetHandler200Response>>;
     /**
-     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
+     * The format of the files will be automatically detected when possible.
      * Creates a new dataset using previously uploaded files.
      */
     autoCreateDatasetHandler(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateDatasetHandler200Response>;
     /**
      * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDatasetHandler200Response>>;
     /**
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     createDatasetHandler(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateDatasetHandler200Response>;
     /**
      * Delete a dataset
-     * Delete a dataset
      */
     deleteDatasetHandlerRaw(requestParameters: DeleteDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Delete a dataset
      * Delete a dataset
      */
     deleteDatasetHandler(requestParameters: DeleteDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Retrieves details about a dataset using the internal name.
-     * Retrieves details about a dataset using the internal name.
      */
     getDatasetHandlerRaw(requestParameters: GetDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Dataset>>;
     /**
-     * Retrieves details about a dataset using the internal name.
      * Retrieves details about a dataset using the internal name.
      */
     getDatasetHandler(requestParameters: GetDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Dataset>;
     /**
      * Retrieves the loading information of a dataset
-     * Retrieves the loading information of a dataset
      */
     getLoadingInfoHandlerRaw(requestParameters: GetLoadingInfoHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetaDataDefinition>>;
     /**
-     * Retrieves the loading information of a dataset
      * Retrieves the loading information of a dataset
      */
     getLoadingInfoHandler(requestParameters: GetLoadingInfoHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetaDataDefinition>;
     /**
      * Lists available datasets.
-     * Lists available datasets.
      */
     listDatasetsHandlerRaw(requestParameters: ListDatasetsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DatasetListing>>>;
     /**
-     * Lists available datasets.
      * Lists available datasets.
      */
     listDatasetsHandler(requestParameters: ListDatasetsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DatasetListing>>;
     /**
      * Lists available volumes.
-     * Lists available volumes.
      */
     listVolumesHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Volume>>>;
     /**
      * Lists available volumes.
-     * Lists available volumes.
      */
     listVolumesHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Volume>>;
     /**
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
+     * Tries to automatically detect the main file and layer name if not specified.
      * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
      */
     suggestMetaDataHandlerRaw(requestParameters: SuggestMetaDataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetaDataSuggestion>>;
     /**
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
+     * Tries to automatically detect the main file and layer name if not specified.
      * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
      */
     suggestMetaDataHandler(requestParameters: SuggestMetaDataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetaDataSuggestion>;
     /**
      * Update details about a dataset using the internal name.
-     * Update details about a dataset using the internal name.
      */
     updateDatasetHandlerRaw(requestParameters: UpdateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Update details about a dataset using the internal name.
      * Update details about a dataset using the internal name.
      */
     updateDatasetHandler(requestParameters: UpdateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
@@ -152,12 +140,18 @@ export declare class DatasetsApi extends runtime.BaseAPI {
     updateDatasetProvenanceHandler(requestParameters: UpdateDatasetProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Updates the dataset\'s symbology
-     * Updates the dataset\'s symbology
      */
     updateDatasetSymbologyHandlerRaw(requestParameters: UpdateDatasetSymbologyHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      * Updates the dataset\'s symbology
-     * Updates the dataset\'s symbology
      */
     updateDatasetSymbologyHandler(requestParameters: UpdateDatasetSymbologyHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Updates the dataset\'s loading info
+     */
+    updateLoadingInfoHandlerRaw(requestParameters: UpdateLoadingInfoHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Updates the dataset\'s loading info
+     */
+    updateLoadingInfoHandler(requestParameters: UpdateLoadingInfoHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 }

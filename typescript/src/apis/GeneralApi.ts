@@ -29,7 +29,6 @@ export class GeneralApi extends runtime.BaseAPI {
 
     /**
      * Server availablity check.
-     * Server availablity check.
      */
     async availableHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
@@ -48,14 +47,12 @@ export class GeneralApi extends runtime.BaseAPI {
 
     /**
      * Server availablity check.
-     * Server availablity check.
      */
     async availableHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.availableHandlerRaw(initOverrides);
     }
 
     /**
-     * Shows information about the server software version.
      * Shows information about the server software version.
      */
     async serverInfoHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServerInfo>> {
@@ -74,7 +71,6 @@ export class GeneralApi extends runtime.BaseAPI {
     }
 
     /**
-     * Shows information about the server software version.
      * Shows information about the server software version.
      */
     async serverInfoHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServerInfo> {

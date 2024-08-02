@@ -76,7 +76,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
 
     /**
      * Get WCS Capabilities
-     * Get WCS Capabilities
      */
     async wcsCapabilitiesHandlerRaw(requestParameters: WcsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
@@ -131,7 +130,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
 
     /**
      * Get WCS Capabilities
-     * Get WCS Capabilities
      */
     async wcsCapabilitiesHandler(requestParameters: WcsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.wcsCapabilitiesHandlerRaw(requestParameters, initOverrides);
@@ -139,7 +137,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get WCS Coverage Description
      * Get WCS Coverage Description
      */
     async wcsDescribeCoverageHandlerRaw(requestParameters: WcsDescribeCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
@@ -207,7 +204,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
 
     /**
      * Get WCS Coverage Description
-     * Get WCS Coverage Description
      */
     async wcsDescribeCoverageHandler(requestParameters: WcsDescribeCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.wcsDescribeCoverageHandlerRaw(requestParameters, initOverrides);
@@ -215,7 +211,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get WCS Coverage
      * Get WCS Coverage
      */
     async wcsGetCoverageHandlerRaw(requestParameters: WcsGetCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
@@ -326,7 +321,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get WCS Coverage
      * Get WCS Coverage
      */
     async wcsGetCoverageHandler(requestParameters: WcsGetCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {

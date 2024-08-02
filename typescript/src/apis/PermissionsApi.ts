@@ -47,7 +47,6 @@ export class PermissionsApi extends runtime.BaseAPI {
 
     /**
      * Adds a new permission.
-     * Adds a new permission.
      */
     async addPermissionHandlerRaw(requestParameters: AddPermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.permissionRequest === null || requestParameters.permissionRequest === undefined) {
@@ -81,14 +80,12 @@ export class PermissionsApi extends runtime.BaseAPI {
 
     /**
      * Adds a new permission.
-     * Adds a new permission.
      */
     async addPermissionHandler(requestParameters: AddPermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addPermissionHandlerRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Lists permission for a given resource.
      * Lists permission for a given resource.
      */
     async getResourcePermissionsHandlerRaw(requestParameters: GetResourcePermissionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PermissionListing>>> {
@@ -140,7 +137,6 @@ export class PermissionsApi extends runtime.BaseAPI {
 
     /**
      * Lists permission for a given resource.
-     * Lists permission for a given resource.
      */
     async getResourcePermissionsHandler(requestParameters: GetResourcePermissionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PermissionListing>> {
         const response = await this.getResourcePermissionsHandlerRaw(requestParameters, initOverrides);
@@ -148,7 +144,6 @@ export class PermissionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Removes an existing permission.
      * Removes an existing permission.
      */
     async removePermissionHandlerRaw(requestParameters: RemovePermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -182,7 +177,6 @@ export class PermissionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Removes an existing permission.
      * Removes an existing permission.
      */
     async removePermissionHandler(requestParameters: RemovePermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {

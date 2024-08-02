@@ -24,12 +24,11 @@ from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from geoengine_openapi_client.models.resource_id_dataset_id import ResourceIdDatasetId
 from geoengine_openapi_client.models.resource_id_layer import ResourceIdLayer
 from geoengine_openapi_client.models.resource_id_layer_collection import ResourceIdLayerCollection
-from geoengine_openapi_client.models.resource_id_model_id import ResourceIdModelId
 from geoengine_openapi_client.models.resource_id_project import ResourceIdProject
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-RESOURCEID_ONE_OF_SCHEMAS = ["ResourceIdDatasetId", "ResourceIdLayer", "ResourceIdLayerCollection", "ResourceIdModelId", "ResourceIdProject"]
+RESOURCEID_ONE_OF_SCHEMAS = ["ResourceIdDatasetId", "ResourceIdLayer", "ResourceIdLayerCollection", "ResourceIdProject"]
 
 class ResourceId(BaseModel):
     """
@@ -43,10 +42,8 @@ class ResourceId(BaseModel):
     oneof_schema_3_validator: Optional[ResourceIdProject] = None
     # data type: ResourceIdDatasetId
     oneof_schema_4_validator: Optional[ResourceIdDatasetId] = None
-    # data type: ResourceIdModelId
-    oneof_schema_5_validator: Optional[ResourceIdModelId] = None
     if TYPE_CHECKING:
-        actual_instance: Union[ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject]
+        actual_instance: Union[ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdProject]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(RESOURCEID_ONE_OF_SCHEMAS, const=True)
@@ -92,17 +89,12 @@ class ResourceId(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceIdDatasetId`")
         else:
             match += 1
-        # validate data type: ResourceIdModelId
-        if not isinstance(v, ResourceIdModelId):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ResourceIdModelId`")
-        else:
-            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdProject. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdProject. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -137,11 +129,6 @@ class ResourceId(BaseModel):
             instance.actual_instance = ResourceIdLayerCollection.from_json(json_str)
             return instance
 
-        # check if data type is `ResourceIdModelId`
-        if _data_type == "ModelId":
-            instance.actual_instance = ResourceIdModelId.from_json(json_str)
-            return instance
-
         # check if data type is `ResourceIdProject`
         if _data_type == "Project":
             instance.actual_instance = ResourceIdProject.from_json(json_str)
@@ -160,11 +147,6 @@ class ResourceId(BaseModel):
         # check if data type is `ResourceIdLayerCollection`
         if _data_type == "ResourceIdLayerCollection":
             instance.actual_instance = ResourceIdLayerCollection.from_json(json_str)
-            return instance
-
-        # check if data type is `ResourceIdModelId`
-        if _data_type == "ResourceIdModelId":
-            instance.actual_instance = ResourceIdModelId.from_json(json_str)
             return instance
 
         # check if data type is `ResourceIdProject`
@@ -196,19 +178,13 @@ class ResourceId(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ResourceIdModelId
-        try:
-            instance.actual_instance = ResourceIdModelId.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdProject. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdModelId, ResourceIdProject. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into ResourceId with oneOf schemas: ResourceIdDatasetId, ResourceIdLayer, ResourceIdLayerCollection, ResourceIdProject. Details: " + ", ".join(error_messages))
         else:
             return instance
 

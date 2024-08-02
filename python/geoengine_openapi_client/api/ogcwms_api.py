@@ -55,7 +55,6 @@ class OGCWMSApi:
     def wms_capabilities_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : Optional[Any], service : WmsService, request : GetCapabilitiesRequest, format : Optional[Any], **kwargs) -> str:  # noqa: E501
         """Get WMS Capabilities  # noqa: E501
 
-        Get WMS Capabilities  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -93,7 +92,6 @@ class OGCWMSApi:
     def wms_capabilities_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : Optional[Any], service : WmsService, request : GetCapabilitiesRequest, format : Optional[Any], **kwargs) -> ApiResponse:  # noqa: E501
         """Get WMS Capabilities  # noqa: E501
 
-        Get WMS Capabilities  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -227,7 +225,6 @@ class OGCWMSApi:
     def wms_legend_graphic_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WmsVersion, service : WmsService, request : GetLegendGraphicRequest, layer : StrictStr, **kwargs) -> None:  # noqa: E501
         """Get WMS Legend Graphic  # noqa: E501
 
-        Get WMS Legend Graphic  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -265,7 +262,6 @@ class OGCWMSApi:
     def wms_legend_graphic_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WmsVersion, service : WmsService, request : GetLegendGraphicRequest, layer : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get WMS Legend Graphic  # noqa: E501
 
-        Get WMS Legend Graphic  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -393,7 +389,6 @@ class OGCWMSApi:
     def wms_map_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WmsVersion, service : WmsService, request : GetMapRequest, width : conint(strict=True, ge=0), height : conint(strict=True, ge=0), bbox : StrictStr, format : GetMapFormat, layers : StrictStr, styles : StrictStr, crs : Optional[StrictStr] = None, time : Optional[StrictStr] = None, transparent : Optional[StrictBool] = None, bgcolor : Optional[StrictStr] = None, sld : Optional[StrictStr] = None, sld_body : Optional[StrictStr] = None, elevation : Optional[StrictStr] = None, exceptions : Optional[Any] = None, **kwargs) -> bytearray:  # noqa: E501
         """Get WMS Map  # noqa: E501
 
-        Get WMS Map  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -457,7 +452,6 @@ class OGCWMSApi:
     def wms_map_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WmsVersion, service : WmsService, request : GetMapRequest, width : conint(strict=True, ge=0), height : conint(strict=True, ge=0), bbox : StrictStr, format : GetMapFormat, layers : StrictStr, styles : StrictStr, crs : Optional[StrictStr] = None, time : Optional[StrictStr] = None, transparent : Optional[StrictBool] = None, bgcolor : Optional[StrictStr] = None, sld : Optional[StrictStr] = None, sld_body : Optional[StrictStr] = None, elevation : Optional[StrictStr] = None, exceptions : Optional[Any] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get WMS Map  # noqa: E501
 
-        Get WMS Map  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

@@ -28,7 +28,6 @@ import { AddCollection200ResponseFromJSON, AddRoleToJSON, QuotaFromJSON, RoleDes
 export class UserApi extends runtime.BaseAPI {
     /**
      * Add a new role. Requires admin privilige.
-     * Add a new role. Requires admin privilige.
      */
     addRoleHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -62,7 +61,6 @@ export class UserApi extends runtime.BaseAPI {
     }
     /**
      * Add a new role. Requires admin privilige.
-     * Add a new role. Requires admin privilige.
      */
     addRoleHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -71,7 +69,6 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Assign a role to a user. Requires admin privilige.
      * Assign a role to a user. Requires admin privilige.
      */
     assignRoleHandlerRaw(requestParameters, initOverrides) {
@@ -102,7 +99,6 @@ export class UserApi extends runtime.BaseAPI {
     }
     /**
      * Assign a role to a user. Requires admin privilige.
-     * Assign a role to a user. Requires admin privilige.
      */
     assignRoleHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -110,7 +106,6 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get role by name
      * Get role by name
      */
     getRoleByNameHandlerRaw(requestParameters, initOverrides) {
@@ -138,7 +133,6 @@ export class UserApi extends runtime.BaseAPI {
     }
     /**
      * Get role by name
-     * Get role by name
      */
     getRoleByNameHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -147,7 +141,6 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Query roles for the current user.
      * Query roles for the current user.
      */
     getRoleDescriptionsRaw(initOverrides) {
@@ -172,7 +165,6 @@ export class UserApi extends runtime.BaseAPI {
     }
     /**
      * Query roles for the current user.
-     * Query roles for the current user.
      */
     getRoleDescriptions(initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -181,7 +173,6 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the available and used quota of a specific user.
      * Retrieves the available and used quota of a specific user.
      */
     getUserQuotaHandlerRaw(requestParameters, initOverrides) {
@@ -209,7 +200,6 @@ export class UserApi extends runtime.BaseAPI {
     }
     /**
      * Retrieves the available and used quota of a specific user.
-     * Retrieves the available and used quota of a specific user.
      */
     getUserQuotaHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -218,7 +208,6 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the available and used quota of the current user.
      * Retrieves the available and used quota of the current user.
      */
     quotaHandlerRaw(initOverrides) {
@@ -243,7 +232,6 @@ export class UserApi extends runtime.BaseAPI {
     }
     /**
      * Retrieves the available and used quota of the current user.
-     * Retrieves the available and used quota of the current user.
      */
     quotaHandler(initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -252,7 +240,6 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Remove a role. Requires admin privilige.
      * Remove a role. Requires admin privilige.
      */
     removeRoleHandlerRaw(requestParameters, initOverrides) {
@@ -280,7 +267,6 @@ export class UserApi extends runtime.BaseAPI {
     }
     /**
      * Remove a role. Requires admin privilige.
-     * Remove a role. Requires admin privilige.
      */
     removeRoleHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -288,7 +274,6 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Revoke a role from a user. Requires admin privilige.
      * Revoke a role from a user. Requires admin privilige.
      */
     revokeRoleHandlerRaw(requestParameters, initOverrides) {
@@ -319,7 +304,6 @@ export class UserApi extends runtime.BaseAPI {
     }
     /**
      * Revoke a role from a user. Requires admin privilige.
-     * Revoke a role from a user. Requires admin privilige.
      */
     revokeRoleHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -327,7 +311,6 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update the available quota of a specific user.
      * Update the available quota of a specific user.
      */
     updateUserQuotaHandlerRaw(requestParameters, initOverrides) {
@@ -359,7 +342,6 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update the available quota of a specific user.
      * Update the available quota of a specific user.
      */
     updateUserQuotaHandler(requestParameters, initOverrides) {

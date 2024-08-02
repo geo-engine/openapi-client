@@ -36,7 +36,6 @@ export declare const ResourceIdLayerTypeEnum: {
     readonly LayerCollection: "LayerCollection";
     readonly Project: "Project";
     readonly DatasetId: "DatasetId";
-    readonly ModelId: "ModelId";
 };
 export type ResourceIdLayerTypeEnum = typeof ResourceIdLayerTypeEnum[keyof typeof ResourceIdLayerTypeEnum];
 /**

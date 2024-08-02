@@ -48,7 +48,6 @@ export class UploadsApi extends runtime.BaseAPI {
 
     /**
      * List the layers of on uploaded file.
-     * List the layers of on uploaded file.
      */
     async listUploadFileLayersHandlerRaw(requestParameters: ListUploadFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFileLayersResponse>> {
         if (requestParameters.uploadId === null || requestParameters.uploadId === undefined) {
@@ -83,7 +82,6 @@ export class UploadsApi extends runtime.BaseAPI {
 
     /**
      * List the layers of on uploaded file.
-     * List the layers of on uploaded file.
      */
     async listUploadFileLayersHandler(requestParameters: ListUploadFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadFileLayersResponse> {
         const response = await this.listUploadFileLayersHandlerRaw(requestParameters, initOverrides);
@@ -91,7 +89,6 @@ export class UploadsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the files of on upload.
      * List the files of on upload.
      */
     async listUploadFilesHandlerRaw(requestParameters: ListUploadFilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFilesResponse>> {
@@ -123,7 +120,6 @@ export class UploadsApi extends runtime.BaseAPI {
 
     /**
      * List the files of on upload.
-     * List the files of on upload.
      */
     async listUploadFilesHandler(requestParameters: ListUploadFilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadFilesResponse> {
         const response = await this.listUploadFilesHandlerRaw(requestParameters, initOverrides);
@@ -131,7 +127,6 @@ export class UploadsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Uploads files.
      * Uploads files.
      */
     async uploadHandlerRaw(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
@@ -185,7 +180,6 @@ export class UploadsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Uploads files.
      * Uploads files.
      */
     async uploadHandler(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {

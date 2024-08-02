@@ -16,10 +16,10 @@
 import unittest
 import datetime
 
-from geoengine_openapi_client.models.resource_id_model_id import ResourceIdModelId  # noqa: E501
+from geoengine_openapi_client.models.suggest_meta_data import SuggestMetaData  # noqa: E501
 
-class TestResourceIdModelId(unittest.TestCase):
-    """ResourceIdModelId unit test stubs"""
+class TestSuggestMetaData(unittest.TestCase):
+    """SuggestMetaData unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,28 +27,28 @@ class TestResourceIdModelId(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ResourceIdModelId:
-        """Test ResourceIdModelId
+    def make_instance(self, include_optional) -> SuggestMetaData:
+        """Test SuggestMetaData
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `ResourceIdModelId`
+        # uncomment below to create an instance of `SuggestMetaData`
         """
-        model = ResourceIdModelId()  # noqa: E501
+        model = SuggestMetaData()  # noqa: E501
         if include_optional:
-            return ResourceIdModelId(
-                id = '',
-                type = 'ModelId'
+            return SuggestMetaData(
+                data_path = None,
+                layer_name = '',
+                main_file = ''
             )
         else:
-            return ResourceIdModelId(
-                id = '',
-                type = 'ModelId',
+            return SuggestMetaData(
+                data_path = None,
         )
         """
 
-    def testResourceIdModelId(self):
-        """Test ResourceIdModelId"""
+    def testSuggestMetaData(self):
+        """Test SuggestMetaData"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

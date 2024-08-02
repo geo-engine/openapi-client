@@ -25,7 +25,6 @@
           "Session"
         ],
         "summary": "Creates session for anonymous user. The session's id serves as a Bearer token for requests.",
-        "description": "Creates session for anonymous user. The session's id serves as a Bearer token for requests.",
         "operationId": "anonymous_handler",
         "responses": {
           "200": {
@@ -63,7 +62,6 @@
           "General"
         ],
         "summary": "Server availablity check.",
-        "description": "Server availablity check.",
         "operationId": "available_handler",
         "responses": {
           "204": {
@@ -78,7 +76,6 @@
           "Datasets"
         ],
         "summary": "Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.",
-        "description": "Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.",
         "operationId": "create_dataset_handler",
         "requestBody": {
           "content": {
@@ -288,7 +285,7 @@
           "Datasets"
         ],
         "summary": "Creates a new dataset using previously uploaded files.",
-        "description": "Creates a new dataset using previously uploaded files.\nThe format of the files will be automatically detected when possible.",
+        "description": "The format of the files will be automatically detected when possible.",
         "operationId": "auto_create_dataset_handler",
         "requestBody": {
           "content": {
@@ -376,44 +373,23 @@
       }
     },
     "/dataset/suggest": {
-      "get": {
+      "post": {
         "tags": [
           "Datasets"
         ],
         "summary": "Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.",
-        "description": "Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.\nTries to automatically detect the main file and layer name if not specified.",
+        "description": "Tries to automatically detect the main file and layer name if not specified.",
         "operationId": "suggest_meta_data_handler",
-        "parameters": [
-          {
-            "name": "upload",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/UploadId"
-            },
-            "example": "420b06de-0a7e-45cb-9c1c-ea901b46ab69"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestMetaData"
+              }
+            }
           },
-          {
-            "name": "mainFile",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "example": "germany_polygon.gpkg"
-          },
-          {
-            "name": "layerName",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "example": "test_polygon"
-          }
-        ],
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -528,7 +504,6 @@
           "Datasets"
         ],
         "summary": "Lists available volumes.",
-        "description": "Lists available volumes.",
         "operationId": "list_volumes_handler",
         "responses": {
           "200": {
@@ -543,7 +518,7 @@
                 },
                 "example": [
                   {
-                    "id": "f6aa9f3d-a211-43e8-9b91-b23ab9632791",
+                    "name": "test_data",
                     "path": "./test_data/"
                   }
                 ]
@@ -567,7 +542,6 @@
           "Datasets"
         ],
         "summary": "Retrieves details about a dataset using the internal name.",
-        "description": "Retrieves details about a dataset using the internal name.",
         "operationId": "get_dataset_handler",
         "parameters": [
           {
@@ -639,7 +613,6 @@
           "Datasets"
         ],
         "summary": "Update details about a dataset using the internal name.",
-        "description": "Update details about a dataset using the internal name.",
         "operationId": "update_dataset_handler",
         "parameters": [
           {
@@ -699,7 +672,6 @@
           "Datasets"
         ],
         "summary": "Delete a dataset",
-        "description": "Delete a dataset",
         "operationId": "delete_dataset_handler",
         "parameters": [
           {
@@ -757,7 +729,6 @@
           "Datasets"
         ],
         "summary": "Retrieves the loading information of a dataset",
-        "description": "Retrieves the loading information of a dataset",
         "operationId": "get_loading_info_handler",
         "parameters": [
           {
@@ -780,6 +751,57 @@
                 }
               }
             }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Datasets"
+        ],
+        "summary": "Updates the dataset's loading info",
+        "operationId": "update_loading_info_handler",
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "path",
+            "description": "Dataset Name",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatasetName"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetaDataDefinition"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedUserResponse"
           }
         },
         "security": [
@@ -847,7 +869,6 @@
           "Datasets"
         ],
         "summary": "Updates the dataset's symbology",
-        "description": "Updates the dataset's symbology",
         "operationId": "update_dataset_symbology_handler",
         "parameters": [
           {
@@ -861,7 +882,6 @@
           }
         ],
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
@@ -902,7 +922,7 @@
           "Workflows"
         ],
         "summary": "Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.",
-        "description": "Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.\nReturns the id of the created task",
+        "description": "Returns the id of the created task",
         "operationId": "dataset_from_workflow_handler",
         "parameters": [
           {
@@ -953,7 +973,6 @@
           "Datasets"
         ],
         "summary": "Lists available datasets.",
-        "description": "Lists available datasets.",
         "operationId": "list_datasets_handler",
         "parameters": [
           {
@@ -1063,7 +1082,6 @@
           "General"
         ],
         "summary": "Shows information about the server software version.",
-        "description": "Shows information about the server software version.",
         "operationId": "server_info_handler",
         "responses": {
           "200": {
@@ -1091,7 +1109,6 @@
           "Layers"
         ],
         "summary": "Remove a collection",
-        "description": "Remove a collection",
         "operationId": "remove_collection",
         "parameters": [
           {
@@ -1122,7 +1139,6 @@
           "Layers"
         ],
         "summary": "Add a new collection to an existing collection",
-        "description": "Add a new collection to an existing collection",
         "operationId": "add_collection",
         "parameters": [
           {
@@ -1164,7 +1180,6 @@
           "Layers"
         ],
         "summary": "Add a new layer to a collection",
-        "description": "Add a new layer to a collection",
         "operationId": "add_layer",
         "parameters": [
           {
@@ -1206,7 +1221,6 @@
           "Layers"
         ],
         "summary": "Add an existing layer to a collection",
-        "description": "Add an existing layer to a collection",
         "operationId": "add_existing_layer_to_collection",
         "parameters": [
           {
@@ -1244,7 +1258,6 @@
           "Layers"
         ],
         "summary": "Remove a layer from a collection",
-        "description": "Remove a layer from a collection",
         "operationId": "remove_layer_from_collection",
         "parameters": [
           {
@@ -1284,7 +1297,6 @@
           "Layers"
         ],
         "summary": "Add an existing collection to a collection",
-        "description": "Add an existing collection to a collection",
         "operationId": "add_existing_collection_to_collection",
         "parameters": [
           {
@@ -1323,7 +1335,6 @@
           "Layers"
         ],
         "summary": "Delete a collection from a collection",
-        "description": "Delete a collection from a collection",
         "operationId": "remove_collection_from_collection",
         "parameters": [
           {
@@ -1364,7 +1375,6 @@
           "Layers"
         ],
         "summary": "List all layer collections",
-        "description": "List all layer collections",
         "operationId": "list_root_collections_handler",
         "parameters": [
           {
@@ -1445,7 +1455,6 @@
           "Layers"
         ],
         "summary": "Autocompletes the search on the contents of the collection of the given provider",
-        "description": "Autocompletes the search on the contents of the collection of the given provider",
         "operationId": "autocomplete_handler",
         "parameters": [
           {
@@ -1541,7 +1550,6 @@
           "Layers"
         ],
         "summary": "Searches the contents of the collection of the given provider",
-        "description": "Searches the contents of the collection of the given provider",
         "operationId": "search_handler",
         "parameters": [
           {
@@ -1662,7 +1670,6 @@
           "Layers"
         ],
         "summary": "List the contents of the collection of the given provider",
-        "description": "List the contents of the collection of the given provider",
         "operationId": "list_collection_handler",
         "parameters": [
           {
@@ -1808,7 +1815,6 @@
           "Layers"
         ],
         "summary": "Retrieves the layer of the given provider",
-        "description": "Retrieves the layer of the given provider",
         "operationId": "layer_handler",
         "parameters": [
           {
@@ -2000,7 +2006,6 @@
           "Layers"
         ],
         "summary": "Persist a raster layer from a provider as a dataset.",
-        "description": "Persist a raster layer from a provider as a dataset.",
         "operationId": "layer_to_dataset",
         "parameters": [
           {
@@ -2050,7 +2055,6 @@
           "Layers"
         ],
         "summary": "Registers a layer from a provider as a workflow and returns the workflow id",
-        "description": "Registers a layer from a provider as a workflow and returns the workflow id",
         "operationId": "layer_to_workflow_id_handler",
         "parameters": [
           {
@@ -2090,7 +2094,6 @@
           "Session"
         ],
         "summary": "Creates a session by providing user credentials. The session's id serves as a Bearer token for requests.",
-        "description": "Creates a session by providing user credentials. The session's id serves as a Bearer token for requests.",
         "operationId": "login_handler",
         "requestBody": {
           "content": {
@@ -2138,7 +2141,6 @@
           "Session"
         ],
         "summary": "Ends a session.",
-        "description": "Ends a session.",
         "operationId": "logout_handler",
         "responses": {
           "200": {
@@ -2158,7 +2160,7 @@
           "Session"
         ],
         "summary": "Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.",
-        "description": "Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.\n\n# Errors\n\nThis call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.\n",
+        "description": "# Errors\n\nThis call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.\n",
         "operationId": "oidc_init",
         "responses": {
           "200": {
@@ -2183,7 +2185,7 @@
           "Session"
         ],
         "summary": "Creates a session for a user via a login with Open Id Connect.",
-        "description": "Creates a session for a user via a login with Open Id Connect.\nThis call must be preceded by a call to oidcInit and match the parameters of that call.\n\n# Errors\n\nThis call fails if the [`AuthCodeResponse`] is invalid,\nif a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved,\nif the Open Id Connect configuration is invalid,\nor if the Id Provider is unreachable.\n",
+        "description": "This call must be preceded by a call to oidcInit and match the parameters of that call.\n\n# Errors\n\nThis call fails if the [`AuthCodeResponse`] is invalid,\nif a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved,\nif the Open Id Connect configuration is invalid,\nor if the Id Provider is unreachable.\n",
         "operationId": "oidc_login",
         "requestBody": {
           "content": {
@@ -2227,7 +2229,6 @@
           "Permissions"
         ],
         "summary": "Adds a new permission.",
-        "description": "Adds a new permission.",
         "operationId": "add_permission_handler",
         "requestBody": {
           "content": {
@@ -2263,7 +2264,6 @@
           "Permissions"
         ],
         "summary": "Removes an existing permission.",
-        "description": "Removes an existing permission.",
         "operationId": "remove_permission_handler",
         "requestBody": {
           "content": {
@@ -2301,7 +2301,6 @@
           "Permissions"
         ],
         "summary": "Lists permission for a given resource.",
-        "description": "Lists permission for a given resource.",
         "operationId": "get_resource_permissions_handler",
         "parameters": [
           {
@@ -2371,7 +2370,7 @@
           "Plots"
         ],
         "summary": "Generates a plot.",
-        "description": "Generates a plot.\n\n# Example\n\n1. Upload the file `plain_data.csv` with the following content:\n\n```csv\na\n1\n2\n```\n2. Create a dataset from it using the \"Plain Data\" example at `/dataset`.\n3. Create a statistics workflow using the \"Statistics Plot\" example at `/workflow`.\n4. Generate the plot with this handler.",
+        "description": "# Example\n\n1. Upload the file `plain_data.csv` with the following content:\n\n```csv\na\n1\n2\n```\n2. Create a dataset from it using the \"Plain Data\" example at `/dataset`.\n3. Create a statistics workflow using the \"Statistics Plot\" example at `/workflow`.\n4. Generate the plot with this handler.",
         "operationId": "get_plot_handler",
         "parameters": [
           {
@@ -2461,7 +2460,6 @@
           "Projects"
         ],
         "summary": "Create a new project for the user.",
-        "description": "Create a new project for the user.",
         "operationId": "create_project_handler",
         "requestBody": {
           "content": {
@@ -2491,7 +2489,6 @@
           "Projects"
         ],
         "summary": "Retrieves details about the latest version of a project.",
-        "description": "Retrieves details about the latest version of a project.",
         "operationId": "load_project_latest_handler",
         "parameters": [
           {
@@ -2560,7 +2557,6 @@
           "Projects"
         ],
         "summary": "Deletes a project.",
-        "description": "Deletes a project.",
         "operationId": "delete_project_handler",
         "parameters": [
           {
@@ -2589,7 +2585,7 @@
           "Projects"
         ],
         "summary": "Updates a project.",
-        "description": "Updates a project.\nThis will create a new version.",
+        "description": "This will create a new version.",
         "operationId": "update_project_handler",
         "parameters": [
           {
@@ -2630,7 +2626,6 @@
           "Projects"
         ],
         "summary": "Lists all available versions of a project.",
-        "description": "Lists all available versions of a project.",
         "operationId": "project_versions_handler",
         "parameters": [
           {
@@ -2683,7 +2678,6 @@
           "Projects"
         ],
         "summary": "Retrieves details about the given version of a project.",
-        "description": "Retrieves details about the given version of a project.",
         "operationId": "load_project_version_handler",
         "parameters": [
           {
@@ -2763,7 +2757,6 @@
           "Projects"
         ],
         "summary": "List all projects accessible to the user that match the selected criteria.",
-        "description": "List all projects accessible to the user that match the selected criteria.",
         "operationId": "list_projects_handler",
         "parameters": [
           {
@@ -2836,7 +2829,6 @@
           "User"
         ],
         "summary": "Retrieves the available and used quota of the current user.",
-        "description": "Retrieves the available and used quota of the current user.",
         "operationId": "quota_handler",
         "responses": {
           "200": {
@@ -2867,7 +2859,6 @@
           "User"
         ],
         "summary": "Retrieves the available and used quota of a specific user.",
-        "description": "Retrieves the available and used quota of a specific user.",
         "operationId": "get_user_quota_handler",
         "parameters": [
           {
@@ -2907,7 +2898,6 @@
           "User"
         ],
         "summary": "Update the available quota of a specific user.",
-        "description": "Update the available quota of a specific user.",
         "operationId": "update_user_quota_handler",
         "parameters": [
           {
@@ -2948,7 +2938,6 @@
           "User"
         ],
         "summary": "Add a new role. Requires admin privilige.",
-        "description": "Add a new role. Requires admin privilige.",
         "operationId": "add_role_handler",
         "requestBody": {
           "content": {
@@ -2988,7 +2977,6 @@
           "User"
         ],
         "summary": "Get role by name",
-        "description": "Get role by name",
         "operationId": "get_role_by_name_handler",
         "parameters": [
           {
@@ -3019,7 +3007,6 @@
           "User"
         ],
         "summary": "Remove a role. Requires admin privilige.",
-        "description": "Remove a role. Requires admin privilige.",
         "operationId": "remove_role_handler",
         "parameters": [
           {
@@ -3050,7 +3037,6 @@
           "Session"
         ],
         "summary": "Retrieves details about the current session.",
-        "description": "Retrieves details about the current session.",
         "operationId": "session_handler",
         "responses": {
           "200": {
@@ -3149,7 +3135,6 @@
           "Tasks"
         ],
         "summary": "Retrieve the status of all tasks.",
-        "description": "Retrieve the status of all tasks.",
         "operationId": "list_handler",
         "parameters": [
           {
@@ -3227,7 +3212,7 @@
           "Tasks"
         ],
         "summary": "Abort a running task.",
-        "description": "Abort a running task.\n\n# Parameters\n\n* `force` - If true, the task will be aborted without clean-up.\nYou can abort a task that is already in the process of aborting.",
+        "description": "# Parameters\n\n* `force` - If true, the task will be aborted without clean-up.\nYou can abort a task that is already in the process of aborting.",
         "operationId": "abort_handler",
         "parameters": [
           {
@@ -3266,7 +3251,6 @@
           "Tasks"
         ],
         "summary": "Retrieve the status of a task.",
-        "description": "Retrieve the status of a task.",
         "operationId": "status_handler",
         "parameters": [
           {
@@ -3313,7 +3297,6 @@
           "Uploads"
         ],
         "summary": "Uploads files.",
-        "description": "Uploads files.",
         "operationId": "upload_handler",
         "requestBody": {
           "content": {
@@ -3355,7 +3338,6 @@
           "Uploads"
         ],
         "summary": "List the files of on upload.",
-        "description": "List the files of on upload.",
         "operationId": "list_upload_files_handler",
         "parameters": [
           {
@@ -3399,7 +3381,6 @@
           "Uploads"
         ],
         "summary": "List the layers of on uploaded file.",
-        "description": "List the layers of on uploaded file.",
         "operationId": "list_upload_file_layers_handler",
         "parameters": [
           {
@@ -3452,7 +3433,6 @@
           "Session"
         ],
         "summary": "Registers a user.",
-        "description": "Registers a user.",
         "operationId": "register_user_handler",
         "requestBody": {
           "content": {
@@ -3487,7 +3467,6 @@
           "User"
         ],
         "summary": "Query roles for the current user.",
-        "description": "Query roles for the current user.",
         "operationId": "get_role_descriptions",
         "responses": {
           "200": {
@@ -3533,7 +3512,6 @@
           "User"
         ],
         "summary": "Assign a role to a user. Requires admin privilige.",
-        "description": "Assign a role to a user. Requires admin privilige.",
         "operationId": "assign_role_handler",
         "parameters": [
           {
@@ -3571,7 +3549,6 @@
           "User"
         ],
         "summary": "Revoke a role from a user. Requires admin privilige.",
-        "description": "Revoke a role from a user. Requires admin privilige.",
         "operationId": "revoke_role_handler",
         "parameters": [
           {
@@ -3611,7 +3588,6 @@
           "OGC WCS"
         ],
         "summary": "Get WCS Coverage Description",
-        "description": "Get WCS Coverage Description",
         "operationId": "wcs_describe_coverage_handler",
         "parameters": [
           {
@@ -3682,7 +3658,6 @@
           "OGC WCS"
         ],
         "summary": "Get WCS Capabilities",
-        "description": "Get WCS Capabilities",
         "operationId": "wcs_capabilities_handler",
         "parameters": [
           {
@@ -3749,7 +3724,6 @@
           "OGC WCS"
         ],
         "summary": "Get WCS Coverage",
-        "description": "Get WCS Coverage",
         "operationId": "wcs_get_coverage_handler",
         "parameters": [
           {
@@ -3895,7 +3869,6 @@
           "OGC WFS"
         ],
         "summary": "Get WFS Capabilities",
-        "description": "Get WFS Capabilities",
         "operationId": "wfs_capabilities_handler",
         "parameters": [
           {
@@ -3962,7 +3935,6 @@
           "OGC WFS"
         ],
         "summary": "Get WCS Features",
-        "description": "Get WCS Features",
         "operationId": "wfs_feature_handler",
         "parameters": [
           {
@@ -4231,7 +4203,6 @@
           "OGC WMS"
         ],
         "summary": "Get WMS Capabilities",
-        "description": "Get WMS Capabilities",
         "operationId": "wms_capabilities_handler",
         "parameters": [
           {
@@ -4311,7 +4282,6 @@
           "OGC WMS"
         ],
         "summary": "Get WMS Legend Graphic",
-        "description": "Get WMS Legend Graphic",
         "operationId": "wms_legend_graphic_handler",
         "parameters": [
           {
@@ -4375,7 +4345,6 @@
           "OGC WMS"
         ],
         "summary": "Get WMS Map",
-        "description": "Get WMS Map",
         "operationId": "wms_map_handler",
         "parameters": [
           {
@@ -4564,7 +4533,6 @@
           "Workflows"
         ],
         "summary": "Registers a new Workflow.",
-        "description": "Registers a new Workflow.",
         "operationId": "register_workflow_handler",
         "requestBody": {
           "content": {
@@ -4635,7 +4603,6 @@
           "Workflows"
         ],
         "summary": "Retrieves an existing Workflow.",
-        "description": "Retrieves an existing Workflow.",
         "operationId": "load_workflow_handler",
         "parameters": [
           {
@@ -4691,7 +4658,6 @@
           "Workflows"
         ],
         "summary": "Gets a ZIP archive of the worklow, its provenance and the output metadata.",
-        "description": "Gets a ZIP archive of the worklow, its provenance and the output metadata.",
         "operationId": "get_workflow_all_metadata_zip_handler",
         "parameters": [
           {
@@ -4722,7 +4688,6 @@
           "Workflows"
         ],
         "summary": "Gets the metadata of a workflow",
-        "description": "Gets the metadata of a workflow",
         "operationId": "get_workflow_metadata_handler",
         "parameters": [
           {
@@ -4766,7 +4731,6 @@
           "Workflows"
         ],
         "summary": "Gets the provenance of all datasets used in a workflow.",
-        "description": "Gets the provenance of all datasets used in a workflow.",
         "operationId": "get_workflow_provenance_handler",
         "parameters": [
           {
@@ -4831,7 +4795,6 @@
           "Workflows"
         ],
         "summary": "Query a workflow raster result as a stream of tiles via a websocket connection.",
-        "description": "Query a workflow raster result as a stream of tiles via a websocket connection.",
         "operationId": "raster_stream_websocket",
         "parameters": [
           {
@@ -6500,10 +6463,6 @@
           }
         }
       },
-      "MlModelId": {
-        "type": "string",
-        "format": "uuid"
-      },
       "MockDatasetDataSourceLoadingInfo": {
         "type": "object",
         "required": [
@@ -7862,9 +7821,6 @@
           },
           {
             "$ref": "#/components/schemas/ResourceIdDatasetId"
-          },
-          {
-            "$ref": "#/components/schemas/ResourceIdModelId"
           }
         ],
         "discriminator": {
@@ -7873,7 +7829,6 @@
             "DatasetId": "#/components/schemas/ResourceIdDatasetId",
             "Layer": "#/components/schemas/ResourceIdLayer",
             "LayerCollection": "#/components/schemas/ResourceIdLayerCollection",
-            "ModelId": "#/components/schemas/ResourceIdModelId",
             "Project": "#/components/schemas/ResourceIdProject"
           }
         }
@@ -7928,24 +7883,6 @@
             "type": "string",
             "enum": [
               "LayerCollection"
-            ]
-          }
-        }
-      },
-      "ResourceIdModelId": {
-        "type": "object",
-        "required": [
-          "type",
-          "id"
-        ],
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/MlModelId"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "ModelId"
             ]
           }
         }
@@ -8256,6 +8193,25 @@
           },
           "width": {
             "$ref": "#/components/schemas/NumberParam"
+          }
+        }
+      },
+      "SuggestMetaData": {
+        "type": "object",
+        "required": [
+          "dataPath"
+        ],
+        "properties": {
+          "dataPath": {
+            "$ref": "#/components/schemas/DataPath"
+          },
+          "layerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "mainFile": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -9172,15 +9128,15 @@
       "Volume": {
         "type": "object",
         "required": [
-          "name",
-          "path"
+          "name"
         ],
         "properties": {
           "name": {
-            "$ref": "#/components/schemas/VolumeName"
+            "type": "string"
           },
           "path": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         }
       },

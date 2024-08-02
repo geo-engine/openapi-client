@@ -163,7 +163,6 @@ src/models/ResourceId.ts
 src/models/ResourceIdDatasetId.ts
 src/models/ResourceIdLayer.ts
 src/models/ResourceIdLayerCollection.ts
-src/models/ResourceIdModelId.ts
 src/models/ResourceIdProject.ts
 src/models/RgbaColorizer.ts
 src/models/Role.ts
@@ -180,6 +179,7 @@ src/models/SpatialReferenceSpecification.ts
 src/models/SpatialResolution.ts
 src/models/StaticNumberParam.ts
 src/models/StrokeParam.ts
+src/models/SuggestMetaData.ts
 src/models/Symbology.ts
 src/models/TaskAbortOptions.ts
 src/models/TaskFilter.ts

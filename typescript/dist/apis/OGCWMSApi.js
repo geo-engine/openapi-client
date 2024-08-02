@@ -30,7 +30,6 @@ const runtime = require("../runtime");
 class OGCWMSApi extends runtime.BaseAPI {
     /**
      * Get WMS Capabilities
-     * Get WMS Capabilities
      */
     wmsCapabilitiesHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -74,7 +73,6 @@ class OGCWMSApi extends runtime.BaseAPI {
     }
     /**
      * Get WMS Capabilities
-     * Get WMS Capabilities
      */
     wmsCapabilitiesHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -83,7 +81,6 @@ class OGCWMSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WMS Legend Graphic
      * Get WMS Legend Graphic
      */
     wmsLegendGraphicHandlerRaw(requestParameters, initOverrides) {
@@ -123,7 +120,6 @@ class OGCWMSApi extends runtime.BaseAPI {
     }
     /**
      * Get WMS Legend Graphic
-     * Get WMS Legend Graphic
      */
     wmsLegendGraphicHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -131,7 +127,6 @@ class OGCWMSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WMS Map
      * Get WMS Map
      */
     wmsMapHandlerRaw(requestParameters, initOverrides) {
@@ -236,7 +231,6 @@ class OGCWMSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WMS Map
      * Get WMS Map
      */
     wmsMapHandler(requestParameters, initOverrides) {

@@ -12,7 +12,6 @@
 import { ResourceIdDatasetId } from './ResourceIdDatasetId';
 import { ResourceIdLayer } from './ResourceIdLayer';
 import { ResourceIdLayerCollection } from './ResourceIdLayerCollection';
-import { ResourceIdModelId } from './ResourceIdModelId';
 import { ResourceIdProject } from './ResourceIdProject';
 /**
  * @type ResourceId
@@ -26,8 +25,6 @@ export type ResourceId = {
 } & ResourceIdLayer | {
     type: 'LayerCollection';
 } & ResourceIdLayerCollection | {
-    type: 'ModelId';
-} & ResourceIdModelId | {
     type: 'Project';
 } & ResourceIdProject;
 export declare function ResourceIdFromJSON(json: any): ResourceId;

@@ -34,13 +34,6 @@ import {
     ResourceIdLayerCollectionToJSON,
 } from './ResourceIdLayerCollection';
 import {
-    ResourceIdModelId,
-    instanceOfResourceIdModelId,
-    ResourceIdModelIdFromJSON,
-    ResourceIdModelIdFromJSONTyped,
-    ResourceIdModelIdToJSON,
-} from './ResourceIdModelId';
-import {
     ResourceIdProject,
     instanceOfResourceIdProject,
     ResourceIdProjectFromJSON,
@@ -53,7 +46,7 @@ import {
  * 
  * @export
  */
-export type ResourceId = { type: 'DatasetId' } & ResourceIdDatasetId | { type: 'Layer' } & ResourceIdLayer | { type: 'LayerCollection' } & ResourceIdLayerCollection | { type: 'ModelId' } & ResourceIdModelId | { type: 'Project' } & ResourceIdProject;
+export type ResourceId = { type: 'DatasetId' } & ResourceIdDatasetId | { type: 'Layer' } & ResourceIdLayer | { type: 'LayerCollection' } & ResourceIdLayerCollection | { type: 'Project' } & ResourceIdProject;
 
 export function ResourceIdFromJSON(json: any): ResourceId {
     return ResourceIdFromJSONTyped(json, false);
@@ -70,8 +63,6 @@ export function ResourceIdFromJSONTyped(json: any, ignoreDiscriminator: boolean)
             return {...ResourceIdLayerFromJSONTyped(json, true), type: 'Layer'};
         case 'LayerCollection':
             return {...ResourceIdLayerCollectionFromJSONTyped(json, true), type: 'LayerCollection'};
-        case 'ModelId':
-            return {...ResourceIdModelIdFromJSONTyped(json, true), type: 'ModelId'};
         case 'Project':
             return {...ResourceIdProjectFromJSONTyped(json, true), type: 'Project'};
         default:
@@ -93,8 +84,6 @@ export function ResourceIdToJSON(value?: ResourceId | null): any {
             return ResourceIdLayerToJSON(value);
         case 'LayerCollection':
             return ResourceIdLayerCollectionToJSON(value);
-        case 'ModelId':
-            return ResourceIdModelIdToJSON(value);
         case 'Project':
             return ResourceIdProjectToJSON(value);
         default:

@@ -54,7 +54,6 @@ class UserApi:
     def add_role_handler(self, add_role : AddRole, **kwargs) -> str:  # noqa: E501
         """Add a new role. Requires admin privilige.  # noqa: E501
 
-        Add a new role. Requires admin privilige.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -84,7 +83,6 @@ class UserApi:
     def add_role_handler_with_http_info(self, add_role : AddRole, **kwargs) -> ApiResponse:  # noqa: E501
         """Add a new role. Requires admin privilige.  # noqa: E501
 
-        Add a new role. Requires admin privilige.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -201,7 +199,6 @@ class UserApi:
     def assign_role_handler(self, user : Annotated[StrictStr, Field(..., description="User id")], role : Annotated[StrictStr, Field(..., description="Role id")], **kwargs) -> None:  # noqa: E501
         """Assign a role to a user. Requires admin privilige.  # noqa: E501
 
-        Assign a role to a user. Requires admin privilige.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -233,7 +230,6 @@ class UserApi:
     def assign_role_handler_with_http_info(self, user : Annotated[StrictStr, Field(..., description="User id")], role : Annotated[StrictStr, Field(..., description="Role id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Assign a role to a user. Requires admin privilige.  # noqa: E501
 
-        Assign a role to a user. Requires admin privilige.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -343,7 +339,6 @@ class UserApi:
     def get_role_by_name_handler(self, name : Annotated[StrictStr, Field(..., description="Role Name")], **kwargs) -> AddCollection200Response:  # noqa: E501
         """Get role by name  # noqa: E501
 
-        Get role by name  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -373,7 +368,6 @@ class UserApi:
     def get_role_by_name_handler_with_http_info(self, name : Annotated[StrictStr, Field(..., description="Role Name")], **kwargs) -> ApiResponse:  # noqa: E501
         """Get role by name  # noqa: E501
 
-        Get role by name  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -483,7 +477,6 @@ class UserApi:
     def get_role_descriptions(self, **kwargs) -> List[RoleDescription]:  # noqa: E501
         """Query roles for the current user.  # noqa: E501
 
-        Query roles for the current user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -511,7 +504,6 @@ class UserApi:
     def get_role_descriptions_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Query roles for the current user.  # noqa: E501
 
-        Query roles for the current user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -615,7 +607,6 @@ class UserApi:
     def get_user_quota_handler(self, user : Annotated[StrictStr, Field(..., description="User id")], **kwargs) -> Quota:  # noqa: E501
         """Retrieves the available and used quota of a specific user.  # noqa: E501
 
-        Retrieves the available and used quota of a specific user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -645,7 +636,6 @@ class UserApi:
     def get_user_quota_handler_with_http_info(self, user : Annotated[StrictStr, Field(..., description="User id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieves the available and used quota of a specific user.  # noqa: E501
 
-        Retrieves the available and used quota of a specific user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -755,7 +745,6 @@ class UserApi:
     def quota_handler(self, **kwargs) -> Quota:  # noqa: E501
         """Retrieves the available and used quota of the current user.  # noqa: E501
 
-        Retrieves the available and used quota of the current user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -783,7 +772,6 @@ class UserApi:
     def quota_handler_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieves the available and used quota of the current user.  # noqa: E501
 
-        Retrieves the available and used quota of the current user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -887,7 +875,6 @@ class UserApi:
     def remove_role_handler(self, role : Annotated[StrictStr, Field(..., description="Role id")], **kwargs) -> None:  # noqa: E501
         """Remove a role. Requires admin privilige.  # noqa: E501
 
-        Remove a role. Requires admin privilige.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -917,7 +904,6 @@ class UserApi:
     def remove_role_handler_with_http_info(self, role : Annotated[StrictStr, Field(..., description="Role id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Remove a role. Requires admin privilige.  # noqa: E501
 
-        Remove a role. Requires admin privilige.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1021,7 +1007,6 @@ class UserApi:
     def revoke_role_handler(self, user : Annotated[StrictStr, Field(..., description="User id")], role : Annotated[StrictStr, Field(..., description="Role id")], **kwargs) -> None:  # noqa: E501
         """Revoke a role from a user. Requires admin privilige.  # noqa: E501
 
-        Revoke a role from a user. Requires admin privilige.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1053,7 +1038,6 @@ class UserApi:
     def revoke_role_handler_with_http_info(self, user : Annotated[StrictStr, Field(..., description="User id")], role : Annotated[StrictStr, Field(..., description="Role id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Revoke a role from a user. Requires admin privilige.  # noqa: E501
 
-        Revoke a role from a user. Requires admin privilige.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1163,7 +1147,6 @@ class UserApi:
     def update_user_quota_handler(self, user : Annotated[StrictStr, Field(..., description="User id")], update_quota : UpdateQuota, **kwargs) -> None:  # noqa: E501
         """Update the available quota of a specific user.  # noqa: E501
 
-        Update the available quota of a specific user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1195,7 +1178,6 @@ class UserApi:
     def update_user_quota_handler_with_http_info(self, user : Annotated[StrictStr, Field(..., description="User id")], update_quota : UpdateQuota, **kwargs) -> ApiResponse:  # noqa: E501
         """Update the available quota of a specific user.  # noqa: E501
 
-        Update the available quota of a specific user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

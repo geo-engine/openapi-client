@@ -189,7 +189,6 @@ from geoengine_openapi_client.models.resource_id import ResourceId
 from geoengine_openapi_client.models.resource_id_dataset_id import ResourceIdDatasetId
 from geoengine_openapi_client.models.resource_id_layer import ResourceIdLayer
 from geoengine_openapi_client.models.resource_id_layer_collection import ResourceIdLayerCollection
-from geoengine_openapi_client.models.resource_id_model_id import ResourceIdModelId
 from geoengine_openapi_client.models.resource_id_project import ResourceIdProject
 from geoengine_openapi_client.models.rgba_colorizer import RgbaColorizer
 from geoengine_openapi_client.models.role import Role
@@ -206,6 +205,7 @@ from geoengine_openapi_client.models.spatial_reference_specification import Spat
 from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
 from geoengine_openapi_client.models.static_number_param import StaticNumberParam
 from geoengine_openapi_client.models.stroke_param import StrokeParam
+from geoengine_openapi_client.models.suggest_meta_data import SuggestMetaData
 from geoengine_openapi_client.models.symbology import Symbology
 from geoengine_openapi_client.models.task_abort_options import TaskAbortOptions
 from geoengine_openapi_client.models.task_filter import TaskFilter

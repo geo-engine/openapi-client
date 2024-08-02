@@ -42,71 +42,59 @@ export interface UpdateProjectHandlerRequest {
 export declare class ProjectsApi extends runtime.BaseAPI {
     /**
      * Create a new project for the user.
-     * Create a new project for the user.
      */
     createProjectHandlerRaw(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>>;
     /**
-     * Create a new project for the user.
      * Create a new project for the user.
      */
     createProjectHandler(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;
     /**
      * Deletes a project.
-     * Deletes a project.
      */
     deleteProjectHandlerRaw(requestParameters: DeleteProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Deletes a project.
      * Deletes a project.
      */
     deleteProjectHandler(requestParameters: DeleteProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * List all projects accessible to the user that match the selected criteria.
-     * List all projects accessible to the user that match the selected criteria.
      */
     listProjectsHandlerRaw(requestParameters: ListProjectsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectListing>>>;
     /**
-     * List all projects accessible to the user that match the selected criteria.
      * List all projects accessible to the user that match the selected criteria.
      */
     listProjectsHandler(requestParameters: ListProjectsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProjectListing>>;
     /**
      * Retrieves details about the latest version of a project.
-     * Retrieves details about the latest version of a project.
      */
     loadProjectLatestHandlerRaw(requestParameters: LoadProjectLatestHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
     /**
-     * Retrieves details about the latest version of a project.
      * Retrieves details about the latest version of a project.
      */
     loadProjectLatestHandler(requestParameters: LoadProjectLatestHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
     /**
      * Retrieves details about the given version of a project.
-     * Retrieves details about the given version of a project.
      */
     loadProjectVersionHandlerRaw(requestParameters: LoadProjectVersionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
     /**
-     * Retrieves details about the given version of a project.
      * Retrieves details about the given version of a project.
      */
     loadProjectVersionHandler(requestParameters: LoadProjectVersionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
     /**
      * Lists all available versions of a project.
-     * Lists all available versions of a project.
      */
     projectVersionsHandlerRaw(requestParameters: ProjectVersionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectVersion>>>;
     /**
      * Lists all available versions of a project.
-     * Lists all available versions of a project.
      */
     projectVersionsHandler(requestParameters: ProjectVersionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProjectVersion>>;
     /**
-     * Updates a project. This will create a new version.
+     * This will create a new version.
      * Updates a project.
      */
     updateProjectHandlerRaw(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Updates a project. This will create a new version.
+     * This will create a new version.
      * Updates a project.
      */
     updateProjectHandler(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;

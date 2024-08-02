@@ -56,7 +56,6 @@ class ProjectsApi:
     def create_project_handler(self, create_project : CreateProject, **kwargs) -> AddCollection200Response:  # noqa: E501
         """Create a new project for the user.  # noqa: E501
 
-        Create a new project for the user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -86,7 +85,6 @@ class ProjectsApi:
     def create_project_handler_with_http_info(self, create_project : CreateProject, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a new project for the user.  # noqa: E501
 
-        Create a new project for the user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -203,7 +201,6 @@ class ProjectsApi:
     def delete_project_handler(self, project : Annotated[StrictStr, Field(..., description="Project id")], **kwargs) -> None:  # noqa: E501
         """Deletes a project.  # noqa: E501
 
-        Deletes a project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -233,7 +230,6 @@ class ProjectsApi:
     def delete_project_handler_with_http_info(self, project : Annotated[StrictStr, Field(..., description="Project id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Deletes a project.  # noqa: E501
 
-        Deletes a project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -337,7 +333,6 @@ class ProjectsApi:
     def list_projects_handler(self, order : OrderBy, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> List[ProjectListing]:  # noqa: E501
         """List all projects accessible to the user that match the selected criteria.  # noqa: E501
 
-        List all projects accessible to the user that match the selected criteria.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -371,7 +366,6 @@ class ProjectsApi:
     def list_projects_handler_with_http_info(self, order : OrderBy, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> ApiResponse:  # noqa: E501
         """List all projects accessible to the user that match the selected criteria.  # noqa: E501
 
-        List all projects accessible to the user that match the selected criteria.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -493,7 +487,6 @@ class ProjectsApi:
     def load_project_latest_handler(self, project : Annotated[StrictStr, Field(..., description="Project id")], **kwargs) -> Project:  # noqa: E501
         """Retrieves details about the latest version of a project.  # noqa: E501
 
-        Retrieves details about the latest version of a project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -523,7 +516,6 @@ class ProjectsApi:
     def load_project_latest_handler_with_http_info(self, project : Annotated[StrictStr, Field(..., description="Project id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieves details about the latest version of a project.  # noqa: E501
 
-        Retrieves details about the latest version of a project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -633,7 +625,6 @@ class ProjectsApi:
     def load_project_version_handler(self, project : Annotated[StrictStr, Field(..., description="Project id")], version : Annotated[StrictStr, Field(..., description="Version id")], **kwargs) -> Project:  # noqa: E501
         """Retrieves details about the given version of a project.  # noqa: E501
 
-        Retrieves details about the given version of a project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -665,7 +656,6 @@ class ProjectsApi:
     def load_project_version_handler_with_http_info(self, project : Annotated[StrictStr, Field(..., description="Project id")], version : Annotated[StrictStr, Field(..., description="Version id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieves details about the given version of a project.  # noqa: E501
 
-        Retrieves details about the given version of a project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -781,7 +771,6 @@ class ProjectsApi:
     def project_versions_handler(self, project : Annotated[StrictStr, Field(..., description="Project id")], **kwargs) -> List[ProjectVersion]:  # noqa: E501
         """Lists all available versions of a project.  # noqa: E501
 
-        Lists all available versions of a project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -811,7 +800,6 @@ class ProjectsApi:
     def project_versions_handler_with_http_info(self, project : Annotated[StrictStr, Field(..., description="Project id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Lists all available versions of a project.  # noqa: E501
 
-        Lists all available versions of a project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -921,7 +909,7 @@ class ProjectsApi:
     def update_project_handler(self, project : Annotated[StrictStr, Field(..., description="Project id")], update_project : UpdateProject, **kwargs) -> None:  # noqa: E501
         """Updates a project.  # noqa: E501
 
-        Updates a project. This will create a new version.  # noqa: E501
+        This will create a new version.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -953,7 +941,7 @@ class ProjectsApi:
     def update_project_handler_with_http_info(self, project : Annotated[StrictStr, Field(..., description="Project id")], update_project : UpdateProject, **kwargs) -> ApiResponse:  # noqa: E501
         """Updates a project.  # noqa: E501
 
-        Updates a project. This will create a new version.  # noqa: E501
+        This will create a new version.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

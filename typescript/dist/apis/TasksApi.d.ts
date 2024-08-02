@@ -28,32 +28,28 @@ export interface StatusHandlerRequest {
  */
 export declare class TasksApi extends runtime.BaseAPI {
     /**
-     * Abort a running task.  # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     abortHandlerRaw(requestParameters: AbortHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Abort a running task.  # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     abortHandler(requestParameters: AbortHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Retrieve the status of all tasks.
-     * Retrieve the status of all tasks.
      */
     listHandlerRaw(requestParameters: ListHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaskStatusWithId>>>;
     /**
-     * Retrieve the status of all tasks.
      * Retrieve the status of all tasks.
      */
     listHandler(requestParameters: ListHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaskStatusWithId>>;
     /**
      * Retrieve the status of a task.
-     * Retrieve the status of a task.
      */
     statusHandlerRaw(requestParameters: StatusHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskStatus>>;
     /**
-     * Retrieve the status of a task.
      * Retrieve the status of a task.
      */
     statusHandler(requestParameters: StatusHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaskStatus>;

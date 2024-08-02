@@ -17,7 +17,6 @@ exports.ResourceIdToJSON = exports.ResourceIdFromJSONTyped = exports.ResourceIdF
 const ResourceIdDatasetId_1 = require("./ResourceIdDatasetId");
 const ResourceIdLayer_1 = require("./ResourceIdLayer");
 const ResourceIdLayerCollection_1 = require("./ResourceIdLayerCollection");
-const ResourceIdModelId_1 = require("./ResourceIdModelId");
 const ResourceIdProject_1 = require("./ResourceIdProject");
 function ResourceIdFromJSON(json) {
     return ResourceIdFromJSONTyped(json, false);
@@ -34,8 +33,6 @@ function ResourceIdFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, (0, ResourceIdLayer_1.ResourceIdLayerFromJSONTyped)(json, true)), { type: 'Layer' });
         case 'LayerCollection':
             return Object.assign(Object.assign({}, (0, ResourceIdLayerCollection_1.ResourceIdLayerCollectionFromJSONTyped)(json, true)), { type: 'LayerCollection' });
-        case 'ModelId':
-            return Object.assign(Object.assign({}, (0, ResourceIdModelId_1.ResourceIdModelIdFromJSONTyped)(json, true)), { type: 'ModelId' });
         case 'Project':
             return Object.assign(Object.assign({}, (0, ResourceIdProject_1.ResourceIdProjectFromJSONTyped)(json, true)), { type: 'Project' });
         default:
@@ -57,8 +54,6 @@ function ResourceIdToJSON(value) {
             return (0, ResourceIdLayer_1.ResourceIdLayerToJSON)(value);
         case 'LayerCollection':
             return (0, ResourceIdLayerCollection_1.ResourceIdLayerCollectionToJSON)(value);
-        case 'ModelId':
-            return (0, ResourceIdModelId_1.ResourceIdModelIdToJSON)(value);
         case 'Project':
             return (0, ResourceIdProject_1.ResourceIdProjectToJSON)(value);
         default:

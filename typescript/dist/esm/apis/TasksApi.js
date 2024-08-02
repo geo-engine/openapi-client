@@ -27,7 +27,7 @@ import { TaskStatusFromJSON, TaskStatusWithIdFromJSON, } from '../models/index';
  */
 export class TasksApi extends runtime.BaseAPI {
     /**
-     * Abort a running task.  # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     abortHandlerRaw(requestParameters, initOverrides) {
@@ -57,7 +57,7 @@ export class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Abort a running task.  # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     abortHandler(requestParameters, initOverrides) {
@@ -66,7 +66,6 @@ export class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve the status of all tasks.
      * Retrieve the status of all tasks.
      */
     listHandlerRaw(requestParameters, initOverrides) {
@@ -100,7 +99,6 @@ export class TasksApi extends runtime.BaseAPI {
     }
     /**
      * Retrieve the status of all tasks.
-     * Retrieve the status of all tasks.
      */
     listHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -109,7 +107,6 @@ export class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve the status of a task.
      * Retrieve the status of a task.
      */
     statusHandlerRaw(requestParameters, initOverrides) {
@@ -136,7 +133,6 @@ export class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve the status of a task.
      * Retrieve the status of a task.
      */
     statusHandler(requestParameters, initOverrides) {

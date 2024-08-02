@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, conint
+from pydantic import BaseModel, Field, StrictStr, conint, validator
 from geoengine_openapi_client.models.gdal_dataset_parameters import GdalDatasetParameters
 from geoengine_openapi_client.models.raster_result_descriptor import RasterResultDescriptor
 from geoengine_openapi_client.models.time_interval import TimeInterval
@@ -33,7 +33,15 @@ class GdalMetaDataStatic(BaseModel):
     params: GdalDatasetParameters = Field(...)
     result_descriptor: RasterResultDescriptor = Field(..., alias="resultDescriptor")
     time: Optional[TimeInterval] = None
-    __properties = ["cacheTtl", "params", "resultDescriptor", "time"]
+    type: StrictStr = Field(...)
+    __properties = ["cacheTtl", "params", "resultDescriptor", "time", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('GdalStatic'):
+            raise ValueError("must be one of enum values ('GdalStatic')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -88,7 +96,8 @@ class GdalMetaDataStatic(BaseModel):
             "cache_ttl": obj.get("cacheTtl"),
             "params": GdalDatasetParameters.from_dict(obj.get("params")) if obj.get("params") is not None else None,
             "result_descriptor": RasterResultDescriptor.from_dict(obj.get("resultDescriptor")) if obj.get("resultDescriptor") is not None else None,
-            "time": TimeInterval.from_dict(obj.get("time")) if obj.get("time") is not None else None
+            "time": TimeInterval.from_dict(obj.get("time")) if obj.get("time") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

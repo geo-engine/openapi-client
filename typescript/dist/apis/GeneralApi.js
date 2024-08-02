@@ -31,7 +31,6 @@ const index_1 = require("../models/index");
 class GeneralApi extends runtime.BaseAPI {
     /**
      * Server availablity check.
-     * Server availablity check.
      */
     availableHandlerRaw(initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -48,7 +47,6 @@ class GeneralApi extends runtime.BaseAPI {
     }
     /**
      * Server availablity check.
-     * Server availablity check.
      */
     availableHandler(initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -56,7 +54,6 @@ class GeneralApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Shows information about the server software version.
      * Shows information about the server software version.
      */
     serverInfoHandlerRaw(initOverrides) {
@@ -73,7 +70,6 @@ class GeneralApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Shows information about the server software version.
      * Shows information about the server software version.
      */
     serverInfoHandler(initOverrides) {

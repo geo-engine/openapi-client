@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, StrictStr, conlist, validator
 from geoengine_openapi_client.models.provider_layer_id import ProviderLayerId
 
 class LayerListing(BaseModel):
@@ -31,7 +31,15 @@ class LayerListing(BaseModel):
     id: ProviderLayerId = Field(...)
     name: StrictStr = Field(...)
     properties: Optional[conlist(conlist(StrictStr, max_items=2, min_items=2))] = Field(None, description="properties, for instance, to be rendered in the UI")
-    __properties = ["description", "id", "name", "properties"]
+    type: StrictStr = Field(...)
+    __properties = ["description", "id", "name", "properties", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('layer'):
+            raise ValueError("must be one of enum values ('layer')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -75,7 +83,8 @@ class LayerListing(BaseModel):
             "description": obj.get("description"),
             "id": ProviderLayerId.from_dict(obj.get("id")) if obj.get("id") is not None else None,
             "name": obj.get("name"),
-            "properties": obj.get("properties")
+            "properties": obj.get("properties"),
+            "type": obj.get("type")
         })
         return _obj
 

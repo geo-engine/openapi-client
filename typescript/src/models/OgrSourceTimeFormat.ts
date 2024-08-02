@@ -13,33 +13,33 @@
  */
 
 import {
-    AutoOgrSourceTimeFormat,
-    instanceOfAutoOgrSourceTimeFormat,
-    AutoOgrSourceTimeFormatFromJSON,
-    AutoOgrSourceTimeFormatFromJSONTyped,
-    AutoOgrSourceTimeFormatToJSON,
-} from './AutoOgrSourceTimeFormat';
+    OgrSourceTimeFormatAuto,
+    instanceOfOgrSourceTimeFormatAuto,
+    OgrSourceTimeFormatAutoFromJSON,
+    OgrSourceTimeFormatAutoFromJSONTyped,
+    OgrSourceTimeFormatAutoToJSON,
+} from './OgrSourceTimeFormatAuto';
 import {
-    CustomOgrSourceTimeFormat,
-    instanceOfCustomOgrSourceTimeFormat,
-    CustomOgrSourceTimeFormatFromJSON,
-    CustomOgrSourceTimeFormatFromJSONTyped,
-    CustomOgrSourceTimeFormatToJSON,
-} from './CustomOgrSourceTimeFormat';
+    OgrSourceTimeFormatCustom,
+    instanceOfOgrSourceTimeFormatCustom,
+    OgrSourceTimeFormatCustomFromJSON,
+    OgrSourceTimeFormatCustomFromJSONTyped,
+    OgrSourceTimeFormatCustomToJSON,
+} from './OgrSourceTimeFormatCustom';
 import {
-    UnixTimeStampOgrSourceTimeFormat,
-    instanceOfUnixTimeStampOgrSourceTimeFormat,
-    UnixTimeStampOgrSourceTimeFormatFromJSON,
-    UnixTimeStampOgrSourceTimeFormatFromJSONTyped,
-    UnixTimeStampOgrSourceTimeFormatToJSON,
-} from './UnixTimeStampOgrSourceTimeFormat';
+    OgrSourceTimeFormatUnixTimeStamp,
+    instanceOfOgrSourceTimeFormatUnixTimeStamp,
+    OgrSourceTimeFormatUnixTimeStampFromJSON,
+    OgrSourceTimeFormatUnixTimeStampFromJSONTyped,
+    OgrSourceTimeFormatUnixTimeStampToJSON,
+} from './OgrSourceTimeFormatUnixTimeStamp';
 
 /**
  * @type OgrSourceTimeFormat
  * 
  * @export
  */
-export type OgrSourceTimeFormat = { format: 'auto' } & AutoOgrSourceTimeFormat | { format: 'custom' } & CustomOgrSourceTimeFormat | { format: 'unixTimeStamp' } & UnixTimeStampOgrSourceTimeFormat;
+export type OgrSourceTimeFormat = { format: 'auto' } & OgrSourceTimeFormatAuto | { format: 'custom' } & OgrSourceTimeFormatCustom | { format: 'unixTimeStamp' } & OgrSourceTimeFormatUnixTimeStamp;
 
 export function OgrSourceTimeFormatFromJSON(json: any): OgrSourceTimeFormat {
     return OgrSourceTimeFormatFromJSONTyped(json, false);
@@ -51,11 +51,11 @@ export function OgrSourceTimeFormatFromJSONTyped(json: any, ignoreDiscriminator:
     }
     switch (json['format']) {
         case 'auto':
-            return {...AutoOgrSourceTimeFormatFromJSONTyped(json, true), format: 'auto'};
+            return {...OgrSourceTimeFormatAutoFromJSONTyped(json, true), format: 'auto'};
         case 'custom':
-            return {...CustomOgrSourceTimeFormatFromJSONTyped(json, true), format: 'custom'};
+            return {...OgrSourceTimeFormatCustomFromJSONTyped(json, true), format: 'custom'};
         case 'unixTimeStamp':
-            return {...UnixTimeStampOgrSourceTimeFormatFromJSONTyped(json, true), format: 'unixTimeStamp'};
+            return {...OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, true), format: 'unixTimeStamp'};
         default:
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${json['format']}'`);
     }
@@ -70,11 +70,11 @@ export function OgrSourceTimeFormatToJSON(value?: OgrSourceTimeFormat | null): a
     }
     switch (value['format']) {
         case 'auto':
-            return AutoOgrSourceTimeFormatToJSON(value);
+            return OgrSourceTimeFormatAutoToJSON(value);
         case 'custom':
-            return CustomOgrSourceTimeFormatToJSON(value);
+            return OgrSourceTimeFormatCustomToJSON(value);
         case 'unixTimeStamp':
-            return UnixTimeStampOgrSourceTimeFormatToJSON(value);
+            return OgrSourceTimeFormatUnixTimeStampToJSON(value);
         default:
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${value['format']}'`);
     }

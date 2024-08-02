@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, conint
+from pydantic import BaseModel, Field, StrictInt, StrictStr, conint, validator
 from geoengine_openapi_client.models.gdal_dataset_parameters import GdalDatasetParameters
 from geoengine_openapi_client.models.raster_result_descriptor import RasterResultDescriptor
 from geoengine_openapi_client.models.time_step import TimeStep
@@ -36,7 +36,15 @@ class GdalMetadataNetCdfCf(BaseModel):
     result_descriptor: RasterResultDescriptor = Field(..., alias="resultDescriptor")
     start: StrictInt = Field(...)
     step: TimeStep = Field(...)
-    __properties = ["bandOffset", "cacheTtl", "end", "params", "resultDescriptor", "start", "step"]
+    type: StrictStr = Field(...)
+    __properties = ["bandOffset", "cacheTtl", "end", "params", "resultDescriptor", "start", "step", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('GdalMetadataNetCdfCf'):
+            raise ValueError("must be one of enum values ('GdalMetadataNetCdfCf')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -89,7 +97,8 @@ class GdalMetadataNetCdfCf(BaseModel):
             "params": GdalDatasetParameters.from_dict(obj.get("params")) if obj.get("params") is not None else None,
             "result_descriptor": RasterResultDescriptor.from_dict(obj.get("resultDescriptor")) if obj.get("resultDescriptor") is not None else None,
             "start": obj.get("start"),
-            "step": TimeStep.from_dict(obj.get("step")) if obj.get("step") is not None else None
+            "step": TimeStep.from_dict(obj.get("step")) if obj.get("step") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

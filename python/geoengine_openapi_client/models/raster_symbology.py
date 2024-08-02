@@ -20,7 +20,7 @@ import json
 
 
 from typing import Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, validator
 from geoengine_openapi_client.models.raster_colorizer import RasterColorizer
 
 class RasterSymbology(BaseModel):
@@ -29,7 +29,15 @@ class RasterSymbology(BaseModel):
     """
     opacity: Union[StrictFloat, StrictInt] = Field(...)
     raster_colorizer: RasterColorizer = Field(..., alias="rasterColorizer")
-    __properties = ["opacity", "rasterColorizer"]
+    type: StrictStr = Field(...)
+    __properties = ["opacity", "rasterColorizer", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('raster', 'point', 'line', 'polygon'):
+            raise ValueError("must be one of enum values ('raster', 'point', 'line', 'polygon')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -71,7 +79,8 @@ class RasterSymbology(BaseModel):
 
         _obj = RasterSymbology.parse_obj({
             "opacity": obj.get("opacity"),
-            "raster_colorizer": RasterColorizer.from_dict(obj.get("rasterColorizer")) if obj.get("rasterColorizer") is not None else None
+            "raster_colorizer": RasterColorizer.from_dict(obj.get("rasterColorizer")) if obj.get("rasterColorizer") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

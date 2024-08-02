@@ -46,31 +46,25 @@ export interface WcsGetCoverageHandlerRequest {
 export declare class OGCWCSApi extends runtime.BaseAPI {
     /**
      * Get WCS Capabilities
-     * Get WCS Capabilities
      */
     wcsCapabilitiesHandlerRaw(requestParameters: WcsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
-     * Get WCS Capabilities
      * Get WCS Capabilities
      */
     wcsCapabilitiesHandler(requestParameters: WcsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
      * Get WCS Coverage Description
-     * Get WCS Coverage Description
      */
     wcsDescribeCoverageHandlerRaw(requestParameters: WcsDescribeCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
-     * Get WCS Coverage Description
      * Get WCS Coverage Description
      */
     wcsDescribeCoverageHandler(requestParameters: WcsDescribeCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
      * Get WCS Coverage
-     * Get WCS Coverage
      */
     wcsGetCoverageHandlerRaw(requestParameters: WcsGetCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>>;
     /**
-     * Get WCS Coverage
      * Get WCS Coverage
      */
     wcsGetCoverageHandler(requestParameters: WcsGetCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob>;

@@ -28,7 +28,6 @@ import { GeoJsonFromJSON, } from '../models/index';
 export class OGCWFSApi extends runtime.BaseAPI {
     /**
      * Get WFS Capabilities
-     * Get WFS Capabilities
      */
     wfsCapabilitiesHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -69,7 +68,6 @@ export class OGCWFSApi extends runtime.BaseAPI {
     }
     /**
      * Get WFS Capabilities
-     * Get WFS Capabilities
      */
     wfsCapabilitiesHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -78,7 +76,6 @@ export class OGCWFSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WCS Features
      * Get WCS Features
      */
     wfsFeatureHandlerRaw(requestParameters, initOverrides) {
@@ -159,7 +156,6 @@ export class OGCWFSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WCS Features
      * Get WCS Features
      */
     wfsFeatureHandler(requestParameters, initOverrides) {

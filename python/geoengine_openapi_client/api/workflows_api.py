@@ -58,7 +58,7 @@ class WorkflowsApi:
     def dataset_from_workflow_handler(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], raster_dataset_from_workflow : RasterDatasetFromWorkflow, **kwargs) -> TaskResponse:  # noqa: E501
         """Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.  # noqa: E501
 
-        Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task  # noqa: E501
+        Returns the id of the created task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -90,7 +90,7 @@ class WorkflowsApi:
     def dataset_from_workflow_handler_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], raster_dataset_from_workflow : RasterDatasetFromWorkflow, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.  # noqa: E501
 
-        Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task  # noqa: E501
+        Returns the id of the created task  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -213,7 +213,6 @@ class WorkflowsApi:
     def get_workflow_all_metadata_zip_handler(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], **kwargs) -> bytearray:  # noqa: E501
         """Gets a ZIP archive of the worklow, its provenance and the output metadata.  # noqa: E501
 
-        Gets a ZIP archive of the worklow, its provenance and the output metadata.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -243,7 +242,6 @@ class WorkflowsApi:
     def get_workflow_all_metadata_zip_handler_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Gets a ZIP archive of the worklow, its provenance and the output metadata.  # noqa: E501
 
-        Gets a ZIP archive of the worklow, its provenance and the output metadata.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -353,7 +351,6 @@ class WorkflowsApi:
     def get_workflow_metadata_handler(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], **kwargs) -> TypedResultDescriptor:  # noqa: E501
         """Gets the metadata of a workflow  # noqa: E501
 
-        Gets the metadata of a workflow  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -383,7 +380,6 @@ class WorkflowsApi:
     def get_workflow_metadata_handler_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Gets the metadata of a workflow  # noqa: E501
 
-        Gets the metadata of a workflow  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -493,7 +489,6 @@ class WorkflowsApi:
     def get_workflow_provenance_handler(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], **kwargs) -> List[ProvenanceEntry]:  # noqa: E501
         """Gets the provenance of all datasets used in a workflow.  # noqa: E501
 
-        Gets the provenance of all datasets used in a workflow.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -523,7 +518,6 @@ class WorkflowsApi:
     def get_workflow_provenance_handler_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Gets the provenance of all datasets used in a workflow.  # noqa: E501
 
-        Gets the provenance of all datasets used in a workflow.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -633,7 +627,6 @@ class WorkflowsApi:
     def load_workflow_handler(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], **kwargs) -> Workflow:  # noqa: E501
         """Retrieves an existing Workflow.  # noqa: E501
 
-        Retrieves an existing Workflow.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -663,7 +656,6 @@ class WorkflowsApi:
     def load_workflow_handler_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieves an existing Workflow.  # noqa: E501
 
-        Retrieves an existing Workflow.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -773,7 +765,6 @@ class WorkflowsApi:
     def raster_stream_websocket(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], spatial_bounds : SpatialPartition2D, time_interval : StrictStr, spatial_resolution : SpatialResolution, attributes : StrictStr, result_type : RasterStreamWebsocketResultType, **kwargs) -> None:  # noqa: E501
         """Query a workflow raster result as a stream of tiles via a websocket connection.  # noqa: E501
 
-        Query a workflow raster result as a stream of tiles via a websocket connection.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -813,7 +804,6 @@ class WorkflowsApi:
     def raster_stream_websocket_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], spatial_bounds : SpatialPartition2D, time_interval : StrictStr, spatial_resolution : SpatialResolution, attributes : StrictStr, result_type : RasterStreamWebsocketResultType, **kwargs) -> ApiResponse:  # noqa: E501
         """Query a workflow raster result as a stream of tiles via a websocket connection.  # noqa: E501
 
-        Query a workflow raster result as a stream of tiles via a websocket connection.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -947,7 +937,6 @@ class WorkflowsApi:
     def register_workflow_handler(self, workflow : Workflow, **kwargs) -> AddCollection200Response:  # noqa: E501
         """Registers a new Workflow.  # noqa: E501
 
-        Registers a new Workflow.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -977,7 +966,6 @@ class WorkflowsApi:
     def register_workflow_handler_with_http_info(self, workflow : Workflow, **kwargs) -> ApiResponse:  # noqa: E501
         """Registers a new Workflow.  # noqa: E501
 
-        Registers a new Workflow.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

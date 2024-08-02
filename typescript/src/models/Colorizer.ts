@@ -13,19 +13,19 @@
  */
 
 import {
-    LinearGradientWithType,
-    instanceOfLinearGradientWithType,
-    LinearGradientWithTypeFromJSON,
-    LinearGradientWithTypeFromJSONTyped,
-    LinearGradientWithTypeToJSON,
-} from './LinearGradientWithType';
+    LinearGradient,
+    instanceOfLinearGradient,
+    LinearGradientFromJSON,
+    LinearGradientFromJSONTyped,
+    LinearGradientToJSON,
+} from './LinearGradient';
 import {
-    LogarithmicGradientWithType,
-    instanceOfLogarithmicGradientWithType,
-    LogarithmicGradientWithTypeFromJSON,
-    LogarithmicGradientWithTypeFromJSONTyped,
-    LogarithmicGradientWithTypeToJSON,
-} from './LogarithmicGradientWithType';
+    LogarithmicGradient,
+    instanceOfLogarithmicGradient,
+    LogarithmicGradientFromJSON,
+    LogarithmicGradientFromJSONTyped,
+    LogarithmicGradientToJSON,
+} from './LogarithmicGradient';
 import {
     PaletteColorizer,
     instanceOfPaletteColorizer,
@@ -46,7 +46,7 @@ import {
  * 
  * @export
  */
-export type Colorizer = { type: 'linearGradient' } & LinearGradientWithType | { type: 'logarithmicGradient' } & LogarithmicGradientWithType | { type: 'palette' } & PaletteColorizer | { type: 'rgba' } & RgbaColorizer;
+export type Colorizer = { type: 'linearGradient' } & LinearGradient | { type: 'logarithmicGradient' } & LogarithmicGradient | { type: 'palette' } & PaletteColorizer | { type: 'rgba' } & RgbaColorizer;
 
 export function ColorizerFromJSON(json: any): Colorizer {
     return ColorizerFromJSONTyped(json, false);
@@ -58,9 +58,9 @@ export function ColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     switch (json['type']) {
         case 'linearGradient':
-            return {...LinearGradientWithTypeFromJSONTyped(json, true), type: 'linearGradient'};
+            return {...LinearGradientFromJSONTyped(json, true), type: 'linearGradient'};
         case 'logarithmicGradient':
-            return {...LogarithmicGradientWithTypeFromJSONTyped(json, true), type: 'logarithmicGradient'};
+            return {...LogarithmicGradientFromJSONTyped(json, true), type: 'logarithmicGradient'};
         case 'palette':
             return {...PaletteColorizerFromJSONTyped(json, true), type: 'palette'};
         case 'rgba':
@@ -79,9 +79,9 @@ export function ColorizerToJSON(value?: Colorizer | null): any {
     }
     switch (value['type']) {
         case 'linearGradient':
-            return LinearGradientWithTypeToJSON(value);
+            return LinearGradientToJSON(value);
         case 'logarithmicGradient':
-            return LogarithmicGradientWithTypeToJSON(value);
+            return LogarithmicGradientToJSON(value);
         case 'palette':
             return PaletteColorizerToJSON(value);
         case 'rgba':

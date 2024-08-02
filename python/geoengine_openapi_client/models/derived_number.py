@@ -20,7 +20,7 @@ import json
 
 
 from typing import Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, validator
 
 class DerivedNumber(BaseModel):
     """
@@ -29,7 +29,15 @@ class DerivedNumber(BaseModel):
     attribute: StrictStr = Field(...)
     default_value: Union[StrictFloat, StrictInt] = Field(..., alias="defaultValue")
     factor: Union[StrictFloat, StrictInt] = Field(...)
-    __properties = ["attribute", "defaultValue", "factor"]
+    type: StrictStr = Field(...)
+    __properties = ["attribute", "defaultValue", "factor", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('derived'):
+            raise ValueError("must be one of enum values ('derived')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -69,7 +77,8 @@ class DerivedNumber(BaseModel):
         _obj = DerivedNumber.parse_obj({
             "attribute": obj.get("attribute"),
             "default_value": obj.get("defaultValue"),
-            "factor": obj.get("factor")
+            "factor": obj.get("factor"),
+            "type": obj.get("type")
         })
         return _obj
 

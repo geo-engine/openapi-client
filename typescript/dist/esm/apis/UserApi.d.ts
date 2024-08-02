@@ -41,91 +41,73 @@ export interface UpdateUserQuotaHandlerRequest {
 export declare class UserApi extends runtime.BaseAPI {
     /**
      * Add a new role. Requires admin privilige.
-     * Add a new role. Requires admin privilige.
      */
     addRoleHandlerRaw(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
-     * Add a new role. Requires admin privilige.
      * Add a new role. Requires admin privilige.
      */
     addRoleHandler(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
      * Assign a role to a user. Requires admin privilige.
-     * Assign a role to a user. Requires admin privilige.
      */
     assignRoleHandlerRaw(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Assign a role to a user. Requires admin privilige.
      * Assign a role to a user. Requires admin privilige.
      */
     assignRoleHandler(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Get role by name
-     * Get role by name
      */
     getRoleByNameHandlerRaw(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>>;
     /**
-     * Get role by name
      * Get role by name
      */
     getRoleByNameHandler(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;
     /**
      * Query roles for the current user.
-     * Query roles for the current user.
      */
     getRoleDescriptionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RoleDescription>>>;
     /**
-     * Query roles for the current user.
      * Query roles for the current user.
      */
     getRoleDescriptions(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<RoleDescription>>;
     /**
      * Retrieves the available and used quota of a specific user.
-     * Retrieves the available and used quota of a specific user.
      */
     getUserQuotaHandlerRaw(requestParameters: GetUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quota>>;
     /**
-     * Retrieves the available and used quota of a specific user.
      * Retrieves the available and used quota of a specific user.
      */
     getUserQuotaHandler(requestParameters: GetUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quota>;
     /**
      * Retrieves the available and used quota of the current user.
-     * Retrieves the available and used quota of the current user.
      */
     quotaHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quota>>;
     /**
-     * Retrieves the available and used quota of the current user.
      * Retrieves the available and used quota of the current user.
      */
     quotaHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quota>;
     /**
      * Remove a role. Requires admin privilige.
-     * Remove a role. Requires admin privilige.
      */
     removeRoleHandlerRaw(requestParameters: RemoveRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Remove a role. Requires admin privilige.
      * Remove a role. Requires admin privilige.
      */
     removeRoleHandler(requestParameters: RemoveRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Revoke a role from a user. Requires admin privilige.
-     * Revoke a role from a user. Requires admin privilige.
      */
     revokeRoleHandlerRaw(requestParameters: RevokeRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Revoke a role from a user. Requires admin privilige.
      * Revoke a role from a user. Requires admin privilige.
      */
     revokeRoleHandler(requestParameters: RevokeRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Update the available quota of a specific user.
-     * Update the available quota of a specific user.
      */
     updateUserQuotaHandlerRaw(requestParameters: UpdateUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Update the available quota of a specific user.
      * Update the available quota of a specific user.
      */
     updateUserQuotaHandler(requestParameters: UpdateUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;

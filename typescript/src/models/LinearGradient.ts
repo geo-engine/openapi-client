@@ -46,11 +46,30 @@ export interface LinearGradient {
     overColor: Array<number>;
     /**
      * 
+     * @type {string}
+     * @memberof LinearGradient
+     */
+    type: LinearGradientTypeEnum;
+    /**
+     * 
      * @type {Array<number>}
      * @memberof LinearGradient
      */
     underColor: Array<number>;
 }
+
+
+/**
+ * @export
+ */
+export const LinearGradientTypeEnum = {
+    LinearGradient: 'linearGradient',
+    LogarithmicGradient: 'logarithmicGradient',
+    Palette: 'palette',
+    Rgba: 'rgba'
+} as const;
+export type LinearGradientTypeEnum = typeof LinearGradientTypeEnum[keyof typeof LinearGradientTypeEnum];
+
 
 /**
  * Check if a given object implements the LinearGradient interface.
@@ -60,6 +79,7 @@ export function instanceOfLinearGradient(value: object): boolean {
     isInstance = isInstance && "breakpoints" in value;
     isInstance = isInstance && "noDataColor" in value;
     isInstance = isInstance && "overColor" in value;
+    isInstance = isInstance && "type" in value;
     isInstance = isInstance && "underColor" in value;
 
     return isInstance;
@@ -78,6 +98,7 @@ export function LinearGradientFromJSONTyped(json: any, ignoreDiscriminator: bool
         'breakpoints': ((json['breakpoints'] as Array<any>).map(BreakpointFromJSON)),
         'noDataColor': json['noDataColor'],
         'overColor': json['overColor'],
+        'type': json['type'],
         'underColor': json['underColor'],
     };
 }
@@ -94,6 +115,7 @@ export function LinearGradientToJSON(value?: LinearGradient | null): any {
         'breakpoints': ((value.breakpoints as Array<any>).map(BreakpointToJSON)),
         'noDataColor': value.noDataColor,
         'overColor': value.overColor,
+        'type': value.type,
         'underColor': value.underColor,
     };
 }

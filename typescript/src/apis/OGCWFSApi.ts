@@ -66,7 +66,6 @@ export class OGCWFSApi extends runtime.BaseAPI {
 
     /**
      * Get WFS Capabilities
-     * Get WFS Capabilities
      */
     async wfsCapabilitiesHandlerRaw(requestParameters: WfsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
@@ -113,7 +112,6 @@ export class OGCWFSApi extends runtime.BaseAPI {
 
     /**
      * Get WFS Capabilities
-     * Get WFS Capabilities
      */
     async wfsCapabilitiesHandler(requestParameters: WfsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.wfsCapabilitiesHandlerRaw(requestParameters, initOverrides);
@@ -121,7 +119,6 @@ export class OGCWFSApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get WCS Features
      * Get WCS Features
      */
     async wfsFeatureHandlerRaw(requestParameters: WfsFeatureHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeoJson>> {
@@ -224,7 +221,6 @@ export class OGCWFSApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get WCS Features
      * Get WCS Features
      */
     async wfsFeatureHandler(requestParameters: WfsFeatureHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeoJson> {

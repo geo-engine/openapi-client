@@ -28,7 +28,6 @@ import { AddCollection200ResponseFromJSON, AddLayerToJSON, AddLayerCollectionToJ
 export class LayersApi extends runtime.BaseAPI {
     /**
      * Add a new collection to an existing collection
-     * Add a new collection to an existing collection
      */
     addCollectionRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -60,7 +59,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Add a new collection to an existing collection
-     * Add a new collection to an existing collection
      */
     addCollection(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -69,7 +67,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Add an existing collection to a collection
      * Add an existing collection to a collection
      */
     addExistingCollectionToCollectionRaw(requestParameters, initOverrides) {
@@ -100,7 +97,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Add an existing collection to a collection
-     * Add an existing collection to a collection
      */
     addExistingCollectionToCollection(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -108,7 +104,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Add an existing layer to a collection
      * Add an existing layer to a collection
      */
     addExistingLayerToCollectionRaw(requestParameters, initOverrides) {
@@ -139,7 +134,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Add an existing layer to a collection
-     * Add an existing layer to a collection
      */
     addExistingLayerToCollection(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -147,7 +141,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Add a new layer to a collection
      * Add a new layer to a collection
      */
     addLayerRaw(requestParameters, initOverrides) {
@@ -180,7 +173,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Add a new layer to a collection
-     * Add a new layer to a collection
      */
     addLayer(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -189,7 +181,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Autocompletes the search on the contents of the collection of the given provider
      * Autocompletes the search on the contents of the collection of the given provider
      */
     autocompleteHandlerRaw(requestParameters, initOverrides) {
@@ -244,7 +235,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Autocompletes the search on the contents of the collection of the given provider
-     * Autocompletes the search on the contents of the collection of the given provider
      */
     autocompleteHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -253,7 +243,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the layer of the given provider
      * Retrieves the layer of the given provider
      */
     layerHandlerRaw(requestParameters, initOverrides) {
@@ -284,7 +273,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Retrieves the layer of the given provider
-     * Retrieves the layer of the given provider
      */
     layerHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -293,7 +281,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Persist a raster layer from a provider as a dataset.
      * Persist a raster layer from a provider as a dataset.
      */
     layerToDatasetRaw(requestParameters, initOverrides) {
@@ -324,7 +311,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Persist a raster layer from a provider as a dataset.
-     * Persist a raster layer from a provider as a dataset.
      */
     layerToDataset(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -333,7 +319,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Registers a layer from a provider as a workflow and returns the workflow id
      * Registers a layer from a provider as a workflow and returns the workflow id
      */
     layerToWorkflowIdHandlerRaw(requestParameters, initOverrides) {
@@ -364,7 +349,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Registers a layer from a provider as a workflow and returns the workflow id
-     * Registers a layer from a provider as a workflow and returns the workflow id
      */
     layerToWorkflowIdHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -373,7 +357,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List the contents of the collection of the given provider
      * List the contents of the collection of the given provider
      */
     listCollectionHandlerRaw(requestParameters, initOverrides) {
@@ -416,7 +399,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * List the contents of the collection of the given provider
-     * List the contents of the collection of the given provider
      */
     listCollectionHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -425,7 +407,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List all layer collections
      * List all layer collections
      */
     listRootCollectionsHandlerRaw(requestParameters, initOverrides) {
@@ -461,7 +442,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List all layer collections
      * List all layer collections
      */
     listRootCollectionsHandler(requestParameters, initOverrides) {
@@ -505,7 +485,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Remove a collection
-     * Remove a collection
      */
     removeCollectionRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -532,7 +511,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Remove a collection
-     * Remove a collection
      */
     removeCollection(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -540,7 +518,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Delete a collection from a collection
      * Delete a collection from a collection
      */
     removeCollectionFromCollectionRaw(requestParameters, initOverrides) {
@@ -571,7 +548,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Delete a collection from a collection
-     * Delete a collection from a collection
      */
     removeCollectionFromCollection(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -579,7 +555,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Remove a layer from a collection
      * Remove a layer from a collection
      */
     removeLayerFromCollectionRaw(requestParameters, initOverrides) {
@@ -610,7 +585,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
     /**
      * Remove a layer from a collection
-     * Remove a layer from a collection
      */
     removeLayerFromCollection(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -618,7 +592,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Searches the contents of the collection of the given provider
      * Searches the contents of the collection of the given provider
      */
     searchHandlerRaw(requestParameters, initOverrides) {
@@ -672,7 +645,6 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Searches the contents of the collection of the given provider
      * Searches the contents of the collection of the given provider
      */
     searchHandler(requestParameters, initOverrides) {

@@ -13,8 +13,17 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LinearGradientToJSON = exports.LinearGradientFromJSONTyped = exports.LinearGradientFromJSON = exports.instanceOfLinearGradient = void 0;
+exports.LinearGradientToJSON = exports.LinearGradientFromJSONTyped = exports.LinearGradientFromJSON = exports.instanceOfLinearGradient = exports.LinearGradientTypeEnum = void 0;
 const Breakpoint_1 = require("./Breakpoint");
+/**
+ * @export
+ */
+exports.LinearGradientTypeEnum = {
+    LinearGradient: 'linearGradient',
+    LogarithmicGradient: 'logarithmicGradient',
+    Palette: 'palette',
+    Rgba: 'rgba'
+};
 /**
  * Check if a given object implements the LinearGradient interface.
  */
@@ -23,6 +32,7 @@ function instanceOfLinearGradient(value) {
     isInstance = isInstance && "breakpoints" in value;
     isInstance = isInstance && "noDataColor" in value;
     isInstance = isInstance && "overColor" in value;
+    isInstance = isInstance && "type" in value;
     isInstance = isInstance && "underColor" in value;
     return isInstance;
 }
@@ -39,6 +49,7 @@ function LinearGradientFromJSONTyped(json, ignoreDiscriminator) {
         'breakpoints': (json['breakpoints'].map(Breakpoint_1.BreakpointFromJSON)),
         'noDataColor': json['noDataColor'],
         'overColor': json['overColor'],
+        'type': json['type'],
         'underColor': json['underColor'],
     };
 }
@@ -54,6 +65,7 @@ function LinearGradientToJSON(value) {
         'breakpoints': (value.breakpoints.map(Breakpoint_1.BreakpointToJSON)),
         'noDataColor': value.noDataColor,
         'overColor': value.overColor,
+        'type': value.type,
         'underColor': value.underColor,
     };
 }

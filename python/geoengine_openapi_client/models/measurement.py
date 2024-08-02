@@ -21,13 +21,13 @@ import re  # noqa: F401
 
 from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from geoengine_openapi_client.models.classification_measurement_with_type import ClassificationMeasurementWithType
-from geoengine_openapi_client.models.continuous_measurement_with_type import ContinuousMeasurementWithType
+from geoengine_openapi_client.models.classification_measurement import ClassificationMeasurement
+from geoengine_openapi_client.models.continuous_measurement import ContinuousMeasurement
 from geoengine_openapi_client.models.unitless_measurement import UnitlessMeasurement
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-MEASUREMENT_ONE_OF_SCHEMAS = ["ClassificationMeasurementWithType", "ContinuousMeasurementWithType", "UnitlessMeasurement"]
+MEASUREMENT_ONE_OF_SCHEMAS = ["ClassificationMeasurement", "ContinuousMeasurement", "UnitlessMeasurement"]
 
 class Measurement(BaseModel):
     """
@@ -35,12 +35,12 @@ class Measurement(BaseModel):
     """
     # data type: UnitlessMeasurement
     oneof_schema_1_validator: Optional[UnitlessMeasurement] = None
-    # data type: ContinuousMeasurementWithType
-    oneof_schema_2_validator: Optional[ContinuousMeasurementWithType] = None
-    # data type: ClassificationMeasurementWithType
-    oneof_schema_3_validator: Optional[ClassificationMeasurementWithType] = None
+    # data type: ContinuousMeasurement
+    oneof_schema_2_validator: Optional[ContinuousMeasurement] = None
+    # data type: ClassificationMeasurement
+    oneof_schema_3_validator: Optional[ClassificationMeasurement] = None
     if TYPE_CHECKING:
-        actual_instance: Union[ClassificationMeasurementWithType, ContinuousMeasurementWithType, UnitlessMeasurement]
+        actual_instance: Union[ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(MEASUREMENT_ONE_OF_SCHEMAS, const=True)
@@ -71,22 +71,22 @@ class Measurement(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `UnitlessMeasurement`")
         else:
             match += 1
-        # validate data type: ContinuousMeasurementWithType
-        if not isinstance(v, ContinuousMeasurementWithType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ContinuousMeasurementWithType`")
+        # validate data type: ContinuousMeasurement
+        if not isinstance(v, ContinuousMeasurement):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ContinuousMeasurement`")
         else:
             match += 1
-        # validate data type: ClassificationMeasurementWithType
-        if not isinstance(v, ClassificationMeasurementWithType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ClassificationMeasurementWithType`")
+        # validate data type: ClassificationMeasurement
+        if not isinstance(v, ClassificationMeasurement):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ClassificationMeasurement`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Measurement with oneOf schemas: ClassificationMeasurementWithType, ContinuousMeasurementWithType, UnitlessMeasurement. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Measurement with oneOf schemas: ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Measurement with oneOf schemas: ClassificationMeasurementWithType, ContinuousMeasurementWithType, UnitlessMeasurement. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Measurement with oneOf schemas: ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -106,14 +106,14 @@ class Measurement(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `ClassificationMeasurementWithType`
-        if _data_type == "ClassificationMeasurementWithType":
-            instance.actual_instance = ClassificationMeasurementWithType.from_json(json_str)
+        # check if data type is `ClassificationMeasurement`
+        if _data_type == "ClassificationMeasurement":
+            instance.actual_instance = ClassificationMeasurement.from_json(json_str)
             return instance
 
-        # check if data type is `ContinuousMeasurementWithType`
-        if _data_type == "ContinuousMeasurementWithType":
-            instance.actual_instance = ContinuousMeasurementWithType.from_json(json_str)
+        # check if data type is `ContinuousMeasurement`
+        if _data_type == "ContinuousMeasurement":
+            instance.actual_instance = ContinuousMeasurement.from_json(json_str)
             return instance
 
         # check if data type is `UnitlessMeasurement`
@@ -121,14 +121,14 @@ class Measurement(BaseModel):
             instance.actual_instance = UnitlessMeasurement.from_json(json_str)
             return instance
 
-        # check if data type is `ClassificationMeasurementWithType`
+        # check if data type is `ClassificationMeasurement`
         if _data_type == "classification":
-            instance.actual_instance = ClassificationMeasurementWithType.from_json(json_str)
+            instance.actual_instance = ClassificationMeasurement.from_json(json_str)
             return instance
 
-        # check if data type is `ContinuousMeasurementWithType`
+        # check if data type is `ContinuousMeasurement`
         if _data_type == "continuous":
-            instance.actual_instance = ContinuousMeasurementWithType.from_json(json_str)
+            instance.actual_instance = ContinuousMeasurement.from_json(json_str)
             return instance
 
         # check if data type is `UnitlessMeasurement`
@@ -142,25 +142,25 @@ class Measurement(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ContinuousMeasurementWithType
+        # deserialize data into ContinuousMeasurement
         try:
-            instance.actual_instance = ContinuousMeasurementWithType.from_json(json_str)
+            instance.actual_instance = ContinuousMeasurement.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ClassificationMeasurementWithType
+        # deserialize data into ClassificationMeasurement
         try:
-            instance.actual_instance = ClassificationMeasurementWithType.from_json(json_str)
+            instance.actual_instance = ClassificationMeasurement.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Measurement with oneOf schemas: ClassificationMeasurementWithType, ContinuousMeasurementWithType, UnitlessMeasurement. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Measurement with oneOf schemas: ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Measurement with oneOf schemas: ClassificationMeasurementWithType, ContinuousMeasurementWithType, UnitlessMeasurement. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Measurement with oneOf schemas: ClassificationMeasurement, ContinuousMeasurement, UnitlessMeasurement. Details: " + ", ".join(error_messages))
         else:
             return instance
 

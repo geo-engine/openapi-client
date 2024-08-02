@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { LinearGradientWithTypeFromJSONTyped, LinearGradientWithTypeToJSON, } from './LinearGradientWithType';
-import { LogarithmicGradientWithTypeFromJSONTyped, LogarithmicGradientWithTypeToJSON, } from './LogarithmicGradientWithType';
+import { LinearGradientFromJSONTyped, LinearGradientToJSON, } from './LinearGradient';
+import { LogarithmicGradientFromJSONTyped, LogarithmicGradientToJSON, } from './LogarithmicGradient';
 import { PaletteColorizerFromJSONTyped, PaletteColorizerToJSON, } from './PaletteColorizer';
 import { RgbaColorizerFromJSONTyped, RgbaColorizerToJSON, } from './RgbaColorizer';
 export function ColorizerFromJSON(json) {
@@ -24,9 +24,9 @@ export function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'linearGradient':
-            return Object.assign(Object.assign({}, LinearGradientWithTypeFromJSONTyped(json, true)), { type: 'linearGradient' });
+            return Object.assign(Object.assign({}, LinearGradientFromJSONTyped(json, true)), { type: 'linearGradient' });
         case 'logarithmicGradient':
-            return Object.assign(Object.assign({}, LogarithmicGradientWithTypeFromJSONTyped(json, true)), { type: 'logarithmicGradient' });
+            return Object.assign(Object.assign({}, LogarithmicGradientFromJSONTyped(json, true)), { type: 'logarithmicGradient' });
         case 'palette':
             return Object.assign(Object.assign({}, PaletteColorizerFromJSONTyped(json, true)), { type: 'palette' });
         case 'rgba':
@@ -44,9 +44,9 @@ export function ColorizerToJSON(value) {
     }
     switch (value['type']) {
         case 'linearGradient':
-            return LinearGradientWithTypeToJSON(value);
+            return LinearGradientToJSON(value);
         case 'logarithmicGradient':
-            return LogarithmicGradientWithTypeToJSON(value);
+            return LogarithmicGradientToJSON(value);
         case 'palette':
             return PaletteColorizerToJSON(value);
         case 'rgba':

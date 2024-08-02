@@ -14,6 +14,13 @@
 import { exists } from '../runtime';
 import { ProviderLayerCollectionIdFromJSON, ProviderLayerCollectionIdToJSON, } from './ProviderLayerCollectionId';
 /**
+ * @export
+ */
+export const LayerCollectionListingTypeEnum = {
+    Collection: 'collection',
+    Layer: 'layer'
+};
+/**
  * Check if a given object implements the LayerCollectionListing interface.
  */
 export function instanceOfLayerCollectionListing(value) {
@@ -21,6 +28,7 @@ export function instanceOfLayerCollectionListing(value) {
     isInstance = isInstance && "description" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 export function LayerCollectionListingFromJSON(json) {
@@ -35,6 +43,7 @@ export function LayerCollectionListingFromJSONTyped(json, ignoreDiscriminator) {
         'id': ProviderLayerCollectionIdFromJSON(json['id']),
         'name': json['name'],
         'properties': !exists(json, 'properties') ? undefined : json['properties'],
+        'type': json['type'],
     };
 }
 export function LayerCollectionListingToJSON(value) {
@@ -49,5 +58,6 @@ export function LayerCollectionListingToJSON(value) {
         'id': ProviderLayerCollectionIdToJSON(value.id),
         'name': value.name,
         'properties': value.properties,
+        'type': value.type,
     };
 }

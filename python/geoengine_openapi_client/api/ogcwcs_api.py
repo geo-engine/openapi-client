@@ -55,7 +55,6 @@ class OGCWCSApi:
     def wcs_capabilities_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], service : WcsService, request : GetCapabilitiesRequest, version : Optional[Any] = None, **kwargs) -> str:  # noqa: E501
         """Get WCS Capabilities  # noqa: E501
 
-        Get WCS Capabilities  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -91,7 +90,6 @@ class OGCWCSApi:
     def wcs_capabilities_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], service : WcsService, request : GetCapabilitiesRequest, version : Optional[Any] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get WCS Capabilities  # noqa: E501
 
-        Get WCS Capabilities  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -219,7 +217,6 @@ class OGCWCSApi:
     def wcs_describe_coverage_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WcsVersion, service : WcsService, request : DescribeCoverageRequest, identifiers : StrictStr, **kwargs) -> str:  # noqa: E501
         """Get WCS Coverage Description  # noqa: E501
 
-        Get WCS Coverage Description  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -257,7 +254,6 @@ class OGCWCSApi:
     def wcs_describe_coverage_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WcsVersion, service : WcsService, request : DescribeCoverageRequest, identifiers : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get WCS Coverage Description  # noqa: E501
 
-        Get WCS Coverage Description  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -391,7 +387,6 @@ class OGCWCSApi:
     def wcs_get_coverage_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WcsVersion, service : WcsService, request : GetCoverageRequest, format : GetCoverageFormat, identifier : StrictStr, boundingbox : StrictStr, gridbasecrs : StrictStr, gridorigin : Optional[StrictStr] = None, gridoffsets : Optional[StrictStr] = None, time : Optional[StrictStr] = None, resx : Optional[Union[StrictFloat, StrictInt]] = None, resy : Optional[Union[StrictFloat, StrictInt]] = None, nodatavalue : Optional[Union[StrictFloat, StrictInt]] = None, **kwargs) -> bytearray:  # noqa: E501
         """Get WCS Coverage  # noqa: E501
 
-        Get WCS Coverage  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -447,7 +442,6 @@ class OGCWCSApi:
     def wcs_get_coverage_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WcsVersion, service : WcsService, request : GetCoverageRequest, format : GetCoverageFormat, identifier : StrictStr, boundingbox : StrictStr, gridbasecrs : StrictStr, gridorigin : Optional[StrictStr] = None, gridoffsets : Optional[StrictStr] = None, time : Optional[StrictStr] = None, resx : Optional[Union[StrictFloat, StrictInt]] = None, resy : Optional[Union[StrictFloat, StrictInt]] = None, nodatavalue : Optional[Union[StrictFloat, StrictInt]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get WCS Coverage  # noqa: E501
 
-        Get WCS Coverage  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

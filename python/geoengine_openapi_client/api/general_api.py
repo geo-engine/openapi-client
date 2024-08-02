@@ -45,7 +45,6 @@ class GeneralApi:
     def available_handler(self, **kwargs) -> None:  # noqa: E501
         """Server availablity check.  # noqa: E501
 
-        Server availablity check.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -73,7 +72,6 @@ class GeneralApi:
     def available_handler_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Server availablity check.  # noqa: E501
 
-        Server availablity check.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -171,7 +169,6 @@ class GeneralApi:
     def server_info_handler(self, **kwargs) -> ServerInfo:  # noqa: E501
         """Shows information about the server software version.  # noqa: E501
 
-        Shows information about the server software version.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -199,7 +196,6 @@ class GeneralApi:
     def server_info_handler_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Shows information about the server software version.  # noqa: E501
 
-        Shows information about the server software version.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

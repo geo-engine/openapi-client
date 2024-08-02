@@ -81,7 +81,23 @@ export interface GdalMetadataNetCdfCf {
      * @memberof GdalMetadataNetCdfCf
      */
     step: TimeStep;
+    /**
+     * 
+     * @type {string}
+     * @memberof GdalMetadataNetCdfCf
+     */
+    type: GdalMetadataNetCdfCfTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const GdalMetadataNetCdfCfTypeEnum = {
+    GdalMetadataNetCdfCf: 'GdalMetadataNetCdfCf'
+} as const;
+export type GdalMetadataNetCdfCfTypeEnum = typeof GdalMetadataNetCdfCfTypeEnum[keyof typeof GdalMetadataNetCdfCfTypeEnum];
+
 
 /**
  * Check if a given object implements the GdalMetadataNetCdfCf interface.
@@ -94,6 +110,7 @@ export function instanceOfGdalMetadataNetCdfCf(value: object): boolean {
     isInstance = isInstance && "resultDescriptor" in value;
     isInstance = isInstance && "start" in value;
     isInstance = isInstance && "step" in value;
+    isInstance = isInstance && "type" in value;
 
     return isInstance;
 }
@@ -115,6 +132,7 @@ export function GdalMetadataNetCdfCfFromJSONTyped(json: any, ignoreDiscriminator
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
         'start': json['start'],
         'step': TimeStepFromJSON(json['step']),
+        'type': json['type'],
     };
 }
 
@@ -134,6 +152,7 @@ export function GdalMetadataNetCdfCfToJSON(value?: GdalMetadataNetCdfCf | null):
         'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
         'start': value.start,
         'step': TimeStepToJSON(value.step),
+        'type': value.type,
     };
 }
 

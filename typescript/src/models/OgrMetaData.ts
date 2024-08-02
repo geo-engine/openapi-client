@@ -44,7 +44,23 @@ export interface OgrMetaData {
      * @memberof OgrMetaData
      */
     resultDescriptor: VectorResultDescriptor;
+    /**
+     * 
+     * @type {string}
+     * @memberof OgrMetaData
+     */
+    type: OgrMetaDataTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const OgrMetaDataTypeEnum = {
+    OgrMetaData: 'OgrMetaData'
+} as const;
+export type OgrMetaDataTypeEnum = typeof OgrMetaDataTypeEnum[keyof typeof OgrMetaDataTypeEnum];
+
 
 /**
  * Check if a given object implements the OgrMetaData interface.
@@ -53,6 +69,7 @@ export function instanceOfOgrMetaData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "loadingInfo" in value;
     isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
 
     return isInstance;
 }
@@ -69,6 +86,7 @@ export function OgrMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'loadingInfo': OgrSourceDatasetFromJSON(json['loadingInfo']),
         'resultDescriptor': VectorResultDescriptorFromJSON(json['resultDescriptor']),
+        'type': json['type'],
     };
 }
 
@@ -83,6 +101,7 @@ export function OgrMetaDataToJSON(value?: OgrMetaData | null): any {
         
         'loadingInfo': OgrSourceDatasetToJSON(value.loadingInfo),
         'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
+        'type': value.type,
     };
 }
 

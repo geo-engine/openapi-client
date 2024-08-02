@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { LayerCollectionListingWithTypeFromJSONTyped, LayerCollectionListingWithTypeToJSON, } from './LayerCollectionListingWithType';
-import { LayerListingWithTypeFromJSONTyped, LayerListingWithTypeToJSON, } from './LayerListingWithType';
+import { LayerCollectionListingFromJSONTyped, LayerCollectionListingToJSON, } from './LayerCollectionListing';
+import { LayerListingFromJSONTyped, LayerListingToJSON, } from './LayerListing';
 export function CollectionItemFromJSON(json) {
     return CollectionItemFromJSONTyped(json, false);
 }
@@ -22,9 +22,9 @@ export function CollectionItemFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'collection':
-            return Object.assign(Object.assign({}, LayerCollectionListingWithTypeFromJSONTyped(json, true)), { type: 'collection' });
+            return Object.assign(Object.assign({}, LayerCollectionListingFromJSONTyped(json, true)), { type: 'collection' });
         case 'layer':
-            return Object.assign(Object.assign({}, LayerListingWithTypeFromJSONTyped(json, true)), { type: 'layer' });
+            return Object.assign(Object.assign({}, LayerListingFromJSONTyped(json, true)), { type: 'layer' });
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }
@@ -38,9 +38,9 @@ export function CollectionItemToJSON(value) {
     }
     switch (value['type']) {
         case 'collection':
-            return LayerCollectionListingWithTypeToJSON(value);
+            return LayerCollectionListingToJSON(value);
         case 'layer':
-            return LayerListingWithTypeToJSON(value);
+            return LayerListingToJSON(value);
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${value['type']}'`);
     }

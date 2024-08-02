@@ -83,7 +83,8 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                     time = null, ),
                 time = geoengine_openapi_client.models.time_interval.TimeInterval(
                     end = 56, 
-                    start = 56, )
+                    start = 56, ),
+                type = 'GdalStatic'
             )
         else:
             return GdalMetaDataStatic(
@@ -130,6 +131,7 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                     resolution = null, 
                     spatial_reference = '', 
                     time = null, ),
+                type = 'GdalStatic',
         )
         """
 

@@ -11,7 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DerivedNumberWithTypeFromJSONTyped, DerivedNumberWithTypeToJSON, } from './DerivedNumberWithType';
+import { DerivedNumberFromJSONTyped, DerivedNumberToJSON, } from './DerivedNumber';
 import { StaticNumberParamFromJSONTyped, StaticNumberParamToJSON, } from './StaticNumberParam';
 export function NumberParamFromJSON(json) {
     return NumberParamFromJSONTyped(json, false);
@@ -22,7 +22,7 @@ export function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'derived':
-            return Object.assign(Object.assign({}, DerivedNumberWithTypeFromJSONTyped(json, true)), { type: 'derived' });
+            return Object.assign(Object.assign({}, DerivedNumberFromJSONTyped(json, true)), { type: 'derived' });
         case 'static':
             return Object.assign(Object.assign({}, StaticNumberParamFromJSONTyped(json, true)), { type: 'static' });
         default:
@@ -38,7 +38,7 @@ export function NumberParamToJSON(value) {
     }
     switch (value['type']) {
         case 'derived':
-            return DerivedNumberWithTypeToJSON(value);
+            return DerivedNumberToJSON(value);
         case 'static':
             return StaticNumberParamToJSON(value);
         default:

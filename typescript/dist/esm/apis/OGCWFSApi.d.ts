@@ -40,21 +40,17 @@ export interface WfsFeatureHandlerRequest {
 export declare class OGCWFSApi extends runtime.BaseAPI {
     /**
      * Get WFS Capabilities
-     * Get WFS Capabilities
      */
     wfsCapabilitiesHandlerRaw(requestParameters: WfsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
-     * Get WFS Capabilities
      * Get WFS Capabilities
      */
     wfsCapabilitiesHandler(requestParameters: WfsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
      * Get WCS Features
-     * Get WCS Features
      */
     wfsFeatureHandlerRaw(requestParameters: WfsFeatureHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeoJson>>;
     /**
-     * Get WCS Features
      * Get WCS Features
      */
     wfsFeatureHandler(requestParameters: WfsFeatureHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeoJson>;

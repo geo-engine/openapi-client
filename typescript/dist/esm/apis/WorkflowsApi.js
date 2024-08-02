@@ -27,7 +27,7 @@ import { AddCollection200ResponseFromJSON, ProvenanceEntryFromJSON, RasterDatase
  */
 export class WorkflowsApi extends runtime.BaseAPI {
     /**
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
+     * Returns the id of the created task
      * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
      */
     datasetFromWorkflowHandlerRaw(requestParameters, initOverrides) {
@@ -59,7 +59,7 @@ export class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
+     * Returns the id of the created task
      * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
      */
     datasetFromWorkflowHandler(requestParameters, initOverrides) {
@@ -69,7 +69,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Gets a ZIP archive of the worklow, its provenance and the output metadata.
      * Gets a ZIP archive of the worklow, its provenance and the output metadata.
      */
     getWorkflowAllMetadataZipHandlerRaw(requestParameters, initOverrides) {
@@ -97,7 +96,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
     /**
      * Gets a ZIP archive of the worklow, its provenance and the output metadata.
-     * Gets a ZIP archive of the worklow, its provenance and the output metadata.
      */
     getWorkflowAllMetadataZipHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -106,7 +104,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Gets the metadata of a workflow
      * Gets the metadata of a workflow
      */
     getWorkflowMetadataHandlerRaw(requestParameters, initOverrides) {
@@ -134,7 +131,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
     /**
      * Gets the metadata of a workflow
-     * Gets the metadata of a workflow
      */
     getWorkflowMetadataHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -143,7 +139,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Gets the provenance of all datasets used in a workflow.
      * Gets the provenance of all datasets used in a workflow.
      */
     getWorkflowProvenanceHandlerRaw(requestParameters, initOverrides) {
@@ -171,7 +166,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
     /**
      * Gets the provenance of all datasets used in a workflow.
-     * Gets the provenance of all datasets used in a workflow.
      */
     getWorkflowProvenanceHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -180,7 +174,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves an existing Workflow.
      * Retrieves an existing Workflow.
      */
     loadWorkflowHandlerRaw(requestParameters, initOverrides) {
@@ -208,7 +201,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
     /**
      * Retrieves an existing Workflow.
-     * Retrieves an existing Workflow.
      */
     loadWorkflowHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -217,7 +209,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Query a workflow raster result as a stream of tiles via a websocket connection.
      * Query a workflow raster result as a stream of tiles via a websocket connection.
      */
     rasterStreamWebsocketRaw(requestParameters, initOverrides) {
@@ -275,7 +266,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
     /**
      * Query a workflow raster result as a stream of tiles via a websocket connection.
-     * Query a workflow raster result as a stream of tiles via a websocket connection.
      */
     rasterStreamWebsocket(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -283,7 +273,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Registers a new Workflow.
      * Registers a new Workflow.
      */
     registerWorkflowHandlerRaw(requestParameters, initOverrides) {
@@ -312,7 +301,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Registers a new Workflow.
      * Registers a new Workflow.
      */
     registerWorkflowHandler(requestParameters, initOverrides) {

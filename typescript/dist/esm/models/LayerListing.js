@@ -14,6 +14,12 @@
 import { exists } from '../runtime';
 import { ProviderLayerIdFromJSON, ProviderLayerIdToJSON, } from './ProviderLayerId';
 /**
+ * @export
+ */
+export const LayerListingTypeEnum = {
+    Layer: 'layer'
+};
+/**
  * Check if a given object implements the LayerListing interface.
  */
 export function instanceOfLayerListing(value) {
@@ -21,6 +27,7 @@ export function instanceOfLayerListing(value) {
     isInstance = isInstance && "description" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 export function LayerListingFromJSON(json) {
@@ -35,6 +42,7 @@ export function LayerListingFromJSONTyped(json, ignoreDiscriminator) {
         'id': ProviderLayerIdFromJSON(json['id']),
         'name': json['name'],
         'properties': !exists(json, 'properties') ? undefined : json['properties'],
+        'type': json['type'],
     };
 }
 export function LayerListingToJSON(value) {
@@ -49,5 +57,6 @@ export function LayerListingToJSON(value) {
         'id': ProviderLayerIdToJSON(value.id),
         'name': value.name,
         'properties': value.properties,
+        'type': value.type,
     };
 }

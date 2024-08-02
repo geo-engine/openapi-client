@@ -38,7 +38,23 @@ export interface DerivedColor {
      * @memberof DerivedColor
      */
     colorizer: Colorizer;
+    /**
+     * 
+     * @type {string}
+     * @memberof DerivedColor
+     */
+    type: DerivedColorTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const DerivedColorTypeEnum = {
+    Derived: 'derived'
+} as const;
+export type DerivedColorTypeEnum = typeof DerivedColorTypeEnum[keyof typeof DerivedColorTypeEnum];
+
 
 /**
  * Check if a given object implements the DerivedColor interface.
@@ -47,6 +63,7 @@ export function instanceOfDerivedColor(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "attribute" in value;
     isInstance = isInstance && "colorizer" in value;
+    isInstance = isInstance && "type" in value;
 
     return isInstance;
 }
@@ -63,6 +80,7 @@ export function DerivedColorFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'attribute': json['attribute'],
         'colorizer': ColorizerFromJSON(json['colorizer']),
+        'type': json['type'],
     };
 }
 
@@ -77,6 +95,7 @@ export function DerivedColorToJSON(value?: DerivedColor | null): any {
         
         'attribute': value.attribute,
         'colorizer': ColorizerToJSON(value.colorizer),
+        'type': value.type,
     };
 }
 

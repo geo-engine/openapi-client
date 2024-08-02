@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StrictStr, validator
 from geoengine_openapi_client.models.color_param import ColorParam
 from geoengine_openapi_client.models.number_param import NumberParam
 from geoengine_openapi_client.models.stroke_param import StrokeParam
@@ -34,7 +34,15 @@ class PointSymbology(BaseModel):
     radius: NumberParam = Field(...)
     stroke: StrokeParam = Field(...)
     text: Optional[TextSymbology] = None
-    __properties = ["fillColor", "radius", "stroke", "text"]
+    type: StrictStr = Field(...)
+    __properties = ["fillColor", "radius", "stroke", "text", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('point'):
+            raise ValueError("must be one of enum values ('point')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -92,7 +100,8 @@ class PointSymbology(BaseModel):
             "fill_color": ColorParam.from_dict(obj.get("fillColor")) if obj.get("fillColor") is not None else None,
             "radius": NumberParam.from_dict(obj.get("radius")) if obj.get("radius") is not None else None,
             "stroke": StrokeParam.from_dict(obj.get("stroke")) if obj.get("stroke") is not None else None,
-            "text": TextSymbology.from_dict(obj.get("text")) if obj.get("text") is not None else None
+            "text": TextSymbology.from_dict(obj.get("text")) if obj.get("text") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

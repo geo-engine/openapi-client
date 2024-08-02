@@ -49,7 +49,7 @@ export interface StatusHandlerRequest {
 export class TasksApi extends runtime.BaseAPI {
 
     /**
-     * Abort a running task.  # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     async abortHandlerRaw(requestParameters: AbortHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -84,7 +84,7 @@ export class TasksApi extends runtime.BaseAPI {
     }
 
     /**
-     * Abort a running task.  # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     async abortHandler(requestParameters: AbortHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
@@ -92,7 +92,6 @@ export class TasksApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the status of all tasks.
      * Retrieve the status of all tasks.
      */
     async listHandlerRaw(requestParameters: ListHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaskStatusWithId>>> {
@@ -132,7 +131,6 @@ export class TasksApi extends runtime.BaseAPI {
 
     /**
      * Retrieve the status of all tasks.
-     * Retrieve the status of all tasks.
      */
     async listHandler(requestParameters: ListHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaskStatusWithId>> {
         const response = await this.listHandlerRaw(requestParameters, initOverrides);
@@ -140,7 +138,6 @@ export class TasksApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the status of a task.
      * Retrieve the status of a task.
      */
     async statusHandlerRaw(requestParameters: StatusHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskStatus>> {
@@ -171,7 +168,6 @@ export class TasksApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the status of a task.
      * Retrieve the status of a task.
      */
     async statusHandler(requestParameters: StatusHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaskStatus> {

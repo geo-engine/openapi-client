@@ -13,33 +13,33 @@
  */
 
 import {
-    InfiniteOgrSourceDurationSpec,
-    instanceOfInfiniteOgrSourceDurationSpec,
-    InfiniteOgrSourceDurationSpecFromJSON,
-    InfiniteOgrSourceDurationSpecFromJSONTyped,
-    InfiniteOgrSourceDurationSpecToJSON,
-} from './InfiniteOgrSourceDurationSpec';
+    OgrSourceDurationSpecInfinite,
+    instanceOfOgrSourceDurationSpecInfinite,
+    OgrSourceDurationSpecInfiniteFromJSON,
+    OgrSourceDurationSpecInfiniteFromJSONTyped,
+    OgrSourceDurationSpecInfiniteToJSON,
+} from './OgrSourceDurationSpecInfinite';
 import {
-    TimeStepWithType,
-    instanceOfTimeStepWithType,
-    TimeStepWithTypeFromJSON,
-    TimeStepWithTypeFromJSONTyped,
-    TimeStepWithTypeToJSON,
-} from './TimeStepWithType';
+    OgrSourceDurationSpecValue,
+    instanceOfOgrSourceDurationSpecValue,
+    OgrSourceDurationSpecValueFromJSON,
+    OgrSourceDurationSpecValueFromJSONTyped,
+    OgrSourceDurationSpecValueToJSON,
+} from './OgrSourceDurationSpecValue';
 import {
-    ZeroOgrSourceDurationSpec,
-    instanceOfZeroOgrSourceDurationSpec,
-    ZeroOgrSourceDurationSpecFromJSON,
-    ZeroOgrSourceDurationSpecFromJSONTyped,
-    ZeroOgrSourceDurationSpecToJSON,
-} from './ZeroOgrSourceDurationSpec';
+    OgrSourceDurationSpecZero,
+    instanceOfOgrSourceDurationSpecZero,
+    OgrSourceDurationSpecZeroFromJSON,
+    OgrSourceDurationSpecZeroFromJSONTyped,
+    OgrSourceDurationSpecZeroToJSON,
+} from './OgrSourceDurationSpecZero';
 
 /**
  * @type OgrSourceDurationSpec
  * 
  * @export
  */
-export type OgrSourceDurationSpec = { type: 'infinite' } & InfiniteOgrSourceDurationSpec | { type: 'value' } & TimeStepWithType | { type: 'zero' } & ZeroOgrSourceDurationSpec;
+export type OgrSourceDurationSpec = { type: 'infinite' } & OgrSourceDurationSpecInfinite | { type: 'value' } & OgrSourceDurationSpecValue | { type: 'zero' } & OgrSourceDurationSpecZero;
 
 export function OgrSourceDurationSpecFromJSON(json: any): OgrSourceDurationSpec {
     return OgrSourceDurationSpecFromJSONTyped(json, false);
@@ -51,11 +51,11 @@ export function OgrSourceDurationSpecFromJSONTyped(json: any, ignoreDiscriminato
     }
     switch (json['type']) {
         case 'infinite':
-            return {...InfiniteOgrSourceDurationSpecFromJSONTyped(json, true), type: 'infinite'};
+            return {...OgrSourceDurationSpecInfiniteFromJSONTyped(json, true), type: 'infinite'};
         case 'value':
-            return {...TimeStepWithTypeFromJSONTyped(json, true), type: 'value'};
+            return {...OgrSourceDurationSpecValueFromJSONTyped(json, true), type: 'value'};
         case 'zero':
-            return {...ZeroOgrSourceDurationSpecFromJSONTyped(json, true), type: 'zero'};
+            return {...OgrSourceDurationSpecZeroFromJSONTyped(json, true), type: 'zero'};
         default:
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${json['type']}'`);
     }
@@ -70,11 +70,11 @@ export function OgrSourceDurationSpecToJSON(value?: OgrSourceDurationSpec | null
     }
     switch (value['type']) {
         case 'infinite':
-            return InfiniteOgrSourceDurationSpecToJSON(value);
+            return OgrSourceDurationSpecInfiniteToJSON(value);
         case 'value':
-            return TimeStepWithTypeToJSON(value);
+            return OgrSourceDurationSpecValueToJSON(value);
         case 'zero':
-            return ZeroOgrSourceDurationSpecToJSON(value);
+            return OgrSourceDurationSpecZeroToJSON(value);
         default:
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${value['type']}'`);
     }

@@ -20,7 +20,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StrictStr, validator
 from geoengine_openapi_client.models.ogr_source_dataset import OgrSourceDataset
 from geoengine_openapi_client.models.vector_result_descriptor import VectorResultDescriptor
 
@@ -30,7 +30,15 @@ class OgrMetaData(BaseModel):
     """
     loading_info: OgrSourceDataset = Field(..., alias="loadingInfo")
     result_descriptor: VectorResultDescriptor = Field(..., alias="resultDescriptor")
-    __properties = ["loadingInfo", "resultDescriptor"]
+    type: StrictStr = Field(...)
+    __properties = ["loadingInfo", "resultDescriptor", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('OgrMetaData'):
+            raise ValueError("must be one of enum values ('OgrMetaData')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -75,7 +83,8 @@ class OgrMetaData(BaseModel):
 
         _obj = OgrMetaData.parse_obj({
             "loading_info": OgrSourceDataset.from_dict(obj.get("loadingInfo")) if obj.get("loadingInfo") is not None else None,
-            "result_descriptor": VectorResultDescriptor.from_dict(obj.get("resultDescriptor")) if obj.get("resultDescriptor") is not None else None
+            "result_descriptor": VectorResultDescriptor.from_dict(obj.get("resultDescriptor")) if obj.get("resultDescriptor") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

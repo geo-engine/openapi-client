@@ -49,7 +49,6 @@ class SessionApi:
     def anonymous_handler(self, **kwargs) -> UserSession:  # noqa: E501
         """Creates session for anonymous user. The session's id serves as a Bearer token for requests.  # noqa: E501
 
-        Creates session for anonymous user. The session's id serves as a Bearer token for requests.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -77,7 +76,6 @@ class SessionApi:
     def anonymous_handler_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Creates session for anonymous user. The session's id serves as a Bearer token for requests.  # noqa: E501
 
-        Creates session for anonymous user. The session's id serves as a Bearer token for requests.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -181,7 +179,6 @@ class SessionApi:
     def login_handler(self, user_credentials : UserCredentials, **kwargs) -> UserSession:  # noqa: E501
         """Creates a session by providing user credentials. The session's id serves as a Bearer token for requests.  # noqa: E501
 
-        Creates a session by providing user credentials. The session's id serves as a Bearer token for requests.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -211,7 +208,6 @@ class SessionApi:
     def login_handler_with_http_info(self, user_credentials : UserCredentials, **kwargs) -> ApiResponse:  # noqa: E501
         """Creates a session by providing user credentials. The session's id serves as a Bearer token for requests.  # noqa: E501
 
-        Creates a session by providing user credentials. The session's id serves as a Bearer token for requests.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -328,7 +324,6 @@ class SessionApi:
     def logout_handler(self, **kwargs) -> None:  # noqa: E501
         """Ends a session.  # noqa: E501
 
-        Ends a session.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -356,7 +351,6 @@ class SessionApi:
     def logout_handler_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Ends a session.  # noqa: E501
 
-        Ends a session.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -454,7 +448,7 @@ class SessionApi:
     def oidc_init(self, **kwargs) -> AuthCodeRequestURL:  # noqa: E501
         """Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # noqa: E501
 
-        Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.   # noqa: E501
+        # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -482,7 +476,7 @@ class SessionApi:
     def oidc_init_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # noqa: E501
 
-        Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.   # noqa: E501
+        # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -586,7 +580,7 @@ class SessionApi:
     def oidc_login(self, auth_code_response : AuthCodeResponse, **kwargs) -> UserSession:  # noqa: E501
         """Creates a session for a user via a login with Open Id Connect.  # noqa: E501
 
-        Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.   # noqa: E501
+        This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -616,7 +610,7 @@ class SessionApi:
     def oidc_login_with_http_info(self, auth_code_response : AuthCodeResponse, **kwargs) -> ApiResponse:  # noqa: E501
         """Creates a session for a user via a login with Open Id Connect.  # noqa: E501
 
-        Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.   # noqa: E501
+        This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -733,7 +727,6 @@ class SessionApi:
     def register_user_handler(self, user_registration : UserRegistration, **kwargs) -> str:  # noqa: E501
         """Registers a user.  # noqa: E501
 
-        Registers a user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -763,7 +756,6 @@ class SessionApi:
     def register_user_handler_with_http_info(self, user_registration : UserRegistration, **kwargs) -> ApiResponse:  # noqa: E501
         """Registers a user.  # noqa: E501
 
-        Registers a user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -880,7 +872,6 @@ class SessionApi:
     def session_handler(self, **kwargs) -> UserSession:  # noqa: E501
         """Retrieves details about the current session.  # noqa: E501
 
-        Retrieves details about the current session.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -908,7 +899,6 @@ class SessionApi:
     def session_handler_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieves details about the current session.  # noqa: E501
 
-        Retrieves details about the current session.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

@@ -133,7 +133,6 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Add a new collection to an existing collection
-     * Add a new collection to an existing collection
      */
     async addCollectionRaw(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
         if (requestParameters.collection === null || requestParameters.collection === undefined) {
@@ -171,7 +170,6 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Add a new collection to an existing collection
-     * Add a new collection to an existing collection
      */
     async addCollection(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
         const response = await this.addCollectionRaw(requestParameters, initOverrides);
@@ -179,7 +177,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add an existing collection to a collection
      * Add an existing collection to a collection
      */
     async addExistingCollectionToCollectionRaw(requestParameters: AddExistingCollectionToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -215,14 +212,12 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Add an existing collection to a collection
-     * Add an existing collection to a collection
      */
     async addExistingCollectionToCollection(requestParameters: AddExistingCollectionToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addExistingCollectionToCollectionRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Add an existing layer to a collection
      * Add an existing layer to a collection
      */
     async addExistingLayerToCollectionRaw(requestParameters: AddExistingLayerToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -258,14 +253,12 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Add an existing layer to a collection
-     * Add an existing layer to a collection
      */
     async addExistingLayerToCollection(requestParameters: AddExistingLayerToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.addExistingLayerToCollectionRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Add a new layer to a collection
      * Add a new layer to a collection
      */
     async addLayerRaw(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
@@ -304,7 +297,6 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Add a new layer to a collection
-     * Add a new layer to a collection
      */
     async addLayer(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
         const response = await this.addLayerRaw(requestParameters, initOverrides);
@@ -312,7 +304,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Autocompletes the search on the contents of the collection of the given provider
      * Autocompletes the search on the contents of the collection of the given provider
      */
     async autocompleteHandlerRaw(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
@@ -380,7 +371,6 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Autocompletes the search on the contents of the collection of the given provider
-     * Autocompletes the search on the contents of the collection of the given provider
      */
     async autocompleteHandler(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.autocompleteHandlerRaw(requestParameters, initOverrides);
@@ -388,7 +378,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the layer of the given provider
      * Retrieves the layer of the given provider
      */
     async layerHandlerRaw(requestParameters: LayerHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Layer>> {
@@ -424,7 +413,6 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Retrieves the layer of the given provider
-     * Retrieves the layer of the given provider
      */
     async layerHandler(requestParameters: LayerHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Layer> {
         const response = await this.layerHandlerRaw(requestParameters, initOverrides);
@@ -432,7 +420,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Persist a raster layer from a provider as a dataset.
      * Persist a raster layer from a provider as a dataset.
      */
     async layerToDatasetRaw(requestParameters: LayerToDatasetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskResponse>> {
@@ -468,7 +455,6 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Persist a raster layer from a provider as a dataset.
-     * Persist a raster layer from a provider as a dataset.
      */
     async layerToDataset(requestParameters: LayerToDatasetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaskResponse> {
         const response = await this.layerToDatasetRaw(requestParameters, initOverrides);
@@ -476,7 +462,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Registers a layer from a provider as a workflow and returns the workflow id
      * Registers a layer from a provider as a workflow and returns the workflow id
      */
     async layerToWorkflowIdHandlerRaw(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
@@ -512,7 +497,6 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Registers a layer from a provider as a workflow and returns the workflow id
-     * Registers a layer from a provider as a workflow and returns the workflow id
      */
     async layerToWorkflowIdHandler(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
         const response = await this.layerToWorkflowIdHandlerRaw(requestParameters, initOverrides);
@@ -520,7 +504,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the contents of the collection of the given provider
      * List the contents of the collection of the given provider
      */
     async listCollectionHandlerRaw(requestParameters: ListCollectionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
@@ -572,7 +555,6 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * List the contents of the collection of the given provider
-     * List the contents of the collection of the given provider
      */
     async listCollectionHandler(requestParameters: ListCollectionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection> {
         const response = await this.listCollectionHandlerRaw(requestParameters, initOverrides);
@@ -580,7 +562,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all layer collections
      * List all layer collections
      */
     async listRootCollectionsHandlerRaw(requestParameters: ListRootCollectionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
@@ -623,7 +604,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all layer collections
      * List all layer collections
      */
     async listRootCollectionsHandler(requestParameters: ListRootCollectionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection> {
@@ -669,7 +649,6 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Remove a collection
-     * Remove a collection
      */
     async removeCollectionRaw(requestParameters: RemoveCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.collection === null || requestParameters.collection === undefined) {
@@ -700,14 +679,12 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Remove a collection
-     * Remove a collection
      */
     async removeCollection(requestParameters: RemoveCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeCollectionRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Delete a collection from a collection
      * Delete a collection from a collection
      */
     async removeCollectionFromCollectionRaw(requestParameters: RemoveCollectionFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -743,14 +720,12 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Delete a collection from a collection
-     * Delete a collection from a collection
      */
     async removeCollectionFromCollection(requestParameters: RemoveCollectionFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeCollectionFromCollectionRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Remove a layer from a collection
      * Remove a layer from a collection
      */
     async removeLayerFromCollectionRaw(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -786,14 +761,12 @@ export class LayersApi extends runtime.BaseAPI {
 
     /**
      * Remove a layer from a collection
-     * Remove a layer from a collection
      */
     async removeLayerFromCollection(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeLayerFromCollectionRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Searches the contents of the collection of the given provider
      * Searches the contents of the collection of the given provider
      */
     async searchHandlerRaw(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
@@ -860,7 +833,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Searches the contents of the collection of the given provider
      * Searches the contents of the collection of the given provider
      */
     async searchHandler(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection> {

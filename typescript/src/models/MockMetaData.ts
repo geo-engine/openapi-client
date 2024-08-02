@@ -44,7 +44,28 @@ export interface MockMetaData {
      * @memberof MockMetaData
      */
     resultDescriptor: VectorResultDescriptor;
+    /**
+     * 
+     * @type {string}
+     * @memberof MockMetaData
+     */
+    type: MockMetaDataTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const MockMetaDataTypeEnum = {
+    MockMetaData: 'MockMetaData',
+    OgrMetaData: 'OgrMetaData',
+    GdalMetaDataRegular: 'GdalMetaDataRegular',
+    GdalStatic: 'GdalStatic',
+    GdalMetadataNetCdfCf: 'GdalMetadataNetCdfCf',
+    GdalMetaDataList: 'GdalMetaDataList'
+} as const;
+export type MockMetaDataTypeEnum = typeof MockMetaDataTypeEnum[keyof typeof MockMetaDataTypeEnum];
+
 
 /**
  * Check if a given object implements the MockMetaData interface.
@@ -53,6 +74,7 @@ export function instanceOfMockMetaData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "loadingInfo" in value;
     isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
 
     return isInstance;
 }
@@ -69,6 +91,7 @@ export function MockMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'loadingInfo': MockDatasetDataSourceLoadingInfoFromJSON(json['loadingInfo']),
         'resultDescriptor': VectorResultDescriptorFromJSON(json['resultDescriptor']),
+        'type': json['type'],
     };
 }
 
@@ -83,6 +106,7 @@ export function MockMetaDataToJSON(value?: MockMetaData | null): any {
         
         'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value.loadingInfo),
         'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
+        'type': value.type,
     };
 }
 

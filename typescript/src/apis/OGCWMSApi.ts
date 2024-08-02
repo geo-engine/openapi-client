@@ -87,7 +87,6 @@ export class OGCWMSApi extends runtime.BaseAPI {
 
     /**
      * Get WMS Capabilities
-     * Get WMS Capabilities
      */
     async wmsCapabilitiesHandlerRaw(requestParameters: WmsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
@@ -138,7 +137,6 @@ export class OGCWMSApi extends runtime.BaseAPI {
 
     /**
      * Get WMS Capabilities
-     * Get WMS Capabilities
      */
     async wmsCapabilitiesHandler(requestParameters: WmsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.wmsCapabilitiesHandlerRaw(requestParameters, initOverrides);
@@ -146,7 +144,6 @@ export class OGCWMSApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get WMS Legend Graphic
      * Get WMS Legend Graphic
      */
     async wmsLegendGraphicHandlerRaw(requestParameters: WmsLegendGraphicHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -194,14 +191,12 @@ export class OGCWMSApi extends runtime.BaseAPI {
 
     /**
      * Get WMS Legend Graphic
-     * Get WMS Legend Graphic
      */
     async wmsLegendGraphicHandler(requestParameters: WmsLegendGraphicHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.wmsLegendGraphicHandlerRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Get WMS Map
      * Get WMS Map
      */
     async wmsMapHandlerRaw(requestParameters: WmsMapHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
@@ -336,7 +331,6 @@ export class OGCWMSApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get WMS Map
      * Get WMS Map
      */
     async wmsMapHandler(requestParameters: WmsMapHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {

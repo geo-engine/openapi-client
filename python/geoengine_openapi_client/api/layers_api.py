@@ -57,7 +57,6 @@ class LayersApi:
     def add_collection(self, collection : Annotated[StrictStr, Field(..., description="Layer collection id")], add_layer_collection : AddLayerCollection, **kwargs) -> AddCollection200Response:  # noqa: E501
         """Add a new collection to an existing collection  # noqa: E501
 
-        Add a new collection to an existing collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -89,7 +88,6 @@ class LayersApi:
     def add_collection_with_http_info(self, collection : Annotated[StrictStr, Field(..., description="Layer collection id")], add_layer_collection : AddLayerCollection, **kwargs) -> ApiResponse:  # noqa: E501
         """Add a new collection to an existing collection  # noqa: E501
 
-        Add a new collection to an existing collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -212,7 +210,6 @@ class LayersApi:
     def add_existing_collection_to_collection(self, parent : Annotated[StrictStr, Field(..., description="Parent layer collection id")], collection : Annotated[StrictStr, Field(..., description="Layer collection id")], **kwargs) -> None:  # noqa: E501
         """Add an existing collection to a collection  # noqa: E501
 
-        Add an existing collection to a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -244,7 +241,6 @@ class LayersApi:
     def add_existing_collection_to_collection_with_http_info(self, parent : Annotated[StrictStr, Field(..., description="Parent layer collection id")], collection : Annotated[StrictStr, Field(..., description="Layer collection id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Add an existing collection to a collection  # noqa: E501
 
-        Add an existing collection to a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -354,7 +350,6 @@ class LayersApi:
     def add_existing_layer_to_collection(self, collection : Annotated[StrictStr, Field(..., description="Layer collection id")], layer : Annotated[StrictStr, Field(..., description="Layer id")], **kwargs) -> None:  # noqa: E501
         """Add an existing layer to a collection  # noqa: E501
 
-        Add an existing layer to a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -386,7 +381,6 @@ class LayersApi:
     def add_existing_layer_to_collection_with_http_info(self, collection : Annotated[StrictStr, Field(..., description="Layer collection id")], layer : Annotated[StrictStr, Field(..., description="Layer id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Add an existing layer to a collection  # noqa: E501
 
-        Add an existing layer to a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -496,7 +490,6 @@ class LayersApi:
     def add_layer(self, collection : Annotated[StrictStr, Field(..., description="Layer collection id")], add_layer : AddLayer, **kwargs) -> AddCollection200Response:  # noqa: E501
         """Add a new layer to a collection  # noqa: E501
 
-        Add a new layer to a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -528,7 +521,6 @@ class LayersApi:
     def add_layer_with_http_info(self, collection : Annotated[StrictStr, Field(..., description="Layer collection id")], add_layer : AddLayer, **kwargs) -> ApiResponse:  # noqa: E501
         """Add a new layer to a collection  # noqa: E501
 
-        Add a new layer to a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -651,7 +643,6 @@ class LayersApi:
     def autocomplete_handler(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], collection : Annotated[StrictStr, Field(..., description="Layer collection id")], search_type : SearchType, search_string : StrictStr, limit : conint(strict=True, ge=0), offset : conint(strict=True, ge=0), **kwargs) -> List[str]:  # noqa: E501
         """Autocompletes the search on the contents of the collection of the given provider  # noqa: E501
 
-        Autocompletes the search on the contents of the collection of the given provider  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -691,7 +682,6 @@ class LayersApi:
     def autocomplete_handler_with_http_info(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], collection : Annotated[StrictStr, Field(..., description="Layer collection id")], search_type : SearchType, search_string : StrictStr, limit : conint(strict=True, ge=0), offset : conint(strict=True, ge=0), **kwargs) -> ApiResponse:  # noqa: E501
         """Autocompletes the search on the contents of the collection of the given provider  # noqa: E501
 
-        Autocompletes the search on the contents of the collection of the given provider  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -831,7 +821,6 @@ class LayersApi:
     def layer_handler(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], layer : Annotated[StrictStr, Field(..., description="Layer id")], **kwargs) -> Layer:  # noqa: E501
         """Retrieves the layer of the given provider  # noqa: E501
 
-        Retrieves the layer of the given provider  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -863,7 +852,6 @@ class LayersApi:
     def layer_handler_with_http_info(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], layer : Annotated[StrictStr, Field(..., description="Layer id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieves the layer of the given provider  # noqa: E501
 
-        Retrieves the layer of the given provider  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -979,7 +967,6 @@ class LayersApi:
     def layer_to_dataset(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], layer : Annotated[StrictStr, Field(..., description="Layer id")], **kwargs) -> TaskResponse:  # noqa: E501
         """Persist a raster layer from a provider as a dataset.  # noqa: E501
 
-        Persist a raster layer from a provider as a dataset.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1011,7 +998,6 @@ class LayersApi:
     def layer_to_dataset_with_http_info(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], layer : Annotated[StrictStr, Field(..., description="Layer id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Persist a raster layer from a provider as a dataset.  # noqa: E501
 
-        Persist a raster layer from a provider as a dataset.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1127,7 +1113,6 @@ class LayersApi:
     def layer_to_workflow_id_handler(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], layer : Annotated[StrictStr, Field(..., description="Layer id")], **kwargs) -> AddCollection200Response:  # noqa: E501
         """Registers a layer from a provider as a workflow and returns the workflow id  # noqa: E501
 
-        Registers a layer from a provider as a workflow and returns the workflow id  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1159,7 +1144,6 @@ class LayersApi:
     def layer_to_workflow_id_handler_with_http_info(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], layer : Annotated[StrictStr, Field(..., description="Layer id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Registers a layer from a provider as a workflow and returns the workflow id  # noqa: E501
 
-        Registers a layer from a provider as a workflow and returns the workflow id  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1275,7 +1259,6 @@ class LayersApi:
     def list_collection_handler(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], collection : Annotated[StrictStr, Field(..., description="Layer collection id")], offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> LayerCollection:  # noqa: E501
         """List the contents of the collection of the given provider  # noqa: E501
 
-        List the contents of the collection of the given provider  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1311,7 +1294,6 @@ class LayersApi:
     def list_collection_handler_with_http_info(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], collection : Annotated[StrictStr, Field(..., description="Layer collection id")], offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> ApiResponse:  # noqa: E501
         """List the contents of the collection of the given provider  # noqa: E501
 
-        List the contents of the collection of the given provider  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1439,7 +1421,6 @@ class LayersApi:
     def list_root_collections_handler(self, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> LayerCollection:  # noqa: E501
         """List all layer collections  # noqa: E501
 
-        List all layer collections  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1471,7 +1452,6 @@ class LayersApi:
     def list_root_collections_handler_with_http_info(self, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> ApiResponse:  # noqa: E501
         """List all layer collections  # noqa: E501
 
-        List all layer collections  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1725,7 +1705,6 @@ class LayersApi:
     def remove_collection(self, collection : Annotated[StrictStr, Field(..., description="Layer collection id")], **kwargs) -> None:  # noqa: E501
         """Remove a collection  # noqa: E501
 
-        Remove a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1755,7 +1734,6 @@ class LayersApi:
     def remove_collection_with_http_info(self, collection : Annotated[StrictStr, Field(..., description="Layer collection id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Remove a collection  # noqa: E501
 
-        Remove a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1859,7 +1837,6 @@ class LayersApi:
     def remove_collection_from_collection(self, parent : Annotated[StrictStr, Field(..., description="Parent layer collection id")], collection : Annotated[StrictStr, Field(..., description="Layer collection id")], **kwargs) -> None:  # noqa: E501
         """Delete a collection from a collection  # noqa: E501
 
-        Delete a collection from a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1891,7 +1868,6 @@ class LayersApi:
     def remove_collection_from_collection_with_http_info(self, parent : Annotated[StrictStr, Field(..., description="Parent layer collection id")], collection : Annotated[StrictStr, Field(..., description="Layer collection id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete a collection from a collection  # noqa: E501
 
-        Delete a collection from a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2001,7 +1977,6 @@ class LayersApi:
     def remove_layer_from_collection(self, collection : Annotated[StrictStr, Field(..., description="Layer collection id")], layer : Annotated[StrictStr, Field(..., description="Layer id")], **kwargs) -> None:  # noqa: E501
         """Remove a layer from a collection  # noqa: E501
 
-        Remove a layer from a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2033,7 +2008,6 @@ class LayersApi:
     def remove_layer_from_collection_with_http_info(self, collection : Annotated[StrictStr, Field(..., description="Layer collection id")], layer : Annotated[StrictStr, Field(..., description="Layer id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Remove a layer from a collection  # noqa: E501
 
-        Remove a layer from a collection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2143,7 +2117,6 @@ class LayersApi:
     def search_handler(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], collection : Annotated[StrictStr, Field(..., description="Layer collection id")], search_type : SearchType, search_string : StrictStr, limit : conint(strict=True, ge=0), offset : conint(strict=True, ge=0), **kwargs) -> LayerCollection:  # noqa: E501
         """Searches the contents of the collection of the given provider  # noqa: E501
 
-        Searches the contents of the collection of the given provider  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2183,7 +2156,6 @@ class LayersApi:
     def search_handler_with_http_info(self, provider : Annotated[StrictStr, Field(..., description="Data provider id")], collection : Annotated[StrictStr, Field(..., description="Layer collection id")], search_type : SearchType, search_string : StrictStr, limit : conint(strict=True, ge=0), offset : conint(strict=True, ge=0), **kwargs) -> ApiResponse:  # noqa: E501
         """Searches the contents of the collection of the given provider  # noqa: E501
 
-        Searches the contents of the collection of the given provider  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

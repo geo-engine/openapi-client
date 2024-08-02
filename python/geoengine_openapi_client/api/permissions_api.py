@@ -51,7 +51,6 @@ class PermissionsApi:
     def add_permission_handler(self, permission_request : PermissionRequest, **kwargs) -> None:  # noqa: E501
         """Adds a new permission.  # noqa: E501
 
-        Adds a new permission.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -81,7 +80,6 @@ class PermissionsApi:
     def add_permission_handler_with_http_info(self, permission_request : PermissionRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Adds a new permission.  # noqa: E501
 
-        Adds a new permission.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -192,7 +190,6 @@ class PermissionsApi:
     def get_resource_permissions_handler(self, resource_type : Annotated[StrictStr, Field(..., description="Resource Type")], resource_id : Annotated[StrictStr, Field(..., description="Resource Id")], limit : conint(strict=True, ge=0), offset : conint(strict=True, ge=0), **kwargs) -> List[PermissionListing]:  # noqa: E501
         """Lists permission for a given resource.  # noqa: E501
 
-        Lists permission for a given resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -228,7 +225,6 @@ class PermissionsApi:
     def get_resource_permissions_handler_with_http_info(self, resource_type : Annotated[StrictStr, Field(..., description="Resource Type")], resource_id : Annotated[StrictStr, Field(..., description="Resource Id")], limit : conint(strict=True, ge=0), offset : conint(strict=True, ge=0), **kwargs) -> ApiResponse:  # noqa: E501
         """Lists permission for a given resource.  # noqa: E501
 
-        Lists permission for a given resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -356,7 +352,6 @@ class PermissionsApi:
     def remove_permission_handler(self, permission_request : PermissionRequest, **kwargs) -> None:  # noqa: E501
         """Removes an existing permission.  # noqa: E501
 
-        Removes an existing permission.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -386,7 +381,6 @@ class PermissionsApi:
     def remove_permission_handler_with_http_info(self, permission_request : PermissionRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Removes an existing permission.  # noqa: E501
 
-        Removes an existing permission.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

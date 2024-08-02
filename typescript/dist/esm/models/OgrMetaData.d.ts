@@ -29,7 +29,20 @@ export interface OgrMetaData {
      * @memberof OgrMetaData
      */
     resultDescriptor: VectorResultDescriptor;
+    /**
+     *
+     * @type {string}
+     * @memberof OgrMetaData
+     */
+    type: OgrMetaDataTypeEnum;
 }
+/**
+ * @export
+ */
+export declare const OgrMetaDataTypeEnum: {
+    readonly OgrMetaData: "OgrMetaData";
+};
+export type OgrMetaDataTypeEnum = typeof OgrMetaDataTypeEnum[keyof typeof OgrMetaDataTypeEnum];
 /**
  * Check if a given object implements the OgrMetaData interface.
  */

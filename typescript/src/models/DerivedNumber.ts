@@ -37,7 +37,23 @@ export interface DerivedNumber {
      * @memberof DerivedNumber
      */
     factor: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof DerivedNumber
+     */
+    type: DerivedNumberTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const DerivedNumberTypeEnum = {
+    Derived: 'derived'
+} as const;
+export type DerivedNumberTypeEnum = typeof DerivedNumberTypeEnum[keyof typeof DerivedNumberTypeEnum];
+
 
 /**
  * Check if a given object implements the DerivedNumber interface.
@@ -47,6 +63,7 @@ export function instanceOfDerivedNumber(value: object): boolean {
     isInstance = isInstance && "attribute" in value;
     isInstance = isInstance && "defaultValue" in value;
     isInstance = isInstance && "factor" in value;
+    isInstance = isInstance && "type" in value;
 
     return isInstance;
 }
@@ -64,6 +81,7 @@ export function DerivedNumberFromJSONTyped(json: any, ignoreDiscriminator: boole
         'attribute': json['attribute'],
         'defaultValue': json['defaultValue'],
         'factor': json['factor'],
+        'type': json['type'],
     };
 }
 
@@ -79,6 +97,7 @@ export function DerivedNumberToJSON(value?: DerivedNumber | null): any {
         'attribute': value.attribute,
         'defaultValue': value.defaultValue,
         'factor': value.factor,
+        'type': value.type,
     };
 }
 

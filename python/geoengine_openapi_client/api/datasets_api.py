@@ -62,7 +62,7 @@ class DatasetsApi:
     def auto_create_dataset_handler(self, auto_create_dataset : AutoCreateDataset, **kwargs) -> CreateDatasetHandler200Response:  # noqa: E501
         """Creates a new dataset using previously uploaded files.  # noqa: E501
 
-        Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.  # noqa: E501
+        The format of the files will be automatically detected when possible.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -92,7 +92,7 @@ class DatasetsApi:
     def auto_create_dataset_handler_with_http_info(self, auto_create_dataset : AutoCreateDataset, **kwargs) -> ApiResponse:  # noqa: E501
         """Creates a new dataset using previously uploaded files.  # noqa: E501
 
-        Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.  # noqa: E501
+        The format of the files will be automatically detected when possible.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -213,7 +213,6 @@ class DatasetsApi:
     def create_dataset_handler(self, create_dataset : CreateDataset, **kwargs) -> CreateDatasetHandler200Response:  # noqa: E501
         """Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.  # noqa: E501
 
-        Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -243,7 +242,6 @@ class DatasetsApi:
     def create_dataset_handler_with_http_info(self, create_dataset : CreateDataset, **kwargs) -> ApiResponse:  # noqa: E501
         """Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.  # noqa: E501
 
-        Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -365,7 +363,6 @@ class DatasetsApi:
     def delete_dataset_handler(self, dataset : Annotated[StrictStr, Field(..., description="Dataset id")], **kwargs) -> None:  # noqa: E501
         """Delete a dataset  # noqa: E501
 
-        Delete a dataset  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -395,7 +392,6 @@ class DatasetsApi:
     def delete_dataset_handler_with_http_info(self, dataset : Annotated[StrictStr, Field(..., description="Dataset id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete a dataset  # noqa: E501
 
-        Delete a dataset  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -503,7 +499,6 @@ class DatasetsApi:
     def get_dataset_handler(self, dataset : Annotated[StrictStr, Field(..., description="Dataset Name")], **kwargs) -> Dataset:  # noqa: E501
         """Retrieves details about a dataset using the internal name.  # noqa: E501
 
-        Retrieves details about a dataset using the internal name.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -533,7 +528,6 @@ class DatasetsApi:
     def get_dataset_handler_with_http_info(self, dataset : Annotated[StrictStr, Field(..., description="Dataset Name")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieves details about a dataset using the internal name.  # noqa: E501
 
-        Retrieves details about a dataset using the internal name.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -645,7 +639,6 @@ class DatasetsApi:
     def get_loading_info_handler(self, dataset : Annotated[StrictStr, Field(..., description="Dataset Name")], **kwargs) -> MetaDataDefinition:  # noqa: E501
         """Retrieves the loading information of a dataset  # noqa: E501
 
-        Retrieves the loading information of a dataset  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -675,7 +668,6 @@ class DatasetsApi:
     def get_loading_info_handler_with_http_info(self, dataset : Annotated[StrictStr, Field(..., description="Dataset Name")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieves the loading information of a dataset  # noqa: E501
 
-        Retrieves the loading information of a dataset  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -785,7 +777,6 @@ class DatasetsApi:
     def list_datasets_handler(self, order : OrderBy, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), filter : Optional[StrictStr] = None, tags : Optional[conlist(StrictStr)] = None, **kwargs) -> List[DatasetListing]:  # noqa: E501
         """Lists available datasets.  # noqa: E501
 
-        Lists available datasets.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -823,7 +814,6 @@ class DatasetsApi:
     def list_datasets_handler_with_http_info(self, order : OrderBy, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), filter : Optional[StrictStr] = None, tags : Optional[conlist(StrictStr)] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Lists available datasets.  # noqa: E501
 
-        Lists available datasets.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -960,7 +950,6 @@ class DatasetsApi:
     def list_volumes_handler(self, **kwargs) -> List[Volume]:  # noqa: E501
         """Lists available volumes.  # noqa: E501
 
-        Lists available volumes.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -988,7 +977,6 @@ class DatasetsApi:
     def list_volumes_handler_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Lists available volumes.  # noqa: E501
 
-        Lists available volumes.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1093,7 +1081,7 @@ class DatasetsApi:
     def suggest_meta_data_handler(self, suggest_meta_data : SuggestMetaData, **kwargs) -> MetaDataSuggestion:  # noqa: E501
         """Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.  # noqa: E501
 
-        Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.  # noqa: E501
+        Tries to automatically detect the main file and layer name if not specified.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1123,7 +1111,7 @@ class DatasetsApi:
     def suggest_meta_data_handler_with_http_info(self, suggest_meta_data : SuggestMetaData, **kwargs) -> ApiResponse:  # noqa: E501
         """Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.  # noqa: E501
 
-        Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.  # noqa: E501
+        Tries to automatically detect the main file and layer name if not specified.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1242,7 +1230,6 @@ class DatasetsApi:
     def update_dataset_handler(self, dataset : Annotated[StrictStr, Field(..., description="Dataset Name")], update_dataset : UpdateDataset, **kwargs) -> None:  # noqa: E501
         """Update details about a dataset using the internal name.  # noqa: E501
 
-        Update details about a dataset using the internal name.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1274,7 +1261,6 @@ class DatasetsApi:
     def update_dataset_handler_with_http_info(self, dataset : Annotated[StrictStr, Field(..., description="Dataset Name")], update_dataset : UpdateDataset, **kwargs) -> ApiResponse:  # noqa: E501
         """Update details about a dataset using the internal name.  # noqa: E501
 
-        Update details about a dataset using the internal name.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1546,7 +1532,6 @@ class DatasetsApi:
     def update_dataset_symbology_handler(self, dataset : Annotated[StrictStr, Field(..., description="Dataset Name")], symbology : Symbology, **kwargs) -> None:  # noqa: E501
         """Updates the dataset's symbology  # noqa: E501
 
-        Updates the dataset's symbology  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1578,7 +1563,6 @@ class DatasetsApi:
     def update_dataset_symbology_handler_with_http_info(self, dataset : Annotated[StrictStr, Field(..., description="Dataset Name")], symbology : Symbology, **kwargs) -> ApiResponse:  # noqa: E501
         """Updates the dataset's symbology  # noqa: E501
 
-        Updates the dataset's symbology  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1699,7 +1683,6 @@ class DatasetsApi:
     def update_loading_info_handler(self, dataset : Annotated[StrictStr, Field(..., description="Dataset Name")], meta_data_definition : MetaDataDefinition, **kwargs) -> None:  # noqa: E501
         """Updates the dataset's loading info  # noqa: E501
 
-        Updates the dataset's loading info  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1731,7 +1714,6 @@ class DatasetsApi:
     def update_loading_info_handler_with_http_info(self, dataset : Annotated[StrictStr, Field(..., description="Dataset Name")], meta_data_definition : MetaDataDefinition, **kwargs) -> ApiResponse:  # noqa: E501
         """Updates the dataset's loading info  # noqa: E501
 
-        Updates the dataset's loading info  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

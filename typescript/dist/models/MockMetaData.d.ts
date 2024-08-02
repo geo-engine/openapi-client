@@ -29,7 +29,25 @@ export interface MockMetaData {
      * @memberof MockMetaData
      */
     resultDescriptor: VectorResultDescriptor;
+    /**
+     *
+     * @type {string}
+     * @memberof MockMetaData
+     */
+    type: MockMetaDataTypeEnum;
 }
+/**
+ * @export
+ */
+export declare const MockMetaDataTypeEnum: {
+    readonly MockMetaData: "MockMetaData";
+    readonly OgrMetaData: "OgrMetaData";
+    readonly GdalMetaDataRegular: "GdalMetaDataRegular";
+    readonly GdalStatic: "GdalStatic";
+    readonly GdalMetadataNetCdfCf: "GdalMetadataNetCdfCf";
+    readonly GdalMetaDataList: "GdalMetaDataList";
+};
+export type MockMetaDataTypeEnum = typeof MockMetaDataTypeEnum[keyof typeof MockMetaDataTypeEnum];
 /**
  * Check if a given object implements the MockMetaData interface.
  */

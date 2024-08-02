@@ -28,7 +28,6 @@ import { AddCollection200ResponseFromJSON, CreateProjectToJSON, ProjectFromJSON,
 export class ProjectsApi extends runtime.BaseAPI {
     /**
      * Create a new project for the user.
-     * Create a new project for the user.
      */
     createProjectHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -57,7 +56,6 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
     /**
      * Create a new project for the user.
-     * Create a new project for the user.
      */
     createProjectHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -66,7 +64,6 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Deletes a project.
      * Deletes a project.
      */
     deleteProjectHandlerRaw(requestParameters, initOverrides) {
@@ -94,7 +91,6 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
     /**
      * Deletes a project.
-     * Deletes a project.
      */
     deleteProjectHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -102,7 +98,6 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List all projects accessible to the user that match the selected criteria.
      * List all projects accessible to the user that match the selected criteria.
      */
     listProjectsHandlerRaw(requestParameters, initOverrides) {
@@ -136,7 +131,6 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
     /**
      * List all projects accessible to the user that match the selected criteria.
-     * List all projects accessible to the user that match the selected criteria.
      */
     listProjectsHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -145,7 +139,6 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves details about the latest version of a project.
      * Retrieves details about the latest version of a project.
      */
     loadProjectLatestHandlerRaw(requestParameters, initOverrides) {
@@ -173,7 +166,6 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
     /**
      * Retrieves details about the latest version of a project.
-     * Retrieves details about the latest version of a project.
      */
     loadProjectLatestHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -182,7 +174,6 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves details about the given version of a project.
      * Retrieves details about the given version of a project.
      */
     loadProjectVersionHandlerRaw(requestParameters, initOverrides) {
@@ -213,7 +204,6 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
     /**
      * Retrieves details about the given version of a project.
-     * Retrieves details about the given version of a project.
      */
     loadProjectVersionHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -222,7 +212,6 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Lists all available versions of a project.
      * Lists all available versions of a project.
      */
     projectVersionsHandlerRaw(requestParameters, initOverrides) {
@@ -250,7 +239,6 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
     /**
      * Lists all available versions of a project.
-     * Lists all available versions of a project.
      */
     projectVersionsHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -259,7 +247,7 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Updates a project. This will create a new version.
+     * This will create a new version.
      * Updates a project.
      */
     updateProjectHandlerRaw(requestParameters, initOverrides) {
@@ -291,7 +279,7 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Updates a project. This will create a new version.
+     * This will create a new version.
      * Updates a project.
      */
     updateProjectHandler(requestParameters, initOverrides) {

@@ -14,9 +14,9 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OgrSourceDurationSpecToJSON = exports.OgrSourceDurationSpecFromJSONTyped = exports.OgrSourceDurationSpecFromJSON = void 0;
-const InfiniteOgrSourceDurationSpec_1 = require("./InfiniteOgrSourceDurationSpec");
-const TimeStepWithType_1 = require("./TimeStepWithType");
-const ZeroOgrSourceDurationSpec_1 = require("./ZeroOgrSourceDurationSpec");
+const OgrSourceDurationSpecInfinite_1 = require("./OgrSourceDurationSpecInfinite");
+const OgrSourceDurationSpecValue_1 = require("./OgrSourceDurationSpecValue");
+const OgrSourceDurationSpecZero_1 = require("./OgrSourceDurationSpecZero");
 function OgrSourceDurationSpecFromJSON(json) {
     return OgrSourceDurationSpecFromJSONTyped(json, false);
 }
@@ -27,11 +27,11 @@ function OgrSourceDurationSpecFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'infinite':
-            return Object.assign(Object.assign({}, (0, InfiniteOgrSourceDurationSpec_1.InfiniteOgrSourceDurationSpecFromJSONTyped)(json, true)), { type: 'infinite' });
+            return Object.assign(Object.assign({}, (0, OgrSourceDurationSpecInfinite_1.OgrSourceDurationSpecInfiniteFromJSONTyped)(json, true)), { type: 'infinite' });
         case 'value':
-            return Object.assign(Object.assign({}, (0, TimeStepWithType_1.TimeStepWithTypeFromJSONTyped)(json, true)), { type: 'value' });
+            return Object.assign(Object.assign({}, (0, OgrSourceDurationSpecValue_1.OgrSourceDurationSpecValueFromJSONTyped)(json, true)), { type: 'value' });
         case 'zero':
-            return Object.assign(Object.assign({}, (0, ZeroOgrSourceDurationSpec_1.ZeroOgrSourceDurationSpecFromJSONTyped)(json, true)), { type: 'zero' });
+            return Object.assign(Object.assign({}, (0, OgrSourceDurationSpecZero_1.OgrSourceDurationSpecZeroFromJSONTyped)(json, true)), { type: 'zero' });
         default:
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${json['type']}'`);
     }
@@ -46,11 +46,11 @@ function OgrSourceDurationSpecToJSON(value) {
     }
     switch (value['type']) {
         case 'infinite':
-            return (0, InfiniteOgrSourceDurationSpec_1.InfiniteOgrSourceDurationSpecToJSON)(value);
+            return (0, OgrSourceDurationSpecInfinite_1.OgrSourceDurationSpecInfiniteToJSON)(value);
         case 'value':
-            return (0, TimeStepWithType_1.TimeStepWithTypeToJSON)(value);
+            return (0, OgrSourceDurationSpecValue_1.OgrSourceDurationSpecValueToJSON)(value);
         case 'zero':
-            return (0, ZeroOgrSourceDurationSpec_1.ZeroOgrSourceDurationSpecToJSON)(value);
+            return (0, OgrSourceDurationSpecZero_1.OgrSourceDurationSpecZeroToJSON)(value);
         default:
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${value['type']}'`);
     }

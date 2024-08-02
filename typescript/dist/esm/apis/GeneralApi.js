@@ -28,7 +28,6 @@ import { ServerInfoFromJSON, } from '../models/index';
 export class GeneralApi extends runtime.BaseAPI {
     /**
      * Server availablity check.
-     * Server availablity check.
      */
     availableHandlerRaw(initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -45,7 +44,6 @@ export class GeneralApi extends runtime.BaseAPI {
     }
     /**
      * Server availablity check.
-     * Server availablity check.
      */
     availableHandler(initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -53,7 +51,6 @@ export class GeneralApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Shows information about the server software version.
      * Shows information about the server software version.
      */
     serverInfoHandlerRaw(initOverrides) {
@@ -70,7 +67,6 @@ export class GeneralApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Shows information about the server software version.
      * Shows information about the server software version.
      */
     serverInfoHandler(initOverrides) {

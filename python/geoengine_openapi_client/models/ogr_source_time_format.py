@@ -21,26 +21,26 @@ import re  # noqa: F401
 
 from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from geoengine_openapi_client.models.auto_ogr_source_time_format import AutoOgrSourceTimeFormat
-from geoengine_openapi_client.models.custom_ogr_source_time_format import CustomOgrSourceTimeFormat
-from geoengine_openapi_client.models.unix_time_stamp_ogr_source_time_format import UnixTimeStampOgrSourceTimeFormat
+from geoengine_openapi_client.models.ogr_source_time_format_auto import OgrSourceTimeFormatAuto
+from geoengine_openapi_client.models.ogr_source_time_format_custom import OgrSourceTimeFormatCustom
+from geoengine_openapi_client.models.ogr_source_time_format_unix_time_stamp import OgrSourceTimeFormatUnixTimeStamp
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-OGRSOURCETIMEFORMAT_ONE_OF_SCHEMAS = ["AutoOgrSourceTimeFormat", "CustomOgrSourceTimeFormat", "UnixTimeStampOgrSourceTimeFormat"]
+OGRSOURCETIMEFORMAT_ONE_OF_SCHEMAS = ["OgrSourceTimeFormatAuto", "OgrSourceTimeFormatCustom", "OgrSourceTimeFormatUnixTimeStamp"]
 
 class OgrSourceTimeFormat(BaseModel):
     """
     OgrSourceTimeFormat
     """
-    # data type: CustomOgrSourceTimeFormat
-    oneof_schema_1_validator: Optional[CustomOgrSourceTimeFormat] = None
-    # data type: UnixTimeStampOgrSourceTimeFormat
-    oneof_schema_2_validator: Optional[UnixTimeStampOgrSourceTimeFormat] = None
-    # data type: AutoOgrSourceTimeFormat
-    oneof_schema_3_validator: Optional[AutoOgrSourceTimeFormat] = None
+    # data type: OgrSourceTimeFormatCustom
+    oneof_schema_1_validator: Optional[OgrSourceTimeFormatCustom] = None
+    # data type: OgrSourceTimeFormatUnixTimeStamp
+    oneof_schema_2_validator: Optional[OgrSourceTimeFormatUnixTimeStamp] = None
+    # data type: OgrSourceTimeFormatAuto
+    oneof_schema_3_validator: Optional[OgrSourceTimeFormatAuto] = None
     if TYPE_CHECKING:
-        actual_instance: Union[AutoOgrSourceTimeFormat, CustomOgrSourceTimeFormat, UnixTimeStampOgrSourceTimeFormat]
+        actual_instance: Union[OgrSourceTimeFormatAuto, OgrSourceTimeFormatCustom, OgrSourceTimeFormatUnixTimeStamp]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(OGRSOURCETIMEFORMAT_ONE_OF_SCHEMAS, const=True)
@@ -66,27 +66,27 @@ class OgrSourceTimeFormat(BaseModel):
         instance = OgrSourceTimeFormat.construct()
         error_messages = []
         match = 0
-        # validate data type: CustomOgrSourceTimeFormat
-        if not isinstance(v, CustomOgrSourceTimeFormat):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `CustomOgrSourceTimeFormat`")
+        # validate data type: OgrSourceTimeFormatCustom
+        if not isinstance(v, OgrSourceTimeFormatCustom):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OgrSourceTimeFormatCustom`")
         else:
             match += 1
-        # validate data type: UnixTimeStampOgrSourceTimeFormat
-        if not isinstance(v, UnixTimeStampOgrSourceTimeFormat):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `UnixTimeStampOgrSourceTimeFormat`")
+        # validate data type: OgrSourceTimeFormatUnixTimeStamp
+        if not isinstance(v, OgrSourceTimeFormatUnixTimeStamp):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OgrSourceTimeFormatUnixTimeStamp`")
         else:
             match += 1
-        # validate data type: AutoOgrSourceTimeFormat
-        if not isinstance(v, AutoOgrSourceTimeFormat):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `AutoOgrSourceTimeFormat`")
+        # validate data type: OgrSourceTimeFormatAuto
+        if not isinstance(v, OgrSourceTimeFormatAuto):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OgrSourceTimeFormatAuto`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in OgrSourceTimeFormat with oneOf schemas: AutoOgrSourceTimeFormat, CustomOgrSourceTimeFormat, UnixTimeStampOgrSourceTimeFormat. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in OgrSourceTimeFormat with oneOf schemas: OgrSourceTimeFormatAuto, OgrSourceTimeFormatCustom, OgrSourceTimeFormatUnixTimeStamp. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in OgrSourceTimeFormat with oneOf schemas: AutoOgrSourceTimeFormat, CustomOgrSourceTimeFormat, UnixTimeStampOgrSourceTimeFormat. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in OgrSourceTimeFormat with oneOf schemas: OgrSourceTimeFormatAuto, OgrSourceTimeFormatCustom, OgrSourceTimeFormatUnixTimeStamp. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -106,61 +106,61 @@ class OgrSourceTimeFormat(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `format` in the input.")
 
-        # check if data type is `AutoOgrSourceTimeFormat`
-        if _data_type == "AutoOgrSourceTimeFormat":
-            instance.actual_instance = AutoOgrSourceTimeFormat.from_json(json_str)
+        # check if data type is `OgrSourceTimeFormatAuto`
+        if _data_type == "OgrSourceTimeFormatAuto":
+            instance.actual_instance = OgrSourceTimeFormatAuto.from_json(json_str)
             return instance
 
-        # check if data type is `CustomOgrSourceTimeFormat`
-        if _data_type == "CustomOgrSourceTimeFormat":
-            instance.actual_instance = CustomOgrSourceTimeFormat.from_json(json_str)
+        # check if data type is `OgrSourceTimeFormatCustom`
+        if _data_type == "OgrSourceTimeFormatCustom":
+            instance.actual_instance = OgrSourceTimeFormatCustom.from_json(json_str)
             return instance
 
-        # check if data type is `UnixTimeStampOgrSourceTimeFormat`
-        if _data_type == "UnixTimeStampOgrSourceTimeFormat":
-            instance.actual_instance = UnixTimeStampOgrSourceTimeFormat.from_json(json_str)
+        # check if data type is `OgrSourceTimeFormatUnixTimeStamp`
+        if _data_type == "OgrSourceTimeFormatUnixTimeStamp":
+            instance.actual_instance = OgrSourceTimeFormatUnixTimeStamp.from_json(json_str)
             return instance
 
-        # check if data type is `AutoOgrSourceTimeFormat`
+        # check if data type is `OgrSourceTimeFormatAuto`
         if _data_type == "auto":
-            instance.actual_instance = AutoOgrSourceTimeFormat.from_json(json_str)
+            instance.actual_instance = OgrSourceTimeFormatAuto.from_json(json_str)
             return instance
 
-        # check if data type is `CustomOgrSourceTimeFormat`
+        # check if data type is `OgrSourceTimeFormatCustom`
         if _data_type == "custom":
-            instance.actual_instance = CustomOgrSourceTimeFormat.from_json(json_str)
+            instance.actual_instance = OgrSourceTimeFormatCustom.from_json(json_str)
             return instance
 
-        # check if data type is `UnixTimeStampOgrSourceTimeFormat`
+        # check if data type is `OgrSourceTimeFormatUnixTimeStamp`
         if _data_type == "unixTimeStamp":
-            instance.actual_instance = UnixTimeStampOgrSourceTimeFormat.from_json(json_str)
+            instance.actual_instance = OgrSourceTimeFormatUnixTimeStamp.from_json(json_str)
             return instance
 
-        # deserialize data into CustomOgrSourceTimeFormat
+        # deserialize data into OgrSourceTimeFormatCustom
         try:
-            instance.actual_instance = CustomOgrSourceTimeFormat.from_json(json_str)
+            instance.actual_instance = OgrSourceTimeFormatCustom.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into UnixTimeStampOgrSourceTimeFormat
+        # deserialize data into OgrSourceTimeFormatUnixTimeStamp
         try:
-            instance.actual_instance = UnixTimeStampOgrSourceTimeFormat.from_json(json_str)
+            instance.actual_instance = OgrSourceTimeFormatUnixTimeStamp.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into AutoOgrSourceTimeFormat
+        # deserialize data into OgrSourceTimeFormatAuto
         try:
-            instance.actual_instance = AutoOgrSourceTimeFormat.from_json(json_str)
+            instance.actual_instance = OgrSourceTimeFormatAuto.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into OgrSourceTimeFormat with oneOf schemas: AutoOgrSourceTimeFormat, CustomOgrSourceTimeFormat, UnixTimeStampOgrSourceTimeFormat. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into OgrSourceTimeFormat with oneOf schemas: OgrSourceTimeFormatAuto, OgrSourceTimeFormatCustom, OgrSourceTimeFormatUnixTimeStamp. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into OgrSourceTimeFormat with oneOf schemas: AutoOgrSourceTimeFormat, CustomOgrSourceTimeFormat, UnixTimeStampOgrSourceTimeFormat. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into OgrSourceTimeFormat with oneOf schemas: OgrSourceTimeFormatAuto, OgrSourceTimeFormatCustom, OgrSourceTimeFormatUnixTimeStamp. Details: " + ", ".join(error_messages))
         else:
             return instance
 

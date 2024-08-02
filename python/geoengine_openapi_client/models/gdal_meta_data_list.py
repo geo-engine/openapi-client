@@ -20,7 +20,7 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, StrictStr, conlist, validator
 from geoengine_openapi_client.models.gdal_loading_info_temporal_slice import GdalLoadingInfoTemporalSlice
 from geoengine_openapi_client.models.raster_result_descriptor import RasterResultDescriptor
 
@@ -30,7 +30,15 @@ class GdalMetaDataList(BaseModel):
     """
     params: conlist(GdalLoadingInfoTemporalSlice) = Field(...)
     result_descriptor: RasterResultDescriptor = Field(..., alias="resultDescriptor")
-    __properties = ["params", "resultDescriptor"]
+    type: StrictStr = Field(...)
+    __properties = ["params", "resultDescriptor", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('GdalMetaDataList'):
+            raise ValueError("must be one of enum values ('GdalMetaDataList')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -79,7 +87,8 @@ class GdalMetaDataList(BaseModel):
 
         _obj = GdalMetaDataList.parse_obj({
             "params": [GdalLoadingInfoTemporalSlice.from_dict(_item) for _item in obj.get("params")] if obj.get("params") is not None else None,
-            "result_descriptor": RasterResultDescriptor.from_dict(obj.get("resultDescriptor")) if obj.get("resultDescriptor") is not None else None
+            "result_descriptor": RasterResultDescriptor.from_dict(obj.get("resultDescriptor")) if obj.get("resultDescriptor") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

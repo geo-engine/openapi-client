@@ -13,11 +13,18 @@
  */
 import { exists } from '../runtime';
 /**
+ * @export
+ */
+export const ContinuousMeasurementTypeEnum = {
+    Continuous: 'continuous'
+};
+/**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
 export function instanceOfContinuousMeasurement(value) {
     let isInstance = true;
     isInstance = isInstance && "measurement" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 export function ContinuousMeasurementFromJSON(json) {
@@ -29,6 +36,7 @@ export function ContinuousMeasurementFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'measurement': json['measurement'],
+        'type': json['type'],
         'unit': !exists(json, 'unit') ? undefined : json['unit'],
     };
 }
@@ -41,6 +49,7 @@ export function ContinuousMeasurementToJSON(value) {
     }
     return {
         'measurement': value.measurement,
+        'type': value.type,
         'unit': value.unit,
     };
 }

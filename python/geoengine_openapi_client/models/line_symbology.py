@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
 from geoengine_openapi_client.models.stroke_param import StrokeParam
 from geoengine_openapi_client.models.text_symbology import TextSymbology
 
@@ -31,7 +31,15 @@ class LineSymbology(BaseModel):
     auto_simplified: StrictBool = Field(..., alias="autoSimplified")
     stroke: StrokeParam = Field(...)
     text: Optional[TextSymbology] = None
-    __properties = ["autoSimplified", "stroke", "text"]
+    type: StrictStr = Field(...)
+    __properties = ["autoSimplified", "stroke", "text", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('line'):
+            raise ValueError("must be one of enum values ('line')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -82,7 +90,8 @@ class LineSymbology(BaseModel):
         _obj = LineSymbology.parse_obj({
             "auto_simplified": obj.get("autoSimplified"),
             "stroke": StrokeParam.from_dict(obj.get("stroke")) if obj.get("stroke") is not None else None,
-            "text": TextSymbology.from_dict(obj.get("text")) if obj.get("text") is not None else None
+            "text": TextSymbology.from_dict(obj.get("text")) if obj.get("text") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

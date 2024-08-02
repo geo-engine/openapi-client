@@ -21,29 +21,29 @@ import re  # noqa: F401
 
 from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from geoengine_openapi_client.models.none_ogr_source_dataset_time_type import NoneOgrSourceDatasetTimeType
-from geoengine_openapi_client.models.start_duration_ogr_source_dataset_time_type import StartDurationOgrSourceDatasetTimeType
-from geoengine_openapi_client.models.start_end_ogr_source_dataset_time_type import StartEndOgrSourceDatasetTimeType
-from geoengine_openapi_client.models.start_ogr_source_dataset_time_type import StartOgrSourceDatasetTimeType
+from geoengine_openapi_client.models.ogr_source_dataset_time_type_none import OgrSourceDatasetTimeTypeNone
+from geoengine_openapi_client.models.ogr_source_dataset_time_type_start import OgrSourceDatasetTimeTypeStart
+from geoengine_openapi_client.models.ogr_source_dataset_time_type_start_duration import OgrSourceDatasetTimeTypeStartDuration
+from geoengine_openapi_client.models.ogr_source_dataset_time_type_start_end import OgrSourceDatasetTimeTypeStartEnd
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-OGRSOURCEDATASETTIMETYPE_ONE_OF_SCHEMAS = ["NoneOgrSourceDatasetTimeType", "StartDurationOgrSourceDatasetTimeType", "StartEndOgrSourceDatasetTimeType", "StartOgrSourceDatasetTimeType"]
+OGRSOURCEDATASETTIMETYPE_ONE_OF_SCHEMAS = ["OgrSourceDatasetTimeTypeNone", "OgrSourceDatasetTimeTypeStart", "OgrSourceDatasetTimeTypeStartDuration", "OgrSourceDatasetTimeTypeStartEnd"]
 
 class OgrSourceDatasetTimeType(BaseModel):
     """
     OgrSourceDatasetTimeType
     """
-    # data type: NoneOgrSourceDatasetTimeType
-    oneof_schema_1_validator: Optional[NoneOgrSourceDatasetTimeType] = None
-    # data type: StartOgrSourceDatasetTimeType
-    oneof_schema_2_validator: Optional[StartOgrSourceDatasetTimeType] = None
-    # data type: StartEndOgrSourceDatasetTimeType
-    oneof_schema_3_validator: Optional[StartEndOgrSourceDatasetTimeType] = None
-    # data type: StartDurationOgrSourceDatasetTimeType
-    oneof_schema_4_validator: Optional[StartDurationOgrSourceDatasetTimeType] = None
+    # data type: OgrSourceDatasetTimeTypeNone
+    oneof_schema_1_validator: Optional[OgrSourceDatasetTimeTypeNone] = None
+    # data type: OgrSourceDatasetTimeTypeStart
+    oneof_schema_2_validator: Optional[OgrSourceDatasetTimeTypeStart] = None
+    # data type: OgrSourceDatasetTimeTypeStartEnd
+    oneof_schema_3_validator: Optional[OgrSourceDatasetTimeTypeStartEnd] = None
+    # data type: OgrSourceDatasetTimeTypeStartDuration
+    oneof_schema_4_validator: Optional[OgrSourceDatasetTimeTypeStartDuration] = None
     if TYPE_CHECKING:
-        actual_instance: Union[NoneOgrSourceDatasetTimeType, StartDurationOgrSourceDatasetTimeType, StartEndOgrSourceDatasetTimeType, StartOgrSourceDatasetTimeType]
+        actual_instance: Union[OgrSourceDatasetTimeTypeNone, OgrSourceDatasetTimeTypeStart, OgrSourceDatasetTimeTypeStartDuration, OgrSourceDatasetTimeTypeStartEnd]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(OGRSOURCEDATASETTIMETYPE_ONE_OF_SCHEMAS, const=True)
@@ -69,32 +69,32 @@ class OgrSourceDatasetTimeType(BaseModel):
         instance = OgrSourceDatasetTimeType.construct()
         error_messages = []
         match = 0
-        # validate data type: NoneOgrSourceDatasetTimeType
-        if not isinstance(v, NoneOgrSourceDatasetTimeType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `NoneOgrSourceDatasetTimeType`")
+        # validate data type: OgrSourceDatasetTimeTypeNone
+        if not isinstance(v, OgrSourceDatasetTimeTypeNone):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OgrSourceDatasetTimeTypeNone`")
         else:
             match += 1
-        # validate data type: StartOgrSourceDatasetTimeType
-        if not isinstance(v, StartOgrSourceDatasetTimeType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `StartOgrSourceDatasetTimeType`")
+        # validate data type: OgrSourceDatasetTimeTypeStart
+        if not isinstance(v, OgrSourceDatasetTimeTypeStart):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OgrSourceDatasetTimeTypeStart`")
         else:
             match += 1
-        # validate data type: StartEndOgrSourceDatasetTimeType
-        if not isinstance(v, StartEndOgrSourceDatasetTimeType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `StartEndOgrSourceDatasetTimeType`")
+        # validate data type: OgrSourceDatasetTimeTypeStartEnd
+        if not isinstance(v, OgrSourceDatasetTimeTypeStartEnd):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OgrSourceDatasetTimeTypeStartEnd`")
         else:
             match += 1
-        # validate data type: StartDurationOgrSourceDatasetTimeType
-        if not isinstance(v, StartDurationOgrSourceDatasetTimeType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `StartDurationOgrSourceDatasetTimeType`")
+        # validate data type: OgrSourceDatasetTimeTypeStartDuration
+        if not isinstance(v, OgrSourceDatasetTimeTypeStartDuration):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `OgrSourceDatasetTimeTypeStartDuration`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in OgrSourceDatasetTimeType with oneOf schemas: NoneOgrSourceDatasetTimeType, StartDurationOgrSourceDatasetTimeType, StartEndOgrSourceDatasetTimeType, StartOgrSourceDatasetTimeType. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in OgrSourceDatasetTimeType with oneOf schemas: OgrSourceDatasetTimeTypeNone, OgrSourceDatasetTimeTypeStart, OgrSourceDatasetTimeTypeStartDuration, OgrSourceDatasetTimeTypeStartEnd. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in OgrSourceDatasetTimeType with oneOf schemas: NoneOgrSourceDatasetTimeType, StartDurationOgrSourceDatasetTimeType, StartEndOgrSourceDatasetTimeType, StartOgrSourceDatasetTimeType. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in OgrSourceDatasetTimeType with oneOf schemas: OgrSourceDatasetTimeTypeNone, OgrSourceDatasetTimeTypeStart, OgrSourceDatasetTimeTypeStartDuration, OgrSourceDatasetTimeTypeStartEnd. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -114,77 +114,77 @@ class OgrSourceDatasetTimeType(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `NoneOgrSourceDatasetTimeType`
-        if _data_type == "NoneOgrSourceDatasetTimeType":
-            instance.actual_instance = NoneOgrSourceDatasetTimeType.from_json(json_str)
+        # check if data type is `OgrSourceDatasetTimeTypeNone`
+        if _data_type == "OgrSourceDatasetTimeTypeNone":
+            instance.actual_instance = OgrSourceDatasetTimeTypeNone.from_json(json_str)
             return instance
 
-        # check if data type is `StartDurationOgrSourceDatasetTimeType`
-        if _data_type == "StartDurationOgrSourceDatasetTimeType":
-            instance.actual_instance = StartDurationOgrSourceDatasetTimeType.from_json(json_str)
+        # check if data type is `OgrSourceDatasetTimeTypeStart`
+        if _data_type == "OgrSourceDatasetTimeTypeStart":
+            instance.actual_instance = OgrSourceDatasetTimeTypeStart.from_json(json_str)
             return instance
 
-        # check if data type is `StartEndOgrSourceDatasetTimeType`
-        if _data_type == "StartEndOgrSourceDatasetTimeType":
-            instance.actual_instance = StartEndOgrSourceDatasetTimeType.from_json(json_str)
+        # check if data type is `OgrSourceDatasetTimeTypeStartDuration`
+        if _data_type == "OgrSourceDatasetTimeTypeStartDuration":
+            instance.actual_instance = OgrSourceDatasetTimeTypeStartDuration.from_json(json_str)
             return instance
 
-        # check if data type is `StartOgrSourceDatasetTimeType`
-        if _data_type == "StartOgrSourceDatasetTimeType":
-            instance.actual_instance = StartOgrSourceDatasetTimeType.from_json(json_str)
+        # check if data type is `OgrSourceDatasetTimeTypeStartEnd`
+        if _data_type == "OgrSourceDatasetTimeTypeStartEnd":
+            instance.actual_instance = OgrSourceDatasetTimeTypeStartEnd.from_json(json_str)
             return instance
 
-        # check if data type is `NoneOgrSourceDatasetTimeType`
+        # check if data type is `OgrSourceDatasetTimeTypeNone`
         if _data_type == "none":
-            instance.actual_instance = NoneOgrSourceDatasetTimeType.from_json(json_str)
+            instance.actual_instance = OgrSourceDatasetTimeTypeNone.from_json(json_str)
             return instance
 
-        # check if data type is `StartOgrSourceDatasetTimeType`
+        # check if data type is `OgrSourceDatasetTimeTypeStart`
         if _data_type == "start":
-            instance.actual_instance = StartOgrSourceDatasetTimeType.from_json(json_str)
+            instance.actual_instance = OgrSourceDatasetTimeTypeStart.from_json(json_str)
             return instance
 
-        # check if data type is `StartDurationOgrSourceDatasetTimeType`
+        # check if data type is `OgrSourceDatasetTimeTypeStartDuration`
         if _data_type == "startDuration":
-            instance.actual_instance = StartDurationOgrSourceDatasetTimeType.from_json(json_str)
+            instance.actual_instance = OgrSourceDatasetTimeTypeStartDuration.from_json(json_str)
             return instance
 
-        # check if data type is `StartEndOgrSourceDatasetTimeType`
+        # check if data type is `OgrSourceDatasetTimeTypeStartEnd`
         if _data_type == "startEnd":
-            instance.actual_instance = StartEndOgrSourceDatasetTimeType.from_json(json_str)
+            instance.actual_instance = OgrSourceDatasetTimeTypeStartEnd.from_json(json_str)
             return instance
 
-        # deserialize data into NoneOgrSourceDatasetTimeType
+        # deserialize data into OgrSourceDatasetTimeTypeNone
         try:
-            instance.actual_instance = NoneOgrSourceDatasetTimeType.from_json(json_str)
+            instance.actual_instance = OgrSourceDatasetTimeTypeNone.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into StartOgrSourceDatasetTimeType
+        # deserialize data into OgrSourceDatasetTimeTypeStart
         try:
-            instance.actual_instance = StartOgrSourceDatasetTimeType.from_json(json_str)
+            instance.actual_instance = OgrSourceDatasetTimeTypeStart.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into StartEndOgrSourceDatasetTimeType
+        # deserialize data into OgrSourceDatasetTimeTypeStartEnd
         try:
-            instance.actual_instance = StartEndOgrSourceDatasetTimeType.from_json(json_str)
+            instance.actual_instance = OgrSourceDatasetTimeTypeStartEnd.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into StartDurationOgrSourceDatasetTimeType
+        # deserialize data into OgrSourceDatasetTimeTypeStartDuration
         try:
-            instance.actual_instance = StartDurationOgrSourceDatasetTimeType.from_json(json_str)
+            instance.actual_instance = OgrSourceDatasetTimeTypeStartDuration.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into OgrSourceDatasetTimeType with oneOf schemas: NoneOgrSourceDatasetTimeType, StartDurationOgrSourceDatasetTimeType, StartEndOgrSourceDatasetTimeType, StartOgrSourceDatasetTimeType. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into OgrSourceDatasetTimeType with oneOf schemas: OgrSourceDatasetTimeTypeNone, OgrSourceDatasetTimeTypeStart, OgrSourceDatasetTimeTypeStartDuration, OgrSourceDatasetTimeTypeStartEnd. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into OgrSourceDatasetTimeType with oneOf schemas: NoneOgrSourceDatasetTimeType, StartDurationOgrSourceDatasetTimeType, StartEndOgrSourceDatasetTimeType, StartOgrSourceDatasetTimeType. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into OgrSourceDatasetTimeType with oneOf schemas: OgrSourceDatasetTimeTypeNone, OgrSourceDatasetTimeTypeStart, OgrSourceDatasetTimeTypeStartDuration, OgrSourceDatasetTimeTypeStartEnd. Details: " + ", ".join(error_messages))
         else:
             return instance
 

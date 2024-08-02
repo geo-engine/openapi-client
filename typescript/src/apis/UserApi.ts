@@ -72,7 +72,6 @@ export class UserApi extends runtime.BaseAPI {
 
     /**
      * Add a new role. Requires admin privilige.
-     * Add a new role. Requires admin privilige.
      */
     async addRoleHandlerRaw(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters.addRole === null || requestParameters.addRole === undefined) {
@@ -110,7 +109,6 @@ export class UserApi extends runtime.BaseAPI {
 
     /**
      * Add a new role. Requires admin privilige.
-     * Add a new role. Requires admin privilige.
      */
     async addRoleHandler(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.addRoleHandlerRaw(requestParameters, initOverrides);
@@ -118,7 +116,6 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Assign a role to a user. Requires admin privilige.
      * Assign a role to a user. Requires admin privilige.
      */
     async assignRoleHandlerRaw(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -154,14 +151,12 @@ export class UserApi extends runtime.BaseAPI {
 
     /**
      * Assign a role to a user. Requires admin privilige.
-     * Assign a role to a user. Requires admin privilige.
      */
     async assignRoleHandler(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.assignRoleHandlerRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Get role by name
      * Get role by name
      */
     async getRoleByNameHandlerRaw(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
@@ -193,7 +188,6 @@ export class UserApi extends runtime.BaseAPI {
 
     /**
      * Get role by name
-     * Get role by name
      */
     async getRoleByNameHandler(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
         const response = await this.getRoleByNameHandlerRaw(requestParameters, initOverrides);
@@ -201,7 +195,6 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Query roles for the current user.
      * Query roles for the current user.
      */
     async getRoleDescriptionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RoleDescription>>> {
@@ -229,7 +222,6 @@ export class UserApi extends runtime.BaseAPI {
 
     /**
      * Query roles for the current user.
-     * Query roles for the current user.
      */
     async getRoleDescriptions(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<RoleDescription>> {
         const response = await this.getRoleDescriptionsRaw(initOverrides);
@@ -237,7 +229,6 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the available and used quota of a specific user.
      * Retrieves the available and used quota of a specific user.
      */
     async getUserQuotaHandlerRaw(requestParameters: GetUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quota>> {
@@ -269,7 +260,6 @@ export class UserApi extends runtime.BaseAPI {
 
     /**
      * Retrieves the available and used quota of a specific user.
-     * Retrieves the available and used quota of a specific user.
      */
     async getUserQuotaHandler(requestParameters: GetUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quota> {
         const response = await this.getUserQuotaHandlerRaw(requestParameters, initOverrides);
@@ -277,7 +267,6 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the available and used quota of the current user.
      * Retrieves the available and used quota of the current user.
      */
     async quotaHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quota>> {
@@ -305,7 +294,6 @@ export class UserApi extends runtime.BaseAPI {
 
     /**
      * Retrieves the available and used quota of the current user.
-     * Retrieves the available and used quota of the current user.
      */
     async quotaHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quota> {
         const response = await this.quotaHandlerRaw(initOverrides);
@@ -313,7 +301,6 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a role. Requires admin privilige.
      * Remove a role. Requires admin privilige.
      */
     async removeRoleHandlerRaw(requestParameters: RemoveRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -345,14 +332,12 @@ export class UserApi extends runtime.BaseAPI {
 
     /**
      * Remove a role. Requires admin privilige.
-     * Remove a role. Requires admin privilige.
      */
     async removeRoleHandler(requestParameters: RemoveRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.removeRoleHandlerRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Revoke a role from a user. Requires admin privilige.
      * Revoke a role from a user. Requires admin privilige.
      */
     async revokeRoleHandlerRaw(requestParameters: RevokeRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -388,14 +373,12 @@ export class UserApi extends runtime.BaseAPI {
 
     /**
      * Revoke a role from a user. Requires admin privilige.
-     * Revoke a role from a user. Requires admin privilige.
      */
     async revokeRoleHandler(requestParameters: RevokeRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.revokeRoleHandlerRaw(requestParameters, initOverrides);
     }
 
     /**
-     * Update the available quota of a specific user.
      * Update the available quota of a specific user.
      */
     async updateUserQuotaHandlerRaw(requestParameters: UpdateUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -433,7 +416,6 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the available quota of a specific user.
      * Update the available quota of a specific user.
      */
     async updateUserQuotaHandler(requestParameters: UpdateUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {

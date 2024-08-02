@@ -28,7 +28,6 @@ import { AddCollection200ResponseFromJSON, UploadFileLayersResponseFromJSON, Upl
 export class UploadsApi extends runtime.BaseAPI {
     /**
      * List the layers of on uploaded file.
-     * List the layers of on uploaded file.
      */
     listUploadFileLayersHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -58,7 +57,6 @@ export class UploadsApi extends runtime.BaseAPI {
     }
     /**
      * List the layers of on uploaded file.
-     * List the layers of on uploaded file.
      */
     listUploadFileLayersHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -67,7 +65,6 @@ export class UploadsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List the files of on upload.
      * List the files of on upload.
      */
     listUploadFilesHandlerRaw(requestParameters, initOverrides) {
@@ -95,7 +92,6 @@ export class UploadsApi extends runtime.BaseAPI {
     }
     /**
      * List the files of on upload.
-     * List the files of on upload.
      */
     listUploadFilesHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -104,7 +100,6 @@ export class UploadsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Uploads files.
      * Uploads files.
      */
     uploadHandlerRaw(requestParameters, initOverrides) {
@@ -152,7 +147,6 @@ export class UploadsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Uploads files.
      * Uploads files.
      */
     uploadHandler(requestParameters, initOverrides) {

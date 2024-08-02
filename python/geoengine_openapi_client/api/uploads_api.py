@@ -52,7 +52,6 @@ class UploadsApi:
     def list_upload_file_layers_handler(self, upload_id : Annotated[StrictStr, Field(..., description="Upload id")], file_name : Annotated[StrictStr, Field(..., description="File name")], **kwargs) -> UploadFileLayersResponse:  # noqa: E501
         """List the layers of on uploaded file.  # noqa: E501
 
-        List the layers of on uploaded file.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -84,7 +83,6 @@ class UploadsApi:
     def list_upload_file_layers_handler_with_http_info(self, upload_id : Annotated[StrictStr, Field(..., description="Upload id")], file_name : Annotated[StrictStr, Field(..., description="File name")], **kwargs) -> ApiResponse:  # noqa: E501
         """List the layers of on uploaded file.  # noqa: E501
 
-        List the layers of on uploaded file.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -200,7 +198,6 @@ class UploadsApi:
     def list_upload_files_handler(self, upload_id : Annotated[StrictStr, Field(..., description="Upload id")], **kwargs) -> UploadFilesResponse:  # noqa: E501
         """List the files of on upload.  # noqa: E501
 
-        List the files of on upload.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -230,7 +227,6 @@ class UploadsApi:
     def list_upload_files_handler_with_http_info(self, upload_id : Annotated[StrictStr, Field(..., description="Upload id")], **kwargs) -> ApiResponse:  # noqa: E501
         """List the files of on upload.  # noqa: E501
 
-        List the files of on upload.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -340,7 +336,6 @@ class UploadsApi:
     def upload_handler(self, files : conlist(Union[StrictBytes, StrictStr]), **kwargs) -> AddCollection200Response:  # noqa: E501
         """Uploads files.  # noqa: E501
 
-        Uploads files.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -370,7 +365,6 @@ class UploadsApi:
     def upload_handler_with_http_info(self, files : conlist(Union[StrictBytes, StrictStr]), **kwargs) -> ApiResponse:  # noqa: E501
         """Uploads files.  # noqa: E501
 
-        Uploads files.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

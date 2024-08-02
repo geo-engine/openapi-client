@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ClassificationMeasurementWithTypeFromJSONTyped, ClassificationMeasurementWithTypeToJSON, } from './ClassificationMeasurementWithType';
-import { ContinuousMeasurementWithTypeFromJSONTyped, ContinuousMeasurementWithTypeToJSON, } from './ContinuousMeasurementWithType';
+import { ClassificationMeasurementFromJSONTyped, ClassificationMeasurementToJSON, } from './ClassificationMeasurement';
+import { ContinuousMeasurementFromJSONTyped, ContinuousMeasurementToJSON, } from './ContinuousMeasurement';
 import { UnitlessMeasurementFromJSONTyped, UnitlessMeasurementToJSON, } from './UnitlessMeasurement';
 export function MeasurementFromJSON(json) {
     return MeasurementFromJSONTyped(json, false);
@@ -23,9 +23,9 @@ export function MeasurementFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'classification':
-            return Object.assign(Object.assign({}, ClassificationMeasurementWithTypeFromJSONTyped(json, true)), { type: 'classification' });
+            return Object.assign(Object.assign({}, ClassificationMeasurementFromJSONTyped(json, true)), { type: 'classification' });
         case 'continuous':
-            return Object.assign(Object.assign({}, ContinuousMeasurementWithTypeFromJSONTyped(json, true)), { type: 'continuous' });
+            return Object.assign(Object.assign({}, ContinuousMeasurementFromJSONTyped(json, true)), { type: 'continuous' });
         case 'unitless':
             return Object.assign(Object.assign({}, UnitlessMeasurementFromJSONTyped(json, true)), { type: 'unitless' });
         default:
@@ -41,9 +41,9 @@ export function MeasurementToJSON(value) {
     }
     switch (value['type']) {
         case 'classification':
-            return ClassificationMeasurementWithTypeToJSON(value);
+            return ClassificationMeasurementToJSON(value);
         case 'continuous':
-            return ContinuousMeasurementWithTypeToJSON(value);
+            return ContinuousMeasurementToJSON(value);
         case 'unitless':
             return UnitlessMeasurementToJSON(value);
         default:

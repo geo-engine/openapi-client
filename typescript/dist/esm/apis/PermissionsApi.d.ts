@@ -29,31 +29,25 @@ export interface RemovePermissionHandlerRequest {
 export declare class PermissionsApi extends runtime.BaseAPI {
     /**
      * Adds a new permission.
-     * Adds a new permission.
      */
     addPermissionHandlerRaw(requestParameters: AddPermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Adds a new permission.
      * Adds a new permission.
      */
     addPermissionHandler(requestParameters: AddPermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Lists permission for a given resource.
-     * Lists permission for a given resource.
      */
     getResourcePermissionsHandlerRaw(requestParameters: GetResourcePermissionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PermissionListing>>>;
     /**
-     * Lists permission for a given resource.
      * Lists permission for a given resource.
      */
     getResourcePermissionsHandler(requestParameters: GetResourcePermissionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PermissionListing>>;
     /**
      * Removes an existing permission.
-     * Removes an existing permission.
      */
     removePermissionHandlerRaw(requestParameters: RemovePermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Removes an existing permission.
      * Removes an existing permission.
      */
     removePermissionHandler(requestParameters: RemovePermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;

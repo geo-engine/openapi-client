@@ -13,12 +13,19 @@
  */
 import { RasterColorizerFromJSON, RasterColorizerToJSON, } from './RasterColorizer';
 /**
+ * @export
+ */
+export const RasterSymbologyTypeEnum = {
+    Raster: 'raster'
+};
+/**
  * Check if a given object implements the RasterSymbology interface.
  */
 export function instanceOfRasterSymbology(value) {
     let isInstance = true;
     isInstance = isInstance && "opacity" in value;
     isInstance = isInstance && "rasterColorizer" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 export function RasterSymbologyFromJSON(json) {
@@ -31,6 +38,7 @@ export function RasterSymbologyFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'opacity': json['opacity'],
         'rasterColorizer': RasterColorizerFromJSON(json['rasterColorizer']),
+        'type': json['type'],
     };
 }
 export function RasterSymbologyToJSON(value) {
@@ -43,5 +51,6 @@ export function RasterSymbologyToJSON(value) {
     return {
         'opacity': value.opacity,
         'rasterColorizer': RasterColorizerToJSON(value.rasterColorizer),
+        'type': value.type,
     };
 }

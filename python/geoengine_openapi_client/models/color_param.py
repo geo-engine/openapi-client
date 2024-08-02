@@ -21,23 +21,23 @@ import re  # noqa: F401
 
 from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from geoengine_openapi_client.models.derived_color_with_type import DerivedColorWithType
-from geoengine_openapi_client.models.static_color_param import StaticColorParam
+from geoengine_openapi_client.models.color_param_static import ColorParamStatic
+from geoengine_openapi_client.models.derived_color import DerivedColor
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-COLORPARAM_ONE_OF_SCHEMAS = ["DerivedColorWithType", "StaticColorParam"]
+COLORPARAM_ONE_OF_SCHEMAS = ["ColorParamStatic", "DerivedColor"]
 
 class ColorParam(BaseModel):
     """
     ColorParam
     """
-    # data type: StaticColorParam
-    oneof_schema_1_validator: Optional[StaticColorParam] = None
-    # data type: DerivedColorWithType
-    oneof_schema_2_validator: Optional[DerivedColorWithType] = None
+    # data type: ColorParamStatic
+    oneof_schema_1_validator: Optional[ColorParamStatic] = None
+    # data type: DerivedColor
+    oneof_schema_2_validator: Optional[DerivedColor] = None
     if TYPE_CHECKING:
-        actual_instance: Union[DerivedColorWithType, StaticColorParam]
+        actual_instance: Union[ColorParamStatic, DerivedColor]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(COLORPARAM_ONE_OF_SCHEMAS, const=True)
@@ -63,22 +63,22 @@ class ColorParam(BaseModel):
         instance = ColorParam.construct()
         error_messages = []
         match = 0
-        # validate data type: StaticColorParam
-        if not isinstance(v, StaticColorParam):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `StaticColorParam`")
+        # validate data type: ColorParamStatic
+        if not isinstance(v, ColorParamStatic):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ColorParamStatic`")
         else:
             match += 1
-        # validate data type: DerivedColorWithType
-        if not isinstance(v, DerivedColorWithType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `DerivedColorWithType`")
+        # validate data type: DerivedColor
+        if not isinstance(v, DerivedColor):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `DerivedColor`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in ColorParam with oneOf schemas: DerivedColorWithType, StaticColorParam. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in ColorParam with oneOf schemas: ColorParamStatic, DerivedColor. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in ColorParam with oneOf schemas: DerivedColorWithType, StaticColorParam. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in ColorParam with oneOf schemas: ColorParamStatic, DerivedColor. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -98,45 +98,45 @@ class ColorParam(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `DerivedColorWithType`
-        if _data_type == "DerivedColorWithType":
-            instance.actual_instance = DerivedColorWithType.from_json(json_str)
+        # check if data type is `ColorParamStatic`
+        if _data_type == "ColorParamStatic":
+            instance.actual_instance = ColorParamStatic.from_json(json_str)
             return instance
 
-        # check if data type is `StaticColorParam`
-        if _data_type == "StaticColorParam":
-            instance.actual_instance = StaticColorParam.from_json(json_str)
+        # check if data type is `DerivedColor`
+        if _data_type == "DerivedColor":
+            instance.actual_instance = DerivedColor.from_json(json_str)
             return instance
 
-        # check if data type is `DerivedColorWithType`
+        # check if data type is `DerivedColor`
         if _data_type == "derived":
-            instance.actual_instance = DerivedColorWithType.from_json(json_str)
+            instance.actual_instance = DerivedColor.from_json(json_str)
             return instance
 
-        # check if data type is `StaticColorParam`
+        # check if data type is `ColorParamStatic`
         if _data_type == "static":
-            instance.actual_instance = StaticColorParam.from_json(json_str)
+            instance.actual_instance = ColorParamStatic.from_json(json_str)
             return instance
 
-        # deserialize data into StaticColorParam
+        # deserialize data into ColorParamStatic
         try:
-            instance.actual_instance = StaticColorParam.from_json(json_str)
+            instance.actual_instance = ColorParamStatic.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into DerivedColorWithType
+        # deserialize data into DerivedColor
         try:
-            instance.actual_instance = DerivedColorWithType.from_json(json_str)
+            instance.actual_instance = DerivedColor.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into ColorParam with oneOf schemas: DerivedColorWithType, StaticColorParam. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into ColorParam with oneOf schemas: ColorParamStatic, DerivedColor. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into ColorParam with oneOf schemas: DerivedColorWithType, StaticColorParam. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into ColorParam with oneOf schemas: ColorParamStatic, DerivedColor. Details: " + ", ".join(error_messages))
         else:
             return instance
 

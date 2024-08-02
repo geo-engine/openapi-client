@@ -26,71 +26,61 @@ export interface RegisterUserHandlerRequest {
 export declare class SessionApi extends runtime.BaseAPI {
     /**
      * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
-     * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
      */
     anonymousHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>>;
     /**
-     * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
      * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
      */
     anonymousHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession>;
     /**
      * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
-     * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      */
     loginHandlerRaw(requestParameters: LoginHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>>;
     /**
-     * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      */
     loginHandler(requestParameters: LoginHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession>;
     /**
      * Ends a session.
-     * Ends a session.
      */
     logoutHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      * Ends a session.
-     * Ends a session.
      */
     logoutHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
+     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
     oidcInitRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCodeRequestURL>>;
     /**
-     * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
+     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
     oidcInit(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCodeRequestURL>;
     /**
-     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
+     * This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
      * Creates a session for a user via a login with Open Id Connect.
      */
     oidcLoginRaw(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>>;
     /**
-     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
+     * This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
      * Creates a session for a user via a login with Open Id Connect.
      */
     oidcLogin(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession>;
     /**
      * Registers a user.
-     * Registers a user.
      */
     registerUserHandlerRaw(requestParameters: RegisterUserHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
-     * Registers a user.
      * Registers a user.
      */
     registerUserHandler(requestParameters: RegisterUserHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
      * Retrieves details about the current session.
-     * Retrieves details about the current session.
      */
     sessionHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>>;
     /**
-     * Retrieves details about the current session.
      * Retrieves details about the current session.
      */
     sessionHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession>;

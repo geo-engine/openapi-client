@@ -38,12 +38,14 @@ class TestRasterSymbology(unittest.TestCase):
         if include_optional:
             return RasterSymbology(
                 opacity = 1.337,
-                raster_colorizer = None
+                raster_colorizer = None,
+                type = 'raster'
             )
         else:
             return RasterSymbology(
                 opacity = 1.337,
                 raster_colorizer = None,
+                type = 'raster',
         )
         """
 

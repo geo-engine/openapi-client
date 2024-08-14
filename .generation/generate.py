@@ -214,6 +214,7 @@ def generate_typescript_code(*, npm_name: str, npm_version: str, repository_url:
 node_modules
 typings
 ''')
+    shutil.rmtree(Path("typescript") / ".openapi-generator")
 
 
 def main():

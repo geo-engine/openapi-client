@@ -51,7 +51,8 @@ export interface SingleBandRasterColorizer {
  * @export
  */
 export const SingleBandRasterColorizerTypeEnum = {
-    SingleBand: 'singleBand'
+    SingleBand: 'singleBand',
+    MultiBand: 'multiBand'
 } as const;
 export type SingleBandRasterColorizerTypeEnum = typeof SingleBandRasterColorizerTypeEnum[keyof typeof SingleBandRasterColorizerTypeEnum];
 

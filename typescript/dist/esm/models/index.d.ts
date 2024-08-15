@@ -127,6 +127,7 @@ export * from './ProviderLayerId';
 export * from './Quota';
 export * from './RasterBandDescriptor';
 export * from './RasterColorizer';
+export * from './RasterColorizerMultiBand';
 export * from './RasterDataType';
 export * from './RasterDatasetFromWorkflow';
 export * from './RasterDatasetFromWorkflowResult';

@@ -175,6 +175,7 @@ def generate_python_code(*, package_name: str, package_version: str, package_url
         check=True,
     )
     shutil.rmtree(Path("python") / "docs")
+    shutil.rmtree(Path("python") / ".openapi-generator")
 
 
 def generate_typescript_code(*, npm_name: str, npm_version: str, repository_url: str):

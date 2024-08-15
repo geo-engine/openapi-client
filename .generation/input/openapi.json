@@ -7570,12 +7570,102 @@
         "oneOf": [
           {
             "$ref": "#/components/schemas/SingleBandRasterColorizer"
+          },
+          {
+            "$ref": "#/components/schemas/RasterColorizerMultiBand"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
+            "multiBand": "#/components/schemas/RasterColorizerMultiBand",
             "singleBand": "#/components/schemas/SingleBandRasterColorizer"
+          }
+        }
+      },
+      "RasterColorizerMultiBand": {
+        "type": "object",
+        "required": [
+          "redBand",
+          "redMin",
+          "redMax",
+          "greenBand",
+          "greenMin",
+          "greenMax",
+          "blueBand",
+          "blueMin",
+          "blueMax",
+          "type"
+        ],
+        "properties": {
+          "blueBand": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The band index of the blue channel.",
+            "minimum": 0
+          },
+          "blueMax": {
+            "type": "number",
+            "format": "double",
+            "description": "The maximum value for the red channel."
+          },
+          "blueMin": {
+            "type": "number",
+            "format": "double",
+            "description": "The minimum value for the red channel."
+          },
+          "blueScale": {
+            "type": "number",
+            "format": "double",
+            "description": "A scaling factor for the blue channel between 0 and 1."
+          },
+          "greenBand": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The band index of the green channel.",
+            "minimum": 0
+          },
+          "greenMax": {
+            "type": "number",
+            "format": "double",
+            "description": "The maximum value for the red channel."
+          },
+          "greenMin": {
+            "type": "number",
+            "format": "double",
+            "description": "The minimum value for the red channel."
+          },
+          "greenScale": {
+            "type": "number",
+            "format": "double",
+            "description": "A scaling factor for the green channel between 0 and 1."
+          },
+          "redBand": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The band index of the red channel.",
+            "minimum": 0
+          },
+          "redMax": {
+            "type": "number",
+            "format": "double",
+            "description": "The maximum value for the red channel."
+          },
+          "redMin": {
+            "type": "number",
+            "format": "double",
+            "description": "The minimum value for the red channel."
+          },
+          "redScale": {
+            "type": "number",
+            "format": "double",
+            "description": "A scaling factor for the red channel between 0 and 1."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "multiBand"
+            ]
           }
         }
       },

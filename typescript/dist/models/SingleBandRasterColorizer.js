@@ -19,7 +19,8 @@ const Colorizer_1 = require("./Colorizer");
  * @export
  */
 exports.SingleBandRasterColorizerTypeEnum = {
-    SingleBand: 'singleBand'
+    SingleBand: 'singleBand',
+    MultiBand: 'multiBand'
 };
 /**
  * Check if a given object implements the SingleBandRasterColorizer interface.

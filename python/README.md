@@ -305,6 +305,7 @@ Class | Method | HTTP request | Description
  - [Quota](docs/Quota.md)
  - [RasterBandDescriptor](docs/RasterBandDescriptor.md)
  - [RasterColorizer](docs/RasterColorizer.md)
+ - [RasterColorizerMultiBand](docs/RasterColorizerMultiBand.md)
  - [RasterDataType](docs/RasterDataType.md)
  - [RasterDatasetFromWorkflow](docs/RasterDatasetFromWorkflow.md)
  - [RasterDatasetFromWorkflowResult](docs/RasterDatasetFromWorkflowResult.md)

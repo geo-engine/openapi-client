@@ -145,6 +145,7 @@ __exportStar(require("./ProviderLayerId"), exports);
 __exportStar(require("./Quota"), exports);
 __exportStar(require("./RasterBandDescriptor"), exports);
 __exportStar(require("./RasterColorizer"), exports);
+__exportStar(require("./RasterColorizerMultiBand"), exports);
 __exportStar(require("./RasterDataType"), exports);
 __exportStar(require("./RasterDatasetFromWorkflow"), exports);
 __exportStar(require("./RasterDatasetFromWorkflowResult"), exports);

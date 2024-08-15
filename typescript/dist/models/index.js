@@ -161,7 +161,6 @@ __exportStar(require("./ResourceIdDatasetId"), exports);
 __exportStar(require("./ResourceIdLayer"), exports);
 __exportStar(require("./ResourceIdLayerCollection"), exports);
 __exportStar(require("./ResourceIdProject"), exports);
-__exportStar(require("./RgbaColorizer"), exports);
 __exportStar(require("./Role"), exports);
 __exportStar(require("./RoleDescription"), exports);
 __exportStar(require("./STRectangle"), exports);

@@ -321,7 +321,6 @@ Class | Method | HTTP request | Description
  - [ResourceIdLayer](docs/ResourceIdLayer.md)
  - [ResourceIdLayerCollection](docs/ResourceIdLayerCollection.md)
  - [ResourceIdProject](docs/ResourceIdProject.md)
- - [RgbaColorizer](docs/RgbaColorizer.md)
  - [Role](docs/Role.md)
  - [RoleDescription](docs/RoleDescription.md)
  - [STRectangle](docs/STRectangle.md)

@@ -160,7 +160,6 @@ from geoengine_openapi_client.models.resource_id_dataset_id import ResourceIdDat
 from geoengine_openapi_client.models.resource_id_layer import ResourceIdLayer
 from geoengine_openapi_client.models.resource_id_layer_collection import ResourceIdLayerCollection
 from geoengine_openapi_client.models.resource_id_project import ResourceIdProject
-from geoengine_openapi_client.models.rgba_colorizer import RgbaColorizer
 from geoengine_openapi_client.models.role import Role
 from geoengine_openapi_client.models.role_description import RoleDescription
 from geoengine_openapi_client.models.st_rectangle import STRectangle

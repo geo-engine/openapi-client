@@ -143,7 +143,6 @@ export * from './ResourceIdDatasetId';
 export * from './ResourceIdLayer';
 export * from './ResourceIdLayerCollection';
 export * from './ResourceIdProject';
-export * from './RgbaColorizer';
 export * from './Role';
 export * from './RoleDescription';
 export * from './STRectangle';

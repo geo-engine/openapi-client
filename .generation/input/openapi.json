@@ -5213,9 +5213,6 @@
           },
           {
             "$ref": "#/components/schemas/PaletteColorizer"
-          },
-          {
-            "$ref": "#/components/schemas/RgbaColorizer"
           }
         ],
         "discriminator": {
@@ -5223,8 +5220,7 @@
           "mapping": {
             "linearGradient": "#/components/schemas/LinearGradient",
             "logarithmicGradient": "#/components/schemas/LogarithmicGradient",
-            "palette": "#/components/schemas/PaletteColorizer",
-            "rgba": "#/components/schemas/RgbaColorizer"
+            "palette": "#/components/schemas/PaletteColorizer"
           }
         }
       },
@@ -8003,21 +7999,6 @@
         },
         "maxItems": 4,
         "minItems": 4
-      },
-      "RgbaColorizer": {
-        "type": "object",
-        "title": "RgbaColorizer",
-        "required": [
-          "type"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "rgba"
-            ]
-          }
-        }
       },
       "Role": {
         "type": "object",

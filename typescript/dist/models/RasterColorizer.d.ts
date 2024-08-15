@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RasterColorizerMultiBand } from './RasterColorizerMultiBand';
+import { MultiBandRasterColorizer } from './MultiBandRasterColorizer';
 import { SingleBandRasterColorizer } from './SingleBandRasterColorizer';
 /**
  * @type RasterColorizer
@@ -18,7 +18,7 @@ import { SingleBandRasterColorizer } from './SingleBandRasterColorizer';
  */
 export type RasterColorizer = {
     type: 'multiBand';
-} & RasterColorizerMultiBand | {
+} & MultiBandRasterColorizer | {
     type: 'singleBand';
 } & SingleBandRasterColorizer;
 export declare function RasterColorizerFromJSON(json: any): RasterColorizer;

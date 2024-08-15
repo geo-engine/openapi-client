@@ -16,10 +16,10 @@
 import unittest
 import datetime
 
-from geoengine_openapi_client.models.raster_colorizer_multi_band import RasterColorizerMultiBand  # noqa: E501
+from geoengine_openapi_client.models.multi_band_raster_colorizer import MultiBandRasterColorizer  # noqa: E501
 
-class TestRasterColorizerMultiBand(unittest.TestCase):
-    """RasterColorizerMultiBand unit test stubs"""
+class TestMultiBandRasterColorizer(unittest.TestCase):
+    """MultiBandRasterColorizer unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,16 +27,16 @@ class TestRasterColorizerMultiBand(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> RasterColorizerMultiBand:
-        """Test RasterColorizerMultiBand
+    def make_instance(self, include_optional) -> MultiBandRasterColorizer:
+        """Test MultiBandRasterColorizer
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `RasterColorizerMultiBand`
+        # uncomment below to create an instance of `MultiBandRasterColorizer`
         """
-        model = RasterColorizerMultiBand()  # noqa: E501
+        model = MultiBandRasterColorizer()  # noqa: E501
         if include_optional:
-            return RasterColorizerMultiBand(
+            return MultiBandRasterColorizer(
                 blue_band = 0,
                 blue_max = 1.337,
                 blue_min = 1.337,
@@ -52,7 +52,7 @@ class TestRasterColorizerMultiBand(unittest.TestCase):
                 type = 'multiBand'
             )
         else:
-            return RasterColorizerMultiBand(
+            return MultiBandRasterColorizer(
                 blue_band = 0,
                 blue_max = 1.337,
                 blue_min = 1.337,
@@ -66,8 +66,8 @@ class TestRasterColorizerMultiBand(unittest.TestCase):
         )
         """
 
-    def testRasterColorizerMultiBand(self):
-        """Test RasterColorizerMultiBand"""
+    def testMultiBandRasterColorizer(self):
+        """Test MultiBandRasterColorizer"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

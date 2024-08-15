@@ -11,7 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RasterColorizerMultiBandFromJSONTyped, RasterColorizerMultiBandToJSON, } from './RasterColorizerMultiBand';
+import { MultiBandRasterColorizerFromJSONTyped, MultiBandRasterColorizerToJSON, } from './MultiBandRasterColorizer';
 import { SingleBandRasterColorizerFromJSONTyped, SingleBandRasterColorizerToJSON, } from './SingleBandRasterColorizer';
 export function RasterColorizerFromJSON(json) {
     return RasterColorizerFromJSONTyped(json, false);
@@ -22,7 +22,7 @@ export function RasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'multiBand':
-            return Object.assign(Object.assign({}, RasterColorizerMultiBandFromJSONTyped(json, true)), { type: 'multiBand' });
+            return Object.assign(Object.assign({}, MultiBandRasterColorizerFromJSONTyped(json, true)), { type: 'multiBand' });
         case 'singleBand':
             return Object.assign(Object.assign({}, SingleBandRasterColorizerFromJSONTyped(json, true)), { type: 'singleBand' });
         default:
@@ -38,7 +38,7 @@ export function RasterColorizerToJSON(value) {
     }
     switch (value['type']) {
         case 'multiBand':
-            return RasterColorizerMultiBandToJSON(value);
+            return MultiBandRasterColorizerToJSON(value);
         case 'singleBand':
             return SingleBandRasterColorizerToJSON(value);
         default:

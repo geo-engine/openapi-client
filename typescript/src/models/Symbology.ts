@@ -13,40 +13,40 @@
  */
 
 import {
-    LineSymbologyWithType,
-    instanceOfLineSymbologyWithType,
-    LineSymbologyWithTypeFromJSON,
-    LineSymbologyWithTypeFromJSONTyped,
-    LineSymbologyWithTypeToJSON,
-} from './LineSymbologyWithType';
+    LineSymbology,
+    instanceOfLineSymbology,
+    LineSymbologyFromJSON,
+    LineSymbologyFromJSONTyped,
+    LineSymbologyToJSON,
+} from './LineSymbology';
 import {
-    PointSymbologyWithType,
-    instanceOfPointSymbologyWithType,
-    PointSymbologyWithTypeFromJSON,
-    PointSymbologyWithTypeFromJSONTyped,
-    PointSymbologyWithTypeToJSON,
-} from './PointSymbologyWithType';
+    PointSymbology,
+    instanceOfPointSymbology,
+    PointSymbologyFromJSON,
+    PointSymbologyFromJSONTyped,
+    PointSymbologyToJSON,
+} from './PointSymbology';
 import {
-    PolygonSymbologyWithType,
-    instanceOfPolygonSymbologyWithType,
-    PolygonSymbologyWithTypeFromJSON,
-    PolygonSymbologyWithTypeFromJSONTyped,
-    PolygonSymbologyWithTypeToJSON,
-} from './PolygonSymbologyWithType';
+    PolygonSymbology,
+    instanceOfPolygonSymbology,
+    PolygonSymbologyFromJSON,
+    PolygonSymbologyFromJSONTyped,
+    PolygonSymbologyToJSON,
+} from './PolygonSymbology';
 import {
-    RasterSymbologyWithType,
-    instanceOfRasterSymbologyWithType,
-    RasterSymbologyWithTypeFromJSON,
-    RasterSymbologyWithTypeFromJSONTyped,
-    RasterSymbologyWithTypeToJSON,
-} from './RasterSymbologyWithType';
+    RasterSymbology,
+    instanceOfRasterSymbology,
+    RasterSymbologyFromJSON,
+    RasterSymbologyFromJSONTyped,
+    RasterSymbologyToJSON,
+} from './RasterSymbology';
 
 /**
  * @type Symbology
  * 
  * @export
  */
-export type Symbology = { type: 'line' } & LineSymbologyWithType | { type: 'point' } & PointSymbologyWithType | { type: 'polygon' } & PolygonSymbologyWithType | { type: 'raster' } & RasterSymbologyWithType;
+export type Symbology = { type: 'line' } & LineSymbology | { type: 'point' } & PointSymbology | { type: 'polygon' } & PolygonSymbology | { type: 'raster' } & RasterSymbology;
 
 export function SymbologyFromJSON(json: any): Symbology {
     return SymbologyFromJSONTyped(json, false);
@@ -58,13 +58,13 @@ export function SymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     switch (json['type']) {
         case 'line':
-            return {...LineSymbologyWithTypeFromJSONTyped(json, true), type: 'line'};
+            return {...LineSymbologyFromJSONTyped(json, true), type: 'line'};
         case 'point':
-            return {...PointSymbologyWithTypeFromJSONTyped(json, true), type: 'point'};
+            return {...PointSymbologyFromJSONTyped(json, true), type: 'point'};
         case 'polygon':
-            return {...PolygonSymbologyWithTypeFromJSONTyped(json, true), type: 'polygon'};
+            return {...PolygonSymbologyFromJSONTyped(json, true), type: 'polygon'};
         case 'raster':
-            return {...RasterSymbologyWithTypeFromJSONTyped(json, true), type: 'raster'};
+            return {...RasterSymbologyFromJSONTyped(json, true), type: 'raster'};
         default:
             throw new Error(`No variant of Symbology exists with 'type=${json['type']}'`);
     }
@@ -79,13 +79,13 @@ export function SymbologyToJSON(value?: Symbology | null): any {
     }
     switch (value['type']) {
         case 'line':
-            return LineSymbologyWithTypeToJSON(value);
+            return LineSymbologyToJSON(value);
         case 'point':
-            return PointSymbologyWithTypeToJSON(value);
+            return PointSymbologyToJSON(value);
         case 'polygon':
-            return PolygonSymbologyWithTypeToJSON(value);
+            return PolygonSymbologyToJSON(value);
         case 'raster':
-            return RasterSymbologyWithTypeToJSON(value);
+            return RasterSymbologyToJSON(value);
         default:
             throw new Error(`No variant of Symbology exists with 'type=${value['type']}'`);
     }

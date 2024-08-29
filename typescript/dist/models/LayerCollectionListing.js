@@ -13,9 +13,16 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerCollectionListingToJSON = exports.LayerCollectionListingFromJSONTyped = exports.LayerCollectionListingFromJSON = exports.instanceOfLayerCollectionListing = void 0;
+exports.LayerCollectionListingToJSON = exports.LayerCollectionListingFromJSONTyped = exports.LayerCollectionListingFromJSON = exports.instanceOfLayerCollectionListing = exports.LayerCollectionListingTypeEnum = void 0;
 const runtime_1 = require("../runtime");
 const ProviderLayerCollectionId_1 = require("./ProviderLayerCollectionId");
+/**
+ * @export
+ */
+exports.LayerCollectionListingTypeEnum = {
+    Collection: 'collection',
+    Layer: 'layer'
+};
 /**
  * Check if a given object implements the LayerCollectionListing interface.
  */
@@ -24,6 +31,7 @@ function instanceOfLayerCollectionListing(value) {
     isInstance = isInstance && "description" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 exports.instanceOfLayerCollectionListing = instanceOfLayerCollectionListing;
@@ -40,6 +48,7 @@ function LayerCollectionListingFromJSONTyped(json, ignoreDiscriminator) {
         'id': (0, ProviderLayerCollectionId_1.ProviderLayerCollectionIdFromJSON)(json['id']),
         'name': json['name'],
         'properties': !(0, runtime_1.exists)(json, 'properties') ? undefined : json['properties'],
+        'type': json['type'],
     };
 }
 exports.LayerCollectionListingFromJSONTyped = LayerCollectionListingFromJSONTyped;
@@ -55,6 +64,7 @@ function LayerCollectionListingToJSON(value) {
         'id': (0, ProviderLayerCollectionId_1.ProviderLayerCollectionIdToJSON)(value.id),
         'name': value.name,
         'properties': value.properties,
+        'type': value.type,
     };
 }
 exports.LayerCollectionListingToJSON = LayerCollectionListingToJSON;

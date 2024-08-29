@@ -20,7 +20,7 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, StrictInt, conlist
+from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
 from geoengine_openapi_client.models.breakpoint import Breakpoint
 
 class LinearGradient(BaseModel):
@@ -30,8 +30,16 @@ class LinearGradient(BaseModel):
     breakpoints: conlist(Breakpoint) = Field(...)
     no_data_color: conlist(StrictInt, max_items=4, min_items=4) = Field(..., alias="noDataColor")
     over_color: conlist(StrictInt, max_items=4, min_items=4) = Field(..., alias="overColor")
+    type: StrictStr = Field(...)
     under_color: conlist(StrictInt, max_items=4, min_items=4) = Field(..., alias="underColor")
-    __properties = ["breakpoints", "noDataColor", "overColor", "underColor"]
+    __properties = ["breakpoints", "noDataColor", "overColor", "type", "underColor"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('linearGradient', 'logarithmicGradient', 'palette', 'rgba'):
+            raise ValueError("must be one of enum values ('linearGradient', 'logarithmicGradient', 'palette', 'rgba')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -79,6 +87,7 @@ class LinearGradient(BaseModel):
             "breakpoints": [Breakpoint.from_dict(_item) for _item in obj.get("breakpoints")] if obj.get("breakpoints") is not None else None,
             "no_data_color": obj.get("noDataColor"),
             "over_color": obj.get("overColor"),
+            "type": obj.get("type"),
             "under_color": obj.get("underColor")
         })
         return _obj

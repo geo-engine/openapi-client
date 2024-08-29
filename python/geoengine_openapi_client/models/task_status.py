@@ -21,29 +21,29 @@ import re  # noqa: F401
 
 from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from geoengine_openapi_client.models.aborted_task_status import AbortedTaskStatus
-from geoengine_openapi_client.models.completed_task_status import CompletedTaskStatus
-from geoengine_openapi_client.models.failed_task_status import FailedTaskStatus
-from geoengine_openapi_client.models.running_task_status import RunningTaskStatus
+from geoengine_openapi_client.models.task_status_aborted import TaskStatusAborted
+from geoengine_openapi_client.models.task_status_completed import TaskStatusCompleted
+from geoengine_openapi_client.models.task_status_failed import TaskStatusFailed
+from geoengine_openapi_client.models.task_status_running import TaskStatusRunning
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-TASKSTATUS_ONE_OF_SCHEMAS = ["AbortedTaskStatus", "CompletedTaskStatus", "FailedTaskStatus", "RunningTaskStatus"]
+TASKSTATUS_ONE_OF_SCHEMAS = ["TaskStatusAborted", "TaskStatusCompleted", "TaskStatusFailed", "TaskStatusRunning"]
 
 class TaskStatus(BaseModel):
     """
     TaskStatus
     """
-    # data type: RunningTaskStatus
-    oneof_schema_1_validator: Optional[RunningTaskStatus] = None
-    # data type: CompletedTaskStatus
-    oneof_schema_2_validator: Optional[CompletedTaskStatus] = None
-    # data type: AbortedTaskStatus
-    oneof_schema_3_validator: Optional[AbortedTaskStatus] = None
-    # data type: FailedTaskStatus
-    oneof_schema_4_validator: Optional[FailedTaskStatus] = None
+    # data type: TaskStatusRunning
+    oneof_schema_1_validator: Optional[TaskStatusRunning] = None
+    # data type: TaskStatusCompleted
+    oneof_schema_2_validator: Optional[TaskStatusCompleted] = None
+    # data type: TaskStatusAborted
+    oneof_schema_3_validator: Optional[TaskStatusAborted] = None
+    # data type: TaskStatusFailed
+    oneof_schema_4_validator: Optional[TaskStatusFailed] = None
     if TYPE_CHECKING:
-        actual_instance: Union[AbortedTaskStatus, CompletedTaskStatus, FailedTaskStatus, RunningTaskStatus]
+        actual_instance: Union[TaskStatusAborted, TaskStatusCompleted, TaskStatusFailed, TaskStatusRunning]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(TASKSTATUS_ONE_OF_SCHEMAS, const=True)
@@ -70,32 +70,32 @@ class TaskStatus(BaseModel):
         instance = TaskStatus.construct()
         error_messages = []
         match = 0
-        # validate data type: RunningTaskStatus
-        if not isinstance(v, RunningTaskStatus):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `RunningTaskStatus`")
+        # validate data type: TaskStatusRunning
+        if not isinstance(v, TaskStatusRunning):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TaskStatusRunning`")
         else:
             match += 1
-        # validate data type: CompletedTaskStatus
-        if not isinstance(v, CompletedTaskStatus):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `CompletedTaskStatus`")
+        # validate data type: TaskStatusCompleted
+        if not isinstance(v, TaskStatusCompleted):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TaskStatusCompleted`")
         else:
             match += 1
-        # validate data type: AbortedTaskStatus
-        if not isinstance(v, AbortedTaskStatus):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `AbortedTaskStatus`")
+        # validate data type: TaskStatusAborted
+        if not isinstance(v, TaskStatusAborted):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TaskStatusAborted`")
         else:
             match += 1
-        # validate data type: FailedTaskStatus
-        if not isinstance(v, FailedTaskStatus):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `FailedTaskStatus`")
+        # validate data type: TaskStatusFailed
+        if not isinstance(v, TaskStatusFailed):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TaskStatusFailed`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in TaskStatus with oneOf schemas: AbortedTaskStatus, CompletedTaskStatus, FailedTaskStatus, RunningTaskStatus. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in TaskStatus with oneOf schemas: TaskStatusAborted, TaskStatusCompleted, TaskStatusFailed, TaskStatusRunning. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in TaskStatus with oneOf schemas: AbortedTaskStatus, CompletedTaskStatus, FailedTaskStatus, RunningTaskStatus. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in TaskStatus with oneOf schemas: TaskStatusAborted, TaskStatusCompleted, TaskStatusFailed, TaskStatusRunning. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -115,24 +115,24 @@ class TaskStatus(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `status` in the input.")
 
-        # check if data type is `AbortedTaskStatus`
-        if _data_type == "AbortedTaskStatus":
-            instance.actual_instance = AbortedTaskStatus.from_json(json_str)
+        # check if data type is `TaskStatusAborted`
+        if _data_type == "TaskStatusAborted":
+            instance.actual_instance = TaskStatusAborted.from_json(json_str)
             return instance
 
-        # check if data type is `CompletedTaskStatus`
-        if _data_type == "CompletedTaskStatus":
-            instance.actual_instance = CompletedTaskStatus.from_json(json_str)
+        # check if data type is `TaskStatusCompleted`
+        if _data_type == "TaskStatusCompleted":
+            instance.actual_instance = TaskStatusCompleted.from_json(json_str)
             return instance
 
-        # check if data type is `FailedTaskStatus`
-        if _data_type == "FailedTaskStatus":
-            instance.actual_instance = FailedTaskStatus.from_json(json_str)
+        # check if data type is `TaskStatusFailed`
+        if _data_type == "TaskStatusFailed":
+            instance.actual_instance = TaskStatusFailed.from_json(json_str)
             return instance
 
-        # check if data type is `RunningTaskStatus`
-        if _data_type == "RunningTaskStatus":
-            instance.actual_instance = RunningTaskStatus.from_json(json_str)
+        # check if data type is `TaskStatusRunning`
+        if _data_type == "TaskStatusRunning":
+            instance.actual_instance = TaskStatusRunning.from_json(json_str)
             return instance
 
         # check if data type is `TaskStatusWithId`
@@ -140,57 +140,57 @@ class TaskStatus(BaseModel):
             instance.actual_instance = TaskStatusWithId.from_json(json_str)
             return instance
 
-        # check if data type is `AbortedTaskStatus`
+        # check if data type is `TaskStatusAborted`
         if _data_type == "aborted":
-            instance.actual_instance = AbortedTaskStatus.from_json(json_str)
+            instance.actual_instance = TaskStatusAborted.from_json(json_str)
             return instance
 
-        # check if data type is `CompletedTaskStatus`
+        # check if data type is `TaskStatusCompleted`
         if _data_type == "completed":
-            instance.actual_instance = CompletedTaskStatus.from_json(json_str)
+            instance.actual_instance = TaskStatusCompleted.from_json(json_str)
             return instance
 
-        # check if data type is `FailedTaskStatus`
+        # check if data type is `TaskStatusFailed`
         if _data_type == "failed":
-            instance.actual_instance = FailedTaskStatus.from_json(json_str)
+            instance.actual_instance = TaskStatusFailed.from_json(json_str)
             return instance
 
-        # check if data type is `RunningTaskStatus`
+        # check if data type is `TaskStatusRunning`
         if _data_type == "running":
-            instance.actual_instance = RunningTaskStatus.from_json(json_str)
+            instance.actual_instance = TaskStatusRunning.from_json(json_str)
             return instance
 
-        # deserialize data into RunningTaskStatus
+        # deserialize data into TaskStatusRunning
         try:
-            instance.actual_instance = RunningTaskStatus.from_json(json_str)
+            instance.actual_instance = TaskStatusRunning.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into CompletedTaskStatus
+        # deserialize data into TaskStatusCompleted
         try:
-            instance.actual_instance = CompletedTaskStatus.from_json(json_str)
+            instance.actual_instance = TaskStatusCompleted.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into AbortedTaskStatus
+        # deserialize data into TaskStatusAborted
         try:
-            instance.actual_instance = AbortedTaskStatus.from_json(json_str)
+            instance.actual_instance = TaskStatusAborted.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into FailedTaskStatus
+        # deserialize data into TaskStatusFailed
         try:
-            instance.actual_instance = FailedTaskStatus.from_json(json_str)
+            instance.actual_instance = TaskStatusFailed.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into TaskStatus with oneOf schemas: AbortedTaskStatus, CompletedTaskStatus, FailedTaskStatus, RunningTaskStatus. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into TaskStatus with oneOf schemas: TaskStatusAborted, TaskStatusCompleted, TaskStatusFailed, TaskStatusRunning. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into TaskStatus with oneOf schemas: AbortedTaskStatus, CompletedTaskStatus, FailedTaskStatus, RunningTaskStatus. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into TaskStatus with oneOf schemas: TaskStatusAborted, TaskStatusCompleted, TaskStatusFailed, TaskStatusRunning. Details: " + ", ".join(error_messages))
         else:
             return instance
 

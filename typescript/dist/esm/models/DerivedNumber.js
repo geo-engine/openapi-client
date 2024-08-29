@@ -12,6 +12,12 @@
  * Do not edit the class manually.
  */
 /**
+ * @export
+ */
+export const DerivedNumberTypeEnum = {
+    Derived: 'derived'
+};
+/**
  * Check if a given object implements the DerivedNumber interface.
  */
 export function instanceOfDerivedNumber(value) {
@@ -19,6 +25,7 @@ export function instanceOfDerivedNumber(value) {
     isInstance = isInstance && "attribute" in value;
     isInstance = isInstance && "defaultValue" in value;
     isInstance = isInstance && "factor" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 export function DerivedNumberFromJSON(json) {
@@ -32,6 +39,7 @@ export function DerivedNumberFromJSONTyped(json, ignoreDiscriminator) {
         'attribute': json['attribute'],
         'defaultValue': json['defaultValue'],
         'factor': json['factor'],
+        'type': json['type'],
     };
 }
 export function DerivedNumberToJSON(value) {
@@ -45,5 +53,6 @@ export function DerivedNumberToJSON(value) {
         'attribute': value.attribute,
         'defaultValue': value.defaultValue,
         'factor': value.factor,
+        'type': value.type,
     };
 }

@@ -13,8 +13,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogarithmicGradientToJSON = exports.LogarithmicGradientFromJSONTyped = exports.LogarithmicGradientFromJSON = exports.instanceOfLogarithmicGradient = void 0;
+exports.LogarithmicGradientToJSON = exports.LogarithmicGradientFromJSONTyped = exports.LogarithmicGradientFromJSON = exports.instanceOfLogarithmicGradient = exports.LogarithmicGradientTypeEnum = void 0;
 const Breakpoint_1 = require("./Breakpoint");
+/**
+ * @export
+ */
+exports.LogarithmicGradientTypeEnum = {
+    LogarithmicGradient: 'logarithmicGradient'
+};
 /**
  * Check if a given object implements the LogarithmicGradient interface.
  */
@@ -23,6 +29,7 @@ function instanceOfLogarithmicGradient(value) {
     isInstance = isInstance && "breakpoints" in value;
     isInstance = isInstance && "noDataColor" in value;
     isInstance = isInstance && "overColor" in value;
+    isInstance = isInstance && "type" in value;
     isInstance = isInstance && "underColor" in value;
     return isInstance;
 }
@@ -39,6 +46,7 @@ function LogarithmicGradientFromJSONTyped(json, ignoreDiscriminator) {
         'breakpoints': (json['breakpoints'].map(Breakpoint_1.BreakpointFromJSON)),
         'noDataColor': json['noDataColor'],
         'overColor': json['overColor'],
+        'type': json['type'],
         'underColor': json['underColor'],
     };
 }
@@ -54,6 +62,7 @@ function LogarithmicGradientToJSON(value) {
         'breakpoints': (value.breakpoints.map(Breakpoint_1.BreakpointToJSON)),
         'noDataColor': value.noDataColor,
         'overColor': value.overColor,
+        'type': value.type,
         'underColor': value.underColor,
     };
 }

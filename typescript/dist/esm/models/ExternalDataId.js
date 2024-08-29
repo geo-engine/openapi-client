@@ -12,12 +12,19 @@
  * Do not edit the class manually.
  */
 /**
+ * @export
+ */
+export const ExternalDataIdTypeEnum = {
+    External: 'external'
+};
+/**
  * Check if a given object implements the ExternalDataId interface.
  */
 export function instanceOfExternalDataId(value) {
     let isInstance = true;
     isInstance = isInstance && "layerId" in value;
     isInstance = isInstance && "providerId" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 export function ExternalDataIdFromJSON(json) {
@@ -30,6 +37,7 @@ export function ExternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'layerId': json['layerId'],
         'providerId': json['providerId'],
+        'type': json['type'],
     };
 }
 export function ExternalDataIdToJSON(value) {
@@ -42,5 +50,6 @@ export function ExternalDataIdToJSON(value) {
     return {
         'layerId': value.layerId,
         'providerId': value.providerId,
+        'type': value.type,
     };
 }

@@ -14,12 +14,19 @@
 import { OgrSourceDatasetFromJSON, OgrSourceDatasetToJSON, } from './OgrSourceDataset';
 import { VectorResultDescriptorFromJSON, VectorResultDescriptorToJSON, } from './VectorResultDescriptor';
 /**
+ * @export
+ */
+export const OgrMetaDataTypeEnum = {
+    OgrMetaData: 'OgrMetaData'
+};
+/**
  * Check if a given object implements the OgrMetaData interface.
  */
 export function instanceOfOgrMetaData(value) {
     let isInstance = true;
     isInstance = isInstance && "loadingInfo" in value;
     isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 export function OgrMetaDataFromJSON(json) {
@@ -32,6 +39,7 @@ export function OgrMetaDataFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'loadingInfo': OgrSourceDatasetFromJSON(json['loadingInfo']),
         'resultDescriptor': VectorResultDescriptorFromJSON(json['resultDescriptor']),
+        'type': json['type'],
     };
 }
 export function OgrMetaDataToJSON(value) {
@@ -44,5 +52,6 @@ export function OgrMetaDataToJSON(value) {
     return {
         'loadingInfo': OgrSourceDatasetToJSON(value.loadingInfo),
         'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
+        'type': value.type,
     };
 }

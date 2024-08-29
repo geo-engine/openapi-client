@@ -55,7 +55,8 @@ class TestGdalMetaDataList(unittest.TestCase):
                     data_type = 'U8', 
                     resolution = null, 
                     spatial_reference = '', 
-                    time = null, )
+                    time = null, ),
+                type = 'GdalMetaDataList'
             )
         else:
             return GdalMetaDataList(
@@ -78,6 +79,7 @@ class TestGdalMetaDataList(unittest.TestCase):
                     resolution = null, 
                     spatial_reference = '', 
                     time = null, ),
+                type = 'GdalMetaDataList',
         )
         """
 

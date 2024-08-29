@@ -13,12 +13,12 @@
  */
 
 import {
-    ExternalDataIdWithType,
-    instanceOfExternalDataIdWithType,
-    ExternalDataIdWithTypeFromJSON,
-    ExternalDataIdWithTypeFromJSONTyped,
-    ExternalDataIdWithTypeToJSON,
-} from './ExternalDataIdWithType';
+    ExternalDataId,
+    instanceOfExternalDataId,
+    ExternalDataIdFromJSON,
+    ExternalDataIdFromJSONTyped,
+    ExternalDataIdToJSON,
+} from './ExternalDataId';
 import {
     InternalDataId,
     instanceOfInternalDataId,
@@ -32,7 +32,7 @@ import {
  * 
  * @export
  */
-export type DataId = { type: 'external' } & ExternalDataIdWithType | { type: 'internal' } & InternalDataId;
+export type DataId = { type: 'external' } & ExternalDataId | { type: 'internal' } & InternalDataId;
 
 export function DataIdFromJSON(json: any): DataId {
     return DataIdFromJSONTyped(json, false);
@@ -44,7 +44,7 @@ export function DataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): Da
     }
     switch (json['type']) {
         case 'external':
-            return {...ExternalDataIdWithTypeFromJSONTyped(json, true), type: 'external'};
+            return {...ExternalDataIdFromJSONTyped(json, true), type: 'external'};
         case 'internal':
             return {...InternalDataIdFromJSONTyped(json, true), type: 'internal'};
         default:
@@ -61,7 +61,7 @@ export function DataIdToJSON(value?: DataId | null): any {
     }
     switch (value['type']) {
         case 'external':
-            return ExternalDataIdWithTypeToJSON(value);
+            return ExternalDataIdToJSON(value);
         case 'internal':
             return InternalDataIdToJSON(value);
         default:

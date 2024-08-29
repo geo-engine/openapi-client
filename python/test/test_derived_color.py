@@ -38,12 +38,14 @@ class TestDerivedColor(unittest.TestCase):
         if include_optional:
             return DerivedColor(
                 attribute = '',
-                colorizer = None
+                colorizer = None,
+                type = 'derived'
             )
         else:
             return DerivedColor(
                 attribute = '',
                 colorizer = None,
+                type = 'derived',
         )
         """
 

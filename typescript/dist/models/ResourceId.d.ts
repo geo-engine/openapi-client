@@ -9,11 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DatasetIdResourceId } from './DatasetIdResourceId';
-import { LayerCollectionResourceId } from './LayerCollectionResourceId';
-import { LayerResourceId } from './LayerResourceId';
-import { ModelIdResourceId } from './ModelIdResourceId';
-import { ProjectResourceId } from './ProjectResourceId';
+import { ResourceIdDatasetId } from './ResourceIdDatasetId';
+import { ResourceIdLayer } from './ResourceIdLayer';
+import { ResourceIdLayerCollection } from './ResourceIdLayerCollection';
+import { ResourceIdProject } from './ResourceIdProject';
 /**
  * @type ResourceId
  *
@@ -21,15 +20,13 @@ import { ProjectResourceId } from './ProjectResourceId';
  */
 export type ResourceId = {
     type: 'DatasetId';
-} & DatasetIdResourceId | {
+} & ResourceIdDatasetId | {
     type: 'Layer';
-} & LayerResourceId | {
+} & ResourceIdLayer | {
     type: 'LayerCollection';
-} & LayerCollectionResourceId | {
-    type: 'ModelId';
-} & ModelIdResourceId | {
+} & ResourceIdLayerCollection | {
     type: 'Project';
-} & ProjectResourceId;
+} & ResourceIdProject;
 export declare function ResourceIdFromJSON(json: any): ResourceId;
 export declare function ResourceIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceId;
 export declare function ResourceIdToJSON(value?: ResourceId | null): any;

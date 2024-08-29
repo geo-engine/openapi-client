@@ -20,15 +20,23 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, StrictStr, validator
 
 class ContinuousMeasurement(BaseModel):
     """
     ContinuousMeasurement
     """
     measurement: StrictStr = Field(...)
+    type: StrictStr = Field(...)
     unit: Optional[StrictStr] = None
-    __properties = ["measurement", "unit"]
+    __properties = ["measurement", "type", "unit"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('continuous'):
+            raise ValueError("must be one of enum values ('continuous')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -72,6 +80,7 @@ class ContinuousMeasurement(BaseModel):
 
         _obj = ContinuousMeasurement.parse_obj({
             "measurement": obj.get("measurement"),
+            "type": obj.get("type"),
             "unit": obj.get("unit")
         })
         return _obj

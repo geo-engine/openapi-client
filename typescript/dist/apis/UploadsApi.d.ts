@@ -27,31 +27,25 @@ export interface UploadHandlerRequest {
 export declare class UploadsApi extends runtime.BaseAPI {
     /**
      * List the layers of on uploaded file.
-     * List the layers of on uploaded file.
      */
     listUploadFileLayersHandlerRaw(requestParameters: ListUploadFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFileLayersResponse>>;
     /**
-     * List the layers of on uploaded file.
      * List the layers of on uploaded file.
      */
     listUploadFileLayersHandler(requestParameters: ListUploadFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadFileLayersResponse>;
     /**
      * List the files of on upload.
-     * List the files of on upload.
      */
     listUploadFilesHandlerRaw(requestParameters: ListUploadFilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFilesResponse>>;
     /**
-     * List the files of on upload.
      * List the files of on upload.
      */
     listUploadFilesHandler(requestParameters: ListUploadFilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadFilesResponse>;
     /**
      * Uploads files.
-     * Uploads files.
      */
     uploadHandlerRaw(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>>;
     /**
-     * Uploads files.
      * Uploads files.
      */
     uploadHandler(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;

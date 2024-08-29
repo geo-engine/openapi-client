@@ -28,7 +28,6 @@ import { PermissionListingFromJSON, PermissionRequestToJSON, } from '../models/i
 export class PermissionsApi extends runtime.BaseAPI {
     /**
      * Adds a new permission.
-     * Adds a new permission.
      */
     addPermissionHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -57,7 +56,6 @@ export class PermissionsApi extends runtime.BaseAPI {
     }
     /**
      * Adds a new permission.
-     * Adds a new permission.
      */
     addPermissionHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -65,7 +63,6 @@ export class PermissionsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Lists permission for a given resource.
      * Lists permission for a given resource.
      */
     getResourcePermissionsHandlerRaw(requestParameters, initOverrides) {
@@ -108,7 +105,6 @@ export class PermissionsApi extends runtime.BaseAPI {
     }
     /**
      * Lists permission for a given resource.
-     * Lists permission for a given resource.
      */
     getResourcePermissionsHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -117,7 +113,6 @@ export class PermissionsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Removes an existing permission.
      * Removes an existing permission.
      */
     removePermissionHandlerRaw(requestParameters, initOverrides) {
@@ -146,7 +141,6 @@ export class PermissionsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Removes an existing permission.
      * Removes an existing permission.
      */
     removePermissionHandler(requestParameters, initOverrides) {

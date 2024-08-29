@@ -51,31 +51,25 @@ export interface WmsMapHandlerRequest {
 export declare class OGCWMSApi extends runtime.BaseAPI {
     /**
      * Get WMS Capabilities
-     * Get WMS Capabilities
      */
     wmsCapabilitiesHandlerRaw(requestParameters: WmsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
-     * Get WMS Capabilities
      * Get WMS Capabilities
      */
     wmsCapabilitiesHandler(requestParameters: WmsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
      * Get WMS Legend Graphic
-     * Get WMS Legend Graphic
      */
     wmsLegendGraphicHandlerRaw(requestParameters: WmsLegendGraphicHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Get WMS Legend Graphic
      * Get WMS Legend Graphic
      */
     wmsLegendGraphicHandler(requestParameters: WmsLegendGraphicHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Get WMS Map
-     * Get WMS Map
      */
     wmsMapHandlerRaw(requestParameters: WmsMapHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>>;
     /**
-     * Get WMS Map
      * Get WMS Map
      */
     wmsMapHandler(requestParameters: WmsMapHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob>;

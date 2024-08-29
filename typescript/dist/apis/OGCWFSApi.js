@@ -31,7 +31,6 @@ const index_1 = require("../models/index");
 class OGCWFSApi extends runtime.BaseAPI {
     /**
      * Get WFS Capabilities
-     * Get WFS Capabilities
      */
     wfsCapabilitiesHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -72,7 +71,6 @@ class OGCWFSApi extends runtime.BaseAPI {
     }
     /**
      * Get WFS Capabilities
-     * Get WFS Capabilities
      */
     wfsCapabilitiesHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -81,7 +79,6 @@ class OGCWFSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WCS Features
      * Get WCS Features
      */
     wfsFeatureHandlerRaw(requestParameters, initOverrides) {
@@ -162,7 +159,6 @@ class OGCWFSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WCS Features
      * Get WCS Features
      */
     wfsFeatureHandler(requestParameters, initOverrides) {

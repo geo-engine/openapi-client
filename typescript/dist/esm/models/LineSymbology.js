@@ -15,12 +15,19 @@ import { exists } from '../runtime';
 import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
 /**
+ * @export
+ */
+export const LineSymbologyTypeEnum = {
+    Line: 'line'
+};
+/**
  * Check if a given object implements the LineSymbology interface.
  */
 export function instanceOfLineSymbology(value) {
     let isInstance = true;
     isInstance = isInstance && "autoSimplified" in value;
     isInstance = isInstance && "stroke" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 export function LineSymbologyFromJSON(json) {
@@ -34,6 +41,7 @@ export function LineSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'autoSimplified': json['autoSimplified'],
         'stroke': StrokeParamFromJSON(json['stroke']),
         'text': !exists(json, 'text') ? undefined : TextSymbologyFromJSON(json['text']),
+        'type': json['type'],
     };
 }
 export function LineSymbologyToJSON(value) {
@@ -47,5 +55,6 @@ export function LineSymbologyToJSON(value) {
         'autoSimplified': value.autoSimplified,
         'stroke': StrokeParamToJSON(value.stroke),
         'text': TextSymbologyToJSON(value.text),
+        'type': value.type,
     };
 }

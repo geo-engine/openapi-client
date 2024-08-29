@@ -21,26 +21,26 @@ import re  # noqa: F401
 
 from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from geoengine_openapi_client.models.plot_result_descriptor_with_type import PlotResultDescriptorWithType
-from geoengine_openapi_client.models.raster_result_descriptor_with_type import RasterResultDescriptorWithType
-from geoengine_openapi_client.models.vector_result_descriptor_with_type import VectorResultDescriptorWithType
+from geoengine_openapi_client.models.typed_plot_result_descriptor import TypedPlotResultDescriptor
+from geoengine_openapi_client.models.typed_raster_result_descriptor import TypedRasterResultDescriptor
+from geoengine_openapi_client.models.typed_vector_result_descriptor import TypedVectorResultDescriptor
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-TYPEDRESULTDESCRIPTOR_ONE_OF_SCHEMAS = ["PlotResultDescriptorWithType", "RasterResultDescriptorWithType", "VectorResultDescriptorWithType"]
+TYPEDRESULTDESCRIPTOR_ONE_OF_SCHEMAS = ["TypedPlotResultDescriptor", "TypedRasterResultDescriptor", "TypedVectorResultDescriptor"]
 
 class TypedResultDescriptor(BaseModel):
     """
     TypedResultDescriptor
     """
-    # data type: PlotResultDescriptorWithType
-    oneof_schema_1_validator: Optional[PlotResultDescriptorWithType] = None
-    # data type: RasterResultDescriptorWithType
-    oneof_schema_2_validator: Optional[RasterResultDescriptorWithType] = None
-    # data type: VectorResultDescriptorWithType
-    oneof_schema_3_validator: Optional[VectorResultDescriptorWithType] = None
+    # data type: TypedPlotResultDescriptor
+    oneof_schema_1_validator: Optional[TypedPlotResultDescriptor] = None
+    # data type: TypedRasterResultDescriptor
+    oneof_schema_2_validator: Optional[TypedRasterResultDescriptor] = None
+    # data type: TypedVectorResultDescriptor
+    oneof_schema_3_validator: Optional[TypedVectorResultDescriptor] = None
     if TYPE_CHECKING:
-        actual_instance: Union[PlotResultDescriptorWithType, RasterResultDescriptorWithType, VectorResultDescriptorWithType]
+        actual_instance: Union[TypedPlotResultDescriptor, TypedRasterResultDescriptor, TypedVectorResultDescriptor]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(TYPEDRESULTDESCRIPTOR_ONE_OF_SCHEMAS, const=True)
@@ -66,27 +66,27 @@ class TypedResultDescriptor(BaseModel):
         instance = TypedResultDescriptor.construct()
         error_messages = []
         match = 0
-        # validate data type: PlotResultDescriptorWithType
-        if not isinstance(v, PlotResultDescriptorWithType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `PlotResultDescriptorWithType`")
+        # validate data type: TypedPlotResultDescriptor
+        if not isinstance(v, TypedPlotResultDescriptor):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedPlotResultDescriptor`")
         else:
             match += 1
-        # validate data type: RasterResultDescriptorWithType
-        if not isinstance(v, RasterResultDescriptorWithType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `RasterResultDescriptorWithType`")
+        # validate data type: TypedRasterResultDescriptor
+        if not isinstance(v, TypedRasterResultDescriptor):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedRasterResultDescriptor`")
         else:
             match += 1
-        # validate data type: VectorResultDescriptorWithType
-        if not isinstance(v, VectorResultDescriptorWithType):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `VectorResultDescriptorWithType`")
+        # validate data type: TypedVectorResultDescriptor
+        if not isinstance(v, TypedVectorResultDescriptor):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedVectorResultDescriptor`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in TypedResultDescriptor with oneOf schemas: PlotResultDescriptorWithType, RasterResultDescriptorWithType, VectorResultDescriptorWithType. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in TypedResultDescriptor with oneOf schemas: TypedPlotResultDescriptor, TypedRasterResultDescriptor, TypedVectorResultDescriptor. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in TypedResultDescriptor with oneOf schemas: PlotResultDescriptorWithType, RasterResultDescriptorWithType, VectorResultDescriptorWithType. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in TypedResultDescriptor with oneOf schemas: TypedPlotResultDescriptor, TypedRasterResultDescriptor, TypedVectorResultDescriptor. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -106,61 +106,61 @@ class TypedResultDescriptor(BaseModel):
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
 
-        # check if data type is `PlotResultDescriptorWithType`
-        if _data_type == "PlotResultDescriptorWithType":
-            instance.actual_instance = PlotResultDescriptorWithType.from_json(json_str)
+        # check if data type is `TypedPlotResultDescriptor`
+        if _data_type == "TypedPlotResultDescriptor":
+            instance.actual_instance = TypedPlotResultDescriptor.from_json(json_str)
             return instance
 
-        # check if data type is `RasterResultDescriptorWithType`
-        if _data_type == "RasterResultDescriptorWithType":
-            instance.actual_instance = RasterResultDescriptorWithType.from_json(json_str)
+        # check if data type is `TypedRasterResultDescriptor`
+        if _data_type == "TypedRasterResultDescriptor":
+            instance.actual_instance = TypedRasterResultDescriptor.from_json(json_str)
             return instance
 
-        # check if data type is `VectorResultDescriptorWithType`
-        if _data_type == "VectorResultDescriptorWithType":
-            instance.actual_instance = VectorResultDescriptorWithType.from_json(json_str)
+        # check if data type is `TypedVectorResultDescriptor`
+        if _data_type == "TypedVectorResultDescriptor":
+            instance.actual_instance = TypedVectorResultDescriptor.from_json(json_str)
             return instance
 
-        # check if data type is `PlotResultDescriptorWithType`
+        # check if data type is `TypedPlotResultDescriptor`
         if _data_type == "plot":
-            instance.actual_instance = PlotResultDescriptorWithType.from_json(json_str)
+            instance.actual_instance = TypedPlotResultDescriptor.from_json(json_str)
             return instance
 
-        # check if data type is `RasterResultDescriptorWithType`
+        # check if data type is `TypedRasterResultDescriptor`
         if _data_type == "raster":
-            instance.actual_instance = RasterResultDescriptorWithType.from_json(json_str)
+            instance.actual_instance = TypedRasterResultDescriptor.from_json(json_str)
             return instance
 
-        # check if data type is `VectorResultDescriptorWithType`
+        # check if data type is `TypedVectorResultDescriptor`
         if _data_type == "vector":
-            instance.actual_instance = VectorResultDescriptorWithType.from_json(json_str)
+            instance.actual_instance = TypedVectorResultDescriptor.from_json(json_str)
             return instance
 
-        # deserialize data into PlotResultDescriptorWithType
+        # deserialize data into TypedPlotResultDescriptor
         try:
-            instance.actual_instance = PlotResultDescriptorWithType.from_json(json_str)
+            instance.actual_instance = TypedPlotResultDescriptor.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into RasterResultDescriptorWithType
+        # deserialize data into TypedRasterResultDescriptor
         try:
-            instance.actual_instance = RasterResultDescriptorWithType.from_json(json_str)
+            instance.actual_instance = TypedRasterResultDescriptor.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into VectorResultDescriptorWithType
+        # deserialize data into TypedVectorResultDescriptor
         try:
-            instance.actual_instance = VectorResultDescriptorWithType.from_json(json_str)
+            instance.actual_instance = TypedVectorResultDescriptor.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into TypedResultDescriptor with oneOf schemas: PlotResultDescriptorWithType, RasterResultDescriptorWithType, VectorResultDescriptorWithType. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into TypedResultDescriptor with oneOf schemas: TypedPlotResultDescriptor, TypedRasterResultDescriptor, TypedVectorResultDescriptor. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into TypedResultDescriptor with oneOf schemas: PlotResultDescriptorWithType, RasterResultDescriptorWithType, VectorResultDescriptorWithType. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into TypedResultDescriptor with oneOf schemas: TypedPlotResultDescriptor, TypedRasterResultDescriptor, TypedVectorResultDescriptor. Details: " + ", ".join(error_messages))
         else:
             return instance
 

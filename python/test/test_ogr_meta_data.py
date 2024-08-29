@@ -59,7 +59,8 @@ class TestOgrMetaData(unittest.TestCase):
                         }, 
                     data_type = 'Data', 
                     spatial_reference = '', 
-                    time = null, )
+                    time = null, ),
+                type = 'OgrMetaData'
             )
         else:
             return OgrMetaData(
@@ -86,6 +87,7 @@ class TestOgrMetaData(unittest.TestCase):
                     data_type = 'Data', 
                     spatial_reference = '', 
                     time = null, ),
+                type = 'OgrMetaData',
         )
         """
 

@@ -53,7 +53,6 @@ export class SessionApi extends runtime.BaseAPI {
 
     /**
      * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
-     * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
      */
     async anonymousHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
         const queryParameters: any = {};
@@ -72,7 +71,6 @@ export class SessionApi extends runtime.BaseAPI {
 
     /**
      * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
-     * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
      */
     async anonymousHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession> {
         const response = await this.anonymousHandlerRaw(initOverrides);
@@ -80,7 +78,6 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      */
     async loginHandlerRaw(requestParameters: LoginHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
@@ -107,7 +104,6 @@ export class SessionApi extends runtime.BaseAPI {
 
     /**
      * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
-     * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      */
     async loginHandler(requestParameters: LoginHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession> {
         const response = await this.loginHandlerRaw(requestParameters, initOverrides);
@@ -115,7 +111,6 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Ends a session.
      * Ends a session.
      */
     async logoutHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -143,14 +138,13 @@ export class SessionApi extends runtime.BaseAPI {
 
     /**
      * Ends a session.
-     * Ends a session.
      */
     async logoutHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.logoutHandlerRaw(initOverrides);
     }
 
     /**
-     * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
+     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
     async oidcInitRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCodeRequestURL>> {
@@ -169,7 +163,7 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
+     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
     async oidcInit(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCodeRequestURL> {
@@ -178,7 +172,7 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable. 
+     * This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable. 
      * Creates a session for a user via a login with Open Id Connect.
      */
     async oidcLoginRaw(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
@@ -204,7 +198,7 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable. 
+     * This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable. 
      * Creates a session for a user via a login with Open Id Connect.
      */
     async oidcLogin(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession> {
@@ -213,7 +207,6 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Registers a user.
      * Registers a user.
      */
     async registerUserHandlerRaw(requestParameters: RegisterUserHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
@@ -244,7 +237,6 @@ export class SessionApi extends runtime.BaseAPI {
 
     /**
      * Registers a user.
-     * Registers a user.
      */
     async registerUserHandler(requestParameters: RegisterUserHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
         const response = await this.registerUserHandlerRaw(requestParameters, initOverrides);
@@ -252,7 +244,6 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves details about the current session.
      * Retrieves details about the current session.
      */
     async sessionHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
@@ -279,7 +270,6 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves details about the current session.
      * Retrieves details about the current session.
      */
     async sessionHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession> {

@@ -27,7 +27,6 @@ import * as runtime from '../runtime';
 export class OGCWCSApi extends runtime.BaseAPI {
     /**
      * Get WCS Capabilities
-     * Get WCS Capabilities
      */
     wcsCapabilitiesHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -74,7 +73,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
     }
     /**
      * Get WCS Capabilities
-     * Get WCS Capabilities
      */
     wcsCapabilitiesHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -83,7 +81,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WCS Coverage Description
      * Get WCS Coverage Description
      */
     wcsDescribeCoverageHandlerRaw(requestParameters, initOverrides) {
@@ -140,7 +137,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
     }
     /**
      * Get WCS Coverage Description
-     * Get WCS Coverage Description
      */
     wcsDescribeCoverageHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -149,7 +145,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WCS Coverage
      * Get WCS Coverage
      */
     wcsGetCoverageHandlerRaw(requestParameters, initOverrides) {
@@ -236,7 +231,6 @@ export class OGCWCSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WCS Coverage
      * Get WCS Coverage
      */
     wcsGetCoverageHandler(requestParameters, initOverrides) {

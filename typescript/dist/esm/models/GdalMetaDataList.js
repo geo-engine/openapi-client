@@ -14,12 +14,19 @@
 import { GdalLoadingInfoTemporalSliceFromJSON, GdalLoadingInfoTemporalSliceToJSON, } from './GdalLoadingInfoTemporalSlice';
 import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
 /**
+ * @export
+ */
+export const GdalMetaDataListTypeEnum = {
+    GdalMetaDataList: 'GdalMetaDataList'
+};
+/**
  * Check if a given object implements the GdalMetaDataList interface.
  */
 export function instanceOfGdalMetaDataList(value) {
     let isInstance = true;
     isInstance = isInstance && "params" in value;
     isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 export function GdalMetaDataListFromJSON(json) {
@@ -32,6 +39,7 @@ export function GdalMetaDataListFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'params': (json['params'].map(GdalLoadingInfoTemporalSliceFromJSON)),
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
+        'type': json['type'],
     };
 }
 export function GdalMetaDataListToJSON(value) {
@@ -44,5 +52,6 @@ export function GdalMetaDataListToJSON(value) {
     return {
         'params': (value.params.map(GdalLoadingInfoTemporalSliceToJSON)),
         'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
+        'type': value.type,
     };
 }

@@ -20,7 +20,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, StrictStr, validator
 from geoengine_openapi_client.models.colorizer import Colorizer
 
 class DerivedColor(BaseModel):
@@ -29,7 +29,15 @@ class DerivedColor(BaseModel):
     """
     attribute: StrictStr = Field(...)
     colorizer: Colorizer = Field(...)
-    __properties = ["attribute", "colorizer"]
+    type: StrictStr = Field(...)
+    __properties = ["attribute", "colorizer", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('derived'):
+            raise ValueError("must be one of enum values ('derived')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -71,7 +79,8 @@ class DerivedColor(BaseModel):
 
         _obj = DerivedColor.parse_obj({
             "attribute": obj.get("attribute"),
-            "colorizer": Colorizer.from_dict(obj.get("colorizer")) if obj.get("colorizer") is not None else None
+            "colorizer": Colorizer.from_dict(obj.get("colorizer")) if obj.get("colorizer") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

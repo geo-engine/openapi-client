@@ -62,7 +62,23 @@ export interface GdalMetaDataStatic {
      * @memberof GdalMetaDataStatic
      */
     time?: TimeInterval | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof GdalMetaDataStatic
+     */
+    type: GdalMetaDataStaticTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const GdalMetaDataStaticTypeEnum = {
+    GdalStatic: 'GdalStatic'
+} as const;
+export type GdalMetaDataStaticTypeEnum = typeof GdalMetaDataStaticTypeEnum[keyof typeof GdalMetaDataStaticTypeEnum];
+
 
 /**
  * Check if a given object implements the GdalMetaDataStatic interface.
@@ -71,6 +87,7 @@ export function instanceOfGdalMetaDataStatic(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "params" in value;
     isInstance = isInstance && "resultDescriptor" in value;
+    isInstance = isInstance && "type" in value;
 
     return isInstance;
 }
@@ -89,6 +106,7 @@ export function GdalMetaDataStaticFromJSONTyped(json: any, ignoreDiscriminator: 
         'params': GdalDatasetParametersFromJSON(json['params']),
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
         'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
+        'type': json['type'],
     };
 }
 
@@ -105,6 +123,7 @@ export function GdalMetaDataStaticToJSON(value?: GdalMetaDataStatic | null): any
         'params': GdalDatasetParametersToJSON(value.params),
         'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
         'time': TimeIntervalToJSON(value.time),
+        'type': value.type,
     };
 }
 

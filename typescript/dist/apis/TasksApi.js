@@ -30,7 +30,7 @@ const index_1 = require("../models/index");
  */
 class TasksApi extends runtime.BaseAPI {
     /**
-     * Abort a running task.  # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     abortHandlerRaw(requestParameters, initOverrides) {
@@ -60,7 +60,7 @@ class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Abort a running task.  # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     abortHandler(requestParameters, initOverrides) {
@@ -69,7 +69,6 @@ class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve the status of all tasks.
      * Retrieve the status of all tasks.
      */
     listHandlerRaw(requestParameters, initOverrides) {
@@ -103,7 +102,6 @@ class TasksApi extends runtime.BaseAPI {
     }
     /**
      * Retrieve the status of all tasks.
-     * Retrieve the status of all tasks.
      */
     listHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -112,7 +110,6 @@ class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve the status of a task.
      * Retrieve the status of a task.
      */
     statusHandlerRaw(requestParameters, initOverrides) {
@@ -139,7 +136,6 @@ class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve the status of a task.
      * Retrieve the status of a task.
      */
     statusHandler(requestParameters, initOverrides) {

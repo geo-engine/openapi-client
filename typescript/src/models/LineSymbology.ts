@@ -50,7 +50,23 @@ export interface LineSymbology {
      * @memberof LineSymbology
      */
     text?: TextSymbology | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LineSymbology
+     */
+    type: LineSymbologyTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const LineSymbologyTypeEnum = {
+    Line: 'line'
+} as const;
+export type LineSymbologyTypeEnum = typeof LineSymbologyTypeEnum[keyof typeof LineSymbologyTypeEnum];
+
 
 /**
  * Check if a given object implements the LineSymbology interface.
@@ -59,6 +75,7 @@ export function instanceOfLineSymbology(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "autoSimplified" in value;
     isInstance = isInstance && "stroke" in value;
+    isInstance = isInstance && "type" in value;
 
     return isInstance;
 }
@@ -76,6 +93,7 @@ export function LineSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boole
         'autoSimplified': json['autoSimplified'],
         'stroke': StrokeParamFromJSON(json['stroke']),
         'text': !exists(json, 'text') ? undefined : TextSymbologyFromJSON(json['text']),
+        'type': json['type'],
     };
 }
 
@@ -91,6 +109,7 @@ export function LineSymbologyToJSON(value?: LineSymbology | null): any {
         'autoSimplified': value.autoSimplified,
         'stroke': StrokeParamToJSON(value.stroke),
         'text': TextSymbologyToJSON(value.text),
+        'type': value.type,
     };
 }
 

@@ -20,7 +20,7 @@ import json
 
 
 from typing import Dict
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, StrictStr, validator
 
 class ClassificationMeasurement(BaseModel):
     """
@@ -28,7 +28,15 @@ class ClassificationMeasurement(BaseModel):
     """
     classes: Dict[str, StrictStr] = Field(...)
     measurement: StrictStr = Field(...)
-    __properties = ["classes", "measurement"]
+    type: StrictStr = Field(...)
+    __properties = ["classes", "measurement", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('classification'):
+            raise ValueError("must be one of enum values ('classification')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -67,7 +75,8 @@ class ClassificationMeasurement(BaseModel):
 
         _obj = ClassificationMeasurement.parse_obj({
             "classes": obj.get("classes"),
-            "measurement": obj.get("measurement")
+            "measurement": obj.get("measurement"),
+            "type": obj.get("type")
         })
         return _obj
 

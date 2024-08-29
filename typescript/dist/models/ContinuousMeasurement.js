@@ -13,14 +13,21 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContinuousMeasurementToJSON = exports.ContinuousMeasurementFromJSONTyped = exports.ContinuousMeasurementFromJSON = exports.instanceOfContinuousMeasurement = void 0;
+exports.ContinuousMeasurementToJSON = exports.ContinuousMeasurementFromJSONTyped = exports.ContinuousMeasurementFromJSON = exports.instanceOfContinuousMeasurement = exports.ContinuousMeasurementTypeEnum = void 0;
 const runtime_1 = require("../runtime");
+/**
+ * @export
+ */
+exports.ContinuousMeasurementTypeEnum = {
+    Continuous: 'continuous'
+};
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
 function instanceOfContinuousMeasurement(value) {
     let isInstance = true;
     isInstance = isInstance && "measurement" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 exports.instanceOfContinuousMeasurement = instanceOfContinuousMeasurement;
@@ -34,6 +41,7 @@ function ContinuousMeasurementFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'measurement': json['measurement'],
+        'type': json['type'],
         'unit': !(0, runtime_1.exists)(json, 'unit') ? undefined : json['unit'],
     };
 }
@@ -47,6 +55,7 @@ function ContinuousMeasurementToJSON(value) {
     }
     return {
         'measurement': value.measurement,
+        'type': value.type,
         'unit': value.unit,
     };
 }

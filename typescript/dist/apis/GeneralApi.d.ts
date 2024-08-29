@@ -17,21 +17,17 @@ import type { ServerInfo } from '../models/index';
 export declare class GeneralApi extends runtime.BaseAPI {
     /**
      * Server availablity check.
-     * Server availablity check.
      */
     availableHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Server availablity check.
      * Server availablity check.
      */
     availableHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Shows information about the server software version.
-     * Shows information about the server software version.
      */
     serverInfoHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServerInfo>>;
     /**
-     * Shows information about the server software version.
      * Shows information about the server software version.
      */
     serverInfoHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ServerInfo>;

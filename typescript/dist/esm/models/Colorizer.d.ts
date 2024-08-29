@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { LinearGradientWithType } from './LinearGradientWithType';
-import { LogarithmicGradientWithType } from './LogarithmicGradientWithType';
+import { LinearGradient } from './LinearGradient';
+import { LogarithmicGradient } from './LogarithmicGradient';
 import { PaletteColorizer } from './PaletteColorizer';
 import { RgbaColorizer } from './RgbaColorizer';
 /**
@@ -20,9 +20,9 @@ import { RgbaColorizer } from './RgbaColorizer';
  */
 export type Colorizer = {
     type: 'linearGradient';
-} & LinearGradientWithType | {
+} & LinearGradient | {
     type: 'logarithmicGradient';
-} & LogarithmicGradientWithType | {
+} & LogarithmicGradient | {
     type: 'palette';
 } & PaletteColorizer | {
     type: 'rgba';

@@ -79,7 +79,6 @@ export class ProjectsApi extends runtime.BaseAPI {
 
     /**
      * Create a new project for the user.
-     * Create a new project for the user.
      */
     async createProjectHandlerRaw(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
         if (requestParameters.createProject === null || requestParameters.createProject === undefined) {
@@ -113,7 +112,6 @@ export class ProjectsApi extends runtime.BaseAPI {
 
     /**
      * Create a new project for the user.
-     * Create a new project for the user.
      */
     async createProjectHandler(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
         const response = await this.createProjectHandlerRaw(requestParameters, initOverrides);
@@ -121,7 +119,6 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a project.
      * Deletes a project.
      */
     async deleteProjectHandlerRaw(requestParameters: DeleteProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -153,14 +150,12 @@ export class ProjectsApi extends runtime.BaseAPI {
 
     /**
      * Deletes a project.
-     * Deletes a project.
      */
     async deleteProjectHandler(requestParameters: DeleteProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteProjectHandlerRaw(requestParameters, initOverrides);
     }
 
     /**
-     * List all projects accessible to the user that match the selected criteria.
      * List all projects accessible to the user that match the selected criteria.
      */
     async listProjectsHandlerRaw(requestParameters: ListProjectsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectListing>>> {
@@ -200,7 +195,6 @@ export class ProjectsApi extends runtime.BaseAPI {
 
     /**
      * List all projects accessible to the user that match the selected criteria.
-     * List all projects accessible to the user that match the selected criteria.
      */
     async listProjectsHandler(requestParameters: ListProjectsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProjectListing>> {
         const response = await this.listProjectsHandlerRaw(requestParameters, initOverrides);
@@ -208,7 +202,6 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves details about the latest version of a project.
      * Retrieves details about the latest version of a project.
      */
     async loadProjectLatestHandlerRaw(requestParameters: LoadProjectLatestHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
@@ -240,7 +233,6 @@ export class ProjectsApi extends runtime.BaseAPI {
 
     /**
      * Retrieves details about the latest version of a project.
-     * Retrieves details about the latest version of a project.
      */
     async loadProjectLatestHandler(requestParameters: LoadProjectLatestHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
         const response = await this.loadProjectLatestHandlerRaw(requestParameters, initOverrides);
@@ -248,7 +240,6 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves details about the given version of a project.
      * Retrieves details about the given version of a project.
      */
     async loadProjectVersionHandlerRaw(requestParameters: LoadProjectVersionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
@@ -284,7 +275,6 @@ export class ProjectsApi extends runtime.BaseAPI {
 
     /**
      * Retrieves details about the given version of a project.
-     * Retrieves details about the given version of a project.
      */
     async loadProjectVersionHandler(requestParameters: LoadProjectVersionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project> {
         const response = await this.loadProjectVersionHandlerRaw(requestParameters, initOverrides);
@@ -292,7 +282,6 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists all available versions of a project.
      * Lists all available versions of a project.
      */
     async projectVersionsHandlerRaw(requestParameters: ProjectVersionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectVersion>>> {
@@ -324,7 +313,6 @@ export class ProjectsApi extends runtime.BaseAPI {
 
     /**
      * Lists all available versions of a project.
-     * Lists all available versions of a project.
      */
     async projectVersionsHandler(requestParameters: ProjectVersionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProjectVersion>> {
         const response = await this.projectVersionsHandlerRaw(requestParameters, initOverrides);
@@ -332,7 +320,7 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates a project. This will create a new version.
+     * This will create a new version.
      * Updates a project.
      */
     async updateProjectHandlerRaw(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -370,7 +358,7 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates a project. This will create a new version.
+     * This will create a new version.
      * Updates a project.
      */
     async updateProjectHandler(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {

@@ -20,7 +20,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, StrictStr, validator
 
 class ExternalDataId(BaseModel):
     """
@@ -28,7 +28,15 @@ class ExternalDataId(BaseModel):
     """
     layer_id: StrictStr = Field(..., alias="layerId")
     provider_id: StrictStr = Field(..., alias="providerId")
-    __properties = ["layerId", "providerId"]
+    type: StrictStr = Field(...)
+    __properties = ["layerId", "providerId", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('external'):
+            raise ValueError("must be one of enum values ('external')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -67,7 +75,8 @@ class ExternalDataId(BaseModel):
 
         _obj = ExternalDataId.parse_obj({
             "layer_id": obj.get("layerId"),
-            "provider_id": obj.get("providerId")
+            "provider_id": obj.get("providerId"),
+            "type": obj.get("type")
         })
         return _obj
 

@@ -174,6 +174,7 @@ def generate_python_code(*, package_name: str, package_version: str, package_url
         ],
         check=True,
     )
+    shutil.rmtree(Path("python") / "docs")
 
 
 def generate_typescript_code(*, npm_name: str, npm_version: str, repository_url: str):
@@ -208,6 +209,12 @@ def generate_typescript_code(*, npm_name: str, npm_version: str, repository_url:
         ],
         check=True,
     )
+    with open(Path("typescript") / ".gitignore", 'w', encoding='utf-8') as f:
+        f.write('''wwwroot/*.js
+node_modules
+typings
+''')
+    shutil.rmtree(Path("typescript") / ".openapi-generator")
 
 
 def main():

@@ -11,11 +11,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DatasetIdResourceIdFromJSONTyped, DatasetIdResourceIdToJSON, } from './DatasetIdResourceId';
-import { LayerCollectionResourceIdFromJSONTyped, LayerCollectionResourceIdToJSON, } from './LayerCollectionResourceId';
-import { LayerResourceIdFromJSONTyped, LayerResourceIdToJSON, } from './LayerResourceId';
-import { ModelIdResourceIdFromJSONTyped, ModelIdResourceIdToJSON, } from './ModelIdResourceId';
-import { ProjectResourceIdFromJSONTyped, ProjectResourceIdToJSON, } from './ProjectResourceId';
+import { ResourceIdDatasetIdFromJSONTyped, ResourceIdDatasetIdToJSON, } from './ResourceIdDatasetId';
+import { ResourceIdLayerFromJSONTyped, ResourceIdLayerToJSON, } from './ResourceIdLayer';
+import { ResourceIdLayerCollectionFromJSONTyped, ResourceIdLayerCollectionToJSON, } from './ResourceIdLayerCollection';
+import { ResourceIdProjectFromJSONTyped, ResourceIdProjectToJSON, } from './ResourceIdProject';
 export function ResourceIdFromJSON(json) {
     return ResourceIdFromJSONTyped(json, false);
 }
@@ -25,15 +24,13 @@ export function ResourceIdFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'DatasetId':
-            return Object.assign(Object.assign({}, DatasetIdResourceIdFromJSONTyped(json, true)), { type: 'DatasetId' });
+            return Object.assign(Object.assign({}, ResourceIdDatasetIdFromJSONTyped(json, true)), { type: 'DatasetId' });
         case 'Layer':
-            return Object.assign(Object.assign({}, LayerResourceIdFromJSONTyped(json, true)), { type: 'Layer' });
+            return Object.assign(Object.assign({}, ResourceIdLayerFromJSONTyped(json, true)), { type: 'Layer' });
         case 'LayerCollection':
-            return Object.assign(Object.assign({}, LayerCollectionResourceIdFromJSONTyped(json, true)), { type: 'LayerCollection' });
-        case 'ModelId':
-            return Object.assign(Object.assign({}, ModelIdResourceIdFromJSONTyped(json, true)), { type: 'ModelId' });
+            return Object.assign(Object.assign({}, ResourceIdLayerCollectionFromJSONTyped(json, true)), { type: 'LayerCollection' });
         case 'Project':
-            return Object.assign(Object.assign({}, ProjectResourceIdFromJSONTyped(json, true)), { type: 'Project' });
+            return Object.assign(Object.assign({}, ResourceIdProjectFromJSONTyped(json, true)), { type: 'Project' });
         default:
             throw new Error(`No variant of ResourceId exists with 'type=${json['type']}'`);
     }
@@ -47,15 +44,13 @@ export function ResourceIdToJSON(value) {
     }
     switch (value['type']) {
         case 'DatasetId':
-            return DatasetIdResourceIdToJSON(value);
+            return ResourceIdDatasetIdToJSON(value);
         case 'Layer':
-            return LayerResourceIdToJSON(value);
+            return ResourceIdLayerToJSON(value);
         case 'LayerCollection':
-            return LayerCollectionResourceIdToJSON(value);
-        case 'ModelId':
-            return ModelIdResourceIdToJSON(value);
+            return ResourceIdLayerCollectionToJSON(value);
         case 'Project':
-            return ProjectResourceIdToJSON(value);
+            return ResourceIdProjectToJSON(value);
         default:
             throw new Error(`No variant of ResourceId exists with 'type=${value['type']}'`);
     }

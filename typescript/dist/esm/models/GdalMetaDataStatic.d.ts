@@ -42,7 +42,20 @@ export interface GdalMetaDataStatic {
      * @memberof GdalMetaDataStatic
      */
     time?: TimeInterval | null;
+    /**
+     *
+     * @type {string}
+     * @memberof GdalMetaDataStatic
+     */
+    type: GdalMetaDataStaticTypeEnum;
 }
+/**
+ * @export
+ */
+export declare const GdalMetaDataStaticTypeEnum: {
+    readonly GdalStatic: "GdalStatic";
+};
+export type GdalMetaDataStaticTypeEnum = typeof GdalMetaDataStaticTypeEnum[keyof typeof GdalMetaDataStaticTypeEnum];
 /**
  * Check if a given object implements the GdalMetaDataStatic interface.
  */

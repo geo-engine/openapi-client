@@ -27,7 +27,20 @@ export interface ExternalDataId {
      * @memberof ExternalDataId
      */
     providerId: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ExternalDataId
+     */
+    type: ExternalDataIdTypeEnum;
 }
+/**
+ * @export
+ */
+export declare const ExternalDataIdTypeEnum: {
+    readonly External: "external";
+};
+export type ExternalDataIdTypeEnum = typeof ExternalDataIdTypeEnum[keyof typeof ExternalDataIdTypeEnum];
 /**
  * Check if a given object implements the ExternalDataId interface.
  */

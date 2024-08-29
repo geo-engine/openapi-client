@@ -20,7 +20,7 @@ import json
 
 
 from typing import Dict, Optional
-from pydantic import BaseModel, Field, conint
+from pydantic import BaseModel, Field, StrictStr, conint, validator
 from geoengine_openapi_client.models.gdal_dataset_parameters import GdalDatasetParameters
 from geoengine_openapi_client.models.gdal_source_time_placeholder import GdalSourceTimePlaceholder
 from geoengine_openapi_client.models.raster_result_descriptor import RasterResultDescriptor
@@ -37,7 +37,15 @@ class GdalMetaDataRegular(BaseModel):
     result_descriptor: RasterResultDescriptor = Field(..., alias="resultDescriptor")
     step: TimeStep = Field(...)
     time_placeholders: Dict[str, GdalSourceTimePlaceholder] = Field(..., alias="timePlaceholders")
-    __properties = ["cacheTtl", "dataTime", "params", "resultDescriptor", "step", "timePlaceholders"]
+    type: StrictStr = Field(...)
+    __properties = ["cacheTtl", "dataTime", "params", "resultDescriptor", "step", "timePlaceholders", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('GdalMetaDataRegular'):
+            raise ValueError("must be one of enum values ('GdalMetaDataRegular')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -104,7 +112,8 @@ class GdalMetaDataRegular(BaseModel):
                 for _k, _v in obj.get("timePlaceholders").items()
             )
             if obj.get("timePlaceholders") is not None
-            else None
+            else None,
+            "type": obj.get("type")
         })
         return _obj
 

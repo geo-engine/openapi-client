@@ -14,8 +14,8 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MeasurementToJSON = exports.MeasurementFromJSONTyped = exports.MeasurementFromJSON = void 0;
-const ClassificationMeasurementWithType_1 = require("./ClassificationMeasurementWithType");
-const ContinuousMeasurementWithType_1 = require("./ContinuousMeasurementWithType");
+const ClassificationMeasurement_1 = require("./ClassificationMeasurement");
+const ContinuousMeasurement_1 = require("./ContinuousMeasurement");
 const UnitlessMeasurement_1 = require("./UnitlessMeasurement");
 function MeasurementFromJSON(json) {
     return MeasurementFromJSONTyped(json, false);
@@ -27,9 +27,9 @@ function MeasurementFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'classification':
-            return Object.assign(Object.assign({}, (0, ClassificationMeasurementWithType_1.ClassificationMeasurementWithTypeFromJSONTyped)(json, true)), { type: 'classification' });
+            return Object.assign(Object.assign({}, (0, ClassificationMeasurement_1.ClassificationMeasurementFromJSONTyped)(json, true)), { type: 'classification' });
         case 'continuous':
-            return Object.assign(Object.assign({}, (0, ContinuousMeasurementWithType_1.ContinuousMeasurementWithTypeFromJSONTyped)(json, true)), { type: 'continuous' });
+            return Object.assign(Object.assign({}, (0, ContinuousMeasurement_1.ContinuousMeasurementFromJSONTyped)(json, true)), { type: 'continuous' });
         case 'unitless':
             return Object.assign(Object.assign({}, (0, UnitlessMeasurement_1.UnitlessMeasurementFromJSONTyped)(json, true)), { type: 'unitless' });
         default:
@@ -46,9 +46,9 @@ function MeasurementToJSON(value) {
     }
     switch (value['type']) {
         case 'classification':
-            return (0, ClassificationMeasurementWithType_1.ClassificationMeasurementWithTypeToJSON)(value);
+            return (0, ClassificationMeasurement_1.ClassificationMeasurementToJSON)(value);
         case 'continuous':
-            return (0, ContinuousMeasurementWithType_1.ContinuousMeasurementWithTypeToJSON)(value);
+            return (0, ContinuousMeasurement_1.ContinuousMeasurementToJSON)(value);
         case 'unitless':
             return (0, UnitlessMeasurement_1.UnitlessMeasurementToJSON)(value);
         default:

@@ -13,7 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ExternalDataIdToJSON = exports.ExternalDataIdFromJSONTyped = exports.ExternalDataIdFromJSON = exports.instanceOfExternalDataId = void 0;
+exports.ExternalDataIdToJSON = exports.ExternalDataIdFromJSONTyped = exports.ExternalDataIdFromJSON = exports.instanceOfExternalDataId = exports.ExternalDataIdTypeEnum = void 0;
+/**
+ * @export
+ */
+exports.ExternalDataIdTypeEnum = {
+    External: 'external'
+};
 /**
  * Check if a given object implements the ExternalDataId interface.
  */
@@ -21,6 +27,7 @@ function instanceOfExternalDataId(value) {
     let isInstance = true;
     isInstance = isInstance && "layerId" in value;
     isInstance = isInstance && "providerId" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 exports.instanceOfExternalDataId = instanceOfExternalDataId;
@@ -35,6 +42,7 @@ function ExternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'layerId': json['layerId'],
         'providerId': json['providerId'],
+        'type': json['type'],
     };
 }
 exports.ExternalDataIdFromJSONTyped = ExternalDataIdFromJSONTyped;
@@ -48,6 +56,7 @@ function ExternalDataIdToJSON(value) {
     return {
         'layerId': value.layerId,
         'providerId': value.providerId,
+        'type': value.type,
     };
 }
 exports.ExternalDataIdToJSON = ExternalDataIdToJSON;

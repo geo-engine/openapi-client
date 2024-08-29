@@ -50,7 +50,24 @@ export interface LayerCollectionListing {
      * @memberof LayerCollectionListing
      */
     properties?: Array<Array<string>>;
+    /**
+     * 
+     * @type {string}
+     * @memberof LayerCollectionListing
+     */
+    type: LayerCollectionListingTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const LayerCollectionListingTypeEnum = {
+    Collection: 'collection',
+    Layer: 'layer'
+} as const;
+export type LayerCollectionListingTypeEnum = typeof LayerCollectionListingTypeEnum[keyof typeof LayerCollectionListingTypeEnum];
+
 
 /**
  * Check if a given object implements the LayerCollectionListing interface.
@@ -60,6 +77,7 @@ export function instanceOfLayerCollectionListing(value: object): boolean {
     isInstance = isInstance && "description" in value;
     isInstance = isInstance && "id" in value;
     isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "type" in value;
 
     return isInstance;
 }
@@ -78,6 +96,7 @@ export function LayerCollectionListingFromJSONTyped(json: any, ignoreDiscriminat
         'id': ProviderLayerCollectionIdFromJSON(json['id']),
         'name': json['name'],
         'properties': !exists(json, 'properties') ? undefined : json['properties'],
+        'type': json['type'],
     };
 }
 
@@ -94,6 +113,7 @@ export function LayerCollectionListingToJSON(value?: LayerCollectionListing | nu
         'id': ProviderLayerCollectionIdToJSON(value.id),
         'name': value.name,
         'properties': value.properties,
+        'type': value.type,
     };
 }
 

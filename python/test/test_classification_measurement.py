@@ -40,7 +40,8 @@ class TestClassificationMeasurement(unittest.TestCase):
                 classes = {
                     'key' : ''
                     },
-                measurement = ''
+                measurement = '',
+                type = 'classification'
             )
         else:
             return ClassificationMeasurement(
@@ -48,6 +49,7 @@ class TestClassificationMeasurement(unittest.TestCase):
                     'key' : ''
                     },
                 measurement = '',
+                type = 'classification',
         )
         """
 

@@ -13,7 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClassificationMeasurementToJSON = exports.ClassificationMeasurementFromJSONTyped = exports.ClassificationMeasurementFromJSON = exports.instanceOfClassificationMeasurement = void 0;
+exports.ClassificationMeasurementToJSON = exports.ClassificationMeasurementFromJSONTyped = exports.ClassificationMeasurementFromJSON = exports.instanceOfClassificationMeasurement = exports.ClassificationMeasurementTypeEnum = void 0;
+/**
+ * @export
+ */
+exports.ClassificationMeasurementTypeEnum = {
+    Classification: 'classification'
+};
 /**
  * Check if a given object implements the ClassificationMeasurement interface.
  */
@@ -21,6 +27,7 @@ function instanceOfClassificationMeasurement(value) {
     let isInstance = true;
     isInstance = isInstance && "classes" in value;
     isInstance = isInstance && "measurement" in value;
+    isInstance = isInstance && "type" in value;
     return isInstance;
 }
 exports.instanceOfClassificationMeasurement = instanceOfClassificationMeasurement;
@@ -35,6 +42,7 @@ function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'classes': json['classes'],
         'measurement': json['measurement'],
+        'type': json['type'],
     };
 }
 exports.ClassificationMeasurementFromJSONTyped = ClassificationMeasurementFromJSONTyped;
@@ -48,6 +56,7 @@ function ClassificationMeasurementToJSON(value) {
     return {
         'classes': value.classes,
         'measurement': value.measurement,
+        'type': value.type,
     };
 }
 exports.ClassificationMeasurementToJSON = ClassificationMeasurementToJSON;

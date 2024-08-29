@@ -14,7 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataIdToJSON = exports.DataIdFromJSONTyped = exports.DataIdFromJSON = void 0;
-const ExternalDataIdWithType_1 = require("./ExternalDataIdWithType");
+const ExternalDataId_1 = require("./ExternalDataId");
 const InternalDataId_1 = require("./InternalDataId");
 function DataIdFromJSON(json) {
     return DataIdFromJSONTyped(json, false);
@@ -26,7 +26,7 @@ function DataIdFromJSONTyped(json, ignoreDiscriminator) {
     }
     switch (json['type']) {
         case 'external':
-            return Object.assign(Object.assign({}, (0, ExternalDataIdWithType_1.ExternalDataIdWithTypeFromJSONTyped)(json, true)), { type: 'external' });
+            return Object.assign(Object.assign({}, (0, ExternalDataId_1.ExternalDataIdFromJSONTyped)(json, true)), { type: 'external' });
         case 'internal':
             return Object.assign(Object.assign({}, (0, InternalDataId_1.InternalDataIdFromJSONTyped)(json, true)), { type: 'internal' });
         default:
@@ -43,7 +43,7 @@ function DataIdToJSON(value) {
     }
     switch (value['type']) {
         case 'external':
-            return (0, ExternalDataIdWithType_1.ExternalDataIdWithTypeToJSON)(value);
+            return (0, ExternalDataId_1.ExternalDataIdToJSON)(value);
         case 'internal':
             return (0, InternalDataId_1.InternalDataIdToJSON)(value);
         default:

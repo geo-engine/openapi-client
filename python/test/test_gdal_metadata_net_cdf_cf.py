@@ -86,7 +86,8 @@ class TestGdalMetadataNetCdfCf(unittest.TestCase):
                 start = 56,
                 step = geoengine_openapi_client.models.time_step.TimeStep(
                     granularity = 'millis', 
-                    step = 0, )
+                    step = 0, ),
+                type = 'GdalMetadataNetCdfCf'
             )
         else:
             return GdalMetadataNetCdfCf(
@@ -139,6 +140,7 @@ class TestGdalMetadataNetCdfCf(unittest.TestCase):
                 step = geoengine_openapi_client.models.time_step.TimeStep(
                     granularity = 'millis', 
                     step = 0, ),
+                type = 'GdalMetadataNetCdfCf',
         )
         """
 

@@ -31,7 +31,6 @@ const index_1 = require("../models/index");
 class SessionApi extends runtime.BaseAPI {
     /**
      * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
-     * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
      */
     anonymousHandlerRaw(initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -48,7 +47,6 @@ class SessionApi extends runtime.BaseAPI {
     }
     /**
      * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
-     * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
      */
     anonymousHandler(initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -57,7 +55,6 @@ class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      */
     loginHandlerRaw(requestParameters, initOverrides) {
@@ -80,7 +77,6 @@ class SessionApi extends runtime.BaseAPI {
     }
     /**
      * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
-     * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      */
     loginHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -89,7 +85,6 @@ class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Ends a session.
      * Ends a session.
      */
     logoutHandlerRaw(initOverrides) {
@@ -114,7 +109,6 @@ class SessionApi extends runtime.BaseAPI {
     }
     /**
      * Ends a session.
-     * Ends a session.
      */
     logoutHandler(initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -122,7 +116,7 @@ class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
+     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
     oidcInitRaw(initOverrides) {
@@ -139,7 +133,7 @@ class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
+     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
     oidcInit(initOverrides) {
@@ -149,7 +143,7 @@ class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
+     * This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
      * Creates a session for a user via a login with Open Id Connect.
      */
     oidcLoginRaw(requestParameters, initOverrides) {
@@ -171,7 +165,7 @@ class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
+     * This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
      * Creates a session for a user via a login with Open Id Connect.
      */
     oidcLogin(requestParameters, initOverrides) {
@@ -181,7 +175,6 @@ class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Registers a user.
      * Registers a user.
      */
     registerUserHandlerRaw(requestParameters, initOverrides) {
@@ -209,7 +202,6 @@ class SessionApi extends runtime.BaseAPI {
     }
     /**
      * Registers a user.
-     * Registers a user.
      */
     registerUserHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -218,7 +210,6 @@ class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves details about the current session.
      * Retrieves details about the current session.
      */
     sessionHandlerRaw(initOverrides) {
@@ -242,7 +233,6 @@ class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves details about the current session.
      * Retrieves details about the current session.
      */
     sessionHandler(initOverrides) {

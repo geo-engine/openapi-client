@@ -30,7 +30,7 @@ const index_1 = require("../models/index");
  */
 class DatasetsApi extends runtime.BaseAPI {
     /**
-     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
+     * The format of the files will be automatically detected when possible.
      * Creates a new dataset using previously uploaded files.
      */
     autoCreateDatasetHandlerRaw(requestParameters, initOverrides) {
@@ -59,7 +59,7 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
+     * The format of the files will be automatically detected when possible.
      * Creates a new dataset using previously uploaded files.
      */
     autoCreateDatasetHandler(requestParameters, initOverrides) {
@@ -69,7 +69,6 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     createDatasetHandlerRaw(requestParameters, initOverrides) {
@@ -99,7 +98,6 @@ class DatasetsApi extends runtime.BaseAPI {
     }
     /**
      * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     createDatasetHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -108,7 +106,6 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Delete a dataset
      * Delete a dataset
      */
     deleteDatasetHandlerRaw(requestParameters, initOverrides) {
@@ -136,7 +133,6 @@ class DatasetsApi extends runtime.BaseAPI {
     }
     /**
      * Delete a dataset
-     * Delete a dataset
      */
     deleteDatasetHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -144,7 +140,6 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves details about a dataset using the internal name.
      * Retrieves details about a dataset using the internal name.
      */
     getDatasetHandlerRaw(requestParameters, initOverrides) {
@@ -172,7 +167,6 @@ class DatasetsApi extends runtime.BaseAPI {
     }
     /**
      * Retrieves details about a dataset using the internal name.
-     * Retrieves details about a dataset using the internal name.
      */
     getDatasetHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -181,7 +175,6 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the loading information of a dataset
      * Retrieves the loading information of a dataset
      */
     getLoadingInfoHandlerRaw(requestParameters, initOverrides) {
@@ -209,7 +202,6 @@ class DatasetsApi extends runtime.BaseAPI {
     }
     /**
      * Retrieves the loading information of a dataset
-     * Retrieves the loading information of a dataset
      */
     getLoadingInfoHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -218,7 +210,6 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Lists available datasets.
      * Lists available datasets.
      */
     listDatasetsHandlerRaw(requestParameters, initOverrides) {
@@ -267,7 +258,6 @@ class DatasetsApi extends runtime.BaseAPI {
     }
     /**
      * Lists available datasets.
-     * Lists available datasets.
      */
     listDatasetsHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -276,7 +266,6 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Lists available volumes.
      * Lists available volumes.
      */
     listVolumesHandlerRaw(initOverrides) {
@@ -301,7 +290,6 @@ class DatasetsApi extends runtime.BaseAPI {
     }
     /**
      * Lists available volumes.
-     * Lists available volumes.
      */
     listVolumesHandler(initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -310,7 +298,7 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
+     * Tries to automatically detect the main file and layer name if not specified.
      * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
      */
     suggestMetaDataHandlerRaw(requestParameters, initOverrides) {
@@ -339,7 +327,7 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
+     * Tries to automatically detect the main file and layer name if not specified.
      * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
      */
     suggestMetaDataHandler(requestParameters, initOverrides) {
@@ -349,7 +337,6 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update details about a dataset using the internal name.
      * Update details about a dataset using the internal name.
      */
     updateDatasetHandlerRaw(requestParameters, initOverrides) {
@@ -381,7 +368,6 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update details about a dataset using the internal name.
      * Update details about a dataset using the internal name.
      */
     updateDatasetHandler(requestParameters, initOverrides) {
@@ -428,7 +414,6 @@ class DatasetsApi extends runtime.BaseAPI {
     }
     /**
      * Updates the dataset\'s symbology
-     * Updates the dataset\'s symbology
      */
     updateDatasetSymbologyHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -460,7 +445,6 @@ class DatasetsApi extends runtime.BaseAPI {
     }
     /**
      * Updates the dataset\'s symbology
-     * Updates the dataset\'s symbology
      */
     updateDatasetSymbologyHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -468,7 +452,6 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Updates the dataset\'s loading info
      * Updates the dataset\'s loading info
      */
     updateLoadingInfoHandlerRaw(requestParameters, initOverrides) {
@@ -500,7 +483,6 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Updates the dataset\'s loading info
      * Updates the dataset\'s loading info
      */
     updateLoadingInfoHandler(requestParameters, initOverrides) {

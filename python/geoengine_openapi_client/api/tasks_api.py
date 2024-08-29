@@ -51,7 +51,7 @@ class TasksApi:
     def abort_handler(self, id : Annotated[StrictStr, Field(..., description="Task id")], force : Optional[StrictBool] = None, **kwargs) -> None:  # noqa: E501
         """Abort a running task.  # noqa: E501
 
-        Abort a running task.  # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.  # noqa: E501
+        # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -83,7 +83,7 @@ class TasksApi:
     def abort_handler_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Task id")], force : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Abort a running task.  # noqa: E501
 
-        Abort a running task.  # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.  # noqa: E501
+        # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -193,7 +193,6 @@ class TasksApi:
     def list_handler(self, filter : Optional[Any], offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> List[TaskStatusWithId]:  # noqa: E501
         """Retrieve the status of all tasks.  # noqa: E501
 
-        Retrieve the status of all tasks.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -227,7 +226,6 @@ class TasksApi:
     def list_handler_with_http_info(self, filter : Optional[Any], offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the status of all tasks.  # noqa: E501
 
-        Retrieve the status of all tasks.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -349,7 +347,6 @@ class TasksApi:
     def status_handler(self, id : Annotated[StrictStr, Field(..., description="Task id")], **kwargs) -> TaskStatus:  # noqa: E501
         """Retrieve the status of a task.  # noqa: E501
 
-        Retrieve the status of a task.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -379,7 +376,6 @@ class TasksApi:
     def status_handler_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Task id")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the status of a task.  # noqa: E501
 
-        Retrieve the status of a task.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

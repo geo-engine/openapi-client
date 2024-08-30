@@ -19,6 +19,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./DatasetsApi"), exports);
 __exportStar(require("./GeneralApi"), exports);
 __exportStar(require("./LayersApi"), exports);
+__exportStar(require("./MLApi"), exports);
 __exportStar(require("./OGCWCSApi"), exports);
 __exportStar(require("./OGCWFSApi"), exports);
 __exportStar(require("./OGCWMSApi"), exports);

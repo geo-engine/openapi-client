@@ -3,6 +3,7 @@
 export * from './DatasetsApi';
 export * from './GeneralApi';
 export * from './LayersApi';
+export * from './MLApi';
 export * from './OGCWCSApi';
 export * from './OGCWFSApi';
 export * from './OGCWMSApi';

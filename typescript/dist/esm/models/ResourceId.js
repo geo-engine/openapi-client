@@ -14,6 +14,7 @@
 import { ResourceIdDatasetIdFromJSONTyped, ResourceIdDatasetIdToJSON, } from './ResourceIdDatasetId';
 import { ResourceIdLayerFromJSONTyped, ResourceIdLayerToJSON, } from './ResourceIdLayer';
 import { ResourceIdLayerCollectionFromJSONTyped, ResourceIdLayerCollectionToJSON, } from './ResourceIdLayerCollection';
+import { ResourceIdMlModelFromJSONTyped, ResourceIdMlModelToJSON, } from './ResourceIdMlModel';
 import { ResourceIdProjectFromJSONTyped, ResourceIdProjectToJSON, } from './ResourceIdProject';
 export function ResourceIdFromJSON(json) {
     return ResourceIdFromJSONTyped(json, false);
@@ -29,6 +30,8 @@ export function ResourceIdFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, ResourceIdLayerFromJSONTyped(json, true)), { type: 'Layer' });
         case 'LayerCollection':
             return Object.assign(Object.assign({}, ResourceIdLayerCollectionFromJSONTyped(json, true)), { type: 'LayerCollection' });
+        case 'MlModel':
+            return Object.assign(Object.assign({}, ResourceIdMlModelFromJSONTyped(json, true)), { type: 'MlModel' });
         case 'Project':
             return Object.assign(Object.assign({}, ResourceIdProjectFromJSONTyped(json, true)), { type: 'Project' });
         default:
@@ -49,6 +52,8 @@ export function ResourceIdToJSON(value) {
             return ResourceIdLayerToJSON(value);
         case 'LayerCollection':
             return ResourceIdLayerCollectionToJSON(value);
+        case 'MlModel':
+            return ResourceIdMlModelToJSON(value);
         case 'Project':
             return ResourceIdProjectToJSON(value);
         default:

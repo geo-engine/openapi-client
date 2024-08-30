@@ -24,11 +24,10 @@ from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from geoengine_openapi_client.models.linear_gradient import LinearGradient
 from geoengine_openapi_client.models.logarithmic_gradient import LogarithmicGradient
 from geoengine_openapi_client.models.palette_colorizer import PaletteColorizer
-from geoengine_openapi_client.models.rgba_colorizer import RgbaColorizer
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-COLORIZER_ONE_OF_SCHEMAS = ["LinearGradient", "LogarithmicGradient", "PaletteColorizer", "RgbaColorizer"]
+COLORIZER_ONE_OF_SCHEMAS = ["LinearGradient", "LogarithmicGradient", "PaletteColorizer"]
 
 class Colorizer(BaseModel):
     """
@@ -40,10 +39,8 @@ class Colorizer(BaseModel):
     oneof_schema_2_validator: Optional[LogarithmicGradient] = None
     # data type: PaletteColorizer
     oneof_schema_3_validator: Optional[PaletteColorizer] = None
-    # data type: RgbaColorizer
-    oneof_schema_4_validator: Optional[RgbaColorizer] = None
     if TYPE_CHECKING:
-        actual_instance: Union[LinearGradient, LogarithmicGradient, PaletteColorizer, RgbaColorizer]
+        actual_instance: Union[LinearGradient, LogarithmicGradient, PaletteColorizer]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(COLORIZER_ONE_OF_SCHEMAS, const=True)
@@ -84,17 +81,12 @@ class Colorizer(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `PaletteColorizer`")
         else:
             match += 1
-        # validate data type: RgbaColorizer
-        if not isinstance(v, RgbaColorizer):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `RgbaColorizer`")
-        else:
-            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Colorizer with oneOf schemas: LinearGradient, LogarithmicGradient, PaletteColorizer, RgbaColorizer. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Colorizer with oneOf schemas: LinearGradient, LogarithmicGradient, PaletteColorizer. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Colorizer with oneOf schemas: LinearGradient, LogarithmicGradient, PaletteColorizer, RgbaColorizer. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Colorizer with oneOf schemas: LinearGradient, LogarithmicGradient, PaletteColorizer. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -129,11 +121,6 @@ class Colorizer(BaseModel):
             instance.actual_instance = PaletteColorizer.from_json(json_str)
             return instance
 
-        # check if data type is `RgbaColorizer`
-        if _data_type == "RgbaColorizer":
-            instance.actual_instance = RgbaColorizer.from_json(json_str)
-            return instance
-
         # check if data type is `LinearGradient`
         if _data_type == "linearGradient":
             instance.actual_instance = LinearGradient.from_json(json_str)
@@ -147,11 +134,6 @@ class Colorizer(BaseModel):
         # check if data type is `PaletteColorizer`
         if _data_type == "palette":
             instance.actual_instance = PaletteColorizer.from_json(json_str)
-            return instance
-
-        # check if data type is `RgbaColorizer`
-        if _data_type == "rgba":
-            instance.actual_instance = RgbaColorizer.from_json(json_str)
             return instance
 
         # deserialize data into LinearGradient
@@ -172,19 +154,13 @@ class Colorizer(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into RgbaColorizer
-        try:
-            instance.actual_instance = RgbaColorizer.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Colorizer with oneOf schemas: LinearGradient, LogarithmicGradient, PaletteColorizer, RgbaColorizer. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Colorizer with oneOf schemas: LinearGradient, LogarithmicGradient, PaletteColorizer. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Colorizer with oneOf schemas: LinearGradient, LogarithmicGradient, PaletteColorizer, RgbaColorizer. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Colorizer with oneOf schemas: LinearGradient, LogarithmicGradient, PaletteColorizer. Details: " + ", ".join(error_messages))
         else:
             return instance
 

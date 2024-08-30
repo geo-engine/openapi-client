@@ -35,8 +35,8 @@ class SingleBandRasterColorizer(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('singleBand'):
-            raise ValueError("must be one of enum values ('singleBand')")
+        if value not in ('singleBand', 'multiBand'):
+            raise ValueError("must be one of enum values ('singleBand', 'multiBand')")
         return value
 
     class Config:

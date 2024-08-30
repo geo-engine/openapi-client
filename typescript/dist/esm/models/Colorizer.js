@@ -14,7 +14,6 @@
 import { LinearGradientFromJSONTyped, LinearGradientToJSON, } from './LinearGradient';
 import { LogarithmicGradientFromJSONTyped, LogarithmicGradientToJSON, } from './LogarithmicGradient';
 import { PaletteColorizerFromJSONTyped, PaletteColorizerToJSON, } from './PaletteColorizer';
-import { RgbaColorizerFromJSONTyped, RgbaColorizerToJSON, } from './RgbaColorizer';
 export function ColorizerFromJSON(json) {
     return ColorizerFromJSONTyped(json, false);
 }
@@ -29,8 +28,6 @@ export function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, LogarithmicGradientFromJSONTyped(json, true)), { type: 'logarithmicGradient' });
         case 'palette':
             return Object.assign(Object.assign({}, PaletteColorizerFromJSONTyped(json, true)), { type: 'palette' });
-        case 'rgba':
-            return Object.assign(Object.assign({}, RgbaColorizerFromJSONTyped(json, true)), { type: 'rgba' });
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${json['type']}'`);
     }
@@ -49,8 +46,6 @@ export function ColorizerToJSON(value) {
             return LogarithmicGradientToJSON(value);
         case 'palette':
             return PaletteColorizerToJSON(value);
-        case 'rgba':
-            return RgbaColorizerToJSON(value);
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${value['type']}'`);
     }

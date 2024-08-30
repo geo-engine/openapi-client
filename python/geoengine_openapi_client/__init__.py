@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.11"
+__version__ = "0.0.12"
 
 # import apis into sdk package
 from geoengine_openapi_client.api.datasets_api import DatasetsApi
@@ -125,6 +125,7 @@ from geoengine_openapi_client.models.meta_data_definition import MetaDataDefinit
 from geoengine_openapi_client.models.meta_data_suggestion import MetaDataSuggestion
 from geoengine_openapi_client.models.mock_dataset_data_source_loading_info import MockDatasetDataSourceLoadingInfo
 from geoengine_openapi_client.models.mock_meta_data import MockMetaData
+from geoengine_openapi_client.models.multi_band_raster_colorizer import MultiBandRasterColorizer
 from geoengine_openapi_client.models.multi_line_string import MultiLineString
 from geoengine_openapi_client.models.multi_point import MultiPoint
 from geoengine_openapi_client.models.multi_polygon import MultiPolygon
@@ -190,7 +191,6 @@ from geoengine_openapi_client.models.resource_id_dataset_id import ResourceIdDat
 from geoengine_openapi_client.models.resource_id_layer import ResourceIdLayer
 from geoengine_openapi_client.models.resource_id_layer_collection import ResourceIdLayerCollection
 from geoengine_openapi_client.models.resource_id_project import ResourceIdProject
-from geoengine_openapi_client.models.rgba_colorizer import RgbaColorizer
 from geoengine_openapi_client.models.role import Role
 from geoengine_openapi_client.models.role_description import RoleDescription
 from geoengine_openapi_client.models.st_rectangle import STRectangle

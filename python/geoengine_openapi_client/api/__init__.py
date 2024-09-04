@@ -4,6 +4,7 @@
 from geoengine_openapi_client.api.datasets_api import DatasetsApi
 from geoengine_openapi_client.api.general_api import GeneralApi
 from geoengine_openapi_client.api.layers_api import LayersApi
+from geoengine_openapi_client.api.ml_api import MLApi
 from geoengine_openapi_client.api.ogcwcs_api import OGCWCSApi
 from geoengine_openapi_client.api.ogcwfs_api import OGCWFSApi
 from geoengine_openapi_client.api.ogcwms_api import OGCWMSApi

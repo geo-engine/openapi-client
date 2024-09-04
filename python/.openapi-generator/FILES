@@ -1,7 +1,6 @@
 .github/workflows/python.yml
 .gitignore
 .gitlab-ci.yml
-.openapi-generator-ignore
 .travis.yml
 README.md
 docs/AddCollection200Response.md
@@ -81,9 +80,12 @@ docs/LayersApi.md
 docs/LineSymbology.md
 docs/LinearGradient.md
 docs/LogarithmicGradient.md
+docs/MLApi.md
 docs/Measurement.md
 docs/MetaDataDefinition.md
 docs/MetaDataSuggestion.md
+docs/MlModel.md
+docs/MlModelMetadata.md
 docs/MockDatasetDataSourceLoadingInfo.md
 docs/MockMetaData.md
 docs/MultiLineString.md
@@ -156,6 +158,7 @@ docs/ResourceId.md
 docs/ResourceIdDatasetId.md
 docs/ResourceIdLayer.md
 docs/ResourceIdLayerCollection.md
+docs/ResourceIdMlModel.md
 docs/ResourceIdProject.md
 docs/RgbaColorizer.md
 docs/Role.md
@@ -236,6 +239,7 @@ geoengine_openapi_client/api/__init__.py
 geoengine_openapi_client/api/datasets_api.py
 geoengine_openapi_client/api/general_api.py
 geoengine_openapi_client/api/layers_api.py
+geoengine_openapi_client/api/ml_api.py
 geoengine_openapi_client/api/ogcwcs_api.py
 geoengine_openapi_client/api/ogcwfs_api.py
 geoengine_openapi_client/api/ogcwms_api.py
@@ -330,6 +334,8 @@ geoengine_openapi_client/models/logarithmic_gradient.py
 geoengine_openapi_client/models/measurement.py
 geoengine_openapi_client/models/meta_data_definition.py
 geoengine_openapi_client/models/meta_data_suggestion.py
+geoengine_openapi_client/models/ml_model.py
+geoengine_openapi_client/models/ml_model_metadata.py
 geoengine_openapi_client/models/mock_dataset_data_source_loading_info.py
 geoengine_openapi_client/models/mock_meta_data.py
 geoengine_openapi_client/models/multi_line_string.py
@@ -396,6 +402,7 @@ geoengine_openapi_client/models/resource_id.py
 geoengine_openapi_client/models/resource_id_dataset_id.py
 geoengine_openapi_client/models/resource_id_layer.py
 geoengine_openapi_client/models/resource_id_layer_collection.py
+geoengine_openapi_client/models/resource_id_ml_model.py
 geoengine_openapi_client/models/resource_id_project.py
 geoengine_openapi_client/models/rgba_colorizer.py
 geoengine_openapi_client/models/role.py
@@ -554,6 +561,9 @@ test/test_logarithmic_gradient.py
 test/test_measurement.py
 test/test_meta_data_definition.py
 test/test_meta_data_suggestion.py
+test/test_ml_api.py
+test/test_ml_model.py
+test/test_ml_model_metadata.py
 test/test_mock_dataset_data_source_loading_info.py
 test/test_mock_meta_data.py
 test/test_multi_line_string.py
@@ -626,6 +636,7 @@ test/test_resource_id.py
 test/test_resource_id_dataset_id.py
 test/test_resource_id_layer.py
 test/test_resource_id_layer_collection.py
+test/test_resource_id_ml_model.py
 test/test_resource_id_project.py
 test/test_rgba_colorizer.py
 test/test_role.py

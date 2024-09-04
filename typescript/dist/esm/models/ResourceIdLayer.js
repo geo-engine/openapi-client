@@ -18,7 +18,8 @@ export const ResourceIdLayerTypeEnum = {
     Layer: 'Layer',
     LayerCollection: 'LayerCollection',
     Project: 'Project',
-    DatasetId: 'DatasetId'
+    DatasetId: 'DatasetId',
+    MlModel: 'MlModel'
 };
 /**
  * Check if a given object implements the ResourceIdLayer interface.

@@ -195,7 +195,7 @@
                   "Admin tried to create dataset from an upload": {
                     "value": {
                       "error": "AdminsCannotCreateDatasetFromUpload",
-                      "message": "AdminsCannotCreateDatasetFromUpload"
+                      "message": "Admins cannot create dataset from upload"
                     }
                   },
                   "Body is invalid json": {
@@ -219,7 +219,7 @@
                   "Normal user tried to create dataset from a volume": {
                     "value": {
                       "error": "OnlyAdminsCanCreateDatasetFromVolume",
-                      "message": "OnlyAdminsCanCreateDatasetFromVolume"
+                      "message": "Only admins can create dataset from volume"
                     }
                   },
                   "Referenced an unknown upload": {
@@ -231,7 +231,7 @@
                   "Referenced an unknown volume": {
                     "value": {
                       "error": "UnknownVolume",
-                      "message": "UnknownVolume"
+                      "message": "Unknown volume"
                     }
                   }
                 }
@@ -318,13 +318,13 @@
                   "Dataset has no auto-importable layer": {
                     "value": {
                       "error": "DatasetHasNoAutoImportableLayer",
-                      "message": "DatasetHasNoAutoImportableLayer"
+                      "message": "Dataset has no auto importable layer"
                     }
                   },
                   "Dataset name is empty": {
                     "value": {
                       "error": "InvalidDatasetName",
-                      "message": "InvalidDatasetName"
+                      "message": "Invalid dataset name"
                     }
                   },
                   "Failed to read body": {
@@ -335,20 +335,20 @@
                   },
                   "File does not exist": {
                     "value": {
-                      "error": "Operator",
-                      "message": "Operator: GdalError: GDAL method 'GDALOpenEx' returned a NULL pointer. Error msg: 'upload/0bdd1062-7796-4d44-a655-e548144281a6/asdf: No such file or directory'"
+                      "error": "GdalError",
+                      "message": "GdalError: GDAL method 'GDALOpenEx' returned a NULL pointer. Error msg: 'upload/0bdd1062-7796-4d44-a655-e548144281a6/asdf: No such file or directory'"
                     }
                   },
                   "Referenced an unknown upload": {
                     "value": {
                       "error": "UnknownUploadId",
-                      "message": "UnknownUploadId"
+                      "message": "Unknown upload id"
                     }
                   },
                   "Upload filename is invalid": {
                     "value": {
                       "error": "InvalidUploadFileName",
-                      "message": "InvalidUploadFileName"
+                      "message": "Invalid upload file name"
                     }
                   }
                 }
@@ -450,13 +450,13 @@
                   "Dataset has no auto-importable layer": {
                     "value": {
                       "error": "DatasetHasNoAutoImportableLayer",
-                      "message": "DatasetHasNoAutoImportableLayer"
+                      "message": "Dataset has no auto importable layer"
                     }
                   },
                   "File does not exist": {
                     "value": {
-                      "error": "Operator",
-                      "message": "Operator: GdalError: GDAL method 'GDALOpenEx' returned a NULL pointer. Error msg: 'upload/0bdd1062-7796-4d44-a655-e548144281a6/asdf: No such file or directory'"
+                      "error": "GdalError",
+                      "message": "GdalError: GDAL method 'GDALOpenEx' returned a NULL pointer. Error msg: 'upload/0bdd1062-7796-4d44-a655-e548144281a6/asdf: No such file or directory'"
                     }
                   },
                   "Missing field in query string": {
@@ -468,7 +468,7 @@
                   "No suitable mainfile found": {
                     "value": {
                       "error": "NoMainFileCandidateFound",
-                      "message": "NoMainFileCandidateFound"
+                      "message": "No main file candidate found"
                     }
                   },
                   "Number in query string contains letters": {
@@ -480,7 +480,7 @@
                   "Referenced an unknown upload": {
                     "value": {
                       "error": "UnknownUploadId",
-                      "message": "UnknownUploadId"
+                      "message": "Unknown upload id"
                     }
                   }
                 }
@@ -699,13 +699,13 @@
                   "Given dataset can only be deleted by owner": {
                     "value": {
                       "error": "OperationRequiresOwnerPermission",
-                      "message": "OperationRequiresOwnerPermission"
+                      "message": "Operation requires owner permission"
                     }
                   },
                   "Referenced an unknown dataset": {
                     "value": {
                       "error": "UnknownDatasetName",
-                      "message": "UnknownDatasetName"
+                      "message": "Unknown dataset name"
                     }
                   }
                 }
@@ -2145,6 +2145,99 @@
         "responses": {
           "200": {
             "description": "The Session was deleted."
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
+    "/ml/models": {
+      "get": {
+        "tags": [
+          "ML"
+        ],
+        "summary": "List ml models.",
+        "operationId": "list_ml_models",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MlModel"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "ML"
+        ],
+        "summary": "Create a new ml model.",
+        "operationId": "add_ml_model",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MlModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
+    "/ml/models/{model_name}": {
+      "get": {
+        "tags": [
+          "ML"
+        ],
+        "summary": "Get ml model by name.",
+        "operationId": "get_ml_model",
+        "parameters": [
+          {
+            "name": "model_name",
+            "in": "path",
+            "description": "Ml Model Name",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MlModelName"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MlModel"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -6463,6 +6556,65 @@
           }
         }
       },
+      "MlModel": {
+        "type": "object",
+        "required": [
+          "name",
+          "displayName",
+          "description",
+          "upload",
+          "metadata"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MlModelMetadata"
+          },
+          "name": {
+            "$ref": "#/components/schemas/MlModelName"
+          },
+          "upload": {
+            "$ref": "#/components/schemas/UploadId"
+          }
+        }
+      },
+      "MlModelId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "MlModelMetadata": {
+        "type": "object",
+        "required": [
+          "fileName",
+          "inputType",
+          "numInputBands",
+          "outputType"
+        ],
+        "properties": {
+          "fileName": {
+            "type": "string"
+          },
+          "inputType": {
+            "$ref": "#/components/schemas/RasterDataType"
+          },
+          "numInputBands": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "outputType": {
+            "$ref": "#/components/schemas/RasterDataType"
+          }
+        }
+      },
+      "MlModelName": {
+        "type": "string"
+      },
       "MockDatasetDataSourceLoadingInfo": {
         "type": "object",
         "required": [
@@ -7821,6 +7973,9 @@
           },
           {
             "$ref": "#/components/schemas/ResourceIdDatasetId"
+          },
+          {
+            "$ref": "#/components/schemas/ResourceIdMlModel"
           }
         ],
         "discriminator": {
@@ -7829,6 +7984,7 @@
             "DatasetId": "#/components/schemas/ResourceIdDatasetId",
             "Layer": "#/components/schemas/ResourceIdLayer",
             "LayerCollection": "#/components/schemas/ResourceIdLayerCollection",
+            "MlModel": "#/components/schemas/ResourceIdMlModel",
             "Project": "#/components/schemas/ResourceIdProject"
           }
         }
@@ -7883,6 +8039,24 @@
             "type": "string",
             "enum": [
               "LayerCollection"
+            ]
+          }
+        }
+      },
+      "ResourceIdMlModel": {
+        "type": "object",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MlModelId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MlModel"
             ]
           }
         }

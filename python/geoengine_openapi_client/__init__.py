@@ -15,12 +15,13 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.11"
+__version__ = "0.0.12"
 
 # import apis into sdk package
 from geoengine_openapi_client.api.datasets_api import DatasetsApi
 from geoengine_openapi_client.api.general_api import GeneralApi
 from geoengine_openapi_client.api.layers_api import LayersApi
+from geoengine_openapi_client.api.ml_api import MLApi
 from geoengine_openapi_client.api.ogcwcs_api import OGCWCSApi
 from geoengine_openapi_client.api.ogcwfs_api import OGCWFSApi
 from geoengine_openapi_client.api.ogcwms_api import OGCWMSApi
@@ -123,6 +124,8 @@ from geoengine_openapi_client.models.logarithmic_gradient import LogarithmicGrad
 from geoengine_openapi_client.models.measurement import Measurement
 from geoengine_openapi_client.models.meta_data_definition import MetaDataDefinition
 from geoengine_openapi_client.models.meta_data_suggestion import MetaDataSuggestion
+from geoengine_openapi_client.models.ml_model import MlModel
+from geoengine_openapi_client.models.ml_model_metadata import MlModelMetadata
 from geoengine_openapi_client.models.mock_dataset_data_source_loading_info import MockDatasetDataSourceLoadingInfo
 from geoengine_openapi_client.models.mock_meta_data import MockMetaData
 from geoengine_openapi_client.models.multi_line_string import MultiLineString
@@ -189,6 +192,7 @@ from geoengine_openapi_client.models.resource_id import ResourceId
 from geoengine_openapi_client.models.resource_id_dataset_id import ResourceIdDatasetId
 from geoengine_openapi_client.models.resource_id_layer import ResourceIdLayer
 from geoengine_openapi_client.models.resource_id_layer_collection import ResourceIdLayerCollection
+from geoengine_openapi_client.models.resource_id_ml_model import ResourceIdMlModel
 from geoengine_openapi_client.models.resource_id_project import ResourceIdProject
 from geoengine_openapi_client.models.rgba_colorizer import RgbaColorizer
 from geoengine_openapi_client.models.role import Role

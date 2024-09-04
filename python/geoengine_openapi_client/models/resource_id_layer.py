@@ -33,8 +33,8 @@ class ResourceIdLayer(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('Layer', 'LayerCollection', 'Project', 'DatasetId'):
-            raise ValueError("must be one of enum values ('Layer', 'LayerCollection', 'Project', 'DatasetId')")
+        if value not in ('Layer', 'LayerCollection', 'Project', 'DatasetId', 'MlModel'):
+            raise ValueError("must be one of enum values ('Layer', 'LayerCollection', 'Project', 'DatasetId', 'MlModel')")
         return value
 
     class Config:

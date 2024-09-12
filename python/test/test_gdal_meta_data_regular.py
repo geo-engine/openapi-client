@@ -79,9 +79,8 @@ class TestGdalMetaDataRegular(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = null, 
                     data_type = 'U8', 
-                    resolution = null, 
+                    spatial_grid = null, 
                     spatial_reference = '', 
                     time = null, ),
                 step = geoengine_openapi_client.models.time_step.TimeStep(
@@ -140,9 +139,8 @@ class TestGdalMetaDataRegular(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = null, 
                     data_type = 'U8', 
-                    resolution = null, 
+                    spatial_grid = null, 
                     spatial_reference = '', 
                     time = null, ),
                 step = geoengine_openapi_client.models.time_step.TimeStep(

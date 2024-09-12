@@ -29,7 +29,6 @@ from geoengine_openapi_client.models.provenance_entry import ProvenanceEntry
 from geoengine_openapi_client.models.raster_dataset_from_workflow import RasterDatasetFromWorkflow
 from geoengine_openapi_client.models.raster_stream_websocket_result_type import RasterStreamWebsocketResultType
 from geoengine_openapi_client.models.spatial_partition2_d import SpatialPartition2D
-from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
 from geoengine_openapi_client.models.task_response import TaskResponse
 from geoengine_openapi_client.models.typed_result_descriptor import TypedResultDescriptor
 from geoengine_openapi_client.models.workflow import Workflow
@@ -762,13 +761,13 @@ class WorkflowsApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def raster_stream_websocket(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], spatial_bounds : SpatialPartition2D, time_interval : StrictStr, spatial_resolution : SpatialResolution, attributes : StrictStr, result_type : RasterStreamWebsocketResultType, **kwargs) -> None:  # noqa: E501
+    def raster_stream_websocket(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], spatial_bounds : SpatialPartition2D, time_interval : StrictStr, attributes : StrictStr, result_type : RasterStreamWebsocketResultType, **kwargs) -> None:  # noqa: E501
         """Query a workflow raster result as a stream of tiles via a websocket connection.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.raster_stream_websocket(id, spatial_bounds, time_interval, spatial_resolution, attributes, result_type, async_req=True)
+        >>> thread = api.raster_stream_websocket(id, spatial_bounds, time_interval, attributes, result_type, async_req=True)
         >>> result = thread.get()
 
         :param id: Workflow id (required)
@@ -777,8 +776,6 @@ class WorkflowsApi:
         :type spatial_bounds: SpatialPartition2D
         :param time_interval: (required)
         :type time_interval: str
-        :param spatial_resolution: (required)
-        :type spatial_resolution: SpatialResolution
         :param attributes: (required)
         :type attributes: str
         :param result_type: (required)
@@ -798,16 +795,16 @@ class WorkflowsApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the raster_stream_websocket_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.raster_stream_websocket_with_http_info(id, spatial_bounds, time_interval, spatial_resolution, attributes, result_type, **kwargs)  # noqa: E501
+        return self.raster_stream_websocket_with_http_info(id, spatial_bounds, time_interval, attributes, result_type, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def raster_stream_websocket_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], spatial_bounds : SpatialPartition2D, time_interval : StrictStr, spatial_resolution : SpatialResolution, attributes : StrictStr, result_type : RasterStreamWebsocketResultType, **kwargs) -> ApiResponse:  # noqa: E501
+    def raster_stream_websocket_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Workflow id")], spatial_bounds : SpatialPartition2D, time_interval : StrictStr, attributes : StrictStr, result_type : RasterStreamWebsocketResultType, **kwargs) -> ApiResponse:  # noqa: E501
         """Query a workflow raster result as a stream of tiles via a websocket connection.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.raster_stream_websocket_with_http_info(id, spatial_bounds, time_interval, spatial_resolution, attributes, result_type, async_req=True)
+        >>> thread = api.raster_stream_websocket_with_http_info(id, spatial_bounds, time_interval, attributes, result_type, async_req=True)
         >>> result = thread.get()
 
         :param id: Workflow id (required)
@@ -816,8 +813,6 @@ class WorkflowsApi:
         :type spatial_bounds: SpatialPartition2D
         :param time_interval: (required)
         :type time_interval: str
-        :param spatial_resolution: (required)
-        :type spatial_resolution: SpatialResolution
         :param attributes: (required)
         :type attributes: str
         :param result_type: (required)
@@ -853,7 +848,6 @@ class WorkflowsApi:
             'id',
             'spatial_bounds',
             'time_interval',
-            'spatial_resolution',
             'attributes',
             'result_type'
         ]
@@ -894,9 +888,6 @@ class WorkflowsApi:
 
         if _params.get('time_interval') is not None:  # noqa: E501
             _query_params.append(('timeInterval', _params['time_interval']))
-
-        if _params.get('spatial_resolution') is not None:  # noqa: E501
-            _query_params.append(('spatialResolution', _params['spatial_resolution']))
 
         if _params.get('attributes') is not None:  # noqa: E501
             _query_params.append(('attributes', _params['attributes']))

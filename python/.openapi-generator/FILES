@@ -58,6 +58,7 @@ docs/GdalMetadataNetCdfCf.md
 docs/GdalSourceTimePlaceholder.md
 docs/GeneralApi.md
 docs/GeoJson.md
+docs/GeoTransform.md
 docs/GetCapabilitiesFormat.md
 docs/GetCapabilitiesRequest.md
 docs/GetCoverageFormat.md
@@ -67,6 +68,8 @@ docs/GetLegendGraphicRequest.md
 docs/GetMapExceptionFormat.md
 docs/GetMapFormat.md
 docs/GetMapRequest.md
+docs/GridBoundingBox2D.md
+docs/GridIdx2D.md
 docs/InternalDataId.md
 docs/Layer.md
 docs/LayerCollection.md
@@ -170,6 +173,10 @@ docs/SearchTypes.md
 docs/ServerInfo.md
 docs/SessionApi.md
 docs/SingleBandRasterColorizer.md
+docs/SpatialGridDefinition.md
+docs/SpatialGridDescriptor.md
+docs/SpatialGridDescriptorOneOf.md
+docs/SpatialGridDescriptorOneOf1.md
 docs/SpatialPartition2D.md
 docs/SpatialReferenceAuthority.md
 docs/SpatialReferenceSpecification.md
@@ -310,6 +317,7 @@ geoengine_openapi_client/models/gdal_metadata_mapping.py
 geoengine_openapi_client/models/gdal_metadata_net_cdf_cf.py
 geoengine_openapi_client/models/gdal_source_time_placeholder.py
 geoengine_openapi_client/models/geo_json.py
+geoengine_openapi_client/models/geo_transform.py
 geoengine_openapi_client/models/get_capabilities_format.py
 geoengine_openapi_client/models/get_capabilities_request.py
 geoengine_openapi_client/models/get_coverage_format.py
@@ -319,6 +327,8 @@ geoengine_openapi_client/models/get_legend_graphic_request.py
 geoengine_openapi_client/models/get_map_exception_format.py
 geoengine_openapi_client/models/get_map_format.py
 geoengine_openapi_client/models/get_map_request.py
+geoengine_openapi_client/models/grid_bounding_box2_d.py
+geoengine_openapi_client/models/grid_idx2_d.py
 geoengine_openapi_client/models/internal_data_id.py
 geoengine_openapi_client/models/layer.py
 geoengine_openapi_client/models/layer_collection.py
@@ -412,6 +422,10 @@ geoengine_openapi_client/models/search_type.py
 geoengine_openapi_client/models/search_types.py
 geoengine_openapi_client/models/server_info.py
 geoengine_openapi_client/models/single_band_raster_colorizer.py
+geoengine_openapi_client/models/spatial_grid_definition.py
+geoengine_openapi_client/models/spatial_grid_descriptor.py
+geoengine_openapi_client/models/spatial_grid_descriptor_one_of.py
+geoengine_openapi_client/models/spatial_grid_descriptor_one_of1.py
 geoengine_openapi_client/models/spatial_partition2_d.py
 geoengine_openapi_client/models/spatial_reference_authority.py
 geoengine_openapi_client/models/spatial_reference_specification.py
@@ -536,6 +550,7 @@ test/test_gdal_metadata_net_cdf_cf.py
 test/test_gdal_source_time_placeholder.py
 test/test_general_api.py
 test/test_geo_json.py
+test/test_geo_transform.py
 test/test_get_capabilities_format.py
 test/test_get_capabilities_request.py
 test/test_get_coverage_format.py
@@ -545,6 +560,8 @@ test/test_get_legend_graphic_request.py
 test/test_get_map_exception_format.py
 test/test_get_map_format.py
 test/test_get_map_request.py
+test/test_grid_bounding_box2_d.py
+test/test_grid_idx2_d.py
 test/test_internal_data_id.py
 test/test_layer.py
 test/test_layer_collection.py
@@ -647,6 +664,10 @@ test/test_search_types.py
 test/test_server_info.py
 test/test_session_api.py
 test/test_single_band_raster_colorizer.py
+test/test_spatial_grid_definition.py
+test/test_spatial_grid_descriptor.py
+test/test_spatial_grid_descriptor_one_of.py
+test/test_spatial_grid_descriptor_one_of1.py
 test/test_spatial_partition2_d.py
 test/test_spatial_reference_authority.py
 test/test_spatial_reference_specification.py

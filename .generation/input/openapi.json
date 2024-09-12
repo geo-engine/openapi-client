@@ -4916,14 +4916,6 @@
             }
           },
           {
-            "name": "spatialResolution",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/SpatialResolution"
-            }
-          },
-          {
             "name": "attributes",
             "in": "query",
             "required": true,
@@ -6096,6 +6088,27 @@
           }
         }
       },
+      "GeoTransform": {
+        "type": "object",
+        "required": [
+          "originCoordinate",
+          "xPixelSize",
+          "yPixelSize"
+        ],
+        "properties": {
+          "originCoordinate": {
+            "$ref": "#/components/schemas/Coordinate2D"
+          },
+          "xPixelSize": {
+            "type": "number",
+            "format": "double"
+          },
+          "yPixelSize": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
       "GetCapabilitiesFormat": {
         "type": "string",
         "enum": [
@@ -6150,6 +6163,36 @@
         "enum": [
           "GetMap"
         ]
+      },
+      "GridBoundingBox2D": {
+        "type": "object",
+        "required": [
+          "topLeftIdx",
+          "bottomRightIdx"
+        ],
+        "properties": {
+          "bottomRightIdx": {
+            "$ref": "#/components/schemas/GridIdx2D"
+          },
+          "topLeftIdx": {
+            "$ref": "#/components/schemas/GridIdx2D"
+          }
+        }
+      },
+      "GridIdx2D": {
+        "type": "object",
+        "required": [
+          "yIdx",
+          "xIdx"
+        ],
+        "properties": {
+          "xIdx": {
+            "type": "integer"
+          },
+          "yIdx": {
+            "type": "integer"
+          }
+        }
       },
       "InternalDataId": {
         "type": "object",
@@ -7867,30 +7910,18 @@
         "required": [
           "dataType",
           "spatialReference",
+          "spatialGrid",
           "bands"
         ],
         "properties": {
           "bands": {
             "$ref": "#/components/schemas/RasterBandDescriptors"
           },
-          "bbox": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SpatialPartition2D"
-              }
-            ],
-            "nullable": true
-          },
           "dataType": {
             "$ref": "#/components/schemas/RasterDataType"
           },
-          "resolution": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SpatialResolution"
-              }
-            ],
-            "nullable": true
+          "spatialGrid": {
+            "$ref": "#/components/schemas/SpatialGridDescriptor"
           },
           "spatialReference": {
             "type": "string"
@@ -8250,6 +8281,47 @@
             ]
           }
         }
+      },
+      "SpatialGridDefinition": {
+        "type": "object",
+        "required": [
+          "geoTransform",
+          "gridBounds"
+        ],
+        "properties": {
+          "geoTransform": {
+            "$ref": "#/components/schemas/GeoTransform"
+          },
+          "gridBounds": {
+            "$ref": "#/components/schemas/GridBoundingBox2D"
+          }
+        }
+      },
+      "SpatialGridDescriptor": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "source"
+            ],
+            "properties": {
+              "source": {
+                "$ref": "#/components/schemas/SpatialGridDefinition"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "derived"
+            ],
+            "properties": {
+              "derived": {
+                "$ref": "#/components/schemas/SpatialGridDefinition"
+              }
+            }
+          }
+        ]
       },
       "SpatialPartition2D": {
         "type": "object",
@@ -8829,6 +8901,7 @@
         "required": [
           "dataType",
           "spatialReference",
+          "spatialGrid",
           "bands",
           "type"
         ],
@@ -8836,24 +8909,11 @@
           "bands": {
             "$ref": "#/components/schemas/RasterBandDescriptors"
           },
-          "bbox": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SpatialPartition2D"
-              }
-            ],
-            "nullable": true
-          },
           "dataType": {
             "$ref": "#/components/schemas/RasterDataType"
           },
-          "resolution": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SpatialResolution"
-              }
-            ],
-            "nullable": true
+          "spatialGrid": {
+            "$ref": "#/components/schemas/SpatialGridDescriptor"
           },
           "spatialReference": {
             "type": "string"

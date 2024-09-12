@@ -56,9 +56,8 @@ class TestMetaDataDefinition(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = null, 
                     data_type = 'U8', 
-                    resolution = null, 
+                    spatial_grid = null, 
                     spatial_reference = '', 
                     time = null, ),
                 type = 'MockMetaData',
@@ -112,9 +111,8 @@ class TestMetaDataDefinition(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = null, 
                     data_type = 'U8', 
-                    resolution = null, 
+                    spatial_grid = null, 
                     spatial_reference = '', 
                     time = null, ),
                 type = 'MockMetaData',

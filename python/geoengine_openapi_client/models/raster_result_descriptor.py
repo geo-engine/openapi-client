@@ -23,8 +23,7 @@ from typing import List, Optional
 from pydantic import BaseModel, Field, StrictStr, conlist
 from geoengine_openapi_client.models.raster_band_descriptor import RasterBandDescriptor
 from geoengine_openapi_client.models.raster_data_type import RasterDataType
-from geoengine_openapi_client.models.spatial_partition2_d import SpatialPartition2D
-from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
+from geoengine_openapi_client.models.spatial_grid_descriptor import SpatialGridDescriptor
 from geoengine_openapi_client.models.time_interval import TimeInterval
 
 class RasterResultDescriptor(BaseModel):
@@ -32,12 +31,11 @@ class RasterResultDescriptor(BaseModel):
     A `ResultDescriptor` for raster queries  # noqa: E501
     """
     bands: conlist(RasterBandDescriptor) = Field(...)
-    bbox: Optional[SpatialPartition2D] = None
     data_type: RasterDataType = Field(..., alias="dataType")
-    resolution: Optional[SpatialResolution] = None
+    spatial_grid: SpatialGridDescriptor = Field(..., alias="spatialGrid")
     spatial_reference: StrictStr = Field(..., alias="spatialReference")
     time: Optional[TimeInterval] = None
-    __properties = ["bands", "bbox", "dataType", "resolution", "spatialReference", "time"]
+    __properties = ["bands", "dataType", "spatialGrid", "spatialReference", "time"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,25 +68,12 @@ class RasterResultDescriptor(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['bands'] = _items
-        # override the default output from pydantic by calling `to_dict()` of bbox
-        if self.bbox:
-            _dict['bbox'] = self.bbox.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of resolution
-        if self.resolution:
-            _dict['resolution'] = self.resolution.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of spatial_grid
+        if self.spatial_grid:
+            _dict['spatialGrid'] = self.spatial_grid.to_dict()
         # override the default output from pydantic by calling `to_dict()` of time
         if self.time:
             _dict['time'] = self.time.to_dict()
-        # set to None if bbox (nullable) is None
-        # and __fields_set__ contains the field
-        if self.bbox is None and "bbox" in self.__fields_set__:
-            _dict['bbox'] = None
-
-        # set to None if resolution (nullable) is None
-        # and __fields_set__ contains the field
-        if self.resolution is None and "resolution" in self.__fields_set__:
-            _dict['resolution'] = None
-
         # set to None if time (nullable) is None
         # and __fields_set__ contains the field
         if self.time is None and "time" in self.__fields_set__:
@@ -107,9 +92,8 @@ class RasterResultDescriptor(BaseModel):
 
         _obj = RasterResultDescriptor.parse_obj({
             "bands": [RasterBandDescriptor.from_dict(_item) for _item in obj.get("bands")] if obj.get("bands") is not None else None,
-            "bbox": SpatialPartition2D.from_dict(obj.get("bbox")) if obj.get("bbox") is not None else None,
             "data_type": obj.get("dataType"),
-            "resolution": SpatialResolution.from_dict(obj.get("resolution")) if obj.get("resolution") is not None else None,
+            "spatial_grid": SpatialGridDescriptor.from_dict(obj.get("spatialGrid")) if obj.get("spatialGrid") is not None else None,
             "spatial_reference": obj.get("spatialReference"),
             "time": TimeInterval.from_dict(obj.get("time")) if obj.get("time") is not None else None
         })

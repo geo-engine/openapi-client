@@ -55,9 +55,7 @@ class TestTypedResultDescriptor(unittest.TestCase):
                         name = '', )
                     ],
                 data_type = 'Data',
-                resolution = geoengine_openapi_client.models.spatial_resolution.SpatialResolution(
-                    x = 1.337, 
-                    y = 1.337, ),
+                spatial_grid = None,
                 columns = {
                     'key' : geoengine_openapi_client.models.vector_column_info.VectorColumnInfo(
                         data_type = 'category', 
@@ -74,6 +72,7 @@ class TestTypedResultDescriptor(unittest.TestCase):
                         name = '', )
                     ],
                 data_type = 'Data',
+                spatial_grid = None,
                 columns = {
                     'key' : geoengine_openapi_client.models.vector_column_info.VectorColumnInfo(
                         data_type = 'category', 

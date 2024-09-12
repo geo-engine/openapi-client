@@ -78,9 +78,8 @@ class TestGdalMetadataNetCdfCf(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = null, 
                     data_type = 'U8', 
-                    resolution = null, 
+                    spatial_grid = null, 
                     spatial_reference = '', 
                     time = null, ),
                 start = 56,
@@ -131,9 +130,8 @@ class TestGdalMetadataNetCdfCf(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = null, 
                     data_type = 'U8', 
-                    resolution = null, 
+                    spatial_grid = null, 
                     spatial_reference = '', 
                     time = null, ),
                 start = 56,

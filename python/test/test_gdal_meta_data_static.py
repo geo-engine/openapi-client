@@ -76,9 +76,8 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = null, 
                     data_type = 'U8', 
-                    resolution = null, 
+                    spatial_grid = null, 
                     spatial_reference = '', 
                     time = null, ),
                 time = geoengine_openapi_client.models.time_interval.TimeInterval(
@@ -126,9 +125,8 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = null, 
                     data_type = 'U8', 
-                    resolution = null, 
+                    spatial_grid = null, 
                     spatial_reference = '', 
                     time = null, ),
                 type = 'GdalStatic',

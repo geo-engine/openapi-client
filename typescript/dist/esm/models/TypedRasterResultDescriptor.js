@@ -14,8 +14,7 @@
 import { exists } from '../runtime';
 import { RasterBandDescriptorFromJSON, RasterBandDescriptorToJSON, } from './RasterBandDescriptor';
 import { RasterDataTypeFromJSON, RasterDataTypeToJSON, } from './RasterDataType';
-import { SpatialPartition2DFromJSON, SpatialPartition2DToJSON, } from './SpatialPartition2D';
-import { SpatialResolutionFromJSON, SpatialResolutionToJSON, } from './SpatialResolution';
+import { SpatialGridDescriptorFromJSON, SpatialGridDescriptorToJSON, } from './SpatialGridDescriptor';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 /**
  * @export
@@ -30,6 +29,7 @@ export function instanceOfTypedRasterResultDescriptor(value) {
     let isInstance = true;
     isInstance = isInstance && "bands" in value;
     isInstance = isInstance && "dataType" in value;
+    isInstance = isInstance && "spatialGrid" in value;
     isInstance = isInstance && "spatialReference" in value;
     isInstance = isInstance && "type" in value;
     return isInstance;
@@ -43,9 +43,8 @@ export function TypedRasterResultDescriptorFromJSONTyped(json, ignoreDiscriminat
     }
     return {
         'bands': (json['bands'].map(RasterBandDescriptorFromJSON)),
-        'bbox': !exists(json, 'bbox') ? undefined : SpatialPartition2DFromJSON(json['bbox']),
         'dataType': RasterDataTypeFromJSON(json['dataType']),
-        'resolution': !exists(json, 'resolution') ? undefined : SpatialResolutionFromJSON(json['resolution']),
+        'spatialGrid': SpatialGridDescriptorFromJSON(json['spatialGrid']),
         'spatialReference': json['spatialReference'],
         'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
         'type': json['type'],
@@ -60,9 +59,8 @@ export function TypedRasterResultDescriptorToJSON(value) {
     }
     return {
         'bands': (value.bands.map(RasterBandDescriptorToJSON)),
-        'bbox': SpatialPartition2DToJSON(value.bbox),
         'dataType': RasterDataTypeToJSON(value.dataType),
-        'resolution': SpatialResolutionToJSON(value.resolution),
+        'spatialGrid': SpatialGridDescriptorToJSON(value.spatialGrid),
         'spatialReference': value.spatialReference,
         'time': TimeIntervalToJSON(value.time),
         'type': value.type,

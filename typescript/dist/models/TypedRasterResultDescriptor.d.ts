@@ -11,8 +11,7 @@
  */
 import type { RasterBandDescriptor } from './RasterBandDescriptor';
 import type { RasterDataType } from './RasterDataType';
-import type { SpatialPartition2D } from './SpatialPartition2D';
-import type { SpatialResolution } from './SpatialResolution';
+import type { SpatialGridDescriptor } from './SpatialGridDescriptor';
 import type { TimeInterval } from './TimeInterval';
 /**
  * A `ResultDescriptor` for raster queries
@@ -28,22 +27,16 @@ export interface TypedRasterResultDescriptor {
     bands: Array<RasterBandDescriptor>;
     /**
      *
-     * @type {SpatialPartition2D}
-     * @memberof TypedRasterResultDescriptor
-     */
-    bbox?: SpatialPartition2D | null;
-    /**
-     *
      * @type {RasterDataType}
      * @memberof TypedRasterResultDescriptor
      */
     dataType: RasterDataType;
     /**
      *
-     * @type {SpatialResolution}
+     * @type {SpatialGridDescriptor}
      * @memberof TypedRasterResultDescriptor
      */
-    resolution?: SpatialResolution | null;
+    spatialGrid: SpatialGridDescriptor;
     /**
      *
      * @type {string}

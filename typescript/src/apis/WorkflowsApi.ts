@@ -20,7 +20,6 @@ import type {
   RasterDatasetFromWorkflow,
   RasterStreamWebsocketResultType,
   SpatialPartition2D,
-  SpatialResolution,
   TaskResponse,
   TypedResultDescriptor,
   Workflow,
@@ -36,8 +35,6 @@ import {
     RasterStreamWebsocketResultTypeToJSON,
     SpatialPartition2DFromJSON,
     SpatialPartition2DToJSON,
-    SpatialResolutionFromJSON,
-    SpatialResolutionToJSON,
     TaskResponseFromJSON,
     TaskResponseToJSON,
     TypedResultDescriptorFromJSON,
@@ -71,7 +68,6 @@ export interface RasterStreamWebsocketRequest {
     id: string;
     spatialBounds: SpatialPartition2D;
     timeInterval: string;
-    spatialResolution: SpatialResolution;
     attributes: string;
     resultType: RasterStreamWebsocketResultType;
 }
@@ -300,10 +296,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('timeInterval','Required parameter requestParameters.timeInterval was null or undefined when calling rasterStreamWebsocket.');
         }
 
-        if (requestParameters.spatialResolution === null || requestParameters.spatialResolution === undefined) {
-            throw new runtime.RequiredError('spatialResolution','Required parameter requestParameters.spatialResolution was null or undefined when calling rasterStreamWebsocket.');
-        }
-
         if (requestParameters.attributes === null || requestParameters.attributes === undefined) {
             throw new runtime.RequiredError('attributes','Required parameter requestParameters.attributes was null or undefined when calling rasterStreamWebsocket.');
         }
@@ -320,10 +312,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
 
         if (requestParameters.timeInterval !== undefined) {
             queryParameters['timeInterval'] = requestParameters.timeInterval;
-        }
-
-        if (requestParameters.spatialResolution !== undefined) {
-            queryParameters['spatialResolution'] = requestParameters.spatialResolution;
         }
 
         if (requestParameters.attributes !== undefined) {

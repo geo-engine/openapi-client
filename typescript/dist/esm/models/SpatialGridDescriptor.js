@@ -11,8 +11,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfSpatialGridDescriptorOneOf, SpatialGridDescriptorOneOfFromJSONTyped, SpatialGridDescriptorOneOfToJSON, } from './SpatialGridDescriptorOneOf';
-import { instanceOfSpatialGridDescriptorOneOf1, SpatialGridDescriptorOneOf1FromJSONTyped, SpatialGridDescriptorOneOf1ToJSON, } from './SpatialGridDescriptorOneOf1';
+import { SpatialGridDefinitionFromJSON, SpatialGridDefinitionToJSON, } from './SpatialGridDefinition';
+import { SpatialGridDescriptorStateFromJSON, SpatialGridDescriptorStateToJSON, } from './SpatialGridDescriptorState';
+/**
+ * Check if a given object implements the SpatialGridDescriptor interface.
+ */
+export function instanceOfSpatialGridDescriptor(value) {
+    let isInstance = true;
+    isInstance = isInstance && "descriptor" in value;
+    isInstance = isInstance && "spatialGrid" in value;
+    return isInstance;
+}
 export function SpatialGridDescriptorFromJSON(json) {
     return SpatialGridDescriptorFromJSONTyped(json, false);
 }
@@ -20,7 +29,10 @@ export function SpatialGridDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return Object.assign(Object.assign({}, SpatialGridDescriptorOneOfFromJSONTyped(json, true)), SpatialGridDescriptorOneOf1FromJSONTyped(json, true));
+    return {
+        'descriptor': SpatialGridDescriptorStateFromJSON(json['descriptor']),
+        'spatialGrid': SpatialGridDefinitionFromJSON(json['spatialGrid']),
+    };
 }
 export function SpatialGridDescriptorToJSON(value) {
     if (value === undefined) {
@@ -29,11 +41,8 @@ export function SpatialGridDescriptorToJSON(value) {
     if (value === null) {
         return null;
     }
-    if (instanceOfSpatialGridDescriptorOneOf(value)) {
-        return SpatialGridDescriptorOneOfToJSON(value);
-    }
-    if (instanceOfSpatialGridDescriptorOneOf1(value)) {
-        return SpatialGridDescriptorOneOf1ToJSON(value);
-    }
-    return {};
+    return {
+        'descriptor': SpatialGridDescriptorStateToJSON(value.descriptor),
+        'spatialGrid': SpatialGridDefinitionToJSON(value.spatialGrid),
+    };
 }

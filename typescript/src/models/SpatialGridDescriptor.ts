@@ -12,27 +12,50 @@
  * Do not edit the class manually.
  */
 
+import { exists, mapValues } from '../runtime';
+import type { SpatialGridDefinition } from './SpatialGridDefinition';
 import {
-    SpatialGridDescriptorOneOf,
-    instanceOfSpatialGridDescriptorOneOf,
-    SpatialGridDescriptorOneOfFromJSON,
-    SpatialGridDescriptorOneOfFromJSONTyped,
-    SpatialGridDescriptorOneOfToJSON,
-} from './SpatialGridDescriptorOneOf';
+    SpatialGridDefinitionFromJSON,
+    SpatialGridDefinitionFromJSONTyped,
+    SpatialGridDefinitionToJSON,
+} from './SpatialGridDefinition';
+import type { SpatialGridDescriptorState } from './SpatialGridDescriptorState';
 import {
-    SpatialGridDescriptorOneOf1,
-    instanceOfSpatialGridDescriptorOneOf1,
-    SpatialGridDescriptorOneOf1FromJSON,
-    SpatialGridDescriptorOneOf1FromJSONTyped,
-    SpatialGridDescriptorOneOf1ToJSON,
-} from './SpatialGridDescriptorOneOf1';
+    SpatialGridDescriptorStateFromJSON,
+    SpatialGridDescriptorStateFromJSONTyped,
+    SpatialGridDescriptorStateToJSON,
+} from './SpatialGridDescriptorState';
 
 /**
- * @type SpatialGridDescriptor
  * 
  * @export
+ * @interface SpatialGridDescriptor
  */
-export type SpatialGridDescriptor = SpatialGridDescriptorOneOf | SpatialGridDescriptorOneOf1;
+export interface SpatialGridDescriptor {
+    /**
+     * 
+     * @type {SpatialGridDescriptorState}
+     * @memberof SpatialGridDescriptor
+     */
+    descriptor: SpatialGridDescriptorState;
+    /**
+     * 
+     * @type {SpatialGridDefinition}
+     * @memberof SpatialGridDescriptor
+     */
+    spatialGrid: SpatialGridDefinition;
+}
+
+/**
+ * Check if a given object implements the SpatialGridDescriptor interface.
+ */
+export function instanceOfSpatialGridDescriptor(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "descriptor" in value;
+    isInstance = isInstance && "spatialGrid" in value;
+
+    return isInstance;
+}
 
 export function SpatialGridDescriptorFromJSON(json: any): SpatialGridDescriptor {
     return SpatialGridDescriptorFromJSONTyped(json, false);
@@ -42,7 +65,11 @@ export function SpatialGridDescriptorFromJSONTyped(json: any, ignoreDiscriminato
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return { ...SpatialGridDescriptorOneOfFromJSONTyped(json, true), ...SpatialGridDescriptorOneOf1FromJSONTyped(json, true) };
+    return {
+        
+        'descriptor': SpatialGridDescriptorStateFromJSON(json['descriptor']),
+        'spatialGrid': SpatialGridDefinitionFromJSON(json['spatialGrid']),
+    };
 }
 
 export function SpatialGridDescriptorToJSON(value?: SpatialGridDescriptor | null): any {
@@ -52,14 +79,10 @@ export function SpatialGridDescriptorToJSON(value?: SpatialGridDescriptor | null
     if (value === null) {
         return null;
     }
-
-    if (instanceOfSpatialGridDescriptorOneOf(value)) {
-        return SpatialGridDescriptorOneOfToJSON(value as SpatialGridDescriptorOneOf);
-    }
-    if (instanceOfSpatialGridDescriptorOneOf1(value)) {
-        return SpatialGridDescriptorOneOf1ToJSON(value as SpatialGridDescriptorOneOf1);
-    }
-
-    return {};
+    return {
+        
+        'descriptor': SpatialGridDescriptorStateToJSON(value.descriptor),
+        'spatialGrid': SpatialGridDefinitionToJSON(value.spatialGrid),
+    };
 }
 

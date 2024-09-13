@@ -9,14 +9,31 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SpatialGridDescriptorOneOf } from './SpatialGridDescriptorOneOf';
-import { SpatialGridDescriptorOneOf1 } from './SpatialGridDescriptorOneOf1';
+import type { SpatialGridDefinition } from './SpatialGridDefinition';
+import type { SpatialGridDescriptorState } from './SpatialGridDescriptorState';
 /**
- * @type SpatialGridDescriptor
  *
  * @export
+ * @interface SpatialGridDescriptor
  */
-export type SpatialGridDescriptor = SpatialGridDescriptorOneOf | SpatialGridDescriptorOneOf1;
+export interface SpatialGridDescriptor {
+    /**
+     *
+     * @type {SpatialGridDescriptorState}
+     * @memberof SpatialGridDescriptor
+     */
+    descriptor: SpatialGridDescriptorState;
+    /**
+     *
+     * @type {SpatialGridDefinition}
+     * @memberof SpatialGridDescriptor
+     */
+    spatialGrid: SpatialGridDefinition;
+}
+/**
+ * Check if a given object implements the SpatialGridDescriptor interface.
+ */
+export declare function instanceOfSpatialGridDescriptor(value: object): boolean;
 export declare function SpatialGridDescriptorFromJSON(json: any): SpatialGridDescriptor;
 export declare function SpatialGridDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): SpatialGridDescriptor;
 export declare function SpatialGridDescriptorToJSON(value?: SpatialGridDescriptor | null): any;

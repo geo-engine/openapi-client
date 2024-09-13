@@ -8298,29 +8298,25 @@
         }
       },
       "SpatialGridDescriptor": {
-        "oneOf": [
-          {
-            "type": "object",
-            "required": [
-              "source"
-            ],
-            "properties": {
-              "source": {
-                "$ref": "#/components/schemas/SpatialGridDefinition"
-              }
-            }
+        "type": "object",
+        "required": [
+          "spatialGrid",
+          "descriptor"
+        ],
+        "properties": {
+          "descriptor": {
+            "$ref": "#/components/schemas/SpatialGridDescriptorState"
           },
-          {
-            "type": "object",
-            "required": [
-              "derived"
-            ],
-            "properties": {
-              "derived": {
-                "$ref": "#/components/schemas/SpatialGridDefinition"
-              }
-            }
+          "spatialGrid": {
+            "$ref": "#/components/schemas/SpatialGridDefinition"
           }
+        }
+      },
+      "SpatialGridDescriptorState": {
+        "type": "string",
+        "enum": [
+          "source",
+          "derived"
         ]
       },
       "SpatialPartition2D": {

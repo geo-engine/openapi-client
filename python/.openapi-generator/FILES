@@ -175,8 +175,7 @@ docs/SessionApi.md
 docs/SingleBandRasterColorizer.md
 docs/SpatialGridDefinition.md
 docs/SpatialGridDescriptor.md
-docs/SpatialGridDescriptorOneOf.md
-docs/SpatialGridDescriptorOneOf1.md
+docs/SpatialGridDescriptorState.md
 docs/SpatialPartition2D.md
 docs/SpatialReferenceAuthority.md
 docs/SpatialReferenceSpecification.md
@@ -424,8 +423,7 @@ geoengine_openapi_client/models/server_info.py
 geoengine_openapi_client/models/single_band_raster_colorizer.py
 geoengine_openapi_client/models/spatial_grid_definition.py
 geoengine_openapi_client/models/spatial_grid_descriptor.py
-geoengine_openapi_client/models/spatial_grid_descriptor_one_of.py
-geoengine_openapi_client/models/spatial_grid_descriptor_one_of1.py
+geoengine_openapi_client/models/spatial_grid_descriptor_state.py
 geoengine_openapi_client/models/spatial_partition2_d.py
 geoengine_openapi_client/models/spatial_reference_authority.py
 geoengine_openapi_client/models/spatial_reference_specification.py
@@ -666,8 +664,7 @@ test/test_session_api.py
 test/test_single_band_raster_colorizer.py
 test/test_spatial_grid_definition.py
 test/test_spatial_grid_descriptor.py
-test/test_spatial_grid_descriptor_one_of.py
-test/test_spatial_grid_descriptor_one_of1.py
+test/test_spatial_grid_descriptor_state.py
 test/test_spatial_partition2_d.py
 test/test_spatial_reference_authority.py
 test/test_spatial_reference_specification.py

@@ -13,9 +13,19 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SpatialGridDescriptorToJSON = exports.SpatialGridDescriptorFromJSONTyped = exports.SpatialGridDescriptorFromJSON = void 0;
-const SpatialGridDescriptorOneOf_1 = require("./SpatialGridDescriptorOneOf");
-const SpatialGridDescriptorOneOf1_1 = require("./SpatialGridDescriptorOneOf1");
+exports.SpatialGridDescriptorToJSON = exports.SpatialGridDescriptorFromJSONTyped = exports.SpatialGridDescriptorFromJSON = exports.instanceOfSpatialGridDescriptor = void 0;
+const SpatialGridDefinition_1 = require("./SpatialGridDefinition");
+const SpatialGridDescriptorState_1 = require("./SpatialGridDescriptorState");
+/**
+ * Check if a given object implements the SpatialGridDescriptor interface.
+ */
+function instanceOfSpatialGridDescriptor(value) {
+    let isInstance = true;
+    isInstance = isInstance && "descriptor" in value;
+    isInstance = isInstance && "spatialGrid" in value;
+    return isInstance;
+}
+exports.instanceOfSpatialGridDescriptor = instanceOfSpatialGridDescriptor;
 function SpatialGridDescriptorFromJSON(json) {
     return SpatialGridDescriptorFromJSONTyped(json, false);
 }
@@ -24,7 +34,10 @@ function SpatialGridDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return Object.assign(Object.assign({}, (0, SpatialGridDescriptorOneOf_1.SpatialGridDescriptorOneOfFromJSONTyped)(json, true)), (0, SpatialGridDescriptorOneOf1_1.SpatialGridDescriptorOneOf1FromJSONTyped)(json, true));
+    return {
+        'descriptor': (0, SpatialGridDescriptorState_1.SpatialGridDescriptorStateFromJSON)(json['descriptor']),
+        'spatialGrid': (0, SpatialGridDefinition_1.SpatialGridDefinitionFromJSON)(json['spatialGrid']),
+    };
 }
 exports.SpatialGridDescriptorFromJSONTyped = SpatialGridDescriptorFromJSONTyped;
 function SpatialGridDescriptorToJSON(value) {
@@ -34,12 +47,9 @@ function SpatialGridDescriptorToJSON(value) {
     if (value === null) {
         return null;
     }
-    if ((0, SpatialGridDescriptorOneOf_1.instanceOfSpatialGridDescriptorOneOf)(value)) {
-        return (0, SpatialGridDescriptorOneOf_1.SpatialGridDescriptorOneOfToJSON)(value);
-    }
-    if ((0, SpatialGridDescriptorOneOf1_1.instanceOfSpatialGridDescriptorOneOf1)(value)) {
-        return (0, SpatialGridDescriptorOneOf1_1.SpatialGridDescriptorOneOf1ToJSON)(value);
-    }
-    return {};
+    return {
+        'descriptor': (0, SpatialGridDescriptorState_1.SpatialGridDescriptorStateToJSON)(value.descriptor),
+        'spatialGrid': (0, SpatialGridDefinition_1.SpatialGridDefinitionToJSON)(value.spatialGrid),
+    };
 }
 exports.SpatialGridDescriptorToJSON = SpatialGridDescriptorToJSON;

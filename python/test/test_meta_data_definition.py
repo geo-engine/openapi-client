@@ -57,7 +57,22 @@ class TestMetaDataDefinition(unittest.TestCase):
                             name = '', )
                         ], 
                     data_type = 'U8', 
-                    spatial_grid = null, 
+                    spatial_grid = geoengine_openapi_client.models.spatial_grid_descriptor.SpatialGridDescriptor(
+                        descriptor = 'source', 
+                        spatial_grid = geoengine_openapi_client.models.spatial_grid_definition.SpatialGridDefinition(
+                            geo_transform = geoengine_openapi_client.models.geo_transform.GeoTransform(
+                                origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                                    x = 1.337, 
+                                    y = 1.337, ), 
+                                x_pixel_size = 1.337, 
+                                y_pixel_size = 1.337, ), 
+                            grid_bounds = geoengine_openapi_client.models.grid_bounding_box2_d.GridBoundingBox2D(
+                                bottom_right_idx = geoengine_openapi_client.models.grid_idx2_d.GridIdx2D(
+                                    x_idx = 56, 
+                                    y_idx = 56, ), 
+                                top_left_idx = geoengine_openapi_client.models.grid_idx2_d.GridIdx2D(
+                                    x_idx = 56, 
+                                    y_idx = 56, ), ), ), ), 
                     spatial_reference = '', 
                     time = null, ),
                 type = 'MockMetaData',
@@ -112,7 +127,22 @@ class TestMetaDataDefinition(unittest.TestCase):
                             name = '', )
                         ], 
                     data_type = 'U8', 
-                    spatial_grid = null, 
+                    spatial_grid = geoengine_openapi_client.models.spatial_grid_descriptor.SpatialGridDescriptor(
+                        descriptor = 'source', 
+                        spatial_grid = geoengine_openapi_client.models.spatial_grid_definition.SpatialGridDefinition(
+                            geo_transform = geoengine_openapi_client.models.geo_transform.GeoTransform(
+                                origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                                    x = 1.337, 
+                                    y = 1.337, ), 
+                                x_pixel_size = 1.337, 
+                                y_pixel_size = 1.337, ), 
+                            grid_bounds = geoengine_openapi_client.models.grid_bounding_box2_d.GridBoundingBox2D(
+                                bottom_right_idx = geoengine_openapi_client.models.grid_idx2_d.GridIdx2D(
+                                    x_idx = 56, 
+                                    y_idx = 56, ), 
+                                top_left_idx = geoengine_openapi_client.models.grid_idx2_d.GridIdx2D(
+                                    x_idx = 56, 
+                                    y_idx = 56, ), ), ), ), 
                     spatial_reference = '', 
                     time = null, ),
                 type = 'MockMetaData',

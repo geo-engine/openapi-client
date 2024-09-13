@@ -14,129 +14,66 @@
 
 
 from __future__ import annotations
-from inspect import getfullargspec
-import json
 import pprint
 import re  # noqa: F401
+import json
 
-from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from geoengine_openapi_client.models.spatial_grid_descriptor_one_of import SpatialGridDescriptorOneOf
-from geoengine_openapi_client.models.spatial_grid_descriptor_one_of1 import SpatialGridDescriptorOneOf1
-from typing import Union, Any, List, TYPE_CHECKING
-from pydantic import StrictStr, Field
 
-SPATIALGRIDDESCRIPTOR_ONE_OF_SCHEMAS = ["SpatialGridDescriptorOneOf", "SpatialGridDescriptorOneOf1"]
+
+from pydantic import BaseModel, Field
+from geoengine_openapi_client.models.spatial_grid_definition import SpatialGridDefinition
+from geoengine_openapi_client.models.spatial_grid_descriptor_state import SpatialGridDescriptorState
 
 class SpatialGridDescriptor(BaseModel):
     """
     SpatialGridDescriptor
     """
-    # data type: SpatialGridDescriptorOneOf
-    oneof_schema_1_validator: Optional[SpatialGridDescriptorOneOf] = None
-    # data type: SpatialGridDescriptorOneOf1
-    oneof_schema_2_validator: Optional[SpatialGridDescriptorOneOf1] = None
-    if TYPE_CHECKING:
-        actual_instance: Union[SpatialGridDescriptorOneOf, SpatialGridDescriptorOneOf1]
-    else:
-        actual_instance: Any
-    one_of_schemas: List[str] = Field(SPATIALGRIDDESCRIPTOR_ONE_OF_SCHEMAS, const=True)
+    descriptor: SpatialGridDescriptorState = Field(...)
+    spatial_grid: SpatialGridDefinition = Field(..., alias="spatialGrid")
+    __properties = ["descriptor", "spatialGrid"]
 
     class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
         validate_assignment = True
 
-    def __init__(self, *args, **kwargs) -> None:
-        if args:
-            if len(args) > 1:
-                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
-            if kwargs:
-                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
-            super().__init__(actual_instance=args[0])
-        else:
-            super().__init__(**kwargs)
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
 
-    @validator('actual_instance')
-    def actual_instance_must_validate_oneof(cls, v):
-        instance = SpatialGridDescriptor.construct()
-        error_messages = []
-        match = 0
-        # validate data type: SpatialGridDescriptorOneOf
-        if not isinstance(v, SpatialGridDescriptorOneOf):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `SpatialGridDescriptorOneOf`")
-        else:
-            match += 1
-        # validate data type: SpatialGridDescriptorOneOf1
-        if not isinstance(v, SpatialGridDescriptorOneOf1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `SpatialGridDescriptorOneOf1`")
-        else:
-            match += 1
-        if match > 1:
-            # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in SpatialGridDescriptor with oneOf schemas: SpatialGridDescriptorOneOf, SpatialGridDescriptorOneOf1. Details: " + ", ".join(error_messages))
-        elif match == 0:
-            # no match
-            raise ValueError("No match found when setting `actual_instance` in SpatialGridDescriptor with oneOf schemas: SpatialGridDescriptorOneOf, SpatialGridDescriptorOneOf1. Details: " + ", ".join(error_messages))
-        else:
-            return v
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> SpatialGridDescriptor:
-        return cls.from_json(json.dumps(obj))
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
 
     @classmethod
     def from_json(cls, json_str: str) -> SpatialGridDescriptor:
-        """Returns the object represented by the json string"""
-        instance = SpatialGridDescriptor.construct()
-        error_messages = []
-        match = 0
+        """Create an instance of SpatialGridDescriptor from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
 
-        # deserialize data into SpatialGridDescriptorOneOf
-        try:
-            instance.actual_instance = SpatialGridDescriptorOneOf.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into SpatialGridDescriptorOneOf1
-        try:
-            instance.actual_instance = SpatialGridDescriptorOneOf1.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of spatial_grid
+        if self.spatial_grid:
+            _dict['spatialGrid'] = self.spatial_grid.to_dict()
+        return _dict
 
-        if match > 1:
-            # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into SpatialGridDescriptor with oneOf schemas: SpatialGridDescriptorOneOf, SpatialGridDescriptorOneOf1. Details: " + ", ".join(error_messages))
-        elif match == 0:
-            # no match
-            raise ValueError("No match found when deserializing the JSON string into SpatialGridDescriptor with oneOf schemas: SpatialGridDescriptorOneOf, SpatialGridDescriptorOneOf1. Details: " + ", ".join(error_messages))
-        else:
-            return instance
-
-    def to_json(self) -> str:
-        """Returns the JSON representation of the actual instance"""
-        if self.actual_instance is None:
-            return "null"
-
-        to_json = getattr(self.actual_instance, "to_json", None)
-        if callable(to_json):
-            return self.actual_instance.to_json()
-        else:
-            return json.dumps(self.actual_instance)
-
-    def to_dict(self) -> dict:
-        """Returns the dict representation of the actual instance"""
-        if self.actual_instance is None:
+    @classmethod
+    def from_dict(cls, obj: dict) -> SpatialGridDescriptor:
+        """Create an instance of SpatialGridDescriptor from a dict"""
+        if obj is None:
             return None
 
-        to_dict = getattr(self.actual_instance, "to_dict", None)
-        if callable(to_dict):
-            return self.actual_instance.to_dict()
-        else:
-            # primitive type
-            return self.actual_instance
+        if not isinstance(obj, dict):
+            return SpatialGridDescriptor.parse_obj(obj)
 
-    def to_str(self) -> str:
-        """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.dict())
+        _obj = SpatialGridDescriptor.parse_obj({
+            "descriptor": obj.get("descriptor"),
+            "spatial_grid": SpatialGridDefinition.from_dict(obj.get("spatialGrid")) if obj.get("spatialGrid") is not None else None
+        })
+        return _obj
 
 

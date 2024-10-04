@@ -261,6 +261,7 @@ Class | Method | HTTP request | Description
  - [MetaDataSuggestion](docs/MetaDataSuggestion.md)
  - [MlModel](docs/MlModel.md)
  - [MlModelMetadata](docs/MlModelMetadata.md)
+ - [MlModelResource](docs/MlModelResource.md)
  - [MockDatasetDataSourceLoadingInfo](docs/MockDatasetDataSourceLoadingInfo.md)
  - [MockMetaData](docs/MockMetaData.md)
  - [MultiLineString](docs/MultiLineString.md)

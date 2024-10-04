@@ -17,6 +17,7 @@ exports.ResourceToJSON = exports.ResourceFromJSONTyped = exports.ResourceFromJSO
 const DatasetResource_1 = require("./DatasetResource");
 const LayerCollectionResource_1 = require("./LayerCollectionResource");
 const LayerResource_1 = require("./LayerResource");
+const MlModelResource_1 = require("./MlModelResource");
 const ProjectResource_1 = require("./ProjectResource");
 function ResourceFromJSON(json) {
     return ResourceFromJSONTyped(json, false);
@@ -33,6 +34,8 @@ function ResourceFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, (0, LayerResource_1.LayerResourceFromJSONTyped)(json, true)), { type: 'layer' });
         case 'layerCollection':
             return Object.assign(Object.assign({}, (0, LayerCollectionResource_1.LayerCollectionResourceFromJSONTyped)(json, true)), { type: 'layerCollection' });
+        case 'mlModel':
+            return Object.assign(Object.assign({}, (0, MlModelResource_1.MlModelResourceFromJSONTyped)(json, true)), { type: 'mlModel' });
         case 'project':
             return Object.assign(Object.assign({}, (0, ProjectResource_1.ProjectResourceFromJSONTyped)(json, true)), { type: 'project' });
         default:
@@ -54,6 +57,8 @@ function ResourceToJSON(value) {
             return (0, LayerResource_1.LayerResourceToJSON)(value);
         case 'layerCollection':
             return (0, LayerCollectionResource_1.LayerCollectionResourceToJSON)(value);
+        case 'mlModel':
+            return (0, MlModelResource_1.MlModelResourceToJSON)(value);
         case 'project':
             return (0, ProjectResource_1.ProjectResourceToJSON)(value);
         default:

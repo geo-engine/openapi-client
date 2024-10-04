@@ -6658,6 +6658,25 @@
       "MlModelName": {
         "type": "string"
       },
+      "MlModelResource": {
+        "type": "object",
+        "title": "MlModelResource",
+        "required": [
+          "type",
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/MlModelId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "mlModel"
+            ]
+          }
+        }
+      },
       "MockDatasetDataSourceLoadingInfo": {
         "type": "object",
         "required": [
@@ -7979,6 +7998,9 @@
           },
           {
             "$ref": "#/components/schemas/DatasetResource"
+          },
+          {
+            "$ref": "#/components/schemas/MlModelResource"
           }
         ],
         "discriminator": {
@@ -7987,6 +8009,7 @@
             "dataset": "#/components/schemas/DatasetResource",
             "layer": "#/components/schemas/LayerResource",
             "layerCollection": "#/components/schemas/LayerCollectionResource",
+            "mlModel": "#/components/schemas/MlModelResource",
             "project": "#/components/schemas/ProjectResource"
           }
         }

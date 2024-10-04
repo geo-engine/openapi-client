@@ -89,6 +89,7 @@ docs/MetaDataDefinition.md
 docs/MetaDataSuggestion.md
 docs/MlModel.md
 docs/MlModelMetadata.md
+docs/MlModelResource.md
 docs/MockDatasetDataSourceLoadingInfo.md
 docs/MockMetaData.md
 docs/MultiLineString.md
@@ -345,6 +346,7 @@ geoengine_openapi_client/models/meta_data_definition.py
 geoengine_openapi_client/models/meta_data_suggestion.py
 geoengine_openapi_client/models/ml_model.py
 geoengine_openapi_client/models/ml_model_metadata.py
+geoengine_openapi_client/models/ml_model_resource.py
 geoengine_openapi_client/models/mock_dataset_data_source_loading_info.py
 geoengine_openapi_client/models/mock_meta_data.py
 geoengine_openapi_client/models/multi_line_string.py
@@ -579,6 +581,7 @@ test/test_meta_data_suggestion.py
 test/test_ml_api.py
 test/test_ml_model.py
 test/test_ml_model_metadata.py
+test/test_ml_model_resource.py
 test/test_mock_dataset_data_source_loading_info.py
 test/test_mock_meta_data.py
 test/test_multi_line_string.py

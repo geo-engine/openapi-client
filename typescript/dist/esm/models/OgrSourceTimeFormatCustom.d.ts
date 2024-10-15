@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { DateTimeParseFormat } from './DateTimeParseFormat';
 /**
  *
  * @export
@@ -18,10 +17,10 @@ import type { DateTimeParseFormat } from './DateTimeParseFormat';
 export interface OgrSourceTimeFormatCustom {
     /**
      *
-     * @type {DateTimeParseFormat}
+     * @type {string}
      * @memberof OgrSourceTimeFormatCustom
      */
-    customFormat: DateTimeParseFormat;
+    customFormat: string;
     /**
      *
      * @type {string}

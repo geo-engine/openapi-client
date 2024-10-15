@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AutoCreateDataset, CreateDataset, CreateDatasetHandler200Response, Dataset, DatasetListing, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, Volume } from '../models/index';
+import type { AutoCreateDataset, CreateDataset, CreateDatasetHandler200Response, Dataset, DatasetListing, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, Volume, VolumeFileLayersResponse } from '../models/index';
 export interface AutoCreateDatasetHandlerRequest {
     autoCreateDataset: AutoCreateDataset;
 }
@@ -32,6 +32,10 @@ export interface ListDatasetsHandlerRequest {
     limit: number;
     filter?: string | null;
     tags?: Array<string> | null;
+}
+export interface ListVolumeFileLayersHandlerRequest {
+    volumeName: string;
+    fileName: string;
 }
 export interface SuggestMetaDataHandlerRequest {
     suggestMetaData: SuggestMetaData;
@@ -106,6 +110,14 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Lists available datasets.
      */
     listDatasetsHandler(requestParameters: ListDatasetsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DatasetListing>>;
+    /**
+     * List the layers of on uploaded file.
+     */
+    listVolumeFileLayersHandlerRaw(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VolumeFileLayersResponse>>;
+    /**
+     * List the layers of on uploaded file.
+     */
+    listVolumeFileLayersHandler(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VolumeFileLayersResponse>;
     /**
      * Lists available volumes.
      */

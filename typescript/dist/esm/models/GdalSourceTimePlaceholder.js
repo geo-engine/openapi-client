@@ -11,7 +11,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DateTimeParseFormatFromJSON, DateTimeParseFormatToJSON, } from './DateTimeParseFormat';
 import { TimeReferenceFromJSON, TimeReferenceToJSON, } from './TimeReference';
 /**
  * Check if a given object implements the GdalSourceTimePlaceholder interface.
@@ -30,7 +29,7 @@ export function GdalSourceTimePlaceholderFromJSONTyped(json, ignoreDiscriminator
         return json;
     }
     return {
-        'format': DateTimeParseFormatFromJSON(json['format']),
+        'format': json['format'],
         'reference': TimeReferenceFromJSON(json['reference']),
     };
 }
@@ -42,7 +41,7 @@ export function GdalSourceTimePlaceholderToJSON(value) {
         return null;
     }
     return {
-        'format': DateTimeParseFormatToJSON(value.format),
+        'format': value.format,
         'reference': TimeReferenceToJSON(value.reference),
     };
 }

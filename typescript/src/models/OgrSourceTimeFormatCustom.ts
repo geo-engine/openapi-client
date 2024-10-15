@@ -13,13 +13,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { DateTimeParseFormat } from './DateTimeParseFormat';
-import {
-    DateTimeParseFormatFromJSON,
-    DateTimeParseFormatFromJSONTyped,
-    DateTimeParseFormatToJSON,
-} from './DateTimeParseFormat';
-
 /**
  * 
  * @export
@@ -28,10 +21,10 @@ import {
 export interface OgrSourceTimeFormatCustom {
     /**
      * 
-     * @type {DateTimeParseFormat}
+     * @type {string}
      * @memberof OgrSourceTimeFormatCustom
      */
-    customFormat: DateTimeParseFormat;
+    customFormat: string;
     /**
      * 
      * @type {string}
@@ -71,7 +64,7 @@ export function OgrSourceTimeFormatCustomFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'customFormat': DateTimeParseFormatFromJSON(json['customFormat']),
+        'customFormat': json['customFormat'],
         'format': json['format'],
     };
 }
@@ -85,7 +78,7 @@ export function OgrSourceTimeFormatCustomToJSON(value?: OgrSourceTimeFormatCusto
     }
     return {
         
-        'customFormat': DateTimeParseFormatToJSON(value.customFormat),
+        'customFormat': value.customFormat,
         'format': value.format,
     };
 }

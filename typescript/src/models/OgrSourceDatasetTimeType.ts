@@ -46,7 +46,7 @@ import {
  * 
  * @export
  */
-export type OgrSourceDatasetTimeType = { type: 'none' } & OgrSourceDatasetTimeTypeNone | { type: 'start' } & OgrSourceDatasetTimeTypeStart | { type: 'startDuration' } & OgrSourceDatasetTimeTypeStartDuration | { type: 'startEnd' } & OgrSourceDatasetTimeTypeStartEnd;
+export type OgrSourceDatasetTimeType = { type: 'none' } & OgrSourceDatasetTimeTypeNone | { type: 'start' } & OgrSourceDatasetTimeTypeStart | { type: 'start+duration' } & OgrSourceDatasetTimeTypeStartDuration | { type: 'start+end' } & OgrSourceDatasetTimeTypeStartEnd;
 
 export function OgrSourceDatasetTimeTypeFromJSON(json: any): OgrSourceDatasetTimeType {
     return OgrSourceDatasetTimeTypeFromJSONTyped(json, false);
@@ -61,10 +61,10 @@ export function OgrSourceDatasetTimeTypeFromJSONTyped(json: any, ignoreDiscrimin
             return {...OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, true), type: 'none'};
         case 'start':
             return {...OgrSourceDatasetTimeTypeStartFromJSONTyped(json, true), type: 'start'};
-        case 'startDuration':
-            return {...OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, true), type: 'startDuration'};
-        case 'startEnd':
-            return {...OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, true), type: 'startEnd'};
+        case 'start+duration':
+            return {...OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, true), type: 'start+duration'};
+        case 'start+end':
+            return {...OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, true), type: 'start+end'};
         default:
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${json['type']}'`);
     }
@@ -82,9 +82,9 @@ export function OgrSourceDatasetTimeTypeToJSON(value?: OgrSourceDatasetTimeType 
             return OgrSourceDatasetTimeTypeNoneToJSON(value);
         case 'start':
             return OgrSourceDatasetTimeTypeStartToJSON(value);
-        case 'startDuration':
+        case 'start+duration':
             return OgrSourceDatasetTimeTypeStartDurationToJSON(value);
-        case 'startEnd':
+        case 'start+end':
             return OgrSourceDatasetTimeTypeStartEndToJSON(value);
         default:
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${value['type']}'`);

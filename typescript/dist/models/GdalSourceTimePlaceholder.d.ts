@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { DateTimeParseFormat } from './DateTimeParseFormat';
 import type { TimeReference } from './TimeReference';
 /**
  *
@@ -19,10 +18,10 @@ import type { TimeReference } from './TimeReference';
 export interface GdalSourceTimePlaceholder {
     /**
      *
-     * @type {DateTimeParseFormat}
+     * @type {string}
      * @memberof GdalSourceTimePlaceholder
      */
-    format: DateTimeParseFormat;
+    format: string;
     /**
      *
      * @type {TimeReference}

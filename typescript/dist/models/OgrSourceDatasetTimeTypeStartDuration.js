@@ -19,7 +19,7 @@ const OgrSourceTimeFormat_1 = require("./OgrSourceTimeFormat");
  * @export
  */
 exports.OgrSourceDatasetTimeTypeStartDurationTypeEnum = {
-    StartDuration: 'startDuration'
+    Startduration: 'start+duration'
 };
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeStartDuration interface.

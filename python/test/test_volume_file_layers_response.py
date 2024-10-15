@@ -16,10 +16,10 @@
 import unittest
 import datetime
 
-from geoengine_openapi_client.models.date_time_parse_format import DateTimeParseFormat  # noqa: E501
+from geoengine_openapi_client.models.volume_file_layers_response import VolumeFileLayersResponse  # noqa: E501
 
-class TestDateTimeParseFormat(unittest.TestCase):
-    """DateTimeParseFormat unit test stubs"""
+class TestVolumeFileLayersResponse(unittest.TestCase):
+    """VolumeFileLayersResponse unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,30 +27,30 @@ class TestDateTimeParseFormat(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> DateTimeParseFormat:
-        """Test DateTimeParseFormat
+    def make_instance(self, include_optional) -> VolumeFileLayersResponse:
+        """Test VolumeFileLayersResponse
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `DateTimeParseFormat`
+        # uncomment below to create an instance of `VolumeFileLayersResponse`
         """
-        model = DateTimeParseFormat()  # noqa: E501
+        model = VolumeFileLayersResponse()  # noqa: E501
         if include_optional:
-            return DateTimeParseFormat(
-                fmt = '',
-                has_time = True,
-                has_tz = True
+            return VolumeFileLayersResponse(
+                layers = [
+                    ''
+                    ]
             )
         else:
-            return DateTimeParseFormat(
-                fmt = '',
-                has_time = True,
-                has_tz = True,
+            return VolumeFileLayersResponse(
+                layers = [
+                    ''
+                    ],
         )
         """
 
-    def testDateTimeParseFormat(self):
-        """Test DateTimeParseFormat"""
+    def testVolumeFileLayersResponse(self):
+        """Test VolumeFileLayersResponse"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -21,13 +21,12 @@ import json
 
 
 from pydantic import BaseModel, Field, StrictStr, validator
-from geoengine_openapi_client.models.date_time_parse_format import DateTimeParseFormat
 
 class OgrSourceTimeFormatCustom(BaseModel):
     """
     OgrSourceTimeFormatCustom
     """
-    custom_format: DateTimeParseFormat = Field(..., alias="customFormat")
+    custom_format: StrictStr = Field(..., alias="customFormat")
     format: StrictStr = Field(...)
     __properties = ["customFormat", "format"]
 
@@ -62,9 +61,6 @@ class OgrSourceTimeFormatCustom(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of custom_format
-        if self.custom_format:
-            _dict['customFormat'] = self.custom_format.to_dict()
         return _dict
 
     @classmethod
@@ -77,7 +73,7 @@ class OgrSourceTimeFormatCustom(BaseModel):
             return OgrSourceTimeFormatCustom.parse_obj(obj)
 
         _obj = OgrSourceTimeFormatCustom.parse_obj({
-            "custom_format": DateTimeParseFormat.from_dict(obj.get("customFormat")) if obj.get("customFormat") is not None else None,
+            "custom_format": obj.get("customFormat"),
             "format": obj.get("format")
         })
         return _obj

@@ -63,7 +63,7 @@ export interface OgrSourceDatasetTimeTypeStartEnd {
  * @export
  */
 export const OgrSourceDatasetTimeTypeStartEndTypeEnum = {
-    StartEnd: 'startEnd'
+    Startend: 'start+end'
 } as const;
 export type OgrSourceDatasetTimeTypeStartEndTypeEnum = typeof OgrSourceDatasetTimeTypeStartEndTypeEnum[keyof typeof OgrSourceDatasetTimeTypeStartEndTypeEnum];
 

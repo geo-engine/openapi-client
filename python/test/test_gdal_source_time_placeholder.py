@@ -37,18 +37,12 @@ class TestGdalSourceTimePlaceholder(unittest.TestCase):
         model = GdalSourceTimePlaceholder()  # noqa: E501
         if include_optional:
             return GdalSourceTimePlaceholder(
-                format = geoengine_openapi_client.models.date_time_parse_format.DateTimeParseFormat(
-                    fmt = '', 
-                    has_time = True, 
-                    has_tz = True, ),
+                format = '',
                 reference = 'start'
             )
         else:
             return GdalSourceTimePlaceholder(
-                format = geoengine_openapi_client.models.date_time_parse_format.DateTimeParseFormat(
-                    fmt = '', 
-                    has_time = True, 
-                    has_tz = True, ),
+                format = '',
                 reference = 'start',
         )
         """

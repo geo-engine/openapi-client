@@ -37,19 +37,13 @@ class TestOgrSourceTimeFormat(unittest.TestCase):
         model = OgrSourceTimeFormat()  # noqa: E501
         if include_optional:
             return OgrSourceTimeFormat(
-                custom_format = geoengine_openapi_client.models.date_time_parse_format.DateTimeParseFormat(
-                    fmt = '', 
-                    has_time = True, 
-                    has_tz = True, ),
+                custom_format = '',
                 format = 'auto',
                 timestamp_type = 'epochSeconds'
             )
         else:
             return OgrSourceTimeFormat(
-                custom_format = geoengine_openapi_client.models.date_time_parse_format.DateTimeParseFormat(
-                    fmt = '', 
-                    has_time = True, 
-                    has_tz = True, ),
+                custom_format = '',
                 format = 'auto',
                 timestamp_type = 'epochSeconds',
         )

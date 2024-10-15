@@ -11,7 +11,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DateTimeParseFormatFromJSON, DateTimeParseFormatToJSON, } from './DateTimeParseFormat';
 /**
  * @export
  */
@@ -35,7 +34,7 @@ export function OgrSourceTimeFormatCustomFromJSONTyped(json, ignoreDiscriminator
         return json;
     }
     return {
-        'customFormat': DateTimeParseFormatFromJSON(json['customFormat']),
+        'customFormat': json['customFormat'],
         'format': json['format'],
     };
 }
@@ -47,7 +46,7 @@ export function OgrSourceTimeFormatCustomToJSON(value) {
         return null;
     }
     return {
-        'customFormat': DateTimeParseFormatToJSON(value.customFormat),
+        'customFormat': value.customFormat,
         'format': value.format,
     };
 }

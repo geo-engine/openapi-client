@@ -14,7 +14,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GdalSourceTimePlaceholderToJSON = exports.GdalSourceTimePlaceholderFromJSONTyped = exports.GdalSourceTimePlaceholderFromJSON = exports.instanceOfGdalSourceTimePlaceholder = void 0;
-const DateTimeParseFormat_1 = require("./DateTimeParseFormat");
 const TimeReference_1 = require("./TimeReference");
 /**
  * Check if a given object implements the GdalSourceTimePlaceholder interface.
@@ -35,7 +34,7 @@ function GdalSourceTimePlaceholderFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'format': (0, DateTimeParseFormat_1.DateTimeParseFormatFromJSON)(json['format']),
+        'format': json['format'],
         'reference': (0, TimeReference_1.TimeReferenceFromJSON)(json['reference']),
     };
 }
@@ -48,7 +47,7 @@ function GdalSourceTimePlaceholderToJSON(value) {
         return null;
     }
     return {
-        'format': (0, DateTimeParseFormat_1.DateTimeParseFormatToJSON)(value.format),
+        'format': value.format,
         'reference': (0, TimeReference_1.TimeReferenceToJSON)(value.reference),
     };
 }

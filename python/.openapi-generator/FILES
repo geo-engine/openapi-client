@@ -36,7 +36,6 @@ docs/DatasetListing.md
 docs/DatasetResource.md
 docs/DatasetsApi.md
 docs/DateTime.md
-docs/DateTimeParseFormat.md
 docs/DerivedColor.md
 docs/DerivedNumber.md
 docs/DescribeCoverageRequest.md
@@ -224,6 +223,7 @@ docs/VectorDataType.md
 docs/VectorQueryRectangle.md
 docs/VectorResultDescriptor.md
 docs/Volume.md
+docs/VolumeFileLayersResponse.md
 docs/WcsBoundingbox.md
 docs/WcsService.md
 docs/WcsVersion.md
@@ -289,7 +289,6 @@ geoengine_openapi_client/models/dataset_definition.py
 geoengine_openapi_client/models/dataset_listing.py
 geoengine_openapi_client/models/dataset_resource.py
 geoengine_openapi_client/models/date_time.py
-geoengine_openapi_client/models/date_time_parse_format.py
 geoengine_openapi_client/models/derived_color.py
 geoengine_openapi_client/models/derived_number.py
 geoengine_openapi_client/models/describe_coverage_request.py
@@ -463,6 +462,7 @@ geoengine_openapi_client/models/vector_data_type.py
 geoengine_openapi_client/models/vector_query_rectangle.py
 geoengine_openapi_client/models/vector_result_descriptor.py
 geoengine_openapi_client/models/volume.py
+geoengine_openapi_client/models/volume_file_layers_response.py
 geoengine_openapi_client/models/wcs_boundingbox.py
 geoengine_openapi_client/models/wcs_service.py
 geoengine_openapi_client/models/wcs_version.py
@@ -514,7 +514,6 @@ test/test_dataset_listing.py
 test/test_dataset_resource.py
 test/test_datasets_api.py
 test/test_date_time.py
-test/test_date_time_parse_format.py
 test/test_derived_color.py
 test/test_derived_number.py
 test/test_describe_coverage_request.py
@@ -702,6 +701,7 @@ test/test_vector_data_type.py
 test/test_vector_query_rectangle.py
 test/test_vector_result_descriptor.py
 test/test_volume.py
+test/test_volume_file_layers_response.py
 test/test_wcs_boundingbox.py
 test/test_wcs_service.py
 test/test_wcs_version.py

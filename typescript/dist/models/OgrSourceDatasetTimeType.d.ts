@@ -23,9 +23,9 @@ export type OgrSourceDatasetTimeType = {
 } & OgrSourceDatasetTimeTypeNone | {
     type: 'start';
 } & OgrSourceDatasetTimeTypeStart | {
-    type: 'startDuration';
+    type: 'start+duration';
 } & OgrSourceDatasetTimeTypeStartDuration | {
-    type: 'startEnd';
+    type: 'start+end';
 } & OgrSourceDatasetTimeTypeStartEnd;
 export declare function OgrSourceDatasetTimeTypeFromJSON(json: any): OgrSourceDatasetTimeType;
 export declare function OgrSourceDatasetTimeTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDatasetTimeType;

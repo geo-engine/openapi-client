@@ -266,6 +266,44 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * List the layers of on uploaded file.
+     */
+    listVolumeFileLayersHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.volumeName === null || requestParameters.volumeName === undefined) {
+                throw new runtime.RequiredError('volumeName', 'Required parameter requestParameters.volumeName was null or undefined when calling listVolumeFileLayersHandler.');
+            }
+            if (requestParameters.fileName === null || requestParameters.fileName === undefined) {
+                throw new runtime.RequiredError('fileName', 'Required parameter requestParameters.fileName was null or undefined when calling listVolumeFileLayersHandler.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/dataset/volumes/{volume_name}/files/{file_name}/layers`.replace(`{${"volume_name"}}`, encodeURIComponent(String(requestParameters.volumeName))).replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters.fileName))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.VolumeFileLayersResponseFromJSON)(jsonValue));
+        });
+    }
+    /**
+     * List the layers of on uploaded file.
+     */
+    listVolumeFileLayersHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.listVolumeFileLayersHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
      * Lists available volumes.
      */
     listVolumesHandlerRaw(initOverrides) {

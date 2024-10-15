@@ -41,7 +41,7 @@ class TestOgrSourceDatasetTimeTypeStartEnd(unittest.TestCase):
                 end_format = None,
                 start_field = '',
                 start_format = None,
-                type = 'startEnd'
+                type = 'start+end'
             )
         else:
             return OgrSourceDatasetTimeTypeStartEnd(
@@ -49,7 +49,7 @@ class TestOgrSourceDatasetTimeTypeStartEnd(unittest.TestCase):
                 end_format = None,
                 start_field = '',
                 start_format = None,
-                type = 'startEnd',
+                type = 'start+end',
         )
         """
 

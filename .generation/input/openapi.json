@@ -536,6 +536,58 @@
         ]
       }
     },
+    "/dataset/volumes/{volume_name}/files/{file_name}/layers": {
+      "get": {
+        "tags": [
+          "Datasets"
+        ],
+        "summary": "List the layers of on uploaded file.",
+        "operationId": "list_volume_file_layers_handler",
+        "parameters": [
+          {
+            "name": "volume_name",
+            "in": "path",
+            "description": "Volume id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/VolumeName"
+            }
+          },
+          {
+            "name": "file_name",
+            "in": "path",
+            "description": "File name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VolumeFileLayersResponse"
+                },
+                "example": {
+                  "layers": [
+                    "layer1",
+                    "layer2"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
     "/dataset/{dataset}": {
       "get": {
         "tags": [
@@ -5636,23 +5688,7 @@
         }
       },
       "DateTimeParseFormat": {
-        "type": "object",
-        "required": [
-          "fmt",
-          "has_tz",
-          "has_time"
-        ],
-        "properties": {
-          "fmt": {
-            "type": "string"
-          },
-          "has_time": {
-            "type": "boolean"
-          },
-          "has_tz": {
-            "type": "boolean"
-          }
-        }
+        "type": "string"
       },
       "DerivedColor": {
         "type": "object",
@@ -6894,8 +6930,8 @@
           "mapping": {
             "none": "#/components/schemas/OgrSourceDatasetTimeTypeNone",
             "start": "#/components/schemas/OgrSourceDatasetTimeTypeStart",
-            "startDuration": "#/components/schemas/OgrSourceDatasetTimeTypeStartDuration",
-            "startEnd": "#/components/schemas/OgrSourceDatasetTimeTypeStartEnd"
+            "start+duration": "#/components/schemas/OgrSourceDatasetTimeTypeStartDuration",
+            "start+end": "#/components/schemas/OgrSourceDatasetTimeTypeStartEnd"
           }
         }
       },
@@ -6941,6 +6977,7 @@
       },
       "OgrSourceDatasetTimeTypeStartDuration": {
         "type": "object",
+        "title": "OgrSourceDatasetTimeTypeStartDuration",
         "required": [
           "startField",
           "startFormat",
@@ -6960,13 +6997,14 @@
           "type": {
             "type": "string",
             "enum": [
-              "startDuration"
+              "start+duration"
             ]
           }
         }
       },
       "OgrSourceDatasetTimeTypeStartEnd": {
         "type": "object",
+        "title": "OgrSourceDatasetTimeTypeStartEnd",
         "required": [
           "startField",
           "startFormat",
@@ -6990,7 +7028,7 @@
           "type": {
             "type": "string",
             "enum": [
-              "startEnd"
+              "start+end"
             ]
           }
         }
@@ -9311,6 +9349,20 @@
           "path": {
             "type": "string",
             "nullable": true
+          }
+        }
+      },
+      "VolumeFileLayersResponse": {
+        "type": "object",
+        "required": [
+          "layers"
+        ],
+        "properties": {
+          "layers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },

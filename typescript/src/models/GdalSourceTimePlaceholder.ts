@@ -13,12 +13,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { DateTimeParseFormat } from './DateTimeParseFormat';
-import {
-    DateTimeParseFormatFromJSON,
-    DateTimeParseFormatFromJSONTyped,
-    DateTimeParseFormatToJSON,
-} from './DateTimeParseFormat';
 import type { TimeReference } from './TimeReference';
 import {
     TimeReferenceFromJSON,
@@ -34,10 +28,10 @@ import {
 export interface GdalSourceTimePlaceholder {
     /**
      * 
-     * @type {DateTimeParseFormat}
+     * @type {string}
      * @memberof GdalSourceTimePlaceholder
      */
-    format: DateTimeParseFormat;
+    format: string;
     /**
      * 
      * @type {TimeReference}
@@ -67,7 +61,7 @@ export function GdalSourceTimePlaceholderFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'format': DateTimeParseFormatFromJSON(json['format']),
+        'format': json['format'],
         'reference': TimeReferenceFromJSON(json['reference']),
     };
 }
@@ -81,7 +75,7 @@ export function GdalSourceTimePlaceholderToJSON(value?: GdalSourceTimePlaceholde
     }
     return {
         
-        'format': DateTimeParseFormatToJSON(value.format),
+        'format': value.format,
         'reference': TimeReferenceToJSON(value.reference),
     };
 }

@@ -20,15 +20,14 @@ import json
 
 
 
-from pydantic import BaseModel, Field
-from geoengine_openapi_client.models.date_time_parse_format import DateTimeParseFormat
+from pydantic import BaseModel, Field, StrictStr
 from geoengine_openapi_client.models.time_reference import TimeReference
 
 class GdalSourceTimePlaceholder(BaseModel):
     """
     GdalSourceTimePlaceholder
     """
-    format: DateTimeParseFormat = Field(...)
+    format: StrictStr = Field(...)
     reference: TimeReference = Field(...)
     __properties = ["format", "reference"]
 
@@ -56,9 +55,6 @@ class GdalSourceTimePlaceholder(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of format
-        if self.format:
-            _dict['format'] = self.format.to_dict()
         return _dict
 
     @classmethod
@@ -71,7 +67,7 @@ class GdalSourceTimePlaceholder(BaseModel):
             return GdalSourceTimePlaceholder.parse_obj(obj)
 
         _obj = GdalSourceTimePlaceholder.parse_obj({
-            "format": DateTimeParseFormat.from_dict(obj.get("format")) if obj.get("format") is not None else None,
+            "format": obj.get("format"),
             "reference": obj.get("reference")
         })
         return _obj

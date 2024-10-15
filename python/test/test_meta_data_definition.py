@@ -78,10 +78,7 @@ class TestMetaDataDefinition(unittest.TestCase):
                     step = 0, ),
                 time_placeholders = {
                     'key' : geoengine_openapi_client.models.gdal_source_time_placeholder.GdalSourceTimePlaceholder(
-                        format = geoengine_openapi_client.models.date_time_parse_format.DateTimeParseFormat(
-                            fmt = '', 
-                            has_time = True, 
-                            has_tz = True, ), 
+                        format = '', 
                         reference = 'start', )
                     },
                 time = geoengine_openapi_client.models.time_interval.TimeInterval(
@@ -133,10 +130,7 @@ class TestMetaDataDefinition(unittest.TestCase):
                     step = 0, ),
                 time_placeholders = {
                     'key' : geoengine_openapi_client.models.gdal_source_time_placeholder.GdalSourceTimePlaceholder(
-                        format = geoengine_openapi_client.models.date_time_parse_format.DateTimeParseFormat(
-                            fmt = '', 
-                            has_time = True, 
-                            has_tz = True, ), 
+                        format = '', 
                         reference = 'start', )
                     },
                 band_offset = 0,

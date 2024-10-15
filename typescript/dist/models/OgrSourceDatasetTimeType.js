@@ -31,10 +31,10 @@ function OgrSourceDatasetTimeTypeFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, (0, OgrSourceDatasetTimeTypeNone_1.OgrSourceDatasetTimeTypeNoneFromJSONTyped)(json, true)), { type: 'none' });
         case 'start':
             return Object.assign(Object.assign({}, (0, OgrSourceDatasetTimeTypeStart_1.OgrSourceDatasetTimeTypeStartFromJSONTyped)(json, true)), { type: 'start' });
-        case 'startDuration':
-            return Object.assign(Object.assign({}, (0, OgrSourceDatasetTimeTypeStartDuration_1.OgrSourceDatasetTimeTypeStartDurationFromJSONTyped)(json, true)), { type: 'startDuration' });
-        case 'startEnd':
-            return Object.assign(Object.assign({}, (0, OgrSourceDatasetTimeTypeStartEnd_1.OgrSourceDatasetTimeTypeStartEndFromJSONTyped)(json, true)), { type: 'startEnd' });
+        case 'start+duration':
+            return Object.assign(Object.assign({}, (0, OgrSourceDatasetTimeTypeStartDuration_1.OgrSourceDatasetTimeTypeStartDurationFromJSONTyped)(json, true)), { type: 'start+duration' });
+        case 'start+end':
+            return Object.assign(Object.assign({}, (0, OgrSourceDatasetTimeTypeStartEnd_1.OgrSourceDatasetTimeTypeStartEndFromJSONTyped)(json, true)), { type: 'start+end' });
         default:
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${json['type']}'`);
     }
@@ -52,9 +52,9 @@ function OgrSourceDatasetTimeTypeToJSON(value) {
             return (0, OgrSourceDatasetTimeTypeNone_1.OgrSourceDatasetTimeTypeNoneToJSON)(value);
         case 'start':
             return (0, OgrSourceDatasetTimeTypeStart_1.OgrSourceDatasetTimeTypeStartToJSON)(value);
-        case 'startDuration':
+        case 'start+duration':
             return (0, OgrSourceDatasetTimeTypeStartDuration_1.OgrSourceDatasetTimeTypeStartDurationToJSON)(value);
-        case 'startEnd':
+        case 'start+end':
             return (0, OgrSourceDatasetTimeTypeStartEnd_1.OgrSourceDatasetTimeTypeStartEndToJSON)(value);
         default:
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${value['type']}'`);

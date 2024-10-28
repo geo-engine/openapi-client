@@ -948,8 +948,8 @@ class DatasetsApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def list_volume_file_layers_handler(self, volume_name : Annotated[StrictStr, Field(..., description="Volume id")], file_name : Annotated[StrictStr, Field(..., description="File name")], **kwargs) -> VolumeFileLayersResponse:  # noqa: E501
-        """List the layers of on uploaded file.  # noqa: E501
+    def list_volume_file_layers_handler(self, volume_name : Annotated[StrictStr, Field(..., description="Volume name")], file_name : Annotated[StrictStr, Field(..., description="File name")], **kwargs) -> VolumeFileLayersResponse:  # noqa: E501
+        """List the layers of a file in a volume.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -957,7 +957,7 @@ class DatasetsApi:
         >>> thread = api.list_volume_file_layers_handler(volume_name, file_name, async_req=True)
         >>> result = thread.get()
 
-        :param volume_name: Volume id (required)
+        :param volume_name: Volume name (required)
         :type volume_name: str
         :param file_name: File name (required)
         :type file_name: str
@@ -979,8 +979,8 @@ class DatasetsApi:
         return self.list_volume_file_layers_handler_with_http_info(volume_name, file_name, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_volume_file_layers_handler_with_http_info(self, volume_name : Annotated[StrictStr, Field(..., description="Volume id")], file_name : Annotated[StrictStr, Field(..., description="File name")], **kwargs) -> ApiResponse:  # noqa: E501
-        """List the layers of on uploaded file.  # noqa: E501
+    def list_volume_file_layers_handler_with_http_info(self, volume_name : Annotated[StrictStr, Field(..., description="Volume name")], file_name : Annotated[StrictStr, Field(..., description="File name")], **kwargs) -> ApiResponse:  # noqa: E501
+        """List the layers of a file in a volume.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -988,7 +988,7 @@ class DatasetsApi:
         >>> thread = api.list_volume_file_layers_handler_with_http_info(volume_name, file_name, async_req=True)
         >>> result = thread.get()
 
-        :param volume_name: Volume id (required)
+        :param volume_name: Volume name (required)
         :type volume_name: str
         :param file_name: File name (required)
         :type file_name: str

@@ -266,7 +266,7 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List the layers of on uploaded file.
+     * List the layers of a file in a volume.
      */
     listVolumeFileLayersHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -295,7 +295,7 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List the layers of on uploaded file.
+     * List the layers of a file in a volume.
      */
     listVolumeFileLayersHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {

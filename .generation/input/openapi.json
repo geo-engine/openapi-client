@@ -541,13 +541,13 @@
         "tags": [
           "Datasets"
         ],
-        "summary": "List the layers of on uploaded file.",
+        "summary": "List the layers of a file in a volume.",
         "operationId": "list_volume_file_layers_handler",
         "parameters": [
           {
             "name": "volume_name",
             "in": "path",
-            "description": "Volume id",
+            "description": "Volume name",
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/VolumeName"

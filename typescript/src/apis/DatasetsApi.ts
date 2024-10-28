@@ -390,7 +390,7 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the layers of on uploaded file.
+     * List the layers of a file in a volume.
      */
     async listVolumeFileLayersHandlerRaw(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VolumeFileLayersResponse>> {
         if (requestParameters.volumeName === null || requestParameters.volumeName === undefined) {
@@ -424,7 +424,7 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the layers of on uploaded file.
+     * List the layers of a file in a volume.
      */
     async listVolumeFileLayersHandler(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VolumeFileLayersResponse> {
         const response = await this.listVolumeFileLayersHandlerRaw(requestParameters, initOverrides);

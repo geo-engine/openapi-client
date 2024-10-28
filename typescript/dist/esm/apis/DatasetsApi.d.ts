@@ -111,11 +111,11 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      */
     listDatasetsHandler(requestParameters: ListDatasetsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DatasetListing>>;
     /**
-     * List the layers of on uploaded file.
+     * List the layers of a file in a volume.
      */
     listVolumeFileLayersHandlerRaw(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VolumeFileLayersResponse>>;
     /**
-     * List the layers of on uploaded file.
+     * List the layers of a file in a volume.
      */
     listVolumeFileLayersHandler(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VolumeFileLayersResponse>;
     /**

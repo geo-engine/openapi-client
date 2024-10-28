@@ -72,7 +72,7 @@ class TestDatasetsApi(unittest.TestCase):
     def test_list_volume_file_layers_handler(self) -> None:
         """Test case for list_volume_file_layers_handler
 
-        List the layers of on uploaded file.  # noqa: E501
+        List the layers of a file in a volume.  # noqa: E501
         """
         pass
 

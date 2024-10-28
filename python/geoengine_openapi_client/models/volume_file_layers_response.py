@@ -19,22 +19,15 @@ import re  # noqa: F401
 import json
 
 
+from typing import List
+from pydantic import BaseModel, Field, StrictStr, conlist
 
-from pydantic import BaseModel, Field, StrictStr, validator
-
-class OgrSourceDatasetTimeTypeNone(BaseModel):
+class VolumeFileLayersResponse(BaseModel):
     """
-    OgrSourceDatasetTimeTypeNone
+    VolumeFileLayersResponse
     """
-    type: StrictStr = Field(...)
-    __properties = ["type"]
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in ('none', 'start', 'start+end', 'start+duration'):
-            raise ValueError("must be one of enum values ('none', 'start', 'start+end', 'start+duration')")
-        return value
+    layers: conlist(StrictStr) = Field(...)
+    __properties = ["layers"]
 
     class Config:
         """Pydantic configuration"""
@@ -50,8 +43,8 @@ class OgrSourceDatasetTimeTypeNone(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> OgrSourceDatasetTimeTypeNone:
-        """Create an instance of OgrSourceDatasetTimeTypeNone from a JSON string"""
+    def from_json(cls, json_str: str) -> VolumeFileLayersResponse:
+        """Create an instance of VolumeFileLayersResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -63,16 +56,16 @@ class OgrSourceDatasetTimeTypeNone(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> OgrSourceDatasetTimeTypeNone:
-        """Create an instance of OgrSourceDatasetTimeTypeNone from a dict"""
+    def from_dict(cls, obj: dict) -> VolumeFileLayersResponse:
+        """Create an instance of VolumeFileLayersResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return OgrSourceDatasetTimeTypeNone.parse_obj(obj)
+            return VolumeFileLayersResponse.parse_obj(obj)
 
-        _obj = OgrSourceDatasetTimeTypeNone.parse_obj({
-            "type": obj.get("type")
+        _obj = VolumeFileLayersResponse.parse_obj({
+            "layers": obj.get("layers")
         })
         return _obj
 

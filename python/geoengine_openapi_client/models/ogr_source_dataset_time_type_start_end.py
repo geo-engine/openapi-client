@@ -37,8 +37,8 @@ class OgrSourceDatasetTimeTypeStartEnd(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('startEnd'):
-            raise ValueError("must be one of enum values ('startEnd')")
+        if value not in ('start+end'):
+            raise ValueError("must be one of enum values ('start+end')")
         return value
 
     class Config:

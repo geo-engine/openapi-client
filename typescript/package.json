@@ -1,6 +1,6 @@
 {
   "name": "@geoengine/openapi-client",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "OpenAPI client for @geoengine/openapi-client",
   "author": "OpenAPI-Generator",
   "repository": {

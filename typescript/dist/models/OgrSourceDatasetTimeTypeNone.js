@@ -20,8 +20,8 @@ exports.OgrSourceDatasetTimeTypeNoneToJSON = exports.OgrSourceDatasetTimeTypeNon
 exports.OgrSourceDatasetTimeTypeNoneTypeEnum = {
     None: 'none',
     Start: 'start',
-    StartEnd: 'startEnd',
-    StartDuration: 'startDuration'
+    Startend: 'start+end',
+    Startduration: 'start+duration'
 };
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeNone interface.

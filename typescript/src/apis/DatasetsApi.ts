@@ -29,6 +29,7 @@ import type {
   Symbology,
   UpdateDataset,
   Volume,
+  VolumeFileLayersResponse,
 } from '../models/index';
 import {
     AutoCreateDatasetFromJSON,
@@ -59,6 +60,8 @@ import {
     UpdateDatasetToJSON,
     VolumeFromJSON,
     VolumeToJSON,
+    VolumeFileLayersResponseFromJSON,
+    VolumeFileLayersResponseToJSON,
 } from '../models/index';
 
 export interface AutoCreateDatasetHandlerRequest {
@@ -87,6 +90,11 @@ export interface ListDatasetsHandlerRequest {
     limit: number;
     filter?: string | null;
     tags?: Array<string> | null;
+}
+
+export interface ListVolumeFileLayersHandlerRequest {
+    volumeName: string;
+    fileName: string;
 }
 
 export interface SuggestMetaDataHandlerRequest {
@@ -378,6 +386,48 @@ export class DatasetsApi extends runtime.BaseAPI {
      */
     async listDatasetsHandler(requestParameters: ListDatasetsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DatasetListing>> {
         const response = await this.listDatasetsHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List the layers of a file in a volume.
+     */
+    async listVolumeFileLayersHandlerRaw(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VolumeFileLayersResponse>> {
+        if (requestParameters.volumeName === null || requestParameters.volumeName === undefined) {
+            throw new runtime.RequiredError('volumeName','Required parameter requestParameters.volumeName was null or undefined when calling listVolumeFileLayersHandler.');
+        }
+
+        if (requestParameters.fileName === null || requestParameters.fileName === undefined) {
+            throw new runtime.RequiredError('fileName','Required parameter requestParameters.fileName was null or undefined when calling listVolumeFileLayersHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/dataset/volumes/{volume_name}/files/{file_name}/layers`.replace(`{${"volume_name"}}`, encodeURIComponent(String(requestParameters.volumeName))).replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters.fileName))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => VolumeFileLayersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List the layers of a file in a volume.
+     */
+    async listVolumeFileLayersHandler(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VolumeFileLayersResponse> {
+        const response = await this.listVolumeFileLayersHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

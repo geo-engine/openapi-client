@@ -89,10 +89,7 @@ class TestGdalMetaDataRegular(unittest.TestCase):
                     step = 0, ),
                 time_placeholders = {
                     'key' : geoengine_openapi_client.models.gdal_source_time_placeholder.GdalSourceTimePlaceholder(
-                        format = geoengine_openapi_client.models.date_time_parse_format.DateTimeParseFormat(
-                            fmt = '', 
-                            has_time = True, 
-                            has_tz = True, ), 
+                        format = '', 
                         reference = 'start', )
                     },
                 type = 'GdalMetaDataRegular'
@@ -150,10 +147,7 @@ class TestGdalMetaDataRegular(unittest.TestCase):
                     step = 0, ),
                 time_placeholders = {
                     'key' : geoengine_openapi_client.models.gdal_source_time_placeholder.GdalSourceTimePlaceholder(
-                        format = geoengine_openapi_client.models.date_time_parse_format.DateTimeParseFormat(
-                            fmt = '', 
-                            has_time = True, 
-                            has_tz = True, ), 
+                        format = '', 
                         reference = 'start', )
                     },
                 type = 'GdalMetaDataRegular',

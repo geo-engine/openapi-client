@@ -16,7 +16,7 @@ import { OgrSourceTimeFormatFromJSON, OgrSourceTimeFormatToJSON, } from './OgrSo
  * @export
  */
 export const OgrSourceDatasetTimeTypeStartDurationTypeEnum = {
-    StartDuration: 'startDuration'
+    Startduration: 'start+duration'
 };
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeStartDuration interface.

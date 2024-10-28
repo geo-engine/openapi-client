@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.12"
+__version__ = "0.0.13"
 
 # import apis into sdk package
 from geoengine_openapi_client.api.datasets_api import DatasetsApi
@@ -79,7 +79,6 @@ from geoengine_openapi_client.models.dataset_definition import DatasetDefinition
 from geoengine_openapi_client.models.dataset_listing import DatasetListing
 from geoengine_openapi_client.models.dataset_resource import DatasetResource
 from geoengine_openapi_client.models.date_time import DateTime
-from geoengine_openapi_client.models.date_time_parse_format import DateTimeParseFormat
 from geoengine_openapi_client.models.derived_color import DerivedColor
 from geoengine_openapi_client.models.derived_number import DerivedNumber
 from geoengine_openapi_client.models.describe_coverage_request import DescribeCoverageRequest
@@ -253,6 +252,7 @@ from geoengine_openapi_client.models.vector_data_type import VectorDataType
 from geoengine_openapi_client.models.vector_query_rectangle import VectorQueryRectangle
 from geoengine_openapi_client.models.vector_result_descriptor import VectorResultDescriptor
 from geoengine_openapi_client.models.volume import Volume
+from geoengine_openapi_client.models.volume_file_layers_response import VolumeFileLayersResponse
 from geoengine_openapi_client.models.wcs_boundingbox import WcsBoundingbox
 from geoengine_openapi_client.models.wcs_service import WcsService
 from geoengine_openapi_client.models.wcs_version import WcsVersion

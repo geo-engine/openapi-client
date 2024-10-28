@@ -12,34 +12,25 @@
  * Do not edit the class manually.
  */
 /**
- * @export
+ * Check if a given object implements the VolumeFileLayersResponse interface.
  */
-export const OgrSourceDatasetTimeTypeNoneTypeEnum = {
-    None: 'none',
-    Start: 'start',
-    Startend: 'start+end',
-    Startduration: 'start+duration'
-};
-/**
- * Check if a given object implements the OgrSourceDatasetTimeTypeNone interface.
- */
-export function instanceOfOgrSourceDatasetTimeTypeNone(value) {
+export function instanceOfVolumeFileLayersResponse(value) {
     let isInstance = true;
-    isInstance = isInstance && "type" in value;
+    isInstance = isInstance && "layers" in value;
     return isInstance;
 }
-export function OgrSourceDatasetTimeTypeNoneFromJSON(json) {
-    return OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, false);
+export function VolumeFileLayersResponseFromJSON(json) {
+    return VolumeFileLayersResponseFromJSONTyped(json, false);
 }
-export function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, ignoreDiscriminator) {
+export function VolumeFileLayersResponseFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
-        'type': json['type'],
+        'layers': json['layers'],
     };
 }
-export function OgrSourceDatasetTimeTypeNoneToJSON(value) {
+export function VolumeFileLayersResponseToJSON(value) {
     if (value === undefined) {
         return undefined;
     }
@@ -47,6 +38,6 @@ export function OgrSourceDatasetTimeTypeNoneToJSON(value) {
         return null;
     }
     return {
-        'type': value.type,
+        'layers': value.layers,
     };
 }

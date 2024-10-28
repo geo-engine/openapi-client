@@ -40,14 +40,14 @@ class TestOgrSourceDatasetTimeTypeStartDuration(unittest.TestCase):
                 duration_field = '',
                 start_field = '',
                 start_format = None,
-                type = 'startDuration'
+                type = 'start+duration'
             )
         else:
             return OgrSourceDatasetTimeTypeStartDuration(
                 duration_field = '',
                 start_field = '',
                 start_format = None,
-                type = 'startDuration',
+                type = 'start+duration',
         )
         """
 

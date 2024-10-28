@@ -45,7 +45,7 @@ export interface OgrSourceDatasetTimeTypeStartDuration {
  * @export
  */
 export declare const OgrSourceDatasetTimeTypeStartDurationTypeEnum: {
-    readonly StartDuration: "startDuration";
+    readonly Startduration: "start+duration";
 };
 export type OgrSourceDatasetTimeTypeStartDurationTypeEnum = typeof OgrSourceDatasetTimeTypeStartDurationTypeEnum[keyof typeof OgrSourceDatasetTimeTypeStartDurationTypeEnum];
 /**

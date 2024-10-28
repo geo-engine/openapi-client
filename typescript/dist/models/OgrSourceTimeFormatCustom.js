@@ -14,7 +14,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OgrSourceTimeFormatCustomToJSON = exports.OgrSourceTimeFormatCustomFromJSONTyped = exports.OgrSourceTimeFormatCustomFromJSON = exports.instanceOfOgrSourceTimeFormatCustom = exports.OgrSourceTimeFormatCustomFormatEnum = void 0;
-const DateTimeParseFormat_1 = require("./DateTimeParseFormat");
 /**
  * @export
  */
@@ -40,7 +39,7 @@ function OgrSourceTimeFormatCustomFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'customFormat': (0, DateTimeParseFormat_1.DateTimeParseFormatFromJSON)(json['customFormat']),
+        'customFormat': json['customFormat'],
         'format': json['format'],
     };
 }
@@ -53,7 +52,7 @@ function OgrSourceTimeFormatCustomToJSON(value) {
         return null;
     }
     return {
-        'customFormat': (0, DateTimeParseFormat_1.DateTimeParseFormatToJSON)(value.customFormat),
+        'customFormat': value.customFormat,
         'format': value.format,
     };
 }

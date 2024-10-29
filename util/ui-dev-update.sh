@@ -19,6 +19,11 @@ git add .
 
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
+if [ "$current_branch" == "main" ]; then
+    echo "Error: You are on the main branch. Exiting."
+    exit 1
+fi
+
 # Check if -a is passed as an argument
 if [[ "$*" == *"-a"* ]]; then
     # Use git commit --amend

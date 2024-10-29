@@ -1156,6 +1156,45 @@
       }
     },
     "/layerDb/collections/{collection}": {
+      "put": {
+        "tags": [
+          "Layers"
+        ],
+        "summary": "Update a collection",
+        "operationId": "update_collection",
+        "parameters": [
+          {
+            "name": "collection",
+            "in": "path",
+            "description": "Layer collection id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/LayerCollectionId"
+            },
+            "example": "05102bb3-a855-4a37-8a8a-30026a91fef1"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLayerCollection"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      },
       "delete": {
         "tags": [
           "Layers"
@@ -1403,6 +1442,75 @@
             "name": "collection",
             "in": "path",
             "description": "Layer collection id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/LayerId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
+    "/layerDb/layers/{layer}": {
+      "put": {
+        "tags": [
+          "Layers"
+        ],
+        "summary": "Update a layer",
+        "operationId": "update_layer",
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "description": "Layer id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/LayerId"
+            },
+            "example": "05102bb3-a855-4a37-8a8a-30026a91fef1"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLayer"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Layers"
+        ],
+        "summary": "Remove a collection",
+        "operationId": "remove_layer",
+        "parameters": [
+          {
+            "name": "layer",
+            "in": "path",
+            "description": "Layer id",
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/LayerId"
@@ -9022,6 +9130,72 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          }
+        }
+      },
+      "UpdateLayer": {
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "workflow"
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "example": "Example layer description"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "metadata used for loading the data",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string",
+            "example": "Example Layer"
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Property"
+            },
+            "description": "properties, for instance, to be rendered in the UI"
+          },
+          "symbology": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Symbology"
+              }
+            ],
+            "nullable": true
+          },
+          "workflow": {
+            "$ref": "#/components/schemas/Workflow"
+          }
+        }
+      },
+      "UpdateLayerCollection": {
+        "type": "object",
+        "required": [
+          "name",
+          "description"
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "example": "A description for an example collection"
+          },
+          "name": {
+            "type": "string",
+            "example": "Example Collection"
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Property"
             }
           }
         }

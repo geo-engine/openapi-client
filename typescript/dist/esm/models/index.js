@@ -192,6 +192,8 @@ export * from './TypedVectorResultDescriptor';
 export * from './UnitlessMeasurement';
 export * from './UnixTimeStampType';
 export * from './UpdateDataset';
+export * from './UpdateLayer';
+export * from './UpdateLayerCollection';
 export * from './UpdateProject';
 export * from './UpdateQuota';
 export * from './UploadFileLayersResponse';

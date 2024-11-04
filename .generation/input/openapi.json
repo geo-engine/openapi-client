@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "http://127.0.0.1:3030/api"
+      "url": "http://localhost:3030/api"
     }
   ],
   "paths": {
@@ -35,20 +35,20 @@
                   "$ref": "#/components/schemas/UserSession"
                 },
                 "example": {
-                  "created": "2021-04-26T13:47:10.579724800Z",
                   "id": "208fa24e-7a92-4f57-a3fe-d1177d9f18ad",
+                  "user": {
+                    "id": "5b4466d2-8bab-4ed8-a182-722af3c80958",
+                    "email": null,
+                    "realName": null
+                  },
+                  "created": "2021-04-26T13:47:10.579724800Z",
+                  "validUntil": "2021-04-26T14:47:10.579775400Z",
                   "project": null,
+                  "view": null,
                   "roles": [
                     "8a27e61f-cc4d-4d0b-ae8c-4f1c91d07f5a",
                     "fd8e87bf-515c-4f36-8da6-1a53702ff102"
-                  ],
-                  "user": {
-                    "email": null,
-                    "id": "5b4466d2-8bab-4ed8-a182-722af3c80958",
-                    "realName": null
-                  },
-                  "validUntil": "2021-04-26T14:47:10.579775400Z",
-                  "view": null
+                  ]
                 }
               }
             }
@@ -90,38 +90,38 @@
                       "upload": "420b06de-0a7e-45cb-9c1c-ea901b46ab69"
                     },
                     "definition": {
+                      "properties": {
+                        "name": "germany_border",
+                        "displayName": "Germany Border",
+                        "description": "The Outline of Germany",
+                        "sourceOperator": "OgrSource"
+                      },
                       "metaData": {
+                        "type": "OgrMetaData",
                         "loadingInfo": {
-                          "columns": {
-                            "bool": [],
-                            "datetime": [],
-                            "float": [],
-                            "int": [],
-                            "text": [],
-                            "x": "",
-                            "y": null
-                          },
-                          "dataType": "MultiPolygon",
                           "fileName": "germany_polygon.gpkg",
-                          "forceOgrTimeFilter": false,
                           "layerName": "test_germany",
-                          "onError": "ignore",
+                          "dataType": "MultiPolygon",
                           "time": {
                             "type": "none"
-                          }
+                          },
+                          "columns": {
+                            "x": "",
+                            "y": null,
+                            "text": [],
+                            "float": [],
+                            "int": [],
+                            "bool": [],
+                            "datetime": []
+                          },
+                          "forceOgrTimeFilter": false,
+                          "onError": "ignore"
                         },
                         "resultDescriptor": {
-                          "columns": {},
                           "dataType": "MultiPolygon",
-                          "spatialReference": "EPSG:4326"
-                        },
-                        "type": "OgrMetaData"
-                      },
-                      "properties": {
-                        "description": "The Outline of Germany",
-                        "displayName": "Germany Border",
-                        "name": "germany_border",
-                        "sourceOperator": "OgrSource"
+                          "spatialReference": "EPSG:4326",
+                          "columns": {}
+                        }
                       }
                     }
                   }
@@ -132,27 +132,36 @@
                       "upload": "f3bd61ef-d9ce-471c-89a1-46b5f7295886"
                     },
                     "definition": {
+                      "properties": {
+                        "name": "plain_data",
+                        "displayName": "Plain Data",
+                        "description": "Demo Dataset",
+                        "sourceOperator": "OgrSource"
+                      },
                       "metaData": {
+                        "type": "OgrMetaData",
                         "loadingInfo": {
+                          "fileName": "plain_data.csv",
+                          "layerName": "plain_data",
+                          "dataType": "Data",
+                          "time": {
+                            "type": "none"
+                          },
                           "columns": {
+                            "x": "",
+                            "y": null,
+                            "text": [],
                             "float": [],
                             "int": [
                               "a"
-                            ],
-                            "text": [],
-                            "x": "",
-                            "y": null
+                            ]
                           },
-                          "dataType": "Data",
-                          "fileName": "plain_data.csv",
                           "forceOgrTimeFilter": false,
-                          "layerName": "plain_data",
-                          "onError": "abort",
-                          "time": {
-                            "type": "none"
-                          }
+                          "onError": "abort"
                         },
                         "resultDescriptor": {
+                          "dataType": "Data",
+                          "spatialReference": "EPSG:4326",
                           "columns": {
                             "a": {
                               "dataType": "int",
@@ -160,17 +169,8 @@
                                 "type": "unitless"
                               }
                             }
-                          },
-                          "dataType": "Data",
-                          "spatialReference": "EPSG:4326"
-                        },
-                        "type": "OgrMetaData"
-                      },
-                      "properties": {
-                        "description": "Demo Dataset",
-                        "displayName": "Plain Data",
-                        "name": "plain_data",
-                        "sourceOperator": "OgrSource"
+                          }
+                        }
                       }
                     }
                   }
@@ -401,39 +401,39 @@
                 "example": {
                   "mainFile": "germany_polygon.gpkg",
                   "metaData": {
+                    "type": "OgrMetaData",
                     "loadingInfo": {
-                      "attributeQuery": null,
-                      "columns": {
-                        "bool": [],
-                        "datetime": [],
-                        "float": [],
-                        "formatSpecifics": null,
-                        "int": [],
-                        "rename": null,
-                        "text": [],
-                        "x": "",
-                        "y": null
-                      },
-                      "dataType": "MultiPolygon",
-                      "defaultGeometry": null,
                       "fileName": "upload/23c9ea9e-15d6-453b-a243-1390967a5669/germany_polygon.gpkg",
-                      "forceOgrSpatialFilter": false,
-                      "forceOgrTimeFilter": false,
                       "layerName": "test_germany",
-                      "onError": "ignore",
-                      "sqlQuery": null,
+                      "dataType": "MultiPolygon",
                       "time": {
                         "type": "none"
-                      }
+                      },
+                      "defaultGeometry": null,
+                      "columns": {
+                        "formatSpecifics": null,
+                        "x": "",
+                        "y": null,
+                        "int": [],
+                        "float": [],
+                        "text": [],
+                        "bool": [],
+                        "datetime": [],
+                        "rename": null
+                      },
+                      "forceOgrTimeFilter": false,
+                      "forceOgrSpatialFilter": false,
+                      "onError": "ignore",
+                      "sqlQuery": null,
+                      "attributeQuery": null
                     },
                     "resultDescriptor": {
-                      "bbox": null,
-                      "columns": {},
                       "dataType": "MultiPolygon",
                       "spatialReference": "EPSG:4326",
-                      "time": null
-                    },
-                    "type": "OgrMetaData"
+                      "columns": {},
+                      "time": null,
+                      "bbox": null
+                    }
                   }
                 }
               }
@@ -615,16 +615,16 @@
                   "$ref": "#/components/schemas/Dataset"
                 },
                 "example": {
-                  "description": "Boundaries of Germany",
                   "id": {
                     "internal": "9c874b9e-cea0-4553-b727-a13cb26ae4bb"
                   },
                   "name": "Germany",
+                  "description": "Boundaries of Germany",
                   "resultDescriptor": {
                     "vector": {
-                      "columns": {},
                       "dataType": "MultiPolygon",
-                      "spatialReference": "EPSG:4326"
+                      "spatialReference": "EPSG:4326",
+                      "columns": {}
                     }
                   },
                   "sourceOperator": "OgrSource"
@@ -1095,20 +1095,20 @@
                 },
                 "example": [
                   {
-                    "description": "Boundaries of Germany",
                     "id": {
                       "internal": "9c874b9e-cea0-4553-b727-a13cb26ae4bb"
                     },
                     "name": "Germany",
+                    "description": "Boundaries of Germany",
+                    "tags": [],
+                    "sourceOperator": "OgrSource",
                     "resultDescriptor": {
                       "vector": {
-                        "columns": {},
                         "dataType": "MultiPolygon",
-                        "spatialReference": "EPSG:4326"
+                        "spatialReference": "EPSG:4326",
+                        "columns": {}
                       }
-                    },
-                    "sourceOperator": "OgrSource",
-                    "tags": []
+                    }
                   }
                 ]
               }
@@ -1146,8 +1146,8 @@
                 "example": {
                   "buildDate": "2022-09-29",
                   "commitHash": "555dc6d84d3682c37490a145d53c5097d0b81b27",
-                  "features": "default",
-                  "version": "0.7.0"
+                  "version": "0.7.0",
+                  "features": "default"
                 }
               }
             }
@@ -1461,33 +1461,33 @@
                   "$ref": "#/components/schemas/LayerCollection"
                 },
                 "example": {
-                  "description": "All available Geo Engine layer providers",
-                  "entryLabel": null,
                   "id": {
-                    "collectionId": "f2424474-ef24-4c18-ab84-68592e12ce48",
-                    "providerId": "1c3b8042-300b-485c-95b5-0147d9dc068d"
+                    "providerId": "1c3b8042-300b-485c-95b5-0147d9dc068d",
+                    "collectionId": "f2424474-ef24-4c18-ab84-68592e12ce48"
                   },
+                  "name": "Layer Providers",
+                  "description": "All available Geo Engine layer providers",
                   "items": [
                     {
-                      "description": "Basic Layers for all Datasets",
+                      "type": "collection",
                       "id": {
-                        "collectionId": "546073b6-d535-4205-b601-99675c9f6dd7",
-                        "providerId": "ac50ed0d-c9a0-41f8-9ce8-35fc9e38299b"
+                        "providerId": "ac50ed0d-c9a0-41f8-9ce8-35fc9e38299b",
+                        "collectionId": "546073b6-d535-4205-b601-99675c9f6dd7"
                       },
                       "name": "Datasets",
-                      "type": "collection"
+                      "description": "Basic Layers for all Datasets"
                     },
                     {
-                      "description": "All available Geo Engine layers",
+                      "type": "collection",
                       "id": {
-                        "collectionId": "05102bb3-a855-4a37-8a8a-30026a91fef1",
-                        "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74"
+                        "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74",
+                        "collectionId": "05102bb3-a855-4a37-8a8a-30026a91fef1"
                       },
                       "name": "Layers",
-                      "type": "collection"
+                      "description": "All available Geo Engine layers"
                     }
                   ],
-                  "name": "Layer Providers",
+                  "entryLabel": null,
                   "properties": []
                 }
               }
@@ -1674,35 +1674,35 @@
                   "$ref": "#/components/schemas/LayerCollection"
                 },
                 "example": {
-                  "description": "All available Geo Engine layers",
-                  "entryLabel": null,
                   "id": {
-                    "collectionId": "05102bb3-a855-4a37-8a8a-30026a91fef1",
-                    "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74"
+                    "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74",
+                    "collectionId": "05102bb3-a855-4a37-8a8a-30026a91fef1"
                   },
+                  "name": "Layers",
+                  "description": "All available Geo Engine layers",
                   "items": [
                     {
-                      "description": "There is nothing here",
+                      "type": "collection",
                       "id": {
-                        "collectionId": "a29f77cc-51ce-466b-86ef-d0ab2170bc0a",
-                        "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74"
+                        "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74",
+                        "collectionId": "a29f77cc-51ce-466b-86ef-d0ab2170bc0a"
                       },
                       "name": "An empty collection",
-                      "properties": [],
-                      "type": "collection"
+                      "description": "There is nothing here",
+                      "properties": []
                     },
                     {
-                      "description": "Natural Earth Ports point filtered with Germany polygon",
+                      "type": "layer",
                       "id": {
-                        "layerId": "b75db46e-2b9a-4a86-b33f-bc06a73cd711",
-                        "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74"
+                        "providerId": "ce5e84db-cbf9-48a2-9a32-d4b7cc56ea74",
+                        "layerId": "b75db46e-2b9a-4a86-b33f-bc06a73cd711"
                       },
                       "name": "Ports in Germany",
-                      "properties": [],
-                      "type": "layer"
+                      "description": "Natural Earth Ports point filtered with Germany polygon",
+                      "properties": []
                     }
                   ],
-                  "name": "Layers",
+                  "entryLabel": null,
                   "properties": []
                 }
               }
@@ -1774,33 +1774,33 @@
                   "$ref": "#/components/schemas/LayerCollection"
                 },
                 "example": {
-                  "description": "Basic Layers for all Datasets",
-                  "entryLabel": null,
                   "id": {
-                    "collectionId": "546073b6-d535-4205-b601-99675c9f6dd7",
-                    "providerId": "ac50ed0d-c9a0-41f8-9ce8-35fc9e38299b"
+                    "providerId": "ac50ed0d-c9a0-41f8-9ce8-35fc9e38299b",
+                    "collectionId": "546073b6-d535-4205-b601-99675c9f6dd7"
                   },
+                  "name": "Datasets",
+                  "description": "Basic Layers for all Datasets",
                   "items": [
                     {
-                      "description": "Land Cover derived from MODIS/Terra+Aqua Land Cover",
+                      "type": "layer",
                       "id": {
-                        "layerId": "9ee3619e-d0f9-4ced-9c44-3d407c3aed69",
-                        "providerId": "ac50ed0d-c9a0-41f8-9ce8-35fc9e38299b"
+                        "providerId": "ac50ed0d-c9a0-41f8-9ce8-35fc9e38299b",
+                        "layerId": "9ee3619e-d0f9-4ced-9c44-3d407c3aed69"
                       },
                       "name": "Land Cover",
-                      "type": "layer"
+                      "description": "Land Cover derived from MODIS/Terra+Aqua Land Cover"
                     },
                     {
-                      "description": "NDVI data from MODIS",
+                      "type": "layer",
                       "id": {
-                        "layerId": "36574dc3-560a-4b09-9d22-d5945f2b8093",
-                        "providerId": "ac50ed0d-c9a0-41f8-9ce8-35fc9e38299b"
+                        "providerId": "ac50ed0d-c9a0-41f8-9ce8-35fc9e38299b",
+                        "layerId": "36574dc3-560a-4b09-9d22-d5945f2b8093"
                       },
                       "name": "NDVI",
-                      "type": "layer"
+                      "description": "NDVI data from MODIS"
                     }
                   ],
-                  "name": "Datasets",
+                  "entryLabel": null,
                   "properties": []
                 }
               }
@@ -1842,12 +1842,12 @@
                 "example": {
                   "listing": true,
                   "search": {
-                    "autocomplete": true,
-                    "filters": [],
                     "search_types": {
                       "fulltext": true,
                       "prefix": true
-                    }
+                    },
+                    "autocomplete": true,
+                    "filters": []
                   }
                 }
               }
@@ -1897,16 +1897,29 @@
                   "$ref": "#/components/schemas/Layer"
                 },
                 "example": {
-                  "description": "Land Cover derived from MODIS/Terra+Aqua Land Cover",
                   "id": {
-                    "layerId": "9ee3619e-d0f9-4ced-9c44-3d407c3aed69",
-                    "providerId": "ac50ed0d-c9a0-41f8-9ce8-35fc9e38299b"
+                    "providerId": "ac50ed0d-c9a0-41f8-9ce8-35fc9e38299b",
+                    "layerId": "9ee3619e-d0f9-4ced-9c44-3d407c3aed69"
                   },
-                  "metadata": {},
                   "name": "Land Cover",
-                  "properties": [],
+                  "description": "Land Cover derived from MODIS/Terra+Aqua Land Cover",
+                  "workflow": {
+                    "type": "Raster",
+                    "operator": {
+                      "type": "GdalSource",
+                      "params": {
+                        "data": {
+                          "type": "internal",
+                          "datasetId": "9ee3619e-d0f9-4ced-9c44-3d407c3aed69"
+                        }
+                      }
+                    }
+                  },
                   "symbology": {
+                    "type": "raster",
+                    "opacity": 1,
                     "colorizer": {
+                      "type": "palette",
                       "colors": {
                         "0": [
                           134,
@@ -1918,48 +1931,6 @@
                           30,
                           129,
                           62,
-                          255
-                        ],
-                        "10": [
-                          223,
-                          192,
-                          125,
-                          255
-                        ],
-                        "11": [
-                          66,
-                          128,
-                          189,
-                          255
-                        ],
-                        "12": [
-                          225,
-                          222,
-                          127,
-                          255
-                        ],
-                        "13": [
-                          253,
-                          2,
-                          0,
-                          255
-                        ],
-                        "14": [
-                          162,
-                          159,
-                          66,
-                          255
-                        ],
-                        "15": [
-                          255,
-                          255,
-                          255,
-                          255
-                        ],
-                        "16": [
-                          192,
-                          192,
-                          192,
                           255
                         ],
                         "2": [
@@ -2009,37 +1980,66 @@
                           221,
                           7,
                           255
+                        ],
+                        "10": [
+                          223,
+                          192,
+                          125,
+                          255
+                        ],
+                        "11": [
+                          66,
+                          128,
+                          189,
+                          255
+                        ],
+                        "12": [
+                          225,
+                          222,
+                          127,
+                          255
+                        ],
+                        "13": [
+                          253,
+                          2,
+                          0,
+                          255
+                        ],
+                        "14": [
+                          162,
+                          159,
+                          66,
+                          255
+                        ],
+                        "15": [
+                          255,
+                          255,
+                          255,
+                          255
+                        ],
+                        "16": [
+                          192,
+                          192,
+                          192,
+                          255
                         ]
                       },
-                      "defaultColor": [
-                        0,
-                        0,
-                        0,
-                        0
-                      ],
                       "noDataColor": [
                         0,
                         0,
                         0,
                         0
                       ],
-                      "type": "palette"
-                    },
-                    "opacity": 1,
-                    "type": "raster"
+                      "defaultColor": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ]
+                    }
                   },
-                  "workflow": {
-                    "operator": {
-                      "params": {
-                        "data": {
-                          "datasetId": "9ee3619e-d0f9-4ced-9c44-3d407c3aed69",
-                          "type": "internal"
-                        }
-                      },
-                      "type": "GdalSource"
-                    },
-                    "type": "Raster"
-                  }
+                  "properties": [],
+                  "metadata": {}
                 }
               }
             }
@@ -2166,20 +2166,20 @@
                   "$ref": "#/components/schemas/UserSession"
                 },
                 "example": {
-                  "created": "2021-04-26T13:47:10.579724800Z",
                   "id": "208fa24e-7a92-4f57-a3fe-d1177d9f18ad",
+                  "user": {
+                    "id": "5b4466d2-8bab-4ed8-a182-722af3c80958",
+                    "email": "foo@example.com",
+                    "realName": "Foo Bar"
+                  },
+                  "created": "2021-04-26T13:47:10.579724800Z",
+                  "validUntil": "2021-04-26T14:47:10.579775400Z",
                   "project": null,
+                  "view": null,
                   "roles": [
                     "fa5be363-bc0d-4bfa-85c7-ebb5cd9a8783",
                     "4e8081b6-8aa6-4275-af0c-2fa2da557d28"
-                  ],
-                  "user": {
-                    "email": "foo@example.com",
-                    "id": "5b4466d2-8bab-4ed8-a182-722af3c80958",
-                    "realName": "Foo Bar"
-                  },
-                  "validUntil": "2021-04-26T14:47:10.579775400Z",
-                  "view": null
+                  ]
                 }
               }
             }
@@ -2351,15 +2351,15 @@
                   "$ref": "#/components/schemas/UserSession"
                 },
                 "example": {
-                  "created": "2021-04-26T13:47:10.579724800Z",
                   "id": "208fa24e-7a92-4f57-a3fe-d1177d9f18ad",
-                  "project": null,
                   "user": {
-                    "email": "foo@bar.de",
                     "id": "5b4466d2-8bab-4ed8-a182-722af3c80958",
+                    "email": "foo@bar.de",
                     "realName": "Foo Bar"
                   },
+                  "created": "2021-04-26T13:47:10.579724800Z",
                   "validUntil": "2021-04-26T14:47:10.579775400Z",
+                  "project": null,
                   "view": null
                 }
               }
@@ -2382,12 +2382,12 @@
                 "$ref": "#/components/schemas/PermissionRequest"
               },
               "example": {
-                "permission": "Read",
                 "resource": {
-                  "id": "00000000-0000-0000-0000-000000000000",
-                  "type": "layer"
+                  "type": "layer",
+                  "id": "00000000-0000-0000-0000-000000000000"
                 },
-                "roleId": "00000000-0000-0000-0000-000000000000"
+                "roleId": "00000000-0000-0000-0000-000000000000",
+                "permission": "Read"
               }
             }
           },
@@ -2417,12 +2417,12 @@
                 "$ref": "#/components/schemas/PermissionRequest"
               },
               "example": {
-                "permission": "Read",
                 "resource": {
-                  "id": "00000000-0000-0000-0000-000000000000",
-                  "type": "layer"
+                  "type": "layer",
+                  "id": "00000000-0000-0000-0000-000000000000"
                 },
-                "roleId": "00000000-0000-0000-0000-000000000000"
+                "roleId": "00000000-0000-0000-0000-000000000000",
+                "permission": "Read"
               }
             }
           },
@@ -2575,6 +2575,8 @@
                   "$ref": "#/components/schemas/WrappedPlotOutput"
                 },
                 "example": {
+                  "outputFormat": "JsonPlain",
+                  "plotType": "Statistics",
                   "data": {
                     "a": {
                       "max": 2.0,
@@ -2584,9 +2586,7 @@
                       "validCount": 2,
                       "valueCount": 2
                     }
-                  },
-                  "outputFormat": "JsonPlain",
-                  "plotType": "Statistics"
+                  }
                 }
               }
             }
@@ -2655,7 +2655,18 @@
                   "$ref": "#/components/schemas/Project"
                 },
                 "example": {
+                  "id": "df4ad02e-0d61-4e29-90eb-dc1259c1f5b9",
+                  "version": {
+                    "id": "8f4b8683-f92c-4129-a16f-818aeeee484e",
+                    "changed": "2021-04-26T14:05:39.677390600Z",
+                    "author": "5b4466d2-8bab-4ed8-a182-722af3c80958"
+                  },
+                  "name": "Test",
+                  "description": "Foo",
+                  "layers": [],
+                  "plots": [],
                   "bounds": {
+                    "spatialReference": "EPSG:4326",
                     "boundingBox": {
                       "lowerLeftCoordinate": {
                         "x": 0.0,
@@ -2666,25 +2677,14 @@
                         "y": 1.0
                       }
                     },
-                    "spatialReference": "EPSG:4326",
                     "timeInterval": {
-                      "end": 1,
-                      "start": 0
+                      "start": 0,
+                      "end": 1
                     }
                   },
-                  "description": "Foo",
-                  "id": "df4ad02e-0d61-4e29-90eb-dc1259c1f5b9",
-                  "layers": [],
-                  "name": "Test",
-                  "plots": [],
                   "timeStep": {
                     "granularity": "months",
                     "step": 1
-                  },
-                  "version": {
-                    "author": "5b4466d2-8bab-4ed8-a182-722af3c80958",
-                    "changed": "2021-04-26T14:05:39.677390600Z",
-                    "id": "8f4b8683-f92c-4129-a16f-818aeeee484e"
                   }
                 }
               }
@@ -2796,14 +2796,14 @@
                 },
                 "example": [
                   {
-                    "author": "5b4466d2-8bab-4ed8-a182-722af3c80958",
+                    "id": "8f4b8683-f92c-4129-a16f-818aeeee484e",
                     "changed": "2021-04-26T14:05:39.677390600Z",
-                    "id": "8f4b8683-f92c-4129-a16f-818aeeee484e"
+                    "author": "5b4466d2-8bab-4ed8-a182-722af3c80958"
                   },
                   {
-                    "author": "5b4466d2-8bab-4ed8-a182-722af3c80958",
+                    "id": "ced041c7-4b1d-4d13-b076-94596be6a36a",
                     "changed": "2021-04-26T14:13:10.901912700Z",
-                    "id": "ced041c7-4b1d-4d13-b076-94596be6a36a"
+                    "author": "5b4466d2-8bab-4ed8-a182-722af3c80958"
                   }
                 ]
               }
@@ -2853,7 +2853,18 @@
                   "$ref": "#/components/schemas/Project"
                 },
                 "example": {
+                  "id": "df4ad02e-0d61-4e29-90eb-dc1259c1f5b9",
+                  "version": {
+                    "id": "8f4b8683-f92c-4129-a16f-818aeeee484e",
+                    "changed": "2021-04-26T14:05:39.677390600Z",
+                    "author": "5b4466d2-8bab-4ed8-a182-722af3c80958"
+                  },
+                  "name": "Test",
+                  "description": "Foo",
+                  "layers": [],
+                  "plots": [],
                   "bounds": {
+                    "spatialReference": "EPSG:4326",
                     "boundingBox": {
                       "lowerLeftCoordinate": {
                         "x": 0.0,
@@ -2864,25 +2875,14 @@
                         "y": 1.0
                       }
                     },
-                    "spatialReference": "EPSG:4326",
                     "timeInterval": {
-                      "end": 1,
-                      "start": 0
+                      "start": 0,
+                      "end": 1
                     }
                   },
-                  "description": "Foo",
-                  "id": "df4ad02e-0d61-4e29-90eb-dc1259c1f5b9",
-                  "layers": [],
-                  "name": "Test",
-                  "plots": [],
                   "timeStep": {
                     "granularity": "months",
                     "step": 1
-                  },
-                  "version": {
-                    "author": "5b4466d2-8bab-4ed8-a182-722af3c80958",
-                    "changed": "2021-04-26T14:05:39.677390600Z",
-                    "id": "8f4b8683-f92c-4129-a16f-818aeeee484e"
                   }
                 }
               }
@@ -2949,12 +2949,12 @@
                 },
                 "example": [
                   {
-                    "changed": "2021-04-26T14:03:51.984537900Z",
-                    "description": "Foo",
                     "id": "df4ad02e-0d61-4e29-90eb-dc1259c1f5b9",
-                    "layerNames": [],
                     "name": "Test",
-                    "plotNames": []
+                    "description": "Foo",
+                    "layerNames": [],
+                    "plotNames": [],
+                    "changed": "2021-04-26T14:03:51.984537900Z"
                   }
                 ]
               }
@@ -3192,20 +3192,20 @@
                   "$ref": "#/components/schemas/UserSession"
                 },
                 "example": {
-                  "created": "2021-04-26T13:47:10.579724800Z",
                   "id": "208fa24e-7a92-4f57-a3fe-d1177d9f18ad",
+                  "user": {
+                    "id": "5b4466d2-8bab-4ed8-a182-722af3c80958",
+                    "email": "foo@example.com",
+                    "realName": "Foo Bar"
+                  },
+                  "created": "2021-04-26T13:47:10.579724800Z",
+                  "validUntil": "2021-04-26T14:47:10.579775400Z",
                   "project": null,
+                  "view": null,
                   "roles": [
                     "fa5be363-bc0d-4bfa-85c7-ebb5cd9a8783",
                     "4e8081b6-8aa6-4275-af0c-2fa2da557d28"
-                  ],
-                  "user": {
-                    "email": "foo@example.com",
-                    "id": "5b4466d2-8bab-4ed8-a182-722af3c80958",
-                    "realName": "Foo Bar"
-                  },
-                  "validUntil": "2021-04-26T14:47:10.579775400Z",
-                  "view": null
+                  ]
                 }
               }
             }
@@ -3244,11 +3244,9 @@
                   "$ref": "#/components/schemas/SpatialReferenceSpecification"
                 },
                 "example": {
-                  "axisLabels": [
-                    "Geodetic longitude",
-                    "Geodetic latitude"
-                  ],
-                  "axisOrder": "northEast",
+                  "name": "WGS 84",
+                  "spatialReference": "EPSG:4326",
+                  "projString": "+proj=longlat +datum=WGS84 +no_defs +type=crs",
                   "extent": {
                     "lowerLeftCoordinate": {
                       "x": -180.0,
@@ -3259,9 +3257,11 @@
                       "y": 90.0
                     }
                   },
-                  "name": "WGS 84",
-                  "projString": "+proj=longlat +datum=WGS84 +no_defs +type=crs",
-                  "spatialReference": "EPSG:4326"
+                  "axisLabels": [
+                    "Geodetic longitude",
+                    "Geodetic latitude"
+                  ],
+                  "axisOrder": "northEast"
                 }
               }
             }
@@ -3331,13 +3331,13 @@
                 },
                 "example": [
                   {
+                    "taskId": "420b06de-0a7e-45cb-9c1c-ea901b46ab69",
+                    "status": "completed",
+                    "taskType": "dummy-task",
                     "description": "Demo",
                     "info": null,
-                    "status": "completed",
-                    "taskId": "420b06de-0a7e-45cb-9c1c-ea901b46ab69",
-                    "taskType": "dummy-task",
-                    "timeStarted": "2023-02-16T15:25:45.390Z",
-                    "timeTotal": "00:00:30"
+                    "timeTotal": "00:00:30",
+                    "timeStarted": "2023-02-16T15:25:45.390Z"
                   }
                 ]
               }
@@ -3417,13 +3417,13 @@
                   "$ref": "#/components/schemas/TaskStatus"
                 },
                 "example": {
-                  "description": "Demo",
-                  "estimatedTimeRemaining": "? (\u00b1 ?)",
-                  "info": null,
-                  "pctComplete": "0.00%",
                   "status": "running",
                   "taskType": "dummy-task",
-                  "timeStarted": "2023-02-16T15:25:45.390Z"
+                  "description": "Demo",
+                  "pctComplete": "0.00%",
+                  "timeStarted": "2023-02-16T15:25:45.390Z",
+                  "estimatedTimeRemaining": "? (\u00b1 ?)",
+                  "info": null
                 }
               }
             }
@@ -3626,18 +3626,18 @@
                 },
                 "example": [
                   {
-                    "individual": true,
                     "role": {
                       "id": "5b4466d2-8bab-4ed8-a182-722af3c80958",
                       "name": "foo@example.com"
-                    }
+                    },
+                    "individual": true
                   },
                   {
-                    "individual": false,
                     "role": {
                       "id": "fa5be363-bc0d-4bfa-85c7-ebb5cd9a8783",
                       "name": "Example role"
-                    }
+                    },
+                    "individual": false
                   }
                 ]
               }
@@ -4237,99 +4237,99 @@
                   "$ref": "#/components/schemas/GeoJson"
                 },
                 "example": {
+                  "type": "FeatureCollection",
                   "features": [
                     {
+                      "type": "Feature",
                       "geometry": {
+                        "type": "Point",
                         "coordinates": [
                           0.0,
                           0.1
-                        ],
-                        "type": "Point"
+                        ]
                       },
                       "properties": {
                         "foo": 0
                       },
-                      "type": "Feature",
                       "when": {
-                        "end": "1970-01-01T00:00:00.001+00:00",
                         "start": "1970-01-01T00:00:00+00:00",
+                        "end": "1970-01-01T00:00:00.001+00:00",
                         "type": "Interval"
                       }
                     },
                     {
+                      "type": "Feature",
                       "geometry": {
+                        "type": "Point",
                         "coordinates": [
                           1.0,
                           1.1
-                        ],
-                        "type": "Point"
+                        ]
                       },
                       "properties": {
                         "foo": null
                       },
-                      "type": "Feature",
                       "when": {
-                        "end": "1970-01-01T00:00:00.001+00:00",
                         "start": "1970-01-01T00:00:00+00:00",
+                        "end": "1970-01-01T00:00:00.001+00:00",
                         "type": "Interval"
                       }
                     },
                     {
+                      "type": "Feature",
                       "geometry": {
+                        "type": "Point",
                         "coordinates": [
                           2.0,
                           3.1
-                        ],
-                        "type": "Point"
+                        ]
                       },
                       "properties": {
                         "foo": 2
                       },
-                      "type": "Feature",
                       "when": {
-                        "end": "1970-01-01T00:00:00.001+00:00",
                         "start": "1970-01-01T00:00:00+00:00",
+                        "end": "1970-01-01T00:00:00.001+00:00",
                         "type": "Interval"
                       }
                     },
                     {
+                      "type": "Feature",
                       "geometry": {
+                        "type": "Point",
                         "coordinates": [
                           3.0,
                           3.1
-                        ],
-                        "type": "Point"
+                        ]
                       },
                       "properties": {
                         "foo": 3
                       },
-                      "type": "Feature",
                       "when": {
-                        "end": "1970-01-01T00:00:00.001+00:00",
                         "start": "1970-01-01T00:00:00+00:00",
+                        "end": "1970-01-01T00:00:00.001+00:00",
                         "type": "Interval"
                       }
                     },
                     {
+                      "type": "Feature",
                       "geometry": {
+                        "type": "Point",
                         "coordinates": [
                           4.0,
                           4.1
-                        ],
-                        "type": "Point"
+                        ]
                       },
                       "properties": {
                         "foo": 4
                       },
-                      "type": "Feature",
                       "when": {
-                        "end": "1970-01-01T00:00:00.001+00:00",
                         "start": "1970-01-01T00:00:00+00:00",
+                        "end": "1970-01-01T00:00:00.001+00:00",
                         "type": "Interval"
                       }
                     }
-                  ],
-                  "type": "FeatureCollection"
+                  ]
                 }
               }
             }
@@ -4688,7 +4688,9 @@
               "examples": {
                 "MockPointSource": {
                   "value": {
+                    "type": "Vector",
                     "operator": {
+                      "type": "MockPointSource",
                       "params": {
                         "points": [
                           {
@@ -4700,29 +4702,27 @@
                             "y": 1.1
                           }
                         ]
-                      },
-                      "type": "MockPointSource"
-                    },
-                    "type": "Vector"
+                      }
+                    }
                   }
                 },
                 "Statistics Plot": {
                   "value": {
+                    "type": "Plot",
                     "operator": {
+                      "type": "Statistics",
                       "params": {},
                       "sources": {
                         "source": {
+                          "type": "OgrSource",
                           "params": {
-                            "attributeFilters": null,
+                            "data": "ne_10m_ports",
                             "attributeProjection": null,
-                            "data": "ne_10m_ports"
-                          },
-                          "type": "OgrSource"
+                            "attributeFilters": null
+                          }
                         }
-                      },
-                      "type": "Statistics"
-                    },
-                    "type": "Plot"
+                      }
+                    }
                   }
                 }
               }
@@ -4769,7 +4769,9 @@
                   "$ref": "#/components/schemas/Workflow"
                 },
                 "example": {
+                  "type": "Vector",
                   "operator": {
+                    "type": "MockPointSource",
                     "params": {
                       "points": [
                         {
@@ -4781,10 +4783,8 @@
                           "y": 1.1
                         }
                       ]
-                    },
-                    "type": "MockPointSource"
-                  },
-                  "type": "Vector"
+                    }
+                  }
                 }
               }
             }
@@ -4854,10 +4854,10 @@
                   "$ref": "#/components/schemas/TypedResultDescriptor"
                 },
                 "example": {
-                  "columns": {},
+                  "type": "vector",
                   "dataType": "MultiPoint",
                   "spatialReference": "EPSG:4326",
-                  "type": "vector"
+                  "columns": {}
                 }
               }
             }
@@ -4902,8 +4902,8 @@
                 "example": [
                   {
                     "dataset": {
-                      "datasetId": "846a823a-6859-4b94-ab0a-c1de80f593d8",
-                      "type": "internal"
+                      "type": "internal",
+                      "datasetId": "846a823a-6859-4b94-ab0a-c1de80f593d8"
                     },
                     "provenance": {
                       "citation": "Author, Dataset Tile",
@@ -4913,8 +4913,8 @@
                   },
                   {
                     "dataset": {
-                      "datasetId": "453cd398-f271-437b-9c3d-7f42213ea30a",
-                      "type": "internal"
+                      "type": "internal",
+                      "datasetId": "453cd398-f271-437b-9c3d-7f42213ea30a"
                     },
                     "provenance": {
                       "citation": "Another Author, Another Dataset Tile",
@@ -5198,13 +5198,13 @@
           }
         },
         "example": {
-          "datasetDescription": "The Outline of Germany (auto detected format)",
+          "upload": "420b06de-0a7e-45cb-9c1c-ea901b46ab69",
           "datasetName": "Germany Border (auto)",
+          "datasetDescription": "The Outline of Germany (auto detected format)",
           "mainFile": "germany_polygon.gpkg",
           "tags": [
             "area"
-          ],
-          "upload": "420b06de-0a7e-45cb-9c1c-ea901b46ab69"
+          ]
         }
       },
       "AxisLabels": {
@@ -5358,9 +5358,6 @@
           },
           {
             "$ref": "#/components/schemas/PaletteColorizer"
-          },
-          {
-            "$ref": "#/components/schemas/RgbaColorizer"
           }
         ],
         "discriminator": {
@@ -5368,8 +5365,7 @@
           "mapping": {
             "linearGradient": "#/components/schemas/LinearGradient",
             "logarithmicGradient": "#/components/schemas/LogarithmicGradient",
-            "palette": "#/components/schemas/PaletteColorizer",
-            "rgba": "#/components/schemas/RgbaColorizer"
+            "palette": "#/components/schemas/PaletteColorizer"
           }
         }
       },
@@ -5454,7 +5450,10 @@
           }
         },
         "example": {
+          "name": "Test",
+          "description": "Foo",
           "bounds": {
+            "spatialReference": "EPSG:4326",
             "boundingBox": {
               "lowerLeftCoordinate": {
                 "x": 0,
@@ -5465,17 +5464,14 @@
                 "y": 1
               }
             },
-            "spatialReference": "EPSG:4326",
             "timeInterval": {
-              "end": 1,
-              "start": 0
+              "start": 0,
+              "end": 1
             }
           },
-          "description": "Foo",
-          "name": "Test",
           "timeStep": {
-            "granularity": "months",
-            "step": 1
+            "step": 1,
+            "granularity": "months"
           }
         }
       },
@@ -6687,6 +6683,96 @@
           }
         }
       },
+      "MultiBandRasterColorizer": {
+        "type": "object",
+        "title": "MultiBandRasterColorizer",
+        "required": [
+          "redBand",
+          "redMin",
+          "redMax",
+          "greenBand",
+          "greenMin",
+          "greenMax",
+          "blueBand",
+          "blueMin",
+          "blueMax",
+          "type"
+        ],
+        "properties": {
+          "blueBand": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The band index of the blue channel.",
+            "minimum": 0
+          },
+          "blueMax": {
+            "type": "number",
+            "format": "double",
+            "description": "The maximum value for the red channel."
+          },
+          "blueMin": {
+            "type": "number",
+            "format": "double",
+            "description": "The minimum value for the red channel."
+          },
+          "blueScale": {
+            "type": "number",
+            "format": "double",
+            "description": "A scaling factor for the blue channel between 0 and 1."
+          },
+          "greenBand": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The band index of the green channel.",
+            "minimum": 0
+          },
+          "greenMax": {
+            "type": "number",
+            "format": "double",
+            "description": "The maximum value for the red channel."
+          },
+          "greenMin": {
+            "type": "number",
+            "format": "double",
+            "description": "The minimum value for the red channel."
+          },
+          "greenScale": {
+            "type": "number",
+            "format": "double",
+            "description": "A scaling factor for the green channel between 0 and 1."
+          },
+          "noDataColor": {
+            "$ref": "#/components/schemas/RgbaColor"
+          },
+          "redBand": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The band index of the red channel.",
+            "minimum": 0
+          },
+          "redMax": {
+            "type": "number",
+            "format": "double",
+            "description": "The maximum value for the red channel."
+          },
+          "redMin": {
+            "type": "number",
+            "format": "double",
+            "description": "The minimum value for the red channel."
+          },
+          "redScale": {
+            "type": "number",
+            "format": "double",
+            "description": "A scaling factor for the red channel between 0 and 1."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "multiBand"
+            ]
+          }
+        }
+      },
       "MultiLineString": {
         "type": "object",
         "required": [
@@ -7760,11 +7846,15 @@
         "oneOf": [
           {
             "$ref": "#/components/schemas/SingleBandRasterColorizer"
+          },
+          {
+            "$ref": "#/components/schemas/MultiBandRasterColorizer"
           }
         ],
         "discriminator": {
           "propertyName": "type",
           "mapping": {
+            "multiBand": "#/components/schemas/MultiBandRasterColorizer",
             "singleBand": "#/components/schemas/SingleBandRasterColorizer"
           }
         }
@@ -7816,27 +7906,27 @@
           }
         },
         "example": {
-          "description": null,
-          "displayName": "a new dataset",
           "name": "foo",
+          "displayName": "a new dataset",
+          "description": null,
           "query": {
             "spatialBounds": {
-              "lowerRightCoordinate": {
-                "x": 50.0,
-                "y": 20.0
-              },
               "upperLeftCoordinate": {
                 "x": -10.0,
                 "y": 80.0
+              },
+              "lowerRightCoordinate": {
+                "x": 50.0,
+                "y": 20.0
               }
+            },
+            "timeInterval": {
+              "start": 1388534400000,
+              "end": 1388534401000
             },
             "spatialResolution": {
               "x": 0.1,
               "y": 0.1
-            },
-            "timeInterval": {
-              "end": 1388534401000,
-              "start": 1388534400000
             }
           }
         }
@@ -8124,21 +8214,6 @@
         },
         "maxItems": 4,
         "minItems": 4
-      },
-      "RgbaColorizer": {
-        "type": "object",
-        "title": "RgbaColorizer",
-        "required": [
-          "type"
-        ],
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "rgba"
-            ]
-          }
-        }
       },
       "Role": {
         "type": "object",
@@ -8811,6 +8886,7 @@
           }
         },
         "example": {
+          "type": "MockPointSource",
           "params": {
             "points": [
               {
@@ -8822,8 +8898,7 @@
                 "y": 1.1
               }
             ]
-          },
-          "type": "MockPointSource"
+          }
         }
       },
       "TypedPlotResultDescriptor": {
@@ -9076,24 +9151,62 @@
         },
         "example": {
           "id": "df4ad02e-0d61-4e29-90eb-dc1259c1f5b9",
+          "name": "TestUpdate",
           "layers": [
             {
+              "workflow": "100ee39c-761c-4218-9d85-ec861a8f3097",
               "name": "L1",
-              "symbology": {
-                "colorizer": {
-                  "type": "rgba"
-                },
-                "opacity": 1.0,
-                "type": "raster"
-              },
               "visibility": {
                 "data": true,
                 "legend": false
               },
-              "workflow": "100ee39c-761c-4218-9d85-ec861a8f3097"
+              "symbology": {
+                "type": "raster",
+                "opacity": 1.0,
+                "colorizer": {
+                  "type": "linearGradient",
+                  "breakpoints": [
+                    {
+                      "value": 1.0,
+                      "color": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    },
+                    {
+                      "value": 2.0,
+                      "color": [
+                        0,
+                        0,
+                        0,
+                        255
+                      ]
+                    }
+                  ],
+                  "noDataColor": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "overColor": [
+                    255,
+                    255,
+                    255,
+                    255
+                  ],
+                  "underColor": [
+                    0,
+                    0,
+                    0,
+                    255
+                  ]
+                }
+              }
             }
-          ],
-          "name": "TestUpdate"
+          ]
         }
       },
       "UpdateQuota": {

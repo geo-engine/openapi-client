@@ -17,7 +17,6 @@ exports.ColorizerToJSON = exports.ColorizerFromJSONTyped = exports.ColorizerFrom
 const LinearGradient_1 = require("./LinearGradient");
 const LogarithmicGradient_1 = require("./LogarithmicGradient");
 const PaletteColorizer_1 = require("./PaletteColorizer");
-const RgbaColorizer_1 = require("./RgbaColorizer");
 function ColorizerFromJSON(json) {
     return ColorizerFromJSONTyped(json, false);
 }
@@ -33,8 +32,6 @@ function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, (0, LogarithmicGradient_1.LogarithmicGradientFromJSONTyped)(json, true)), { type: 'logarithmicGradient' });
         case 'palette':
             return Object.assign(Object.assign({}, (0, PaletteColorizer_1.PaletteColorizerFromJSONTyped)(json, true)), { type: 'palette' });
-        case 'rgba':
-            return Object.assign(Object.assign({}, (0, RgbaColorizer_1.RgbaColorizerFromJSONTyped)(json, true)), { type: 'rgba' });
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${json['type']}'`);
     }
@@ -54,8 +51,6 @@ function ColorizerToJSON(value) {
             return (0, LogarithmicGradient_1.LogarithmicGradientToJSON)(value);
         case 'palette':
             return (0, PaletteColorizer_1.PaletteColorizerToJSON)(value);
-        case 'rgba':
-            return (0, RgbaColorizer_1.RgbaColorizerToJSON)(value);
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${value['type']}'`);
     }

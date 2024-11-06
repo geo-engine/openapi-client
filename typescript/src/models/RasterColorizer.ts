@@ -13,6 +13,13 @@
  */
 
 import {
+    MultiBandRasterColorizer,
+    instanceOfMultiBandRasterColorizer,
+    MultiBandRasterColorizerFromJSON,
+    MultiBandRasterColorizerFromJSONTyped,
+    MultiBandRasterColorizerToJSON,
+} from './MultiBandRasterColorizer';
+import {
     SingleBandRasterColorizer,
     instanceOfSingleBandRasterColorizer,
     SingleBandRasterColorizerFromJSON,
@@ -25,7 +32,7 @@ import {
  * 
  * @export
  */
-export type RasterColorizer = { type: 'singleBand' } & SingleBandRasterColorizer;
+export type RasterColorizer = { type: 'multiBand' } & MultiBandRasterColorizer | { type: 'singleBand' } & SingleBandRasterColorizer;
 
 export function RasterColorizerFromJSON(json: any): RasterColorizer {
     return RasterColorizerFromJSONTyped(json, false);
@@ -36,6 +43,8 @@ export function RasterColorizerFromJSONTyped(json: any, ignoreDiscriminator: boo
         return json;
     }
     switch (json['type']) {
+        case 'multiBand':
+            return {...MultiBandRasterColorizerFromJSONTyped(json, true), type: 'multiBand'};
         case 'singleBand':
             return {...SingleBandRasterColorizerFromJSONTyped(json, true), type: 'singleBand'};
         default:
@@ -51,6 +60,8 @@ export function RasterColorizerToJSON(value?: RasterColorizer | null): any {
         return null;
     }
     switch (value['type']) {
+        case 'multiBand':
+            return MultiBandRasterColorizerToJSON(value);
         case 'singleBand':
             return SingleBandRasterColorizerToJSON(value);
         default:

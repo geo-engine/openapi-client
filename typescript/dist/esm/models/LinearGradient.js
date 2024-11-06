@@ -18,8 +18,7 @@ import { BreakpointFromJSON, BreakpointToJSON, } from './Breakpoint';
 export const LinearGradientTypeEnum = {
     LinearGradient: 'linearGradient',
     LogarithmicGradient: 'logarithmicGradient',
-    Palette: 'palette',
-    Rgba: 'rgba'
+    Palette: 'palette'
 };
 /**
  * Check if a given object implements the LinearGradient interface.

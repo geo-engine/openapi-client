@@ -1,11 +1,11 @@
 {
   "name": "@geoengine/openapi-client",
-  "version": "0.0.13",
+  "version": "0.0.16",
   "description": "OpenAPI client for @geoengine/openapi-client",
   "author": "OpenAPI-Generator",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openapi-client/geo-engine.git"
+    "url": "https://github.com/geo-engine/openapi-client.git"
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",

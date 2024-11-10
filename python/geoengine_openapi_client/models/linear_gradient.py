@@ -37,8 +37,8 @@ class LinearGradient(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('linearGradient', 'logarithmicGradient', 'palette', 'rgba'):
-            raise ValueError("must be one of enum values ('linearGradient', 'logarithmicGradient', 'palette', 'rgba')")
+        if value not in ('linearGradient', 'logarithmicGradient', 'palette'):
+            raise ValueError("must be one of enum values ('linearGradient', 'logarithmicGradient', 'palette')")
         return value
 
     class Config:

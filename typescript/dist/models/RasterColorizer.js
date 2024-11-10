@@ -14,6 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RasterColorizerToJSON = exports.RasterColorizerFromJSONTyped = exports.RasterColorizerFromJSON = void 0;
+const MultiBandRasterColorizer_1 = require("./MultiBandRasterColorizer");
 const SingleBandRasterColorizer_1 = require("./SingleBandRasterColorizer");
 function RasterColorizerFromJSON(json) {
     return RasterColorizerFromJSONTyped(json, false);
@@ -24,6 +25,8 @@ function RasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     switch (json['type']) {
+        case 'multiBand':
+            return Object.assign(Object.assign({}, (0, MultiBandRasterColorizer_1.MultiBandRasterColorizerFromJSONTyped)(json, true)), { type: 'multiBand' });
         case 'singleBand':
             return Object.assign(Object.assign({}, (0, SingleBandRasterColorizer_1.SingleBandRasterColorizerFromJSONTyped)(json, true)), { type: 'singleBand' });
         default:
@@ -39,6 +42,8 @@ function RasterColorizerToJSON(value) {
         return null;
     }
     switch (value['type']) {
+        case 'multiBand':
+            return (0, MultiBandRasterColorizer_1.MultiBandRasterColorizerToJSON)(value);
         case 'singleBand':
             return (0, SingleBandRasterColorizer_1.SingleBandRasterColorizerToJSON)(value);
         default:

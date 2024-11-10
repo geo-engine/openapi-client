@@ -54,7 +54,6 @@ export declare const LinearGradientTypeEnum: {
     readonly LinearGradient: "linearGradient";
     readonly LogarithmicGradient: "logarithmicGradient";
     readonly Palette: "palette";
-    readonly Rgba: "rgba";
 };
 export type LinearGradientTypeEnum = typeof LinearGradientTypeEnum[keyof typeof LinearGradientTypeEnum];
 /**

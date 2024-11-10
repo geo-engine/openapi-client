@@ -117,13 +117,6 @@ class TestLayersApi(unittest.TestCase):
         """
         pass
 
-    def test_remove_layer(self) -> None:
-        """Test case for remove_layer
-
-        Remove a collection  # noqa: E501
-        """
-        pass
-
     def test_remove_layer_from_collection(self) -> None:
         """Test case for remove_layer_from_collection
 
@@ -135,20 +128,6 @@ class TestLayersApi(unittest.TestCase):
         """Test case for search_handler
 
         Searches the contents of the collection of the given provider  # noqa: E501
-        """
-        pass
-
-    def test_update_collection(self) -> None:
-        """Test case for update_collection
-
-        Update a collection  # noqa: E501
-        """
-        pass
-
-    def test_update_layer(self) -> None:
-        """Test case for update_layer
-
-        Update a layer  # noqa: E501
         """
         pass
 

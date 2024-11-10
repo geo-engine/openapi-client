@@ -87,6 +87,7 @@ docs/MlModel.md
 docs/MlModelMetadata.md
 docs/MockDatasetDataSourceLoadingInfo.md
 docs/MockMetaData.md
+docs/MultiBandRasterColorizer.md
 docs/MultiLineString.md
 docs/MultiPoint.md
 docs/MultiPolygon.md
@@ -159,7 +160,6 @@ docs/ResourceIdLayer.md
 docs/ResourceIdLayerCollection.md
 docs/ResourceIdMlModel.md
 docs/ResourceIdProject.md
-docs/RgbaColorizer.md
 docs/Role.md
 docs/RoleDescription.md
 docs/STRectangle.md
@@ -208,8 +208,6 @@ docs/TypedVectorResultDescriptor.md
 docs/UnitlessMeasurement.md
 docs/UnixTimeStampType.md
 docs/UpdateDataset.md
-docs/UpdateLayer.md
-docs/UpdateLayerCollection.md
 docs/UpdateProject.md
 docs/UpdateQuota.md
 docs/UploadFileLayersResponse.md
@@ -339,6 +337,7 @@ geoengine_openapi_client/models/ml_model.py
 geoengine_openapi_client/models/ml_model_metadata.py
 geoengine_openapi_client/models/mock_dataset_data_source_loading_info.py
 geoengine_openapi_client/models/mock_meta_data.py
+geoengine_openapi_client/models/multi_band_raster_colorizer.py
 geoengine_openapi_client/models/multi_line_string.py
 geoengine_openapi_client/models/multi_point.py
 geoengine_openapi_client/models/multi_polygon.py
@@ -405,7 +404,6 @@ geoengine_openapi_client/models/resource_id_layer.py
 geoengine_openapi_client/models/resource_id_layer_collection.py
 geoengine_openapi_client/models/resource_id_ml_model.py
 geoengine_openapi_client/models/resource_id_project.py
-geoengine_openapi_client/models/rgba_colorizer.py
 geoengine_openapi_client/models/role.py
 geoengine_openapi_client/models/role_description.py
 geoengine_openapi_client/models/search_capabilities.py
@@ -451,8 +449,6 @@ geoengine_openapi_client/models/typed_vector_result_descriptor.py
 geoengine_openapi_client/models/unitless_measurement.py
 geoengine_openapi_client/models/unix_time_stamp_type.py
 geoengine_openapi_client/models/update_dataset.py
-geoengine_openapi_client/models/update_layer.py
-geoengine_openapi_client/models/update_layer_collection.py
 geoengine_openapi_client/models/update_project.py
 geoengine_openapi_client/models/update_quota.py
 geoengine_openapi_client/models/upload_file_layers_response.py
@@ -569,6 +565,7 @@ test/test_ml_model.py
 test/test_ml_model_metadata.py
 test/test_mock_dataset_data_source_loading_info.py
 test/test_mock_meta_data.py
+test/test_multi_band_raster_colorizer.py
 test/test_multi_line_string.py
 test/test_multi_point.py
 test/test_multi_polygon.py
@@ -641,7 +638,6 @@ test/test_resource_id_layer.py
 test/test_resource_id_layer_collection.py
 test/test_resource_id_ml_model.py
 test/test_resource_id_project.py
-test/test_rgba_colorizer.py
 test/test_role.py
 test/test_role_description.py
 test/test_search_capabilities.py
@@ -690,8 +686,6 @@ test/test_typed_vector_result_descriptor.py
 test/test_unitless_measurement.py
 test/test_unix_time_stamp_type.py
 test/test_update_dataset.py
-test/test_update_layer.py
-test/test_update_layer_collection.py
 test/test_update_project.py
 test/test_update_quota.py
 test/test_upload_file_layers_response.py

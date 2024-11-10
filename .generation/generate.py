@@ -182,8 +182,8 @@ def generate_typescript_code(*, npm_name: str, npm_version: str, repository_url:
 
     parsed_url = urlsplit(repository_url)
     (url_path, _url_ext) = os.path.splitext(parsed_url.path)
-    (url_path, git_user_id) = os.path.split(url_path)
     (url_path, git_repo_id) = os.path.split(url_path)
+    (url_path, git_user_id) = os.path.split(url_path)
 
     subprocess.run(
         [

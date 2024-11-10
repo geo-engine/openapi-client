@@ -23,8 +23,6 @@ import type {
   ProviderCapabilities,
   SearchType,
   TaskResponse,
-  UpdateLayer,
-  UpdateLayerCollection,
 } from '../models/index';
 import {
     AddCollection200ResponseFromJSON,
@@ -43,10 +41,6 @@ import {
     SearchTypeToJSON,
     TaskResponseFromJSON,
     TaskResponseToJSON,
-    UpdateLayerFromJSON,
-    UpdateLayerToJSON,
-    UpdateLayerCollectionFromJSON,
-    UpdateLayerCollectionToJSON,
 } from '../models/index';
 
 export interface AddCollectionRequest {
@@ -118,10 +112,6 @@ export interface RemoveCollectionFromCollectionRequest {
     collection: string;
 }
 
-export interface RemoveLayerRequest {
-    layer: string;
-}
-
 export interface RemoveLayerFromCollectionRequest {
     collection: string;
     layer: string;
@@ -134,16 +124,6 @@ export interface SearchHandlerRequest {
     searchString: string;
     limit: number;
     offset: number;
-}
-
-export interface UpdateCollectionRequest {
-    collection: string;
-    updateLayerCollection: UpdateLayerCollection;
-}
-
-export interface UpdateLayerRequest {
-    layer: string;
-    updateLayer: UpdateLayer;
 }
 
 /**
@@ -746,43 +726,6 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a collection
-     */
-    async removeLayerRaw(requestParameters: RemoveLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.layer === null || requestParameters.layer === undefined) {
-            throw new runtime.RequiredError('layer','Required parameter requestParameters.layer was null or undefined when calling removeLayer.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("session_token", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/layerDb/layers/{layer}`.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Remove a collection
-     */
-    async removeLayer(requestParameters: RemoveLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.removeLayerRaw(requestParameters, initOverrides);
-    }
-
-    /**
      * Remove a layer from a collection
      */
     async removeLayerFromCollectionRaw(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -895,94 +838,6 @@ export class LayersApi extends runtime.BaseAPI {
     async searchHandler(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection> {
         const response = await this.searchHandlerRaw(requestParameters, initOverrides);
         return await response.value();
-    }
-
-    /**
-     * Update a collection
-     */
-    async updateCollectionRaw(requestParameters: UpdateCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.collection === null || requestParameters.collection === undefined) {
-            throw new runtime.RequiredError('collection','Required parameter requestParameters.collection was null or undefined when calling updateCollection.');
-        }
-
-        if (requestParameters.updateLayerCollection === null || requestParameters.updateLayerCollection === undefined) {
-            throw new runtime.RequiredError('updateLayerCollection','Required parameter requestParameters.updateLayerCollection was null or undefined when calling updateCollection.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("session_token", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/layerDb/collections/{collection}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateLayerCollectionToJSON(requestParameters.updateLayerCollection),
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Update a collection
-     */
-    async updateCollection(requestParameters: UpdateCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.updateCollectionRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Update a layer
-     */
-    async updateLayerRaw(requestParameters: UpdateLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.layer === null || requestParameters.layer === undefined) {
-            throw new runtime.RequiredError('layer','Required parameter requestParameters.layer was null or undefined when calling updateLayer.');
-        }
-
-        if (requestParameters.updateLayer === null || requestParameters.updateLayer === undefined) {
-            throw new runtime.RequiredError('updateLayer','Required parameter requestParameters.updateLayer was null or undefined when calling updateLayer.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("session_token", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/layerDb/layers/{layer}`.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateLayerToJSON(requestParameters.updateLayer),
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Update a layer
-     */
-    async updateLayer(requestParameters: UpdateLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.updateLayerRaw(requestParameters, initOverrides);
     }
 
 }

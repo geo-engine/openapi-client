@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.16"
+__version__ = "0.0.17"
 
 # import apis into sdk package
 from geoengine_openapi_client.api.datasets_api import DatasetsApi
@@ -239,6 +239,8 @@ from geoengine_openapi_client.models.typed_vector_result_descriptor import Typed
 from geoengine_openapi_client.models.unitless_measurement import UnitlessMeasurement
 from geoengine_openapi_client.models.unix_time_stamp_type import UnixTimeStampType
 from geoengine_openapi_client.models.update_dataset import UpdateDataset
+from geoengine_openapi_client.models.update_layer import UpdateLayer
+from geoengine_openapi_client.models.update_layer_collection import UpdateLayerCollection
 from geoengine_openapi_client.models.update_project import UpdateProject
 from geoengine_openapi_client.models.update_quota import UpdateQuota
 from geoengine_openapi_client.models.upload_file_layers_response import UploadFileLayersResponse

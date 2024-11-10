@@ -16,7 +16,8 @@ import { ColorizerFromJSON, ColorizerToJSON, } from './Colorizer';
  * @export
  */
 export const SingleBandRasterColorizerTypeEnum = {
-    SingleBand: 'singleBand'
+    SingleBand: 'singleBand',
+    MultiBand: 'multiBand'
 };
 /**
  * Check if a given object implements the SingleBandRasterColorizer interface.

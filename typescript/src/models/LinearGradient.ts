@@ -65,8 +65,7 @@ export interface LinearGradient {
 export const LinearGradientTypeEnum = {
     LinearGradient: 'linearGradient',
     LogarithmicGradient: 'logarithmicGradient',
-    Palette: 'palette',
-    Rgba: 'rgba'
+    Palette: 'palette'
 } as const;
 export type LinearGradientTypeEnum = typeof LinearGradientTypeEnum[keyof typeof LinearGradientTypeEnum];
 

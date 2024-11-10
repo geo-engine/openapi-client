@@ -558,40 +558,6 @@ class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Remove a collection
-     */
-    removeLayerRaw(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.layer === null || requestParameters.layer === undefined) {
-                throw new runtime.RequiredError('layer', 'Required parameter requestParameters.layer was null or undefined when calling removeLayer.');
-            }
-            const queryParameters = {};
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("session_token", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/layerDb/layers/{layer}`.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
-                method: 'DELETE',
-                headers: headerParameters,
-                query: queryParameters,
-            }, initOverrides);
-            return new runtime.VoidApiResponse(response);
-        });
-    }
-    /**
-     * Remove a collection
-     */
-    removeLayer(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.removeLayerRaw(requestParameters, initOverrides);
-        });
-    }
-    /**
      * Remove a layer from a collection
      */
     removeLayerFromCollectionRaw(requestParameters, initOverrides) {
@@ -688,84 +654,6 @@ class LayersApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.searchHandlerRaw(requestParameters, initOverrides);
             return yield response.value();
-        });
-    }
-    /**
-     * Update a collection
-     */
-    updateCollectionRaw(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling updateCollection.');
-            }
-            if (requestParameters.updateLayerCollection === null || requestParameters.updateLayerCollection === undefined) {
-                throw new runtime.RequiredError('updateLayerCollection', 'Required parameter requestParameters.updateLayerCollection was null or undefined when calling updateCollection.');
-            }
-            const queryParameters = {};
-            const headerParameters = {};
-            headerParameters['Content-Type'] = 'application/json';
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("session_token", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/layerDb/collections/{collection}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
-                method: 'PUT',
-                headers: headerParameters,
-                query: queryParameters,
-                body: (0, index_1.UpdateLayerCollectionToJSON)(requestParameters.updateLayerCollection),
-            }, initOverrides);
-            return new runtime.VoidApiResponse(response);
-        });
-    }
-    /**
-     * Update a collection
-     */
-    updateCollection(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.updateCollectionRaw(requestParameters, initOverrides);
-        });
-    }
-    /**
-     * Update a layer
-     */
-    updateLayerRaw(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.layer === null || requestParameters.layer === undefined) {
-                throw new runtime.RequiredError('layer', 'Required parameter requestParameters.layer was null or undefined when calling updateLayer.');
-            }
-            if (requestParameters.updateLayer === null || requestParameters.updateLayer === undefined) {
-                throw new runtime.RequiredError('updateLayer', 'Required parameter requestParameters.updateLayer was null or undefined when calling updateLayer.');
-            }
-            const queryParameters = {};
-            const headerParameters = {};
-            headerParameters['Content-Type'] = 'application/json';
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("session_token", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            const response = yield this.request({
-                path: `/layerDb/layers/{layer}`.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
-                method: 'PUT',
-                headers: headerParameters,
-                query: queryParameters,
-                body: (0, index_1.UpdateLayerToJSON)(requestParameters.updateLayer),
-            }, initOverrides);
-            return new runtime.VoidApiResponse(response);
-        });
-    }
-    /**
-     * Update a layer
-     */
-    updateLayer(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.updateLayerRaw(requestParameters, initOverrides);
         });
     }
 }

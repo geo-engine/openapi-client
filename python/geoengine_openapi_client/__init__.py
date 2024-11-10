@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.15"
+__version__ = "0.0.16"
 
 # import apis into sdk package
 from geoengine_openapi_client.api.datasets_api import DatasetsApi
@@ -127,6 +127,7 @@ from geoengine_openapi_client.models.ml_model import MlModel
 from geoengine_openapi_client.models.ml_model_metadata import MlModelMetadata
 from geoengine_openapi_client.models.mock_dataset_data_source_loading_info import MockDatasetDataSourceLoadingInfo
 from geoengine_openapi_client.models.mock_meta_data import MockMetaData
+from geoengine_openapi_client.models.multi_band_raster_colorizer import MultiBandRasterColorizer
 from geoengine_openapi_client.models.multi_line_string import MultiLineString
 from geoengine_openapi_client.models.multi_point import MultiPoint
 from geoengine_openapi_client.models.multi_polygon import MultiPolygon
@@ -193,7 +194,6 @@ from geoengine_openapi_client.models.resource_id_layer import ResourceIdLayer
 from geoengine_openapi_client.models.resource_id_layer_collection import ResourceIdLayerCollection
 from geoengine_openapi_client.models.resource_id_ml_model import ResourceIdMlModel
 from geoengine_openapi_client.models.resource_id_project import ResourceIdProject
-from geoengine_openapi_client.models.rgba_colorizer import RgbaColorizer
 from geoengine_openapi_client.models.role import Role
 from geoengine_openapi_client.models.role_description import RoleDescription
 from geoengine_openapi_client.models.st_rectangle import STRectangle
@@ -239,8 +239,6 @@ from geoengine_openapi_client.models.typed_vector_result_descriptor import Typed
 from geoengine_openapi_client.models.unitless_measurement import UnitlessMeasurement
 from geoengine_openapi_client.models.unix_time_stamp_type import UnixTimeStampType
 from geoengine_openapi_client.models.update_dataset import UpdateDataset
-from geoengine_openapi_client.models.update_layer import UpdateLayer
-from geoengine_openapi_client.models.update_layer_collection import UpdateLayerCollection
 from geoengine_openapi_client.models.update_project import UpdateProject
 from geoengine_openapi_client.models.update_quota import UpdateQuota
 from geoengine_openapi_client.models.upload_file_layers_response import UploadFileLayersResponse

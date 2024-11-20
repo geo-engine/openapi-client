@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   AddCollection200Response,
   AddRole,
+  ComputationQuota,
   Quota,
   RoleDescription,
   UpdateQuota,
@@ -26,6 +27,8 @@ import {
     AddCollection200ResponseToJSON,
     AddRoleFromJSON,
     AddRoleToJSON,
+    ComputationQuotaFromJSON,
+    ComputationQuotaToJSON,
     QuotaFromJSON,
     QuotaToJSON,
     RoleDescriptionFromJSON,
@@ -41,6 +44,11 @@ export interface AddRoleHandlerRequest {
 export interface AssignRoleHandlerRequest {
     user: string;
     role: string;
+}
+
+export interface ComputationsQuotaHandlerRequest {
+    workflow: string;
+    limit: number;
 }
 
 export interface GetRoleByNameHandlerRequest {
@@ -154,6 +162,56 @@ export class UserApi extends runtime.BaseAPI {
      */
     async assignRoleHandler(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.assignRoleHandlerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Retrieves the quota used by computations
+     */
+    async computationsQuotaHandlerRaw(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ComputationQuota>>> {
+        if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
+            throw new runtime.RequiredError('workflow','Required parameter requestParameters.workflow was null or undefined when calling computationsQuotaHandler.');
+        }
+
+        if (requestParameters.limit === null || requestParameters.limit === undefined) {
+            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling computationsQuotaHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.workflow !== undefined) {
+            queryParameters['workflow'] = requestParameters.workflow;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/quota/computations`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ComputationQuotaFromJSON));
+    }
+
+    /**
+     * Retrieves the quota used by computations
+     */
+    async computationsQuotaHandler(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ComputationQuota>> {
+        const response = await this.computationsQuotaHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

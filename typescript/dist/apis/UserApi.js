@@ -109,6 +109,50 @@ class UserApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Retrieves the quota used by computations
+     */
+    computationsQuotaHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
+                throw new runtime.RequiredError('workflow', 'Required parameter requestParameters.workflow was null or undefined when calling computationsQuotaHandler.');
+            }
+            if (requestParameters.limit === null || requestParameters.limit === undefined) {
+                throw new runtime.RequiredError('limit', 'Required parameter requestParameters.limit was null or undefined when calling computationsQuotaHandler.');
+            }
+            const queryParameters = {};
+            if (requestParameters.workflow !== undefined) {
+                queryParameters['workflow'] = requestParameters.workflow;
+            }
+            if (requestParameters.limit !== undefined) {
+                queryParameters['limit'] = requestParameters.limit;
+            }
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/quota/computations`,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(index_1.ComputationQuotaFromJSON));
+        });
+    }
+    /**
+     * Retrieves the quota used by computations
+     */
+    computationsQuotaHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.computationsQuotaHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
      * Get role by name
      */
     getRoleByNameHandlerRaw(requestParameters, initOverrides) {

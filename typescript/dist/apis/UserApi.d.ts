@@ -10,13 +10,17 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AddCollection200Response, AddRole, Quota, RoleDescription, UpdateQuota } from '../models/index';
+import type { AddCollection200Response, AddRole, ComputationQuota, Quota, RoleDescription, UpdateQuota } from '../models/index';
 export interface AddRoleHandlerRequest {
     addRole: AddRole;
 }
 export interface AssignRoleHandlerRequest {
     user: string;
     role: string;
+}
+export interface ComputationsQuotaHandlerRequest {
+    workflow: string;
+    limit: number;
 }
 export interface GetRoleByNameHandlerRequest {
     name: string;
@@ -55,6 +59,14 @@ export declare class UserApi extends runtime.BaseAPI {
      * Assign a role to a user. Requires admin privilige.
      */
     assignRoleHandler(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Retrieves the quota used by computations
+     */
+    computationsQuotaHandlerRaw(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ComputationQuota>>>;
+    /**
+     * Retrieves the quota used by computations
+     */
+    computationsQuotaHandler(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ComputationQuota>>;
     /**
      * Get role by name
      */

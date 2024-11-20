@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3030/api"
+      "url": "http://127.0.0.1:3030/api"
     }
   ],
   "paths": {
@@ -3106,6 +3106,54 @@
         ]
       }
     },
+    "/quota/computations": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves the quota used by computations",
+        "operationId": "computations_quota_handler",
+        "parameters": [
+          {
+            "name": "workflow",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/WorkflowId"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The quota used by computations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ComputationQuota"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
     "/quotas/{user}": {
       "get": {
         "tags": [
@@ -5477,6 +5525,35 @@
           }
         }
       },
+      "ComputationQuota": {
+        "type": "object",
+        "required": [
+          "timestamp",
+          "computationId",
+          "workflowId",
+          "operators"
+        ],
+        "properties": {
+          "computationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "operators": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OperatorQuota"
+            }
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "workflowId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
       "ContinuousMeasurement": {
         "type": "object",
         "required": [
@@ -7375,6 +7452,23 @@
           },
           "timestampType": {
             "$ref": "#/components/schemas/UnixTimeStampType"
+          }
+        }
+      },
+      "OperatorQuota": {
+        "type": "object",
+        "required": [
+          "operatorPath",
+          "count"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "operatorPath": {
+            "type": "string"
           }
         }
       },

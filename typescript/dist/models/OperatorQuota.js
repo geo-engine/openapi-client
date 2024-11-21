@@ -19,9 +19,9 @@ exports.OperatorQuotaToJSON = exports.OperatorQuotaFromJSONTyped = exports.Opera
  */
 function instanceOfOperatorQuota(value) {
     let isInstance = true;
-    isInstance = isInstance && "bla" in value;
-    isInstance = isInstance && "blub" in value;
     isInstance = isInstance && "count" in value;
+    isInstance = isInstance && "operatorName" in value;
+    isInstance = isInstance && "operatorPath" in value;
     return isInstance;
 }
 exports.instanceOfOperatorQuota = instanceOfOperatorQuota;
@@ -34,9 +34,9 @@ function OperatorQuotaFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'bla': json['bla'],
-        'blub': json['blub'],
         'count': json['count'],
+        'operatorName': json['operatorName'],
+        'operatorPath': json['operatorPath'],
     };
 }
 exports.OperatorQuotaFromJSONTyped = OperatorQuotaFromJSONTyped;
@@ -48,9 +48,9 @@ function OperatorQuotaToJSON(value) {
         return null;
     }
     return {
-        'bla': value.bla,
-        'blub': value.blub,
         'count': value.count,
+        'operatorName': value.operatorName,
+        'operatorPath': value.operatorPath,
     };
 }
 exports.OperatorQuotaToJSON = OperatorQuotaToJSON;

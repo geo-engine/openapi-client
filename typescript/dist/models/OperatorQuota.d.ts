@@ -17,22 +17,22 @@
 export interface OperatorQuota {
     /**
      *
-     * @type {string}
-     * @memberof OperatorQuota
-     */
-    bla: string;
-    /**
-     *
-     * @type {string}
-     * @memberof OperatorQuota
-     */
-    blub: string;
-    /**
-     *
      * @type {number}
      * @memberof OperatorQuota
      */
     count: number;
+    /**
+     *
+     * @type {string}
+     * @memberof OperatorQuota
+     */
+    operatorName: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OperatorQuota
+     */
+    operatorPath: string;
 }
 /**
  * Check if a given object implements the OperatorQuota interface.

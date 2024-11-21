@@ -40,9 +40,9 @@ class TestComputationQuota(unittest.TestCase):
                 computation_id = '',
                 operators = [
                     geoengine_openapi_client.models.operator_quota.OperatorQuota(
-                        bla = '', 
-                        blub = '', 
-                        count = 0, )
+                        count = 0, 
+                        operator_name = '', 
+                        operator_path = '', )
                     ],
                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 workflow_id = ''
@@ -52,9 +52,9 @@ class TestComputationQuota(unittest.TestCase):
                 computation_id = '',
                 operators = [
                     geoengine_openapi_client.models.operator_quota.OperatorQuota(
-                        bla = '', 
-                        blub = '', 
-                        count = 0, )
+                        count = 0, 
+                        operator_name = '', 
+                        operator_path = '', )
                     ],
                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 workflow_id = '',

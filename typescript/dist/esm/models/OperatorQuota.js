@@ -16,8 +16,9 @@
  */
 export function instanceOfOperatorQuota(value) {
     let isInstance = true;
+    isInstance = isInstance && "bla" in value;
+    isInstance = isInstance && "blub" in value;
     isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "operatorPath" in value;
     return isInstance;
 }
 export function OperatorQuotaFromJSON(json) {
@@ -28,8 +29,9 @@ export function OperatorQuotaFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'bla': json['bla'],
+        'blub': json['blub'],
         'count': json['count'],
-        'operatorPath': json['operatorPath'],
     };
 }
 export function OperatorQuotaToJSON(value) {
@@ -40,7 +42,8 @@ export function OperatorQuotaToJSON(value) {
         return null;
     }
     return {
+        'bla': value.bla,
+        'blub': value.blub,
         'count': value.count,
-        'operatorPath': value.operatorPath,
     };
 }

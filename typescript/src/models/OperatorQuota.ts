@@ -21,16 +21,22 @@ import { exists, mapValues } from '../runtime';
 export interface OperatorQuota {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof OperatorQuota
      */
-    count: number;
+    bla: string;
     /**
      * 
      * @type {string}
      * @memberof OperatorQuota
      */
-    operatorPath: string;
+    blub: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OperatorQuota
+     */
+    count: number;
 }
 
 /**
@@ -38,8 +44,9 @@ export interface OperatorQuota {
  */
 export function instanceOfOperatorQuota(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "bla" in value;
+    isInstance = isInstance && "blub" in value;
     isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "operatorPath" in value;
 
     return isInstance;
 }
@@ -54,8 +61,9 @@ export function OperatorQuotaFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'bla': json['bla'],
+        'blub': json['blub'],
         'count': json['count'],
-        'operatorPath': json['operatorPath'],
     };
 }
 
@@ -68,8 +76,9 @@ export function OperatorQuotaToJSON(value?: OperatorQuota | null): any {
     }
     return {
         
+        'bla': value.bla,
+        'blub': value.blub,
         'count': value.count,
-        'operatorPath': value.operatorPath,
     };
 }
 

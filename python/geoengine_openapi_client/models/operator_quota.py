@@ -26,9 +26,10 @@ class OperatorQuota(BaseModel):
     """
     OperatorQuota
     """
+    bla: StrictStr = Field(...)
+    blub: StrictStr = Field(...)
     count: conint(strict=True, ge=0) = Field(...)
-    operator_path: StrictStr = Field(..., alias="operatorPath")
-    __properties = ["count", "operatorPath"]
+    __properties = ["bla", "blub", "count"]
 
     class Config:
         """Pydantic configuration"""
@@ -66,8 +67,9 @@ class OperatorQuota(BaseModel):
             return OperatorQuota.parse_obj(obj)
 
         _obj = OperatorQuota.parse_obj({
-            "count": obj.get("count"),
-            "operator_path": obj.get("operatorPath")
+            "bla": obj.get("bla"),
+            "blub": obj.get("blub"),
+            "count": obj.get("count")
         })
         return _obj
 

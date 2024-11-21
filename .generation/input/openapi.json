@@ -7458,17 +7458,21 @@
       "OperatorQuota": {
         "type": "object",
         "required": [
-          "operatorPath",
+          "bla",
+          "blub",
           "count"
         ],
         "properties": {
+          "bla": {
+            "type": "string"
+          },
+          "blub": {
+            "type": "string"
+          },
           "count": {
             "type": "integer",
             "format": "int64",
             "minimum": 0
-          },
-          "operatorPath": {
-            "type": "string"
           }
         }
       },

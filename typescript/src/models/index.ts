@@ -28,6 +28,8 @@ export * from './DataId';
 export * from './DataPath';
 export * from './DataPathOneOf';
 export * from './DataPathOneOf1';
+export * from './DataUsage';
+export * from './DataUsageSummary';
 export * from './Dataset';
 export * from './DatasetDefinition';
 export * from './DatasetListing';

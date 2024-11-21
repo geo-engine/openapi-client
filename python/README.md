@@ -212,6 +212,8 @@ Class | Method | HTTP request | Description
  - [DataPath](docs/DataPath.md)
  - [DataPathOneOf](docs/DataPathOneOf.md)
  - [DataPathOneOf1](docs/DataPathOneOf1.md)
+ - [DataUsage](docs/DataUsage.md)
+ - [DataUsageSummary](docs/DataUsageSummary.md)
  - [Dataset](docs/Dataset.md)
  - [DatasetDefinition](docs/DatasetDefinition.md)
  - [DatasetListing](docs/DatasetListing.md)

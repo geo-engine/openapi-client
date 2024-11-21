@@ -44,6 +44,8 @@ __exportStar(require("./DataId"), exports);
 __exportStar(require("./DataPath"), exports);
 __exportStar(require("./DataPathOneOf"), exports);
 __exportStar(require("./DataPathOneOf1"), exports);
+__exportStar(require("./DataUsage"), exports);
+__exportStar(require("./DataUsageSummary"), exports);
 __exportStar(require("./Dataset"), exports);
 __exportStar(require("./DatasetDefinition"), exports);
 __exportStar(require("./DatasetListing"), exports);

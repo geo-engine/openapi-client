@@ -5715,6 +5715,72 @@
         "type": "string",
         "format": "uuid"
       },
+      "DataUsage": {
+        "type": "object",
+        "required": [
+          "timestamp",
+          "userId",
+          "workflowId",
+          "computationId",
+          "data",
+          "count"
+        ],
+        "properties": {
+          "computationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "data": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workflowId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "DataUsageSummary": {
+        "type": "object",
+        "required": [
+          "year",
+          "month",
+          "data",
+          "count"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "data": {
+            "type": "string"
+          },
+          "month": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          }
+        }
+      },
       "Dataset": {
         "type": "object",
         "required": [

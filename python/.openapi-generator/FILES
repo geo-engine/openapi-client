@@ -31,6 +31,8 @@ docs/DataId.md
 docs/DataPath.md
 docs/DataPathOneOf.md
 docs/DataPathOneOf1.md
+docs/DataUsage.md
+docs/DataUsageSummary.md
 docs/Dataset.md
 docs/DatasetDefinition.md
 docs/DatasetListing.md
@@ -289,6 +291,8 @@ geoengine_openapi_client/models/data_id.py
 geoengine_openapi_client/models/data_path.py
 geoengine_openapi_client/models/data_path_one_of.py
 geoengine_openapi_client/models/data_path_one_of1.py
+geoengine_openapi_client/models/data_usage.py
+geoengine_openapi_client/models/data_usage_summary.py
 geoengine_openapi_client/models/dataset.py
 geoengine_openapi_client/models/dataset_definition.py
 geoengine_openapi_client/models/dataset_listing.py
@@ -517,6 +521,8 @@ test/test_data_id.py
 test/test_data_path.py
 test/test_data_path_one_of.py
 test/test_data_path_one_of1.py
+test/test_data_usage.py
+test/test_data_usage_summary.py
 test/test_dataset.py
 test/test_dataset_definition.py
 test/test_dataset_listing.py

@@ -43,6 +43,8 @@ from geoengine_openapi_client.models.data_id import DataId
 from geoengine_openapi_client.models.data_path import DataPath
 from geoengine_openapi_client.models.data_path_one_of import DataPathOneOf
 from geoengine_openapi_client.models.data_path_one_of1 import DataPathOneOf1
+from geoengine_openapi_client.models.data_usage import DataUsage
+from geoengine_openapi_client.models.data_usage_summary import DataUsageSummary
 from geoengine_openapi_client.models.dataset import Dataset
 from geoengine_openapi_client.models.dataset_definition import DatasetDefinition
 from geoengine_openapi_client.models.dataset_listing import DatasetListing

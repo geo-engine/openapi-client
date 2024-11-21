@@ -24,11 +24,12 @@ from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from geoengine_openapi_client.models.dataset_resource import DatasetResource
 from geoengine_openapi_client.models.layer_collection_resource import LayerCollectionResource
 from geoengine_openapi_client.models.layer_resource import LayerResource
+from geoengine_openapi_client.models.ml_model_resource import MlModelResource
 from geoengine_openapi_client.models.project_resource import ProjectResource
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-RESOURCE_ONE_OF_SCHEMAS = ["DatasetResource", "LayerCollectionResource", "LayerResource", "ProjectResource"]
+RESOURCE_ONE_OF_SCHEMAS = ["DatasetResource", "LayerCollectionResource", "LayerResource", "MlModelResource", "ProjectResource"]
 
 class Resource(BaseModel):
     """
@@ -42,8 +43,10 @@ class Resource(BaseModel):
     oneof_schema_3_validator: Optional[ProjectResource] = None
     # data type: DatasetResource
     oneof_schema_4_validator: Optional[DatasetResource] = None
+    # data type: MlModelResource
+    oneof_schema_5_validator: Optional[MlModelResource] = None
     if TYPE_CHECKING:
-        actual_instance: Union[DatasetResource, LayerCollectionResource, LayerResource, ProjectResource]
+        actual_instance: Union[DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(RESOURCE_ONE_OF_SCHEMAS, const=True)
@@ -89,12 +92,17 @@ class Resource(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `DatasetResource`")
         else:
             match += 1
+        # validate data type: MlModelResource
+        if not isinstance(v, MlModelResource):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `MlModelResource`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, ProjectResource. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, ProjectResource. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -129,6 +137,11 @@ class Resource(BaseModel):
             instance.actual_instance = LayerResource.from_json(json_str)
             return instance
 
+        # check if data type is `MlModelResource`
+        if _data_type == "MlModelResource":
+            instance.actual_instance = MlModelResource.from_json(json_str)
+            return instance
+
         # check if data type is `ProjectResource`
         if _data_type == "ProjectResource":
             instance.actual_instance = ProjectResource.from_json(json_str)
@@ -147,6 +160,11 @@ class Resource(BaseModel):
         # check if data type is `LayerCollectionResource`
         if _data_type == "layerCollection":
             instance.actual_instance = LayerCollectionResource.from_json(json_str)
+            return instance
+
+        # check if data type is `MlModelResource`
+        if _data_type == "mlModel":
+            instance.actual_instance = MlModelResource.from_json(json_str)
             return instance
 
         # check if data type is `ProjectResource`
@@ -178,13 +196,19 @@ class Resource(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into MlModelResource
+        try:
+            instance.actual_instance = MlModelResource.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, ProjectResource. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, ProjectResource. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
         else:
             return instance
 

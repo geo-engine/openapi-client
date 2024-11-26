@@ -188,6 +188,7 @@ from geoengine_openapi_client.models.task_status_completed import TaskStatusComp
 from geoengine_openapi_client.models.task_status_failed import TaskStatusFailed
 from geoengine_openapi_client.models.task_status_running import TaskStatusRunning
 from geoengine_openapi_client.models.task_status_with_id import TaskStatusWithId
+from geoengine_openapi_client.models.tensor_shape3_d import TensorShape3D
 from geoengine_openapi_client.models.text_symbology import TextSymbology
 from geoengine_openapi_client.models.time_granularity import TimeGranularity
 from geoengine_openapi_client.models.time_interval import TimeInterval

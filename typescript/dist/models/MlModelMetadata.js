@@ -15,14 +15,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MlModelMetadataToJSON = exports.MlModelMetadataFromJSONTyped = exports.MlModelMetadataFromJSON = exports.instanceOfMlModelMetadata = void 0;
 const RasterDataType_1 = require("./RasterDataType");
+const TensorShape3D_1 = require("./TensorShape3D");
 /**
  * Check if a given object implements the MlModelMetadata interface.
  */
 function instanceOfMlModelMetadata(value) {
     let isInstance = true;
     isInstance = isInstance && "fileName" in value;
+    isInstance = isInstance && "inputShape" in value;
     isInstance = isInstance && "inputType" in value;
-    isInstance = isInstance && "numInputBands" in value;
+    isInstance = isInstance && "outputShape" in value;
     isInstance = isInstance && "outputType" in value;
     return isInstance;
 }
@@ -37,8 +39,9 @@ function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'fileName': json['fileName'],
+        'inputShape': (0, TensorShape3D_1.TensorShape3DFromJSON)(json['inputShape']),
         'inputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['inputType']),
-        'numInputBands': json['numInputBands'],
+        'outputShape': (0, TensorShape3D_1.TensorShape3DFromJSON)(json['outputShape']),
         'outputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['outputType']),
     };
 }
@@ -52,8 +55,9 @@ function MlModelMetadataToJSON(value) {
     }
     return {
         'fileName': value.fileName,
+        'inputShape': (0, TensorShape3D_1.TensorShape3DToJSON)(value.inputShape),
         'inputType': (0, RasterDataType_1.RasterDataTypeToJSON)(value.inputType),
-        'numInputBands': value.numInputBands,
+        'outputShape': (0, TensorShape3D_1.TensorShape3DToJSON)(value.outputShape),
         'outputType': (0, RasterDataType_1.RasterDataTypeToJSON)(value.outputType),
     };
 }

@@ -173,6 +173,7 @@ export * from './TaskStatusCompleted';
 export * from './TaskStatusFailed';
 export * from './TaskStatusRunning';
 export * from './TaskStatusWithId';
+export * from './TensorShape3D';
 export * from './TextSymbology';
 export * from './TimeGranularity';
 export * from './TimeInterval';

@@ -20,18 +20,20 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr, conint
+from pydantic import BaseModel, Field, StrictStr
 from geoengine_openapi_client.models.raster_data_type import RasterDataType
+from geoengine_openapi_client.models.tensor_shape3_d import TensorShape3D
 
 class MlModelMetadata(BaseModel):
     """
     MlModelMetadata
     """
     file_name: StrictStr = Field(..., alias="fileName")
+    input_shape: TensorShape3D = Field(..., alias="inputShape")
     input_type: RasterDataType = Field(..., alias="inputType")
-    num_input_bands: conint(strict=True, ge=0) = Field(..., alias="numInputBands")
+    output_shape: TensorShape3D = Field(..., alias="outputShape")
     output_type: RasterDataType = Field(..., alias="outputType")
-    __properties = ["fileName", "inputType", "numInputBands", "outputType"]
+    __properties = ["fileName", "inputShape", "inputType", "outputShape", "outputType"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,6 +59,12 @@ class MlModelMetadata(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of input_shape
+        if self.input_shape:
+            _dict['inputShape'] = self.input_shape.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of output_shape
+        if self.output_shape:
+            _dict['outputShape'] = self.output_shape.to_dict()
         return _dict
 
     @classmethod
@@ -70,8 +78,9 @@ class MlModelMetadata(BaseModel):
 
         _obj = MlModelMetadata.parse_obj({
             "file_name": obj.get("fileName"),
+            "input_shape": TensorShape3D.from_dict(obj.get("inputShape")) if obj.get("inputShape") is not None else None,
             "input_type": obj.get("inputType"),
-            "num_input_bands": obj.get("numInputBands"),
+            "output_shape": TensorShape3D.from_dict(obj.get("outputShape")) if obj.get("outputShape") is not None else None,
             "output_type": obj.get("outputType")
         })
         return _obj

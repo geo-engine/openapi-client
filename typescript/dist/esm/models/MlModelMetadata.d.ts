@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import type { RasterDataType } from './RasterDataType';
+import type { TensorShape3D } from './TensorShape3D';
 /**
  *
  * @export
@@ -24,16 +25,22 @@ export interface MlModelMetadata {
     fileName: string;
     /**
      *
+     * @type {TensorShape3D}
+     * @memberof MlModelMetadata
+     */
+    inputShape: TensorShape3D;
+    /**
+     *
      * @type {RasterDataType}
      * @memberof MlModelMetadata
      */
     inputType: RasterDataType;
     /**
      *
-     * @type {number}
+     * @type {TensorShape3D}
      * @memberof MlModelMetadata
      */
-    numInputBands: number;
+    outputShape: TensorShape3D;
     /**
      *
      * @type {RasterDataType}

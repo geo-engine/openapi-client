@@ -189,6 +189,7 @@ __exportStar(require("./TaskStatusCompleted"), exports);
 __exportStar(require("./TaskStatusFailed"), exports);
 __exportStar(require("./TaskStatusRunning"), exports);
 __exportStar(require("./TaskStatusWithId"), exports);
+__exportStar(require("./TensorShape3D"), exports);
 __exportStar(require("./TextSymbology"), exports);
 __exportStar(require("./TimeGranularity"), exports);
 __exportStar(require("./TimeInterval"), exports);

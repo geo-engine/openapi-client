@@ -189,6 +189,7 @@ docs/TaskStatusFailed.md
 docs/TaskStatusRunning.md
 docs/TaskStatusWithId.md
 docs/TasksApi.md
+docs/TensorShape3D.md
 docs/TextSymbology.md
 docs/TimeGranularity.md
 docs/TimeInterval.md
@@ -432,6 +433,7 @@ geoengine_openapi_client/models/task_status_completed.py
 geoengine_openapi_client/models/task_status_failed.py
 geoengine_openapi_client/models/task_status_running.py
 geoengine_openapi_client/models/task_status_with_id.py
+geoengine_openapi_client/models/tensor_shape3_d.py
 geoengine_openapi_client/models/text_symbology.py
 geoengine_openapi_client/models/time_granularity.py
 geoengine_openapi_client/models/time_interval.py
@@ -671,6 +673,7 @@ test/test_task_status_failed.py
 test/test_task_status_running.py
 test/test_task_status_with_id.py
 test/test_tasks_api.py
+test/test_tensor_shape3_d.py
 test/test_text_symbology.py
 test/test_time_granularity.py
 test/test_time_interval.py

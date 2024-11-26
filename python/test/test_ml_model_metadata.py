@@ -38,15 +38,29 @@ class TestMlModelMetadata(unittest.TestCase):
         if include_optional:
             return MlModelMetadata(
                 file_name = '',
+                input_shape = geoengine_openapi_client.models.tensor_shape3_d.TensorShape3D(
+                    attributes = 0, 
+                    x = 0, 
+                    y = 0, ),
                 input_type = 'U8',
-                num_input_bands = 0,
+                output_shape = geoengine_openapi_client.models.tensor_shape3_d.TensorShape3D(
+                    attributes = 0, 
+                    x = 0, 
+                    y = 0, ),
                 output_type = 'U8'
             )
         else:
             return MlModelMetadata(
                 file_name = '',
+                input_shape = geoengine_openapi_client.models.tensor_shape3_d.TensorShape3D(
+                    attributes = 0, 
+                    x = 0, 
+                    y = 0, ),
                 input_type = 'U8',
-                num_input_bands = 0,
+                output_shape = geoengine_openapi_client.models.tensor_shape3_d.TensorShape3D(
+                    attributes = 0, 
+                    x = 0, 
+                    y = 0, ),
                 output_type = 'U8',
         )
         """

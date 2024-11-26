@@ -12,14 +12,16 @@
  * Do not edit the class manually.
  */
 import { RasterDataTypeFromJSON, RasterDataTypeToJSON, } from './RasterDataType';
+import { TensorShape3DFromJSON, TensorShape3DToJSON, } from './TensorShape3D';
 /**
  * Check if a given object implements the MlModelMetadata interface.
  */
 export function instanceOfMlModelMetadata(value) {
     let isInstance = true;
     isInstance = isInstance && "fileName" in value;
+    isInstance = isInstance && "inputShape" in value;
     isInstance = isInstance && "inputType" in value;
-    isInstance = isInstance && "numInputBands" in value;
+    isInstance = isInstance && "outputShape" in value;
     isInstance = isInstance && "outputType" in value;
     return isInstance;
 }
@@ -32,8 +34,9 @@ export function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'fileName': json['fileName'],
+        'inputShape': TensorShape3DFromJSON(json['inputShape']),
         'inputType': RasterDataTypeFromJSON(json['inputType']),
-        'numInputBands': json['numInputBands'],
+        'outputShape': TensorShape3DFromJSON(json['outputShape']),
         'outputType': RasterDataTypeFromJSON(json['outputType']),
     };
 }
@@ -46,8 +49,9 @@ export function MlModelMetadataToJSON(value) {
     }
     return {
         'fileName': value.fileName,
+        'inputShape': TensorShape3DToJSON(value.inputShape),
         'inputType': RasterDataTypeToJSON(value.inputType),
-        'numInputBands': value.numInputBands,
+        'outputShape': TensorShape3DToJSON(value.outputShape),
         'outputType': RasterDataTypeToJSON(value.outputType),
     };
 }

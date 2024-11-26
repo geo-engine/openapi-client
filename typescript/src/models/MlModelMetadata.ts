@@ -19,6 +19,12 @@ import {
     RasterDataTypeFromJSONTyped,
     RasterDataTypeToJSON,
 } from './RasterDataType';
+import type { TensorShape3D } from './TensorShape3D';
+import {
+    TensorShape3DFromJSON,
+    TensorShape3DFromJSONTyped,
+    TensorShape3DToJSON,
+} from './TensorShape3D';
 
 /**
  * 
@@ -34,16 +40,22 @@ export interface MlModelMetadata {
     fileName: string;
     /**
      * 
+     * @type {TensorShape3D}
+     * @memberof MlModelMetadata
+     */
+    inputShape: TensorShape3D;
+    /**
+     * 
      * @type {RasterDataType}
      * @memberof MlModelMetadata
      */
     inputType: RasterDataType;
     /**
      * 
-     * @type {number}
+     * @type {TensorShape3D}
      * @memberof MlModelMetadata
      */
-    numInputBands: number;
+    outputShape: TensorShape3D;
     /**
      * 
      * @type {RasterDataType}
@@ -58,8 +70,9 @@ export interface MlModelMetadata {
 export function instanceOfMlModelMetadata(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "fileName" in value;
+    isInstance = isInstance && "inputShape" in value;
     isInstance = isInstance && "inputType" in value;
-    isInstance = isInstance && "numInputBands" in value;
+    isInstance = isInstance && "outputShape" in value;
     isInstance = isInstance && "outputType" in value;
 
     return isInstance;
@@ -76,8 +89,9 @@ export function MlModelMetadataFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'fileName': json['fileName'],
+        'inputShape': TensorShape3DFromJSON(json['inputShape']),
         'inputType': RasterDataTypeFromJSON(json['inputType']),
-        'numInputBands': json['numInputBands'],
+        'outputShape': TensorShape3DFromJSON(json['outputShape']),
         'outputType': RasterDataTypeFromJSON(json['outputType']),
     };
 }
@@ -92,8 +106,9 @@ export function MlModelMetadataToJSON(value?: MlModelMetadata | null): any {
     return {
         
         'fileName': value.fileName,
+        'inputShape': TensorShape3DToJSON(value.inputShape),
         'inputType': RasterDataTypeToJSON(value.inputType),
-        'numInputBands': value.numInputBands,
+        'outputShape': TensorShape3DToJSON(value.outputShape),
         'outputType': RasterDataTypeToJSON(value.outputType),
     };
 }

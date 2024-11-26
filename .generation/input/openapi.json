@@ -3115,11 +3115,12 @@
         "operationId": "computations_quota_handler",
         "parameters": [
           {
-            "name": "workflow",
+            "name": "offset",
             "in": "query",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/WorkflowId"
+              "type": "integer",
+              "minimum": 0
             }
           },
           {

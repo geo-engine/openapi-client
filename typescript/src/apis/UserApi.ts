@@ -47,7 +47,7 @@ export interface AssignRoleHandlerRequest {
 }
 
 export interface ComputationsQuotaHandlerRequest {
-    workflow: string;
+    offset: number;
     limit: number;
 }
 
@@ -168,8 +168,8 @@ export class UserApi extends runtime.BaseAPI {
      * Retrieves the quota used by computations
      */
     async computationsQuotaHandlerRaw(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ComputationQuota>>> {
-        if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
-            throw new runtime.RequiredError('workflow','Required parameter requestParameters.workflow was null or undefined when calling computationsQuotaHandler.');
+        if (requestParameters.offset === null || requestParameters.offset === undefined) {
+            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling computationsQuotaHandler.');
         }
 
         if (requestParameters.limit === null || requestParameters.limit === undefined) {
@@ -178,8 +178,8 @@ export class UserApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
-        if (requestParameters.workflow !== undefined) {
-            queryParameters['workflow'] = requestParameters.workflow;
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
         }
 
         if (requestParameters.limit !== undefined) {

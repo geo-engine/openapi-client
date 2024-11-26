@@ -110,15 +110,15 @@ export class UserApi extends runtime.BaseAPI {
      */
     computationsQuotaHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
-                throw new runtime.RequiredError('workflow', 'Required parameter requestParameters.workflow was null or undefined when calling computationsQuotaHandler.');
+            if (requestParameters.offset === null || requestParameters.offset === undefined) {
+                throw new runtime.RequiredError('offset', 'Required parameter requestParameters.offset was null or undefined when calling computationsQuotaHandler.');
             }
             if (requestParameters.limit === null || requestParameters.limit === undefined) {
                 throw new runtime.RequiredError('limit', 'Required parameter requestParameters.limit was null or undefined when calling computationsQuotaHandler.');
             }
             const queryParameters = {};
-            if (requestParameters.workflow !== undefined) {
-                queryParameters['workflow'] = requestParameters.workflow;
+            if (requestParameters.offset !== undefined) {
+                queryParameters['offset'] = requestParameters.offset;
             }
             if (requestParameters.limit !== undefined) {
                 queryParameters['limit'] = requestParameters.limit;

@@ -19,7 +19,7 @@ export interface AssignRoleHandlerRequest {
     role: string;
 }
 export interface ComputationsQuotaHandlerRequest {
-    workflow: string;
+    offset: number;
     limit: number;
 }
 export interface GetRoleByNameHandlerRequest {

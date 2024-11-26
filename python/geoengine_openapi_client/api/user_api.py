@@ -337,17 +337,17 @@ class UserApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def computations_quota_handler(self, workflow : StrictStr, limit : conint(strict=True, ge=0), **kwargs) -> List[ComputationQuota]:  # noqa: E501
+    def computations_quota_handler(self, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> List[ComputationQuota]:  # noqa: E501
         """Retrieves the quota used by computations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.computations_quota_handler(workflow, limit, async_req=True)
+        >>> thread = api.computations_quota_handler(offset, limit, async_req=True)
         >>> result = thread.get()
 
-        :param workflow: (required)
-        :type workflow: str
+        :param offset: (required)
+        :type offset: int
         :param limit: (required)
         :type limit: int
         :param async_req: Whether to execute the request asynchronously.
@@ -365,20 +365,20 @@ class UserApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the computations_quota_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.computations_quota_handler_with_http_info(workflow, limit, **kwargs)  # noqa: E501
+        return self.computations_quota_handler_with_http_info(offset, limit, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def computations_quota_handler_with_http_info(self, workflow : StrictStr, limit : conint(strict=True, ge=0), **kwargs) -> ApiResponse:  # noqa: E501
+    def computations_quota_handler_with_http_info(self, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieves the quota used by computations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.computations_quota_handler_with_http_info(workflow, limit, async_req=True)
+        >>> thread = api.computations_quota_handler_with_http_info(offset, limit, async_req=True)
         >>> result = thread.get()
 
-        :param workflow: (required)
-        :type workflow: str
+        :param offset: (required)
+        :type offset: int
         :param limit: (required)
         :type limit: int
         :param async_req: Whether to execute the request asynchronously.
@@ -409,7 +409,7 @@ class UserApi:
         _params = locals()
 
         _all_params = [
-            'workflow',
+            'offset',
             'limit'
         ]
         _all_params.extend(
@@ -441,8 +441,8 @@ class UserApi:
 
         # process the query parameters
         _query_params = []
-        if _params.get('workflow') is not None:  # noqa: E501
-            _query_params.append(('workflow', _params['workflow']))
+        if _params.get('offset') is not None:  # noqa: E501
+            _query_params.append(('offset', _params['offset']))
 
         if _params.get('limit') is not None:  # noqa: E501
             _query_params.append(('limit', _params['limit']))

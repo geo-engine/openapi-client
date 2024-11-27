@@ -3155,6 +3155,47 @@
         ]
       }
     },
+    "/quota/computations/{computation}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves the quota used by computations",
+        "operationId": "computation_quota_handler",
+        "parameters": [
+          {
+            "name": "computation",
+            "in": "path",
+            "description": "Computation id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The quota used by computation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OperatorQuota"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
     "/quotas/{user}": {
       "get": {
         "tags": [
@@ -5532,18 +5573,17 @@
           "timestamp",
           "computationId",
           "workflowId",
-          "operators"
+          "count"
         ],
         "properties": {
           "computationId": {
             "type": "string",
             "format": "uuid"
           },
-          "operators": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OperatorQuota"
-            }
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
           },
           "timestamp": {
             "type": "string",

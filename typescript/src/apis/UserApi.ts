@@ -18,6 +18,7 @@ import type {
   AddCollection200Response,
   AddRole,
   ComputationQuota,
+  OperatorQuota,
   Quota,
   RoleDescription,
   UpdateQuota,
@@ -29,6 +30,8 @@ import {
     AddRoleToJSON,
     ComputationQuotaFromJSON,
     ComputationQuotaToJSON,
+    OperatorQuotaFromJSON,
+    OperatorQuotaToJSON,
     QuotaFromJSON,
     QuotaToJSON,
     RoleDescriptionFromJSON,
@@ -44,6 +47,10 @@ export interface AddRoleHandlerRequest {
 export interface AssignRoleHandlerRequest {
     user: string;
     role: string;
+}
+
+export interface ComputationQuotaHandlerRequest {
+    computation: string;
 }
 
 export interface ComputationsQuotaHandlerRequest {
@@ -162,6 +169,44 @@ export class UserApi extends runtime.BaseAPI {
      */
     async assignRoleHandler(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.assignRoleHandlerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Retrieves the quota used by computations
+     */
+    async computationQuotaHandlerRaw(requestParameters: ComputationQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OperatorQuota>>> {
+        if (requestParameters.computation === null || requestParameters.computation === undefined) {
+            throw new runtime.RequiredError('computation','Required parameter requestParameters.computation was null or undefined when calling computationQuotaHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/quota/computations/{computation}`.replace(`{${"computation"}}`, encodeURIComponent(String(requestParameters.computation))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OperatorQuotaFromJSON));
+    }
+
+    /**
+     * Retrieves the quota used by computations
+     */
+    async computationQuotaHandler(requestParameters: ComputationQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OperatorQuota>> {
+        const response = await this.computationQuotaHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

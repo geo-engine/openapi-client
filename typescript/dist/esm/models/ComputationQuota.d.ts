@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { OperatorQuota } from './OperatorQuota';
 /**
  *
  * @export
@@ -24,10 +23,10 @@ export interface ComputationQuota {
     computationId: string;
     /**
      *
-     * @type {Array<OperatorQuota>}
+     * @type {number}
      * @memberof ComputationQuota
      */
-    operators: Array<OperatorQuota>;
+    count: number;
     /**
      *
      * @type {Date}

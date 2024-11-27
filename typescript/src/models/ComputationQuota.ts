@@ -13,13 +13,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { OperatorQuota } from './OperatorQuota';
-import {
-    OperatorQuotaFromJSON,
-    OperatorQuotaFromJSONTyped,
-    OperatorQuotaToJSON,
-} from './OperatorQuota';
-
 /**
  * 
  * @export
@@ -34,10 +27,10 @@ export interface ComputationQuota {
     computationId: string;
     /**
      * 
-     * @type {Array<OperatorQuota>}
+     * @type {number}
      * @memberof ComputationQuota
      */
-    operators: Array<OperatorQuota>;
+    count: number;
     /**
      * 
      * @type {Date}
@@ -58,7 +51,7 @@ export interface ComputationQuota {
 export function instanceOfComputationQuota(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "computationId" in value;
-    isInstance = isInstance && "operators" in value;
+    isInstance = isInstance && "count" in value;
     isInstance = isInstance && "timestamp" in value;
     isInstance = isInstance && "workflowId" in value;
 
@@ -76,7 +69,7 @@ export function ComputationQuotaFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'computationId': json['computationId'],
-        'operators': ((json['operators'] as Array<any>).map(OperatorQuotaFromJSON)),
+        'count': json['count'],
         'timestamp': (new Date(json['timestamp'])),
         'workflowId': json['workflowId'],
     };
@@ -92,7 +85,7 @@ export function ComputationQuotaToJSON(value?: ComputationQuota | null): any {
     return {
         
         'computationId': value.computationId,
-        'operators': ((value.operators as Array<any>).map(OperatorQuotaToJSON)),
+        'count': value.count,
         'timestamp': (value.timestamp.toISOString()),
         'workflowId': value.workflowId,
     };

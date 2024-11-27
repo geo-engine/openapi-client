@@ -41,6 +41,13 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
+    def test_computation_quota_handler(self) -> None:
+        """Test case for computation_quota_handler
+
+        Retrieves the quota used by computations  # noqa: E501
+        """
+        pass
+
     def test_computations_quota_handler(self) -> None:
         """Test case for computations_quota_handler
 

@@ -14,14 +14,13 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComputationQuotaToJSON = exports.ComputationQuotaFromJSONTyped = exports.ComputationQuotaFromJSON = exports.instanceOfComputationQuota = void 0;
-const OperatorQuota_1 = require("./OperatorQuota");
 /**
  * Check if a given object implements the ComputationQuota interface.
  */
 function instanceOfComputationQuota(value) {
     let isInstance = true;
     isInstance = isInstance && "computationId" in value;
-    isInstance = isInstance && "operators" in value;
+    isInstance = isInstance && "count" in value;
     isInstance = isInstance && "timestamp" in value;
     isInstance = isInstance && "workflowId" in value;
     return isInstance;
@@ -37,7 +36,7 @@ function ComputationQuotaFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'computationId': json['computationId'],
-        'operators': (json['operators'].map(OperatorQuota_1.OperatorQuotaFromJSON)),
+        'count': json['count'],
         'timestamp': (new Date(json['timestamp'])),
         'workflowId': json['workflowId'],
     };
@@ -52,7 +51,7 @@ function ComputationQuotaToJSON(value) {
     }
     return {
         'computationId': value.computationId,
-        'operators': (value.operators.map(OperatorQuota_1.OperatorQuotaToJSON)),
+        'count': value.count,
         'timestamp': (value.timestamp.toISOString()),
         'workflowId': value.workflowId,
     };

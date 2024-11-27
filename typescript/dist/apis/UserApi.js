@@ -111,6 +111,41 @@ class UserApi extends runtime.BaseAPI {
     /**
      * Retrieves the quota used by computations
      */
+    computationQuotaHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.computation === null || requestParameters.computation === undefined) {
+                throw new runtime.RequiredError('computation', 'Required parameter requestParameters.computation was null or undefined when calling computationQuotaHandler.');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/quota/computations/{computation}`.replace(`{${"computation"}}`, encodeURIComponent(String(requestParameters.computation))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(index_1.OperatorQuotaFromJSON));
+        });
+    }
+    /**
+     * Retrieves the quota used by computations
+     */
+    computationQuotaHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.computationQuotaHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
+     * Retrieves the quota used by computations
+     */
     computationsQuotaHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters.offset === null || requestParameters.offset === undefined) {

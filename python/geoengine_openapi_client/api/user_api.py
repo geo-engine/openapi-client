@@ -27,6 +27,7 @@ from typing import List
 from geoengine_openapi_client.models.add_collection200_response import AddCollection200Response
 from geoengine_openapi_client.models.add_role import AddRole
 from geoengine_openapi_client.models.computation_quota import ComputationQuota
+from geoengine_openapi_client.models.operator_quota import OperatorQuota
 from geoengine_openapi_client.models.quota import Quota
 from geoengine_openapi_client.models.role_description import RoleDescription
 from geoengine_openapi_client.models.update_quota import UpdateQuota
@@ -321,6 +322,144 @@ class UserApi:
 
         return self.api_client.call_api(
             '/users/{user}/roles/{role}', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def computation_quota_handler(self, computation : Annotated[StrictStr, Field(..., description="Computation id")], **kwargs) -> List[OperatorQuota]:  # noqa: E501
+        """Retrieves the quota used by computations  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.computation_quota_handler(computation, async_req=True)
+        >>> result = thread.get()
+
+        :param computation: Computation id (required)
+        :type computation: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request.
+               If one number provided, it will be total request
+               timeout. It can also be a pair (tuple) of
+               (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: List[OperatorQuota]
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            message = "Error! Please call the computation_quota_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
+            raise ValueError(message)
+        return self.computation_quota_handler_with_http_info(computation, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def computation_quota_handler_with_http_info(self, computation : Annotated[StrictStr, Field(..., description="Computation id")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Retrieves the quota used by computations  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.computation_quota_handler_with_http_info(computation, async_req=True)
+        >>> result = thread.get()
+
+        :param computation: Computation id (required)
+        :type computation: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(List[OperatorQuota], status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'computation'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method computation_quota_handler" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['computation']:
+            _path_params['computation'] = _params['computation']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['session_token']  # noqa: E501
+
+        _response_types_map = {
+            '200': "List[OperatorQuota]",
+        }
+
+        return self.api_client.call_api(
+            '/quota/computations/{computation}', 'GET',
             _path_params,
             _query_params,
             _header_params,

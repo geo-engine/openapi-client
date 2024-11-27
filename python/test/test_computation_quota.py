@@ -38,24 +38,14 @@ class TestComputationQuota(unittest.TestCase):
         if include_optional:
             return ComputationQuota(
                 computation_id = '',
-                operators = [
-                    geoengine_openapi_client.models.operator_quota.OperatorQuota(
-                        count = 0, 
-                        operator_name = '', 
-                        operator_path = '', )
-                    ],
+                count = 0,
                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 workflow_id = ''
             )
         else:
             return ComputationQuota(
                 computation_id = '',
-                operators = [
-                    geoengine_openapi_client.models.operator_quota.OperatorQuota(
-                        count = 0, 
-                        operator_name = '', 
-                        operator_path = '', )
-                    ],
+                count = 0,
                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 workflow_id = '',
         )

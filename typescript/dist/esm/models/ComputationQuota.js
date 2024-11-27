@@ -11,14 +11,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { OperatorQuotaFromJSON, OperatorQuotaToJSON, } from './OperatorQuota';
 /**
  * Check if a given object implements the ComputationQuota interface.
  */
 export function instanceOfComputationQuota(value) {
     let isInstance = true;
     isInstance = isInstance && "computationId" in value;
-    isInstance = isInstance && "operators" in value;
+    isInstance = isInstance && "count" in value;
     isInstance = isInstance && "timestamp" in value;
     isInstance = isInstance && "workflowId" in value;
     return isInstance;
@@ -32,7 +31,7 @@ export function ComputationQuotaFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'computationId': json['computationId'],
-        'operators': (json['operators'].map(OperatorQuotaFromJSON)),
+        'count': json['count'],
         'timestamp': (new Date(json['timestamp'])),
         'workflowId': json['workflowId'],
     };
@@ -46,7 +45,7 @@ export function ComputationQuotaToJSON(value) {
     }
     return {
         'computationId': value.computationId,
-        'operators': (value.operators.map(OperatorQuotaToJSON)),
+        'count': value.count,
         'timestamp': (value.timestamp.toISOString()),
         'workflowId': value.workflowId,
     };

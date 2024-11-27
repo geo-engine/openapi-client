@@ -19,19 +19,18 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List
-from pydantic import BaseModel, Field, StrictStr, conlist
-from geoengine_openapi_client.models.operator_quota import OperatorQuota
+
+from pydantic import BaseModel, Field, StrictStr, conint
 
 class ComputationQuota(BaseModel):
     """
     ComputationQuota
     """
     computation_id: StrictStr = Field(..., alias="computationId")
-    operators: conlist(OperatorQuota) = Field(...)
+    count: conint(strict=True, ge=0) = Field(...)
     timestamp: datetime = Field(...)
     workflow_id: StrictStr = Field(..., alias="workflowId")
-    __properties = ["computationId", "operators", "timestamp", "workflowId"]
+    __properties = ["computationId", "count", "timestamp", "workflowId"]
 
     class Config:
         """Pydantic configuration"""
@@ -57,13 +56,6 @@ class ComputationQuota(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in operators (list)
-        _items = []
-        if self.operators:
-            for _item in self.operators:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['operators'] = _items
         return _dict
 
     @classmethod
@@ -77,7 +69,7 @@ class ComputationQuota(BaseModel):
 
         _obj = ComputationQuota.parse_obj({
             "computation_id": obj.get("computationId"),
-            "operators": [OperatorQuota.from_dict(_item) for _item in obj.get("operators")] if obj.get("operators") is not None else None,
+            "count": obj.get("count"),
             "timestamp": obj.get("timestamp"),
             "workflow_id": obj.get("workflowId")
         })

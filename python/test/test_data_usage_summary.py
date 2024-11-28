@@ -38,16 +38,14 @@ class TestDataUsageSummary(unittest.TestCase):
         if include_optional:
             return DataUsageSummary(
                 count = 0,
-                data = '',
-                month = 0,
-                year = 0
+                dataset = '',
+                timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return DataUsageSummary(
                 count = 0,
-                data = '',
-                month = 0,
-                year = 0,
+                dataset = '',
+                timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

@@ -202,6 +202,7 @@ export * from './UpdateProject';
 export * from './UpdateQuota';
 export * from './UploadFileLayersResponse';
 export * from './UploadFilesResponse';
+export * from './UsageSummaryGranularity';
 export * from './UserCredentials';
 export * from './UserInfo';
 export * from './UserRegistration';

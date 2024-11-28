@@ -218,6 +218,7 @@ __exportStar(require("./UpdateProject"), exports);
 __exportStar(require("./UpdateQuota"), exports);
 __exportStar(require("./UploadFileLayersResponse"), exports);
 __exportStar(require("./UploadFilesResponse"), exports);
+__exportStar(require("./UsageSummaryGranularity"), exports);
 __exportStar(require("./UserCredentials"), exports);
 __exportStar(require("./UserInfo"), exports);
 __exportStar(require("./UserRegistration"), exports);

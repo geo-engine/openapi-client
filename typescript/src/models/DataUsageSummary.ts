@@ -30,19 +30,13 @@ export interface DataUsageSummary {
      * @type {string}
      * @memberof DataUsageSummary
      */
-    data: string;
+    dataset: string;
     /**
      * 
-     * @type {number}
+     * @type {Date}
      * @memberof DataUsageSummary
      */
-    month: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof DataUsageSummary
-     */
-    year: number;
+    timestamp: Date;
 }
 
 /**
@@ -51,9 +45,8 @@ export interface DataUsageSummary {
 export function instanceOfDataUsageSummary(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "month" in value;
-    isInstance = isInstance && "year" in value;
+    isInstance = isInstance && "dataset" in value;
+    isInstance = isInstance && "timestamp" in value;
 
     return isInstance;
 }
@@ -69,9 +62,8 @@ export function DataUsageSummaryFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'count': json['count'],
-        'data': json['data'],
-        'month': json['month'],
-        'year': json['year'],
+        'dataset': json['dataset'],
+        'timestamp': (new Date(json['timestamp'])),
     };
 }
 
@@ -85,9 +77,8 @@ export function DataUsageSummaryToJSON(value?: DataUsageSummary | null): any {
     return {
         
         'count': value.count,
-        'data': value.data,
-        'month': value.month,
-        'year': value.year,
+        'dataset': value.dataset,
+        'timestamp': (value.timestamp.toISOString()),
     };
 }
 

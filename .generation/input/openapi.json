@@ -3196,6 +3196,125 @@
         ]
       }
     },
+    "/quota/dataUsage": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves the quota used on data",
+        "operationId": "data_usage_handler",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The quota used on data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataUsage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
+    "/quota/dataUsage/summary": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves the quota used by computations",
+        "operationId": "data_usage_summary_handler",
+        "parameters": [
+          {
+            "name": "granularity",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UsageSummaryGranularity"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "dataset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The quota used on data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataUsageSummary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
     "/quotas/{user}": {
       "get": {
         "tags": [
@@ -5761,7 +5880,6 @@
         "required": [
           "timestamp",
           "userId",
-          "workflowId",
           "computationId",
           "data",
           "count"
@@ -5786,19 +5904,14 @@
           "userId": {
             "type": "string",
             "format": "uuid"
-          },
-          "workflowId": {
-            "type": "string",
-            "format": "uuid"
           }
         }
       },
       "DataUsageSummary": {
         "type": "object",
         "required": [
-          "year",
-          "month",
-          "data",
+          "timestamp",
+          "dataset",
           "count"
         ],
         "properties": {
@@ -5807,18 +5920,12 @@
             "format": "int64",
             "minimum": 0
           },
-          "data": {
+          "dataset": {
             "type": "string"
           },
-          "month": {
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0
-          },
-          "year": {
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -9631,6 +9738,16 @@
       "UploadId": {
         "type": "string",
         "format": "uuid"
+      },
+      "UsageSummaryGranularity": {
+        "type": "string",
+        "enum": [
+          "minutes",
+          "hours",
+          "days",
+          "months",
+          "years"
+        ]
       },
       "UserCredentials": {
         "type": "object",

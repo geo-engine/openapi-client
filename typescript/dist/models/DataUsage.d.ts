@@ -45,12 +45,6 @@ export interface DataUsage {
      * @memberof DataUsage
      */
     userId: string;
-    /**
-     *
-     * @type {string}
-     * @memberof DataUsage
-     */
-    workflowId: string;
 }
 /**
  * Check if a given object implements the DataUsage interface.

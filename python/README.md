@@ -167,6 +167,8 @@ Class | Method | HTTP request | Description
 *UserApi* | [**assign_role_handler**](docs/UserApi.md#assign_role_handler) | **POST** /users/{user}/roles/{role} | Assign a role to a user. Requires admin privilige.
 *UserApi* | [**computation_quota_handler**](docs/UserApi.md#computation_quota_handler) | **GET** /quota/computations/{computation} | Retrieves the quota used by computations
 *UserApi* | [**computations_quota_handler**](docs/UserApi.md#computations_quota_handler) | **GET** /quota/computations | Retrieves the quota used by computations
+*UserApi* | [**data_usage_handler**](docs/UserApi.md#data_usage_handler) | **GET** /quota/dataUsage | Retrieves the quota used on data
+*UserApi* | [**data_usage_summary_handler**](docs/UserApi.md#data_usage_summary_handler) | **GET** /quota/dataUsage/summary | Retrieves the quota used by computations
 *UserApi* | [**get_role_by_name_handler**](docs/UserApi.md#get_role_by_name_handler) | **GET** /roles/byName/{name} | Get role by name
 *UserApi* | [**get_role_descriptions**](docs/UserApi.md#get_role_descriptions) | **GET** /user/roles/descriptions | Query roles for the current user.
 *UserApi* | [**get_user_quota_handler**](docs/UserApi.md#get_user_quota_handler) | **GET** /quotas/{user} | Retrieves the available and used quota of a specific user.
@@ -387,6 +389,7 @@ Class | Method | HTTP request | Description
  - [UpdateQuota](docs/UpdateQuota.md)
  - [UploadFileLayersResponse](docs/UploadFileLayersResponse.md)
  - [UploadFilesResponse](docs/UploadFilesResponse.md)
+ - [UsageSummaryGranularity](docs/UsageSummaryGranularity.md)
  - [UserCredentials](docs/UserCredentials.md)
  - [UserInfo](docs/UserInfo.md)
  - [UserRegistration](docs/UserRegistration.md)

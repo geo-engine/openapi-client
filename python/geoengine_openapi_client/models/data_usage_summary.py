@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import datetime
 
 from pydantic import BaseModel, Field, StrictStr, conint
 
@@ -27,10 +27,9 @@ class DataUsageSummary(BaseModel):
     DataUsageSummary
     """
     count: conint(strict=True, ge=0) = Field(...)
-    data: StrictStr = Field(...)
-    month: conint(strict=True, ge=0) = Field(...)
-    year: conint(strict=True, ge=0) = Field(...)
-    __properties = ["count", "data", "month", "year"]
+    dataset: StrictStr = Field(...)
+    timestamp: datetime = Field(...)
+    __properties = ["count", "dataset", "timestamp"]
 
     class Config:
         """Pydantic configuration"""
@@ -69,9 +68,8 @@ class DataUsageSummary(BaseModel):
 
         _obj = DataUsageSummary.parse_obj({
             "count": obj.get("count"),
-            "data": obj.get("data"),
-            "month": obj.get("month"),
-            "year": obj.get("year")
+            "dataset": obj.get("dataset"),
+            "timestamp": obj.get("timestamp")
         })
         return _obj
 

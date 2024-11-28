@@ -41,8 +41,7 @@ class TestDataUsage(unittest.TestCase):
                 count = 0,
                 data = '',
                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                user_id = '',
-                workflow_id = ''
+                user_id = ''
             )
         else:
             return DataUsage(
@@ -51,7 +50,6 @@ class TestDataUsage(unittest.TestCase):
                 data = '',
                 timestamp = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user_id = '',
-                workflow_id = '',
         )
         """
 

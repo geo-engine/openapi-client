@@ -219,6 +219,7 @@ docs/UpdateQuota.md
 docs/UploadFileLayersResponse.md
 docs/UploadFilesResponse.md
 docs/UploadsApi.md
+docs/UsageSummaryGranularity.md
 docs/UserApi.md
 docs/UserCredentials.md
 docs/UserInfo.md
@@ -465,6 +466,7 @@ geoengine_openapi_client/models/update_project.py
 geoengine_openapi_client/models/update_quota.py
 geoengine_openapi_client/models/upload_file_layers_response.py
 geoengine_openapi_client/models/upload_files_response.py
+geoengine_openapi_client/models/usage_summary_granularity.py
 geoengine_openapi_client/models/user_credentials.py
 geoengine_openapi_client/models/user_info.py
 geoengine_openapi_client/models/user_registration.py
@@ -709,6 +711,7 @@ test/test_update_quota.py
 test/test_upload_file_layers_response.py
 test/test_upload_files_response.py
 test/test_uploads_api.py
+test/test_usage_summary_granularity.py
 test/test_user_api.py
 test/test_user_credentials.py
 test/test_user_info.py

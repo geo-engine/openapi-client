@@ -217,6 +217,7 @@ from geoengine_openapi_client.models.update_project import UpdateProject
 from geoengine_openapi_client.models.update_quota import UpdateQuota
 from geoengine_openapi_client.models.upload_file_layers_response import UploadFileLayersResponse
 from geoengine_openapi_client.models.upload_files_response import UploadFilesResponse
+from geoengine_openapi_client.models.usage_summary_granularity import UsageSummaryGranularity
 from geoengine_openapi_client.models.user_credentials import UserCredentials
 from geoengine_openapi_client.models.user_info import UserInfo
 from geoengine_openapi_client.models.user_registration import UserRegistration

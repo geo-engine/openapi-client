@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as runtime from '../runtime';
-import { AddCollection200ResponseFromJSON, AddRoleToJSON, ComputationQuotaFromJSON, OperatorQuotaFromJSON, QuotaFromJSON, RoleDescriptionFromJSON, UpdateQuotaToJSON, } from '../models/index';
+import { AddCollection200ResponseFromJSON, AddRoleToJSON, ComputationQuotaFromJSON, DataUsageFromJSON, DataUsageSummaryFromJSON, OperatorQuotaFromJSON, QuotaFromJSON, RoleDescriptionFromJSON, UpdateQuotaToJSON, } from '../models/index';
 /**
  *
  */
@@ -181,6 +181,103 @@ export class UserApi extends runtime.BaseAPI {
     computationsQuotaHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.computationsQuotaHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
+     * Retrieves the quota used on data
+     */
+    dataUsageHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.offset === null || requestParameters.offset === undefined) {
+                throw new runtime.RequiredError('offset', 'Required parameter requestParameters.offset was null or undefined when calling dataUsageHandler.');
+            }
+            if (requestParameters.limit === null || requestParameters.limit === undefined) {
+                throw new runtime.RequiredError('limit', 'Required parameter requestParameters.limit was null or undefined when calling dataUsageHandler.');
+            }
+            const queryParameters = {};
+            if (requestParameters.offset !== undefined) {
+                queryParameters['offset'] = requestParameters.offset;
+            }
+            if (requestParameters.limit !== undefined) {
+                queryParameters['limit'] = requestParameters.limit;
+            }
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/quota/dataUsage`,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DataUsageFromJSON));
+        });
+    }
+    /**
+     * Retrieves the quota used on data
+     */
+    dataUsageHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.dataUsageHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
+     * Retrieves the quota used by computations
+     */
+    dataUsageSummaryHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.granularity === null || requestParameters.granularity === undefined) {
+                throw new runtime.RequiredError('granularity', 'Required parameter requestParameters.granularity was null or undefined when calling dataUsageSummaryHandler.');
+            }
+            if (requestParameters.offset === null || requestParameters.offset === undefined) {
+                throw new runtime.RequiredError('offset', 'Required parameter requestParameters.offset was null or undefined when calling dataUsageSummaryHandler.');
+            }
+            if (requestParameters.limit === null || requestParameters.limit === undefined) {
+                throw new runtime.RequiredError('limit', 'Required parameter requestParameters.limit was null or undefined when calling dataUsageSummaryHandler.');
+            }
+            const queryParameters = {};
+            if (requestParameters.granularity !== undefined) {
+                queryParameters['granularity'] = requestParameters.granularity;
+            }
+            if (requestParameters.offset !== undefined) {
+                queryParameters['offset'] = requestParameters.offset;
+            }
+            if (requestParameters.limit !== undefined) {
+                queryParameters['limit'] = requestParameters.limit;
+            }
+            if (requestParameters.dataset !== undefined) {
+                queryParameters['dataset'] = requestParameters.dataset;
+            }
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/quota/dataUsage/summary`,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DataUsageSummaryFromJSON));
+        });
+    }
+    /**
+     * Retrieves the quota used by computations
+     */
+    dataUsageSummaryHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.dataUsageSummaryHandlerRaw(requestParameters, initOverrides);
             return yield response.value();
         });
     }

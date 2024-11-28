@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AddCollection200Response, AddRole, ComputationQuota, OperatorQuota, Quota, RoleDescription, UpdateQuota } from '../models/index';
+import type { AddCollection200Response, AddRole, ComputationQuota, DataUsage, DataUsageSummary, OperatorQuota, Quota, RoleDescription, UpdateQuota, UsageSummaryGranularity } from '../models/index';
 export interface AddRoleHandlerRequest {
     addRole: AddRole;
 }
@@ -24,6 +24,16 @@ export interface ComputationQuotaHandlerRequest {
 export interface ComputationsQuotaHandlerRequest {
     offset: number;
     limit: number;
+}
+export interface DataUsageHandlerRequest {
+    offset: number;
+    limit: number;
+}
+export interface DataUsageSummaryHandlerRequest {
+    granularity: UsageSummaryGranularity;
+    offset: number;
+    limit: number;
+    dataset?: string | null;
 }
 export interface GetRoleByNameHandlerRequest {
     name: string;
@@ -78,6 +88,22 @@ export declare class UserApi extends runtime.BaseAPI {
      * Retrieves the quota used by computations
      */
     computationsQuotaHandler(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ComputationQuota>>;
+    /**
+     * Retrieves the quota used on data
+     */
+    dataUsageHandlerRaw(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsage>>>;
+    /**
+     * Retrieves the quota used on data
+     */
+    dataUsageHandler(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DataUsage>>;
+    /**
+     * Retrieves the quota used by computations
+     */
+    dataUsageSummaryHandlerRaw(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsageSummary>>>;
+    /**
+     * Retrieves the quota used by computations
+     */
+    dataUsageSummaryHandler(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DataUsageSummary>>;
     /**
      * Get role by name
      */

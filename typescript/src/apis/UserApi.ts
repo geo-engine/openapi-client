@@ -18,10 +18,13 @@ import type {
   AddCollection200Response,
   AddRole,
   ComputationQuota,
+  DataUsage,
+  DataUsageSummary,
   OperatorQuota,
   Quota,
   RoleDescription,
   UpdateQuota,
+  UsageSummaryGranularity,
 } from '../models/index';
 import {
     AddCollection200ResponseFromJSON,
@@ -30,6 +33,10 @@ import {
     AddRoleToJSON,
     ComputationQuotaFromJSON,
     ComputationQuotaToJSON,
+    DataUsageFromJSON,
+    DataUsageToJSON,
+    DataUsageSummaryFromJSON,
+    DataUsageSummaryToJSON,
     OperatorQuotaFromJSON,
     OperatorQuotaToJSON,
     QuotaFromJSON,
@@ -38,6 +45,8 @@ import {
     RoleDescriptionToJSON,
     UpdateQuotaFromJSON,
     UpdateQuotaToJSON,
+    UsageSummaryGranularityFromJSON,
+    UsageSummaryGranularityToJSON,
 } from '../models/index';
 
 export interface AddRoleHandlerRequest {
@@ -56,6 +65,18 @@ export interface ComputationQuotaHandlerRequest {
 export interface ComputationsQuotaHandlerRequest {
     offset: number;
     limit: number;
+}
+
+export interface DataUsageHandlerRequest {
+    offset: number;
+    limit: number;
+}
+
+export interface DataUsageSummaryHandlerRequest {
+    granularity: UsageSummaryGranularity;
+    offset: number;
+    limit: number;
+    dataset?: string | null;
 }
 
 export interface GetRoleByNameHandlerRequest {
@@ -256,6 +277,118 @@ export class UserApi extends runtime.BaseAPI {
      */
     async computationsQuotaHandler(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ComputationQuota>> {
         const response = await this.computationsQuotaHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves the quota used on data
+     */
+    async dataUsageHandlerRaw(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsage>>> {
+        if (requestParameters.offset === null || requestParameters.offset === undefined) {
+            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling dataUsageHandler.');
+        }
+
+        if (requestParameters.limit === null || requestParameters.limit === undefined) {
+            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling dataUsageHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/quota/dataUsage`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DataUsageFromJSON));
+    }
+
+    /**
+     * Retrieves the quota used on data
+     */
+    async dataUsageHandler(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DataUsage>> {
+        const response = await this.dataUsageHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves the quota used by computations
+     */
+    async dataUsageSummaryHandlerRaw(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsageSummary>>> {
+        if (requestParameters.granularity === null || requestParameters.granularity === undefined) {
+            throw new runtime.RequiredError('granularity','Required parameter requestParameters.granularity was null or undefined when calling dataUsageSummaryHandler.');
+        }
+
+        if (requestParameters.offset === null || requestParameters.offset === undefined) {
+            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling dataUsageSummaryHandler.');
+        }
+
+        if (requestParameters.limit === null || requestParameters.limit === undefined) {
+            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling dataUsageSummaryHandler.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.granularity !== undefined) {
+            queryParameters['granularity'] = requestParameters.granularity;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.dataset !== undefined) {
+            queryParameters['dataset'] = requestParameters.dataset;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/quota/dataUsage/summary`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DataUsageSummaryFromJSON));
+    }
+
+    /**
+     * Retrieves the quota used by computations
+     */
+    async dataUsageSummaryHandler(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DataUsageSummary>> {
+        const response = await this.dataUsageSummaryHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

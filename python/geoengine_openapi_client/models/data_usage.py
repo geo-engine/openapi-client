@@ -31,8 +31,7 @@ class DataUsage(BaseModel):
     data: StrictStr = Field(...)
     timestamp: datetime = Field(...)
     user_id: StrictStr = Field(..., alias="userId")
-    workflow_id: StrictStr = Field(..., alias="workflowId")
-    __properties = ["computationId", "count", "data", "timestamp", "userId", "workflowId"]
+    __properties = ["computationId", "count", "data", "timestamp", "userId"]
 
     class Config:
         """Pydantic configuration"""
@@ -74,8 +73,7 @@ class DataUsage(BaseModel):
             "count": obj.get("count"),
             "data": obj.get("data"),
             "timestamp": obj.get("timestamp"),
-            "user_id": obj.get("userId"),
-            "workflow_id": obj.get("workflowId")
+            "user_id": obj.get("userId")
         })
         return _obj
 

@@ -26,19 +26,13 @@ export interface DataUsageSummary {
      * @type {string}
      * @memberof DataUsageSummary
      */
-    data: string;
+    dataset: string;
     /**
      *
-     * @type {number}
+     * @type {Date}
      * @memberof DataUsageSummary
      */
-    month: number;
-    /**
-     *
-     * @type {number}
-     * @memberof DataUsageSummary
-     */
-    year: number;
+    timestamp: Date;
 }
 /**
  * Check if a given object implements the DataUsageSummary interface.

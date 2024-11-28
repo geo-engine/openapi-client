@@ -21,7 +21,6 @@ export function instanceOfDataUsage(value) {
     isInstance = isInstance && "data" in value;
     isInstance = isInstance && "timestamp" in value;
     isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "workflowId" in value;
     return isInstance;
 }
 export function DataUsageFromJSON(json) {
@@ -37,7 +36,6 @@ export function DataUsageFromJSONTyped(json, ignoreDiscriminator) {
         'data': json['data'],
         'timestamp': (new Date(json['timestamp'])),
         'userId': json['userId'],
-        'workflowId': json['workflowId'],
     };
 }
 export function DataUsageToJSON(value) {
@@ -53,6 +51,5 @@ export function DataUsageToJSON(value) {
         'data': value.data,
         'timestamp': (value.timestamp.toISOString()),
         'userId': value.userId,
-        'workflowId': value.workflowId,
     };
 }

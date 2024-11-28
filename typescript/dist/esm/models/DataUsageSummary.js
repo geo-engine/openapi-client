@@ -17,9 +17,8 @@
 export function instanceOfDataUsageSummary(value) {
     let isInstance = true;
     isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "month" in value;
-    isInstance = isInstance && "year" in value;
+    isInstance = isInstance && "dataset" in value;
+    isInstance = isInstance && "timestamp" in value;
     return isInstance;
 }
 export function DataUsageSummaryFromJSON(json) {
@@ -31,9 +30,8 @@ export function DataUsageSummaryFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'count': json['count'],
-        'data': json['data'],
-        'month': json['month'],
-        'year': json['year'],
+        'dataset': json['dataset'],
+        'timestamp': (new Date(json['timestamp'])),
     };
 }
 export function DataUsageSummaryToJSON(value) {
@@ -45,8 +43,7 @@ export function DataUsageSummaryToJSON(value) {
     }
     return {
         'count': value.count,
-        'data': value.data,
-        'month': value.month,
-        'year': value.year,
+        'dataset': value.dataset,
+        'timestamp': (value.timestamp.toISOString()),
     };
 }

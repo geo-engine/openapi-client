@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Geo Engine Pro API",
+    "title": "Geo Engine API",
     "description": "",
     "contact": {
       "name": "Geo Engine Developers",
@@ -5911,7 +5911,7 @@
         "type": "object",
         "required": [
           "timestamp",
-          "dataset",
+          "data",
           "count"
         ],
         "properties": {
@@ -5920,7 +5920,7 @@
             "format": "int64",
             "minimum": 0
           },
-          "dataset": {
+          "data": {
             "type": "string"
           },
           "timestamp": {

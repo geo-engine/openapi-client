@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Geo Engine Pro API",
+    "title": "Geo Engine API",
     "description": "",
     "contact": {
       "name": "Geo Engine Developers",
@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3030/api"
+      "url": "http://127.0.0.1:3030/api"
     }
   ],
   "paths": {
@@ -3106,6 +3106,215 @@
         ]
       }
     },
+    "/quota/computations": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves the quota used by computations",
+        "operationId": "computations_quota_handler",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The quota used by computations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ComputationQuota"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
+    "/quota/computations/{computation}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves the quota used by computations",
+        "operationId": "computation_quota_handler",
+        "parameters": [
+          {
+            "name": "computation",
+            "in": "path",
+            "description": "Computation id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The quota used by computation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OperatorQuota"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
+    "/quota/dataUsage": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves the quota used on data",
+        "operationId": "data_usage_handler",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The quota used on data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataUsage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
+    "/quota/dataUsage/summary": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieves the quota used by computations",
+        "operationId": "data_usage_summary_handler",
+        "parameters": [
+          {
+            "name": "granularity",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UsageSummaryGranularity"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0
+            }
+          },
+          {
+            "name": "dataset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The quota used on data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataUsageSummary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      }
+    },
     "/quotas/{user}": {
       "get": {
         "tags": [
@@ -5477,6 +5686,34 @@
           }
         }
       },
+      "ComputationQuota": {
+        "type": "object",
+        "required": [
+          "timestamp",
+          "computationId",
+          "workflowId",
+          "count"
+        ],
+        "properties": {
+          "computationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "workflowId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
       "ContinuousMeasurement": {
         "type": "object",
         "required": [
@@ -5637,6 +5874,60 @@
       "DataProviderId": {
         "type": "string",
         "format": "uuid"
+      },
+      "DataUsage": {
+        "type": "object",
+        "required": [
+          "timestamp",
+          "userId",
+          "computationId",
+          "data",
+          "count"
+        ],
+        "properties": {
+          "computationId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "data": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "DataUsageSummary": {
+        "type": "object",
+        "required": [
+          "timestamp",
+          "data",
+          "count"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "data": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
       },
       "Dataset": {
         "type": "object",
@@ -7375,6 +7666,27 @@
           },
           "timestampType": {
             "$ref": "#/components/schemas/UnixTimeStampType"
+          }
+        }
+      },
+      "OperatorQuota": {
+        "type": "object",
+        "required": [
+          "operatorName",
+          "operatorPath",
+          "count"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 0
+          },
+          "operatorName": {
+            "type": "string"
+          },
+          "operatorPath": {
+            "type": "string"
           }
         }
       },
@@ -9426,6 +9738,16 @@
       "UploadId": {
         "type": "string",
         "format": "uuid"
+      },
+      "UsageSummaryGranularity": {
+        "type": "string",
+        "enum": [
+          "minutes",
+          "hours",
+          "days",
+          "months",
+          "years"
+        ]
       },
       "UserCredentials": {
         "type": "object",

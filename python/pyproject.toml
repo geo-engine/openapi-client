@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "geoengine_openapi_client"
 version = "0.0.17"
-description = "Geo Engine Pro API"
+description = "Geo Engine API"
 authors = ["Geo Engine Developers <dev@geoengine.de>"]
 license = "Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
-keywords = ["OpenAPI", "OpenAPI-Generator", "Geo Engine Pro API"]
+keywords = ["OpenAPI", "OpenAPI-Generator", "Geo Engine API"]
 include = ["geoengine_openapi_client/py.typed"]
 
 [tool.poetry.dependencies]

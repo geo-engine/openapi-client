@@ -55,10 +55,10 @@ import geoengine_openapi_client
 from geoengine_openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost:3030/api
+# Defining the host is optional and defaults to http://127.0.0.1:3030/api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = geoengine_openapi_client.Configuration(
-    host = "http://localhost:3030/api"
+    host = "http://127.0.0.1:3030/api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -90,7 +90,7 @@ with geoengine_openapi_client.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost:3030/api*
+All URIs are relative to *http://127.0.0.1:3030/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -165,6 +165,10 @@ Class | Method | HTTP request | Description
 *UploadsApi* | [**upload_handler**](docs/UploadsApi.md#upload_handler) | **POST** /upload | Uploads files.
 *UserApi* | [**add_role_handler**](docs/UserApi.md#add_role_handler) | **PUT** /roles | Add a new role. Requires admin privilige.
 *UserApi* | [**assign_role_handler**](docs/UserApi.md#assign_role_handler) | **POST** /users/{user}/roles/{role} | Assign a role to a user. Requires admin privilige.
+*UserApi* | [**computation_quota_handler**](docs/UserApi.md#computation_quota_handler) | **GET** /quota/computations/{computation} | Retrieves the quota used by computations
+*UserApi* | [**computations_quota_handler**](docs/UserApi.md#computations_quota_handler) | **GET** /quota/computations | Retrieves the quota used by computations
+*UserApi* | [**data_usage_handler**](docs/UserApi.md#data_usage_handler) | **GET** /quota/dataUsage | Retrieves the quota used on data
+*UserApi* | [**data_usage_summary_handler**](docs/UserApi.md#data_usage_summary_handler) | **GET** /quota/dataUsage/summary | Retrieves the quota used by computations
 *UserApi* | [**get_role_by_name_handler**](docs/UserApi.md#get_role_by_name_handler) | **GET** /roles/byName/{name} | Get role by name
 *UserApi* | [**get_role_descriptions**](docs/UserApi.md#get_role_descriptions) | **GET** /user/roles/descriptions | Query roles for the current user.
 *UserApi* | [**get_user_quota_handler**](docs/UserApi.md#get_user_quota_handler) | **GET** /quotas/{user} | Retrieves the available and used quota of a specific user.
@@ -200,6 +204,7 @@ Class | Method | HTTP request | Description
  - [ColorParam](docs/ColorParam.md)
  - [ColorParamStatic](docs/ColorParamStatic.md)
  - [Colorizer](docs/Colorizer.md)
+ - [ComputationQuota](docs/ComputationQuota.md)
  - [ContinuousMeasurement](docs/ContinuousMeasurement.md)
  - [Coordinate2D](docs/Coordinate2D.md)
  - [CreateDataset](docs/CreateDataset.md)
@@ -210,6 +215,8 @@ Class | Method | HTTP request | Description
  - [DataPath](docs/DataPath.md)
  - [DataPathOneOf](docs/DataPathOneOf.md)
  - [DataPathOneOf1](docs/DataPathOneOf1.md)
+ - [DataUsage](docs/DataUsage.md)
+ - [DataUsageSummary](docs/DataUsageSummary.md)
  - [Dataset](docs/Dataset.md)
  - [DatasetDefinition](docs/DatasetDefinition.md)
  - [DatasetListing](docs/DatasetListing.md)
@@ -285,6 +292,7 @@ Class | Method | HTTP request | Description
  - [OgrSourceTimeFormatAuto](docs/OgrSourceTimeFormatAuto.md)
  - [OgrSourceTimeFormatCustom](docs/OgrSourceTimeFormatCustom.md)
  - [OgrSourceTimeFormatUnixTimeStamp](docs/OgrSourceTimeFormatUnixTimeStamp.md)
+ - [OperatorQuota](docs/OperatorQuota.md)
  - [OrderBy](docs/OrderBy.md)
  - [PaletteColorizer](docs/PaletteColorizer.md)
  - [Permission](docs/Permission.md)
@@ -381,6 +389,7 @@ Class | Method | HTTP request | Description
  - [UpdateQuota](docs/UpdateQuota.md)
  - [UploadFileLayersResponse](docs/UploadFileLayersResponse.md)
  - [UploadFilesResponse](docs/UploadFilesResponse.md)
+ - [UsageSummaryGranularity](docs/UsageSummaryGranularity.md)
  - [UserCredentials](docs/UserCredentials.md)
  - [UserInfo](docs/UserInfo.md)
  - [UserRegistration](docs/UserRegistration.md)

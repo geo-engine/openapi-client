@@ -193,7 +193,7 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the quota used by computation with the given computation id
      */
     async computationQuotaHandlerRaw(requestParameters: ComputationQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OperatorQuota>>> {
         if (requestParameters.computation === null || requestParameters.computation === undefined) {
@@ -223,7 +223,7 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the quota used by computation with the given computation id
      */
     async computationQuotaHandler(requestParameters: ComputationQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OperatorQuota>> {
         const response = await this.computationQuotaHandlerRaw(requestParameters, initOverrides);
@@ -281,7 +281,7 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the quota used on data
+     * Retrieves the data usage
      */
     async dataUsageHandlerRaw(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsage>>> {
         if (requestParameters.offset === null || requestParameters.offset === undefined) {
@@ -323,7 +323,7 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the quota used on data
+     * Retrieves the data usage
      */
     async dataUsageHandler(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DataUsage>> {
         const response = await this.dataUsageHandlerRaw(requestParameters, initOverrides);
@@ -331,7 +331,7 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the data usage summary
      */
     async dataUsageSummaryHandlerRaw(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsageSummary>>> {
         if (requestParameters.granularity === null || requestParameters.granularity === undefined) {
@@ -385,7 +385,7 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the data usage summary
      */
     async dataUsageSummaryHandler(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DataUsageSummary>> {
         const response = await this.dataUsageSummaryHandlerRaw(requestParameters, initOverrides);

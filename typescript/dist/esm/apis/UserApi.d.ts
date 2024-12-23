@@ -73,11 +73,11 @@ export declare class UserApi extends runtime.BaseAPI {
      */
     assignRoleHandler(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the quota used by computation with the given computation id
      */
     computationQuotaHandlerRaw(requestParameters: ComputationQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OperatorQuota>>>;
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the quota used by computation with the given computation id
      */
     computationQuotaHandler(requestParameters: ComputationQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OperatorQuota>>;
     /**
@@ -89,19 +89,19 @@ export declare class UserApi extends runtime.BaseAPI {
      */
     computationsQuotaHandler(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ComputationQuota>>;
     /**
-     * Retrieves the quota used on data
+     * Retrieves the data usage
      */
     dataUsageHandlerRaw(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsage>>>;
     /**
-     * Retrieves the quota used on data
+     * Retrieves the data usage
      */
     dataUsageHandler(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DataUsage>>;
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the data usage summary
      */
     dataUsageSummaryHandlerRaw(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsageSummary>>>;
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the data usage summary
      */
     dataUsageSummaryHandler(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DataUsageSummary>>;
     /**

@@ -342,7 +342,7 @@ class UserApi:
 
     @validate_arguments
     def computation_quota_handler(self, computation : Annotated[StrictStr, Field(..., description="Computation id")], **kwargs) -> List[OperatorQuota]:  # noqa: E501
-        """Retrieves the quota used by computations  # noqa: E501
+        """Retrieves the quota used by computation with the given computation id  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -371,7 +371,7 @@ class UserApi:
 
     @validate_arguments
     def computation_quota_handler_with_http_info(self, computation : Annotated[StrictStr, Field(..., description="Computation id")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Retrieves the quota used by computations  # noqa: E501
+        """Retrieves the quota used by computation with the given computation id  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -626,7 +626,7 @@ class UserApi:
 
     @validate_arguments
     def data_usage_handler(self, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> List[DataUsage]:  # noqa: E501
-        """Retrieves the quota used on data  # noqa: E501
+        """Retrieves the data usage  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -657,7 +657,7 @@ class UserApi:
 
     @validate_arguments
     def data_usage_handler_with_http_info(self, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), **kwargs) -> ApiResponse:  # noqa: E501
-        """Retrieves the quota used on data  # noqa: E501
+        """Retrieves the data usage  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -772,7 +772,7 @@ class UserApi:
 
     @validate_arguments
     def data_usage_summary_handler(self, granularity : UsageSummaryGranularity, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), dataset : Optional[StrictStr] = None, **kwargs) -> List[DataUsageSummary]:  # noqa: E501
-        """Retrieves the quota used by computations  # noqa: E501
+        """Retrieves the data usage summary  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -807,7 +807,7 @@ class UserApi:
 
     @validate_arguments
     def data_usage_summary_handler_with_http_info(self, granularity : UsageSummaryGranularity, offset : conint(strict=True, ge=0), limit : conint(strict=True, ge=0), dataset : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Retrieves the quota used by computations  # noqa: E501
+        """Retrieves the data usage summary  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True

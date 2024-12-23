@@ -109,7 +109,7 @@ class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the quota used by computation with the given computation id
      */
     computationQuotaHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -135,7 +135,7 @@ class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the quota used by computation with the given computation id
      */
     computationQuotaHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -188,7 +188,7 @@ class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the quota used on data
+     * Retrieves the data usage
      */
     dataUsageHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -223,7 +223,7 @@ class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the quota used on data
+     * Retrieves the data usage
      */
     dataUsageHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -232,7 +232,7 @@ class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the data usage summary
      */
     dataUsageSummaryHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -276,7 +276,7 @@ class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the quota used by computations
+     * Retrieves the data usage summary
      */
     dataUsageSummaryHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {

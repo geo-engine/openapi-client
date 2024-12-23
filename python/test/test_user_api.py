@@ -44,7 +44,7 @@ class TestUserApi(unittest.TestCase):
     def test_computation_quota_handler(self) -> None:
         """Test case for computation_quota_handler
 
-        Retrieves the quota used by computations  # noqa: E501
+        Retrieves the quota used by computation with the given computation id  # noqa: E501
         """
         pass
 
@@ -58,14 +58,14 @@ class TestUserApi(unittest.TestCase):
     def test_data_usage_handler(self) -> None:
         """Test case for data_usage_handler
 
-        Retrieves the quota used on data  # noqa: E501
+        Retrieves the data usage  # noqa: E501
         """
         pass
 
     def test_data_usage_summary_handler(self) -> None:
         """Test case for data_usage_summary_handler
 
-        Retrieves the quota used by computations  # noqa: E501
+        Retrieves the data usage summary  # noqa: E501
         """
         pass
 

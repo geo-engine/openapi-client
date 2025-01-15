@@ -81,6 +81,7 @@ export * from './MetaDataDefinition';
 export * from './MetaDataSuggestion';
 export * from './MlModel';
 export * from './MlModelMetadata';
+export * from './MlModelResource';
 export * from './MockDatasetDataSourceLoadingInfo';
 export * from './MockMetaData';
 export * from './MultiBandRasterColorizer';

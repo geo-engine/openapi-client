@@ -34,6 +34,13 @@ import {
     LayerResourceToJSON,
 } from './LayerResource';
 import {
+    MlModelResource,
+    instanceOfMlModelResource,
+    MlModelResourceFromJSON,
+    MlModelResourceFromJSONTyped,
+    MlModelResourceToJSON,
+} from './MlModelResource';
+import {
     ProjectResource,
     instanceOfProjectResource,
     ProjectResourceFromJSON,
@@ -46,7 +53,7 @@ import {
  * 
  * @export
  */
-export type Resource = { type: 'dataset' } & DatasetResource | { type: 'layer' } & LayerResource | { type: 'layerCollection' } & LayerCollectionResource | { type: 'project' } & ProjectResource;
+export type Resource = { type: 'dataset' } & DatasetResource | { type: 'layer' } & LayerResource | { type: 'layerCollection' } & LayerCollectionResource | { type: 'mlModel' } & MlModelResource | { type: 'project' } & ProjectResource;
 
 export function ResourceFromJSON(json: any): Resource {
     return ResourceFromJSONTyped(json, false);
@@ -63,6 +70,8 @@ export function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
             return {...LayerResourceFromJSONTyped(json, true), type: 'layer'};
         case 'layerCollection':
             return {...LayerCollectionResourceFromJSONTyped(json, true), type: 'layerCollection'};
+        case 'mlModel':
+            return {...MlModelResourceFromJSONTyped(json, true), type: 'mlModel'};
         case 'project':
             return {...ProjectResourceFromJSONTyped(json, true), type: 'project'};
         default:
@@ -84,6 +93,8 @@ export function ResourceToJSON(value?: Resource | null): any {
             return LayerResourceToJSON(value);
         case 'layerCollection':
             return LayerCollectionResourceToJSON(value);
+        case 'mlModel':
+            return MlModelResourceToJSON(value);
         case 'project':
             return ProjectResourceToJSON(value);
         default:

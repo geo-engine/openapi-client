@@ -12,6 +12,7 @@
 import { DatasetResource } from './DatasetResource';
 import { LayerCollectionResource } from './LayerCollectionResource';
 import { LayerResource } from './LayerResource';
+import { MlModelResource } from './MlModelResource';
 import { ProjectResource } from './ProjectResource';
 /**
  * @type Resource
@@ -25,6 +26,8 @@ export type Resource = {
 } & LayerResource | {
     type: 'layerCollection';
 } & LayerCollectionResource | {
+    type: 'mlModel';
+} & MlModelResource | {
     type: 'project';
 } & ProjectResource;
 export declare function ResourceFromJSON(json: any): Resource;

@@ -22,9 +22,9 @@ import json
 
 from pydantic import BaseModel, Field, StrictStr, validator
 
-class LayerResource(BaseModel):
+class MlModelResource(BaseModel):
     """
-    LayerResource
+    MlModelResource
     """
     id: StrictStr = Field(...)
     type: StrictStr = Field(...)
@@ -33,8 +33,8 @@ class LayerResource(BaseModel):
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('layer', 'layerCollection', 'project', 'dataset', 'mlModel'):
-            raise ValueError("must be one of enum values ('layer', 'layerCollection', 'project', 'dataset', 'mlModel')")
+        if value not in ('mlModel'):
+            raise ValueError("must be one of enum values ('mlModel')")
         return value
 
     class Config:
@@ -51,8 +51,8 @@ class LayerResource(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> LayerResource:
-        """Create an instance of LayerResource from a JSON string"""
+    def from_json(cls, json_str: str) -> MlModelResource:
+        """Create an instance of MlModelResource from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -64,15 +64,15 @@ class LayerResource(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> LayerResource:
-        """Create an instance of LayerResource from a dict"""
+    def from_dict(cls, obj: dict) -> MlModelResource:
+        """Create an instance of MlModelResource from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return LayerResource.parse_obj(obj)
+            return MlModelResource.parse_obj(obj)
 
-        _obj = LayerResource.parse_obj({
+        _obj = MlModelResource.parse_obj({
             "id": obj.get("id"),
             "type": obj.get("type")
         })

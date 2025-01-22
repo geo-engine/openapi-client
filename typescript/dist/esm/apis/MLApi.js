@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as runtime from '../runtime';
-import { MlModelFromJSON, MlModelToJSON, } from '../models/index';
+import { MlModelFromJSON, MlModelToJSON, MlModelNameResponseFromJSON, } from '../models/index';
 /**
  *
  */
@@ -51,7 +51,7 @@ export class MLApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: MlModelToJSON(requestParameters.mlModel),
             }, initOverrides);
-            return new runtime.VoidApiResponse(response);
+            return new runtime.JSONApiResponse(response, (jsonValue) => MlModelNameResponseFromJSON(jsonValue));
         });
     }
     /**
@@ -59,7 +59,8 @@ export class MLApi extends runtime.BaseAPI {
      */
     addMlModel(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.addMlModelRaw(requestParameters, initOverrides);
+            const response = yield this.addMlModelRaw(requestParameters, initOverrides);
+            return yield response.value();
         });
     }
     /**

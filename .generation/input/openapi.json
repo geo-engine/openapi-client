@@ -75,106 +75,14 @@
         "tags": [
           "Datasets"
         ],
-        "summary": "Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.",
+        "summary": "Creates a new dataset referencing files.",
+        "description": "Users can reference previously uploaded files.\nAdmins can reference files from a volume.",
         "operationId": "create_dataset_handler",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateDataset"
-              },
-              "examples": {
-                "Germany Border": {
-                  "value": {
-                    "dataPath": {
-                      "upload": "420b06de-0a7e-45cb-9c1c-ea901b46ab69"
-                    },
-                    "definition": {
-                      "properties": {
-                        "name": "germany_border",
-                        "displayName": "Germany Border",
-                        "description": "The Outline of Germany",
-                        "sourceOperator": "OgrSource"
-                      },
-                      "metaData": {
-                        "type": "OgrMetaData",
-                        "loadingInfo": {
-                          "fileName": "germany_polygon.gpkg",
-                          "layerName": "test_germany",
-                          "dataType": "MultiPolygon",
-                          "time": {
-                            "type": "none"
-                          },
-                          "columns": {
-                            "x": "",
-                            "y": null,
-                            "text": [],
-                            "float": [],
-                            "int": [],
-                            "bool": [],
-                            "datetime": []
-                          },
-                          "forceOgrTimeFilter": false,
-                          "onError": "ignore"
-                        },
-                        "resultDescriptor": {
-                          "dataType": "MultiPolygon",
-                          "spatialReference": "EPSG:4326",
-                          "columns": {}
-                        }
-                      }
-                    }
-                  }
-                },
-                "Plain Data": {
-                  "value": {
-                    "dataPath": {
-                      "upload": "f3bd61ef-d9ce-471c-89a1-46b5f7295886"
-                    },
-                    "definition": {
-                      "properties": {
-                        "name": "plain_data",
-                        "displayName": "Plain Data",
-                        "description": "Demo Dataset",
-                        "sourceOperator": "OgrSource"
-                      },
-                      "metaData": {
-                        "type": "OgrMetaData",
-                        "loadingInfo": {
-                          "fileName": "plain_data.csv",
-                          "layerName": "plain_data",
-                          "dataType": "Data",
-                          "time": {
-                            "type": "none"
-                          },
-                          "columns": {
-                            "x": "",
-                            "y": null,
-                            "text": [],
-                            "float": [],
-                            "int": [
-                              "a"
-                            ]
-                          },
-                          "forceOgrTimeFilter": false,
-                          "onError": "abort"
-                        },
-                        "resultDescriptor": {
-                          "dataType": "Data",
-                          "spatialReference": "EPSG:4326",
-                          "columns": {
-                            "a": {
-                              "dataType": "int",
-                              "measurement": {
-                                "type": "unitless"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
               }
             }
           },
@@ -183,93 +91,6 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/DatasetNameResponse"
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                },
-                "examples": {
-                  "Admin tried to create dataset from an upload": {
-                    "value": {
-                      "error": "AdminsCannotCreateDatasetFromUpload",
-                      "message": "Admins cannot create dataset from upload"
-                    }
-                  },
-                  "Body is invalid json": {
-                    "value": {
-                      "error": "BodyDeserializeError",
-                      "message": "expected `,` or `}` at line 13 column 7"
-                    }
-                  },
-                  "Failed to read body": {
-                    "value": {
-                      "error": "Payload",
-                      "message": "Error that occur during reading payload: Can not decode content-encoding."
-                    }
-                  },
-                  "Filepath in metadata is invalid": {
-                    "value": {
-                      "error": "CannotResolveUploadFilePath",
-                      "message": "CannotResolveUploadFilePath: PathIsNotAFile"
-                    }
-                  },
-                  "Normal user tried to create dataset from a volume": {
-                    "value": {
-                      "error": "OnlyAdminsCanCreateDatasetFromVolume",
-                      "message": "Only admins can create dataset from volume"
-                    }
-                  },
-                  "Referenced an unknown upload": {
-                    "value": {
-                      "error": "UploadNotFound",
-                      "message": "UploadNotFound: UnknownUploadId"
-                    }
-                  },
-                  "Referenced an unknown volume": {
-                    "value": {
-                      "error": "UnknownVolume",
-                      "message": "Unknown volume"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedUserResponse"
-          },
-          "413": {
-            "$ref": "#/components/responses/PayloadTooLargeResponse"
-          },
-          "415": {
-            "$ref": "#/components/responses/UnsupportedMediaTypeForJsonResponse"
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                },
-                "examples": {
-                  "Cannot access config": {
-                    "value": {
-                      "error": "CannotAccessConfig",
-                      "message": "CannotAccessConfig: ConfigLockFailed"
-                    }
-                  },
-                  "Failed to access database": {
-                    "value": {
-                      "error": "DatabaseAccessError",
-                      "message": "DatabaseAccessError: connection closed"
-                    }
-                  }
-                }
-              }
-            }
           }
         },
         "security": [
@@ -2360,7 +2181,14 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MlModelNameResponse"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -7045,6 +6873,17 @@
       },
       "MlModelName": {
         "type": "string"
+      },
+      "MlModelNameResponse": {
+        "type": "object",
+        "required": [
+          "datasetName"
+        ],
+        "properties": {
+          "datasetName": {
+            "$ref": "#/components/schemas/MlModelName"
+          }
+        }
       },
       "MlModelResource": {
         "type": "object",

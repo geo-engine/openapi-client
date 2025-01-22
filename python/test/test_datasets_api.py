@@ -37,7 +37,7 @@ class TestDatasetsApi(unittest.TestCase):
     def test_create_dataset_handler(self) -> None:
         """Test case for create_dataset_handler
 
-        Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.  # noqa: E501
+        Creates a new dataset referencing files.  # noqa: E501
         """
         pass
 

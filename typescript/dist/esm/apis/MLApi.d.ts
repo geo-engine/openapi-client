@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { MlModel } from '../models/index';
+import type { MlModel, MlModelNameResponse } from '../models/index';
 export interface AddMlModelRequest {
     mlModel: MlModel;
 }
@@ -24,11 +24,11 @@ export declare class MLApi extends runtime.BaseAPI {
     /**
      * Create a new ml model.
      */
-    addMlModelRaw(requestParameters: AddMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addMlModelRaw(requestParameters: AddMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MlModelNameResponse>>;
     /**
      * Create a new ml model.
      */
-    addMlModel(requestParameters: AddMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addMlModel(requestParameters: AddMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MlModelNameResponse>;
     /**
      * Get ml model by name.
      */

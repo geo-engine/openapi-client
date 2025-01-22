@@ -170,7 +170,8 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Creates a new dataset referencing files.
      */
     async createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDatasetHandler200Response>> {
         if (requestParameters.createDataset === null || requestParameters.createDataset === undefined) {
@@ -203,7 +204,8 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Creates a new dataset referencing files.
      */
     async createDatasetHandler(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateDatasetHandler200Response> {
         const response = await this.createDatasetHandlerRaw(requestParameters, initOverrides);

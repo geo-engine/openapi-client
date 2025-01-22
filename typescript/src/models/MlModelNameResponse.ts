@@ -24,7 +24,7 @@ export interface MlModelNameResponse {
      * @type {string}
      * @memberof MlModelNameResponse
      */
-    datasetName: string;
+    mlModelName: string;
 }
 
 /**
@@ -32,7 +32,7 @@ export interface MlModelNameResponse {
  */
 export function instanceOfMlModelNameResponse(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "datasetName" in value;
+    isInstance = isInstance && "mlModelName" in value;
 
     return isInstance;
 }
@@ -47,7 +47,7 @@ export function MlModelNameResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'datasetName': json['datasetName'],
+        'mlModelName': json['mlModelName'],
     };
 }
 
@@ -60,7 +60,7 @@ export function MlModelNameResponseToJSON(value?: MlModelNameResponse | null): a
     }
     return {
         
-        'datasetName': value.datasetName,
+        'mlModelName': value.mlModelName,
     };
 }
 

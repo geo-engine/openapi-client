@@ -26,8 +26,8 @@ class MlModelNameResponse(BaseModel):
     """
     MlModelNameResponse
     """
-    dataset_name: StrictStr = Field(..., alias="datasetName")
-    __properties = ["datasetName"]
+    ml_model_name: StrictStr = Field(..., alias="mlModelName")
+    __properties = ["mlModelName"]
 
     class Config:
         """Pydantic configuration"""
@@ -65,7 +65,7 @@ class MlModelNameResponse(BaseModel):
             return MlModelNameResponse.parse_obj(obj)
 
         _obj = MlModelNameResponse.parse_obj({
-            "dataset_name": obj.get("datasetName")
+            "ml_model_name": obj.get("mlModelName")
         })
         return _obj
 

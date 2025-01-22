@@ -20,7 +20,7 @@ export interface MlModelNameResponse {
      * @type {string}
      * @memberof MlModelNameResponse
      */
-    datasetName: string;
+    mlModelName: string;
 }
 /**
  * Check if a given object implements the MlModelNameResponse interface.

@@ -37,11 +37,11 @@ class TestMlModelNameResponse(unittest.TestCase):
         model = MlModelNameResponse()  # noqa: E501
         if include_optional:
             return MlModelNameResponse(
-                dataset_name = ''
+                ml_model_name = ''
             )
         else:
             return MlModelNameResponse(
-                dataset_name = '',
+                ml_model_name = '',
         )
         """
 

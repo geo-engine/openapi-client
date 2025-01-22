@@ -6877,10 +6877,10 @@
       "MlModelNameResponse": {
         "type": "object",
         "required": [
-          "datasetName"
+          "mlModelName"
         ],
         "properties": {
-          "datasetName": {
+          "mlModelName": {
             "$ref": "#/components/schemas/MlModelName"
           }
         }

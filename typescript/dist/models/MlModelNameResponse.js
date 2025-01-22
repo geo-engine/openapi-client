@@ -19,7 +19,7 @@ exports.MlModelNameResponseToJSON = exports.MlModelNameResponseFromJSONTyped = e
  */
 function instanceOfMlModelNameResponse(value) {
     let isInstance = true;
-    isInstance = isInstance && "datasetName" in value;
+    isInstance = isInstance && "mlModelName" in value;
     return isInstance;
 }
 exports.instanceOfMlModelNameResponse = instanceOfMlModelNameResponse;
@@ -32,7 +32,7 @@ function MlModelNameResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'datasetName': json['datasetName'],
+        'mlModelName': json['mlModelName'],
     };
 }
 exports.MlModelNameResponseFromJSONTyped = MlModelNameResponseFromJSONTyped;
@@ -44,7 +44,7 @@ function MlModelNameResponseToJSON(value) {
         return null;
     }
     return {
-        'datasetName': value.datasetName,
+        'mlModelName': value.mlModelName,
     };
 }
 exports.MlModelNameResponseToJSON = MlModelNameResponseToJSON;

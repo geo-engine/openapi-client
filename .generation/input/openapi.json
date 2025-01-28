@@ -7618,7 +7618,7 @@
       "PermissionListing": {
         "type": "object",
         "required": [
-          "resourceId",
+          "resource",
           "role",
           "permission"
         ],
@@ -7626,8 +7626,8 @@
           "permission": {
             "$ref": "#/components/schemas/Permission"
           },
-          "resourceId": {
-            "$ref": "#/components/schemas/ResourceId"
+          "resource": {
+            "$ref": "#/components/schemas/Resource"
           },
           "role": {
             "$ref": "#/components/schemas/Role"

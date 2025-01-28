@@ -38,7 +38,7 @@ class TestPermissionListing(unittest.TestCase):
         if include_optional:
             return PermissionListing(
                 permission = 'Read',
-                resource_id = None,
+                resource = None,
                 role = geoengine_openapi_client.models.role.Role(
                     id = '', 
                     name = '', )
@@ -46,7 +46,7 @@ class TestPermissionListing(unittest.TestCase):
         else:
             return PermissionListing(
                 permission = 'Read',
-                resource_id = None,
+                resource = None,
                 role = geoengine_openapi_client.models.role.Role(
                     id = '', 
                     name = '', ),

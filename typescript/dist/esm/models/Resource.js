@@ -14,6 +14,7 @@
 import { DatasetResourceFromJSONTyped, DatasetResourceToJSON, } from './DatasetResource';
 import { LayerCollectionResourceFromJSONTyped, LayerCollectionResourceToJSON, } from './LayerCollectionResource';
 import { LayerResourceFromJSONTyped, LayerResourceToJSON, } from './LayerResource';
+import { MlModelResourceFromJSONTyped, MlModelResourceToJSON, } from './MlModelResource';
 import { ProjectResourceFromJSONTyped, ProjectResourceToJSON, } from './ProjectResource';
 export function ResourceFromJSON(json) {
     return ResourceFromJSONTyped(json, false);
@@ -29,6 +30,8 @@ export function ResourceFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign(Object.assign({}, LayerResourceFromJSONTyped(json, true)), { type: 'layer' });
         case 'layerCollection':
             return Object.assign(Object.assign({}, LayerCollectionResourceFromJSONTyped(json, true)), { type: 'layerCollection' });
+        case 'mlModel':
+            return Object.assign(Object.assign({}, MlModelResourceFromJSONTyped(json, true)), { type: 'mlModel' });
         case 'project':
             return Object.assign(Object.assign({}, ProjectResourceFromJSONTyped(json, true)), { type: 'project' });
         default:
@@ -49,6 +52,8 @@ export function ResourceToJSON(value) {
             return LayerResourceToJSON(value);
         case 'layerCollection':
             return LayerCollectionResourceToJSON(value);
+        case 'mlModel':
+            return MlModelResourceToJSON(value);
         case 'project':
             return ProjectResourceToJSON(value);
         default:

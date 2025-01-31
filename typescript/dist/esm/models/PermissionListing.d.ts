@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import type { Permission } from './Permission';
-import type { ResourceId } from './ResourceId';
+import type { Resource } from './Resource';
 import type { Role } from './Role';
 /**
  *
@@ -26,10 +26,10 @@ export interface PermissionListing {
     permission: Permission;
     /**
      *
-     * @type {ResourceId}
+     * @type {Resource}
      * @memberof PermissionListing
      */
-    resourceId: ResourceId;
+    resource: Resource;
     /**
      *
      * @type {Role}

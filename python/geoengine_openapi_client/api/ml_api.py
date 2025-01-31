@@ -25,6 +25,7 @@ from pydantic import Field, StrictStr
 from typing import List
 
 from geoengine_openapi_client.models.ml_model import MlModel
+from geoengine_openapi_client.models.ml_model_name_response import MlModelNameResponse
 
 from geoengine_openapi_client.api_client import ApiClient
 from geoengine_openapi_client.api_response import ApiResponse
@@ -47,7 +48,7 @@ class MLApi:
         self.api_client = api_client
 
     @validate_arguments
-    def add_ml_model(self, ml_model : MlModel, **kwargs) -> None:  # noqa: E501
+    def add_ml_model(self, ml_model : MlModel, **kwargs) -> MlModelNameResponse:  # noqa: E501
         """Create a new ml model.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -67,7 +68,7 @@ class MLApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: MlModelNameResponse
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -109,7 +110,7 @@ class MLApi:
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: None
+        :rtype: tuple(MlModelNameResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -156,6 +157,10 @@ class MLApi:
         if _params['ml_model'] is not None:
             _body_params = _params['ml_model']
 
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get('_content_type',
             self.api_client.select_header_content_type(
@@ -166,7 +171,9 @@ class MLApi:
         # authentication setting
         _auth_settings = ['session_token']  # noqa: E501
 
-        _response_types_map = {}
+        _response_types_map = {
+            '200': "MlModelNameResponse",
+        }
 
         return self.api_client.call_api(
             '/ml/models', 'POST',

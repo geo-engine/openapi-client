@@ -20,19 +20,22 @@ import json
 
 
 
-from pydantic import BaseModel, Field
-from geoengine_openapi_client.models.permission import Permission
-from geoengine_openapi_client.models.resource import Resource
-from geoengine_openapi_client.models.role import Role
+from pydantic import BaseModel, Field, StrictStr, validator
 
-class PermissionListing(BaseModel):
+class MlModelResource(BaseModel):
     """
-    PermissionListing
+    MlModelResource
     """
-    permission: Permission = Field(...)
-    resource: Resource = Field(...)
-    role: Role = Field(...)
-    __properties = ["permission", "resource", "role"]
+    id: StrictStr = Field(...)
+    type: StrictStr = Field(...)
+    __properties = ["id", "type"]
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('mlModel'):
+            raise ValueError("must be one of enum values ('mlModel')")
+        return value
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +51,8 @@ class PermissionListing(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PermissionListing:
-        """Create an instance of PermissionListing from a JSON string"""
+    def from_json(cls, json_str: str) -> MlModelResource:
+        """Create an instance of MlModelResource from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -58,27 +61,20 @@ class PermissionListing(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of resource
-        if self.resource:
-            _dict['resource'] = self.resource.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of role
-        if self.role:
-            _dict['role'] = self.role.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PermissionListing:
-        """Create an instance of PermissionListing from a dict"""
+    def from_dict(cls, obj: dict) -> MlModelResource:
+        """Create an instance of MlModelResource from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PermissionListing.parse_obj(obj)
+            return MlModelResource.parse_obj(obj)
 
-        _obj = PermissionListing.parse_obj({
-            "permission": obj.get("permission"),
-            "resource": Resource.from_dict(obj.get("resource")) if obj.get("resource") is not None else None,
-            "role": Role.from_dict(obj.get("role")) if obj.get("role") is not None else None
+        _obj = MlModelResource.parse_obj({
+            "id": obj.get("id"),
+            "type": obj.get("type")
         })
         return _obj
 

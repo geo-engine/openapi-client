@@ -69,7 +69,8 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Creates a new dataset referencing files.
      */
     createDatasetHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -97,7 +98,8 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Creates a new dataset referencing files.
      */
     createDatasetHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {

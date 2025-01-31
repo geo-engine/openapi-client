@@ -15,7 +15,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PermissionListingToJSON = exports.PermissionListingFromJSONTyped = exports.PermissionListingFromJSON = exports.instanceOfPermissionListing = void 0;
 const Permission_1 = require("./Permission");
-const ResourceId_1 = require("./ResourceId");
+const Resource_1 = require("./Resource");
 const Role_1 = require("./Role");
 /**
  * Check if a given object implements the PermissionListing interface.
@@ -23,7 +23,7 @@ const Role_1 = require("./Role");
 function instanceOfPermissionListing(value) {
     let isInstance = true;
     isInstance = isInstance && "permission" in value;
-    isInstance = isInstance && "resourceId" in value;
+    isInstance = isInstance && "resource" in value;
     isInstance = isInstance && "role" in value;
     return isInstance;
 }
@@ -38,7 +38,7 @@ function PermissionListingFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'permission': (0, Permission_1.PermissionFromJSON)(json['permission']),
-        'resourceId': (0, ResourceId_1.ResourceIdFromJSON)(json['resourceId']),
+        'resource': (0, Resource_1.ResourceFromJSON)(json['resource']),
         'role': (0, Role_1.RoleFromJSON)(json['role']),
     };
 }
@@ -52,7 +52,7 @@ function PermissionListingToJSON(value) {
     }
     return {
         'permission': (0, Permission_1.PermissionToJSON)(value.permission),
-        'resourceId': (0, ResourceId_1.ResourceIdToJSON)(value.resourceId),
+        'resource': (0, Resource_1.ResourceToJSON)(value.resource),
         'role': (0, Role_1.RoleToJSON)(value.role),
     };
 }

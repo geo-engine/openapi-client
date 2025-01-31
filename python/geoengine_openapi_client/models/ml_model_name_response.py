@@ -20,19 +20,14 @@ import json
 
 
 
-from pydantic import BaseModel, Field
-from geoengine_openapi_client.models.permission import Permission
-from geoengine_openapi_client.models.resource import Resource
-from geoengine_openapi_client.models.role import Role
+from pydantic import BaseModel, Field, StrictStr
 
-class PermissionListing(BaseModel):
+class MlModelNameResponse(BaseModel):
     """
-    PermissionListing
+    MlModelNameResponse
     """
-    permission: Permission = Field(...)
-    resource: Resource = Field(...)
-    role: Role = Field(...)
-    __properties = ["permission", "resource", "role"]
+    ml_model_name: StrictStr = Field(..., alias="mlModelName")
+    __properties = ["mlModelName"]
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +43,8 @@ class PermissionListing(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PermissionListing:
-        """Create an instance of PermissionListing from a JSON string"""
+    def from_json(cls, json_str: str) -> MlModelNameResponse:
+        """Create an instance of MlModelNameResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -58,27 +53,19 @@ class PermissionListing(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of resource
-        if self.resource:
-            _dict['resource'] = self.resource.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of role
-        if self.role:
-            _dict['role'] = self.role.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PermissionListing:
-        """Create an instance of PermissionListing from a dict"""
+    def from_dict(cls, obj: dict) -> MlModelNameResponse:
+        """Create an instance of MlModelNameResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PermissionListing.parse_obj(obj)
+            return MlModelNameResponse.parse_obj(obj)
 
-        _obj = PermissionListing.parse_obj({
-            "permission": obj.get("permission"),
-            "resource": Resource.from_dict(obj.get("resource")) if obj.get("resource") is not None else None,
-            "role": Role.from_dict(obj.get("role")) if obj.get("role") is not None else None
+        _obj = MlModelNameResponse.parse_obj({
+            "ml_model_name": obj.get("mlModelName")
         })
         return _obj
 

@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.18"
+__version__ = "0.0.19"
 
 # import apis into sdk package
 from geoengine_openapi_client.api.datasets_api import DatasetsApi
@@ -128,6 +128,8 @@ from geoengine_openapi_client.models.meta_data_definition import MetaDataDefinit
 from geoengine_openapi_client.models.meta_data_suggestion import MetaDataSuggestion
 from geoengine_openapi_client.models.ml_model import MlModel
 from geoengine_openapi_client.models.ml_model_metadata import MlModelMetadata
+from geoengine_openapi_client.models.ml_model_name_response import MlModelNameResponse
+from geoengine_openapi_client.models.ml_model_resource import MlModelResource
 from geoengine_openapi_client.models.mock_dataset_data_source_loading_info import MockDatasetDataSourceLoadingInfo
 from geoengine_openapi_client.models.mock_meta_data import MockMetaData
 from geoengine_openapi_client.models.multi_band_raster_colorizer import MultiBandRasterColorizer

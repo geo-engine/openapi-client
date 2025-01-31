@@ -71,11 +71,13 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      */
     autoCreateDatasetHandler(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateDatasetHandler200Response>;
     /**
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Creates a new dataset referencing files.
      */
     createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDatasetHandler200Response>>;
     /**
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Creates a new dataset referencing files.
      */
     createDatasetHandler(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateDatasetHandler200Response>;
     /**

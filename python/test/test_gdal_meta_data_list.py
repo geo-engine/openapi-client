@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.gdal_meta_data_list import GdalMetaDataList  # noqa: E501
+from geoengine_openapi_client.models.gdal_meta_data_list import GdalMetaDataList
 
 class TestGdalMetaDataList(unittest.TestCase):
     """GdalMetaDataList unit test stubs"""
@@ -29,18 +28,49 @@ class TestGdalMetaDataList(unittest.TestCase):
 
     def make_instance(self, include_optional) -> GdalMetaDataList:
         """Test GdalMetaDataList
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `GdalMetaDataList`
         """
-        model = GdalMetaDataList()  # noqa: E501
+        model = GdalMetaDataList()
         if include_optional:
             return GdalMetaDataList(
                 params = [
                     geoengine_openapi_client.models.gdal_loading_info_temporal_slice.GdalLoadingInfoTemporalSlice(
                         cache_ttl = 0, 
-                        params = null, 
+                        params = geoengine_openapi_client.models.gdal_dataset_parameters.GdalDatasetParameters(
+                            allow_alphaband_as_mask = True, 
+                            file_not_found_handling = 'NoData', 
+                            file_path = '', 
+                            gdal_config_options = [
+                                [
+                                    ''
+                                    ]
+                                ], 
+                            gdal_open_options = [
+                                ''
+                                ], 
+                            geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                                origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                                    x = 1.337, 
+                                    y = 1.337, ), 
+                                x_pixel_size = 1.337, 
+                                y_pixel_size = 1.337, ), 
+                            height = 0, 
+                            no_data_value = 1.337, 
+                            properties_mapping = [
+                                geoengine_openapi_client.models.gdal_metadata_mapping.GdalMetadataMapping(
+                                    source_key = geoengine_openapi_client.models.raster_properties_key.RasterPropertiesKey(
+                                        domain = '', 
+                                        key = '', ), 
+                                    target_key = geoengine_openapi_client.models.raster_properties_key.RasterPropertiesKey(
+                                        domain = '', 
+                                        key = '', ), 
+                                    target_type = 'Number', )
+                                ], 
+                            rasterband_channel = 0, 
+                            width = 0, ), 
                         time = geoengine_openapi_client.models.time_interval.TimeInterval(
                             end = 56, 
                             start = 56, ), )
@@ -51,11 +81,21 @@ class TestGdalMetaDataList(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = null, 
+                    bbox = geoengine_openapi_client.models.spatial_partition2_d.SpatialPartition2D(
+                        lower_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                            x = 1.337, 
+                            y = 1.337, ), 
+                        upper_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                            x = 1.337, 
+                            y = 1.337, ), ), 
                     data_type = 'U8', 
-                    resolution = null, 
+                    resolution = geoengine_openapi_client.models.spatial_resolution.SpatialResolution(
+                        x = 1.337, 
+                        y = 1.337, ), 
                     spatial_reference = '', 
-                    time = null, ),
+                    time = geoengine_openapi_client.models.time_interval.TimeInterval(
+                        end = 56, 
+                        start = 56, ), ),
                 type = 'GdalMetaDataList'
             )
         else:
@@ -63,7 +103,38 @@ class TestGdalMetaDataList(unittest.TestCase):
                 params = [
                     geoengine_openapi_client.models.gdal_loading_info_temporal_slice.GdalLoadingInfoTemporalSlice(
                         cache_ttl = 0, 
-                        params = null, 
+                        params = geoengine_openapi_client.models.gdal_dataset_parameters.GdalDatasetParameters(
+                            allow_alphaband_as_mask = True, 
+                            file_not_found_handling = 'NoData', 
+                            file_path = '', 
+                            gdal_config_options = [
+                                [
+                                    ''
+                                    ]
+                                ], 
+                            gdal_open_options = [
+                                ''
+                                ], 
+                            geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                                origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                                    x = 1.337, 
+                                    y = 1.337, ), 
+                                x_pixel_size = 1.337, 
+                                y_pixel_size = 1.337, ), 
+                            height = 0, 
+                            no_data_value = 1.337, 
+                            properties_mapping = [
+                                geoengine_openapi_client.models.gdal_metadata_mapping.GdalMetadataMapping(
+                                    source_key = geoengine_openapi_client.models.raster_properties_key.RasterPropertiesKey(
+                                        domain = '', 
+                                        key = '', ), 
+                                    target_key = geoengine_openapi_client.models.raster_properties_key.RasterPropertiesKey(
+                                        domain = '', 
+                                        key = '', ), 
+                                    target_type = 'Number', )
+                                ], 
+                            rasterband_channel = 0, 
+                            width = 0, ), 
                         time = geoengine_openapi_client.models.time_interval.TimeInterval(
                             end = 56, 
                             start = 56, ), )
@@ -74,11 +145,21 @@ class TestGdalMetaDataList(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = null, 
+                    bbox = geoengine_openapi_client.models.spatial_partition2_d.SpatialPartition2D(
+                        lower_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                            x = 1.337, 
+                            y = 1.337, ), 
+                        upper_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                            x = 1.337, 
+                            y = 1.337, ), ), 
                     data_type = 'U8', 
-                    resolution = null, 
+                    resolution = geoengine_openapi_client.models.spatial_resolution.SpatialResolution(
+                        x = 1.337, 
+                        y = 1.337, ), 
                     spatial_reference = '', 
-                    time = null, ),
+                    time = geoengine_openapi_client.models.time_interval.TimeInterval(
+                        end = 56, 
+                        start = 56, ), ),
                 type = 'GdalMetaDataList',
         )
         """

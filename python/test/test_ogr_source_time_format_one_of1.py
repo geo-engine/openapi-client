@@ -14,12 +14,11 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.ogr_source_time_format_unix_time_stamp import OgrSourceTimeFormatUnixTimeStamp  # noqa: E501
+from geoengine_openapi_client.models.ogr_source_time_format_one_of1 import OgrSourceTimeFormatOneOf1
 
-class TestOgrSourceTimeFormatUnixTimeStamp(unittest.TestCase):
-    """OgrSourceTimeFormatUnixTimeStamp unit test stubs"""
+class TestOgrSourceTimeFormatOneOf1(unittest.TestCase):
+    """OgrSourceTimeFormatOneOf1 unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,28 +26,28 @@ class TestOgrSourceTimeFormatUnixTimeStamp(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> OgrSourceTimeFormatUnixTimeStamp:
-        """Test OgrSourceTimeFormatUnixTimeStamp
-            include_option is a boolean, when False only required
+    def make_instance(self, include_optional) -> OgrSourceTimeFormatOneOf1:
+        """Test OgrSourceTimeFormatOneOf1
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `OgrSourceTimeFormatUnixTimeStamp`
+        # uncomment below to create an instance of `OgrSourceTimeFormatOneOf1`
         """
-        model = OgrSourceTimeFormatUnixTimeStamp()  # noqa: E501
+        model = OgrSourceTimeFormatOneOf1()
         if include_optional:
-            return OgrSourceTimeFormatUnixTimeStamp(
+            return OgrSourceTimeFormatOneOf1(
                 format = 'unixTimeStamp',
                 timestamp_type = 'epochSeconds'
             )
         else:
-            return OgrSourceTimeFormatUnixTimeStamp(
+            return OgrSourceTimeFormatOneOf1(
                 format = 'unixTimeStamp',
                 timestamp_type = 'epochSeconds',
         )
         """
 
-    def testOgrSourceTimeFormatUnixTimeStamp(self):
-        """Test OgrSourceTimeFormatUnixTimeStamp"""
+    def testOgrSourceTimeFormatOneOf1(self):
+        """Test OgrSourceTimeFormatOneOf1"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

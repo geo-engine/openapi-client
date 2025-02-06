@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.add_layer import AddLayer  # noqa: E501
+from geoengine_openapi_client.models.add_layer import AddLayer
 
 class TestAddLayer(unittest.TestCase):
     """AddLayer unit test stubs"""
@@ -29,12 +28,12 @@ class TestAddLayer(unittest.TestCase):
 
     def make_instance(self, include_optional) -> AddLayer:
         """Test AddLayer
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `AddLayer`
         """
-        model = AddLayer()  # noqa: E501
+        model = AddLayer()
         if include_optional:
             return AddLayer(
                 description = 'Example layer description',

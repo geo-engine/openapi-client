@@ -26,7 +26,7 @@ From the root of the repository run:
 To fetch the OpenAPI spec from the backend, run:
 
 ```bash
-cargo run --features pro
+cargo run
 wget http://localhost:3030/api/api-docs/openapi.json -O - \
     | python -m json.tool --indent 2 > .generation/input/openapi.json
 ```

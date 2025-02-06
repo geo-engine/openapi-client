@@ -18,69 +18,85 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List
 from geoengine_openapi_client.models.plot import Plot
 from geoengine_openapi_client.models.project_layer import ProjectLayer
 from geoengine_openapi_client.models.project_version import ProjectVersion
 from geoengine_openapi_client.models.st_rectangle import STRectangle
 from geoengine_openapi_client.models.time_step import TimeStep
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Project(BaseModel):
     """
     Project
-    """
-    bounds: STRectangle = Field(...)
-    description: StrictStr = Field(...)
-    id: StrictStr = Field(...)
-    layers: conlist(ProjectLayer) = Field(...)
-    name: StrictStr = Field(...)
-    plots: conlist(Plot) = Field(...)
-    time_step: TimeStep = Field(..., alias="timeStep")
-    version: ProjectVersion = Field(...)
-    __properties = ["bounds", "description", "id", "layers", "name", "plots", "timeStep", "version"]
+    """ # noqa: E501
+    bounds: STRectangle
+    description: StrictStr
+    id: StrictStr
+    layers: List[ProjectLayer]
+    name: StrictStr
+    plots: List[Plot]
+    time_step: TimeStep = Field(alias="timeStep")
+    version: ProjectVersion
+    __properties: ClassVar[List[str]] = ["bounds", "description", "id", "layers", "name", "plots", "timeStep", "version"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Project:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Project from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of bounds
         if self.bounds:
             _dict['bounds'] = self.bounds.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in layers (list)
         _items = []
         if self.layers:
-            for _item in self.layers:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_layers in self.layers:
+                if _item_layers:
+                    _items.append(_item_layers.to_dict())
             _dict['layers'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in plots (list)
         _items = []
         if self.plots:
-            for _item in self.plots:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_plots in self.plots:
+                if _item_plots:
+                    _items.append(_item_plots.to_dict())
             _dict['plots'] = _items
         # override the default output from pydantic by calling `to_dict()` of time_step
         if self.time_step:
@@ -91,23 +107,23 @@ class Project(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Project:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Project from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Project.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Project.parse_obj({
-            "bounds": STRectangle.from_dict(obj.get("bounds")) if obj.get("bounds") is not None else None,
+        _obj = cls.model_validate({
+            "bounds": STRectangle.from_dict(obj["bounds"]) if obj.get("bounds") is not None else None,
             "description": obj.get("description"),
             "id": obj.get("id"),
-            "layers": [ProjectLayer.from_dict(_item) for _item in obj.get("layers")] if obj.get("layers") is not None else None,
+            "layers": [ProjectLayer.from_dict(_item) for _item in obj["layers"]] if obj.get("layers") is not None else None,
             "name": obj.get("name"),
-            "plots": [Plot.from_dict(_item) for _item in obj.get("plots")] if obj.get("plots") is not None else None,
-            "time_step": TimeStep.from_dict(obj.get("timeStep")) if obj.get("timeStep") is not None else None,
-            "version": ProjectVersion.from_dict(obj.get("version")) if obj.get("version") is not None else None
+            "plots": [Plot.from_dict(_item) for _item in obj["plots"]] if obj.get("plots") is not None else None,
+            "timeStep": TimeStep.from_dict(obj["timeStep"]) if obj.get("timeStep") is not None else None,
+            "version": ProjectVersion.from_dict(obj["version"]) if obj.get("version") is not None else None
         })
         return _obj
 

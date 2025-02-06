@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.time_granularity import TimeGranularity  # noqa: E501
+from geoengine_openapi_client.models.time_granularity import TimeGranularity
 
 class TestTimeGranularity(unittest.TestCase):
     """TimeGranularity unit test stubs"""

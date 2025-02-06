@@ -14,12 +14,11 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.date_time import DateTime  # noqa: E501
+from geoengine_openapi_client.models.ogr_source_time_format_one_of2 import OgrSourceTimeFormatOneOf2
 
-class TestDateTime(unittest.TestCase):
-    """DateTime unit test stubs"""
+class TestOgrSourceTimeFormatOneOf2(unittest.TestCase):
+    """OgrSourceTimeFormatOneOf2 unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,26 +26,26 @@ class TestDateTime(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> DateTime:
-        """Test DateTime
-            include_option is a boolean, when False only required
+    def make_instance(self, include_optional) -> OgrSourceTimeFormatOneOf2:
+        """Test OgrSourceTimeFormatOneOf2
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `DateTime`
+        # uncomment below to create an instance of `OgrSourceTimeFormatOneOf2`
         """
-        model = DateTime()  # noqa: E501
+        model = OgrSourceTimeFormatOneOf2()
         if include_optional:
-            return DateTime(
-                datetime = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+            return OgrSourceTimeFormatOneOf2(
+                format = 'auto'
             )
         else:
-            return DateTime(
-                datetime = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+            return OgrSourceTimeFormatOneOf2(
+                format = 'auto',
         )
         """
 
-    def testDateTime(self):
-        """Test DateTime"""
+    def testOgrSourceTimeFormatOneOf2(self):
+        """Test OgrSourceTimeFormatOneOf2"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

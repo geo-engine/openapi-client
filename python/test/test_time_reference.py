@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.time_reference import TimeReference  # noqa: E501
+from geoengine_openapi_client.models.time_reference import TimeReference
 
 class TestTimeReference(unittest.TestCase):
     """TimeReference unit test stubs"""

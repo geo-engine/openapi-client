@@ -14,12 +14,11 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.add_collection200_response import AddCollection200Response  # noqa: E501
+from geoengine_openapi_client.models.vec_update import VecUpdate
 
-class TestAddCollection200Response(unittest.TestCase):
-    """AddCollection200Response unit test stubs"""
+class TestVecUpdate(unittest.TestCase):
+    """VecUpdate unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,26 +26,28 @@ class TestAddCollection200Response(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AddCollection200Response:
-        """Test AddCollection200Response
-            include_option is a boolean, when False only required
+    def make_instance(self, include_optional) -> VecUpdate:
+        """Test VecUpdate
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `AddCollection200Response`
+        # uncomment below to create an instance of `VecUpdate`
         """
-        model = AddCollection200Response()  # noqa: E501
+        model = VecUpdate()
         if include_optional:
-            return AddCollection200Response(
-                id = ''
+            return VecUpdate(
+                name = '',
+                workflow = ''
             )
         else:
-            return AddCollection200Response(
-                id = '',
+            return VecUpdate(
+                name = '',
+                workflow = '',
         )
         """
 
-    def testAddCollection200Response(self):
-        """Test AddCollection200Response"""
+    def testVecUpdate(self):
+        """Test VecUpdate"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

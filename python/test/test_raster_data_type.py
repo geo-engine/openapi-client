@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.raster_data_type import RasterDataType  # noqa: E501
+from geoengine_openapi_client.models.raster_data_type import RasterDataType
 
 class TestRasterDataType(unittest.TestCase):
     """RasterDataType unit test stubs"""

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.polygon_symbology import PolygonSymbology  # noqa: E501
+from geoengine_openapi_client.models.polygon_symbology import PolygonSymbology
 
 class TestPolygonSymbology(unittest.TestCase):
     """PolygonSymbology unit test stubs"""
@@ -29,12 +28,12 @@ class TestPolygonSymbology(unittest.TestCase):
 
     def make_instance(self, include_optional) -> PolygonSymbology:
         """Test PolygonSymbology
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PolygonSymbology`
         """
-        model = PolygonSymbology()  # noqa: E501
+        model = PolygonSymbology()
         if include_optional:
             return PolygonSymbology(
                 auto_simplified = True,

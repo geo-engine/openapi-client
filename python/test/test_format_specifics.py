@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.format_specifics import FormatSpecifics  # noqa: E501
+from geoengine_openapi_client.models.format_specifics import FormatSpecifics
 
 class TestFormatSpecifics(unittest.TestCase):
     """FormatSpecifics unit test stubs"""
@@ -29,12 +28,12 @@ class TestFormatSpecifics(unittest.TestCase):
 
     def make_instance(self, include_optional) -> FormatSpecifics:
         """Test FormatSpecifics
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `FormatSpecifics`
         """
-        model = FormatSpecifics()  # noqa: E501
+        model = FormatSpecifics()
         if include_optional:
             return FormatSpecifics(
                 csv = geoengine_openapi_client.models.format_specifics_one_of_csv.FormatSpecifics_oneOf_csv(

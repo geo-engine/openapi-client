@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.gdal_source_time_placeholder import GdalSourceTimePlaceholder  # noqa: E501
+from geoengine_openapi_client.models.gdal_source_time_placeholder import GdalSourceTimePlaceholder
 
 class TestGdalSourceTimePlaceholder(unittest.TestCase):
     """GdalSourceTimePlaceholder unit test stubs"""
@@ -29,12 +28,12 @@ class TestGdalSourceTimePlaceholder(unittest.TestCase):
 
     def make_instance(self, include_optional) -> GdalSourceTimePlaceholder:
         """Test GdalSourceTimePlaceholder
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `GdalSourceTimePlaceholder`
         """
-        model = GdalSourceTimePlaceholder()  # noqa: E501
+        model = GdalSourceTimePlaceholder()
         if include_optional:
             return GdalSourceTimePlaceholder(
                 format = '',

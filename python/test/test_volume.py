@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.volume import Volume  # noqa: E501
+from geoengine_openapi_client.models.volume import Volume
 
 class TestVolume(unittest.TestCase):
     """Volume unit test stubs"""
@@ -29,12 +28,12 @@ class TestVolume(unittest.TestCase):
 
     def make_instance(self, include_optional) -> Volume:
         """Test Volume
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Volume`
         """
-        model = Volume()  # noqa: E501
+        model = Volume()
         if include_optional:
             return Volume(
                 name = '',
@@ -43,6 +42,7 @@ class TestVolume(unittest.TestCase):
         else:
             return Volume(
                 name = '',
+                path = '',
         )
         """
 

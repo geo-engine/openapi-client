@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.task_status_running import TaskStatusRunning  # noqa: E501
+from geoengine_openapi_client.models.task_status_running import TaskStatusRunning
 
 class TestTaskStatusRunning(unittest.TestCase):
     """TaskStatusRunning unit test stubs"""
@@ -29,12 +28,12 @@ class TestTaskStatusRunning(unittest.TestCase):
 
     def make_instance(self, include_optional) -> TaskStatusRunning:
         """Test TaskStatusRunning
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `TaskStatusRunning`
         """
-        model = TaskStatusRunning()  # noqa: E501
+        model = TaskStatusRunning()
         if include_optional:
             return TaskStatusRunning(
                 description = '',

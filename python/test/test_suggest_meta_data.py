@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.suggest_meta_data import SuggestMetaData  # noqa: E501
+from geoengine_openapi_client.models.suggest_meta_data import SuggestMetaData
 
 class TestSuggestMetaData(unittest.TestCase):
     """SuggestMetaData unit test stubs"""
@@ -29,12 +28,12 @@ class TestSuggestMetaData(unittest.TestCase):
 
     def make_instance(self, include_optional) -> SuggestMetaData:
         """Test SuggestMetaData
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SuggestMetaData`
         """
-        model = SuggestMetaData()  # noqa: E501
+        model = SuggestMetaData()
         if include_optional:
             return SuggestMetaData(
                 data_path = None,

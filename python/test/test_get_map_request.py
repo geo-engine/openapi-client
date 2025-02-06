@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.get_map_request import GetMapRequest  # noqa: E501
+from geoengine_openapi_client.models.get_map_request import GetMapRequest
 
 class TestGetMapRequest(unittest.TestCase):
     """GetMapRequest unit test stubs"""

@@ -12,29 +12,23 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
-import re  # noqa: F401
-import io
 import warnings
-
-from pydantic import validate_arguments, ValidationError
-
+from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
+from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
-from pydantic import Field, StrictStr, conint
 
-from typing import Any, Optional
-
+from pydantic import Field, StrictStr
+from typing import Optional
+from typing_extensions import Annotated
 from geoengine_openapi_client.models.geo_json import GeoJson
 from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest
 from geoengine_openapi_client.models.get_feature_request import GetFeatureRequest
 from geoengine_openapi_client.models.wfs_service import WfsService
+from geoengine_openapi_client.models.wfs_version import WfsVersion
 
-from geoengine_openapi_client.api_client import ApiClient
+from geoengine_openapi_client.api_client import ApiClient, RequestSerialized
 from geoengine_openapi_client.api_response import ApiResponse
-from geoengine_openapi_client.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
-)
+from geoengine_openapi_client.rest import RESTResponseType
 
 
 class OGCWFSApi:
@@ -49,50 +43,29 @@ class OGCWFSApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
-    def wfs_capabilities_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : Optional[Any], service : WfsService, request : GetCapabilitiesRequest, **kwargs) -> str:  # noqa: E501
-        """Get WFS Capabilities  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+    @validate_call
+    def wfs_capabilities_handler(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: Optional[WfsVersion],
+        service: WfsService,
+        request: GetCapabilitiesRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> str:
+        """Get WFS Capabilities
 
-        >>> thread = api.wfs_capabilities_handler(workflow, version, service, request, async_req=True)
-        >>> result = thread.get()
-
-        :param workflow: Workflow id (required)
-        :type workflow: str
-        :param version: (required)
-        :type version: WfsVersion
-        :param service: (required)
-        :type service: WfsService
-        :param request: (required)
-        :type request: GetCapabilitiesRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: str
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the wfs_capabilities_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.wfs_capabilities_handler_with_http_info(workflow, version, service, request, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def wfs_capabilities_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : Optional[Any], service : WfsService, request : GetCapabilitiesRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get WFS Capabilities  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.wfs_capabilities_handler_with_http_info(workflow, version, service, request, async_req=True)
-        >>> result = thread.get()
 
         :param workflow: Workflow id (required)
         :type workflow: str
@@ -102,361 +75,769 @@ class OGCWFSApi:
         :type service: WfsService
         :param request: (required)
         :type request: GetCapabilitiesRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
-        """
+        """ # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            'workflow',
-            'version',
-            'service',
-            'request'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+        _param = self._wfs_capabilities_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
 
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method wfs_capabilities_handler" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['workflow']:
-            _path_params['workflow'] = _params['workflow']
-
-        if _params['version']:
-            _path_params['version'] = _params['version']
-
-        if _params['service']:
-            _path_params['service'] = _params['service']
-
-        if _params['request']:
-            _path_params['request'] = _params['request']
-
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/xml'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['session_token']  # noqa: E501
-
-        _response_types_map = {
+        _response_types_map: Dict[str, Optional[str]] = {
             '200': "str",
         }
-
-        return self.api_client.call_api(
-            '/wfs/{workflow}?request=GetCapabilities', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
             response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+        ).data
 
-    @validate_arguments
-    def wfs_feature_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], service : WfsService, request : GetFeatureRequest, type_names : StrictStr, bbox : StrictStr, version : Optional[Any] = None, time : Optional[StrictStr] = None, srs_name : Optional[StrictStr] = None, namespaces : Optional[StrictStr] = None, count : Optional[conint(strict=True, ge=0)] = None, sort_by : Optional[StrictStr] = None, result_type : Optional[StrictStr] = None, filter : Optional[StrictStr] = None, property_name : Optional[StrictStr] = None, query_resolution : Annotated[Optional[Any], Field(description="Vendor parameter for specifying a spatial query resolution")] = None, **kwargs) -> GeoJson:  # noqa: E501
-        """Get WCS Features  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+    @validate_call
+    def wfs_capabilities_handler_with_http_info(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: Optional[WfsVersion],
+        service: WfsService,
+        request: GetCapabilitiesRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[str]:
+        """Get WFS Capabilities
 
-        >>> thread = api.wfs_feature_handler(workflow, service, request, type_names, bbox, version, time, srs_name, namespaces, count, sort_by, result_type, filter, property_name, query_resolution, async_req=True)
-        >>> result = thread.get()
-
-        :param workflow: Workflow id (required)
-        :type workflow: str
-        :param service: (required)
-        :type service: WfsService
-        :param request: (required)
-        :type request: GetFeatureRequest
-        :param type_names: (required)
-        :type type_names: str
-        :param bbox: (required)
-        :type bbox: str
-        :param version:
-        :type version: WfsVersion
-        :param time:
-        :type time: str
-        :param srs_name:
-        :type srs_name: str
-        :param namespaces:
-        :type namespaces: str
-        :param count:
-        :type count: int
-        :param sort_by:
-        :type sort_by: str
-        :param result_type:
-        :type result_type: str
-        :param filter:
-        :type filter: str
-        :param property_name:
-        :type property_name: str
-        :param query_resolution: Vendor parameter for specifying a spatial query resolution
-        :type query_resolution: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GeoJson
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the wfs_feature_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.wfs_feature_handler_with_http_info(workflow, service, request, type_names, bbox, version, time, srs_name, namespaces, count, sort_by, result_type, filter, property_name, query_resolution, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def wfs_feature_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], service : WfsService, request : GetFeatureRequest, type_names : StrictStr, bbox : StrictStr, version : Optional[Any] = None, time : Optional[StrictStr] = None, srs_name : Optional[StrictStr] = None, namespaces : Optional[StrictStr] = None, count : Optional[conint(strict=True, ge=0)] = None, sort_by : Optional[StrictStr] = None, result_type : Optional[StrictStr] = None, filter : Optional[StrictStr] = None, property_name : Optional[StrictStr] = None, query_resolution : Annotated[Optional[Any], Field(description="Vendor parameter for specifying a spatial query resolution")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get WCS Features  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.wfs_feature_handler_with_http_info(workflow, service, request, type_names, bbox, version, time, srs_name, namespaces, count, sort_by, result_type, filter, property_name, query_resolution, async_req=True)
-        >>> result = thread.get()
 
         :param workflow: Workflow id (required)
         :type workflow: str
+        :param version: (required)
+        :type version: WfsVersion
         :param service: (required)
         :type service: WfsService
         :param request: (required)
-        :type request: GetFeatureRequest
-        :param type_names: (required)
-        :type type_names: str
-        :param bbox: (required)
-        :type bbox: str
-        :param version:
-        :type version: WfsVersion
-        :param time:
-        :type time: str
-        :param srs_name:
-        :type srs_name: str
-        :param namespaces:
-        :type namespaces: str
-        :param count:
-        :type count: int
-        :param sort_by:
-        :type sort_by: str
-        :param result_type:
-        :type result_type: str
-        :param filter:
-        :type filter: str
-        :param property_name:
-        :type property_name: str
-        :param query_resolution: Vendor parameter for specifying a spatial query resolution
-        :type query_resolution: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :type request: GetCapabilitiesRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GeoJson, status_code(int), headers(HTTPHeaderDict))
-        """
+        """ # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            'workflow',
-            'service',
-            'request',
-            'type_names',
-            'bbox',
-            'version',
-            'time',
-            'srs_name',
-            'namespaces',
-            'count',
-            'sort_by',
-            'result_type',
-            'filter',
-            'property_name',
-            'query_resolution'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+        _param = self._wfs_capabilities_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
 
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method wfs_feature_handler" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['workflow']:
-            _path_params['workflow'] = _params['workflow']
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
 
-        # process the query parameters
-        _query_params = []
-        if _params.get('version') is not None:  # noqa: E501
-            _query_params.append(('version', _params['version'].value))
+    @validate_call
+    def wfs_capabilities_handler_without_preload_content(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: Optional[WfsVersion],
+        service: WfsService,
+        request: GetCapabilitiesRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get WFS Capabilities
 
-        if _params.get('service') is not None:  # noqa: E501
-            _query_params.append(('service', _params['service'].value))
 
-        if _params.get('request') is not None:  # noqa: E501
-            _query_params.append(('request', _params['request'].value))
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param version: (required)
+        :type version: WfsVersion
+        :param service: (required)
+        :type service: WfsService
+        :param request: (required)
+        :type request: GetCapabilitiesRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
 
-        if _params.get('type_names') is not None:  # noqa: E501
-            _query_params.append(('typeNames', _params['type_names']))
+        _param = self._wfs_capabilities_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
 
-        if _params.get('bbox') is not None:  # noqa: E501
-            _query_params.append(('bbox', _params['bbox']))
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
 
-        if _params.get('time') is not None:  # noqa: E501
-            _query_params.append(('time', _params['time']))
 
-        if _params.get('srs_name') is not None:  # noqa: E501
-            _query_params.append(('srsName', _params['srs_name']))
+    def _wfs_capabilities_handler_serialize(
+        self,
+        workflow,
+        version,
+        service,
+        request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
 
-        if _params.get('namespaces') is not None:  # noqa: E501
-            _query_params.append(('namespaces', _params['namespaces']))
+        _host = None
 
-        if _params.get('count') is not None:  # noqa: E501
-            _query_params.append(('count', _params['count']))
-
-        if _params.get('sort_by') is not None:  # noqa: E501
-            _query_params.append(('sortBy', _params['sort_by']))
-
-        if _params.get('result_type') is not None:  # noqa: E501
-            _query_params.append(('resultType', _params['result_type']))
-
-        if _params.get('filter') is not None:  # noqa: E501
-            _query_params.append(('filter', _params['filter']))
-
-        if _params.get('property_name') is not None:  # noqa: E501
-            _query_params.append(('propertyName', _params['property_name']))
-
-        if _params.get('query_resolution') is not None:  # noqa: E501
-            _query_params.append(('queryResolution', _params['query_resolution']))
-
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['session_token']  # noqa: E501
-
-        _response_types_map = {
-            '200': "GeoJson",
+        _collection_formats: Dict[str, str] = {
         }
 
-        return self.api_client.call_api(
-            '/wfs/{workflow}?request=GetFeature', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if workflow is not None:
+            _path_params['workflow'] = workflow
+        if version is not None:
+            _path_params['version'] = version.value
+        if service is not None:
+            _path_params['service'] = service.value
+        if request is not None:
+            _path_params['request'] = request.value
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/xml'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'session_token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/wfs/{workflow}?request=GetCapabilities',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def wfs_feature_handler(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        service: WfsService,
+        request: GetFeatureRequest,
+        type_names: StrictStr,
+        bbox: StrictStr,
+        version: Optional[WfsVersion] = None,
+        time: Optional[StrictStr] = None,
+        srs_name: Optional[StrictStr] = None,
+        namespaces: Optional[StrictStr] = None,
+        count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        sort_by: Optional[StrictStr] = None,
+        result_type: Optional[StrictStr] = None,
+        filter: Optional[StrictStr] = None,
+        property_name: Optional[StrictStr] = None,
+        query_resolution: Annotated[Optional[StrictStr], Field(description="Vendor parameter for specifying a spatial query resolution")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GeoJson:
+        """Get WCS Features
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param service: (required)
+        :type service: WfsService
+        :param request: (required)
+        :type request: GetFeatureRequest
+        :param type_names: (required)
+        :type type_names: str
+        :param bbox: (required)
+        :type bbox: str
+        :param version:
+        :type version: WfsVersion
+        :param time:
+        :type time: str
+        :param srs_name:
+        :type srs_name: str
+        :param namespaces:
+        :type namespaces: str
+        :param count:
+        :type count: int
+        :param sort_by:
+        :type sort_by: str
+        :param result_type:
+        :type result_type: str
+        :param filter:
+        :type filter: str
+        :param property_name:
+        :type property_name: str
+        :param query_resolution: Vendor parameter for specifying a spatial query resolution
+        :type query_resolution: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wfs_feature_handler_serialize(
+            workflow=workflow,
+            service=service,
+            request=request,
+            type_names=type_names,
+            bbox=bbox,
+            version=version,
+            time=time,
+            srs_name=srs_name,
+            namespaces=namespaces,
+            count=count,
+            sort_by=sort_by,
+            result_type=result_type,
+            filter=filter,
+            property_name=property_name,
+            query_resolution=query_resolution,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GeoJson",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def wfs_feature_handler_with_http_info(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        service: WfsService,
+        request: GetFeatureRequest,
+        type_names: StrictStr,
+        bbox: StrictStr,
+        version: Optional[WfsVersion] = None,
+        time: Optional[StrictStr] = None,
+        srs_name: Optional[StrictStr] = None,
+        namespaces: Optional[StrictStr] = None,
+        count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        sort_by: Optional[StrictStr] = None,
+        result_type: Optional[StrictStr] = None,
+        filter: Optional[StrictStr] = None,
+        property_name: Optional[StrictStr] = None,
+        query_resolution: Annotated[Optional[StrictStr], Field(description="Vendor parameter for specifying a spatial query resolution")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GeoJson]:
+        """Get WCS Features
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param service: (required)
+        :type service: WfsService
+        :param request: (required)
+        :type request: GetFeatureRequest
+        :param type_names: (required)
+        :type type_names: str
+        :param bbox: (required)
+        :type bbox: str
+        :param version:
+        :type version: WfsVersion
+        :param time:
+        :type time: str
+        :param srs_name:
+        :type srs_name: str
+        :param namespaces:
+        :type namespaces: str
+        :param count:
+        :type count: int
+        :param sort_by:
+        :type sort_by: str
+        :param result_type:
+        :type result_type: str
+        :param filter:
+        :type filter: str
+        :param property_name:
+        :type property_name: str
+        :param query_resolution: Vendor parameter for specifying a spatial query resolution
+        :type query_resolution: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wfs_feature_handler_serialize(
+            workflow=workflow,
+            service=service,
+            request=request,
+            type_names=type_names,
+            bbox=bbox,
+            version=version,
+            time=time,
+            srs_name=srs_name,
+            namespaces=namespaces,
+            count=count,
+            sort_by=sort_by,
+            result_type=result_type,
+            filter=filter,
+            property_name=property_name,
+            query_resolution=query_resolution,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GeoJson",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def wfs_feature_handler_without_preload_content(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        service: WfsService,
+        request: GetFeatureRequest,
+        type_names: StrictStr,
+        bbox: StrictStr,
+        version: Optional[WfsVersion] = None,
+        time: Optional[StrictStr] = None,
+        srs_name: Optional[StrictStr] = None,
+        namespaces: Optional[StrictStr] = None,
+        count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        sort_by: Optional[StrictStr] = None,
+        result_type: Optional[StrictStr] = None,
+        filter: Optional[StrictStr] = None,
+        property_name: Optional[StrictStr] = None,
+        query_resolution: Annotated[Optional[StrictStr], Field(description="Vendor parameter for specifying a spatial query resolution")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get WCS Features
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param service: (required)
+        :type service: WfsService
+        :param request: (required)
+        :type request: GetFeatureRequest
+        :param type_names: (required)
+        :type type_names: str
+        :param bbox: (required)
+        :type bbox: str
+        :param version:
+        :type version: WfsVersion
+        :param time:
+        :type time: str
+        :param srs_name:
+        :type srs_name: str
+        :param namespaces:
+        :type namespaces: str
+        :param count:
+        :type count: int
+        :param sort_by:
+        :type sort_by: str
+        :param result_type:
+        :type result_type: str
+        :param filter:
+        :type filter: str
+        :param property_name:
+        :type property_name: str
+        :param query_resolution: Vendor parameter for specifying a spatial query resolution
+        :type query_resolution: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wfs_feature_handler_serialize(
+            workflow=workflow,
+            service=service,
+            request=request,
+            type_names=type_names,
+            bbox=bbox,
+            version=version,
+            time=time,
+            srs_name=srs_name,
+            namespaces=namespaces,
+            count=count,
+            sort_by=sort_by,
+            result_type=result_type,
+            filter=filter,
+            property_name=property_name,
+            query_resolution=query_resolution,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GeoJson",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _wfs_feature_handler_serialize(
+        self,
+        workflow,
+        service,
+        request,
+        type_names,
+        bbox,
+        version,
+        time,
+        srs_name,
+        namespaces,
+        count,
+        sort_by,
+        result_type,
+        filter,
+        property_name,
+        query_resolution,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if workflow is not None:
+            _path_params['workflow'] = workflow
+        # process the query parameters
+        if version is not None:
+            
+            _query_params.append(('version', version.value))
+            
+        if service is not None:
+            
+            _query_params.append(('service', service.value))
+            
+        if request is not None:
+            
+            _query_params.append(('request', request.value))
+            
+        if type_names is not None:
+            
+            _query_params.append(('typeNames', type_names))
+            
+        if bbox is not None:
+            
+            _query_params.append(('bbox', bbox))
+            
+        if time is not None:
+            
+            _query_params.append(('time', time))
+            
+        if srs_name is not None:
+            
+            _query_params.append(('srsName', srs_name))
+            
+        if namespaces is not None:
+            
+            _query_params.append(('namespaces', namespaces))
+            
+        if count is not None:
+            
+            _query_params.append(('count', count))
+            
+        if sort_by is not None:
+            
+            _query_params.append(('sortBy', sort_by))
+            
+        if result_type is not None:
+            
+            _query_params.append(('resultType', result_type))
+            
+        if filter is not None:
+            
+            _query_params.append(('filter', filter))
+            
+        if property_name is not None:
+            
+            _query_params.append(('propertyName', property_name))
+            
+        if query_resolution is not None:
+            
+            _query_params.append(('queryResolution', query_resolution))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'session_token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/wfs/{workflow}?request=GetFeature',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+

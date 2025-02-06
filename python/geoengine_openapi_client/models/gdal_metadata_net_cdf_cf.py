@@ -18,58 +18,75 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conint, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from geoengine_openapi_client.models.gdal_dataset_parameters import GdalDatasetParameters
 from geoengine_openapi_client.models.raster_result_descriptor import RasterResultDescriptor
 from geoengine_openapi_client.models.time_step import TimeStep
+from typing import Optional, Set
+from typing_extensions import Self
 
 class GdalMetadataNetCdfCf(BaseModel):
     """
-    Meta data for 4D `NetCDF` CF datasets  # noqa: E501
-    """
-    band_offset: conint(strict=True, ge=0) = Field(..., alias="bandOffset", description="A band offset specifies the first band index to use for the first point in time. All other time steps are added to this offset.")
-    cache_ttl: Optional[conint(strict=True, ge=0)] = Field(None, alias="cacheTtl")
-    end: StrictInt = Field(...)
-    params: GdalDatasetParameters = Field(...)
-    result_descriptor: RasterResultDescriptor = Field(..., alias="resultDescriptor")
-    start: StrictInt = Field(...)
-    step: TimeStep = Field(...)
-    type: StrictStr = Field(...)
-    __properties = ["bandOffset", "cacheTtl", "end", "params", "resultDescriptor", "start", "step", "type"]
+    Meta data for 4D `NetCDF` CF datasets
+    """ # noqa: E501
+    band_offset: Annotated[int, Field(strict=True, ge=0)] = Field(description="A band offset specifies the first band index to use for the first point in time. All other time steps are added to this offset.", alias="bandOffset")
+    cache_ttl: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, alias="cacheTtl")
+    end: StrictInt
+    params: GdalDatasetParameters
+    result_descriptor: RasterResultDescriptor = Field(alias="resultDescriptor")
+    start: StrictInt
+    step: TimeStep
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["bandOffset", "cacheTtl", "end", "params", "resultDescriptor", "start", "step", "type"]
 
-    @validator('type')
+    @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('GdalMetadataNetCdfCf'):
+        if value not in set(['GdalMetadataNetCdfCf']):
             raise ValueError("must be one of enum values ('GdalMetadataNetCdfCf')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> GdalMetadataNetCdfCf:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of GdalMetadataNetCdfCf from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of params
         if self.params:
             _dict['params'] = self.params.to_dict()
@@ -82,22 +99,22 @@ class GdalMetadataNetCdfCf(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> GdalMetadataNetCdfCf:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of GdalMetadataNetCdfCf from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return GdalMetadataNetCdfCf.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = GdalMetadataNetCdfCf.parse_obj({
-            "band_offset": obj.get("bandOffset"),
-            "cache_ttl": obj.get("cacheTtl"),
+        _obj = cls.model_validate({
+            "bandOffset": obj.get("bandOffset"),
+            "cacheTtl": obj.get("cacheTtl"),
             "end": obj.get("end"),
-            "params": GdalDatasetParameters.from_dict(obj.get("params")) if obj.get("params") is not None else None,
-            "result_descriptor": RasterResultDescriptor.from_dict(obj.get("resultDescriptor")) if obj.get("resultDescriptor") is not None else None,
+            "params": GdalDatasetParameters.from_dict(obj["params"]) if obj.get("params") is not None else None,
+            "resultDescriptor": RasterResultDescriptor.from_dict(obj["resultDescriptor"]) if obj.get("resultDescriptor") is not None else None,
             "start": obj.get("start"),
-            "step": TimeStep.from_dict(obj.get("step")) if obj.get("step") is not None else None,
+            "step": TimeStep.from_dict(obj["step"]) if obj.get("step") is not None else None,
             "type": obj.get("type")
         })
         return _obj

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.ml_model_resource import MlModelResource  # noqa: E501
+from geoengine_openapi_client.models.ml_model_resource import MlModelResource
 
 class TestMlModelResource(unittest.TestCase):
     """MlModelResource unit test stubs"""
@@ -29,12 +28,12 @@ class TestMlModelResource(unittest.TestCase):
 
     def make_instance(self, include_optional) -> MlModelResource:
         """Test MlModelResource
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MlModelResource`
         """
-        model = MlModelResource()  # noqa: E501
+        model = MlModelResource()
         if include_optional:
             return MlModelResource(
                 id = '',

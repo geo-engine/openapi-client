@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.search_types import SearchTypes  # noqa: E501
+from geoengine_openapi_client.models.search_types import SearchTypes
 
 class TestSearchTypes(unittest.TestCase):
     """SearchTypes unit test stubs"""
@@ -29,12 +28,12 @@ class TestSearchTypes(unittest.TestCase):
 
     def make_instance(self, include_optional) -> SearchTypes:
         """Test SearchTypes
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SearchTypes`
         """
-        model = SearchTypes()  # noqa: E501
+        model = SearchTypes()
         if include_optional:
             return SearchTypes(
                 fulltext = True,

@@ -18,77 +18,94 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from geoengine_openapi_client.models.breakpoint import Breakpoint
+from typing import Optional, Set
+from typing_extensions import Self
 
 class LogarithmicGradient(BaseModel):
     """
     LogarithmicGradient
-    """
-    breakpoints: conlist(Breakpoint) = Field(...)
-    no_data_color: conlist(StrictInt, max_items=4, min_items=4) = Field(..., alias="noDataColor")
-    over_color: conlist(StrictInt, max_items=4, min_items=4) = Field(..., alias="overColor")
-    type: StrictStr = Field(...)
-    under_color: conlist(StrictInt, max_items=4, min_items=4) = Field(..., alias="underColor")
-    __properties = ["breakpoints", "noDataColor", "overColor", "type", "underColor"]
+    """ # noqa: E501
+    breakpoints: List[Breakpoint]
+    no_data_color: Annotated[List[StrictInt], Field(min_length=4, max_length=4)] = Field(alias="noDataColor")
+    over_color: Annotated[List[StrictInt], Field(min_length=4, max_length=4)] = Field(alias="overColor")
+    type: StrictStr
+    under_color: Annotated[List[StrictInt], Field(min_length=4, max_length=4)] = Field(alias="underColor")
+    __properties: ClassVar[List[str]] = ["breakpoints", "noDataColor", "overColor", "type", "underColor"]
 
-    @validator('type')
+    @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('logarithmicGradient'):
+        if value not in set(['logarithmicGradient']):
             raise ValueError("must be one of enum values ('logarithmicGradient')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> LogarithmicGradient:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of LogarithmicGradient from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in breakpoints (list)
         _items = []
         if self.breakpoints:
-            for _item in self.breakpoints:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_breakpoints in self.breakpoints:
+                if _item_breakpoints:
+                    _items.append(_item_breakpoints.to_dict())
             _dict['breakpoints'] = _items
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> LogarithmicGradient:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of LogarithmicGradient from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return LogarithmicGradient.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = LogarithmicGradient.parse_obj({
-            "breakpoints": [Breakpoint.from_dict(_item) for _item in obj.get("breakpoints")] if obj.get("breakpoints") is not None else None,
-            "no_data_color": obj.get("noDataColor"),
-            "over_color": obj.get("overColor"),
+        _obj = cls.model_validate({
+            "breakpoints": [Breakpoint.from_dict(_item) for _item in obj["breakpoints"]] if obj.get("breakpoints") is not None else None,
+            "noDataColor": obj.get("noDataColor"),
+            "overColor": obj.get("overColor"),
             "type": obj.get("type"),
-            "under_color": obj.get("underColor")
+            "underColor": obj.get("underColor")
         })
         return _obj
 

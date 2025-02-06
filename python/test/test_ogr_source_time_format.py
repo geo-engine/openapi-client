@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.ogr_source_time_format import OgrSourceTimeFormat  # noqa: E501
+from geoengine_openapi_client.models.ogr_source_time_format import OgrSourceTimeFormat
 
 class TestOgrSourceTimeFormat(unittest.TestCase):
     """OgrSourceTimeFormat unit test stubs"""
@@ -29,12 +28,12 @@ class TestOgrSourceTimeFormat(unittest.TestCase):
 
     def make_instance(self, include_optional) -> OgrSourceTimeFormat:
         """Test OgrSourceTimeFormat
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `OgrSourceTimeFormat`
         """
-        model = OgrSourceTimeFormat()  # noqa: E501
+        model = OgrSourceTimeFormat()
         if include_optional:
             return OgrSourceTimeFormat(
                 custom_format = '',

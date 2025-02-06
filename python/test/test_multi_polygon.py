@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.multi_polygon import MultiPolygon  # noqa: E501
+from geoengine_openapi_client.models.multi_polygon import MultiPolygon
 
 class TestMultiPolygon(unittest.TestCase):
     """MultiPolygon unit test stubs"""
@@ -29,12 +28,12 @@ class TestMultiPolygon(unittest.TestCase):
 
     def make_instance(self, include_optional) -> MultiPolygon:
         """Test MultiPolygon
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MultiPolygon`
         """
-        model = MultiPolygon()  # noqa: E501
+        model = MultiPolygon()
         if include_optional:
             return MultiPolygon(
                 polygons = [

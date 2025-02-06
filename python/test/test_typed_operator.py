@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.typed_operator import TypedOperator  # noqa: E501
+from geoengine_openapi_client.models.typed_operator import TypedOperator
 
 class TestTypedOperator(unittest.TestCase):
     """TypedOperator unit test stubs"""
@@ -29,12 +28,12 @@ class TestTypedOperator(unittest.TestCase):
 
     def make_instance(self, include_optional) -> TypedOperator:
         """Test TypedOperator
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `TypedOperator`
         """
-        model = TypedOperator()  # noqa: E501
+        model = TypedOperator()
         if include_optional:
             return TypedOperator(
                 operator = geoengine_openapi_client.models.typed_operator_operator.TypedOperator_operator(

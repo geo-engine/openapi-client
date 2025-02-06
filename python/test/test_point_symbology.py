@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.point_symbology import PointSymbology  # noqa: E501
+from geoengine_openapi_client.models.point_symbology import PointSymbology
 
 class TestPointSymbology(unittest.TestCase):
     """PointSymbology unit test stubs"""
@@ -29,12 +28,12 @@ class TestPointSymbology(unittest.TestCase):
 
     def make_instance(self, include_optional) -> PointSymbology:
         """Test PointSymbology
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PointSymbology`
         """
-        model = PointSymbology()  # noqa: E501
+        model = PointSymbology()
         if include_optional:
             return PointSymbology(
                 fill_color = None,

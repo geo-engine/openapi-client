@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.workflow import Workflow  # noqa: E501
+from geoengine_openapi_client.models.workflow import Workflow
 
 class TestWorkflow(unittest.TestCase):
     """Workflow unit test stubs"""
@@ -29,12 +28,12 @@ class TestWorkflow(unittest.TestCase):
 
     def make_instance(self, include_optional) -> Workflow:
         """Test Workflow
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Workflow`
         """
-        model = Workflow()  # noqa: E501
+        model = Workflow()
         if include_optional:
             return Workflow(
                 operator = geoengine_openapi_client.models.typed_operator_operator.TypedOperator_operator(

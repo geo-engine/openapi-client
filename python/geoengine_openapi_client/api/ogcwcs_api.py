@@ -12,18 +12,14 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
-import re  # noqa: F401
-import io
 import warnings
-
-from pydantic import validate_arguments, ValidationError
-
+from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
+from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
+
 from pydantic import Field, StrictFloat, StrictInt, StrictStr
-
-from typing import Any, Optional, Union
-
+from typing import List, Optional, Union
+from typing_extensions import Annotated
 from geoengine_openapi_client.models.describe_coverage_request import DescribeCoverageRequest
 from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest
 from geoengine_openapi_client.models.get_coverage_format import GetCoverageFormat
@@ -31,12 +27,9 @@ from geoengine_openapi_client.models.get_coverage_request import GetCoverageRequ
 from geoengine_openapi_client.models.wcs_service import WcsService
 from geoengine_openapi_client.models.wcs_version import WcsVersion
 
-from geoengine_openapi_client.api_client import ApiClient
+from geoengine_openapi_client.api_client import ApiClient, RequestSerialized
 from geoengine_openapi_client.api_response import ApiResponse
-from geoengine_openapi_client.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
-)
+from geoengine_openapi_client.rest import RESTResponseType
 
 
 class OGCWCSApi:
@@ -51,50 +44,29 @@ class OGCWCSApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
-    def wcs_capabilities_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], service : WcsService, request : GetCapabilitiesRequest, version : Optional[Any] = None, **kwargs) -> str:  # noqa: E501
-        """Get WCS Capabilities  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+    @validate_call
+    def wcs_capabilities_handler(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        service: WcsService,
+        request: GetCapabilitiesRequest,
+        version: Optional[WcsVersion] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> str:
+        """Get WCS Capabilities
 
-        >>> thread = api.wcs_capabilities_handler(workflow, service, request, version, async_req=True)
-        >>> result = thread.get()
-
-        :param workflow: Workflow id (required)
-        :type workflow: str
-        :param service: (required)
-        :type service: WcsService
-        :param request: (required)
-        :type request: GetCapabilitiesRequest
-        :param version:
-        :type version: WcsVersion
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: str
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the wcs_capabilities_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.wcs_capabilities_handler_with_http_info(workflow, service, request, version, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def wcs_capabilities_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], service : WcsService, request : GetCapabilitiesRequest, version : Optional[Any] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get WCS Capabilities  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.wcs_capabilities_handler_with_http_info(workflow, service, request, version, async_req=True)
-        >>> result = thread.get()
 
         :param workflow: Workflow id (required)
         :type workflow: str
@@ -104,124 +76,307 @@ class OGCWCSApi:
         :type request: GetCapabilitiesRequest
         :param version:
         :type version: WcsVersion
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
-        """
+        """ # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            'workflow',
-            'service',
-            'request',
-            'version'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+        _param = self._wcs_capabilities_handler_serialize(
+            workflow=workflow,
+            service=service,
+            request=request,
+            version=version,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
 
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method wcs_capabilities_handler" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['workflow']:
-            _path_params['workflow'] = _params['workflow']
-
-
-        # process the query parameters
-        _query_params = []
-        if _params.get('version') is not None:  # noqa: E501
-            _query_params.append(('version', _params['version'].value))
-
-        if _params.get('service') is not None:  # noqa: E501
-            _query_params.append(('service', _params['service'].value))
-
-        if _params.get('request') is not None:  # noqa: E501
-            _query_params.append(('request', _params['request'].value))
-
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/xml'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['session_token']  # noqa: E501
-
-        _response_types_map = {
+        _response_types_map: Dict[str, Optional[str]] = {
             '200': "str",
         }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-        return self.api_client.call_api(
-            '/wcs/{workflow}?request=GetCapabilities', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
+
+    @validate_call
+    def wcs_capabilities_handler_with_http_info(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        service: WcsService,
+        request: GetCapabilitiesRequest,
+        version: Optional[WcsVersion] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[str]:
+        """Get WCS Capabilities
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param service: (required)
+        :type service: WcsService
+        :param request: (required)
+        :type request: GetCapabilitiesRequest
+        :param version:
+        :type version: WcsVersion
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wcs_capabilities_handler_serialize(
+            workflow=workflow,
+            service=service,
+            request=request,
+            version=version,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def wcs_capabilities_handler_without_preload_content(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        service: WcsService,
+        request: GetCapabilitiesRequest,
+        version: Optional[WcsVersion] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get WCS Capabilities
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param service: (required)
+        :type service: WcsService
+        :param request: (required)
+        :type request: GetCapabilitiesRequest
+        :param version:
+        :type version: WcsVersion
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wcs_capabilities_handler_serialize(
+            workflow=workflow,
+            service=service,
+            request=request,
+            version=version,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _wcs_capabilities_handler_serialize(
+        self,
+        workflow,
+        service,
+        request,
+        version,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if workflow is not None:
+            _path_params['workflow'] = workflow
+        # process the query parameters
+        if version is not None:
+            
+            _query_params.append(('version', version.value))
+            
+        if service is not None:
+            
+            _query_params.append(('service', service.value))
+            
+        if request is not None:
+            
+            _query_params.append(('request', request.value))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/xml'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'session_token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/wcs/{workflow}?request=GetCapabilities',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _host=_host,
+            _request_auth=_request_auth
+        )
 
-    @validate_arguments
-    def wcs_describe_coverage_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WcsVersion, service : WcsService, request : DescribeCoverageRequest, identifiers : StrictStr, **kwargs) -> str:  # noqa: E501
-        """Get WCS Coverage Description  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.wcs_describe_coverage_handler(workflow, version, service, request, identifiers, async_req=True)
-        >>> result = thread.get()
+
+    @validate_call
+    def wcs_describe_coverage_handler(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WcsVersion,
+        service: WcsService,
+        request: DescribeCoverageRequest,
+        identifiers: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> str:
+        """Get WCS Coverage Description
+
 
         :param workflow: Workflow id (required)
         :type workflow: str
@@ -233,32 +388,77 @@ class OGCWCSApi:
         :type request: DescribeCoverageRequest
         :param identifiers: (required)
         :type identifiers: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: str
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the wcs_describe_coverage_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.wcs_describe_coverage_handler_with_http_info(workflow, version, service, request, identifiers, **kwargs)  # noqa: E501
+        """ # noqa: E501
 
-    @validate_arguments
-    def wcs_describe_coverage_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WcsVersion, service : WcsService, request : DescribeCoverageRequest, identifiers : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get WCS Coverage Description  # noqa: E501
+        _param = self._wcs_describe_coverage_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            identifiers=identifiers,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-        >>> thread = api.wcs_describe_coverage_handler_with_http_info(workflow, version, service, request, identifiers, async_req=True)
-        >>> result = thread.get()
+
+    @validate_call
+    def wcs_describe_coverage_handler_with_http_info(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WcsVersion,
+        service: WcsService,
+        request: DescribeCoverageRequest,
+        identifiers: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[str]:
+        """Get WCS Coverage Description
+
 
         :param workflow: Workflow id (required)
         :type workflow: str
@@ -270,128 +470,248 @@ class OGCWCSApi:
         :type request: DescribeCoverageRequest
         :param identifiers: (required)
         :type identifiers: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
-        """
+        """ # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            'workflow',
-            'version',
-            'service',
-            'request',
-            'identifiers'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+        _param = self._wcs_describe_coverage_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            identifiers=identifiers,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
 
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method wcs_describe_coverage_handler" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['workflow']:
-            _path_params['workflow'] = _params['workflow']
-
-
-        # process the query parameters
-        _query_params = []
-        if _params.get('version') is not None:  # noqa: E501
-            _query_params.append(('version', _params['version'].value))
-
-        if _params.get('service') is not None:  # noqa: E501
-            _query_params.append(('service', _params['service'].value))
-
-        if _params.get('request') is not None:  # noqa: E501
-            _query_params.append(('request', _params['request'].value))
-
-        if _params.get('identifiers') is not None:  # noqa: E501
-            _query_params.append(('identifiers', _params['identifiers']))
-
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/xml'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['session_token']  # noqa: E501
-
-        _response_types_map = {
+        _response_types_map: Dict[str, Optional[str]] = {
             '200': "str",
         }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        return self.api_client.call_api(
-            '/wcs/{workflow}?request=DescribeCoverage', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
+
+    @validate_call
+    def wcs_describe_coverage_handler_without_preload_content(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WcsVersion,
+        service: WcsService,
+        request: DescribeCoverageRequest,
+        identifiers: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get WCS Coverage Description
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param version: (required)
+        :type version: WcsVersion
+        :param service: (required)
+        :type service: WcsService
+        :param request: (required)
+        :type request: DescribeCoverageRequest
+        :param identifiers: (required)
+        :type identifiers: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wcs_describe_coverage_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            identifiers=identifiers,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _wcs_describe_coverage_handler_serialize(
+        self,
+        workflow,
+        version,
+        service,
+        request,
+        identifiers,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if workflow is not None:
+            _path_params['workflow'] = workflow
+        # process the query parameters
+        if version is not None:
+            
+            _query_params.append(('version', version.value))
+            
+        if service is not None:
+            
+            _query_params.append(('service', service.value))
+            
+        if request is not None:
+            
+            _query_params.append(('request', request.value))
+            
+        if identifiers is not None:
+            
+            _query_params.append(('identifiers', identifiers))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/xml'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'session_token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/wcs/{workflow}?request=DescribeCoverage',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _host=_host,
+            _request_auth=_request_auth
+        )
 
-    @validate_arguments
-    def wcs_get_coverage_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WcsVersion, service : WcsService, request : GetCoverageRequest, format : GetCoverageFormat, identifier : StrictStr, boundingbox : StrictStr, gridbasecrs : StrictStr, gridorigin : Optional[StrictStr] = None, gridoffsets : Optional[StrictStr] = None, time : Optional[StrictStr] = None, resx : Optional[Union[StrictFloat, StrictInt]] = None, resy : Optional[Union[StrictFloat, StrictInt]] = None, nodatavalue : Optional[Union[StrictFloat, StrictInt]] = None, **kwargs) -> bytearray:  # noqa: E501
-        """Get WCS Coverage  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.wcs_get_coverage_handler(workflow, version, service, request, format, identifier, boundingbox, gridbasecrs, gridorigin, gridoffsets, time, resx, resy, nodatavalue, async_req=True)
-        >>> result = thread.get()
+
+    @validate_call
+    def wcs_get_coverage_handler(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WcsVersion,
+        service: WcsService,
+        request: GetCoverageRequest,
+        format: GetCoverageFormat,
+        identifier: StrictStr,
+        boundingbox: StrictStr,
+        gridbasecrs: StrictStr,
+        gridorigin: Optional[StrictStr] = None,
+        gridoffsets: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        resx: Optional[Union[StrictFloat, StrictInt]] = None,
+        resy: Optional[Union[StrictFloat, StrictInt]] = None,
+        nodatavalue: Optional[Union[StrictFloat, StrictInt]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[int]:
+        """Get WCS Coverage
+
 
         :param workflow: Workflow id (required)
         :type workflow: str
@@ -421,32 +741,95 @@ class OGCWCSApi:
         :type resy: float
         :param nodatavalue:
         :type nodatavalue: float
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: bytearray
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the wcs_get_coverage_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.wcs_get_coverage_handler_with_http_info(workflow, version, service, request, format, identifier, boundingbox, gridbasecrs, gridorigin, gridoffsets, time, resx, resy, nodatavalue, **kwargs)  # noqa: E501
+        """ # noqa: E501
 
-    @validate_arguments
-    def wcs_get_coverage_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WcsVersion, service : WcsService, request : GetCoverageRequest, format : GetCoverageFormat, identifier : StrictStr, boundingbox : StrictStr, gridbasecrs : StrictStr, gridorigin : Optional[StrictStr] = None, gridoffsets : Optional[StrictStr] = None, time : Optional[StrictStr] = None, resx : Optional[Union[StrictFloat, StrictInt]] = None, resy : Optional[Union[StrictFloat, StrictInt]] = None, nodatavalue : Optional[Union[StrictFloat, StrictInt]] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get WCS Coverage  # noqa: E501
+        _param = self._wcs_get_coverage_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            format=format,
+            identifier=identifier,
+            boundingbox=boundingbox,
+            gridbasecrs=gridbasecrs,
+            gridorigin=gridorigin,
+            gridoffsets=gridoffsets,
+            time=time,
+            resx=resx,
+            resy=resy,
+            nodatavalue=nodatavalue,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[int]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-        >>> thread = api.wcs_get_coverage_handler_with_http_info(workflow, version, service, request, format, identifier, boundingbox, gridbasecrs, gridorigin, gridoffsets, time, resx, resy, nodatavalue, async_req=True)
-        >>> result = thread.get()
+
+    @validate_call
+    def wcs_get_coverage_handler_with_http_info(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WcsVersion,
+        service: WcsService,
+        request: GetCoverageRequest,
+        format: GetCoverageFormat,
+        identifier: StrictStr,
+        boundingbox: StrictStr,
+        gridbasecrs: StrictStr,
+        gridorigin: Optional[StrictStr] = None,
+        gridoffsets: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        resx: Optional[Union[StrictFloat, StrictInt]] = None,
+        resy: Optional[Union[StrictFloat, StrictInt]] = None,
+        nodatavalue: Optional[Union[StrictFloat, StrictInt]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[int]]:
+        """Get WCS Coverage
+
 
         :param workflow: Workflow id (required)
         :type workflow: str
@@ -476,151 +859,301 @@ class OGCWCSApi:
         :type resy: float
         :param nodatavalue:
         :type nodatavalue: float
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(bytearray, status_code(int), headers(HTTPHeaderDict))
-        """
+        """ # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            'workflow',
-            'version',
-            'service',
-            'request',
-            'format',
-            'identifier',
-            'boundingbox',
-            'gridbasecrs',
-            'gridorigin',
-            'gridoffsets',
-            'time',
-            'resx',
-            'resy',
-            'nodatavalue'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+        _param = self._wcs_get_coverage_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            format=format,
+            identifier=identifier,
+            boundingbox=boundingbox,
+            gridbasecrs=gridbasecrs,
+            gridorigin=gridorigin,
+            gridoffsets=gridoffsets,
+            time=time,
+            resx=resx,
+            resy=resy,
+            nodatavalue=nodatavalue,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
 
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method wcs_get_coverage_handler" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['workflow']:
-            _path_params['workflow'] = _params['workflow']
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[int]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
 
-        # process the query parameters
-        _query_params = []
-        if _params.get('version') is not None:  # noqa: E501
-            _query_params.append(('version', _params['version'].value))
+    @validate_call
+    def wcs_get_coverage_handler_without_preload_content(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WcsVersion,
+        service: WcsService,
+        request: GetCoverageRequest,
+        format: GetCoverageFormat,
+        identifier: StrictStr,
+        boundingbox: StrictStr,
+        gridbasecrs: StrictStr,
+        gridorigin: Optional[StrictStr] = None,
+        gridoffsets: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        resx: Optional[Union[StrictFloat, StrictInt]] = None,
+        resy: Optional[Union[StrictFloat, StrictInt]] = None,
+        nodatavalue: Optional[Union[StrictFloat, StrictInt]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get WCS Coverage
 
-        if _params.get('service') is not None:  # noqa: E501
-            _query_params.append(('service', _params['service'].value))
 
-        if _params.get('request') is not None:  # noqa: E501
-            _query_params.append(('request', _params['request'].value))
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param version: (required)
+        :type version: WcsVersion
+        :param service: (required)
+        :type service: WcsService
+        :param request: (required)
+        :type request: GetCoverageRequest
+        :param format: (required)
+        :type format: GetCoverageFormat
+        :param identifier: (required)
+        :type identifier: str
+        :param boundingbox: (required)
+        :type boundingbox: str
+        :param gridbasecrs: (required)
+        :type gridbasecrs: str
+        :param gridorigin:
+        :type gridorigin: str
+        :param gridoffsets:
+        :type gridoffsets: str
+        :param time:
+        :type time: str
+        :param resx:
+        :type resx: float
+        :param resy:
+        :type resy: float
+        :param nodatavalue:
+        :type nodatavalue: float
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
 
-        if _params.get('format') is not None:  # noqa: E501
-            _query_params.append(('format', _params['format'].value))
+        _param = self._wcs_get_coverage_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            format=format,
+            identifier=identifier,
+            boundingbox=boundingbox,
+            gridbasecrs=gridbasecrs,
+            gridorigin=gridorigin,
+            gridoffsets=gridoffsets,
+            time=time,
+            resx=resx,
+            resy=resy,
+            nodatavalue=nodatavalue,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
 
-        if _params.get('identifier') is not None:  # noqa: E501
-            _query_params.append(('identifier', _params['identifier']))
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[int]",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
 
-        if _params.get('boundingbox') is not None:  # noqa: E501
-            _query_params.append(('boundingbox', _params['boundingbox']))
 
-        if _params.get('gridbasecrs') is not None:  # noqa: E501
-            _query_params.append(('gridbasecrs', _params['gridbasecrs']))
+    def _wcs_get_coverage_handler_serialize(
+        self,
+        workflow,
+        version,
+        service,
+        request,
+        format,
+        identifier,
+        boundingbox,
+        gridbasecrs,
+        gridorigin,
+        gridoffsets,
+        time,
+        resx,
+        resy,
+        nodatavalue,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
 
-        if _params.get('gridorigin') is not None:  # noqa: E501
-            _query_params.append(('gridorigin', _params['gridorigin']))
+        _host = None
 
-        if _params.get('gridoffsets') is not None:  # noqa: E501
-            _query_params.append(('gridoffsets', _params['gridoffsets']))
-
-        if _params.get('time') is not None:  # noqa: E501
-            _query_params.append(('time', _params['time']))
-
-        if _params.get('resx') is not None:  # noqa: E501
-            _query_params.append(('resx', _params['resx']))
-
-        if _params.get('resy') is not None:  # noqa: E501
-            _query_params.append(('resy', _params['resy']))
-
-        if _params.get('nodatavalue') is not None:  # noqa: E501
-            _query_params.append(('nodatavalue', _params['nodatavalue']))
-
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['image/png'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['session_token']  # noqa: E501
-
-        _response_types_map = {
-            '200': "bytearray",
+        _collection_formats: Dict[str, str] = {
         }
 
-        return self.api_client.call_api(
-            '/wcs/{workflow}?request=GetCoverage', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if workflow is not None:
+            _path_params['workflow'] = workflow
+        # process the query parameters
+        if version is not None:
+            
+            _query_params.append(('version', version.value))
+            
+        if service is not None:
+            
+            _query_params.append(('service', service.value))
+            
+        if request is not None:
+            
+            _query_params.append(('request', request.value))
+            
+        if format is not None:
+            
+            _query_params.append(('format', format.value))
+            
+        if identifier is not None:
+            
+            _query_params.append(('identifier', identifier))
+            
+        if boundingbox is not None:
+            
+            _query_params.append(('boundingbox', boundingbox))
+            
+        if gridbasecrs is not None:
+            
+            _query_params.append(('gridbasecrs', gridbasecrs))
+            
+        if gridorigin is not None:
+            
+            _query_params.append(('gridorigin', gridorigin))
+            
+        if gridoffsets is not None:
+            
+            _query_params.append(('gridoffsets', gridoffsets))
+            
+        if time is not None:
+            
+            _query_params.append(('time', time))
+            
+        if resx is not None:
+            
+            _query_params.append(('resx', resx))
+            
+        if resy is not None:
+            
+            _query_params.append(('resy', resy))
+            
+        if nodatavalue is not None:
+            
+            _query_params.append(('nodatavalue', nodatavalue))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'image/png'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'session_token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/wcs/{workflow}?request=GetCoverage',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+

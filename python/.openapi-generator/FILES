@@ -3,7 +3,6 @@
 .gitlab-ci.yml
 .travis.yml
 README.md
-docs/AddCollection200Response.md
 docs/AddDataset.md
 docs/AddLayer.md
 docs/AddLayerCollection.md
@@ -24,7 +23,6 @@ docs/ComputationQuota.md
 docs/ContinuousMeasurement.md
 docs/Coordinate2D.md
 docs/CreateDataset.md
-docs/CreateDatasetHandler200Response.md
 docs/CreateProject.md
 docs/CsvHeader.md
 docs/DataId.md
@@ -38,7 +36,6 @@ docs/DatasetDefinition.md
 docs/DatasetListing.md
 docs/DatasetResource.md
 docs/DatasetsApi.md
-docs/DateTime.md
 docs/DerivedColor.md
 docs/DerivedNumber.md
 docs/DescribeCoverageRequest.md
@@ -69,6 +66,9 @@ docs/GetLegendGraphicRequest.md
 docs/GetMapExceptionFormat.md
 docs/GetMapFormat.md
 docs/GetMapRequest.md
+docs/InlineObject.md
+docs/InlineObject1.md
+docs/InlineObject2.md
 docs/InternalDataId.md
 docs/Layer.md
 docs/LayerCollection.md
@@ -76,7 +76,6 @@ docs/LayerCollectionListing.md
 docs/LayerCollectionResource.md
 docs/LayerListing.md
 docs/LayerResource.md
-docs/LayerUpdate.md
 docs/LayerVisibility.md
 docs/LayersApi.md
 docs/LineSymbology.md
@@ -91,7 +90,6 @@ docs/MlModelMetadata.md
 docs/MlModelNameResponse.md
 docs/MlModelResource.md
 docs/MockDatasetDataSourceLoadingInfo.md
-docs/MockMetaData.md
 docs/MultiBandRasterColorizer.md
 docs/MultiLineString.md
 docs/MultiPoint.md
@@ -100,7 +98,6 @@ docs/NumberParam.md
 docs/OGCWCSApi.md
 docs/OGCWFSApi.md
 docs/OGCWMSApi.md
-docs/OgrMetaData.md
 docs/OgrSourceColumnSpec.md
 docs/OgrSourceDataset.md
 docs/OgrSourceDatasetTimeType.md
@@ -114,9 +111,9 @@ docs/OgrSourceDurationSpecValue.md
 docs/OgrSourceDurationSpecZero.md
 docs/OgrSourceErrorSpec.md
 docs/OgrSourceTimeFormat.md
-docs/OgrSourceTimeFormatAuto.md
-docs/OgrSourceTimeFormatCustom.md
-docs/OgrSourceTimeFormatUnixTimeStamp.md
+docs/OgrSourceTimeFormatOneOf.md
+docs/OgrSourceTimeFormatOneOf1.md
+docs/OgrSourceTimeFormatOneOf2.md
 docs/OperatorQuota.md
 docs/OrderBy.md
 docs/PaletteColorizer.md
@@ -127,9 +124,7 @@ docs/PermissionRequest.md
 docs/PermissionsApi.md
 docs/Plot.md
 docs/PlotOutputFormat.md
-docs/PlotQueryRectangle.md
 docs/PlotResultDescriptor.md
-docs/PlotUpdate.md
 docs/PlotsApi.md
 docs/PointSymbology.md
 docs/PolygonSymbology.md
@@ -147,6 +142,7 @@ docs/Provenances.md
 docs/ProviderCapabilities.md
 docs/ProviderLayerCollectionId.md
 docs/ProviderLayerId.md
+docs/QueryRectangle.md
 docs/Quota.md
 docs/RasterBandDescriptor.md
 docs/RasterColorizer.md
@@ -155,7 +151,6 @@ docs/RasterDatasetFromWorkflow.md
 docs/RasterDatasetFromWorkflowResult.md
 docs/RasterPropertiesEntryType.md
 docs/RasterPropertiesKey.md
-docs/RasterQueryRectangle.md
 docs/RasterResultDescriptor.md
 docs/RasterStreamWebsocketResultType.md
 docs/RasterSymbology.md
@@ -180,6 +175,7 @@ docs/SpatialReferenceAuthority.md
 docs/SpatialReferenceSpecification.md
 docs/SpatialReferencesApi.md
 docs/SpatialResolution.md
+docs/StaticMetaData.md
 docs/StaticNumberParam.md
 docs/StrokeParam.md
 docs/SuggestMetaData.md
@@ -227,9 +223,9 @@ docs/UserCredentials.md
 docs/UserInfo.md
 docs/UserRegistration.md
 docs/UserSession.md
+docs/VecUpdate.md
 docs/VectorColumnInfo.md
 docs/VectorDataType.md
-docs/VectorQueryRectangle.md
 docs/VectorResultDescriptor.md
 docs/Volume.md
 docs/VolumeFileLayersResponse.md
@@ -266,7 +262,6 @@ geoengine_openapi_client/api_response.py
 geoengine_openapi_client/configuration.py
 geoengine_openapi_client/exceptions.py
 geoengine_openapi_client/models/__init__.py
-geoengine_openapi_client/models/add_collection200_response.py
 geoengine_openapi_client/models/add_dataset.py
 geoengine_openapi_client/models/add_layer.py
 geoengine_openapi_client/models/add_layer_collection.py
@@ -287,7 +282,6 @@ geoengine_openapi_client/models/computation_quota.py
 geoengine_openapi_client/models/continuous_measurement.py
 geoengine_openapi_client/models/coordinate2_d.py
 geoengine_openapi_client/models/create_dataset.py
-geoengine_openapi_client/models/create_dataset_handler200_response.py
 geoengine_openapi_client/models/create_project.py
 geoengine_openapi_client/models/csv_header.py
 geoengine_openapi_client/models/data_id.py
@@ -300,7 +294,6 @@ geoengine_openapi_client/models/dataset.py
 geoengine_openapi_client/models/dataset_definition.py
 geoengine_openapi_client/models/dataset_listing.py
 geoengine_openapi_client/models/dataset_resource.py
-geoengine_openapi_client/models/date_time.py
 geoengine_openapi_client/models/derived_color.py
 geoengine_openapi_client/models/derived_number.py
 geoengine_openapi_client/models/describe_coverage_request.py
@@ -330,6 +323,9 @@ geoengine_openapi_client/models/get_legend_graphic_request.py
 geoengine_openapi_client/models/get_map_exception_format.py
 geoengine_openapi_client/models/get_map_format.py
 geoengine_openapi_client/models/get_map_request.py
+geoengine_openapi_client/models/inline_object.py
+geoengine_openapi_client/models/inline_object1.py
+geoengine_openapi_client/models/inline_object2.py
 geoengine_openapi_client/models/internal_data_id.py
 geoengine_openapi_client/models/layer.py
 geoengine_openapi_client/models/layer_collection.py
@@ -337,7 +333,6 @@ geoengine_openapi_client/models/layer_collection_listing.py
 geoengine_openapi_client/models/layer_collection_resource.py
 geoengine_openapi_client/models/layer_listing.py
 geoengine_openapi_client/models/layer_resource.py
-geoengine_openapi_client/models/layer_update.py
 geoengine_openapi_client/models/layer_visibility.py
 geoengine_openapi_client/models/line_symbology.py
 geoengine_openapi_client/models/linear_gradient.py
@@ -350,13 +345,11 @@ geoengine_openapi_client/models/ml_model_metadata.py
 geoengine_openapi_client/models/ml_model_name_response.py
 geoengine_openapi_client/models/ml_model_resource.py
 geoengine_openapi_client/models/mock_dataset_data_source_loading_info.py
-geoengine_openapi_client/models/mock_meta_data.py
 geoengine_openapi_client/models/multi_band_raster_colorizer.py
 geoengine_openapi_client/models/multi_line_string.py
 geoengine_openapi_client/models/multi_point.py
 geoengine_openapi_client/models/multi_polygon.py
 geoengine_openapi_client/models/number_param.py
-geoengine_openapi_client/models/ogr_meta_data.py
 geoengine_openapi_client/models/ogr_source_column_spec.py
 geoengine_openapi_client/models/ogr_source_dataset.py
 geoengine_openapi_client/models/ogr_source_dataset_time_type.py
@@ -370,9 +363,9 @@ geoengine_openapi_client/models/ogr_source_duration_spec_value.py
 geoengine_openapi_client/models/ogr_source_duration_spec_zero.py
 geoengine_openapi_client/models/ogr_source_error_spec.py
 geoengine_openapi_client/models/ogr_source_time_format.py
-geoengine_openapi_client/models/ogr_source_time_format_auto.py
-geoengine_openapi_client/models/ogr_source_time_format_custom.py
-geoengine_openapi_client/models/ogr_source_time_format_unix_time_stamp.py
+geoengine_openapi_client/models/ogr_source_time_format_one_of.py
+geoengine_openapi_client/models/ogr_source_time_format_one_of1.py
+geoengine_openapi_client/models/ogr_source_time_format_one_of2.py
 geoengine_openapi_client/models/operator_quota.py
 geoengine_openapi_client/models/order_by.py
 geoengine_openapi_client/models/palette_colorizer.py
@@ -382,9 +375,7 @@ geoengine_openapi_client/models/permission_listing.py
 geoengine_openapi_client/models/permission_request.py
 geoengine_openapi_client/models/plot.py
 geoengine_openapi_client/models/plot_output_format.py
-geoengine_openapi_client/models/plot_query_rectangle.py
 geoengine_openapi_client/models/plot_result_descriptor.py
-geoengine_openapi_client/models/plot_update.py
 geoengine_openapi_client/models/point_symbology.py
 geoengine_openapi_client/models/polygon_symbology.py
 geoengine_openapi_client/models/project.py
@@ -400,6 +391,7 @@ geoengine_openapi_client/models/provenances.py
 geoengine_openapi_client/models/provider_capabilities.py
 geoengine_openapi_client/models/provider_layer_collection_id.py
 geoengine_openapi_client/models/provider_layer_id.py
+geoengine_openapi_client/models/query_rectangle.py
 geoengine_openapi_client/models/quota.py
 geoengine_openapi_client/models/raster_band_descriptor.py
 geoengine_openapi_client/models/raster_colorizer.py
@@ -408,7 +400,6 @@ geoengine_openapi_client/models/raster_dataset_from_workflow.py
 geoengine_openapi_client/models/raster_dataset_from_workflow_result.py
 geoengine_openapi_client/models/raster_properties_entry_type.py
 geoengine_openapi_client/models/raster_properties_key.py
-geoengine_openapi_client/models/raster_query_rectangle.py
 geoengine_openapi_client/models/raster_result_descriptor.py
 geoengine_openapi_client/models/raster_stream_websocket_result_type.py
 geoengine_openapi_client/models/raster_symbology.py
@@ -431,6 +422,7 @@ geoengine_openapi_client/models/spatial_reference_authority.py
 geoengine_openapi_client/models/spatial_reference_specification.py
 geoengine_openapi_client/models/spatial_resolution.py
 geoengine_openapi_client/models/st_rectangle.py
+geoengine_openapi_client/models/static_meta_data.py
 geoengine_openapi_client/models/static_number_param.py
 geoengine_openapi_client/models/stroke_param.py
 geoengine_openapi_client/models/suggest_meta_data.py
@@ -475,9 +467,9 @@ geoengine_openapi_client/models/user_credentials.py
 geoengine_openapi_client/models/user_info.py
 geoengine_openapi_client/models/user_registration.py
 geoengine_openapi_client/models/user_session.py
+geoengine_openapi_client/models/vec_update.py
 geoengine_openapi_client/models/vector_column_info.py
 geoengine_openapi_client/models/vector_data_type.py
-geoengine_openapi_client/models/vector_query_rectangle.py
 geoengine_openapi_client/models/vector_result_descriptor.py
 geoengine_openapi_client/models/volume.py
 geoengine_openapi_client/models/volume_file_layers_response.py
@@ -499,7 +491,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_add_collection200_response.py
 test/test_add_dataset.py
 test/test_add_layer.py
 test/test_add_layer_collection.py
@@ -520,7 +511,6 @@ test/test_computation_quota.py
 test/test_continuous_measurement.py
 test/test_coordinate2_d.py
 test/test_create_dataset.py
-test/test_create_dataset_handler200_response.py
 test/test_create_project.py
 test/test_csv_header.py
 test/test_data_id.py
@@ -534,7 +524,6 @@ test/test_dataset_definition.py
 test/test_dataset_listing.py
 test/test_dataset_resource.py
 test/test_datasets_api.py
-test/test_date_time.py
 test/test_derived_color.py
 test/test_derived_number.py
 test/test_describe_coverage_request.py
@@ -565,6 +554,9 @@ test/test_get_legend_graphic_request.py
 test/test_get_map_exception_format.py
 test/test_get_map_format.py
 test/test_get_map_request.py
+test/test_inline_object.py
+test/test_inline_object1.py
+test/test_inline_object2.py
 test/test_internal_data_id.py
 test/test_layer.py
 test/test_layer_collection.py
@@ -572,7 +564,6 @@ test/test_layer_collection_listing.py
 test/test_layer_collection_resource.py
 test/test_layer_listing.py
 test/test_layer_resource.py
-test/test_layer_update.py
 test/test_layer_visibility.py
 test/test_layers_api.py
 test/test_line_symbology.py
@@ -587,7 +578,6 @@ test/test_ml_model_metadata.py
 test/test_ml_model_name_response.py
 test/test_ml_model_resource.py
 test/test_mock_dataset_data_source_loading_info.py
-test/test_mock_meta_data.py
 test/test_multi_band_raster_colorizer.py
 test/test_multi_line_string.py
 test/test_multi_point.py
@@ -596,7 +586,6 @@ test/test_number_param.py
 test/test_ogcwcs_api.py
 test/test_ogcwfs_api.py
 test/test_ogcwms_api.py
-test/test_ogr_meta_data.py
 test/test_ogr_source_column_spec.py
 test/test_ogr_source_dataset.py
 test/test_ogr_source_dataset_time_type.py
@@ -610,9 +599,9 @@ test/test_ogr_source_duration_spec_value.py
 test/test_ogr_source_duration_spec_zero.py
 test/test_ogr_source_error_spec.py
 test/test_ogr_source_time_format.py
-test/test_ogr_source_time_format_auto.py
-test/test_ogr_source_time_format_custom.py
-test/test_ogr_source_time_format_unix_time_stamp.py
+test/test_ogr_source_time_format_one_of.py
+test/test_ogr_source_time_format_one_of1.py
+test/test_ogr_source_time_format_one_of2.py
 test/test_operator_quota.py
 test/test_order_by.py
 test/test_palette_colorizer.py
@@ -623,9 +612,7 @@ test/test_permission_request.py
 test/test_permissions_api.py
 test/test_plot.py
 test/test_plot_output_format.py
-test/test_plot_query_rectangle.py
 test/test_plot_result_descriptor.py
-test/test_plot_update.py
 test/test_plots_api.py
 test/test_point_symbology.py
 test/test_polygon_symbology.py
@@ -643,6 +630,7 @@ test/test_provenances.py
 test/test_provider_capabilities.py
 test/test_provider_layer_collection_id.py
 test/test_provider_layer_id.py
+test/test_query_rectangle.py
 test/test_quota.py
 test/test_raster_band_descriptor.py
 test/test_raster_colorizer.py
@@ -651,7 +639,6 @@ test/test_raster_dataset_from_workflow.py
 test/test_raster_dataset_from_workflow_result.py
 test/test_raster_properties_entry_type.py
 test/test_raster_properties_key.py
-test/test_raster_query_rectangle.py
 test/test_raster_result_descriptor.py
 test/test_raster_stream_websocket_result_type.py
 test/test_raster_symbology.py
@@ -676,6 +663,7 @@ test/test_spatial_reference_specification.py
 test/test_spatial_references_api.py
 test/test_spatial_resolution.py
 test/test_st_rectangle.py
+test/test_static_meta_data.py
 test/test_static_number_param.py
 test/test_stroke_param.py
 test/test_suggest_meta_data.py
@@ -723,9 +711,9 @@ test/test_user_credentials.py
 test/test_user_info.py
 test/test_user_registration.py
 test/test_user_session.py
+test/test_vec_update.py
 test/test_vector_column_info.py
 test/test_vector_data_type.py
-test/test_vector_query_rectangle.py
 test/test_vector_result_descriptor.py
 test/test_volume.py
 test/test_volume_file_layers_response.py

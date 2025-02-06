@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.task_abort_options import TaskAbortOptions  # noqa: E501
+from geoengine_openapi_client.models.task_abort_options import TaskAbortOptions
 
 class TestTaskAbortOptions(unittest.TestCase):
     """TaskAbortOptions unit test stubs"""
@@ -29,12 +28,12 @@ class TestTaskAbortOptions(unittest.TestCase):
 
     def make_instance(self, include_optional) -> TaskAbortOptions:
         """Test TaskAbortOptions
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `TaskAbortOptions`
         """
-        model = TaskAbortOptions()  # noqa: E501
+        model = TaskAbortOptions()
         if include_optional:
             return TaskAbortOptions(
                 force = True

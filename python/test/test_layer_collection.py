@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.layer_collection import LayerCollection  # noqa: E501
+from geoengine_openapi_client.models.layer_collection import LayerCollection
 
 class TestLayerCollection(unittest.TestCase):
     """LayerCollection unit test stubs"""
@@ -29,12 +28,12 @@ class TestLayerCollection(unittest.TestCase):
 
     def make_instance(self, include_optional) -> LayerCollection:
         """Test LayerCollection
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `LayerCollection`
         """
-        model = LayerCollection()  # noqa: E501
+        model = LayerCollection()
         if include_optional:
             return LayerCollection(
                 description = '',

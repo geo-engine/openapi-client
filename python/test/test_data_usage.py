@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.data_usage import DataUsage  # noqa: E501
+from geoengine_openapi_client.models.data_usage import DataUsage
 
 class TestDataUsage(unittest.TestCase):
     """DataUsage unit test stubs"""
@@ -29,12 +28,12 @@ class TestDataUsage(unittest.TestCase):
 
     def make_instance(self, include_optional) -> DataUsage:
         """Test DataUsage
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DataUsage`
         """
-        model = DataUsage()  # noqa: E501
+        model = DataUsage()
         if include_optional:
             return DataUsage(
                 computation_id = '',

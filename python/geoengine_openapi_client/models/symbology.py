@@ -14,19 +14,17 @@
 
 
 from __future__ import annotations
-from inspect import getfullargspec
 import json
 import pprint
-import re  # noqa: F401
-
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from geoengine_openapi_client.models.line_symbology import LineSymbology
 from geoengine_openapi_client.models.point_symbology import PointSymbology
 from geoengine_openapi_client.models.polygon_symbology import PolygonSymbology
 from geoengine_openapi_client.models.raster_symbology import RasterSymbology
-from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
+from typing import Union, List, Set, Optional, Dict
+from typing_extensions import Literal, Self
 
 SYMBOLOGY_ONE_OF_SCHEMAS = ["LineSymbology", "PointSymbology", "PolygonSymbology", "RasterSymbology"]
 
@@ -42,16 +40,16 @@ class Symbology(BaseModel):
     oneof_schema_3_validator: Optional[LineSymbology] = None
     # data type: PolygonSymbology
     oneof_schema_4_validator: Optional[PolygonSymbology] = None
-    if TYPE_CHECKING:
-        actual_instance: Union[LineSymbology, PointSymbology, PolygonSymbology, RasterSymbology]
-    else:
-        actual_instance: Any
-    one_of_schemas: List[str] = Field(SYMBOLOGY_ONE_OF_SCHEMAS, const=True)
+    actual_instance: Optional[Union[LineSymbology, PointSymbology, PolygonSymbology, RasterSymbology]] = None
+    one_of_schemas: Set[str] = { "LineSymbology", "PointSymbology", "PolygonSymbology", "RasterSymbology" }
 
-    class Config:
-        validate_assignment = True
+    model_config = ConfigDict(
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
-    discriminator_value_class_map = {
+
+    discriminator_value_class_map: Dict[str, str] = {
     }
 
     def __init__(self, *args, **kwargs) -> None:
@@ -64,9 +62,9 @@ class Symbology(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @validator('actual_instance')
+    @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = Symbology.construct()
+        instance = Symbology.model_construct()
         error_messages = []
         match = 0
         # validate data type: RasterSymbology
@@ -99,13 +97,13 @@ class Symbology(BaseModel):
             return v
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Symbology:
+    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> Symbology:
+    def from_json(cls, json_str: str) -> Self:
         """Returns the object represented by the json string"""
-        instance = Symbology.construct()
+        instance = cls.model_construct()
         error_messages = []
         match = 0
 
@@ -113,26 +111,6 @@ class Symbology(BaseModel):
         _data_type = json.loads(json_str).get("type")
         if not _data_type:
             raise ValueError("Failed to lookup data type from the field `type` in the input.")
-
-        # check if data type is `LineSymbology`
-        if _data_type == "LineSymbology":
-            instance.actual_instance = LineSymbology.from_json(json_str)
-            return instance
-
-        # check if data type is `PointSymbology`
-        if _data_type == "PointSymbology":
-            instance.actual_instance = PointSymbology.from_json(json_str)
-            return instance
-
-        # check if data type is `PolygonSymbology`
-        if _data_type == "PolygonSymbology":
-            instance.actual_instance = PolygonSymbology.from_json(json_str)
-            return instance
-
-        # check if data type is `RasterSymbology`
-        if _data_type == "RasterSymbology":
-            instance.actual_instance = RasterSymbology.from_json(json_str)
-            return instance
 
         # check if data type is `LineSymbology`
         if _data_type == "line":
@@ -151,6 +129,26 @@ class Symbology(BaseModel):
 
         # check if data type is `RasterSymbology`
         if _data_type == "raster":
+            instance.actual_instance = RasterSymbology.from_json(json_str)
+            return instance
+
+        # check if data type is `LineSymbology`
+        if _data_type == "LineSymbology":
+            instance.actual_instance = LineSymbology.from_json(json_str)
+            return instance
+
+        # check if data type is `PointSymbology`
+        if _data_type == "PointSymbology":
+            instance.actual_instance = PointSymbology.from_json(json_str)
+            return instance
+
+        # check if data type is `PolygonSymbology`
+        if _data_type == "PolygonSymbology":
+            instance.actual_instance = PolygonSymbology.from_json(json_str)
+            return instance
+
+        # check if data type is `RasterSymbology`
+        if _data_type == "RasterSymbology":
             instance.actual_instance = RasterSymbology.from_json(json_str)
             return instance
 
@@ -193,19 +191,17 @@ class Symbology(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        to_json = getattr(self.actual_instance, "to_json", None)
-        if callable(to_json):
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], LineSymbology, PointSymbology, PolygonSymbology, RasterSymbology]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
-        to_dict = getattr(self.actual_instance, "to_dict", None)
-        if callable(to_dict):
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
             return self.actual_instance.to_dict()
         else:
             # primitive type
@@ -213,6 +209,6 @@ class Symbology(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.dict())
+        return pprint.pformat(self.model_dump())
 
 

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.usage_summary_granularity import UsageSummaryGranularity  # noqa: E501
+from geoengine_openapi_client.models.usage_summary_granularity import UsageSummaryGranularity
 
 class TestUsageSummaryGranularity(unittest.TestCase):
     """UsageSummaryGranularity unit test stubs"""

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.user_session import UserSession  # noqa: E501
+from geoengine_openapi_client.models.user_session import UserSession
 
 class TestUserSession(unittest.TestCase):
     """UserSession unit test stubs"""
@@ -29,12 +28,12 @@ class TestUserSession(unittest.TestCase):
 
     def make_instance(self, include_optional) -> UserSession:
         """Test UserSession
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UserSession`
         """
-        model = UserSession()  # noqa: E501
+        model = UserSession()
         if include_optional:
             return UserSession(
                 created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.bounding_box2_d import BoundingBox2D  # noqa: E501
+from geoengine_openapi_client.models.bounding_box2_d import BoundingBox2D
 
 class TestBoundingBox2D(unittest.TestCase):
     """BoundingBox2D unit test stubs"""
@@ -29,12 +28,12 @@ class TestBoundingBox2D(unittest.TestCase):
 
     def make_instance(self, include_optional) -> BoundingBox2D:
         """Test BoundingBox2D
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BoundingBox2D`
         """
-        model = BoundingBox2D()  # noqa: E501
+        model = BoundingBox2D()
         if include_optional:
             return BoundingBox2D(
                 lower_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(

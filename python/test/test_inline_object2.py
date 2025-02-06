@@ -14,12 +14,11 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.plot_update import PlotUpdate  # noqa: E501
+from geoengine_openapi_client.models.inline_object2 import InlineObject2
 
-class TestPlotUpdate(unittest.TestCase):
-    """PlotUpdate unit test stubs"""
+class TestInlineObject2(unittest.TestCase):
+    """InlineObject2 unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,28 +26,26 @@ class TestPlotUpdate(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PlotUpdate:
-        """Test PlotUpdate
-            include_option is a boolean, when False only required
+    def make_instance(self, include_optional) -> InlineObject2:
+        """Test InlineObject2
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `PlotUpdate`
+        # uncomment below to create an instance of `InlineObject2`
         """
-        model = PlotUpdate()  # noqa: E501
+        model = InlineObject2()
         if include_optional:
-            return PlotUpdate(
-                name = '',
-                workflow = ''
+            return InlineObject2(
+                id = ''
             )
         else:
-            return PlotUpdate(
-                name = '',
-                workflow = '',
+            return InlineObject2(
+                id = '',
         )
         """
 
-    def testPlotUpdate(self):
-        """Test PlotUpdate"""
+    def testInlineObject2(self):
+        """Test InlineObject2"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.resource_id_dataset_id import ResourceIdDatasetId  # noqa: E501
+from geoengine_openapi_client.models.resource_id_dataset_id import ResourceIdDatasetId
 
 class TestResourceIdDatasetId(unittest.TestCase):
     """ResourceIdDatasetId unit test stubs"""
@@ -29,12 +28,12 @@ class TestResourceIdDatasetId(unittest.TestCase):
 
     def make_instance(self, include_optional) -> ResourceIdDatasetId:
         """Test ResourceIdDatasetId
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ResourceIdDatasetId`
         """
-        model = ResourceIdDatasetId()  # noqa: E501
+        model = ResourceIdDatasetId()
         if include_optional:
             return ResourceIdDatasetId(
                 id = '',

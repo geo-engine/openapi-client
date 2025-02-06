@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.get_legend_graphic_request import GetLegendGraphicRequest  # noqa: E501
+from geoengine_openapi_client.models.get_legend_graphic_request import GetLegendGraphicRequest
 
 class TestGetLegendGraphicRequest(unittest.TestCase):
     """GetLegendGraphicRequest unit test stubs"""

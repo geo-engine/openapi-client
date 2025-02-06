@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.server_info import ServerInfo  # noqa: E501
+from geoengine_openapi_client.models.server_info import ServerInfo
 
 class TestServerInfo(unittest.TestCase):
     """ServerInfo unit test stubs"""
@@ -29,12 +28,12 @@ class TestServerInfo(unittest.TestCase):
 
     def make_instance(self, include_optional) -> ServerInfo:
         """Test ServerInfo
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ServerInfo`
         """
-        model = ServerInfo()  # noqa: E501
+        model = ServerInfo()
         if include_optional:
             return ServerInfo(
                 build_date = '',

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.role_description import RoleDescription  # noqa: E501
+from geoengine_openapi_client.models.role_description import RoleDescription
 
 class TestRoleDescription(unittest.TestCase):
     """RoleDescription unit test stubs"""
@@ -29,12 +28,12 @@ class TestRoleDescription(unittest.TestCase):
 
     def make_instance(self, include_optional) -> RoleDescription:
         """Test RoleDescription
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `RoleDescription`
         """
-        model = RoleDescription()  # noqa: E501
+        model = RoleDescription()
         if include_optional:
             return RoleDescription(
                 individual = True,

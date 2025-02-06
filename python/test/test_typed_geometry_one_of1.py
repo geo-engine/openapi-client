@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.typed_geometry_one_of1 import TypedGeometryOneOf1  # noqa: E501
+from geoengine_openapi_client.models.typed_geometry_one_of1 import TypedGeometryOneOf1
 
 class TestTypedGeometryOneOf1(unittest.TestCase):
     """TypedGeometryOneOf1 unit test stubs"""
@@ -29,12 +28,12 @@ class TestTypedGeometryOneOf1(unittest.TestCase):
 
     def make_instance(self, include_optional) -> TypedGeometryOneOf1:
         """Test TypedGeometryOneOf1
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `TypedGeometryOneOf1`
         """
-        model = TypedGeometryOneOf1()  # noqa: E501
+        model = TypedGeometryOneOf1()
         if include_optional:
             return TypedGeometryOneOf1(
                 multi_point = geoengine_openapi_client.models.multi_point.MultiPoint(

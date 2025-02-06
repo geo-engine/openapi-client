@@ -19,6 +19,8 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import StrictStr
+
 from geoengine_openapi_client.models.auth_code_request_url import AuthCodeRequestURL
 from geoengine_openapi_client.models.auth_code_response import AuthCodeResponse
 from geoengine_openapi_client.models.user_credentials import UserCredentials
@@ -445,16 +447,18 @@ class SessionApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def oidc_init(self, **kwargs) -> AuthCodeRequestURL:  # noqa: E501
+    def oidc_init(self, redirect_uri : StrictStr, **kwargs) -> AuthCodeRequestURL:  # noqa: E501
         """Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # noqa: E501
 
         # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.oidc_init(async_req=True)
+        >>> thread = api.oidc_init(redirect_uri, async_req=True)
         >>> result = thread.get()
 
+        :param redirect_uri: (required)
+        :type redirect_uri: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request.
@@ -470,19 +474,21 @@ class SessionApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the oidc_init_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.oidc_init_with_http_info(**kwargs)  # noqa: E501
+        return self.oidc_init_with_http_info(redirect_uri, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def oidc_init_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+    def oidc_init_with_http_info(self, redirect_uri : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.  # noqa: E501
 
         # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.oidc_init_with_http_info(async_req=True)
+        >>> thread = api.oidc_init_with_http_info(redirect_uri, async_req=True)
         >>> result = thread.get()
 
+        :param redirect_uri: (required)
+        :type redirect_uri: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -511,6 +517,7 @@ class SessionApi:
         _params = locals()
 
         _all_params = [
+            'redirect_uri'
         ]
         _all_params.extend(
             [
@@ -541,6 +548,9 @@ class SessionApi:
 
         # process the query parameters
         _query_params = []
+        if _params.get('redirect_uri') is not None:  # noqa: E501
+            _query_params.append(('redirectUri', _params['redirect_uri']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters

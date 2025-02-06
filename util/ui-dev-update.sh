@@ -42,7 +42,7 @@ else
     git push -u origin ${current_branch}
 fi
 
-cd ../geoengine-ui
+cd ../WebstormProjects/geoengine-ui
 
 npm uninstall @geoengine/openapi-client
 npm install @geoengine/openapi-client@https://gitpkg.now.sh/geo-engine/openapi-client/typescript?${current_branch}

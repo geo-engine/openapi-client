@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@geoengine/openapi-client": "file:typescript"
+  }
+}

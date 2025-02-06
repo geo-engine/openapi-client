@@ -38,6 +38,10 @@ export interface LoginHandlerRequest {
     userCredentials: UserCredentials;
 }
 
+export interface OidcInitRequest {
+    redirectUri: string;
+}
+
 export interface OidcLoginRequest {
     authCodeResponse: AuthCodeResponse;
 }
@@ -147,8 +151,16 @@ export class SessionApi extends runtime.BaseAPI {
      * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
-    async oidcInitRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCodeRequestURL>> {
+    async oidcInitRaw(requestParameters: OidcInitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCodeRequestURL>> {
+        if (requestParameters.redirectUri === null || requestParameters.redirectUri === undefined) {
+            throw new runtime.RequiredError('redirectUri','Required parameter requestParameters.redirectUri was null or undefined when calling oidcInit.');
+        }
+
         const queryParameters: any = {};
+
+        if (requestParameters.redirectUri !== undefined) {
+            queryParameters['redirectUri'] = requestParameters.redirectUri;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -166,8 +178,8 @@ export class SessionApi extends runtime.BaseAPI {
      * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
-    async oidcInit(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCodeRequestURL> {
-        const response = await this.oidcInitRaw(initOverrides);
+    async oidcInit(requestParameters: OidcInitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCodeRequestURL> {
+        const response = await this.oidcInitRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

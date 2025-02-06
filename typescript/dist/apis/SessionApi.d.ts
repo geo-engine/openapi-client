@@ -18,6 +18,7 @@ export interface OidcInitRequest {
     redirectUri: string;
 }
 export interface OidcLoginRequest {
+    redirectUri: string;
     authCodeResponse: AuthCodeResponse;
 }
 export interface RegisterUserHandlerRequest {

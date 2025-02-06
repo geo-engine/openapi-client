@@ -587,16 +587,18 @@ class SessionApi:
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def oidc_login(self, auth_code_response : AuthCodeResponse, **kwargs) -> UserSession:  # noqa: E501
+    def oidc_login(self, redirect_uri : StrictStr, auth_code_response : AuthCodeResponse, **kwargs) -> UserSession:  # noqa: E501
         """Creates a session for a user via a login with Open Id Connect.  # noqa: E501
 
         This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.oidc_login(auth_code_response, async_req=True)
+        >>> thread = api.oidc_login(redirect_uri, auth_code_response, async_req=True)
         >>> result = thread.get()
 
+        :param redirect_uri: (required)
+        :type redirect_uri: str
         :param auth_code_response: (required)
         :type auth_code_response: AuthCodeResponse
         :param async_req: Whether to execute the request asynchronously.
@@ -614,19 +616,21 @@ class SessionApi:
         if '_preload_content' in kwargs:
             message = "Error! Please call the oidc_login_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
             raise ValueError(message)
-        return self.oidc_login_with_http_info(auth_code_response, **kwargs)  # noqa: E501
+        return self.oidc_login_with_http_info(redirect_uri, auth_code_response, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def oidc_login_with_http_info(self, auth_code_response : AuthCodeResponse, **kwargs) -> ApiResponse:  # noqa: E501
+    def oidc_login_with_http_info(self, redirect_uri : StrictStr, auth_code_response : AuthCodeResponse, **kwargs) -> ApiResponse:  # noqa: E501
         """Creates a session for a user via a login with Open Id Connect.  # noqa: E501
 
         This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.oidc_login_with_http_info(auth_code_response, async_req=True)
+        >>> thread = api.oidc_login_with_http_info(redirect_uri, auth_code_response, async_req=True)
         >>> result = thread.get()
 
+        :param redirect_uri: (required)
+        :type redirect_uri: str
         :param auth_code_response: (required)
         :type auth_code_response: AuthCodeResponse
         :param async_req: Whether to execute the request asynchronously.
@@ -657,6 +661,7 @@ class SessionApi:
         _params = locals()
 
         _all_params = [
+            'redirect_uri',
             'auth_code_response'
         ]
         _all_params.extend(
@@ -688,6 +693,9 @@ class SessionApi:
 
         # process the query parameters
         _query_params = []
+        if _params.get('redirect_uri') is not None:  # noqa: E501
+            _query_params.append(('redirectUri', _params['redirect_uri']))
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters

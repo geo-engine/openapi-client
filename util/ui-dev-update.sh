@@ -29,7 +29,7 @@ if [[ "$*" == *"-a"* ]]; then
     # Use git commit --amend
     git commit --amend --no-edit
 
-    git push -f origin ${current_branch}
+    git push -f fork ${current_branch}
 else
     # Get all arguments as a single string
     args_as_string="$*"
@@ -42,9 +42,9 @@ else
     git push -u origin ${current_branch}
 fi
 
-cd ../WebstormProjects/geoengine-ui
+cd ../../WebstormProjects/geoengine-ui
 
 npm uninstall @geoengine/openapi-client
-npm install @geoengine/openapi-client@https://gitpkg.now.sh/geo-engine/openapi-client/typescript?${current_branch}
+npm install @geoengine/openapi-client@https://gitpkg.now.sh/dbrandenstein/openapi-client/typescript?${current_branch}
 
 cd -

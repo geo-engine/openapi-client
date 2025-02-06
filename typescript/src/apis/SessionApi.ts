@@ -43,6 +43,7 @@ export interface OidcInitRequest {
 }
 
 export interface OidcLoginRequest {
+    redirectUri: string;
     authCodeResponse: AuthCodeResponse;
 }
 
@@ -188,11 +189,19 @@ export class SessionApi extends runtime.BaseAPI {
      * Creates a session for a user via a login with Open Id Connect.
      */
     async oidcLoginRaw(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
+        if (requestParameters.redirectUri === null || requestParameters.redirectUri === undefined) {
+            throw new runtime.RequiredError('redirectUri','Required parameter requestParameters.redirectUri was null or undefined when calling oidcLogin.');
+        }
+
         if (requestParameters.authCodeResponse === null || requestParameters.authCodeResponse === undefined) {
             throw new runtime.RequiredError('authCodeResponse','Required parameter requestParameters.authCodeResponse was null or undefined when calling oidcLogin.');
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.redirectUri !== undefined) {
+            queryParameters['redirectUri'] = requestParameters.redirectUri;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 

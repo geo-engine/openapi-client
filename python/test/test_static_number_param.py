@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.static_number_param import StaticNumberParam  # noqa: E501
+from geoengine_openapi_client.models.static_number_param import StaticNumberParam
 
 class TestStaticNumberParam(unittest.TestCase):
     """StaticNumberParam unit test stubs"""
@@ -29,12 +28,12 @@ class TestStaticNumberParam(unittest.TestCase):
 
     def make_instance(self, include_optional) -> StaticNumberParam:
         """Test StaticNumberParam
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `StaticNumberParam`
         """
-        model = StaticNumberParam()  # noqa: E501
+        model = StaticNumberParam()
         if include_optional:
             return StaticNumberParam(
                 type = 'static',

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.ml_model_metadata import MlModelMetadata  # noqa: E501
+from geoengine_openapi_client.models.ml_model_metadata import MlModelMetadata
 
 class TestMlModelMetadata(unittest.TestCase):
     """MlModelMetadata unit test stubs"""
@@ -29,12 +28,12 @@ class TestMlModelMetadata(unittest.TestCase):
 
     def make_instance(self, include_optional) -> MlModelMetadata:
         """Test MlModelMetadata
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MlModelMetadata`
         """
-        model = MlModelMetadata()  # noqa: E501
+        model = MlModelMetadata()
         if include_optional:
             return MlModelMetadata(
                 file_name = '',

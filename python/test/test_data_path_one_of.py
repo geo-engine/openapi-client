@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.data_path_one_of import DataPathOneOf  # noqa: E501
+from geoengine_openapi_client.models.data_path_one_of import DataPathOneOf
 
 class TestDataPathOneOf(unittest.TestCase):
     """DataPathOneOf unit test stubs"""
@@ -29,12 +28,12 @@ class TestDataPathOneOf(unittest.TestCase):
 
     def make_instance(self, include_optional) -> DataPathOneOf:
         """Test DataPathOneOf
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DataPathOneOf`
         """
-        model = DataPathOneOf()  # noqa: E501
+        model = DataPathOneOf()
         if include_optional:
             return DataPathOneOf(
                 volume = ''

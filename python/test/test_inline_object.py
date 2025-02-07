@@ -15,10 +15,10 @@
 
 import unittest
 
-from geoengine_openapi_client.models.provenance_output import ProvenanceOutput
+from geoengine_openapi_client.models.inline_object import InlineObject
 
-class TestProvenanceOutput(unittest.TestCase):
-    """ProvenanceOutput unit test stubs"""
+class TestInlineObject(unittest.TestCase):
+    """InlineObject unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,32 +26,26 @@ class TestProvenanceOutput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ProvenanceOutput:
-        """Test ProvenanceOutput
+    def make_instance(self, include_optional) -> InlineObject:
+        """Test InlineObject
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `ProvenanceOutput`
+        # uncomment below to create an instance of `InlineObject`
         """
-        model = ProvenanceOutput()
+        model = InlineObject()
         if include_optional:
-            return ProvenanceOutput(
-                data = None,
-                provenance = [
-                    geoengine_openapi_client.models.provenance.Provenance(
-                        citation = '', 
-                        license = '', 
-                        uri = '', )
-                    ]
+            return InlineObject(
+                url = ''
             )
         else:
-            return ProvenanceOutput(
-                data = None,
+            return InlineObject(
+                url = '',
         )
         """
 
-    def testProvenanceOutput(self):
-        """Test ProvenanceOutput"""
+    def testInlineObject(self):
+        """Test InlineObject"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

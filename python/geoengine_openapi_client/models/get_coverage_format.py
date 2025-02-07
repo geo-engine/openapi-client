@@ -13,13 +13,10 @@
 """  # noqa: E501
 
 
+from __future__ import annotations
 import json
-import pprint
-import re  # noqa: F401
-from aenum import Enum, no_arg
-
-
-
+from enum import Enum
+from typing_extensions import Self
 
 
 class GetCoverageFormat(str, Enum):
@@ -33,8 +30,8 @@ class GetCoverageFormat(str, Enum):
     IMAGE_SLASH_TIFF = 'image/tiff'
 
     @classmethod
-    def from_json(cls, json_str: str) -> GetCoverageFormat:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of GetCoverageFormat from a JSON string"""
-        return GetCoverageFormat(json.loads(json_str))
+        return cls(json.loads(json_str))
 
 

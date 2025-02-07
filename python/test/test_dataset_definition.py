@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.dataset_definition import DatasetDefinition  # noqa: E501
+from geoengine_openapi_client.models.dataset_definition import DatasetDefinition
 
 class TestDatasetDefinition(unittest.TestCase):
     """DatasetDefinition unit test stubs"""
@@ -29,12 +28,12 @@ class TestDatasetDefinition(unittest.TestCase):
 
     def make_instance(self, include_optional) -> DatasetDefinition:
         """Test DatasetDefinition
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DatasetDefinition`
         """
-        model = DatasetDefinition()  # noqa: E501
+        model = DatasetDefinition()
         if include_optional:
             return DatasetDefinition(
                 meta_data = None,

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.search_type import SearchType  # noqa: E501
+from geoengine_openapi_client.models.search_type import SearchType
 
 class TestSearchType(unittest.TestCase):
     """SearchType unit test stubs"""

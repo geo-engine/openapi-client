@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.multi_band_raster_colorizer import MultiBandRasterColorizer  # noqa: E501
+from geoengine_openapi_client.models.multi_band_raster_colorizer import MultiBandRasterColorizer
 
 class TestMultiBandRasterColorizer(unittest.TestCase):
     """MultiBandRasterColorizer unit test stubs"""
@@ -29,12 +28,12 @@ class TestMultiBandRasterColorizer(unittest.TestCase):
 
     def make_instance(self, include_optional) -> MultiBandRasterColorizer:
         """Test MultiBandRasterColorizer
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MultiBandRasterColorizer`
         """
-        model = MultiBandRasterColorizer()  # noqa: E501
+        model = MultiBandRasterColorizer()
         if include_optional:
             return MultiBandRasterColorizer(
                 blue_band = 0,

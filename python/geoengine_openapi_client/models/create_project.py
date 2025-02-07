@@ -18,46 +18,62 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from geoengine_openapi_client.models.st_rectangle import STRectangle
 from geoengine_openapi_client.models.time_step import TimeStep
+from typing import Optional, Set
+from typing_extensions import Self
 
 class CreateProject(BaseModel):
     """
     CreateProject
-    """
-    bounds: STRectangle = Field(...)
-    description: StrictStr = Field(...)
-    name: StrictStr = Field(...)
-    time_step: Optional[TimeStep] = Field(None, alias="timeStep")
-    __properties = ["bounds", "description", "name", "timeStep"]
+    """ # noqa: E501
+    bounds: STRectangle
+    description: StrictStr
+    name: StrictStr
+    time_step: Optional[TimeStep] = Field(default=None, alias="timeStep")
+    __properties: ClassVar[List[str]] = ["bounds", "description", "name", "timeStep"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> CreateProject:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of CreateProject from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of bounds
         if self.bounds:
             _dict['bounds'] = self.bounds.to_dict()
@@ -65,26 +81,26 @@ class CreateProject(BaseModel):
         if self.time_step:
             _dict['timeStep'] = self.time_step.to_dict()
         # set to None if time_step (nullable) is None
-        # and __fields_set__ contains the field
-        if self.time_step is None and "time_step" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.time_step is None and "time_step" in self.model_fields_set:
             _dict['timeStep'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> CreateProject:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of CreateProject from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return CreateProject.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = CreateProject.parse_obj({
-            "bounds": STRectangle.from_dict(obj.get("bounds")) if obj.get("bounds") is not None else None,
+        _obj = cls.model_validate({
+            "bounds": STRectangle.from_dict(obj["bounds"]) if obj.get("bounds") is not None else None,
             "description": obj.get("description"),
             "name": obj.get("name"),
-            "time_step": TimeStep.from_dict(obj.get("timeStep")) if obj.get("timeStep") is not None else None
+            "timeStep": TimeStep.from_dict(obj["timeStep"]) if obj.get("timeStep") is not None else None
         })
         return _obj
 

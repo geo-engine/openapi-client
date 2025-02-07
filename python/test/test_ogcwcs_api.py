@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.ogcwcs_api import OGCWCSApi  # noqa: E501
+from geoengine_openapi_client.api.ogcwcs_api import OGCWCSApi
 
 
 class TestOGCWCSApi(unittest.TestCase):
     """OGCWCSApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = OGCWCSApi()  # noqa: E501
+        self.api = OGCWCSApi()
 
     def tearDown(self) -> None:
         pass
@@ -30,21 +30,21 @@ class TestOGCWCSApi(unittest.TestCase):
     def test_wcs_capabilities_handler(self) -> None:
         """Test case for wcs_capabilities_handler
 
-        Get WCS Capabilities  # noqa: E501
+        Get WCS Capabilities
         """
         pass
 
     def test_wcs_describe_coverage_handler(self) -> None:
         """Test case for wcs_describe_coverage_handler
 
-        Get WCS Coverage Description  # noqa: E501
+        Get WCS Coverage Description
         """
         pass
 
     def test_wcs_get_coverage_handler(self) -> None:
         """Test case for wcs_get_coverage_handler
 
-        Get WCS Coverage  # noqa: E501
+        Get WCS Coverage
         """
         pass
 

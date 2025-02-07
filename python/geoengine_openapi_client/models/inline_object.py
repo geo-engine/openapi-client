@@ -18,21 +18,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from geoengine_openapi_client.models.bounding_box2_d import BoundingBox2D
-from geoengine_openapi_client.models.time_interval import TimeInterval
+from pydantic import BaseModel, ConfigDict, StrictStr
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PlotResultDescriptor(BaseModel):
+class InlineObject(BaseModel):
     """
-    A `ResultDescriptor` for plot queries
+    InlineObject
     """ # noqa: E501
-    bbox: Optional[BoundingBox2D] = None
-    spatial_reference: StrictStr = Field(alias="spatialReference")
-    time: Optional[TimeInterval] = None
-    __properties: ClassVar[List[str]] = ["bbox", "spatialReference", "time"]
+    url: StrictStr
+    __properties: ClassVar[List[str]] = ["url"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +48,7 @@ class PlotResultDescriptor(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PlotResultDescriptor from a JSON string"""
+        """Create an instance of InlineObject from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,27 +69,11 @@ class PlotResultDescriptor(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of bbox
-        if self.bbox:
-            _dict['bbox'] = self.bbox.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of time
-        if self.time:
-            _dict['time'] = self.time.to_dict()
-        # set to None if bbox (nullable) is None
-        # and model_fields_set contains the field
-        if self.bbox is None and "bbox" in self.model_fields_set:
-            _dict['bbox'] = None
-
-        # set to None if time (nullable) is None
-        # and model_fields_set contains the field
-        if self.time is None and "time" in self.model_fields_set:
-            _dict['time'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PlotResultDescriptor from a dict"""
+        """Create an instance of InlineObject from a dict"""
         if obj is None:
             return None
 
@@ -101,9 +81,7 @@ class PlotResultDescriptor(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "bbox": BoundingBox2D.from_dict(obj["bbox"]) if obj.get("bbox") is not None else None,
-            "spatialReference": obj.get("spatialReference"),
-            "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None
+            "url": obj.get("url")
         })
         return _obj
 

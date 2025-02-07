@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.permission_list_options import PermissionListOptions  # noqa: E501
+from geoengine_openapi_client.models.permission_list_options import PermissionListOptions
 
 class TestPermissionListOptions(unittest.TestCase):
     """PermissionListOptions unit test stubs"""
@@ -29,12 +28,12 @@ class TestPermissionListOptions(unittest.TestCase):
 
     def make_instance(self, include_optional) -> PermissionListOptions:
         """Test PermissionListOptions
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PermissionListOptions`
         """
-        model = PermissionListOptions()  # noqa: E501
+        model = PermissionListOptions()
         if include_optional:
             return PermissionListOptions(
                 limit = 0,

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.upload_file_layers_response import UploadFileLayersResponse  # noqa: E501
+from geoengine_openapi_client.models.upload_file_layers_response import UploadFileLayersResponse
 
 class TestUploadFileLayersResponse(unittest.TestCase):
     """UploadFileLayersResponse unit test stubs"""
@@ -29,12 +28,12 @@ class TestUploadFileLayersResponse(unittest.TestCase):
 
     def make_instance(self, include_optional) -> UploadFileLayersResponse:
         """Test UploadFileLayersResponse
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UploadFileLayersResponse`
         """
-        model = UploadFileLayersResponse()  # noqa: E501
+        model = UploadFileLayersResponse()
         if include_optional:
             return UploadFileLayersResponse(
                 layers = [

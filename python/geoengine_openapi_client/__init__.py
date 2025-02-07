@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.19"
+__version__ = "0.0.20"
 
 # import apis into sdk package
 from geoengine_openapi_client.api.datasets_api import DatasetsApi
@@ -111,6 +111,7 @@ from geoengine_openapi_client.models.get_legend_graphic_request import GetLegend
 from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat
 from geoengine_openapi_client.models.get_map_format import GetMapFormat
 from geoengine_openapi_client.models.get_map_request import GetMapRequest
+from geoengine_openapi_client.models.inline_object import InlineObject
 from geoengine_openapi_client.models.internal_data_id import InternalDataId
 from geoengine_openapi_client.models.layer import Layer
 from geoengine_openapi_client.models.layer_collection import LayerCollection

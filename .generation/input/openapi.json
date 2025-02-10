@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "http://127.0.0.1:3030/api"
+      "url": "http://0.0.0.0:8080/api"
     }
   ],
   "paths": {
@@ -2243,6 +2243,16 @@
         "summary": "Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.",
         "description": "# Errors\n\nThis call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.\n",
         "operationId": "oidc_init",
+        "parameters": [
+          {
+            "name": "redirectUri",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -2268,6 +2278,16 @@
         "summary": "Creates a session for a user via a login with Open Id Connect.",
         "description": "This call must be preceded by a call to oidcInit and match the parameters of that call.\n\n# Errors\n\nThis call fails if the [`AuthCodeResponse`] is invalid,\nif a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved,\nif the Open Id Connect configuration is invalid,\nor if the Id Provider is unreachable.\n",
         "operationId": "oidc_login",
+        "parameters": [
+          {
+            "name": "redirectUri",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {

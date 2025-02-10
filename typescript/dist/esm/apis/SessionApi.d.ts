@@ -14,7 +14,11 @@ import type { AuthCodeRequestURL, AuthCodeResponse, UserCredentials, UserRegistr
 export interface LoginHandlerRequest {
     userCredentials: UserCredentials;
 }
+export interface OidcInitRequest {
+    redirectUri: string;
+}
 export interface OidcLoginRequest {
+    redirectUri: string;
     authCodeResponse: AuthCodeResponse;
 }
 export interface RegisterUserHandlerRequest {
@@ -52,12 +56,12 @@ export declare class SessionApi extends runtime.BaseAPI {
      * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
-    oidcInitRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCodeRequestURL>>;
+    oidcInitRaw(requestParameters: OidcInitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCodeRequestURL>>;
     /**
      * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
-    oidcInit(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCodeRequestURL>;
+    oidcInit(requestParameters: OidcInitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCodeRequestURL>;
     /**
      * This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
      * Creates a session for a user via a login with Open Id Connect.

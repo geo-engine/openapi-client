@@ -330,7 +330,8 @@ class OGCWFSApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/wfs/{workflow}?request=GetCapabilities',
+            # Note: remove query string in path part for ogc endpoints
+            resource_path='/wfs/{workflow}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -826,7 +827,8 @@ class OGCWFSApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/wfs/{workflow}?request=GetFeature',
+            # Note: remove query string in path part for ogc endpoints
+            resource_path='/wfs/{workflow}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

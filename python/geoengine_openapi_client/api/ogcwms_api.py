@@ -347,7 +347,8 @@ class OGCWMSApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/wms/{workflow}?request=GetCapabilities',
+            # Note: remove query string in path part for ogc endpoints
+            resource_path='/wms/{workflow}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -658,7 +659,8 @@ class OGCWMSApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/wms/{workflow}?request=GetLegendGraphic',
+            # Note: remove query string in path part for ogc endpoints
+            resource_path='/wms/{workflow}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1205,7 +1207,8 @@ class OGCWMSApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/wms/{workflow}?request=GetMap',
+            # Note: remove query string in path part for ogc endpoints
+            resource_path='/wms/{workflow}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

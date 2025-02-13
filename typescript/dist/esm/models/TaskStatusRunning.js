@@ -11,7 +11,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 /**
  * @export
  */
@@ -22,45 +21,49 @@ export const TaskStatusRunningStatusEnum = {
  * Check if a given object implements the TaskStatusRunning interface.
  */
 export function instanceOfTaskStatusRunning(value) {
-    let isInstance = true;
-    isInstance = isInstance && "estimatedTimeRemaining" in value;
-    isInstance = isInstance && "pctComplete" in value;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "taskType" in value;
-    isInstance = isInstance && "timeStarted" in value;
-    return isInstance;
+    if (!('estimatedTimeRemaining' in value) || value['estimatedTimeRemaining'] === undefined)
+        return false;
+    if (!('pctComplete' in value) || value['pctComplete'] === undefined)
+        return false;
+    if (!('status' in value) || value['status'] === undefined)
+        return false;
+    if (!('taskType' in value) || value['taskType'] === undefined)
+        return false;
+    if (!('timeStarted' in value) || value['timeStarted'] === undefined)
+        return false;
+    return true;
 }
 export function TaskStatusRunningFromJSON(json) {
     return TaskStatusRunningFromJSONTyped(json, false);
 }
 export function TaskStatusRunningFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'description': json['description'] == null ? undefined : json['description'],
         'estimatedTimeRemaining': json['estimatedTimeRemaining'],
-        'info': !exists(json, 'info') ? undefined : json['info'],
+        'info': json['info'] == null ? undefined : json['info'],
         'pctComplete': json['pctComplete'],
         'status': json['status'],
         'taskType': json['taskType'],
         'timeStarted': json['timeStarted'],
     };
 }
-export function TaskStatusRunningToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TaskStatusRunningToJSON(json) {
+    return TaskStatusRunningToJSONTyped(json, false);
+}
+export function TaskStatusRunningToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'estimatedTimeRemaining': value.estimatedTimeRemaining,
-        'info': value.info,
-        'pctComplete': value.pctComplete,
-        'status': value.status,
-        'taskType': value.taskType,
-        'timeStarted': value.timeStarted,
+        'description': value['description'],
+        'estimatedTimeRemaining': value['estimatedTimeRemaining'],
+        'info': value['info'],
+        'pctComplete': value['pctComplete'],
+        'status': value['status'],
+        'taskType': value['taskType'],
+        'timeStarted': value['timeStarted'],
     };
 }

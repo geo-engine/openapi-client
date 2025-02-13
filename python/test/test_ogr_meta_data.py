@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.ogr_meta_data import OgrMetaData  # noqa: E501
+from geoengine_openapi_client.models.ogr_meta_data import OgrMetaData
 
 class TestOgrMetaData(unittest.TestCase):
     """OgrMetaData unit test stubs"""
@@ -29,12 +28,12 @@ class TestOgrMetaData(unittest.TestCase):
 
     def make_instance(self, include_optional) -> OgrMetaData:
         """Test OgrMetaData
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `OgrMetaData`
         """
-        model = OgrMetaData()  # noqa: E501
+        model = OgrMetaData()
         if include_optional:
             return OgrMetaData(
                 loading_info = geoengine_openapi_client.models.ogr_source_dataset.OgrSourceDataset(

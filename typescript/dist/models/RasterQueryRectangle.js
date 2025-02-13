@@ -13,27 +13,31 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterQueryRectangleToJSON = exports.RasterQueryRectangleFromJSONTyped = exports.RasterQueryRectangleFromJSON = exports.instanceOfRasterQueryRectangle = void 0;
-const SpatialPartition2D_1 = require("./SpatialPartition2D");
+exports.instanceOfRasterQueryRectangle = instanceOfRasterQueryRectangle;
+exports.RasterQueryRectangleFromJSON = RasterQueryRectangleFromJSON;
+exports.RasterQueryRectangleFromJSONTyped = RasterQueryRectangleFromJSONTyped;
+exports.RasterQueryRectangleToJSON = RasterQueryRectangleToJSON;
+exports.RasterQueryRectangleToJSONTyped = RasterQueryRectangleToJSONTyped;
 const SpatialResolution_1 = require("./SpatialResolution");
 const TimeInterval_1 = require("./TimeInterval");
+const SpatialPartition2D_1 = require("./SpatialPartition2D");
 /**
  * Check if a given object implements the RasterQueryRectangle interface.
  */
 function instanceOfRasterQueryRectangle(value) {
-    let isInstance = true;
-    isInstance = isInstance && "spatialBounds" in value;
-    isInstance = isInstance && "spatialResolution" in value;
-    isInstance = isInstance && "timeInterval" in value;
-    return isInstance;
+    if (!('spatialBounds' in value) || value['spatialBounds'] === undefined)
+        return false;
+    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined)
+        return false;
+    if (!('timeInterval' in value) || value['timeInterval'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfRasterQueryRectangle = instanceOfRasterQueryRectangle;
 function RasterQueryRectangleFromJSON(json) {
     return RasterQueryRectangleFromJSONTyped(json, false);
 }
-exports.RasterQueryRectangleFromJSON = RasterQueryRectangleFromJSON;
 function RasterQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -42,18 +46,16 @@ function RasterQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
         'timeInterval': (0, TimeInterval_1.TimeIntervalFromJSON)(json['timeInterval']),
     };
 }
-exports.RasterQueryRectangleFromJSONTyped = RasterQueryRectangleFromJSONTyped;
-function RasterQueryRectangleToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function RasterQueryRectangleToJSON(json) {
+    return RasterQueryRectangleToJSONTyped(json, false);
+}
+function RasterQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'spatialBounds': (0, SpatialPartition2D_1.SpatialPartition2DToJSON)(value.spatialBounds),
-        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value.spatialResolution),
-        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value.timeInterval),
+        'spatialBounds': (0, SpatialPartition2D_1.SpatialPartition2DToJSON)(value['spatialBounds']),
+        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value['spatialResolution']),
+        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
     };
 }
-exports.RasterQueryRectangleToJSON = RasterQueryRectangleToJSON;

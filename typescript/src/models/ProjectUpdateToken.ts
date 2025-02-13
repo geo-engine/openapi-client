@@ -24,6 +24,17 @@ export const ProjectUpdateToken = {
 export type ProjectUpdateToken = typeof ProjectUpdateToken[keyof typeof ProjectUpdateToken];
 
 
+export function instanceOfProjectUpdateToken(value: any): boolean {
+    for (const key in ProjectUpdateToken) {
+        if (Object.prototype.hasOwnProperty.call(ProjectUpdateToken, key)) {
+            if (ProjectUpdateToken[key as keyof typeof ProjectUpdateToken] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function ProjectUpdateTokenFromJSON(json: any): ProjectUpdateToken {
     return ProjectUpdateTokenFromJSONTyped(json, false);
 }
@@ -32,11 +43,11 @@ export function ProjectUpdateTokenFromJSONTyped(json: any, ignoreDiscriminator: 
     return json as ProjectUpdateToken;
 }
 
-export function instanceOfProjectUpdateToken(value: any): boolean {
-    return value === ProjectUpdateToken.None || value === ProjectUpdateToken.Delete;
-}
-
 export function ProjectUpdateTokenToJSON(value?: ProjectUpdateToken | null): any {
     return value as any;
+}
+
+export function ProjectUpdateTokenToJSONTyped(value: any, ignoreDiscriminator: boolean): ProjectUpdateToken {
+    return value as ProjectUpdateToken;
 }
 

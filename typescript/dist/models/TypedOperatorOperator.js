@@ -13,43 +13,42 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedOperatorOperatorToJSON = exports.TypedOperatorOperatorFromJSONTyped = exports.TypedOperatorOperatorFromJSON = exports.instanceOfTypedOperatorOperator = void 0;
-const runtime_1 = require("../runtime");
+exports.instanceOfTypedOperatorOperator = instanceOfTypedOperatorOperator;
+exports.TypedOperatorOperatorFromJSON = TypedOperatorOperatorFromJSON;
+exports.TypedOperatorOperatorFromJSONTyped = TypedOperatorOperatorFromJSONTyped;
+exports.TypedOperatorOperatorToJSON = TypedOperatorOperatorToJSON;
+exports.TypedOperatorOperatorToJSONTyped = TypedOperatorOperatorToJSONTyped;
 /**
  * Check if a given object implements the TypedOperatorOperator interface.
  */
 function instanceOfTypedOperatorOperator(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTypedOperatorOperator = instanceOfTypedOperatorOperator;
 function TypedOperatorOperatorFromJSON(json) {
     return TypedOperatorOperatorFromJSONTyped(json, false);
 }
-exports.TypedOperatorOperatorFromJSON = TypedOperatorOperatorFromJSON;
 function TypedOperatorOperatorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'params': !(0, runtime_1.exists)(json, 'params') ? undefined : json['params'],
-        'sources': !(0, runtime_1.exists)(json, 'sources') ? undefined : json['sources'],
+        'params': json['params'] == null ? undefined : json['params'],
+        'sources': json['sources'] == null ? undefined : json['sources'],
         'type': json['type'],
     };
 }
-exports.TypedOperatorOperatorFromJSONTyped = TypedOperatorOperatorFromJSONTyped;
-function TypedOperatorOperatorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TypedOperatorOperatorToJSON(json) {
+    return TypedOperatorOperatorToJSONTyped(json, false);
+}
+function TypedOperatorOperatorToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'params': value.params,
-        'sources': value.sources,
-        'type': value.type,
+        'params': value['params'],
+        'sources': value['sources'],
+        'type': value['type'],
     };
 }
-exports.TypedOperatorOperatorToJSON = TypedOperatorOperatorToJSON;

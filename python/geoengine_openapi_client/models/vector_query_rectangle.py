@@ -18,46 +18,62 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List
 from geoengine_openapi_client.models.bounding_box2_d import BoundingBox2D
 from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
 from geoengine_openapi_client.models.time_interval import TimeInterval
+from typing import Optional, Set
+from typing_extensions import Self
 
 class VectorQueryRectangle(BaseModel):
     """
-    A spatio-temporal rectangle with a specified resolution  # noqa: E501
-    """
-    spatial_bounds: BoundingBox2D = Field(..., alias="spatialBounds")
-    spatial_resolution: SpatialResolution = Field(..., alias="spatialResolution")
-    time_interval: TimeInterval = Field(..., alias="timeInterval")
-    __properties = ["spatialBounds", "spatialResolution", "timeInterval"]
+    A spatio-temporal rectangle with a specified resolution
+    """ # noqa: E501
+    spatial_bounds: BoundingBox2D = Field(alias="spatialBounds")
+    spatial_resolution: SpatialResolution = Field(alias="spatialResolution")
+    time_interval: TimeInterval = Field(alias="timeInterval")
+    __properties: ClassVar[List[str]] = ["spatialBounds", "spatialResolution", "timeInterval"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> VectorQueryRectangle:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of VectorQueryRectangle from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of spatial_bounds
         if self.spatial_bounds:
             _dict['spatialBounds'] = self.spatial_bounds.to_dict()
@@ -70,18 +86,18 @@ class VectorQueryRectangle(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> VectorQueryRectangle:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of VectorQueryRectangle from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return VectorQueryRectangle.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = VectorQueryRectangle.parse_obj({
-            "spatial_bounds": BoundingBox2D.from_dict(obj.get("spatialBounds")) if obj.get("spatialBounds") is not None else None,
-            "spatial_resolution": SpatialResolution.from_dict(obj.get("spatialResolution")) if obj.get("spatialResolution") is not None else None,
-            "time_interval": TimeInterval.from_dict(obj.get("timeInterval")) if obj.get("timeInterval") is not None else None
+        _obj = cls.model_validate({
+            "spatialBounds": BoundingBox2D.from_dict(obj["spatialBounds"]) if obj.get("spatialBounds") is not None else None,
+            "spatialResolution": SpatialResolution.from_dict(obj["spatialResolution"]) if obj.get("spatialResolution") is not None else None,
+            "timeInterval": TimeInterval.from_dict(obj["timeInterval"]) if obj.get("timeInterval") is not None else None
         })
         return _obj
 

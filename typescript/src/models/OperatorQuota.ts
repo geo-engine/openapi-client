@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,13 +42,11 @@ export interface OperatorQuota {
 /**
  * Check if a given object implements the OperatorQuota interface.
  */
-export function instanceOfOperatorQuota(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "operatorName" in value;
-    isInstance = isInstance && "operatorPath" in value;
-
-    return isInstance;
+export function instanceOfOperatorQuota(value: object): value is OperatorQuota {
+    if (!('count' in value) || value['count'] === undefined) return false;
+    if (!('operatorName' in value) || value['operatorName'] === undefined) return false;
+    if (!('operatorPath' in value) || value['operatorPath'] === undefined) return false;
+    return true;
 }
 
 export function OperatorQuotaFromJSON(json: any): OperatorQuota {
@@ -56,7 +54,7 @@ export function OperatorQuotaFromJSON(json: any): OperatorQuota {
 }
 
 export function OperatorQuotaFromJSONTyped(json: any, ignoreDiscriminator: boolean): OperatorQuota {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,18 +65,20 @@ export function OperatorQuotaFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function OperatorQuotaToJSON(value?: OperatorQuota | null): any {
-    if (value === undefined) {
-        return undefined;
+export function OperatorQuotaToJSON(json: any): OperatorQuota {
+    return OperatorQuotaToJSONTyped(json, false);
+}
+
+export function OperatorQuotaToJSONTyped(value?: OperatorQuota | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'count': value.count,
-        'operatorName': value.operatorName,
-        'operatorPath': value.operatorPath,
+        'count': value['count'],
+        'operatorName': value['operatorName'],
+        'operatorPath': value['operatorPath'],
     };
 }
 

@@ -31,11 +31,11 @@ export class UploadsApi extends runtime.BaseAPI {
      */
     listUploadFileLayersHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.uploadId === null || requestParameters.uploadId === undefined) {
-                throw new runtime.RequiredError('uploadId', 'Required parameter requestParameters.uploadId was null or undefined when calling listUploadFileLayersHandler.');
+            if (requestParameters['uploadId'] == null) {
+                throw new runtime.RequiredError('uploadId', 'Required parameter "uploadId" was null or undefined when calling listUploadFileLayersHandler().');
             }
-            if (requestParameters.fileName === null || requestParameters.fileName === undefined) {
-                throw new runtime.RequiredError('fileName', 'Required parameter requestParameters.fileName was null or undefined when calling listUploadFileLayersHandler.');
+            if (requestParameters['fileName'] == null) {
+                throw new runtime.RequiredError('fileName', 'Required parameter "fileName" was null or undefined when calling listUploadFileLayersHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -47,7 +47,7 @@ export class UploadsApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/uploads/{upload_id}/files/{file_name}/layers`.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters.uploadId))).replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters.fileName))),
+                path: `/uploads/{upload_id}/files/{file_name}/layers`.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters['uploadId']))).replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters['fileName']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -69,8 +69,8 @@ export class UploadsApi extends runtime.BaseAPI {
      */
     listUploadFilesHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.uploadId === null || requestParameters.uploadId === undefined) {
-                throw new runtime.RequiredError('uploadId', 'Required parameter requestParameters.uploadId was null or undefined when calling listUploadFilesHandler.');
+            if (requestParameters['uploadId'] == null) {
+                throw new runtime.RequiredError('uploadId', 'Required parameter "uploadId" was null or undefined when calling listUploadFilesHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -82,7 +82,7 @@ export class UploadsApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/uploads/{upload_id}/files`.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters.uploadId))),
+                path: `/uploads/{upload_id}/files`.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters['uploadId']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -104,8 +104,8 @@ export class UploadsApi extends runtime.BaseAPI {
      */
     uploadHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.files === null || requestParameters.files === undefined) {
-                throw new runtime.RequiredError('files', 'Required parameter requestParameters.files was null or undefined when calling uploadHandler.');
+            if (requestParameters['files'] == null) {
+                throw new runtime.RequiredError('files', 'Required parameter "files" was null or undefined when calling uploadHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -131,8 +131,8 @@ export class UploadsApi extends runtime.BaseAPI {
             else {
                 formParams = new URLSearchParams();
             }
-            if (requestParameters.files) {
-                requestParameters.files.forEach((element) => {
+            if (requestParameters['files'] != null) {
+                requestParameters['files'].forEach((element) => {
                     formParams.append('files[]', element);
                 });
             }

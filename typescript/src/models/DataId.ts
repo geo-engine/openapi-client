@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
+import type { ExternalDataId } from './ExternalDataId';
 import {
-    ExternalDataId,
     instanceOfExternalDataId,
     ExternalDataIdFromJSON,
     ExternalDataIdFromJSONTyped,
     ExternalDataIdToJSON,
 } from './ExternalDataId';
+import type { InternalDataId } from './InternalDataId';
 import {
-    InternalDataId,
     instanceOfInternalDataId,
     InternalDataIdFromJSON,
     InternalDataIdFromJSONTyped,
@@ -39,31 +39,32 @@ export function DataIdFromJSON(json: any): DataId {
 }
 
 export function DataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataId {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'external':
-            return {...ExternalDataIdFromJSONTyped(json, true), type: 'external'};
+            return Object.assign({}, ExternalDataIdFromJSONTyped(json, true), { type: 'external' } as const);
         case 'internal':
-            return {...InternalDataIdFromJSONTyped(json, true), type: 'internal'};
+            return Object.assign({}, InternalDataIdFromJSONTyped(json, true), { type: 'internal' } as const);
         default:
             throw new Error(`No variant of DataId exists with 'type=${json['type']}'`);
     }
 }
 
-export function DataIdToJSON(value?: DataId | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function DataIdToJSON(json: any): any {
+    return DataIdToJSONTyped(json, false);
+}
+
+export function DataIdToJSONTyped(value?: DataId | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'external':
-            return ExternalDataIdToJSON(value);
+            return Object.assign({}, ExternalDataIdToJSON(value), { type: 'external' } as const);
         case 'internal':
-            return InternalDataIdToJSON(value);
+            return Object.assign({}, InternalDataIdToJSON(value), { type: 'internal' } as const);
         default:
             throw new Error(`No variant of DataId exists with 'type=${value['type']}'`);
     }

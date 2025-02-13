@@ -11,47 +11,49 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 /**
  * Check if a given object implements the AutoCreateDataset interface.
  */
 export function instanceOfAutoCreateDataset(value) {
-    let isInstance = true;
-    isInstance = isInstance && "datasetDescription" in value;
-    isInstance = isInstance && "datasetName" in value;
-    isInstance = isInstance && "mainFile" in value;
-    isInstance = isInstance && "upload" in value;
-    return isInstance;
+    if (!('datasetDescription' in value) || value['datasetDescription'] === undefined)
+        return false;
+    if (!('datasetName' in value) || value['datasetName'] === undefined)
+        return false;
+    if (!('mainFile' in value) || value['mainFile'] === undefined)
+        return false;
+    if (!('upload' in value) || value['upload'] === undefined)
+        return false;
+    return true;
 }
 export function AutoCreateDatasetFromJSON(json) {
     return AutoCreateDatasetFromJSONTyped(json, false);
 }
 export function AutoCreateDatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'datasetDescription': json['datasetDescription'],
         'datasetName': json['datasetName'],
-        'layerName': !exists(json, 'layerName') ? undefined : json['layerName'],
+        'layerName': json['layerName'] == null ? undefined : json['layerName'],
         'mainFile': json['mainFile'],
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
         'upload': json['upload'],
     };
 }
-export function AutoCreateDatasetToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function AutoCreateDatasetToJSON(json) {
+    return AutoCreateDatasetToJSONTyped(json, false);
+}
+export function AutoCreateDatasetToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'datasetDescription': value.datasetDescription,
-        'datasetName': value.datasetName,
-        'layerName': value.layerName,
-        'mainFile': value.mainFile,
-        'tags': value.tags,
-        'upload': value.upload,
+        'datasetDescription': value['datasetDescription'],
+        'datasetName': value['datasetName'],
+        'layerName': value['layerName'],
+        'mainFile': value['mainFile'],
+        'tags': value['tags'],
+        'upload': value['upload'],
     };
 }

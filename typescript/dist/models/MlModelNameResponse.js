@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MlModelNameResponseToJSON = exports.MlModelNameResponseFromJSONTyped = exports.MlModelNameResponseFromJSON = exports.instanceOfMlModelNameResponse = void 0;
+exports.instanceOfMlModelNameResponse = instanceOfMlModelNameResponse;
+exports.MlModelNameResponseFromJSON = MlModelNameResponseFromJSON;
+exports.MlModelNameResponseFromJSONTyped = MlModelNameResponseFromJSONTyped;
+exports.MlModelNameResponseToJSON = MlModelNameResponseToJSON;
+exports.MlModelNameResponseToJSONTyped = MlModelNameResponseToJSONTyped;
 /**
  * Check if a given object implements the MlModelNameResponse interface.
  */
 function instanceOfMlModelNameResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "mlModelName" in value;
-    return isInstance;
+    if (!('mlModelName' in value) || value['mlModelName'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfMlModelNameResponse = instanceOfMlModelNameResponse;
 function MlModelNameResponseFromJSON(json) {
     return MlModelNameResponseFromJSONTyped(json, false);
 }
-exports.MlModelNameResponseFromJSON = MlModelNameResponseFromJSON;
 function MlModelNameResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'mlModelName': json['mlModelName'],
     };
 }
-exports.MlModelNameResponseFromJSONTyped = MlModelNameResponseFromJSONTyped;
-function MlModelNameResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function MlModelNameResponseToJSON(json) {
+    return MlModelNameResponseToJSONTyped(json, false);
+}
+function MlModelNameResponseToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'mlModelName': value.mlModelName,
+        'mlModelName': value['mlModelName'],
     };
 }
-exports.MlModelNameResponseToJSON = MlModelNameResponseToJSON;

@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ResourceIdMlModelToJSON = exports.ResourceIdMlModelFromJSONTyped = exports.ResourceIdMlModelFromJSON = exports.instanceOfResourceIdMlModel = exports.ResourceIdMlModelTypeEnum = void 0;
+exports.ResourceIdMlModelTypeEnum = void 0;
+exports.instanceOfResourceIdMlModel = instanceOfResourceIdMlModel;
+exports.ResourceIdMlModelFromJSON = ResourceIdMlModelFromJSON;
+exports.ResourceIdMlModelFromJSONTyped = ResourceIdMlModelFromJSONTyped;
+exports.ResourceIdMlModelToJSON = ResourceIdMlModelToJSON;
+exports.ResourceIdMlModelToJSONTyped = ResourceIdMlModelToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.ResourceIdMlModelTypeEnum = {
  * Check if a given object implements the ResourceIdMlModel interface.
  */
 function instanceOfResourceIdMlModel(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfResourceIdMlModel = instanceOfResourceIdMlModel;
 function ResourceIdMlModelFromJSON(json) {
     return ResourceIdMlModelFromJSONTyped(json, false);
 }
-exports.ResourceIdMlModelFromJSON = ResourceIdMlModelFromJSON;
 function ResourceIdMlModelFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function ResourceIdMlModelFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.ResourceIdMlModelFromJSONTyped = ResourceIdMlModelFromJSONTyped;
-function ResourceIdMlModelToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ResourceIdMlModelToJSON(json) {
+    return ResourceIdMlModelToJSONTyped(json, false);
+}
+function ResourceIdMlModelToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
-exports.ResourceIdMlModelToJSON = ResourceIdMlModelToJSON;

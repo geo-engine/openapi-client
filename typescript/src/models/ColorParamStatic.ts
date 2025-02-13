@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -38,8 +38,7 @@ export interface ColorParamStatic {
  * @export
  */
 export const ColorParamStaticTypeEnum = {
-    Static: 'static',
-    Derived: 'derived'
+    Static: 'static'
 } as const;
 export type ColorParamStaticTypeEnum = typeof ColorParamStaticTypeEnum[keyof typeof ColorParamStaticTypeEnum];
 
@@ -47,12 +46,10 @@ export type ColorParamStaticTypeEnum = typeof ColorParamStaticTypeEnum[keyof typ
 /**
  * Check if a given object implements the ColorParamStatic interface.
  */
-export function instanceOfColorParamStatic(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfColorParamStatic(value: object): value is ColorParamStatic {
+    if (!('color' in value) || value['color'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function ColorParamStaticFromJSON(json: any): ColorParamStatic {
@@ -60,7 +57,7 @@ export function ColorParamStaticFromJSON(json: any): ColorParamStatic {
 }
 
 export function ColorParamStaticFromJSONTyped(json: any, ignoreDiscriminator: boolean): ColorParamStatic {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -70,17 +67,19 @@ export function ColorParamStaticFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function ColorParamStaticToJSON(value?: ColorParamStatic | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ColorParamStaticToJSON(json: any): ColorParamStatic {
+    return ColorParamStaticToJSONTyped(json, false);
+}
+
+export function ColorParamStaticToJSONTyped(value?: ColorParamStatic | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'color': value.color,
-        'type': value.type,
+        'color': value['color'],
+        'type': value['type'],
     };
 }
 

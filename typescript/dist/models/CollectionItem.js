@@ -13,41 +13,41 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CollectionItemToJSON = exports.CollectionItemFromJSONTyped = exports.CollectionItemFromJSON = void 0;
+exports.CollectionItemFromJSON = CollectionItemFromJSON;
+exports.CollectionItemFromJSONTyped = CollectionItemFromJSONTyped;
+exports.CollectionItemToJSON = CollectionItemToJSON;
+exports.CollectionItemToJSONTyped = CollectionItemToJSONTyped;
 const LayerCollectionListing_1 = require("./LayerCollectionListing");
 const LayerListing_1 = require("./LayerListing");
 function CollectionItemFromJSON(json) {
     return CollectionItemFromJSONTyped(json, false);
 }
-exports.CollectionItemFromJSON = CollectionItemFromJSON;
 function CollectionItemFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'collection':
-            return Object.assign(Object.assign({}, (0, LayerCollectionListing_1.LayerCollectionListingFromJSONTyped)(json, true)), { type: 'collection' });
+            return Object.assign({}, (0, LayerCollectionListing_1.LayerCollectionListingFromJSONTyped)(json, true), { type: 'collection' });
         case 'layer':
-            return Object.assign(Object.assign({}, (0, LayerListing_1.LayerListingFromJSONTyped)(json, true)), { type: 'layer' });
+            return Object.assign({}, (0, LayerListing_1.LayerListingFromJSONTyped)(json, true), { type: 'layer' });
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }
 }
-exports.CollectionItemFromJSONTyped = CollectionItemFromJSONTyped;
-function CollectionItemToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function CollectionItemToJSON(json) {
+    return CollectionItemToJSONTyped(json, false);
+}
+function CollectionItemToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'collection':
-            return (0, LayerCollectionListing_1.LayerCollectionListingToJSON)(value);
+            return Object.assign({}, (0, LayerCollectionListing_1.LayerCollectionListingToJSON)(value), { type: 'collection' });
         case 'layer':
-            return (0, LayerListing_1.LayerListingToJSON)(value);
+            return Object.assign({}, (0, LayerListing_1.LayerListingToJSON)(value), { type: 'layer' });
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${value['type']}'`);
     }
 }
-exports.CollectionItemToJSON = CollectionItemToJSON;

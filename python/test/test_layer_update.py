@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.layer_update import LayerUpdate  # noqa: E501
+from geoengine_openapi_client.models.layer_update import LayerUpdate
 
 class TestLayerUpdate(unittest.TestCase):
     """LayerUpdate unit test stubs"""
@@ -29,12 +28,12 @@ class TestLayerUpdate(unittest.TestCase):
 
     def make_instance(self, include_optional) -> LayerUpdate:
         """Test LayerUpdate
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `LayerUpdate`
         """
-        model = LayerUpdate()  # noqa: E501
+        model = LayerUpdate()
         if include_optional:
             return LayerUpdate(
                 name = '',

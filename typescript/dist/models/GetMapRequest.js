@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetMapRequestToJSON = exports.GetMapRequestFromJSONTyped = exports.GetMapRequestFromJSON = exports.GetMapRequest = void 0;
+exports.GetMapRequest = void 0;
+exports.instanceOfGetMapRequest = instanceOfGetMapRequest;
+exports.GetMapRequestFromJSON = GetMapRequestFromJSON;
+exports.GetMapRequestFromJSONTyped = GetMapRequestFromJSONTyped;
+exports.GetMapRequestToJSON = GetMapRequestToJSON;
+exports.GetMapRequestToJSONTyped = GetMapRequestToJSONTyped;
 /**
  *
  * @export
@@ -21,15 +26,25 @@ exports.GetMapRequestToJSON = exports.GetMapRequestFromJSONTyped = exports.GetMa
 exports.GetMapRequest = {
     GetMap: 'GetMap'
 };
+function instanceOfGetMapRequest(value) {
+    for (const key in exports.GetMapRequest) {
+        if (Object.prototype.hasOwnProperty.call(exports.GetMapRequest, key)) {
+            if (exports.GetMapRequest[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function GetMapRequestFromJSON(json) {
     return GetMapRequestFromJSONTyped(json, false);
 }
-exports.GetMapRequestFromJSON = GetMapRequestFromJSON;
 function GetMapRequestFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.GetMapRequestFromJSONTyped = GetMapRequestFromJSONTyped;
 function GetMapRequestToJSON(value) {
     return value;
 }
-exports.GetMapRequestToJSON = GetMapRequestToJSON;
+function GetMapRequestToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

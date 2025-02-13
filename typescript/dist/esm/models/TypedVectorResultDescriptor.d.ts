@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { BoundingBox2D } from './BoundingBox2D';
+import type { VectorDataType } from './VectorDataType';
 import type { TimeInterval } from './TimeInterval';
 import type { VectorColumnInfo } from './VectorColumnInfo';
-import type { VectorDataType } from './VectorDataType';
+import type { BoundingBox2D } from './BoundingBox2D';
 /**
  *
  * @export
@@ -68,7 +68,8 @@ export type TypedVectorResultDescriptorTypeEnum = typeof TypedVectorResultDescri
 /**
  * Check if a given object implements the TypedVectorResultDescriptor interface.
  */
-export declare function instanceOfTypedVectorResultDescriptor(value: object): boolean;
+export declare function instanceOfTypedVectorResultDescriptor(value: object): value is TypedVectorResultDescriptor;
 export declare function TypedVectorResultDescriptorFromJSON(json: any): TypedVectorResultDescriptor;
 export declare function TypedVectorResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedVectorResultDescriptor;
-export declare function TypedVectorResultDescriptorToJSON(value?: TypedVectorResultDescriptor | null): any;
+export declare function TypedVectorResultDescriptorToJSON(json: any): TypedVectorResultDescriptor;
+export declare function TypedVectorResultDescriptorToJSONTyped(value?: TypedVectorResultDescriptor | null, ignoreDiscriminator?: boolean): any;

@@ -13,45 +13,44 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlotResultDescriptorToJSON = exports.PlotResultDescriptorFromJSONTyped = exports.PlotResultDescriptorFromJSON = exports.instanceOfPlotResultDescriptor = void 0;
-const runtime_1 = require("../runtime");
-const BoundingBox2D_1 = require("./BoundingBox2D");
+exports.instanceOfPlotResultDescriptor = instanceOfPlotResultDescriptor;
+exports.PlotResultDescriptorFromJSON = PlotResultDescriptorFromJSON;
+exports.PlotResultDescriptorFromJSONTyped = PlotResultDescriptorFromJSONTyped;
+exports.PlotResultDescriptorToJSON = PlotResultDescriptorToJSON;
+exports.PlotResultDescriptorToJSONTyped = PlotResultDescriptorToJSONTyped;
 const TimeInterval_1 = require("./TimeInterval");
+const BoundingBox2D_1 = require("./BoundingBox2D");
 /**
  * Check if a given object implements the PlotResultDescriptor interface.
  */
 function instanceOfPlotResultDescriptor(value) {
-    let isInstance = true;
-    isInstance = isInstance && "spatialReference" in value;
-    return isInstance;
+    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfPlotResultDescriptor = instanceOfPlotResultDescriptor;
 function PlotResultDescriptorFromJSON(json) {
     return PlotResultDescriptorFromJSONTyped(json, false);
 }
-exports.PlotResultDescriptorFromJSON = PlotResultDescriptorFromJSON;
 function PlotResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'bbox': !(0, runtime_1.exists)(json, 'bbox') ? undefined : (0, BoundingBox2D_1.BoundingBox2DFromJSON)(json['bbox']),
+        'bbox': json['bbox'] == null ? undefined : (0, BoundingBox2D_1.BoundingBox2DFromJSON)(json['bbox']),
         'spatialReference': json['spatialReference'],
-        'time': !(0, runtime_1.exists)(json, 'time') ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
+        'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
     };
 }
-exports.PlotResultDescriptorFromJSONTyped = PlotResultDescriptorFromJSONTyped;
-function PlotResultDescriptorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function PlotResultDescriptorToJSON(json) {
+    return PlotResultDescriptorToJSONTyped(json, false);
+}
+function PlotResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'bbox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value.bbox),
-        'spatialReference': value.spatialReference,
-        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value.time),
+        'bbox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value['bbox']),
+        'spatialReference': value['spatialReference'],
+        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
     };
 }
-exports.PlotResultDescriptorToJSON = PlotResultDescriptorToJSON;

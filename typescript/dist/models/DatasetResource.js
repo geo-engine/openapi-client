@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DatasetResourceToJSON = exports.DatasetResourceFromJSONTyped = exports.DatasetResourceFromJSON = exports.instanceOfDatasetResource = exports.DatasetResourceTypeEnum = void 0;
+exports.DatasetResourceTypeEnum = void 0;
+exports.instanceOfDatasetResource = instanceOfDatasetResource;
+exports.DatasetResourceFromJSON = DatasetResourceFromJSON;
+exports.DatasetResourceFromJSONTyped = DatasetResourceFromJSONTyped;
+exports.DatasetResourceToJSON = DatasetResourceToJSON;
+exports.DatasetResourceToJSONTyped = DatasetResourceToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.DatasetResourceTypeEnum = {
  * Check if a given object implements the DatasetResource interface.
  */
 function instanceOfDatasetResource(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfDatasetResource = instanceOfDatasetResource;
 function DatasetResourceFromJSON(json) {
     return DatasetResourceFromJSONTyped(json, false);
 }
-exports.DatasetResourceFromJSON = DatasetResourceFromJSON;
 function DatasetResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function DatasetResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.DatasetResourceFromJSONTyped = DatasetResourceFromJSONTyped;
-function DatasetResourceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function DatasetResourceToJSON(json) {
+    return DatasetResourceToJSONTyped(json, false);
+}
+function DatasetResourceToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
-exports.DatasetResourceToJSON = DatasetResourceToJSON;

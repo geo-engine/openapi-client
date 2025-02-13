@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterSymbologyToJSON = exports.RasterSymbologyFromJSONTyped = exports.RasterSymbologyFromJSON = exports.instanceOfRasterSymbology = exports.RasterSymbologyTypeEnum = void 0;
+exports.RasterSymbologyTypeEnum = void 0;
+exports.instanceOfRasterSymbology = instanceOfRasterSymbology;
+exports.RasterSymbologyFromJSON = RasterSymbologyFromJSON;
+exports.RasterSymbologyFromJSONTyped = RasterSymbologyFromJSONTyped;
+exports.RasterSymbologyToJSON = RasterSymbologyToJSON;
+exports.RasterSymbologyToJSONTyped = RasterSymbologyToJSONTyped;
 const RasterColorizer_1 = require("./RasterColorizer");
 /**
  * @export
@@ -25,19 +30,19 @@ exports.RasterSymbologyTypeEnum = {
  * Check if a given object implements the RasterSymbology interface.
  */
 function instanceOfRasterSymbology(value) {
-    let isInstance = true;
-    isInstance = isInstance && "opacity" in value;
-    isInstance = isInstance && "rasterColorizer" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('opacity' in value) || value['opacity'] === undefined)
+        return false;
+    if (!('rasterColorizer' in value) || value['rasterColorizer'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfRasterSymbology = instanceOfRasterSymbology;
 function RasterSymbologyFromJSON(json) {
     return RasterSymbologyFromJSONTyped(json, false);
 }
-exports.RasterSymbologyFromJSON = RasterSymbologyFromJSON;
 function RasterSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -46,18 +51,16 @@ function RasterSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.RasterSymbologyFromJSONTyped = RasterSymbologyFromJSONTyped;
-function RasterSymbologyToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function RasterSymbologyToJSON(json) {
+    return RasterSymbologyToJSONTyped(json, false);
+}
+function RasterSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'opacity': value.opacity,
-        'rasterColorizer': (0, RasterColorizer_1.RasterColorizerToJSON)(value.rasterColorizer),
-        'type': value.type,
+        'opacity': value['opacity'],
+        'rasterColorizer': (0, RasterColorizer_1.RasterColorizerToJSON)(value['rasterColorizer']),
+        'type': value['type'],
     };
 }
-exports.RasterSymbologyToJSON = RasterSymbologyToJSON;

@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceTimeFormatUnixTimeStampToJSON = exports.OgrSourceTimeFormatUnixTimeStampFromJSONTyped = exports.OgrSourceTimeFormatUnixTimeStampFromJSON = exports.instanceOfOgrSourceTimeFormatUnixTimeStamp = exports.OgrSourceTimeFormatUnixTimeStampFormatEnum = void 0;
+exports.OgrSourceTimeFormatUnixTimeStampFormatEnum = void 0;
+exports.instanceOfOgrSourceTimeFormatUnixTimeStamp = instanceOfOgrSourceTimeFormatUnixTimeStamp;
+exports.OgrSourceTimeFormatUnixTimeStampFromJSON = OgrSourceTimeFormatUnixTimeStampFromJSON;
+exports.OgrSourceTimeFormatUnixTimeStampFromJSONTyped = OgrSourceTimeFormatUnixTimeStampFromJSONTyped;
+exports.OgrSourceTimeFormatUnixTimeStampToJSON = OgrSourceTimeFormatUnixTimeStampToJSON;
+exports.OgrSourceTimeFormatUnixTimeStampToJSONTyped = OgrSourceTimeFormatUnixTimeStampToJSONTyped;
 const UnixTimeStampType_1 = require("./UnixTimeStampType");
 /**
  * @export
@@ -25,18 +30,17 @@ exports.OgrSourceTimeFormatUnixTimeStampFormatEnum = {
  * Check if a given object implements the OgrSourceTimeFormatUnixTimeStamp interface.
  */
 function instanceOfOgrSourceTimeFormatUnixTimeStamp(value) {
-    let isInstance = true;
-    isInstance = isInstance && "format" in value;
-    isInstance = isInstance && "timestampType" in value;
-    return isInstance;
+    if (!('format' in value) || value['format'] === undefined)
+        return false;
+    if (!('timestampType' in value) || value['timestampType'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfOgrSourceTimeFormatUnixTimeStamp = instanceOfOgrSourceTimeFormatUnixTimeStamp;
 function OgrSourceTimeFormatUnixTimeStampFromJSON(json) {
     return OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, false);
 }
-exports.OgrSourceTimeFormatUnixTimeStampFromJSON = OgrSourceTimeFormatUnixTimeStampFromJSON;
 function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -44,17 +48,15 @@ function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, ignoreDiscriminator
         'timestampType': (0, UnixTimeStampType_1.UnixTimeStampTypeFromJSON)(json['timestampType']),
     };
 }
-exports.OgrSourceTimeFormatUnixTimeStampFromJSONTyped = OgrSourceTimeFormatUnixTimeStampFromJSONTyped;
-function OgrSourceTimeFormatUnixTimeStampToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function OgrSourceTimeFormatUnixTimeStampToJSON(json) {
+    return OgrSourceTimeFormatUnixTimeStampToJSONTyped(json, false);
+}
+function OgrSourceTimeFormatUnixTimeStampToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'format': value.format,
-        'timestampType': (0, UnixTimeStampType_1.UnixTimeStampTypeToJSON)(value.timestampType),
+        'format': value['format'],
+        'timestampType': (0, UnixTimeStampType_1.UnixTimeStampTypeToJSON)(value['timestampType']),
     };
 }
-exports.OgrSourceTimeFormatUnixTimeStampToJSON = OgrSourceTimeFormatUnixTimeStampToJSON;

@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetMapExceptionFormatToJSON = exports.GetMapExceptionFormatFromJSONTyped = exports.GetMapExceptionFormatFromJSON = exports.GetMapExceptionFormat = void 0;
+exports.GetMapExceptionFormat = void 0;
+exports.instanceOfGetMapExceptionFormat = instanceOfGetMapExceptionFormat;
+exports.GetMapExceptionFormatFromJSON = GetMapExceptionFormatFromJSON;
+exports.GetMapExceptionFormatFromJSONTyped = GetMapExceptionFormatFromJSONTyped;
+exports.GetMapExceptionFormatToJSON = GetMapExceptionFormatToJSON;
+exports.GetMapExceptionFormatToJSONTyped = GetMapExceptionFormatToJSONTyped;
 /**
  *
  * @export
@@ -22,15 +27,25 @@ exports.GetMapExceptionFormat = {
     Xml: 'XML',
     Json: 'JSON'
 };
+function instanceOfGetMapExceptionFormat(value) {
+    for (const key in exports.GetMapExceptionFormat) {
+        if (Object.prototype.hasOwnProperty.call(exports.GetMapExceptionFormat, key)) {
+            if (exports.GetMapExceptionFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function GetMapExceptionFormatFromJSON(json) {
     return GetMapExceptionFormatFromJSONTyped(json, false);
 }
-exports.GetMapExceptionFormatFromJSON = GetMapExceptionFormatFromJSON;
 function GetMapExceptionFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.GetMapExceptionFormatFromJSONTyped = GetMapExceptionFormatFromJSONTyped;
 function GetMapExceptionFormatToJSON(value) {
     return value;
 }
-exports.GetMapExceptionFormatToJSON = GetMapExceptionFormatToJSON;
+function GetMapExceptionFormatToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

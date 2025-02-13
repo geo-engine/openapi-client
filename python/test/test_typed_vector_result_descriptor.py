@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.typed_vector_result_descriptor import TypedVectorResultDescriptor  # noqa: E501
+from geoengine_openapi_client.models.typed_vector_result_descriptor import TypedVectorResultDescriptor
 
 class TestTypedVectorResultDescriptor(unittest.TestCase):
     """TypedVectorResultDescriptor unit test stubs"""
@@ -29,12 +28,12 @@ class TestTypedVectorResultDescriptor(unittest.TestCase):
 
     def make_instance(self, include_optional) -> TypedVectorResultDescriptor:
         """Test TypedVectorResultDescriptor
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `TypedVectorResultDescriptor`
         """
-        model = TypedVectorResultDescriptor()  # noqa: E501
+        model = TypedVectorResultDescriptor()
         if include_optional:
             return TypedVectorResultDescriptor(
                 bbox = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(

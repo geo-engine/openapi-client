@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectResourceToJSON = exports.ProjectResourceFromJSONTyped = exports.ProjectResourceFromJSON = exports.instanceOfProjectResource = exports.ProjectResourceTypeEnum = void 0;
+exports.ProjectResourceTypeEnum = void 0;
+exports.instanceOfProjectResource = instanceOfProjectResource;
+exports.ProjectResourceFromJSON = ProjectResourceFromJSON;
+exports.ProjectResourceFromJSONTyped = ProjectResourceFromJSONTyped;
+exports.ProjectResourceToJSON = ProjectResourceToJSON;
+exports.ProjectResourceToJSONTyped = ProjectResourceToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.ProjectResourceTypeEnum = {
  * Check if a given object implements the ProjectResource interface.
  */
 function instanceOfProjectResource(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfProjectResource = instanceOfProjectResource;
 function ProjectResourceFromJSON(json) {
     return ProjectResourceFromJSONTyped(json, false);
 }
-exports.ProjectResourceFromJSON = ProjectResourceFromJSON;
 function ProjectResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function ProjectResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.ProjectResourceFromJSONTyped = ProjectResourceFromJSONTyped;
-function ProjectResourceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ProjectResourceToJSON(json) {
+    return ProjectResourceToJSONTyped(json, false);
+}
+function ProjectResourceToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
-exports.ProjectResourceToJSON = ProjectResourceToJSON;

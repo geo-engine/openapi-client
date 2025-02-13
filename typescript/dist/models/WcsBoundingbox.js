@@ -13,41 +13,40 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WcsBoundingboxToJSON = exports.WcsBoundingboxFromJSONTyped = exports.WcsBoundingboxFromJSON = exports.instanceOfWcsBoundingbox = void 0;
-const runtime_1 = require("../runtime");
+exports.instanceOfWcsBoundingbox = instanceOfWcsBoundingbox;
+exports.WcsBoundingboxFromJSON = WcsBoundingboxFromJSON;
+exports.WcsBoundingboxFromJSONTyped = WcsBoundingboxFromJSONTyped;
+exports.WcsBoundingboxToJSON = WcsBoundingboxToJSON;
+exports.WcsBoundingboxToJSONTyped = WcsBoundingboxToJSONTyped;
 /**
  * Check if a given object implements the WcsBoundingbox interface.
  */
 function instanceOfWcsBoundingbox(value) {
-    let isInstance = true;
-    isInstance = isInstance && "bbox" in value;
-    return isInstance;
+    if (!('bbox' in value) || value['bbox'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfWcsBoundingbox = instanceOfWcsBoundingbox;
 function WcsBoundingboxFromJSON(json) {
     return WcsBoundingboxFromJSONTyped(json, false);
 }
-exports.WcsBoundingboxFromJSON = WcsBoundingboxFromJSON;
 function WcsBoundingboxFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'bbox': json['bbox'],
-        'spatialReference': !(0, runtime_1.exists)(json, 'spatial_reference') ? undefined : json['spatial_reference'],
+        'spatialReference': json['spatial_reference'] == null ? undefined : json['spatial_reference'],
     };
 }
-exports.WcsBoundingboxFromJSONTyped = WcsBoundingboxFromJSONTyped;
-function WcsBoundingboxToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function WcsBoundingboxToJSON(json) {
+    return WcsBoundingboxToJSONTyped(json, false);
+}
+function WcsBoundingboxToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'bbox': value.bbox,
-        'spatial_reference': value.spatialReference,
+        'bbox': value['bbox'],
+        'spatial_reference': value['spatialReference'],
     };
 }
-exports.WcsBoundingboxToJSON = WcsBoundingboxToJSON;

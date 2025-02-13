@@ -12,31 +12,35 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { BoundingBox2D } from './BoundingBox2D';
+import { mapValues } from '../runtime';
+import type { VectorDataType } from './VectorDataType';
 import {
-    BoundingBox2DFromJSON,
-    BoundingBox2DFromJSONTyped,
-    BoundingBox2DToJSON,
-} from './BoundingBox2D';
+    VectorDataTypeFromJSON,
+    VectorDataTypeFromJSONTyped,
+    VectorDataTypeToJSON,
+    VectorDataTypeToJSONTyped,
+} from './VectorDataType';
 import type { TimeInterval } from './TimeInterval';
 import {
     TimeIntervalFromJSON,
     TimeIntervalFromJSONTyped,
     TimeIntervalToJSON,
+    TimeIntervalToJSONTyped,
 } from './TimeInterval';
 import type { VectorColumnInfo } from './VectorColumnInfo';
 import {
     VectorColumnInfoFromJSON,
     VectorColumnInfoFromJSONTyped,
     VectorColumnInfoToJSON,
+    VectorColumnInfoToJSONTyped,
 } from './VectorColumnInfo';
-import type { VectorDataType } from './VectorDataType';
+import type { BoundingBox2D } from './BoundingBox2D';
 import {
-    VectorDataTypeFromJSON,
-    VectorDataTypeFromJSONTyped,
-    VectorDataTypeToJSON,
-} from './VectorDataType';
+    BoundingBox2DFromJSON,
+    BoundingBox2DFromJSONTyped,
+    BoundingBox2DToJSON,
+    BoundingBox2DToJSONTyped,
+} from './BoundingBox2D';
 
 /**
  * 
@@ -95,14 +99,12 @@ export type TypedVectorResultDescriptorTypeEnum = typeof TypedVectorResultDescri
 /**
  * Check if a given object implements the TypedVectorResultDescriptor interface.
  */
-export function instanceOfTypedVectorResultDescriptor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "columns" in value;
-    isInstance = isInstance && "dataType" in value;
-    isInstance = isInstance && "spatialReference" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfTypedVectorResultDescriptor(value: object): value is TypedVectorResultDescriptor {
+    if (!('columns' in value) || value['columns'] === undefined) return false;
+    if (!('dataType' in value) || value['dataType'] === undefined) return false;
+    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function TypedVectorResultDescriptorFromJSON(json: any): TypedVectorResultDescriptor {
@@ -110,35 +112,37 @@ export function TypedVectorResultDescriptorFromJSON(json: any): TypedVectorResul
 }
 
 export function TypedVectorResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedVectorResultDescriptor {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'bbox': !exists(json, 'bbox') ? undefined : BoundingBox2DFromJSON(json['bbox']),
+        'bbox': json['bbox'] == null ? undefined : BoundingBox2DFromJSON(json['bbox']),
         'columns': (mapValues(json['columns'], VectorColumnInfoFromJSON)),
         'dataType': VectorDataTypeFromJSON(json['dataType']),
         'spatialReference': json['spatialReference'],
-        'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
         'type': json['type'],
     };
 }
 
-export function TypedVectorResultDescriptorToJSON(value?: TypedVectorResultDescriptor | null): any {
-    if (value === undefined) {
-        return undefined;
+export function TypedVectorResultDescriptorToJSON(json: any): TypedVectorResultDescriptor {
+    return TypedVectorResultDescriptorToJSONTyped(json, false);
+}
+
+export function TypedVectorResultDescriptorToJSONTyped(value?: TypedVectorResultDescriptor | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'bbox': BoundingBox2DToJSON(value.bbox),
-        'columns': (mapValues(value.columns, VectorColumnInfoToJSON)),
-        'dataType': VectorDataTypeToJSON(value.dataType),
-        'spatialReference': value.spatialReference,
-        'time': TimeIntervalToJSON(value.time),
-        'type': value.type,
+        'bbox': BoundingBox2DToJSON(value['bbox']),
+        'columns': (mapValues(value['columns'], VectorColumnInfoToJSON)),
+        'dataType': VectorDataTypeToJSON(value['dataType']),
+        'spatialReference': value['spatialReference'],
+        'time': TimeIntervalToJSON(value['time']),
+        'type': value['type'],
     };
 }
 

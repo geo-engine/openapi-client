@@ -11,34 +11,31 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MockDatasetDataSourceLoadingInfoFromJSON, MockDatasetDataSourceLoadingInfoToJSON, } from './MockDatasetDataSourceLoadingInfo';
 import { VectorResultDescriptorFromJSON, VectorResultDescriptorToJSON, } from './VectorResultDescriptor';
+import { MockDatasetDataSourceLoadingInfoFromJSON, MockDatasetDataSourceLoadingInfoToJSON, } from './MockDatasetDataSourceLoadingInfo';
 /**
  * @export
  */
 export const MockMetaDataTypeEnum = {
-    MockMetaData: 'MockMetaData',
-    OgrMetaData: 'OgrMetaData',
-    GdalMetaDataRegular: 'GdalMetaDataRegular',
-    GdalStatic: 'GdalStatic',
-    GdalMetadataNetCdfCf: 'GdalMetadataNetCdfCf',
-    GdalMetaDataList: 'GdalMetaDataList'
+    MockMetaData: 'MockMetaData'
 };
 /**
  * Check if a given object implements the MockMetaData interface.
  */
 export function instanceOfMockMetaData(value) {
-    let isInstance = true;
-    isInstance = isInstance && "loadingInfo" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function MockMetaDataFromJSON(json) {
     return MockMetaDataFromJSONTyped(json, false);
 }
 export function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -47,16 +44,16 @@ export function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function MockMetaDataToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function MockMetaDataToJSON(json) {
+    return MockMetaDataToJSONTyped(json, false);
+}
+export function MockMetaDataToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value.loadingInfo),
-        'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
-        'type': value.type,
+        'loadingInfo': MockDatasetDataSourceLoadingInfoToJSON(value['loadingInfo']),
+        'resultDescriptor': VectorResultDescriptorToJSON(value['resultDescriptor']),
+        'type': value['type'],
     };
 }

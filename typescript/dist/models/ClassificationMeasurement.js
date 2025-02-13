@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClassificationMeasurementToJSON = exports.ClassificationMeasurementFromJSONTyped = exports.ClassificationMeasurementFromJSON = exports.instanceOfClassificationMeasurement = exports.ClassificationMeasurementTypeEnum = void 0;
+exports.ClassificationMeasurementTypeEnum = void 0;
+exports.instanceOfClassificationMeasurement = instanceOfClassificationMeasurement;
+exports.ClassificationMeasurementFromJSON = ClassificationMeasurementFromJSON;
+exports.ClassificationMeasurementFromJSONTyped = ClassificationMeasurementFromJSONTyped;
+exports.ClassificationMeasurementToJSON = ClassificationMeasurementToJSON;
+exports.ClassificationMeasurementToJSONTyped = ClassificationMeasurementToJSONTyped;
 /**
  * @export
  */
@@ -24,19 +29,19 @@ exports.ClassificationMeasurementTypeEnum = {
  * Check if a given object implements the ClassificationMeasurement interface.
  */
 function instanceOfClassificationMeasurement(value) {
-    let isInstance = true;
-    isInstance = isInstance && "classes" in value;
-    isInstance = isInstance && "measurement" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('classes' in value) || value['classes'] === undefined)
+        return false;
+    if (!('measurement' in value) || value['measurement'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfClassificationMeasurement = instanceOfClassificationMeasurement;
 function ClassificationMeasurementFromJSON(json) {
     return ClassificationMeasurementFromJSONTyped(json, false);
 }
-exports.ClassificationMeasurementFromJSON = ClassificationMeasurementFromJSON;
 function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -45,18 +50,16 @@ function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.ClassificationMeasurementFromJSONTyped = ClassificationMeasurementFromJSONTyped;
-function ClassificationMeasurementToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ClassificationMeasurementToJSON(json) {
+    return ClassificationMeasurementToJSONTyped(json, false);
+}
+function ClassificationMeasurementToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'classes': value.classes,
-        'measurement': value.measurement,
-        'type': value.type,
+        'classes': value['classes'],
+        'measurement': value['measurement'],
+        'type': value['type'],
     };
 }
-exports.ClassificationMeasurementToJSON = ClassificationMeasurementToJSON;

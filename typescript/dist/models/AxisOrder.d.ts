@@ -18,6 +18,8 @@ export declare const AxisOrder: {
     readonly EastNorth: "eastNorth";
 };
 export type AxisOrder = typeof AxisOrder[keyof typeof AxisOrder];
+export declare function instanceOfAxisOrder(value: any): boolean;
 export declare function AxisOrderFromJSON(json: any): AxisOrder;
 export declare function AxisOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): AxisOrder;
 export declare function AxisOrderToJSON(value?: AxisOrder | null): any;
+export declare function AxisOrderToJSONTyped(value: any, ignoreDiscriminator: boolean): AxisOrder;

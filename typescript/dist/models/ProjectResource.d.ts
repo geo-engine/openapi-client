@@ -38,7 +38,8 @@ export type ProjectResourceTypeEnum = typeof ProjectResourceTypeEnum[keyof typeo
 /**
  * Check if a given object implements the ProjectResource interface.
  */
-export declare function instanceOfProjectResource(value: object): boolean;
+export declare function instanceOfProjectResource(value: object): value is ProjectResource;
 export declare function ProjectResourceFromJSON(json: any): ProjectResource;
 export declare function ProjectResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectResource;
-export declare function ProjectResourceToJSON(value?: ProjectResource | null): any;
+export declare function ProjectResourceToJSON(json: any): ProjectResource;
+export declare function ProjectResourceToJSONTyped(value?: ProjectResource | null, ignoreDiscriminator?: boolean): any;

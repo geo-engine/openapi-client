@@ -13,27 +13,32 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectLayerToJSON = exports.ProjectLayerFromJSONTyped = exports.ProjectLayerFromJSON = exports.instanceOfProjectLayer = void 0;
+exports.instanceOfProjectLayer = instanceOfProjectLayer;
+exports.ProjectLayerFromJSON = ProjectLayerFromJSON;
+exports.ProjectLayerFromJSONTyped = ProjectLayerFromJSONTyped;
+exports.ProjectLayerToJSON = ProjectLayerToJSON;
+exports.ProjectLayerToJSONTyped = ProjectLayerToJSONTyped;
 const LayerVisibility_1 = require("./LayerVisibility");
 const Symbology_1 = require("./Symbology");
 /**
  * Check if a given object implements the ProjectLayer interface.
  */
 function instanceOfProjectLayer(value) {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "symbology" in value;
-    isInstance = isInstance && "visibility" in value;
-    isInstance = isInstance && "workflow" in value;
-    return isInstance;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('symbology' in value) || value['symbology'] === undefined)
+        return false;
+    if (!('visibility' in value) || value['visibility'] === undefined)
+        return false;
+    if (!('workflow' in value) || value['workflow'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfProjectLayer = instanceOfProjectLayer;
 function ProjectLayerFromJSON(json) {
     return ProjectLayerFromJSONTyped(json, false);
 }
-exports.ProjectLayerFromJSON = ProjectLayerFromJSON;
 function ProjectLayerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,19 +48,17 @@ function ProjectLayerFromJSONTyped(json, ignoreDiscriminator) {
         'workflow': json['workflow'],
     };
 }
-exports.ProjectLayerFromJSONTyped = ProjectLayerFromJSONTyped;
-function ProjectLayerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ProjectLayerToJSON(json) {
+    return ProjectLayerToJSONTyped(json, false);
+}
+function ProjectLayerToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'name': value.name,
-        'symbology': (0, Symbology_1.SymbologyToJSON)(value.symbology),
-        'visibility': (0, LayerVisibility_1.LayerVisibilityToJSON)(value.visibility),
-        'workflow': value.workflow,
+        'name': value['name'],
+        'symbology': (0, Symbology_1.SymbologyToJSON)(value['symbology']),
+        'visibility': (0, LayerVisibility_1.LayerVisibilityToJSON)(value['visibility']),
+        'workflow': value['workflow'],
     };
 }
-exports.ProjectLayerToJSON = ProjectLayerToJSON;

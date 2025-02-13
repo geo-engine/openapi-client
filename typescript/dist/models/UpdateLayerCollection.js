@@ -13,44 +13,44 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateLayerCollectionToJSON = exports.UpdateLayerCollectionFromJSONTyped = exports.UpdateLayerCollectionFromJSON = exports.instanceOfUpdateLayerCollection = void 0;
-const runtime_1 = require("../runtime");
+exports.instanceOfUpdateLayerCollection = instanceOfUpdateLayerCollection;
+exports.UpdateLayerCollectionFromJSON = UpdateLayerCollectionFromJSON;
+exports.UpdateLayerCollectionFromJSONTyped = UpdateLayerCollectionFromJSONTyped;
+exports.UpdateLayerCollectionToJSON = UpdateLayerCollectionToJSON;
+exports.UpdateLayerCollectionToJSONTyped = UpdateLayerCollectionToJSONTyped;
 /**
  * Check if a given object implements the UpdateLayerCollection interface.
  */
 function instanceOfUpdateLayerCollection(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "name" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfUpdateLayerCollection = instanceOfUpdateLayerCollection;
 function UpdateLayerCollectionFromJSON(json) {
     return UpdateLayerCollectionFromJSONTyped(json, false);
 }
-exports.UpdateLayerCollectionFromJSON = UpdateLayerCollectionFromJSON;
 function UpdateLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
         'name': json['name'],
-        'properties': !(0, runtime_1.exists)(json, 'properties') ? undefined : json['properties'],
+        'properties': json['properties'] == null ? undefined : json['properties'],
     };
 }
-exports.UpdateLayerCollectionFromJSONTyped = UpdateLayerCollectionFromJSONTyped;
-function UpdateLayerCollectionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function UpdateLayerCollectionToJSON(json) {
+    return UpdateLayerCollectionToJSONTyped(json, false);
+}
+function UpdateLayerCollectionToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'name': value.name,
-        'properties': value.properties,
+        'description': value['description'],
+        'name': value['name'],
+        'properties': value['properties'],
     };
 }
-exports.UpdateLayerCollectionToJSON = UpdateLayerCollectionToJSON;

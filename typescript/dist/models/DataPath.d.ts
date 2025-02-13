@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DataPathOneOf } from './DataPathOneOf';
-import { DataPathOneOf1 } from './DataPathOneOf1';
+import type { DataPathOneOf } from './DataPathOneOf';
+import type { DataPathOneOf1 } from './DataPathOneOf1';
 /**
  * @type DataPath
  *
@@ -19,4 +19,5 @@ import { DataPathOneOf1 } from './DataPathOneOf1';
 export type DataPath = DataPathOneOf | DataPathOneOf1;
 export declare function DataPathFromJSON(json: any): DataPath;
 export declare function DataPathFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataPath;
-export declare function DataPathToJSON(value?: DataPath | null): any;
+export declare function DataPathToJSON(json: any): any;
+export declare function DataPathToJSONTyped(value?: DataPath | null, ignoreDiscriminator?: boolean): any;

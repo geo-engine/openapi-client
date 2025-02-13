@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -48,14 +48,12 @@ export interface ComputationQuota {
 /**
  * Check if a given object implements the ComputationQuota interface.
  */
-export function instanceOfComputationQuota(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "computationId" in value;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "timestamp" in value;
-    isInstance = isInstance && "workflowId" in value;
-
-    return isInstance;
+export function instanceOfComputationQuota(value: object): value is ComputationQuota {
+    if (!('computationId' in value) || value['computationId'] === undefined) return false;
+    if (!('count' in value) || value['count'] === undefined) return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined) return false;
+    if (!('workflowId' in value) || value['workflowId'] === undefined) return false;
+    return true;
 }
 
 export function ComputationQuotaFromJSON(json: any): ComputationQuota {
@@ -63,7 +61,7 @@ export function ComputationQuotaFromJSON(json: any): ComputationQuota {
 }
 
 export function ComputationQuotaFromJSONTyped(json: any, ignoreDiscriminator: boolean): ComputationQuota {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -75,19 +73,21 @@ export function ComputationQuotaFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function ComputationQuotaToJSON(value?: ComputationQuota | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ComputationQuotaToJSON(json: any): ComputationQuota {
+    return ComputationQuotaToJSONTyped(json, false);
+}
+
+export function ComputationQuotaToJSONTyped(value?: ComputationQuota | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'computationId': value.computationId,
-        'count': value.count,
-        'timestamp': (value.timestamp.toISOString()),
-        'workflowId': value.workflowId,
+        'computationId': value['computationId'],
+        'count': value['count'],
+        'timestamp': ((value['timestamp']).toISOString()),
+        'workflowId': value['workflowId'],
     };
 }
 

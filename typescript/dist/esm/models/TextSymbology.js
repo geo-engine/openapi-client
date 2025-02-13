@@ -11,23 +11,25 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ColorParamFromJSON, ColorParamToJSON, } from './ColorParam';
 import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
+import { ColorParamFromJSON, ColorParamToJSON, } from './ColorParam';
 /**
  * Check if a given object implements the TextSymbology interface.
  */
 export function instanceOfTextSymbology(value) {
-    let isInstance = true;
-    isInstance = isInstance && "attribute" in value;
-    isInstance = isInstance && "fillColor" in value;
-    isInstance = isInstance && "stroke" in value;
-    return isInstance;
+    if (!('attribute' in value) || value['attribute'] === undefined)
+        return false;
+    if (!('fillColor' in value) || value['fillColor'] === undefined)
+        return false;
+    if (!('stroke' in value) || value['stroke'] === undefined)
+        return false;
+    return true;
 }
 export function TextSymbologyFromJSON(json) {
     return TextSymbologyFromJSONTyped(json, false);
 }
 export function TextSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -36,16 +38,16 @@ export function TextSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'stroke': StrokeParamFromJSON(json['stroke']),
     };
 }
-export function TextSymbologyToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TextSymbologyToJSON(json) {
+    return TextSymbologyToJSONTyped(json, false);
+}
+export function TextSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'attribute': value.attribute,
-        'fillColor': ColorParamToJSON(value.fillColor),
-        'stroke': StrokeParamToJSON(value.stroke),
+        'attribute': value['attribute'],
+        'fillColor': ColorParamToJSON(value['fillColor']),
+        'stroke': StrokeParamToJSON(value['stroke']),
     };
 }

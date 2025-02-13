@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskStatusAbortedToJSON = exports.TaskStatusAbortedFromJSONTyped = exports.TaskStatusAbortedFromJSON = exports.instanceOfTaskStatusAborted = exports.TaskStatusAbortedStatusEnum = void 0;
+exports.TaskStatusAbortedStatusEnum = void 0;
+exports.instanceOfTaskStatusAborted = instanceOfTaskStatusAborted;
+exports.TaskStatusAbortedFromJSON = TaskStatusAbortedFromJSON;
+exports.TaskStatusAbortedFromJSONTyped = TaskStatusAbortedFromJSONTyped;
+exports.TaskStatusAbortedToJSON = TaskStatusAbortedToJSON;
+exports.TaskStatusAbortedToJSONTyped = TaskStatusAbortedToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.TaskStatusAbortedStatusEnum = {
  * Check if a given object implements the TaskStatusAborted interface.
  */
 function instanceOfTaskStatusAborted(value) {
-    let isInstance = true;
-    isInstance = isInstance && "cleanUp" in value;
-    isInstance = isInstance && "status" in value;
-    return isInstance;
+    if (!('cleanUp' in value) || value['cleanUp'] === undefined)
+        return false;
+    if (!('status' in value) || value['status'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTaskStatusAborted = instanceOfTaskStatusAborted;
 function TaskStatusAbortedFromJSON(json) {
     return TaskStatusAbortedFromJSONTyped(json, false);
 }
-exports.TaskStatusAbortedFromJSON = TaskStatusAbortedFromJSON;
 function TaskStatusAbortedFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function TaskStatusAbortedFromJSONTyped(json, ignoreDiscriminator) {
         'status': json['status'],
     };
 }
-exports.TaskStatusAbortedFromJSONTyped = TaskStatusAbortedFromJSONTyped;
-function TaskStatusAbortedToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TaskStatusAbortedToJSON(json) {
+    return TaskStatusAbortedToJSONTyped(json, false);
+}
+function TaskStatusAbortedToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'cleanUp': value.cleanUp,
-        'status': value.status,
+        'cleanUp': value['cleanUp'],
+        'status': value['status'],
     };
 }
-exports.TaskStatusAbortedToJSON = TaskStatusAbortedToJSON;

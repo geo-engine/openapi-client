@@ -33,16 +33,13 @@ export interface ResourceIdLayer {
  */
 export declare const ResourceIdLayerTypeEnum: {
     readonly Layer: "Layer";
-    readonly LayerCollection: "LayerCollection";
-    readonly Project: "Project";
-    readonly DatasetId: "DatasetId";
-    readonly MlModel: "MlModel";
 };
 export type ResourceIdLayerTypeEnum = typeof ResourceIdLayerTypeEnum[keyof typeof ResourceIdLayerTypeEnum];
 /**
  * Check if a given object implements the ResourceIdLayer interface.
  */
-export declare function instanceOfResourceIdLayer(value: object): boolean;
+export declare function instanceOfResourceIdLayer(value: object): value is ResourceIdLayer;
 export declare function ResourceIdLayerFromJSON(json: any): ResourceIdLayer;
 export declare function ResourceIdLayerFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceIdLayer;
-export declare function ResourceIdLayerToJSON(value?: ResourceIdLayer | null): any;
+export declare function ResourceIdLayerToJSON(json: any): ResourceIdLayer;
+export declare function ResourceIdLayerToJSONTyped(value?: ResourceIdLayer | null, ignoreDiscriminator?: boolean): any;

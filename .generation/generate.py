@@ -106,6 +106,10 @@ def fetch_spec(*, ge_backend_tag: str) -> None:
             # "-p", "3030:8080",
             f"quay.io/geoengine/geoengine:{ge_backend_tag}",
         ],
+        env={
+            'GEOENGINE__POSTGRES__CLEAR_DATABASE_ON_START': 'true',
+            'PATH': os.environ['PATH'],
+        },
     )
 
     for _ in range(180):  # <3 minutes

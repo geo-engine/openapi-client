@@ -20,6 +20,16 @@ export const PlotOutputFormat = {
     JsonVega: 'JsonVega',
     ImagePng: 'ImagePng'
 };
+export function instanceOfPlotOutputFormat(value) {
+    for (const key in PlotOutputFormat) {
+        if (Object.prototype.hasOwnProperty.call(PlotOutputFormat, key)) {
+            if (PlotOutputFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function PlotOutputFormatFromJSON(json) {
     return PlotOutputFormatFromJSONTyped(json, false);
 }
@@ -27,5 +37,8 @@ export function PlotOutputFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function PlotOutputFormatToJSON(value) {
+    return value;
+}
+export function PlotOutputFormatToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

@@ -23,6 +23,17 @@ export const GetMapFormat = {
 export type GetMapFormat = typeof GetMapFormat[keyof typeof GetMapFormat];
 
 
+export function instanceOfGetMapFormat(value: any): boolean {
+    for (const key in GetMapFormat) {
+        if (Object.prototype.hasOwnProperty.call(GetMapFormat, key)) {
+            if (GetMapFormat[key as keyof typeof GetMapFormat] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function GetMapFormatFromJSON(json: any): GetMapFormat {
     return GetMapFormatFromJSONTyped(json, false);
 }
@@ -33,5 +44,9 @@ export function GetMapFormatFromJSONTyped(json: any, ignoreDiscriminator: boolea
 
 export function GetMapFormatToJSON(value?: GetMapFormat | null): any {
     return value as any;
+}
+
+export function GetMapFormatToJSONTyped(value: any, ignoreDiscriminator: boolean): GetMapFormat {
+    return value as GetMapFormat;
 }
 

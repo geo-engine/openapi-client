@@ -11,38 +11,36 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { TaskFilterFromJSON, TaskFilterToJSON, } from './TaskFilter';
 /**
  * Check if a given object implements the TaskListOptions interface.
  */
 export function instanceOfTaskListOptions(value) {
-    let isInstance = true;
-    return isInstance;
+    return true;
 }
 export function TaskListOptionsFromJSON(json) {
     return TaskListOptionsFromJSONTyped(json, false);
 }
 export function TaskListOptionsFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'filter': !exists(json, 'filter') ? undefined : TaskFilterFromJSON(json['filter']),
-        'limit': !exists(json, 'limit') ? undefined : json['limit'],
-        'offset': !exists(json, 'offset') ? undefined : json['offset'],
+        'filter': json['filter'] == null ? undefined : TaskFilterFromJSON(json['filter']),
+        'limit': json['limit'] == null ? undefined : json['limit'],
+        'offset': json['offset'] == null ? undefined : json['offset'],
     };
 }
-export function TaskListOptionsToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TaskListOptionsToJSON(json) {
+    return TaskListOptionsToJSONTyped(json, false);
+}
+export function TaskListOptionsToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'filter': TaskFilterToJSON(value.filter),
-        'limit': value.limit,
-        'offset': value.offset,
+        'filter': TaskFilterToJSON(value['filter']),
+        'limit': value['limit'],
+        'offset': value['offset'],
     };
 }

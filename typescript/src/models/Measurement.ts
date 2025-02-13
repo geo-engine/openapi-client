@@ -12,22 +12,22 @@
  * Do not edit the class manually.
  */
 
+import type { ClassificationMeasurement } from './ClassificationMeasurement';
 import {
-    ClassificationMeasurement,
     instanceOfClassificationMeasurement,
     ClassificationMeasurementFromJSON,
     ClassificationMeasurementFromJSONTyped,
     ClassificationMeasurementToJSON,
 } from './ClassificationMeasurement';
+import type { ContinuousMeasurement } from './ContinuousMeasurement';
 import {
-    ContinuousMeasurement,
     instanceOfContinuousMeasurement,
     ContinuousMeasurementFromJSON,
     ContinuousMeasurementFromJSONTyped,
     ContinuousMeasurementToJSON,
 } from './ContinuousMeasurement';
+import type { UnitlessMeasurement } from './UnitlessMeasurement';
 import {
-    UnitlessMeasurement,
     instanceOfUnitlessMeasurement,
     UnitlessMeasurementFromJSON,
     UnitlessMeasurementFromJSONTyped,
@@ -46,35 +46,36 @@ export function MeasurementFromJSON(json: any): Measurement {
 }
 
 export function MeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): Measurement {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'classification':
-            return {...ClassificationMeasurementFromJSONTyped(json, true), type: 'classification'};
+            return Object.assign({}, ClassificationMeasurementFromJSONTyped(json, true), { type: 'classification' } as const);
         case 'continuous':
-            return {...ContinuousMeasurementFromJSONTyped(json, true), type: 'continuous'};
+            return Object.assign({}, ContinuousMeasurementFromJSONTyped(json, true), { type: 'continuous' } as const);
         case 'unitless':
-            return {...UnitlessMeasurementFromJSONTyped(json, true), type: 'unitless'};
+            return Object.assign({}, UnitlessMeasurementFromJSONTyped(json, true), { type: 'unitless' } as const);
         default:
             throw new Error(`No variant of Measurement exists with 'type=${json['type']}'`);
     }
 }
 
-export function MeasurementToJSON(value?: Measurement | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function MeasurementToJSON(json: any): any {
+    return MeasurementToJSONTyped(json, false);
+}
+
+export function MeasurementToJSONTyped(value?: Measurement | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'classification':
-            return ClassificationMeasurementToJSON(value);
+            return Object.assign({}, ClassificationMeasurementToJSON(value), { type: 'classification' } as const);
         case 'continuous':
-            return ContinuousMeasurementToJSON(value);
+            return Object.assign({}, ContinuousMeasurementToJSON(value), { type: 'continuous' } as const);
         case 'unitless':
-            return UnitlessMeasurementToJSON(value);
+            return Object.assign({}, UnitlessMeasurementToJSON(value), { type: 'unitless' } as const);
         default:
             throw new Error(`No variant of Measurement exists with 'type=${value['type']}'`);
     }

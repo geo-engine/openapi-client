@@ -27,36 +27,12 @@ def runtime_ts(file_contents: List[str]) -> Generator[str, None, None]:
         yield line
 
 # fixes due to https://github.com/OpenAPITools/openapi-generator/issues/14831
-def project_update_token_ts(file_contents: List[str]) -> Generator[str, None, None]:
-    '''Modify the ProjectUpdateToken.ts file.'''
-    for line in file_contents:
-
-        if line.startswith('export function ProjectUpdateTokenToJSON'):
-            line = dedent('''\
-            export function instanceOfProjectUpdateToken(value: any): boolean {
-                return value === ProjectUpdateToken.None || value === ProjectUpdateToken.Delete;
-            }
-            ''') + '\n' + line
-
-        yield line
-
-# fixes due to https://github.com/OpenAPITools/openapi-generator/issues/14831
 def plot_update_ts(file_contents: List[str]) -> Generator[str, None, None]:
     '''Modify the PlotUpdate.ts file.'''
     for line in file_contents:
         dedented_line = dedent(line)
 
-        if dedented_line.startswith('return { ...PlotFromJSONTyped(json, true)'):
-            line = indent(dedent('''\
-            if (json === ProjectUpdateToken.None) {
-                return ProjectUpdateToken.None;
-            } else if (json === ProjectUpdateToken.Delete) {
-                return ProjectUpdateToken.Delete;
-            } else {
-                return { ...PlotFromJSONTyped(json, true) };
-            }
-            '''), INDENT)
-        elif dedented_line.startswith('if (instanceOfPlot(value))'):
+        if dedented_line.startswith('if (instanceOfPlot(value))'):
             line = indent(dedent('''\
             if (typeof value === 'object' && instanceOfPlot(value)) {
             '''), INDENT)
@@ -69,17 +45,7 @@ def layer_update_ts(file_contents: List[str]) -> Generator[str, None, None]:
     for line in file_contents:
         dedented_line = dedent(line)
 
-        if dedented_line.startswith('return { ...ProjectLayerFromJSONTyped(json, true)'):
-            line = indent(dedent('''\
-            if (json === ProjectUpdateToken.None) {
-                return ProjectUpdateToken.None;
-            } else if (json === ProjectUpdateToken.Delete) {
-                return ProjectUpdateToken.Delete;
-            } else {
-                return { ...ProjectLayerFromJSONTyped(json, true) };
-            }
-            '''), INDENT)
-        elif dedented_line.startswith('if (instanceOfProjectLayer(value))'):
+        if dedented_line.startswith('if (instanceOfProjectLayer(value))'):
             line = indent(dedent('''\
             if (typeof value === 'object' && instanceOfProjectLayer(value)) {
             '''), INDENT)
@@ -104,16 +70,14 @@ def task_status_with_id_ts(file_contents: List[str]) -> Generator[str, None, Non
 
 input_file = Path(sys.argv[1])
 
-if input_file.name == 'runtime.ts':
-    modify_file(input_file, runtime_ts)
-if input_file.name == 'ProjectUpdateToken.ts':
-    modify_file(input_file, project_update_token_ts)
-elif input_file.name == 'PlotUpdate.ts':
-    modify_file(input_file, plot_update_ts)
-elif input_file.name == 'LayerUpdate.ts':
-    modify_file(input_file, layer_update_ts)
-elif input_file.name == 'TaskStatusWithId.ts':
-    modify_file(input_file, task_status_with_id_ts)
+file_modifications = {
+    'LayerUpdate.ts': layer_update_ts,
+    'PlotUpdate.ts': plot_update_ts,
+    'runtime.ts': runtime_ts,
+    'TaskStatusWithId.ts': task_status_with_id_ts,
+}
+if modifier_function := file_modifications.get(input_file.name):
+    modify_file(input_file, modifier_function)
 else:
     pass # leave file untouched
 

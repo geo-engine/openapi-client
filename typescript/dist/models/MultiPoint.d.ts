@@ -26,7 +26,8 @@ export interface MultiPoint {
 /**
  * Check if a given object implements the MultiPoint interface.
  */
-export declare function instanceOfMultiPoint(value: object): boolean;
+export declare function instanceOfMultiPoint(value: object): value is MultiPoint;
 export declare function MultiPointFromJSON(json: any): MultiPoint;
 export declare function MultiPointFromJSONTyped(json: any, ignoreDiscriminator: boolean): MultiPoint;
-export declare function MultiPointToJSON(value?: MultiPoint | null): any;
+export declare function MultiPointToJSON(json: any): MultiPoint;
+export declare function MultiPointToJSONTyped(value?: MultiPoint | null, ignoreDiscriminator?: boolean): any;

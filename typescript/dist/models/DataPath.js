@@ -13,26 +13,33 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataPathToJSON = exports.DataPathFromJSONTyped = exports.DataPathFromJSON = void 0;
+exports.DataPathFromJSON = DataPathFromJSON;
+exports.DataPathFromJSONTyped = DataPathFromJSONTyped;
+exports.DataPathToJSON = DataPathToJSON;
+exports.DataPathToJSONTyped = DataPathToJSONTyped;
 const DataPathOneOf_1 = require("./DataPathOneOf");
 const DataPathOneOf1_1 = require("./DataPathOneOf1");
 function DataPathFromJSON(json) {
     return DataPathFromJSONTyped(json, false);
 }
-exports.DataPathFromJSON = DataPathFromJSON;
 function DataPathFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return Object.assign(Object.assign({}, (0, DataPathOneOf_1.DataPathOneOfFromJSONTyped)(json, true)), (0, DataPathOneOf1_1.DataPathOneOf1FromJSONTyped)(json, true));
-}
-exports.DataPathFromJSONTyped = DataPathFromJSONTyped;
-function DataPathToJSON(value) {
-    if (value === undefined) {
-        return undefined;
+    if ((0, DataPathOneOf_1.instanceOfDataPathOneOf)(json)) {
+        return (0, DataPathOneOf_1.DataPathOneOfFromJSONTyped)(json, true);
     }
-    if (value === null) {
-        return null;
+    if ((0, DataPathOneOf1_1.instanceOfDataPathOneOf1)(json)) {
+        return (0, DataPathOneOf1_1.DataPathOneOf1FromJSONTyped)(json, true);
+    }
+    return {};
+}
+function DataPathToJSON(json) {
+    return DataPathToJSONTyped(json, false);
+}
+function DataPathToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     if ((0, DataPathOneOf_1.instanceOfDataPathOneOf)(value)) {
         return (0, DataPathOneOf_1.DataPathOneOfToJSON)(value);
@@ -42,4 +49,3 @@ function DataPathToJSON(value) {
     }
     return {};
 }
-exports.DataPathToJSON = DataPathToJSON;

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -48,14 +48,12 @@ export interface UpdateDataset {
 /**
  * Check if a given object implements the UpdateDataset interface.
  */
-export function instanceOfUpdateDataset(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "tags" in value;
-
-    return isInstance;
+export function instanceOfUpdateDataset(value: object): value is UpdateDataset {
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('displayName' in value) || value['displayName'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('tags' in value) || value['tags'] === undefined) return false;
+    return true;
 }
 
 export function UpdateDatasetFromJSON(json: any): UpdateDataset {
@@ -63,7 +61,7 @@ export function UpdateDatasetFromJSON(json: any): UpdateDataset {
 }
 
 export function UpdateDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateDataset {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -75,19 +73,21 @@ export function UpdateDatasetFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function UpdateDatasetToJSON(value?: UpdateDataset | null): any {
-    if (value === undefined) {
-        return undefined;
+export function UpdateDatasetToJSON(json: any): UpdateDataset {
+    return UpdateDatasetToJSONTyped(json, false);
+}
+
+export function UpdateDatasetToJSONTyped(value?: UpdateDataset | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'description': value.description,
-        'display_name': value.displayName,
-        'name': value.name,
-        'tags': value.tags,
+        'description': value['description'],
+        'display_name': value['displayName'],
+        'name': value['name'],
+        'tags': value['tags'],
     };
 }
 

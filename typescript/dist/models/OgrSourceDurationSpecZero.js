@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDurationSpecZeroToJSON = exports.OgrSourceDurationSpecZeroFromJSONTyped = exports.OgrSourceDurationSpecZeroFromJSON = exports.instanceOfOgrSourceDurationSpecZero = exports.OgrSourceDurationSpecZeroTypeEnum = void 0;
+exports.OgrSourceDurationSpecZeroTypeEnum = void 0;
+exports.instanceOfOgrSourceDurationSpecZero = instanceOfOgrSourceDurationSpecZero;
+exports.OgrSourceDurationSpecZeroFromJSON = OgrSourceDurationSpecZeroFromJSON;
+exports.OgrSourceDurationSpecZeroFromJSONTyped = OgrSourceDurationSpecZeroFromJSONTyped;
+exports.OgrSourceDurationSpecZeroToJSON = OgrSourceDurationSpecZeroToJSON;
+exports.OgrSourceDurationSpecZeroToJSONTyped = OgrSourceDurationSpecZeroToJSONTyped;
 /**
  * @export
  */
@@ -24,33 +29,29 @@ exports.OgrSourceDurationSpecZeroTypeEnum = {
  * Check if a given object implements the OgrSourceDurationSpecZero interface.
  */
 function instanceOfOgrSourceDurationSpecZero(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfOgrSourceDurationSpecZero = instanceOfOgrSourceDurationSpecZero;
 function OgrSourceDurationSpecZeroFromJSON(json) {
     return OgrSourceDurationSpecZeroFromJSONTyped(json, false);
 }
-exports.OgrSourceDurationSpecZeroFromJSON = OgrSourceDurationSpecZeroFromJSON;
 function OgrSourceDurationSpecZeroFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'type': json['type'],
     };
 }
-exports.OgrSourceDurationSpecZeroFromJSONTyped = OgrSourceDurationSpecZeroFromJSONTyped;
-function OgrSourceDurationSpecZeroToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function OgrSourceDurationSpecZeroToJSON(json) {
+    return OgrSourceDurationSpecZeroToJSONTyped(json, false);
+}
+function OgrSourceDurationSpecZeroToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'type': value.type,
+        'type': value['type'],
     };
 }
-exports.OgrSourceDurationSpecZeroToJSON = OgrSourceDurationSpecZeroToJSON;

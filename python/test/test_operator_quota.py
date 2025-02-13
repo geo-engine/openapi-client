@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.operator_quota import OperatorQuota  # noqa: E501
+from geoengine_openapi_client.models.operator_quota import OperatorQuota
 
 class TestOperatorQuota(unittest.TestCase):
     """OperatorQuota unit test stubs"""
@@ -29,12 +28,12 @@ class TestOperatorQuota(unittest.TestCase):
 
     def make_instance(self, include_optional) -> OperatorQuota:
         """Test OperatorQuota
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `OperatorQuota`
         """
-        model = OperatorQuota()  # noqa: E501
+        model = OperatorQuota()
         if include_optional:
             return OperatorQuota(
                 count = 0,

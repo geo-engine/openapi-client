@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddCollection200ResponseToJSON = exports.AddCollection200ResponseFromJSONTyped = exports.AddCollection200ResponseFromJSON = exports.instanceOfAddCollection200Response = void 0;
+exports.instanceOfAddCollection200Response = instanceOfAddCollection200Response;
+exports.AddCollection200ResponseFromJSON = AddCollection200ResponseFromJSON;
+exports.AddCollection200ResponseFromJSONTyped = AddCollection200ResponseFromJSONTyped;
+exports.AddCollection200ResponseToJSON = AddCollection200ResponseToJSON;
+exports.AddCollection200ResponseToJSONTyped = AddCollection200ResponseToJSONTyped;
 /**
  * Check if a given object implements the AddCollection200Response interface.
  */
 function instanceOfAddCollection200Response(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfAddCollection200Response = instanceOfAddCollection200Response;
 function AddCollection200ResponseFromJSON(json) {
     return AddCollection200ResponseFromJSONTyped(json, false);
 }
-exports.AddCollection200ResponseFromJSON = AddCollection200ResponseFromJSON;
 function AddCollection200ResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'id': json['id'],
     };
 }
-exports.AddCollection200ResponseFromJSONTyped = AddCollection200ResponseFromJSONTyped;
-function AddCollection200ResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function AddCollection200ResponseToJSON(json) {
+    return AddCollection200ResponseToJSONTyped(json, false);
+}
+function AddCollection200ResponseToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
+        'id': value['id'],
     };
 }
-exports.AddCollection200ResponseToJSON = AddCollection200ResponseToJSON;

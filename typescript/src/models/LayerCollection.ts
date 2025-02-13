@@ -12,18 +12,20 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CollectionItem } from './CollectionItem';
 import {
     CollectionItemFromJSON,
     CollectionItemFromJSONTyped,
     CollectionItemToJSON,
+    CollectionItemToJSONTyped,
 } from './CollectionItem';
 import type { ProviderLayerCollectionId } from './ProviderLayerCollectionId';
 import {
     ProviderLayerCollectionIdFromJSON,
     ProviderLayerCollectionIdFromJSONTyped,
     ProviderLayerCollectionIdToJSON,
+    ProviderLayerCollectionIdToJSONTyped,
 } from './ProviderLayerCollectionId';
 
 /**
@@ -73,15 +75,13 @@ export interface LayerCollection {
 /**
  * Check if a given object implements the LayerCollection interface.
  */
-export function instanceOfLayerCollection(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "items" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "properties" in value;
-
-    return isInstance;
+export function instanceOfLayerCollection(value: object): value is LayerCollection {
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('items' in value) || value['items'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('properties' in value) || value['properties'] === undefined) return false;
+    return true;
 }
 
 export function LayerCollectionFromJSON(json: any): LayerCollection {
@@ -89,13 +89,13 @@ export function LayerCollectionFromJSON(json: any): LayerCollection {
 }
 
 export function LayerCollectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerCollection {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'description': json['description'],
-        'entryLabel': !exists(json, 'entryLabel') ? undefined : json['entryLabel'],
+        'entryLabel': json['entryLabel'] == null ? undefined : json['entryLabel'],
         'id': ProviderLayerCollectionIdFromJSON(json['id']),
         'items': ((json['items'] as Array<any>).map(CollectionItemFromJSON)),
         'name': json['name'],
@@ -103,21 +103,23 @@ export function LayerCollectionFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function LayerCollectionToJSON(value?: LayerCollection | null): any {
-    if (value === undefined) {
-        return undefined;
+export function LayerCollectionToJSON(json: any): LayerCollection {
+    return LayerCollectionToJSONTyped(json, false);
+}
+
+export function LayerCollectionToJSONTyped(value?: LayerCollection | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'description': value.description,
-        'entryLabel': value.entryLabel,
-        'id': ProviderLayerCollectionIdToJSON(value.id),
-        'items': ((value.items as Array<any>).map(CollectionItemToJSON)),
-        'name': value.name,
-        'properties': value.properties,
+        'description': value['description'],
+        'entryLabel': value['entryLabel'],
+        'id': ProviderLayerCollectionIdToJSON(value['id']),
+        'items': ((value['items'] as Array<any>).map(CollectionItemToJSON)),
+        'name': value['name'],
+        'properties': value['properties'],
     };
 }
 

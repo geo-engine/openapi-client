@@ -20,42 +20,42 @@ export function ResourceIdFromJSON(json) {
     return ResourceIdFromJSONTyped(json, false);
 }
 export function ResourceIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'DatasetId':
-            return Object.assign(Object.assign({}, ResourceIdDatasetIdFromJSONTyped(json, true)), { type: 'DatasetId' });
+            return Object.assign({}, ResourceIdDatasetIdFromJSONTyped(json, true), { type: 'DatasetId' });
         case 'Layer':
-            return Object.assign(Object.assign({}, ResourceIdLayerFromJSONTyped(json, true)), { type: 'Layer' });
+            return Object.assign({}, ResourceIdLayerFromJSONTyped(json, true), { type: 'Layer' });
         case 'LayerCollection':
-            return Object.assign(Object.assign({}, ResourceIdLayerCollectionFromJSONTyped(json, true)), { type: 'LayerCollection' });
+            return Object.assign({}, ResourceIdLayerCollectionFromJSONTyped(json, true), { type: 'LayerCollection' });
         case 'MlModel':
-            return Object.assign(Object.assign({}, ResourceIdMlModelFromJSONTyped(json, true)), { type: 'MlModel' });
+            return Object.assign({}, ResourceIdMlModelFromJSONTyped(json, true), { type: 'MlModel' });
         case 'Project':
-            return Object.assign(Object.assign({}, ResourceIdProjectFromJSONTyped(json, true)), { type: 'Project' });
+            return Object.assign({}, ResourceIdProjectFromJSONTyped(json, true), { type: 'Project' });
         default:
             throw new Error(`No variant of ResourceId exists with 'type=${json['type']}'`);
     }
 }
-export function ResourceIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ResourceIdToJSON(json) {
+    return ResourceIdToJSONTyped(json, false);
+}
+export function ResourceIdToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'DatasetId':
-            return ResourceIdDatasetIdToJSON(value);
+            return Object.assign({}, ResourceIdDatasetIdToJSON(value), { type: 'DatasetId' });
         case 'Layer':
-            return ResourceIdLayerToJSON(value);
+            return Object.assign({}, ResourceIdLayerToJSON(value), { type: 'Layer' });
         case 'LayerCollection':
-            return ResourceIdLayerCollectionToJSON(value);
+            return Object.assign({}, ResourceIdLayerCollectionToJSON(value), { type: 'LayerCollection' });
         case 'MlModel':
-            return ResourceIdMlModelToJSON(value);
+            return Object.assign({}, ResourceIdMlModelToJSON(value), { type: 'MlModel' });
         case 'Project':
-            return ResourceIdProjectToJSON(value);
+            return Object.assign({}, ResourceIdProjectToJSON(value), { type: 'Project' });
         default:
             throw new Error(`No variant of ResourceId exists with 'type=${value['type']}'`);
     }

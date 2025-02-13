@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { RasterColorizer } from './RasterColorizer';
 import {
     RasterColorizerFromJSON,
     RasterColorizerFromJSONTyped,
     RasterColorizerToJSON,
+    RasterColorizerToJSONTyped,
 } from './RasterColorizer';
 
 /**
@@ -59,13 +60,11 @@ export type RasterSymbologyTypeEnum = typeof RasterSymbologyTypeEnum[keyof typeo
 /**
  * Check if a given object implements the RasterSymbology interface.
  */
-export function instanceOfRasterSymbology(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "opacity" in value;
-    isInstance = isInstance && "rasterColorizer" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfRasterSymbology(value: object): value is RasterSymbology {
+    if (!('opacity' in value) || value['opacity'] === undefined) return false;
+    if (!('rasterColorizer' in value) || value['rasterColorizer'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function RasterSymbologyFromJSON(json: any): RasterSymbology {
@@ -73,7 +72,7 @@ export function RasterSymbologyFromJSON(json: any): RasterSymbology {
 }
 
 export function RasterSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterSymbology {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -84,18 +83,20 @@ export function RasterSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function RasterSymbologyToJSON(value?: RasterSymbology | null): any {
-    if (value === undefined) {
-        return undefined;
+export function RasterSymbologyToJSON(json: any): RasterSymbology {
+    return RasterSymbologyToJSONTyped(json, false);
+}
+
+export function RasterSymbologyToJSONTyped(value?: RasterSymbology | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'opacity': value.opacity,
-        'rasterColorizer': RasterColorizerToJSON(value.rasterColorizer),
-        'type': value.type,
+        'opacity': value['opacity'],
+        'rasterColorizer': RasterColorizerToJSON(value['rasterColorizer']),
+        'type': value['type'],
     };
 }
 

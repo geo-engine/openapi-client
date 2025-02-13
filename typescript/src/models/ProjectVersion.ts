@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface ProjectVersion {
 /**
  * Check if a given object implements the ProjectVersion interface.
  */
-export function instanceOfProjectVersion(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "changed" in value;
-    isInstance = isInstance && "id" in value;
-
-    return isInstance;
+export function instanceOfProjectVersion(value: object): value is ProjectVersion {
+    if (!('changed' in value) || value['changed'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    return true;
 }
 
 export function ProjectVersionFromJSON(json: any): ProjectVersion {
@@ -49,7 +47,7 @@ export function ProjectVersionFromJSON(json: any): ProjectVersion {
 }
 
 export function ProjectVersionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectVersion {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function ProjectVersionFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function ProjectVersionToJSON(value?: ProjectVersion | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ProjectVersionToJSON(json: any): ProjectVersion {
+    return ProjectVersionToJSONTyped(json, false);
+}
+
+export function ProjectVersionToJSONTyped(value?: ProjectVersion | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'changed': (value.changed.toISOString()),
-        'id': value.id,
+        'changed': ((value['changed']).toISOString()),
+        'id': value['id'],
     };
 }
 

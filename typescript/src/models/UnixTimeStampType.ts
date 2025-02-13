@@ -24,6 +24,17 @@ export const UnixTimeStampType = {
 export type UnixTimeStampType = typeof UnixTimeStampType[keyof typeof UnixTimeStampType];
 
 
+export function instanceOfUnixTimeStampType(value: any): boolean {
+    for (const key in UnixTimeStampType) {
+        if (Object.prototype.hasOwnProperty.call(UnixTimeStampType, key)) {
+            if (UnixTimeStampType[key as keyof typeof UnixTimeStampType] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function UnixTimeStampTypeFromJSON(json: any): UnixTimeStampType {
     return UnixTimeStampTypeFromJSONTyped(json, false);
 }
@@ -34,5 +45,9 @@ export function UnixTimeStampTypeFromJSONTyped(json: any, ignoreDiscriminator: b
 
 export function UnixTimeStampTypeToJSON(value?: UnixTimeStampType | null): any {
     return value as any;
+}
+
+export function UnixTimeStampTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): UnixTimeStampType {
+    return value as UnixTimeStampType;
 }
 

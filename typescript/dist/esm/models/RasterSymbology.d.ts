@@ -45,7 +45,8 @@ export type RasterSymbologyTypeEnum = typeof RasterSymbologyTypeEnum[keyof typeo
 /**
  * Check if a given object implements the RasterSymbology interface.
  */
-export declare function instanceOfRasterSymbology(value: object): boolean;
+export declare function instanceOfRasterSymbology(value: object): value is RasterSymbology;
 export declare function RasterSymbologyFromJSON(json: any): RasterSymbology;
 export declare function RasterSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterSymbology;
-export declare function RasterSymbologyToJSON(value?: RasterSymbology | null): any;
+export declare function RasterSymbologyToJSON(json: any): RasterSymbology;
+export declare function RasterSymbologyToJSONTyped(value?: RasterSymbology | null, ignoreDiscriminator?: boolean): any;

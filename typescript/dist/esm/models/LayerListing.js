@@ -11,7 +11,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { ProviderLayerIdFromJSON, ProviderLayerIdToJSON, } from './ProviderLayerId';
 /**
  * @export
@@ -23,40 +22,43 @@ export const LayerListingTypeEnum = {
  * Check if a given object implements the LayerListing interface.
  */
 export function instanceOfLayerListing(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function LayerListingFromJSON(json) {
     return LayerListingFromJSONTyped(json, false);
 }
 export function LayerListingFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
         'id': ProviderLayerIdFromJSON(json['id']),
         'name': json['name'],
-        'properties': !exists(json, 'properties') ? undefined : json['properties'],
+        'properties': json['properties'] == null ? undefined : json['properties'],
         'type': json['type'],
     };
 }
-export function LayerListingToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function LayerListingToJSON(json) {
+    return LayerListingToJSONTyped(json, false);
+}
+export function LayerListingToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'id': ProviderLayerIdToJSON(value.id),
-        'name': value.name,
-        'properties': value.properties,
-        'type': value.type,
+        'description': value['description'],
+        'id': ProviderLayerIdToJSON(value['id']),
+        'name': value['name'],
+        'properties': value['properties'],
+        'type': value['type'],
     };
 }

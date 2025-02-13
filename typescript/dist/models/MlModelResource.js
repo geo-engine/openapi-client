@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MlModelResourceToJSON = exports.MlModelResourceFromJSONTyped = exports.MlModelResourceFromJSON = exports.instanceOfMlModelResource = exports.MlModelResourceTypeEnum = void 0;
+exports.MlModelResourceTypeEnum = void 0;
+exports.instanceOfMlModelResource = instanceOfMlModelResource;
+exports.MlModelResourceFromJSON = MlModelResourceFromJSON;
+exports.MlModelResourceFromJSONTyped = MlModelResourceFromJSONTyped;
+exports.MlModelResourceToJSON = MlModelResourceToJSON;
+exports.MlModelResourceToJSONTyped = MlModelResourceToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.MlModelResourceTypeEnum = {
  * Check if a given object implements the MlModelResource interface.
  */
 function instanceOfMlModelResource(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfMlModelResource = instanceOfMlModelResource;
 function MlModelResourceFromJSON(json) {
     return MlModelResourceFromJSONTyped(json, false);
 }
-exports.MlModelResourceFromJSON = MlModelResourceFromJSON;
 function MlModelResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function MlModelResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.MlModelResourceFromJSONTyped = MlModelResourceFromJSONTyped;
-function MlModelResourceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function MlModelResourceToJSON(json) {
+    return MlModelResourceToJSONTyped(json, false);
+}
+function MlModelResourceToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
-exports.MlModelResourceToJSON = MlModelResourceToJSON;

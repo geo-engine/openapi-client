@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.ml_api import MLApi  # noqa: E501
+from geoengine_openapi_client.api.ml_api import MLApi
 
 
 class TestMLApi(unittest.TestCase):
     """MLApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = MLApi()  # noqa: E501
+        self.api = MLApi()
 
     def tearDown(self) -> None:
         pass
@@ -30,21 +30,21 @@ class TestMLApi(unittest.TestCase):
     def test_add_ml_model(self) -> None:
         """Test case for add_ml_model
 
-        Create a new ml model.  # noqa: E501
+        Create a new ml model.
         """
         pass
 
     def test_get_ml_model(self) -> None:
         """Test case for get_ml_model
 
-        Get ml model by name.  # noqa: E501
+        Get ml model by name.
         """
         pass
 
     def test_list_ml_models(self) -> None:
         """Test case for list_ml_models
 
-        List ml models.  # noqa: E501
+        List ml models.
         """
         pass
 

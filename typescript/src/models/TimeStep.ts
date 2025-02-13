@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TimeGranularity } from './TimeGranularity';
 import {
     TimeGranularityFromJSON,
     TimeGranularityFromJSONTyped,
     TimeGranularityToJSON,
+    TimeGranularityToJSONTyped,
 } from './TimeGranularity';
 
 /**
@@ -40,15 +41,15 @@ export interface TimeStep {
     step: number;
 }
 
+
+
 /**
  * Check if a given object implements the TimeStep interface.
  */
-export function instanceOfTimeStep(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "granularity" in value;
-    isInstance = isInstance && "step" in value;
-
-    return isInstance;
+export function instanceOfTimeStep(value: object): value is TimeStep {
+    if (!('granularity' in value) || value['granularity'] === undefined) return false;
+    if (!('step' in value) || value['step'] === undefined) return false;
+    return true;
 }
 
 export function TimeStepFromJSON(json: any): TimeStep {
@@ -56,7 +57,7 @@ export function TimeStepFromJSON(json: any): TimeStep {
 }
 
 export function TimeStepFromJSONTyped(json: any, ignoreDiscriminator: boolean): TimeStep {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -66,17 +67,19 @@ export function TimeStepFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     };
 }
 
-export function TimeStepToJSON(value?: TimeStep | null): any {
-    if (value === undefined) {
-        return undefined;
+export function TimeStepToJSON(json: any): TimeStep {
+    return TimeStepToJSONTyped(json, false);
+}
+
+export function TimeStepToJSONTyped(value?: TimeStep | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'granularity': TimeGranularityToJSON(value.granularity),
-        'step': value.step,
+        'granularity': TimeGranularityToJSON(value['granularity']),
+        'step': value['step'],
     };
 }
 

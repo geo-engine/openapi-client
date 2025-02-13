@@ -37,7 +37,8 @@ export interface DataUsageSummary {
 /**
  * Check if a given object implements the DataUsageSummary interface.
  */
-export declare function instanceOfDataUsageSummary(value: object): boolean;
+export declare function instanceOfDataUsageSummary(value: object): value is DataUsageSummary;
 export declare function DataUsageSummaryFromJSON(json: any): DataUsageSummary;
 export declare function DataUsageSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataUsageSummary;
-export declare function DataUsageSummaryToJSON(value?: DataUsageSummary | null): any;
+export declare function DataUsageSummaryToJSON(json: any): DataUsageSummary;
+export declare function DataUsageSummaryToJSONTyped(value?: DataUsageSummary | null, ignoreDiscriminator?: boolean): any;

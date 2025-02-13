@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -52,12 +52,10 @@ export type ContinuousMeasurementTypeEnum = typeof ContinuousMeasurementTypeEnum
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
-export function instanceOfContinuousMeasurement(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "measurement" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfContinuousMeasurement(value: object): value is ContinuousMeasurement {
+    if (!('measurement' in value) || value['measurement'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function ContinuousMeasurementFromJSON(json: any): ContinuousMeasurement {
@@ -65,29 +63,31 @@ export function ContinuousMeasurementFromJSON(json: any): ContinuousMeasurement 
 }
 
 export function ContinuousMeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): ContinuousMeasurement {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'measurement': json['measurement'],
         'type': json['type'],
-        'unit': !exists(json, 'unit') ? undefined : json['unit'],
+        'unit': json['unit'] == null ? undefined : json['unit'],
     };
 }
 
-export function ContinuousMeasurementToJSON(value?: ContinuousMeasurement | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ContinuousMeasurementToJSON(json: any): ContinuousMeasurement {
+    return ContinuousMeasurementToJSONTyped(json, false);
+}
+
+export function ContinuousMeasurementToJSONTyped(value?: ContinuousMeasurement | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'measurement': value.measurement,
-        'type': value.type,
-        'unit': value.unit,
+        'measurement': value['measurement'],
+        'type': value['type'],
+        'unit': value['unit'],
     };
 }
 

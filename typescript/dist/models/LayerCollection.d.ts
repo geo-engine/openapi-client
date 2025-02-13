@@ -57,7 +57,8 @@ export interface LayerCollection {
 /**
  * Check if a given object implements the LayerCollection interface.
  */
-export declare function instanceOfLayerCollection(value: object): boolean;
+export declare function instanceOfLayerCollection(value: object): value is LayerCollection;
 export declare function LayerCollectionFromJSON(json: any): LayerCollection;
 export declare function LayerCollectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerCollection;
-export declare function LayerCollectionToJSON(value?: LayerCollection | null): any;
+export declare function LayerCollectionToJSON(json: any): LayerCollection;
+export declare function LayerCollectionToJSONTyped(value?: LayerCollection | null, ignoreDiscriminator?: boolean): any;

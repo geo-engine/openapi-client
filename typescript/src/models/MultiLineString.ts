@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Coordinate2D } from './Coordinate2D';
 import {
     Coordinate2DFromJSON,
     Coordinate2DFromJSONTyped,
     Coordinate2DToJSON,
+    Coordinate2DToJSONTyped,
 } from './Coordinate2D';
 
 /**
@@ -37,11 +38,9 @@ export interface MultiLineString {
 /**
  * Check if a given object implements the MultiLineString interface.
  */
-export function instanceOfMultiLineString(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "coordinates" in value;
-
-    return isInstance;
+export function instanceOfMultiLineString(value: object): value is MultiLineString {
+    if (!('coordinates' in value) || value['coordinates'] === undefined) return false;
+    return true;
 }
 
 export function MultiLineStringFromJSON(json: any): MultiLineString {
@@ -49,7 +48,7 @@ export function MultiLineStringFromJSON(json: any): MultiLineString {
 }
 
 export function MultiLineStringFromJSONTyped(json: any, ignoreDiscriminator: boolean): MultiLineString {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -58,16 +57,18 @@ export function MultiLineStringFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function MultiLineStringToJSON(value?: MultiLineString | null): any {
-    if (value === undefined) {
-        return undefined;
+export function MultiLineStringToJSON(json: any): MultiLineString {
+    return MultiLineStringToJSONTyped(json, false);
+}
+
+export function MultiLineStringToJSONTyped(value?: MultiLineString | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'coordinates': value.coordinates,
+        'coordinates': value['coordinates'],
     };
 }
 

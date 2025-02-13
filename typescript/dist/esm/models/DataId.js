@@ -17,30 +17,30 @@ export function DataIdFromJSON(json) {
     return DataIdFromJSONTyped(json, false);
 }
 export function DataIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'external':
-            return Object.assign(Object.assign({}, ExternalDataIdFromJSONTyped(json, true)), { type: 'external' });
+            return Object.assign({}, ExternalDataIdFromJSONTyped(json, true), { type: 'external' });
         case 'internal':
-            return Object.assign(Object.assign({}, InternalDataIdFromJSONTyped(json, true)), { type: 'internal' });
+            return Object.assign({}, InternalDataIdFromJSONTyped(json, true), { type: 'internal' });
         default:
             throw new Error(`No variant of DataId exists with 'type=${json['type']}'`);
     }
 }
-export function DataIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function DataIdToJSON(json) {
+    return DataIdToJSONTyped(json, false);
+}
+export function DataIdToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'external':
-            return ExternalDataIdToJSON(value);
+            return Object.assign({}, ExternalDataIdToJSON(value), { type: 'external' });
         case 'internal':
-            return InternalDataIdToJSON(value);
+            return Object.assign({}, InternalDataIdToJSON(value), { type: 'internal' });
         default:
             throw new Error(`No variant of DataId exists with 'type=${value['type']}'`);
     }

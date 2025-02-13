@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -52,13 +52,11 @@ export type ExternalDataIdTypeEnum = typeof ExternalDataIdTypeEnum[keyof typeof 
 /**
  * Check if a given object implements the ExternalDataId interface.
  */
-export function instanceOfExternalDataId(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "layerId" in value;
-    isInstance = isInstance && "providerId" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfExternalDataId(value: object): value is ExternalDataId {
+    if (!('layerId' in value) || value['layerId'] === undefined) return false;
+    if (!('providerId' in value) || value['providerId'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function ExternalDataIdFromJSON(json: any): ExternalDataId {
@@ -66,7 +64,7 @@ export function ExternalDataIdFromJSON(json: any): ExternalDataId {
 }
 
 export function ExternalDataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExternalDataId {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -77,18 +75,20 @@ export function ExternalDataIdFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function ExternalDataIdToJSON(value?: ExternalDataId | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ExternalDataIdToJSON(json: any): ExternalDataId {
+    return ExternalDataIdToJSONTyped(json, false);
+}
+
+export function ExternalDataIdToJSONTyped(value?: ExternalDataId | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'layerId': value.layerId,
-        'providerId': value.providerId,
-        'type': value.type,
+        'layerId': value['layerId'],
+        'providerId': value['providerId'],
+        'type': value['type'],
     };
 }
 

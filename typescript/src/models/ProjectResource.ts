@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -46,12 +46,10 @@ export type ProjectResourceTypeEnum = typeof ProjectResourceTypeEnum[keyof typeo
 /**
  * Check if a given object implements the ProjectResource interface.
  */
-export function instanceOfProjectResource(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfProjectResource(value: object): value is ProjectResource {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function ProjectResourceFromJSON(json: any): ProjectResource {
@@ -59,7 +57,7 @@ export function ProjectResourceFromJSON(json: any): ProjectResource {
 }
 
 export function ProjectResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectResource {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -69,17 +67,19 @@ export function ProjectResourceFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function ProjectResourceToJSON(value?: ProjectResource | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ProjectResourceToJSON(json: any): ProjectResource {
+    return ProjectResourceToJSONTyped(json, false);
+}
+
+export function ProjectResourceToJSONTyped(value?: ProjectResource | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
 

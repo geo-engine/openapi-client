@@ -18,6 +18,16 @@
 export const WmsVersion = {
     _130: '1.3.0'
 };
+export function instanceOfWmsVersion(value) {
+    for (const key in WmsVersion) {
+        if (Object.prototype.hasOwnProperty.call(WmsVersion, key)) {
+            if (WmsVersion[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function WmsVersionFromJSON(json) {
     return WmsVersionFromJSONTyped(json, false);
 }
@@ -25,5 +35,8 @@ export function WmsVersionFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function WmsVersionToJSON(value) {
+    return value;
+}
+export function WmsVersionToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

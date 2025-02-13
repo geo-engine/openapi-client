@@ -24,6 +24,17 @@ export const AxisOrder = {
 export type AxisOrder = typeof AxisOrder[keyof typeof AxisOrder];
 
 
+export function instanceOfAxisOrder(value: any): boolean {
+    for (const key in AxisOrder) {
+        if (Object.prototype.hasOwnProperty.call(AxisOrder, key)) {
+            if (AxisOrder[key as keyof typeof AxisOrder] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function AxisOrderFromJSON(json: any): AxisOrder {
     return AxisOrderFromJSONTyped(json, false);
 }
@@ -34,5 +45,9 @@ export function AxisOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
 
 export function AxisOrderToJSON(value?: AxisOrder | null): any {
     return value as any;
+}
+
+export function AxisOrderToJSONTyped(value: any, ignoreDiscriminator: boolean): AxisOrder {
+    return value as AxisOrder;
 }
 

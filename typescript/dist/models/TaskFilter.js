@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskFilterToJSON = exports.TaskFilterFromJSONTyped = exports.TaskFilterFromJSON = exports.TaskFilter = void 0;
+exports.TaskFilter = void 0;
+exports.instanceOfTaskFilter = instanceOfTaskFilter;
+exports.TaskFilterFromJSON = TaskFilterFromJSON;
+exports.TaskFilterFromJSONTyped = TaskFilterFromJSONTyped;
+exports.TaskFilterToJSON = TaskFilterToJSON;
+exports.TaskFilterToJSONTyped = TaskFilterToJSONTyped;
 /**
  *
  * @export
@@ -24,15 +29,25 @@ exports.TaskFilter = {
     Failed: 'failed',
     Completed: 'completed'
 };
+function instanceOfTaskFilter(value) {
+    for (const key in exports.TaskFilter) {
+        if (Object.prototype.hasOwnProperty.call(exports.TaskFilter, key)) {
+            if (exports.TaskFilter[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function TaskFilterFromJSON(json) {
     return TaskFilterFromJSONTyped(json, false);
 }
-exports.TaskFilterFromJSON = TaskFilterFromJSON;
 function TaskFilterFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.TaskFilterFromJSONTyped = TaskFilterFromJSONTyped;
 function TaskFilterToJSON(value) {
     return value;
 }
-exports.TaskFilterToJSON = TaskFilterToJSON;
+function TaskFilterToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

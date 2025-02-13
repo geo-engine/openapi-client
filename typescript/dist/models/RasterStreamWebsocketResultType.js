@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterStreamWebsocketResultTypeToJSON = exports.RasterStreamWebsocketResultTypeFromJSONTyped = exports.RasterStreamWebsocketResultTypeFromJSON = exports.RasterStreamWebsocketResultType = void 0;
+exports.RasterStreamWebsocketResultType = void 0;
+exports.instanceOfRasterStreamWebsocketResultType = instanceOfRasterStreamWebsocketResultType;
+exports.RasterStreamWebsocketResultTypeFromJSON = RasterStreamWebsocketResultTypeFromJSON;
+exports.RasterStreamWebsocketResultTypeFromJSONTyped = RasterStreamWebsocketResultTypeFromJSONTyped;
+exports.RasterStreamWebsocketResultTypeToJSON = RasterStreamWebsocketResultTypeToJSON;
+exports.RasterStreamWebsocketResultTypeToJSONTyped = RasterStreamWebsocketResultTypeToJSONTyped;
 /**
  * The stream result type for `raster_stream_websocket`.
  * @export
@@ -21,15 +26,25 @@ exports.RasterStreamWebsocketResultTypeToJSON = exports.RasterStreamWebsocketRes
 exports.RasterStreamWebsocketResultType = {
     Arrow: 'arrow'
 };
+function instanceOfRasterStreamWebsocketResultType(value) {
+    for (const key in exports.RasterStreamWebsocketResultType) {
+        if (Object.prototype.hasOwnProperty.call(exports.RasterStreamWebsocketResultType, key)) {
+            if (exports.RasterStreamWebsocketResultType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function RasterStreamWebsocketResultTypeFromJSON(json) {
     return RasterStreamWebsocketResultTypeFromJSONTyped(json, false);
 }
-exports.RasterStreamWebsocketResultTypeFromJSON = RasterStreamWebsocketResultTypeFromJSON;
 function RasterStreamWebsocketResultTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.RasterStreamWebsocketResultTypeFromJSONTyped = RasterStreamWebsocketResultTypeFromJSONTyped;
 function RasterStreamWebsocketResultTypeToJSON(value) {
     return value;
 }
-exports.RasterStreamWebsocketResultTypeToJSON = RasterStreamWebsocketResultTypeToJSON;
+function RasterStreamWebsocketResultTypeToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

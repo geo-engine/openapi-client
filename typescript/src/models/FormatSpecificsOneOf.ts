@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FormatSpecificsOneOfCsv } from './FormatSpecificsOneOfCsv';
 import {
     FormatSpecificsOneOfCsvFromJSON,
     FormatSpecificsOneOfCsvFromJSONTyped,
     FormatSpecificsOneOfCsvToJSON,
+    FormatSpecificsOneOfCsvToJSONTyped,
 } from './FormatSpecificsOneOfCsv';
 
 /**
@@ -37,11 +38,9 @@ export interface FormatSpecificsOneOf {
 /**
  * Check if a given object implements the FormatSpecificsOneOf interface.
  */
-export function instanceOfFormatSpecificsOneOf(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "csv" in value;
-
-    return isInstance;
+export function instanceOfFormatSpecificsOneOf(value: object): value is FormatSpecificsOneOf {
+    if (!('csv' in value) || value['csv'] === undefined) return false;
+    return true;
 }
 
 export function FormatSpecificsOneOfFromJSON(json: any): FormatSpecificsOneOf {
@@ -49,7 +48,7 @@ export function FormatSpecificsOneOfFromJSON(json: any): FormatSpecificsOneOf {
 }
 
 export function FormatSpecificsOneOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatSpecificsOneOf {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -58,16 +57,18 @@ export function FormatSpecificsOneOfFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-export function FormatSpecificsOneOfToJSON(value?: FormatSpecificsOneOf | null): any {
-    if (value === undefined) {
-        return undefined;
+export function FormatSpecificsOneOfToJSON(json: any): FormatSpecificsOneOf {
+    return FormatSpecificsOneOfToJSONTyped(json, false);
+}
+
+export function FormatSpecificsOneOfToJSONTyped(value?: FormatSpecificsOneOf | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'csv': FormatSpecificsOneOfCsvToJSON(value.csv),
+        'csv': FormatSpecificsOneOfCsvToJSON(value['csv']),
     };
 }
 

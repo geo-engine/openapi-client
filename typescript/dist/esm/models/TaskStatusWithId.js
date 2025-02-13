@@ -11,30 +11,30 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TaskStatusFromJSONTyped, TaskStatusToJSON, } from './TaskStatus';
+import { TaskStatusFromJSONTyped, TaskStatusToJSONTyped, } from './TaskStatus';
 /**
  * Check if a given object implements the TaskStatusWithId interface.
  */
 export function instanceOfTaskStatusWithId(value) {
-    let isInstance = true;
-    isInstance = isInstance && "taskId" in value;
-    return isInstance;
+    if (!('taskId' in value) || value['taskId'] === undefined)
+        return false;
+    return true;
 }
 export function TaskStatusWithIdFromJSON(json) {
     return TaskStatusWithIdFromJSONTyped(json, false);
 }
 export function TaskStatusWithIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return Object.assign(Object.assign({}, TaskStatusFromJSONTyped(json, ignoreDiscriminator)), { 'taskId': json['taskId'] });
+    return Object.assign(Object.assign({}, TaskStatusFromJSONTyped(json, true)), { 'taskId': json['taskId'] });
 }
-export function TaskStatusWithIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
+export function TaskStatusWithIdToJSON(json) {
+    return TaskStatusWithIdToJSONTyped(json, false);
+}
+export function TaskStatusWithIdToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
-    return Object.assign(Object.assign({}, TaskStatusToJSON(value)), { 'taskId': value.taskId });
+    return Object.assign(Object.assign({}, TaskStatusToJSONTyped(value, true)), { 'taskId': value['taskId'] });
 }

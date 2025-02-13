@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PermissionListOptionsToJSON = exports.PermissionListOptionsFromJSONTyped = exports.PermissionListOptionsFromJSON = exports.instanceOfPermissionListOptions = void 0;
+exports.instanceOfPermissionListOptions = instanceOfPermissionListOptions;
+exports.PermissionListOptionsFromJSON = PermissionListOptionsFromJSON;
+exports.PermissionListOptionsFromJSONTyped = PermissionListOptionsFromJSONTyped;
+exports.PermissionListOptionsToJSON = PermissionListOptionsToJSON;
+exports.PermissionListOptionsToJSONTyped = PermissionListOptionsToJSONTyped;
 /**
  * Check if a given object implements the PermissionListOptions interface.
  */
 function instanceOfPermissionListOptions(value) {
-    let isInstance = true;
-    isInstance = isInstance && "limit" in value;
-    isInstance = isInstance && "offset" in value;
-    return isInstance;
+    if (!('limit' in value) || value['limit'] === undefined)
+        return false;
+    if (!('offset' in value) || value['offset'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfPermissionListOptions = instanceOfPermissionListOptions;
 function PermissionListOptionsFromJSON(json) {
     return PermissionListOptionsFromJSONTyped(json, false);
 }
-exports.PermissionListOptionsFromJSON = PermissionListOptionsFromJSON;
 function PermissionListOptionsFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function PermissionListOptionsFromJSONTyped(json, ignoreDiscriminator) {
         'offset': json['offset'],
     };
 }
-exports.PermissionListOptionsFromJSONTyped = PermissionListOptionsFromJSONTyped;
-function PermissionListOptionsToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function PermissionListOptionsToJSON(json) {
+    return PermissionListOptionsToJSONTyped(json, false);
+}
+function PermissionListOptionsToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'limit': value.limit,
-        'offset': value.offset,
+        'limit': value['limit'],
+        'offset': value['offset'],
     };
 }
-exports.PermissionListOptionsToJSON = PermissionListOptionsToJSON;

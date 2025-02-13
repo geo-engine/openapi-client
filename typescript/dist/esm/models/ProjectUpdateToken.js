@@ -19,15 +19,25 @@ export const ProjectUpdateToken = {
     None: 'none',
     Delete: 'delete'
 };
+export function instanceOfProjectUpdateToken(value) {
+    for (const key in ProjectUpdateToken) {
+        if (Object.prototype.hasOwnProperty.call(ProjectUpdateToken, key)) {
+            if (ProjectUpdateToken[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function ProjectUpdateTokenFromJSON(json) {
     return ProjectUpdateTokenFromJSONTyped(json, false);
 }
 export function ProjectUpdateTokenFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-export function instanceOfProjectUpdateToken(value) {
-    return value === ProjectUpdateToken.None || value === ProjectUpdateToken.Delete;
-}
 export function ProjectUpdateTokenToJSON(value) {
+    return value;
+}
+export function ProjectUpdateTokenToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

@@ -13,27 +13,34 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectListingToJSON = exports.ProjectListingFromJSONTyped = exports.ProjectListingFromJSON = exports.instanceOfProjectListing = void 0;
+exports.instanceOfProjectListing = instanceOfProjectListing;
+exports.ProjectListingFromJSON = ProjectListingFromJSON;
+exports.ProjectListingFromJSONTyped = ProjectListingFromJSONTyped;
+exports.ProjectListingToJSON = ProjectListingToJSON;
+exports.ProjectListingToJSONTyped = ProjectListingToJSONTyped;
 /**
  * Check if a given object implements the ProjectListing interface.
  */
 function instanceOfProjectListing(value) {
-    let isInstance = true;
-    isInstance = isInstance && "changed" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "layerNames" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "plotNames" in value;
-    return isInstance;
+    if (!('changed' in value) || value['changed'] === undefined)
+        return false;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('layerNames' in value) || value['layerNames'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('plotNames' in value) || value['plotNames'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfProjectListing = instanceOfProjectListing;
 function ProjectListingFromJSON(json) {
     return ProjectListingFromJSONTyped(json, false);
 }
-exports.ProjectListingFromJSON = ProjectListingFromJSON;
 function ProjectListingFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -45,21 +52,19 @@ function ProjectListingFromJSONTyped(json, ignoreDiscriminator) {
         'plotNames': json['plotNames'],
     };
 }
-exports.ProjectListingFromJSONTyped = ProjectListingFromJSONTyped;
-function ProjectListingToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ProjectListingToJSON(json) {
+    return ProjectListingToJSONTyped(json, false);
+}
+function ProjectListingToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'changed': (value.changed.toISOString()),
-        'description': value.description,
-        'id': value.id,
-        'layerNames': value.layerNames,
-        'name': value.name,
-        'plotNames': value.plotNames,
+        'changed': ((value['changed']).toISOString()),
+        'description': value['description'],
+        'id': value['id'],
+        'layerNames': value['layerNames'],
+        'name': value['name'],
+        'plotNames': value['plotNames'],
     };
 }
-exports.ProjectListingToJSON = ProjectListingToJSON;

@@ -37,7 +37,8 @@ export interface AddLayerCollection {
 /**
  * Check if a given object implements the AddLayerCollection interface.
  */
-export declare function instanceOfAddLayerCollection(value: object): boolean;
+export declare function instanceOfAddLayerCollection(value: object): value is AddLayerCollection;
 export declare function AddLayerCollectionFromJSON(json: any): AddLayerCollection;
 export declare function AddLayerCollectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddLayerCollection;
-export declare function AddLayerCollectionToJSON(value?: AddLayerCollection | null): any;
+export declare function AddLayerCollectionToJSON(json: any): AddLayerCollection;
+export declare function AddLayerCollectionToJSONTyped(value?: AddLayerCollection | null, ignoreDiscriminator?: boolean): any;

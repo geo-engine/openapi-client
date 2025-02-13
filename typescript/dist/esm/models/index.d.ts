@@ -62,6 +62,7 @@ export * from './GetLegendGraphicRequest';
 export * from './GetMapExceptionFormat';
 export * from './GetMapFormat';
 export * from './GetMapRequest';
+export * from './InlineObject';
 export * from './InternalDataId';
 export * from './Layer';
 export * from './LayerCollection';

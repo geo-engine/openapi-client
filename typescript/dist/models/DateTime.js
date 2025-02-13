@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DateTimeToJSON = exports.DateTimeFromJSONTyped = exports.DateTimeFromJSON = exports.instanceOfDateTime = void 0;
+exports.instanceOfDateTime = instanceOfDateTime;
+exports.DateTimeFromJSON = DateTimeFromJSON;
+exports.DateTimeFromJSONTyped = DateTimeFromJSONTyped;
+exports.DateTimeToJSON = DateTimeToJSON;
+exports.DateTimeToJSONTyped = DateTimeToJSONTyped;
 /**
  * Check if a given object implements the DateTime interface.
  */
 function instanceOfDateTime(value) {
-    let isInstance = true;
-    isInstance = isInstance && "datetime" in value;
-    return isInstance;
+    if (!('datetime' in value) || value['datetime'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfDateTime = instanceOfDateTime;
 function DateTimeFromJSON(json) {
     return DateTimeFromJSONTyped(json, false);
 }
-exports.DateTimeFromJSON = DateTimeFromJSON;
 function DateTimeFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'datetime': (new Date(json['datetime'])),
     };
 }
-exports.DateTimeFromJSONTyped = DateTimeFromJSONTyped;
-function DateTimeToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function DateTimeToJSON(json) {
+    return DateTimeToJSONTyped(json, false);
+}
+function DateTimeToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'datetime': (value.datetime.toISOString()),
+        'datetime': ((value['datetime']).toISOString()),
     };
 }
-exports.DateTimeToJSON = DateTimeToJSON;

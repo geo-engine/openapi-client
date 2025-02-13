@@ -38,7 +38,8 @@ export interface WrappedPlotOutput {
 /**
  * Check if a given object implements the WrappedPlotOutput interface.
  */
-export declare function instanceOfWrappedPlotOutput(value: object): boolean;
+export declare function instanceOfWrappedPlotOutput(value: object): value is WrappedPlotOutput;
 export declare function WrappedPlotOutputFromJSON(json: any): WrappedPlotOutput;
 export declare function WrappedPlotOutputFromJSONTyped(json: any, ignoreDiscriminator: boolean): WrappedPlotOutput;
-export declare function WrappedPlotOutputToJSON(value?: WrappedPlotOutput | null): any;
+export declare function WrappedPlotOutputToJSON(json: any): WrappedPlotOutput;
+export declare function WrappedPlotOutputToJSONTyped(value?: WrappedPlotOutput | null, ignoreDiscriminator?: boolean): any;

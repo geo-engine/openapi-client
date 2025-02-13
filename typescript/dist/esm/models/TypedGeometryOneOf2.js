@@ -16,29 +16,29 @@ import { MultiLineStringFromJSON, MultiLineStringToJSON, } from './MultiLineStri
  * Check if a given object implements the TypedGeometryOneOf2 interface.
  */
 export function instanceOfTypedGeometryOneOf2(value) {
-    let isInstance = true;
-    isInstance = isInstance && "multiLineString" in value;
-    return isInstance;
+    if (!('multiLineString' in value) || value['multiLineString'] === undefined)
+        return false;
+    return true;
 }
 export function TypedGeometryOneOf2FromJSON(json) {
     return TypedGeometryOneOf2FromJSONTyped(json, false);
 }
 export function TypedGeometryOneOf2FromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'multiLineString': MultiLineStringFromJSON(json['MultiLineString']),
     };
 }
-export function TypedGeometryOneOf2ToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TypedGeometryOneOf2ToJSON(json) {
+    return TypedGeometryOneOf2ToJSONTyped(json, false);
+}
+export function TypedGeometryOneOf2ToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'MultiLineString': MultiLineStringToJSON(value.multiLineString),
+        'MultiLineString': MultiLineStringToJSON(value['multiLineString']),
     };
 }

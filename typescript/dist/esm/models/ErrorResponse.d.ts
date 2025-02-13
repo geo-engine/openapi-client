@@ -31,7 +31,8 @@ export interface ErrorResponse {
 /**
  * Check if a given object implements the ErrorResponse interface.
  */
-export declare function instanceOfErrorResponse(value: object): boolean;
+export declare function instanceOfErrorResponse(value: object): value is ErrorResponse;
 export declare function ErrorResponseFromJSON(json: any): ErrorResponse;
 export declare function ErrorResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ErrorResponse;
-export declare function ErrorResponseToJSON(value?: ErrorResponse | null): any;
+export declare function ErrorResponseToJSON(json: any): ErrorResponse;
+export declare function ErrorResponseToJSONTyped(value?: ErrorResponse | null, ignoreDiscriminator?: boolean): any;

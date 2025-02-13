@@ -17,6 +17,8 @@ export declare const WcsService: {
     readonly Wcs: "WCS";
 };
 export type WcsService = typeof WcsService[keyof typeof WcsService];
+export declare function instanceOfWcsService(value: any): boolean;
 export declare function WcsServiceFromJSON(json: any): WcsService;
 export declare function WcsServiceFromJSONTyped(json: any, ignoreDiscriminator: boolean): WcsService;
 export declare function WcsServiceToJSON(value?: WcsService | null): any;
+export declare function WcsServiceToJSONTyped(value: any, ignoreDiscriminator: boolean): WcsService;

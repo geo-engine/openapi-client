@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,11 +36,9 @@ export interface Volume {
 /**
  * Check if a given object implements the Volume interface.
  */
-export function instanceOfVolume(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+export function instanceOfVolume(value: object): value is Volume {
+    if (!('name' in value) || value['name'] === undefined) return false;
+    return true;
 }
 
 export function VolumeFromJSON(json: any): Volume {
@@ -48,27 +46,29 @@ export function VolumeFromJSON(json: any): Volume {
 }
 
 export function VolumeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Volume {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'name': json['name'],
-        'path': !exists(json, 'path') ? undefined : json['path'],
+        'path': json['path'] == null ? undefined : json['path'],
     };
 }
 
-export function VolumeToJSON(value?: Volume | null): any {
-    if (value === undefined) {
-        return undefined;
+export function VolumeToJSON(json: any): Volume {
+    return VolumeToJSONTyped(json, false);
+}
+
+export function VolumeToJSONTyped(value?: Volume | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'name': value.name,
-        'path': value.path,
+        'name': value['name'],
+        'path': value['path'],
     };
 }
 

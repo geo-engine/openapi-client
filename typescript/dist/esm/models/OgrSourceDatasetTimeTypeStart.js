@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { OgrSourceDurationSpecFromJSON, OgrSourceDurationSpecToJSON, } from './OgrSourceDurationSpec';
 import { OgrSourceTimeFormatFromJSON, OgrSourceTimeFormatToJSON, } from './OgrSourceTimeFormat';
+import { OgrSourceDurationSpecFromJSON, OgrSourceDurationSpecToJSON, } from './OgrSourceDurationSpec';
 /**
  * @export
  */
@@ -23,18 +23,21 @@ export const OgrSourceDatasetTimeTypeStartTypeEnum = {
  * Check if a given object implements the OgrSourceDatasetTimeTypeStart interface.
  */
 export function instanceOfOgrSourceDatasetTimeTypeStart(value) {
-    let isInstance = true;
-    isInstance = isInstance && "duration" in value;
-    isInstance = isInstance && "startField" in value;
-    isInstance = isInstance && "startFormat" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('duration' in value) || value['duration'] === undefined)
+        return false;
+    if (!('startField' in value) || value['startField'] === undefined)
+        return false;
+    if (!('startFormat' in value) || value['startFormat'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function OgrSourceDatasetTimeTypeStartFromJSON(json) {
     return OgrSourceDatasetTimeTypeStartFromJSONTyped(json, false);
 }
 export function OgrSourceDatasetTimeTypeStartFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -44,17 +47,17 @@ export function OgrSourceDatasetTimeTypeStartFromJSONTyped(json, ignoreDiscrimin
         'type': json['type'],
     };
 }
-export function OgrSourceDatasetTimeTypeStartToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function OgrSourceDatasetTimeTypeStartToJSON(json) {
+    return OgrSourceDatasetTimeTypeStartToJSONTyped(json, false);
+}
+export function OgrSourceDatasetTimeTypeStartToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'duration': OgrSourceDurationSpecToJSON(value.duration),
-        'startField': value.startField,
-        'startFormat': OgrSourceTimeFormatToJSON(value.startFormat),
-        'type': value.type,
+        'duration': OgrSourceDurationSpecToJSON(value['duration']),
+        'startField': value['startField'],
+        'startFormat': OgrSourceTimeFormatToJSON(value['startFormat']),
+        'type': value['type'],
     };
 }

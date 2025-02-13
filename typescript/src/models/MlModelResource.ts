@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -46,12 +46,10 @@ export type MlModelResourceTypeEnum = typeof MlModelResourceTypeEnum[keyof typeo
 /**
  * Check if a given object implements the MlModelResource interface.
  */
-export function instanceOfMlModelResource(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfMlModelResource(value: object): value is MlModelResource {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function MlModelResourceFromJSON(json: any): MlModelResource {
@@ -59,7 +57,7 @@ export function MlModelResourceFromJSON(json: any): MlModelResource {
 }
 
 export function MlModelResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): MlModelResource {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -69,17 +67,19 @@ export function MlModelResourceFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function MlModelResourceToJSON(value?: MlModelResource | null): any {
-    if (value === undefined) {
-        return undefined;
+export function MlModelResourceToJSON(json: any): MlModelResource {
+    return MlModelResourceToJSONTyped(json, false);
+}
+
+export function MlModelResourceToJSONTyped(value?: MlModelResource | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
 

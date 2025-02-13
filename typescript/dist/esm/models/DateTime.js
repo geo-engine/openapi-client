@@ -15,29 +15,29 @@
  * Check if a given object implements the DateTime interface.
  */
 export function instanceOfDateTime(value) {
-    let isInstance = true;
-    isInstance = isInstance && "datetime" in value;
-    return isInstance;
+    if (!('datetime' in value) || value['datetime'] === undefined)
+        return false;
+    return true;
 }
 export function DateTimeFromJSON(json) {
     return DateTimeFromJSONTyped(json, false);
 }
 export function DateTimeFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'datetime': (new Date(json['datetime'])),
     };
 }
-export function DateTimeToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function DateTimeToJSON(json) {
+    return DateTimeToJSONTyped(json, false);
+}
+export function DateTimeToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'datetime': (value.datetime.toISOString()),
+        'datetime': ((value['datetime']).toISOString()),
     };
 }

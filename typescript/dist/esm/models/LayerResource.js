@@ -21,16 +21,17 @@ export const LayerResourceTypeEnum = {
  * Check if a given object implements the LayerResource interface.
  */
 export function instanceOfLayerResource(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function LayerResourceFromJSON(json) {
     return LayerResourceFromJSONTyped(json, false);
 }
 export function LayerResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,15 +39,15 @@ export function LayerResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function LayerResourceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function LayerResourceToJSON(json) {
+    return LayerResourceToJSONTyped(json, false);
+}
+export function LayerResourceToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }

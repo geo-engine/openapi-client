@@ -11,22 +11,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { AddDatasetFromJSON, AddDatasetToJSON, } from './AddDataset';
 import { MetaDataDefinitionFromJSON, MetaDataDefinitionToJSON, } from './MetaDataDefinition';
+import { AddDatasetFromJSON, AddDatasetToJSON, } from './AddDataset';
 /**
  * Check if a given object implements the DatasetDefinition interface.
  */
 export function instanceOfDatasetDefinition(value) {
-    let isInstance = true;
-    isInstance = isInstance && "metaData" in value;
-    isInstance = isInstance && "properties" in value;
-    return isInstance;
+    if (!('metaData' in value) || value['metaData'] === undefined)
+        return false;
+    if (!('properties' in value) || value['properties'] === undefined)
+        return false;
+    return true;
 }
 export function DatasetDefinitionFromJSON(json) {
     return DatasetDefinitionFromJSONTyped(json, false);
 }
 export function DatasetDefinitionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -34,15 +35,15 @@ export function DatasetDefinitionFromJSONTyped(json, ignoreDiscriminator) {
         'properties': AddDatasetFromJSON(json['properties']),
     };
 }
-export function DatasetDefinitionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function DatasetDefinitionToJSON(json) {
+    return DatasetDefinitionToJSONTyped(json, false);
+}
+export function DatasetDefinitionToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'metaData': MetaDataDefinitionToJSON(value.metaData),
-        'properties': AddDatasetToJSON(value.properties),
+        'metaData': MetaDataDefinitionToJSON(value['metaData']),
+        'properties': AddDatasetToJSON(value['properties']),
     };
 }

@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.computation_quota import ComputationQuota  # noqa: E501
+from geoengine_openapi_client.models.computation_quota import ComputationQuota
 
 class TestComputationQuota(unittest.TestCase):
     """ComputationQuota unit test stubs"""
@@ -29,12 +28,12 @@ class TestComputationQuota(unittest.TestCase):
 
     def make_instance(self, include_optional) -> ComputationQuota:
         """Test ComputationQuota
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ComputationQuota`
         """
-        model = ComputationQuota()  # noqa: E501
+        model = ComputationQuota()
         if include_optional:
             return ComputationQuota(
                 computation_id = '',

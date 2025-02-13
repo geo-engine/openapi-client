@@ -38,7 +38,8 @@ export interface SuggestMetaData {
 /**
  * Check if a given object implements the SuggestMetaData interface.
  */
-export declare function instanceOfSuggestMetaData(value: object): boolean;
+export declare function instanceOfSuggestMetaData(value: object): value is SuggestMetaData;
 export declare function SuggestMetaDataFromJSON(json: any): SuggestMetaData;
 export declare function SuggestMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): SuggestMetaData;
-export declare function SuggestMetaDataToJSON(value?: SuggestMetaData | null): any;
+export declare function SuggestMetaDataToJSON(json: any): SuggestMetaData;
+export declare function SuggestMetaDataToJSONTyped(value?: SuggestMetaData | null, ignoreDiscriminator?: boolean): any;

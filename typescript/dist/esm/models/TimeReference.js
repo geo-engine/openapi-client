@@ -19,6 +19,16 @@ export const TimeReference = {
     Start: 'start',
     End: 'end'
 };
+export function instanceOfTimeReference(value) {
+    for (const key in TimeReference) {
+        if (Object.prototype.hasOwnProperty.call(TimeReference, key)) {
+            if (TimeReference[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function TimeReferenceFromJSON(json) {
     return TimeReferenceFromJSONTyped(json, false);
 }
@@ -26,5 +36,8 @@ export function TimeReferenceFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function TimeReferenceToJSON(value) {
+    return value;
+}
+export function TimeReferenceToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

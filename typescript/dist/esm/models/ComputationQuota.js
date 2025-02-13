@@ -15,18 +15,21 @@
  * Check if a given object implements the ComputationQuota interface.
  */
 export function instanceOfComputationQuota(value) {
-    let isInstance = true;
-    isInstance = isInstance && "computationId" in value;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "timestamp" in value;
-    isInstance = isInstance && "workflowId" in value;
-    return isInstance;
+    if (!('computationId' in value) || value['computationId'] === undefined)
+        return false;
+    if (!('count' in value) || value['count'] === undefined)
+        return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined)
+        return false;
+    if (!('workflowId' in value) || value['workflowId'] === undefined)
+        return false;
+    return true;
 }
 export function ComputationQuotaFromJSON(json) {
     return ComputationQuotaFromJSONTyped(json, false);
 }
 export function ComputationQuotaFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -36,17 +39,17 @@ export function ComputationQuotaFromJSONTyped(json, ignoreDiscriminator) {
         'workflowId': json['workflowId'],
     };
 }
-export function ComputationQuotaToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ComputationQuotaToJSON(json) {
+    return ComputationQuotaToJSONTyped(json, false);
+}
+export function ComputationQuotaToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'computationId': value.computationId,
-        'count': value.count,
-        'timestamp': (value.timestamp.toISOString()),
-        'workflowId': value.workflowId,
+        'computationId': value['computationId'],
+        'count': value['count'],
+        'timestamp': ((value['timestamp']).toISOString()),
+        'workflowId': value['workflowId'],
     };
 }

@@ -13,35 +13,35 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskStatusWithIdToJSON = exports.TaskStatusWithIdFromJSONTyped = exports.TaskStatusWithIdFromJSON = exports.instanceOfTaskStatusWithId = void 0;
+exports.instanceOfTaskStatusWithId = instanceOfTaskStatusWithId;
+exports.TaskStatusWithIdFromJSON = TaskStatusWithIdFromJSON;
+exports.TaskStatusWithIdFromJSONTyped = TaskStatusWithIdFromJSONTyped;
+exports.TaskStatusWithIdToJSON = TaskStatusWithIdToJSON;
+exports.TaskStatusWithIdToJSONTyped = TaskStatusWithIdToJSONTyped;
 const TaskStatus_1 = require("./TaskStatus");
 /**
  * Check if a given object implements the TaskStatusWithId interface.
  */
 function instanceOfTaskStatusWithId(value) {
-    let isInstance = true;
-    isInstance = isInstance && "taskId" in value;
-    return isInstance;
+    if (!('taskId' in value) || value['taskId'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTaskStatusWithId = instanceOfTaskStatusWithId;
 function TaskStatusWithIdFromJSON(json) {
     return TaskStatusWithIdFromJSONTyped(json, false);
 }
-exports.TaskStatusWithIdFromJSON = TaskStatusWithIdFromJSON;
 function TaskStatusWithIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return Object.assign(Object.assign({}, (0, TaskStatus_1.TaskStatusFromJSONTyped)(json, ignoreDiscriminator)), { 'taskId': json['taskId'] });
+    return Object.assign(Object.assign({}, (0, TaskStatus_1.TaskStatusFromJSONTyped)(json, true)), { 'taskId': json['taskId'] });
 }
-exports.TaskStatusWithIdFromJSONTyped = TaskStatusWithIdFromJSONTyped;
-function TaskStatusWithIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return Object.assign(Object.assign({}, (0, TaskStatus_1.TaskStatusToJSON)(value)), { 'taskId': value.taskId });
+function TaskStatusWithIdToJSON(json) {
+    return TaskStatusWithIdToJSONTyped(json, false);
 }
-exports.TaskStatusWithIdToJSON = TaskStatusWithIdToJSON;
+function TaskStatusWithIdToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
+    }
+    return Object.assign(Object.assign({}, (0, TaskStatus_1.TaskStatusToJSONTyped)(value, true)), { 'taskId': value['taskId'] });
+}

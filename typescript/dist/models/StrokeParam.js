@@ -13,25 +13,28 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StrokeParamToJSON = exports.StrokeParamFromJSONTyped = exports.StrokeParamFromJSON = exports.instanceOfStrokeParam = void 0;
-const ColorParam_1 = require("./ColorParam");
+exports.instanceOfStrokeParam = instanceOfStrokeParam;
+exports.StrokeParamFromJSON = StrokeParamFromJSON;
+exports.StrokeParamFromJSONTyped = StrokeParamFromJSONTyped;
+exports.StrokeParamToJSON = StrokeParamToJSON;
+exports.StrokeParamToJSONTyped = StrokeParamToJSONTyped;
 const NumberParam_1 = require("./NumberParam");
+const ColorParam_1 = require("./ColorParam");
 /**
  * Check if a given object implements the StrokeParam interface.
  */
 function instanceOfStrokeParam(value) {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "width" in value;
-    return isInstance;
+    if (!('color' in value) || value['color'] === undefined)
+        return false;
+    if (!('width' in value) || value['width'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfStrokeParam = instanceOfStrokeParam;
 function StrokeParamFromJSON(json) {
     return StrokeParamFromJSONTyped(json, false);
 }
-exports.StrokeParamFromJSON = StrokeParamFromJSON;
 function StrokeParamFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,17 +42,15 @@ function StrokeParamFromJSONTyped(json, ignoreDiscriminator) {
         'width': (0, NumberParam_1.NumberParamFromJSON)(json['width']),
     };
 }
-exports.StrokeParamFromJSONTyped = StrokeParamFromJSONTyped;
-function StrokeParamToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function StrokeParamToJSON(json) {
+    return StrokeParamToJSONTyped(json, false);
+}
+function StrokeParamToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'color': (0, ColorParam_1.ColorParamToJSON)(value.color),
-        'width': (0, NumberParam_1.NumberParamToJSON)(value.width),
+        'color': (0, ColorParam_1.ColorParamToJSON)(value['color']),
+        'width': (0, NumberParam_1.NumberParamToJSON)(value['width']),
     };
 }
-exports.StrokeParamToJSON = StrokeParamToJSON;

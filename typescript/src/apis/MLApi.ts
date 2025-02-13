@@ -42,8 +42,11 @@ export class MLApi extends runtime.BaseAPI {
      * Create a new ml model.
      */
     async addMlModelRaw(requestParameters: AddMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MlModelNameResponse>> {
-        if (requestParameters.mlModel === null || requestParameters.mlModel === undefined) {
-            throw new runtime.RequiredError('mlModel','Required parameter requestParameters.mlModel was null or undefined when calling addMlModel.');
+        if (requestParameters['mlModel'] == null) {
+            throw new runtime.RequiredError(
+                'mlModel',
+                'Required parameter "mlModel" was null or undefined when calling addMlModel().'
+            );
         }
 
         const queryParameters: any = {};
@@ -65,7 +68,7 @@ export class MLApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: MlModelToJSON(requestParameters.mlModel),
+            body: MlModelToJSON(requestParameters['mlModel']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MlModelNameResponseFromJSON(jsonValue));
@@ -83,8 +86,11 @@ export class MLApi extends runtime.BaseAPI {
      * Get ml model by name.
      */
     async getMlModelRaw(requestParameters: GetMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MlModel>> {
-        if (requestParameters.modelName === null || requestParameters.modelName === undefined) {
-            throw new runtime.RequiredError('modelName','Required parameter requestParameters.modelName was null or undefined when calling getMlModel.');
+        if (requestParameters['modelName'] == null) {
+            throw new runtime.RequiredError(
+                'modelName',
+                'Required parameter "modelName" was null or undefined when calling getMlModel().'
+            );
         }
 
         const queryParameters: any = {};
@@ -100,7 +106,7 @@ export class MLApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/ml/models/{model_name}`.replace(`{${"model_name"}}`, encodeURIComponent(String(requestParameters.modelName))),
+            path: `/ml/models/{model_name}`.replace(`{${"model_name"}}`, encodeURIComponent(String(requestParameters['modelName']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

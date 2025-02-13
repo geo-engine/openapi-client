@@ -12,19 +12,21 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { OgrSourceDataset } from './OgrSourceDataset';
-import {
-    OgrSourceDatasetFromJSON,
-    OgrSourceDatasetFromJSONTyped,
-    OgrSourceDatasetToJSON,
-} from './OgrSourceDataset';
+import { mapValues } from '../runtime';
 import type { VectorResultDescriptor } from './VectorResultDescriptor';
 import {
     VectorResultDescriptorFromJSON,
     VectorResultDescriptorFromJSONTyped,
     VectorResultDescriptorToJSON,
+    VectorResultDescriptorToJSONTyped,
 } from './VectorResultDescriptor';
+import type { OgrSourceDataset } from './OgrSourceDataset';
+import {
+    OgrSourceDatasetFromJSON,
+    OgrSourceDatasetFromJSONTyped,
+    OgrSourceDatasetToJSON,
+    OgrSourceDatasetToJSONTyped,
+} from './OgrSourceDataset';
 
 /**
  * 
@@ -65,13 +67,11 @@ export type OgrMetaDataTypeEnum = typeof OgrMetaDataTypeEnum[keyof typeof OgrMet
 /**
  * Check if a given object implements the OgrMetaData interface.
  */
-export function instanceOfOgrMetaData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "loadingInfo" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfOgrMetaData(value: object): value is OgrMetaData {
+    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined) return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function OgrMetaDataFromJSON(json: any): OgrMetaData {
@@ -79,7 +79,7 @@ export function OgrMetaDataFromJSON(json: any): OgrMetaData {
 }
 
 export function OgrMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrMetaData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -90,18 +90,20 @@ export function OgrMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function OgrMetaDataToJSON(value?: OgrMetaData | null): any {
-    if (value === undefined) {
-        return undefined;
+export function OgrMetaDataToJSON(json: any): OgrMetaData {
+    return OgrMetaDataToJSONTyped(json, false);
+}
+
+export function OgrMetaDataToJSONTyped(value?: OgrMetaData | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'loadingInfo': OgrSourceDatasetToJSON(value.loadingInfo),
-        'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
-        'type': value.type,
+        'loadingInfo': OgrSourceDatasetToJSON(value['loadingInfo']),
+        'resultDescriptor': VectorResultDescriptorToJSON(value['resultDescriptor']),
+        'type': value['type'],
     };
 }
 

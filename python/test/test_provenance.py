@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.provenance import Provenance  # noqa: E501
+from geoengine_openapi_client.models.provenance import Provenance
 
 class TestProvenance(unittest.TestCase):
     """Provenance unit test stubs"""
@@ -29,12 +28,12 @@ class TestProvenance(unittest.TestCase):
 
     def make_instance(self, include_optional) -> Provenance:
         """Test Provenance
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Provenance`
         """
-        model = Provenance()  # noqa: E501
+        model = Provenance()
         if include_optional:
             return Provenance(
                 citation = '',

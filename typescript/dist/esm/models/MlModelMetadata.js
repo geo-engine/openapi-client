@@ -16,18 +16,21 @@ import { RasterDataTypeFromJSON, RasterDataTypeToJSON, } from './RasterDataType'
  * Check if a given object implements the MlModelMetadata interface.
  */
 export function instanceOfMlModelMetadata(value) {
-    let isInstance = true;
-    isInstance = isInstance && "fileName" in value;
-    isInstance = isInstance && "inputType" in value;
-    isInstance = isInstance && "numInputBands" in value;
-    isInstance = isInstance && "outputType" in value;
-    return isInstance;
+    if (!('fileName' in value) || value['fileName'] === undefined)
+        return false;
+    if (!('inputType' in value) || value['inputType'] === undefined)
+        return false;
+    if (!('numInputBands' in value) || value['numInputBands'] === undefined)
+        return false;
+    if (!('outputType' in value) || value['outputType'] === undefined)
+        return false;
+    return true;
 }
 export function MlModelMetadataFromJSON(json) {
     return MlModelMetadataFromJSONTyped(json, false);
 }
 export function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,17 @@ export function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
         'outputType': RasterDataTypeFromJSON(json['outputType']),
     };
 }
-export function MlModelMetadataToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function MlModelMetadataToJSON(json) {
+    return MlModelMetadataToJSONTyped(json, false);
+}
+export function MlModelMetadataToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'fileName': value.fileName,
-        'inputType': RasterDataTypeToJSON(value.inputType),
-        'numInputBands': value.numInputBands,
-        'outputType': RasterDataTypeToJSON(value.outputType),
+        'fileName': value['fileName'],
+        'inputType': RasterDataTypeToJSON(value['inputType']),
+        'numInputBands': value['numInputBands'],
+        'outputType': RasterDataTypeToJSON(value['outputType']),
     };
 }

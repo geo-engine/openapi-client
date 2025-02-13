@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BreakpointToJSON = exports.BreakpointFromJSONTyped = exports.BreakpointFromJSON = exports.instanceOfBreakpoint = void 0;
+exports.instanceOfBreakpoint = instanceOfBreakpoint;
+exports.BreakpointFromJSON = BreakpointFromJSON;
+exports.BreakpointFromJSONTyped = BreakpointFromJSONTyped;
+exports.BreakpointToJSON = BreakpointToJSON;
+exports.BreakpointToJSONTyped = BreakpointToJSONTyped;
 /**
  * Check if a given object implements the Breakpoint interface.
  */
 function instanceOfBreakpoint(value) {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "value" in value;
-    return isInstance;
+    if (!('color' in value) || value['color'] === undefined)
+        return false;
+    if (!('value' in value) || value['value'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfBreakpoint = instanceOfBreakpoint;
 function BreakpointFromJSON(json) {
     return BreakpointFromJSONTyped(json, false);
 }
-exports.BreakpointFromJSON = BreakpointFromJSON;
 function BreakpointFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function BreakpointFromJSONTyped(json, ignoreDiscriminator) {
         'value': json['value'],
     };
 }
-exports.BreakpointFromJSONTyped = BreakpointFromJSONTyped;
-function BreakpointToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function BreakpointToJSON(json) {
+    return BreakpointToJSONTyped(json, false);
+}
+function BreakpointToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'color': value.color,
-        'value': value.value,
+        'color': value['color'],
+        'value': value['value'],
     };
 }
-exports.BreakpointToJSON = BreakpointToJSON;

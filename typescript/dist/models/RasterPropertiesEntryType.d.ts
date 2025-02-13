@@ -18,6 +18,8 @@ export declare const RasterPropertiesEntryType: {
     readonly String: "String";
 };
 export type RasterPropertiesEntryType = typeof RasterPropertiesEntryType[keyof typeof RasterPropertiesEntryType];
+export declare function instanceOfRasterPropertiesEntryType(value: any): boolean;
 export declare function RasterPropertiesEntryTypeFromJSON(json: any): RasterPropertiesEntryType;
 export declare function RasterPropertiesEntryTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterPropertiesEntryType;
 export declare function RasterPropertiesEntryTypeToJSON(value?: RasterPropertiesEntryType | null): any;
+export declare function RasterPropertiesEntryTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): RasterPropertiesEntryType;

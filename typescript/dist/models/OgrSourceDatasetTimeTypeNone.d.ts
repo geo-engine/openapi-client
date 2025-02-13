@@ -27,15 +27,13 @@ export interface OgrSourceDatasetTimeTypeNone {
  */
 export declare const OgrSourceDatasetTimeTypeNoneTypeEnum: {
     readonly None: "none";
-    readonly Start: "start";
-    readonly Startend: "start+end";
-    readonly Startduration: "start+duration";
 };
 export type OgrSourceDatasetTimeTypeNoneTypeEnum = typeof OgrSourceDatasetTimeTypeNoneTypeEnum[keyof typeof OgrSourceDatasetTimeTypeNoneTypeEnum];
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeNone interface.
  */
-export declare function instanceOfOgrSourceDatasetTimeTypeNone(value: object): boolean;
+export declare function instanceOfOgrSourceDatasetTimeTypeNone(value: object): value is OgrSourceDatasetTimeTypeNone;
 export declare function OgrSourceDatasetTimeTypeNoneFromJSON(json: any): OgrSourceDatasetTimeTypeNone;
 export declare function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDatasetTimeTypeNone;
-export declare function OgrSourceDatasetTimeTypeNoneToJSON(value?: OgrSourceDatasetTimeTypeNone | null): any;
+export declare function OgrSourceDatasetTimeTypeNoneToJSON(json: any): OgrSourceDatasetTimeTypeNone;
+export declare function OgrSourceDatasetTimeTypeNoneToJSONTyped(value?: OgrSourceDatasetTimeTypeNone | null, ignoreDiscriminator?: boolean): any;

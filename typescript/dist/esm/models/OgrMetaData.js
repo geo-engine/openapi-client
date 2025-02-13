@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { OgrSourceDatasetFromJSON, OgrSourceDatasetToJSON, } from './OgrSourceDataset';
 import { VectorResultDescriptorFromJSON, VectorResultDescriptorToJSON, } from './VectorResultDescriptor';
+import { OgrSourceDatasetFromJSON, OgrSourceDatasetToJSON, } from './OgrSourceDataset';
 /**
  * @export
  */
@@ -23,17 +23,19 @@ export const OgrMetaDataTypeEnum = {
  * Check if a given object implements the OgrMetaData interface.
  */
 export function instanceOfOgrMetaData(value) {
-    let isInstance = true;
-    isInstance = isInstance && "loadingInfo" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('loadingInfo' in value) || value['loadingInfo'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function OgrMetaDataFromJSON(json) {
     return OgrMetaDataFromJSONTyped(json, false);
 }
 export function OgrMetaDataFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -42,16 +44,16 @@ export function OgrMetaDataFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function OgrMetaDataToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function OgrMetaDataToJSON(json) {
+    return OgrMetaDataToJSONTyped(json, false);
+}
+export function OgrMetaDataToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'loadingInfo': OgrSourceDatasetToJSON(value.loadingInfo),
-        'resultDescriptor': VectorResultDescriptorToJSON(value.resultDescriptor),
-        'type': value.type,
+        'loadingInfo': OgrSourceDatasetToJSON(value['loadingInfo']),
+        'resultDescriptor': VectorResultDescriptorToJSON(value['resultDescriptor']),
+        'type': value['type'],
     };
 }

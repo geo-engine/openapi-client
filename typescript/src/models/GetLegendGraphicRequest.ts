@@ -23,6 +23,17 @@ export const GetLegendGraphicRequest = {
 export type GetLegendGraphicRequest = typeof GetLegendGraphicRequest[keyof typeof GetLegendGraphicRequest];
 
 
+export function instanceOfGetLegendGraphicRequest(value: any): boolean {
+    for (const key in GetLegendGraphicRequest) {
+        if (Object.prototype.hasOwnProperty.call(GetLegendGraphicRequest, key)) {
+            if (GetLegendGraphicRequest[key as keyof typeof GetLegendGraphicRequest] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function GetLegendGraphicRequestFromJSON(json: any): GetLegendGraphicRequest {
     return GetLegendGraphicRequestFromJSONTyped(json, false);
 }
@@ -33,5 +44,9 @@ export function GetLegendGraphicRequestFromJSONTyped(json: any, ignoreDiscrimina
 
 export function GetLegendGraphicRequestToJSON(value?: GetLegendGraphicRequest | null): any {
     return value as any;
+}
+
+export function GetLegendGraphicRequestToJSONTyped(value: any, ignoreDiscriminator: boolean): GetLegendGraphicRequest {
+    return value as GetLegendGraphicRequest;
 }
 

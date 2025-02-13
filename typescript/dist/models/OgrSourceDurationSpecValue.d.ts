@@ -45,7 +45,8 @@ export type OgrSourceDurationSpecValueTypeEnum = typeof OgrSourceDurationSpecVal
 /**
  * Check if a given object implements the OgrSourceDurationSpecValue interface.
  */
-export declare function instanceOfOgrSourceDurationSpecValue(value: object): boolean;
+export declare function instanceOfOgrSourceDurationSpecValue(value: object): value is OgrSourceDurationSpecValue;
 export declare function OgrSourceDurationSpecValueFromJSON(json: any): OgrSourceDurationSpecValue;
 export declare function OgrSourceDurationSpecValueFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpecValue;
-export declare function OgrSourceDurationSpecValueToJSON(value?: OgrSourceDurationSpecValue | null): any;
+export declare function OgrSourceDurationSpecValueToJSON(json: any): OgrSourceDurationSpecValue;
+export declare function OgrSourceDurationSpecValueToJSONTyped(value?: OgrSourceDurationSpecValue | null, ignoreDiscriminator?: boolean): any;

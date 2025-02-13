@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WmsServiceToJSON = exports.WmsServiceFromJSONTyped = exports.WmsServiceFromJSON = exports.WmsService = void 0;
+exports.WmsService = void 0;
+exports.instanceOfWmsService = instanceOfWmsService;
+exports.WmsServiceFromJSON = WmsServiceFromJSON;
+exports.WmsServiceFromJSONTyped = WmsServiceFromJSONTyped;
+exports.WmsServiceToJSON = WmsServiceToJSON;
+exports.WmsServiceToJSONTyped = WmsServiceToJSONTyped;
 /**
  *
  * @export
@@ -21,15 +26,25 @@ exports.WmsServiceToJSON = exports.WmsServiceFromJSONTyped = exports.WmsServiceF
 exports.WmsService = {
     Wms: 'WMS'
 };
+function instanceOfWmsService(value) {
+    for (const key in exports.WmsService) {
+        if (Object.prototype.hasOwnProperty.call(exports.WmsService, key)) {
+            if (exports.WmsService[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function WmsServiceFromJSON(json) {
     return WmsServiceFromJSONTyped(json, false);
 }
-exports.WmsServiceFromJSON = WmsServiceFromJSON;
 function WmsServiceFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.WmsServiceFromJSONTyped = WmsServiceFromJSONTyped;
 function WmsServiceToJSON(value) {
     return value;
 }
-exports.WmsServiceToJSON = WmsServiceToJSON;
+function WmsServiceToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

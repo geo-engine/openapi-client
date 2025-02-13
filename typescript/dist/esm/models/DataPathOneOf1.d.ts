@@ -25,7 +25,8 @@ export interface DataPathOneOf1 {
 /**
  * Check if a given object implements the DataPathOneOf1 interface.
  */
-export declare function instanceOfDataPathOneOf1(value: object): boolean;
+export declare function instanceOfDataPathOneOf1(value: object): value is DataPathOneOf1;
 export declare function DataPathOneOf1FromJSON(json: any): DataPathOneOf1;
 export declare function DataPathOneOf1FromJSONTyped(json: any, ignoreDiscriminator: boolean): DataPathOneOf1;
-export declare function DataPathOneOf1ToJSON(value?: DataPathOneOf1 | null): any;
+export declare function DataPathOneOf1ToJSON(json: any): DataPathOneOf1;
+export declare function DataPathOneOf1ToJSONTyped(value?: DataPathOneOf1 | null, ignoreDiscriminator?: boolean): any;

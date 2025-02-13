@@ -25,7 +25,8 @@ export interface AddCollection200Response {
 /**
  * Check if a given object implements the AddCollection200Response interface.
  */
-export declare function instanceOfAddCollection200Response(value: object): boolean;
+export declare function instanceOfAddCollection200Response(value: object): value is AddCollection200Response;
 export declare function AddCollection200ResponseFromJSON(json: any): AddCollection200Response;
 export declare function AddCollection200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddCollection200Response;
-export declare function AddCollection200ResponseToJSON(value?: AddCollection200Response | null): any;
+export declare function AddCollection200ResponseToJSON(json: any): AddCollection200Response;
+export declare function AddCollection200ResponseToJSONTyped(value?: AddCollection200Response | null, ignoreDiscriminator?: boolean): any;

@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerVisibilityToJSON = exports.LayerVisibilityFromJSONTyped = exports.LayerVisibilityFromJSON = exports.instanceOfLayerVisibility = void 0;
+exports.instanceOfLayerVisibility = instanceOfLayerVisibility;
+exports.LayerVisibilityFromJSON = LayerVisibilityFromJSON;
+exports.LayerVisibilityFromJSONTyped = LayerVisibilityFromJSONTyped;
+exports.LayerVisibilityToJSON = LayerVisibilityToJSON;
+exports.LayerVisibilityToJSONTyped = LayerVisibilityToJSONTyped;
 /**
  * Check if a given object implements the LayerVisibility interface.
  */
 function instanceOfLayerVisibility(value) {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "legend" in value;
-    return isInstance;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    if (!('legend' in value) || value['legend'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfLayerVisibility = instanceOfLayerVisibility;
 function LayerVisibilityFromJSON(json) {
     return LayerVisibilityFromJSONTyped(json, false);
 }
-exports.LayerVisibilityFromJSON = LayerVisibilityFromJSON;
 function LayerVisibilityFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function LayerVisibilityFromJSONTyped(json, ignoreDiscriminator) {
         'legend': json['legend'],
     };
 }
-exports.LayerVisibilityFromJSONTyped = LayerVisibilityFromJSONTyped;
-function LayerVisibilityToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function LayerVisibilityToJSON(json) {
+    return LayerVisibilityToJSONTyped(json, false);
+}
+function LayerVisibilityToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'data': value.data,
-        'legend': value.legend,
+        'data': value['data'],
+        'legend': value['legend'],
     };
 }
-exports.LayerVisibilityToJSON = LayerVisibilityToJSON;

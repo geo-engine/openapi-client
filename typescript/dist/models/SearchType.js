@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SearchTypeToJSON = exports.SearchTypeFromJSONTyped = exports.SearchTypeFromJSON = exports.SearchType = void 0;
+exports.SearchType = void 0;
+exports.instanceOfSearchType = instanceOfSearchType;
+exports.SearchTypeFromJSON = SearchTypeFromJSON;
+exports.SearchTypeFromJSONTyped = SearchTypeFromJSONTyped;
+exports.SearchTypeToJSON = SearchTypeToJSON;
+exports.SearchTypeToJSONTyped = SearchTypeToJSONTyped;
 /**
  *
  * @export
@@ -22,15 +27,25 @@ exports.SearchType = {
     Fulltext: 'fulltext',
     Prefix: 'prefix'
 };
+function instanceOfSearchType(value) {
+    for (const key in exports.SearchType) {
+        if (Object.prototype.hasOwnProperty.call(exports.SearchType, key)) {
+            if (exports.SearchType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function SearchTypeFromJSON(json) {
     return SearchTypeFromJSONTyped(json, false);
 }
-exports.SearchTypeFromJSON = SearchTypeFromJSON;
 function SearchTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.SearchTypeFromJSONTyped = SearchTypeFromJSONTyped;
 function SearchTypeToJSON(value) {
     return value;
 }
-exports.SearchTypeToJSON = SearchTypeToJSON;
+function SearchTypeToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

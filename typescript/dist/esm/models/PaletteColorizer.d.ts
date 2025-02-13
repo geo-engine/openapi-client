@@ -54,7 +54,8 @@ export type PaletteColorizerTypeEnum = typeof PaletteColorizerTypeEnum[keyof typ
 /**
  * Check if a given object implements the PaletteColorizer interface.
  */
-export declare function instanceOfPaletteColorizer(value: object): boolean;
+export declare function instanceOfPaletteColorizer(value: object): value is PaletteColorizer;
 export declare function PaletteColorizerFromJSON(json: any): PaletteColorizer;
 export declare function PaletteColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaletteColorizer;
-export declare function PaletteColorizerToJSON(value?: PaletteColorizer | null): any;
+export declare function PaletteColorizerToJSON(json: any): PaletteColorizer;
+export declare function PaletteColorizerToJSONTyped(value?: PaletteColorizer | null, ignoreDiscriminator?: boolean): any;

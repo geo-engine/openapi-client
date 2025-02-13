@@ -12,18 +12,14 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
-import re  # noqa: F401
-import io
 import warnings
-
-from pydantic import validate_arguments, ValidationError
-
+from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
+from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
-from pydantic import Field, StrictBool, StrictStr, conint
 
-from typing import Any, Optional, Union
-
+from pydantic import Field, StrictBool, StrictBytes, StrictStr
+from typing import Any, Optional, Tuple, Union
+from typing_extensions import Annotated
 from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest
 from geoengine_openapi_client.models.get_legend_graphic_request import GetLegendGraphicRequest
 from geoengine_openapi_client.models.get_map_format import GetMapFormat
@@ -31,12 +27,9 @@ from geoengine_openapi_client.models.get_map_request import GetMapRequest
 from geoengine_openapi_client.models.wms_service import WmsService
 from geoengine_openapi_client.models.wms_version import WmsVersion
 
-from geoengine_openapi_client.api_client import ApiClient
+from geoengine_openapi_client.api_client import ApiClient, RequestSerialized
 from geoengine_openapi_client.api_response import ApiResponse
-from geoengine_openapi_client.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
-)
+from geoengine_openapi_client.rest import RESTResponseType
 
 
 class OGCWMSApi:
@@ -51,52 +44,30 @@ class OGCWMSApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
-    def wms_capabilities_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : Optional[Any], service : WmsService, request : GetCapabilitiesRequest, format : Optional[Any], **kwargs) -> str:  # noqa: E501
-        """Get WMS Capabilities  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+    @validate_call
+    def wms_capabilities_handler(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: Optional[Any],
+        service: WmsService,
+        request: GetCapabilitiesRequest,
+        format: Optional[Any],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> str:
+        """Get WMS Capabilities
 
-        >>> thread = api.wms_capabilities_handler(workflow, version, service, request, format, async_req=True)
-        >>> result = thread.get()
-
-        :param workflow: Workflow id (required)
-        :type workflow: str
-        :param version: (required)
-        :type version: WmsVersion
-        :param service: (required)
-        :type service: WmsService
-        :param request: (required)
-        :type request: GetCapabilitiesRequest
-        :param format: (required)
-        :type format: GetCapabilitiesFormat
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: str
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the wms_capabilities_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.wms_capabilities_handler_with_http_info(workflow, version, service, request, format, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def wms_capabilities_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : Optional[Any], service : WmsService, request : GetCapabilitiesRequest, format : Optional[Any], **kwargs) -> ApiResponse:  # noqa: E501
-        """Get WMS Capabilities  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.wms_capabilities_handler_with_http_info(workflow, version, service, request, format, async_req=True)
-        >>> result = thread.get()
 
         :param workflow: Workflow id (required)
         :type workflow: str
@@ -108,165 +79,77 @@ class OGCWMSApi:
         :type request: GetCapabilitiesRequest
         :param format: (required)
         :type format: GetCapabilitiesFormat
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
-        """
+        """ # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            'workflow',
-            'version',
-            'service',
-            'request',
-            'format'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+        _param = self._wms_capabilities_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            format=format,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
 
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method wms_capabilities_handler" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['workflow']:
-            _path_params['workflow'] = _params['workflow']
-
-        if _params['version']:
-            _path_params['version'] = _params['version']
-
-        if _params['service']:
-            _path_params['service'] = _params['service']
-
-        if _params['request']:
-            _path_params['request'] = _params['request']
-
-        if _params['format']:
-            _path_params['format'] = _params['format']
-
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/xml'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['session_token']  # noqa: E501
-
-        _response_types_map = {
+        _response_types_map: Dict[str, Optional[str]] = {
             '200': "str",
         }
-
-        return self.api_client.call_api(
-            '/wms/{workflow}?request=GetCapabilities', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
             response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+        ).data
 
-    @validate_arguments
-    def wms_legend_graphic_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WmsVersion, service : WmsService, request : GetLegendGraphicRequest, layer : StrictStr, **kwargs) -> None:  # noqa: E501
-        """Get WMS Legend Graphic  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+    @validate_call
+    def wms_capabilities_handler_with_http_info(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: Optional[Any],
+        service: WmsService,
+        request: GetCapabilitiesRequest,
+        format: Optional[Any],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[str]:
+        """Get WMS Capabilities
 
-        >>> thread = api.wms_legend_graphic_handler(workflow, version, service, request, layer, async_req=True)
-        >>> result = thread.get()
-
-        :param workflow: Workflow id (required)
-        :type workflow: str
-        :param version: (required)
-        :type version: WmsVersion
-        :param service: (required)
-        :type service: WmsService
-        :param request: (required)
-        :type request: GetLegendGraphicRequest
-        :param layer: (required)
-        :type layer: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the wms_legend_graphic_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.wms_legend_graphic_handler_with_http_info(workflow, version, service, request, layer, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def wms_legend_graphic_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WmsVersion, service : WmsService, request : GetLegendGraphicRequest, layer : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get WMS Legend Graphic  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.wms_legend_graphic_handler_with_http_info(workflow, version, service, request, layer, async_req=True)
-        >>> result = thread.get()
 
         :param workflow: Workflow id (required)
         :type workflow: str
@@ -275,188 +158,80 @@ class OGCWMSApi:
         :param service: (required)
         :type service: WmsService
         :param request: (required)
-        :type request: GetLegendGraphicRequest
-        :param layer: (required)
-        :type layer: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :type request: GetCapabilitiesRequest
+        :param format: (required)
+        :type format: GetCapabilitiesFormat
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
+        """ # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            'workflow',
-            'version',
-            'service',
-            'request',
-            'layer'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+        _param = self._wms_capabilities_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            format=format,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
 
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method wms_legend_graphic_handler" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['workflow']:
-            _path_params['workflow'] = _params['workflow']
-
-        if _params['version']:
-            _path_params['version'] = _params['version']
-
-        if _params['service']:
-            _path_params['service'] = _params['service']
-
-        if _params['request']:
-            _path_params['request'] = _params['request']
-
-        if _params['layer']:
-            _path_params['layer'] = _params['layer']
-
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # authentication setting
-        _auth_settings = ['session_token']  # noqa: E501
-
-        _response_types_map = {}
-
-        return self.api_client.call_api(
-            '/wms/{workflow}?request=GetLegendGraphic', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
             response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+        )
 
-    @validate_arguments
-    def wms_map_handler(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WmsVersion, service : WmsService, request : GetMapRequest, width : conint(strict=True, ge=0), height : conint(strict=True, ge=0), bbox : StrictStr, format : GetMapFormat, layers : StrictStr, styles : StrictStr, crs : Optional[StrictStr] = None, time : Optional[StrictStr] = None, transparent : Optional[StrictBool] = None, bgcolor : Optional[StrictStr] = None, sld : Optional[StrictStr] = None, sld_body : Optional[StrictStr] = None, elevation : Optional[StrictStr] = None, exceptions : Optional[Any] = None, **kwargs) -> bytearray:  # noqa: E501
-        """Get WMS Map  # noqa: E501
 
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+    @validate_call
+    def wms_capabilities_handler_without_preload_content(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: Optional[Any],
+        service: WmsService,
+        request: GetCapabilitiesRequest,
+        format: Optional[Any],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get WMS Capabilities
 
-        >>> thread = api.wms_map_handler(workflow, version, service, request, width, height, bbox, format, layers, styles, crs, time, transparent, bgcolor, sld, sld_body, elevation, exceptions, async_req=True)
-        >>> result = thread.get()
-
-        :param workflow: Workflow id (required)
-        :type workflow: str
-        :param version: (required)
-        :type version: WmsVersion
-        :param service: (required)
-        :type service: WmsService
-        :param request: (required)
-        :type request: GetMapRequest
-        :param width: (required)
-        :type width: int
-        :param height: (required)
-        :type height: int
-        :param bbox: (required)
-        :type bbox: str
-        :param format: (required)
-        :type format: GetMapFormat
-        :param layers: (required)
-        :type layers: str
-        :param styles: (required)
-        :type styles: str
-        :param crs:
-        :type crs: str
-        :param time:
-        :type time: str
-        :param transparent:
-        :type transparent: bool
-        :param bgcolor:
-        :type bgcolor: str
-        :param sld:
-        :type sld: str
-        :param sld_body:
-        :type sld_body: str
-        :param elevation:
-        :type elevation: str
-        :param exceptions:
-        :type exceptions: GetMapExceptionFormat
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: bytearray
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the wms_map_handler_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.wms_map_handler_with_http_info(workflow, version, service, request, width, height, bbox, format, layers, styles, crs, time, transparent, bgcolor, sld, sld_body, elevation, exceptions, **kwargs)  # noqa: E501
-
-    @validate_arguments
-    def wms_map_handler_with_http_info(self, workflow : Annotated[StrictStr, Field(..., description="Workflow id")], version : WmsVersion, service : WmsService, request : GetMapRequest, width : conint(strict=True, ge=0), height : conint(strict=True, ge=0), bbox : StrictStr, format : GetMapFormat, layers : StrictStr, styles : StrictStr, crs : Optional[StrictStr] = None, time : Optional[StrictStr] = None, transparent : Optional[StrictBool] = None, bgcolor : Optional[StrictStr] = None, sld : Optional[StrictStr] = None, sld_body : Optional[StrictStr] = None, elevation : Optional[StrictStr] = None, exceptions : Optional[Any] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get WMS Map  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.wms_map_handler_with_http_info(workflow, version, service, request, width, height, bbox, format, layers, styles, crs, time, transparent, bgcolor, sld, sld_body, elevation, exceptions, async_req=True)
-        >>> result = thread.get()
 
         :param workflow: Workflow id (required)
         :type workflow: str
@@ -465,196 +240,985 @@ class OGCWMSApi:
         :param service: (required)
         :type service: WmsService
         :param request: (required)
-        :type request: GetMapRequest
-        :param width: (required)
-        :type width: int
-        :param height: (required)
-        :type height: int
-        :param bbox: (required)
-        :type bbox: str
+        :type request: GetCapabilitiesRequest
         :param format: (required)
-        :type format: GetMapFormat
-        :param layers: (required)
-        :type layers: str
-        :param styles: (required)
-        :type styles: str
-        :param crs:
-        :type crs: str
-        :param time:
-        :type time: str
-        :param transparent:
-        :type transparent: bool
-        :param bgcolor:
-        :type bgcolor: str
-        :param sld:
-        :type sld: str
-        :param sld_body:
-        :type sld_body: str
-        :param elevation:
-        :type elevation: str
-        :param exceptions:
-        :type exceptions: GetMapExceptionFormat
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :type format: GetCapabilitiesFormat
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(bytearray, status_code(int), headers(HTTPHeaderDict))
-        """
+        """ # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            'workflow',
-            'version',
-            'service',
-            'request',
-            'width',
-            'height',
-            'bbox',
-            'format',
-            'layers',
-            'styles',
-            'crs',
-            'time',
-            'transparent',
-            'bgcolor',
-            'sld',
-            'sld_body',
-            'elevation',
-            'exceptions'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+        _param = self._wms_capabilities_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            format=format,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
 
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method wms_map_handler" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params['workflow']:
-            _path_params['workflow'] = _params['workflow']
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "str",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
 
 
-        # process the query parameters
-        _query_params = []
-        if _params.get('version') is not None:  # noqa: E501
-            _query_params.append(('version', _params['version'].value))
+    def _wms_capabilities_handler_serialize(
+        self,
+        workflow,
+        version,
+        service,
+        request,
+        format,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
 
-        if _params.get('service') is not None:  # noqa: E501
-            _query_params.append(('service', _params['service'].value))
+        _host = None
 
-        if _params.get('request') is not None:  # noqa: E501
-            _query_params.append(('request', _params['request'].value))
-
-        if _params.get('width') is not None:  # noqa: E501
-            _query_params.append(('width', _params['width']))
-
-        if _params.get('height') is not None:  # noqa: E501
-            _query_params.append(('height', _params['height']))
-
-        if _params.get('bbox') is not None:  # noqa: E501
-            _query_params.append(('bbox', _params['bbox']))
-
-        if _params.get('format') is not None:  # noqa: E501
-            _query_params.append(('format', _params['format'].value))
-
-        if _params.get('layers') is not None:  # noqa: E501
-            _query_params.append(('layers', _params['layers']))
-
-        if _params.get('crs') is not None:  # noqa: E501
-            _query_params.append(('crs', _params['crs']))
-
-        if _params.get('styles') is not None:  # noqa: E501
-            _query_params.append(('styles', _params['styles']))
-
-        if _params.get('time') is not None:  # noqa: E501
-            _query_params.append(('time', _params['time']))
-
-        if _params.get('transparent') is not None:  # noqa: E501
-            _query_params.append(('transparent', _params['transparent']))
-
-        if _params.get('bgcolor') is not None:  # noqa: E501
-            _query_params.append(('bgcolor', _params['bgcolor']))
-
-        if _params.get('sld') is not None:  # noqa: E501
-            _query_params.append(('sld', _params['sld']))
-
-        if _params.get('sld_body') is not None:  # noqa: E501
-            _query_params.append(('sld_body', _params['sld_body']))
-
-        if _params.get('elevation') is not None:  # noqa: E501
-            _query_params.append(('elevation', _params['elevation']))
-
-        if _params.get('exceptions') is not None:  # noqa: E501
-            _query_params.append(('exceptions', _params['exceptions'].value))
-
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['image/png'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ['session_token']  # noqa: E501
-
-        _response_types_map = {
-            '200': "bytearray",
+        _collection_formats: Dict[str, str] = {
         }
 
-        return self.api_client.call_api(
-            '/wms/{workflow}?request=GetMap', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if workflow is not None:
+            _path_params['workflow'] = workflow
+        if version is not None:
+            _path_params['version'] = version.value
+        if service is not None:
+            _path_params['service'] = service.value
+        if request is not None:
+            _path_params['request'] = request.value
+        if format is not None:
+            _path_params['format'] = format.value
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'text/xml'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'session_token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            # Note: remove query string in path part for ogc endpoints
+            resource_path='/wms/{workflow}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def wms_legend_graphic_handler(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WmsVersion,
+        service: WmsService,
+        request: GetLegendGraphicRequest,
+        layer: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Get WMS Legend Graphic
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param version: (required)
+        :type version: WmsVersion
+        :param service: (required)
+        :type service: WmsService
+        :param request: (required)
+        :type request: GetLegendGraphicRequest
+        :param layer: (required)
+        :type layer: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wms_legend_graphic_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            layer=layer,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '501': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def wms_legend_graphic_handler_with_http_info(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WmsVersion,
+        service: WmsService,
+        request: GetLegendGraphicRequest,
+        layer: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Get WMS Legend Graphic
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param version: (required)
+        :type version: WmsVersion
+        :param service: (required)
+        :type service: WmsService
+        :param request: (required)
+        :type request: GetLegendGraphicRequest
+        :param layer: (required)
+        :type layer: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wms_legend_graphic_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            layer=layer,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '501': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def wms_legend_graphic_handler_without_preload_content(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WmsVersion,
+        service: WmsService,
+        request: GetLegendGraphicRequest,
+        layer: StrictStr,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get WMS Legend Graphic
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param version: (required)
+        :type version: WmsVersion
+        :param service: (required)
+        :type service: WmsService
+        :param request: (required)
+        :type request: GetLegendGraphicRequest
+        :param layer: (required)
+        :type layer: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wms_legend_graphic_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            layer=layer,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '501': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _wms_legend_graphic_handler_serialize(
+        self,
+        workflow,
+        version,
+        service,
+        request,
+        layer,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if workflow is not None:
+            _path_params['workflow'] = workflow
+        if version is not None:
+            _path_params['version'] = version.value
+        if service is not None:
+            _path_params['service'] = service.value
+        if request is not None:
+            _path_params['request'] = request.value
+        if layer is not None:
+            _path_params['layer'] = layer
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'session_token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            # Note: remove query string in path part for ogc endpoints
+            resource_path='/wms/{workflow}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def wms_map_handler(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WmsVersion,
+        service: WmsService,
+        request: GetMapRequest,
+        width: Annotated[int, Field(strict=True, ge=0)],
+        height: Annotated[int, Field(strict=True, ge=0)],
+        bbox: StrictStr,
+        format: GetMapFormat,
+        layers: StrictStr,
+        styles: StrictStr,
+        crs: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        transparent: Optional[StrictBool] = None,
+        bgcolor: Optional[StrictStr] = None,
+        sld: Optional[StrictStr] = None,
+        sld_body: Optional[StrictStr] = None,
+        elevation: Optional[StrictStr] = None,
+        exceptions: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> bytearray:
+        """Get WMS Map
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param version: (required)
+        :type version: WmsVersion
+        :param service: (required)
+        :type service: WmsService
+        :param request: (required)
+        :type request: GetMapRequest
+        :param width: (required)
+        :type width: int
+        :param height: (required)
+        :type height: int
+        :param bbox: (required)
+        :type bbox: str
+        :param format: (required)
+        :type format: GetMapFormat
+        :param layers: (required)
+        :type layers: str
+        :param styles: (required)
+        :type styles: str
+        :param crs:
+        :type crs: str
+        :param time:
+        :type time: str
+        :param transparent:
+        :type transparent: bool
+        :param bgcolor:
+        :type bgcolor: str
+        :param sld:
+        :type sld: str
+        :param sld_body:
+        :type sld_body: str
+        :param elevation:
+        :type elevation: str
+        :param exceptions:
+        :type exceptions: GetMapExceptionFormat
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wms_map_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            width=width,
+            height=height,
+            bbox=bbox,
+            format=format,
+            layers=layers,
+            styles=styles,
+            crs=crs,
+            time=time,
+            transparent=transparent,
+            bgcolor=bgcolor,
+            sld=sld,
+            sld_body=sld_body,
+            elevation=elevation,
+            exceptions=exceptions,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def wms_map_handler_with_http_info(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WmsVersion,
+        service: WmsService,
+        request: GetMapRequest,
+        width: Annotated[int, Field(strict=True, ge=0)],
+        height: Annotated[int, Field(strict=True, ge=0)],
+        bbox: StrictStr,
+        format: GetMapFormat,
+        layers: StrictStr,
+        styles: StrictStr,
+        crs: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        transparent: Optional[StrictBool] = None,
+        bgcolor: Optional[StrictStr] = None,
+        sld: Optional[StrictStr] = None,
+        sld_body: Optional[StrictStr] = None,
+        elevation: Optional[StrictStr] = None,
+        exceptions: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[bytearray]:
+        """Get WMS Map
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param version: (required)
+        :type version: WmsVersion
+        :param service: (required)
+        :type service: WmsService
+        :param request: (required)
+        :type request: GetMapRequest
+        :param width: (required)
+        :type width: int
+        :param height: (required)
+        :type height: int
+        :param bbox: (required)
+        :type bbox: str
+        :param format: (required)
+        :type format: GetMapFormat
+        :param layers: (required)
+        :type layers: str
+        :param styles: (required)
+        :type styles: str
+        :param crs:
+        :type crs: str
+        :param time:
+        :type time: str
+        :param transparent:
+        :type transparent: bool
+        :param bgcolor:
+        :type bgcolor: str
+        :param sld:
+        :type sld: str
+        :param sld_body:
+        :type sld_body: str
+        :param elevation:
+        :type elevation: str
+        :param exceptions:
+        :type exceptions: GetMapExceptionFormat
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wms_map_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            width=width,
+            height=height,
+            bbox=bbox,
+            format=format,
+            layers=layers,
+            styles=styles,
+            crs=crs,
+            time=time,
+            transparent=transparent,
+            bgcolor=bgcolor,
+            sld=sld,
+            sld_body=sld_body,
+            elevation=elevation,
+            exceptions=exceptions,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def wms_map_handler_without_preload_content(
+        self,
+        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        version: WmsVersion,
+        service: WmsService,
+        request: GetMapRequest,
+        width: Annotated[int, Field(strict=True, ge=0)],
+        height: Annotated[int, Field(strict=True, ge=0)],
+        bbox: StrictStr,
+        format: GetMapFormat,
+        layers: StrictStr,
+        styles: StrictStr,
+        crs: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        transparent: Optional[StrictBool] = None,
+        bgcolor: Optional[StrictStr] = None,
+        sld: Optional[StrictStr] = None,
+        sld_body: Optional[StrictStr] = None,
+        elevation: Optional[StrictStr] = None,
+        exceptions: Optional[Any] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get WMS Map
+
+
+        :param workflow: Workflow id (required)
+        :type workflow: str
+        :param version: (required)
+        :type version: WmsVersion
+        :param service: (required)
+        :type service: WmsService
+        :param request: (required)
+        :type request: GetMapRequest
+        :param width: (required)
+        :type width: int
+        :param height: (required)
+        :type height: int
+        :param bbox: (required)
+        :type bbox: str
+        :param format: (required)
+        :type format: GetMapFormat
+        :param layers: (required)
+        :type layers: str
+        :param styles: (required)
+        :type styles: str
+        :param crs:
+        :type crs: str
+        :param time:
+        :type time: str
+        :param transparent:
+        :type transparent: bool
+        :param bgcolor:
+        :type bgcolor: str
+        :param sld:
+        :type sld: str
+        :param sld_body:
+        :type sld_body: str
+        :param elevation:
+        :type elevation: str
+        :param exceptions:
+        :type exceptions: GetMapExceptionFormat
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._wms_map_handler_serialize(
+            workflow=workflow,
+            version=version,
+            service=service,
+            request=request,
+            width=width,
+            height=height,
+            bbox=bbox,
+            format=format,
+            layers=layers,
+            styles=styles,
+            crs=crs,
+            time=time,
+            transparent=transparent,
+            bgcolor=bgcolor,
+            sld=sld,
+            sld_body=sld_body,
+            elevation=elevation,
+            exceptions=exceptions,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _wms_map_handler_serialize(
+        self,
+        workflow,
+        version,
+        service,
+        request,
+        width,
+        height,
+        bbox,
+        format,
+        layers,
+        styles,
+        crs,
+        time,
+        transparent,
+        bgcolor,
+        sld,
+        sld_body,
+        elevation,
+        exceptions,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if workflow is not None:
+            _path_params['workflow'] = workflow
+        # process the query parameters
+        if version is not None:
+            
+            _query_params.append(('version', version.value))
+            
+        if service is not None:
+            
+            _query_params.append(('service', service.value))
+            
+        if request is not None:
+            
+            _query_params.append(('request', request.value))
+            
+        if width is not None:
+            
+            _query_params.append(('width', width))
+            
+        if height is not None:
+            
+            _query_params.append(('height', height))
+            
+        if bbox is not None:
+            
+            _query_params.append(('bbox', bbox))
+            
+        if format is not None:
+            
+            _query_params.append(('format', format.value))
+            
+        if layers is not None:
+            
+            _query_params.append(('layers', layers))
+            
+        if crs is not None:
+            
+            _query_params.append(('crs', crs))
+            
+        if styles is not None:
+            
+            _query_params.append(('styles', styles))
+            
+        if time is not None:
+            
+            _query_params.append(('time', time))
+            
+        if transparent is not None:
+            
+            _query_params.append(('transparent', transparent))
+            
+        if bgcolor is not None:
+            
+            _query_params.append(('bgcolor', bgcolor))
+            
+        if sld is not None:
+            
+            _query_params.append(('sld', sld))
+            
+        if sld_body is not None:
+            
+            _query_params.append(('sld_body', sld_body))
+            
+        if elevation is not None:
+            
+            _query_params.append(('elevation', elevation))
+            
+        if exceptions is not None:
+            
+            _query_params.append(('exceptions', exceptions.value))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'image/png'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'session_token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            # Note: remove query string in path part for ogc endpoints
+            resource_path='/wms/{workflow}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+

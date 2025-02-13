@@ -13,30 +13,33 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ColorParamStaticToJSON = exports.ColorParamStaticFromJSONTyped = exports.ColorParamStaticFromJSON = exports.instanceOfColorParamStatic = exports.ColorParamStaticTypeEnum = void 0;
+exports.ColorParamStaticTypeEnum = void 0;
+exports.instanceOfColorParamStatic = instanceOfColorParamStatic;
+exports.ColorParamStaticFromJSON = ColorParamStaticFromJSON;
+exports.ColorParamStaticFromJSONTyped = ColorParamStaticFromJSONTyped;
+exports.ColorParamStaticToJSON = ColorParamStaticToJSON;
+exports.ColorParamStaticToJSONTyped = ColorParamStaticToJSONTyped;
 /**
  * @export
  */
 exports.ColorParamStaticTypeEnum = {
-    Static: 'static',
-    Derived: 'derived'
+    Static: 'static'
 };
 /**
  * Check if a given object implements the ColorParamStatic interface.
  */
 function instanceOfColorParamStatic(value) {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('color' in value) || value['color'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfColorParamStatic = instanceOfColorParamStatic;
 function ColorParamStaticFromJSON(json) {
     return ColorParamStaticFromJSONTyped(json, false);
 }
-exports.ColorParamStaticFromJSON = ColorParamStaticFromJSON;
 function ColorParamStaticFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -44,17 +47,15 @@ function ColorParamStaticFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.ColorParamStaticFromJSONTyped = ColorParamStaticFromJSONTyped;
-function ColorParamStaticToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ColorParamStaticToJSON(json) {
+    return ColorParamStaticToJSONTyped(json, false);
+}
+function ColorParamStaticToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'color': value.color,
-        'type': value.type,
+        'color': value['color'],
+        'type': value['type'],
     };
 }
-exports.ColorParamStaticToJSON = ColorParamStaticToJSON;

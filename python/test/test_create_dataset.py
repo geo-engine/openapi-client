@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.create_dataset import CreateDataset  # noqa: E501
+from geoengine_openapi_client.models.create_dataset import CreateDataset
 
 class TestCreateDataset(unittest.TestCase):
     """CreateDataset unit test stubs"""
@@ -29,12 +28,12 @@ class TestCreateDataset(unittest.TestCase):
 
     def make_instance(self, include_optional) -> CreateDataset:
         """Test CreateDataset
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CreateDataset`
         """
-        model = CreateDataset()  # noqa: E501
+        model = CreateDataset()
         if include_optional:
             return CreateDataset(
                 data_path = None,

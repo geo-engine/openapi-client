@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.layer_collection_resource import LayerCollectionResource  # noqa: E501
+from geoengine_openapi_client.models.layer_collection_resource import LayerCollectionResource
 
 class TestLayerCollectionResource(unittest.TestCase):
     """LayerCollectionResource unit test stubs"""
@@ -29,12 +28,12 @@ class TestLayerCollectionResource(unittest.TestCase):
 
     def make_instance(self, include_optional) -> LayerCollectionResource:
         """Test LayerCollectionResource
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `LayerCollectionResource`
         """
-        model = LayerCollectionResource()  # noqa: E501
+        model = LayerCollectionResource()
         if include_optional:
             return LayerCollectionResource(
                 id = '',

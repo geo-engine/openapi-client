@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { GdalDatasetParameters } from './GdalDatasetParameters';
-import type { RasterResultDescriptor } from './RasterResultDescriptor';
 import type { TimeStep } from './TimeStep';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import type { GdalDatasetParameters } from './GdalDatasetParameters';
 /**
  * Meta data for 4D `NetCDF` CF datasets
  * @export
@@ -78,7 +78,8 @@ export type GdalMetadataNetCdfCfTypeEnum = typeof GdalMetadataNetCdfCfTypeEnum[k
 /**
  * Check if a given object implements the GdalMetadataNetCdfCf interface.
  */
-export declare function instanceOfGdalMetadataNetCdfCf(value: object): boolean;
+export declare function instanceOfGdalMetadataNetCdfCf(value: object): value is GdalMetadataNetCdfCf;
 export declare function GdalMetadataNetCdfCfFromJSON(json: any): GdalMetadataNetCdfCf;
 export declare function GdalMetadataNetCdfCfFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalMetadataNetCdfCf;
-export declare function GdalMetadataNetCdfCfToJSON(value?: GdalMetadataNetCdfCf | null): any;
+export declare function GdalMetadataNetCdfCfToJSON(json: any): GdalMetadataNetCdfCf;
+export declare function GdalMetadataNetCdfCfToJSONTyped(value?: GdalMetadataNetCdfCf | null, ignoreDiscriminator?: boolean): any;

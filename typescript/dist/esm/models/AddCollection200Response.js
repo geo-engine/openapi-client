@@ -15,29 +15,29 @@
  * Check if a given object implements the AddCollection200Response interface.
  */
 export function instanceOfAddCollection200Response(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    return true;
 }
 export function AddCollection200ResponseFromJSON(json) {
     return AddCollection200ResponseFromJSONTyped(json, false);
 }
 export function AddCollection200ResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'id': json['id'],
     };
 }
-export function AddCollection200ResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function AddCollection200ResponseToJSON(json) {
+    return AddCollection200ResponseToJSONTyped(json, false);
+}
+export function AddCollection200ResponseToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
+        'id': value['id'],
     };
 }

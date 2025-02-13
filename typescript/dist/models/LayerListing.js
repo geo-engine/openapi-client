@@ -13,8 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerListingToJSON = exports.LayerListingFromJSONTyped = exports.LayerListingFromJSON = exports.instanceOfLayerListing = exports.LayerListingTypeEnum = void 0;
-const runtime_1 = require("../runtime");
+exports.LayerListingTypeEnum = void 0;
+exports.instanceOfLayerListing = instanceOfLayerListing;
+exports.LayerListingFromJSON = LayerListingFromJSON;
+exports.LayerListingFromJSONTyped = LayerListingFromJSONTyped;
+exports.LayerListingToJSON = LayerListingToJSON;
+exports.LayerListingToJSONTyped = LayerListingToJSONTyped;
 const ProviderLayerId_1 = require("./ProviderLayerId");
 /**
  * @export
@@ -26,44 +30,43 @@ exports.LayerListingTypeEnum = {
  * Check if a given object implements the LayerListing interface.
  */
 function instanceOfLayerListing(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfLayerListing = instanceOfLayerListing;
 function LayerListingFromJSON(json) {
     return LayerListingFromJSONTyped(json, false);
 }
-exports.LayerListingFromJSON = LayerListingFromJSON;
 function LayerListingFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
         'id': (0, ProviderLayerId_1.ProviderLayerIdFromJSON)(json['id']),
         'name': json['name'],
-        'properties': !(0, runtime_1.exists)(json, 'properties') ? undefined : json['properties'],
+        'properties': json['properties'] == null ? undefined : json['properties'],
         'type': json['type'],
     };
 }
-exports.LayerListingFromJSONTyped = LayerListingFromJSONTyped;
-function LayerListingToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function LayerListingToJSON(json) {
+    return LayerListingToJSONTyped(json, false);
+}
+function LayerListingToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'id': (0, ProviderLayerId_1.ProviderLayerIdToJSON)(value.id),
-        'name': value.name,
-        'properties': value.properties,
-        'type': value.type,
+        'description': value['description'],
+        'id': (0, ProviderLayerId_1.ProviderLayerIdToJSON)(value['id']),
+        'name': value['name'],
+        'properties': value['properties'],
+        'type': value['type'],
     };
 }
-exports.LayerListingToJSON = LayerListingToJSON;

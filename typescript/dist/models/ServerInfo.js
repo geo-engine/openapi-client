@@ -13,25 +13,30 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ServerInfoToJSON = exports.ServerInfoFromJSONTyped = exports.ServerInfoFromJSON = exports.instanceOfServerInfo = void 0;
+exports.instanceOfServerInfo = instanceOfServerInfo;
+exports.ServerInfoFromJSON = ServerInfoFromJSON;
+exports.ServerInfoFromJSONTyped = ServerInfoFromJSONTyped;
+exports.ServerInfoToJSON = ServerInfoToJSON;
+exports.ServerInfoToJSONTyped = ServerInfoToJSONTyped;
 /**
  * Check if a given object implements the ServerInfo interface.
  */
 function instanceOfServerInfo(value) {
-    let isInstance = true;
-    isInstance = isInstance && "buildDate" in value;
-    isInstance = isInstance && "commitHash" in value;
-    isInstance = isInstance && "features" in value;
-    isInstance = isInstance && "version" in value;
-    return isInstance;
+    if (!('buildDate' in value) || value['buildDate'] === undefined)
+        return false;
+    if (!('commitHash' in value) || value['commitHash'] === undefined)
+        return false;
+    if (!('features' in value) || value['features'] === undefined)
+        return false;
+    if (!('version' in value) || value['version'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfServerInfo = instanceOfServerInfo;
 function ServerInfoFromJSON(json) {
     return ServerInfoFromJSONTyped(json, false);
 }
-exports.ServerInfoFromJSON = ServerInfoFromJSON;
 function ServerInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,19 +46,17 @@ function ServerInfoFromJSONTyped(json, ignoreDiscriminator) {
         'version': json['version'],
     };
 }
-exports.ServerInfoFromJSONTyped = ServerInfoFromJSONTyped;
-function ServerInfoToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ServerInfoToJSON(json) {
+    return ServerInfoToJSONTyped(json, false);
+}
+function ServerInfoToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'buildDate': value.buildDate,
-        'commitHash': value.commitHash,
-        'features': value.features,
-        'version': value.version,
+        'buildDate': value['buildDate'],
+        'commitHash': value['commitHash'],
+        'features': value['features'],
+        'version': value['version'],
     };
 }
-exports.ServerInfoToJSON = ServerInfoToJSON;

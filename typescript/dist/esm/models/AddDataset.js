@@ -11,50 +11,51 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { ProvenanceFromJSON, ProvenanceToJSON, } from './Provenance';
 import { SymbologyFromJSON, SymbologyToJSON, } from './Symbology';
 /**
  * Check if a given object implements the AddDataset interface.
  */
 export function instanceOfAddDataset(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "sourceOperator" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('displayName' in value) || value['displayName'] === undefined)
+        return false;
+    if (!('sourceOperator' in value) || value['sourceOperator'] === undefined)
+        return false;
+    return true;
 }
 export function AddDatasetFromJSON(json) {
     return AddDatasetFromJSONTyped(json, false);
 }
 export function AddDatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
         'displayName': json['displayName'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'provenance': !exists(json, 'provenance') ? undefined : (json['provenance'] === null ? null : json['provenance'].map(ProvenanceFromJSON)),
+        'name': json['name'] == null ? undefined : json['name'],
+        'provenance': json['provenance'] == null ? undefined : (json['provenance'].map(ProvenanceFromJSON)),
         'sourceOperator': json['sourceOperator'],
-        'symbology': !exists(json, 'symbology') ? undefined : SymbologyFromJSON(json['symbology']),
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
+        'symbology': json['symbology'] == null ? undefined : SymbologyFromJSON(json['symbology']),
+        'tags': json['tags'] == null ? undefined : json['tags'],
     };
 }
-export function AddDatasetToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function AddDatasetToJSON(json) {
+    return AddDatasetToJSONTyped(json, false);
+}
+export function AddDatasetToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'displayName': value.displayName,
-        'name': value.name,
-        'provenance': value.provenance === undefined ? undefined : (value.provenance === null ? null : value.provenance.map(ProvenanceToJSON)),
-        'sourceOperator': value.sourceOperator,
-        'symbology': SymbologyToJSON(value.symbology),
-        'tags': value.tags,
+        'description': value['description'],
+        'displayName': value['displayName'],
+        'name': value['name'],
+        'provenance': value['provenance'] == null ? undefined : (value['provenance'].map(ProvenanceToJSON)),
+        'sourceOperator': value['sourceOperator'],
+        'symbology': SymbologyToJSON(value['symbology']),
+        'tags': value['tags'],
     };
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,12 +42,10 @@ export interface AddLayerCollection {
 /**
  * Check if a given object implements the AddLayerCollection interface.
  */
-export function instanceOfAddLayerCollection(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+export function instanceOfAddLayerCollection(value: object): value is AddLayerCollection {
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    return true;
 }
 
 export function AddLayerCollectionFromJSON(json: any): AddLayerCollection {
@@ -55,29 +53,31 @@ export function AddLayerCollectionFromJSON(json: any): AddLayerCollection {
 }
 
 export function AddLayerCollectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddLayerCollection {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'description': json['description'],
         'name': json['name'],
-        'properties': !exists(json, 'properties') ? undefined : json['properties'],
+        'properties': json['properties'] == null ? undefined : json['properties'],
     };
 }
 
-export function AddLayerCollectionToJSON(value?: AddLayerCollection | null): any {
-    if (value === undefined) {
-        return undefined;
+export function AddLayerCollectionToJSON(json: any): AddLayerCollection {
+    return AddLayerCollectionToJSONTyped(json, false);
+}
+
+export function AddLayerCollectionToJSONTyped(value?: AddLayerCollection | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'description': value.description,
-        'name': value.name,
-        'properties': value.properties,
+        'description': value['description'],
+        'name': value['name'],
+        'properties': value['properties'],
     };
 }
 

@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogarithmicGradientToJSON = exports.LogarithmicGradientFromJSONTyped = exports.LogarithmicGradientFromJSON = exports.instanceOfLogarithmicGradient = exports.LogarithmicGradientTypeEnum = void 0;
+exports.LogarithmicGradientTypeEnum = void 0;
+exports.instanceOfLogarithmicGradient = instanceOfLogarithmicGradient;
+exports.LogarithmicGradientFromJSON = LogarithmicGradientFromJSON;
+exports.LogarithmicGradientFromJSONTyped = LogarithmicGradientFromJSONTyped;
+exports.LogarithmicGradientToJSON = LogarithmicGradientToJSON;
+exports.LogarithmicGradientToJSONTyped = LogarithmicGradientToJSONTyped;
 const Breakpoint_1 = require("./Breakpoint");
 /**
  * @export
@@ -25,21 +30,23 @@ exports.LogarithmicGradientTypeEnum = {
  * Check if a given object implements the LogarithmicGradient interface.
  */
 function instanceOfLogarithmicGradient(value) {
-    let isInstance = true;
-    isInstance = isInstance && "breakpoints" in value;
-    isInstance = isInstance && "noDataColor" in value;
-    isInstance = isInstance && "overColor" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "underColor" in value;
-    return isInstance;
+    if (!('breakpoints' in value) || value['breakpoints'] === undefined)
+        return false;
+    if (!('noDataColor' in value) || value['noDataColor'] === undefined)
+        return false;
+    if (!('overColor' in value) || value['overColor'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    if (!('underColor' in value) || value['underColor'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfLogarithmicGradient = instanceOfLogarithmicGradient;
 function LogarithmicGradientFromJSON(json) {
     return LogarithmicGradientFromJSONTyped(json, false);
 }
-exports.LogarithmicGradientFromJSON = LogarithmicGradientFromJSON;
 function LogarithmicGradientFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -50,20 +57,18 @@ function LogarithmicGradientFromJSONTyped(json, ignoreDiscriminator) {
         'underColor': json['underColor'],
     };
 }
-exports.LogarithmicGradientFromJSONTyped = LogarithmicGradientFromJSONTyped;
-function LogarithmicGradientToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function LogarithmicGradientToJSON(json) {
+    return LogarithmicGradientToJSONTyped(json, false);
+}
+function LogarithmicGradientToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'breakpoints': (value.breakpoints.map(Breakpoint_1.BreakpointToJSON)),
-        'noDataColor': value.noDataColor,
-        'overColor': value.overColor,
-        'type': value.type,
-        'underColor': value.underColor,
+        'breakpoints': (value['breakpoints'].map(Breakpoint_1.BreakpointToJSON)),
+        'noDataColor': value['noDataColor'],
+        'overColor': value['overColor'],
+        'type': value['type'],
+        'underColor': value['underColor'],
     };
 }
-exports.LogarithmicGradientToJSON = LogarithmicGradientToJSON;

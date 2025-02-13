@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { FileNotFoundHandling } from './FileNotFoundHandling';
 import type { GdalDatasetGeoTransform } from './GdalDatasetGeoTransform';
 import type { GdalMetadataMapping } from './GdalMetadataMapping';
+import type { FileNotFoundHandling } from './FileNotFoundHandling';
 /**
  * Parameters for loading data using Gdal
  * @export
@@ -88,7 +88,8 @@ export interface GdalDatasetParameters {
 /**
  * Check if a given object implements the GdalDatasetParameters interface.
  */
-export declare function instanceOfGdalDatasetParameters(value: object): boolean;
+export declare function instanceOfGdalDatasetParameters(value: object): value is GdalDatasetParameters;
 export declare function GdalDatasetParametersFromJSON(json: any): GdalDatasetParameters;
 export declare function GdalDatasetParametersFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalDatasetParameters;
-export declare function GdalDatasetParametersToJSON(value?: GdalDatasetParameters | null): any;
+export declare function GdalDatasetParametersToJSON(json: any): GdalDatasetParameters;
+export declare function GdalDatasetParametersToJSONTyped(value?: GdalDatasetParameters | null, ignoreDiscriminator?: boolean): any;

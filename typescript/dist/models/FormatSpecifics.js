@@ -13,29 +13,32 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FormatSpecificsToJSON = exports.FormatSpecificsFromJSONTyped = exports.FormatSpecificsFromJSON = void 0;
+exports.FormatSpecificsFromJSON = FormatSpecificsFromJSON;
+exports.FormatSpecificsFromJSONTyped = FormatSpecificsFromJSONTyped;
+exports.FormatSpecificsToJSON = FormatSpecificsToJSON;
+exports.FormatSpecificsToJSONTyped = FormatSpecificsToJSONTyped;
 const FormatSpecificsOneOf_1 = require("./FormatSpecificsOneOf");
 function FormatSpecificsFromJSON(json) {
     return FormatSpecificsFromJSONTyped(json, false);
 }
-exports.FormatSpecificsFromJSON = FormatSpecificsFromJSON;
 function FormatSpecificsFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return Object.assign({}, (0, FormatSpecificsOneOf_1.FormatSpecificsOneOfFromJSONTyped)(json, true));
-}
-exports.FormatSpecificsFromJSONTyped = FormatSpecificsFromJSONTyped;
-function FormatSpecificsToJSON(value) {
-    if (value === undefined) {
-        return undefined;
+    if ((0, FormatSpecificsOneOf_1.instanceOfFormatSpecificsOneOf)(json)) {
+        return (0, FormatSpecificsOneOf_1.FormatSpecificsOneOfFromJSONTyped)(json, true);
     }
-    if (value === null) {
-        return null;
+    return {};
+}
+function FormatSpecificsToJSON(json) {
+    return FormatSpecificsToJSONTyped(json, false);
+}
+function FormatSpecificsToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     if ((0, FormatSpecificsOneOf_1.instanceOfFormatSpecificsOneOf)(value)) {
         return (0, FormatSpecificsOneOf_1.FormatSpecificsOneOfToJSON)(value);
     }
     return {};
 }
-exports.FormatSpecificsToJSON = FormatSpecificsToJSON;

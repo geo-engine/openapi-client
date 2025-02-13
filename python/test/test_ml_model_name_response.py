@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.ml_model_name_response import MlModelNameResponse  # noqa: E501
+from geoengine_openapi_client.models.ml_model_name_response import MlModelNameResponse
 
 class TestMlModelNameResponse(unittest.TestCase):
     """MlModelNameResponse unit test stubs"""
@@ -29,12 +28,12 @@ class TestMlModelNameResponse(unittest.TestCase):
 
     def make_instance(self, include_optional) -> MlModelNameResponse:
         """Test MlModelNameResponse
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MlModelNameResponse`
         """
-        model = MlModelNameResponse()  # noqa: E501
+        model = MlModelNameResponse()
         if include_optional:
             return MlModelNameResponse(
                 ml_model_name = ''

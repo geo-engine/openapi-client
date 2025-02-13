@@ -25,6 +25,17 @@ export const CsvHeader = {
 export type CsvHeader = typeof CsvHeader[keyof typeof CsvHeader];
 
 
+export function instanceOfCsvHeader(value: any): boolean {
+    for (const key in CsvHeader) {
+        if (Object.prototype.hasOwnProperty.call(CsvHeader, key)) {
+            if (CsvHeader[key as keyof typeof CsvHeader] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function CsvHeaderFromJSON(json: any): CsvHeader {
     return CsvHeaderFromJSONTyped(json, false);
 }
@@ -35,5 +46,9 @@ export function CsvHeaderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
 
 export function CsvHeaderToJSON(value?: CsvHeader | null): any {
     return value as any;
+}
+
+export function CsvHeaderToJSONTyped(value: any, ignoreDiscriminator: boolean): CsvHeader {
+    return value as CsvHeader;
 }
 

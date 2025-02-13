@@ -15,19 +15,23 @@
  * Check if a given object implements the DataUsage interface.
  */
 export function instanceOfDataUsage(value) {
-    let isInstance = true;
-    isInstance = isInstance && "computationId" in value;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "timestamp" in value;
-    isInstance = isInstance && "userId" in value;
-    return isInstance;
+    if (!('computationId' in value) || value['computationId'] === undefined)
+        return false;
+    if (!('count' in value) || value['count'] === undefined)
+        return false;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined)
+        return false;
+    if (!('userId' in value) || value['userId'] === undefined)
+        return false;
+    return true;
 }
 export function DataUsageFromJSON(json) {
     return DataUsageFromJSONTyped(json, false);
 }
 export function DataUsageFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,18 +42,18 @@ export function DataUsageFromJSONTyped(json, ignoreDiscriminator) {
         'userId': json['userId'],
     };
 }
-export function DataUsageToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function DataUsageToJSON(json) {
+    return DataUsageToJSONTyped(json, false);
+}
+export function DataUsageToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'computationId': value.computationId,
-        'count': value.count,
-        'data': value.data,
-        'timestamp': (value.timestamp.toISOString()),
-        'userId': value.userId,
+        'computationId': value['computationId'],
+        'count': value['count'],
+        'data': value['data'],
+        'timestamp': ((value['timestamp']).toISOString()),
+        'userId': value['userId'],
     };
 }

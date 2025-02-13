@@ -50,7 +50,8 @@ export type DerivedNumberTypeEnum = typeof DerivedNumberTypeEnum[keyof typeof De
 /**
  * Check if a given object implements the DerivedNumber interface.
  */
-export declare function instanceOfDerivedNumber(value: object): boolean;
+export declare function instanceOfDerivedNumber(value: object): value is DerivedNumber;
 export declare function DerivedNumberFromJSON(json: any): DerivedNumber;
 export declare function DerivedNumberFromJSONTyped(json: any, ignoreDiscriminator: boolean): DerivedNumber;
-export declare function DerivedNumberToJSON(value?: DerivedNumber | null): any;
+export declare function DerivedNumberToJSON(json: any): DerivedNumber;
+export declare function DerivedNumberToJSONTyped(value?: DerivedNumber | null, ignoreDiscriminator?: boolean): any;

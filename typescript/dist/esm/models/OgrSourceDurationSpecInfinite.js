@@ -15,37 +15,35 @@
  * @export
  */
 export const OgrSourceDurationSpecInfiniteTypeEnum = {
-    Infinite: 'infinite',
-    Zero: 'zero',
-    Value: 'value'
+    Infinite: 'infinite'
 };
 /**
  * Check if a given object implements the OgrSourceDurationSpecInfinite interface.
  */
 export function instanceOfOgrSourceDurationSpecInfinite(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function OgrSourceDurationSpecInfiniteFromJSON(json) {
     return OgrSourceDurationSpecInfiniteFromJSONTyped(json, false);
 }
 export function OgrSourceDurationSpecInfiniteFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'type': json['type'],
     };
 }
-export function OgrSourceDurationSpecInfiniteToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function OgrSourceDurationSpecInfiniteToJSON(json) {
+    return OgrSourceDurationSpecInfiniteToJSONTyped(json, false);
+}
+export function OgrSourceDurationSpecInfiniteToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'type': value.type,
+        'type': value['type'],
     };
 }

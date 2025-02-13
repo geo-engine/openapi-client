@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SpatialReferenceAuthorityToJSON = exports.SpatialReferenceAuthorityFromJSONTyped = exports.SpatialReferenceAuthorityFromJSON = exports.SpatialReferenceAuthority = void 0;
+exports.SpatialReferenceAuthority = void 0;
+exports.instanceOfSpatialReferenceAuthority = instanceOfSpatialReferenceAuthority;
+exports.SpatialReferenceAuthorityFromJSON = SpatialReferenceAuthorityFromJSON;
+exports.SpatialReferenceAuthorityFromJSONTyped = SpatialReferenceAuthorityFromJSONTyped;
+exports.SpatialReferenceAuthorityToJSON = SpatialReferenceAuthorityToJSON;
+exports.SpatialReferenceAuthorityToJSONTyped = SpatialReferenceAuthorityToJSONTyped;
 /**
  * A spatial reference authority that is part of a spatial reference definition
  * @export
@@ -24,15 +29,25 @@ exports.SpatialReferenceAuthority = {
     Iau2000: 'IAU2000',
     Esri: 'ESRI'
 };
+function instanceOfSpatialReferenceAuthority(value) {
+    for (const key in exports.SpatialReferenceAuthority) {
+        if (Object.prototype.hasOwnProperty.call(exports.SpatialReferenceAuthority, key)) {
+            if (exports.SpatialReferenceAuthority[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function SpatialReferenceAuthorityFromJSON(json) {
     return SpatialReferenceAuthorityFromJSONTyped(json, false);
 }
-exports.SpatialReferenceAuthorityFromJSON = SpatialReferenceAuthorityFromJSON;
 function SpatialReferenceAuthorityFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.SpatialReferenceAuthorityFromJSONTyped = SpatialReferenceAuthorityFromJSONTyped;
 function SpatialReferenceAuthorityToJSON(value) {
     return value;
 }
-exports.SpatialReferenceAuthorityToJSON = SpatialReferenceAuthorityToJSON;
+function SpatialReferenceAuthorityToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

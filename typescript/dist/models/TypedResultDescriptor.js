@@ -13,46 +13,46 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedResultDescriptorToJSON = exports.TypedResultDescriptorFromJSONTyped = exports.TypedResultDescriptorFromJSON = void 0;
+exports.TypedResultDescriptorFromJSON = TypedResultDescriptorFromJSON;
+exports.TypedResultDescriptorFromJSONTyped = TypedResultDescriptorFromJSONTyped;
+exports.TypedResultDescriptorToJSON = TypedResultDescriptorToJSON;
+exports.TypedResultDescriptorToJSONTyped = TypedResultDescriptorToJSONTyped;
 const TypedPlotResultDescriptor_1 = require("./TypedPlotResultDescriptor");
 const TypedRasterResultDescriptor_1 = require("./TypedRasterResultDescriptor");
 const TypedVectorResultDescriptor_1 = require("./TypedVectorResultDescriptor");
 function TypedResultDescriptorFromJSON(json) {
     return TypedResultDescriptorFromJSONTyped(json, false);
 }
-exports.TypedResultDescriptorFromJSON = TypedResultDescriptorFromJSON;
 function TypedResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'plot':
-            return Object.assign(Object.assign({}, (0, TypedPlotResultDescriptor_1.TypedPlotResultDescriptorFromJSONTyped)(json, true)), { type: 'plot' });
+            return Object.assign({}, (0, TypedPlotResultDescriptor_1.TypedPlotResultDescriptorFromJSONTyped)(json, true), { type: 'plot' });
         case 'raster':
-            return Object.assign(Object.assign({}, (0, TypedRasterResultDescriptor_1.TypedRasterResultDescriptorFromJSONTyped)(json, true)), { type: 'raster' });
+            return Object.assign({}, (0, TypedRasterResultDescriptor_1.TypedRasterResultDescriptorFromJSONTyped)(json, true), { type: 'raster' });
         case 'vector':
-            return Object.assign(Object.assign({}, (0, TypedVectorResultDescriptor_1.TypedVectorResultDescriptorFromJSONTyped)(json, true)), { type: 'vector' });
+            return Object.assign({}, (0, TypedVectorResultDescriptor_1.TypedVectorResultDescriptorFromJSONTyped)(json, true), { type: 'vector' });
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${json['type']}'`);
     }
 }
-exports.TypedResultDescriptorFromJSONTyped = TypedResultDescriptorFromJSONTyped;
-function TypedResultDescriptorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TypedResultDescriptorToJSON(json) {
+    return TypedResultDescriptorToJSONTyped(json, false);
+}
+function TypedResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'plot':
-            return (0, TypedPlotResultDescriptor_1.TypedPlotResultDescriptorToJSON)(value);
+            return Object.assign({}, (0, TypedPlotResultDescriptor_1.TypedPlotResultDescriptorToJSON)(value), { type: 'plot' });
         case 'raster':
-            return (0, TypedRasterResultDescriptor_1.TypedRasterResultDescriptorToJSON)(value);
+            return Object.assign({}, (0, TypedRasterResultDescriptor_1.TypedRasterResultDescriptorToJSON)(value), { type: 'raster' });
         case 'vector':
-            return (0, TypedVectorResultDescriptor_1.TypedVectorResultDescriptorToJSON)(value);
+            return Object.assign({}, (0, TypedVectorResultDescriptor_1.TypedVectorResultDescriptorToJSON)(value), { type: 'vector' });
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${value['type']}'`);
     }
 }
-exports.TypedResultDescriptorToJSON = TypedResultDescriptorToJSON;

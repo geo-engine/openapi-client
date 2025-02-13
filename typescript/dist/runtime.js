@@ -22,7 +22,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TextApiResponse = exports.BlobApiResponse = exports.VoidApiResponse = exports.JSONApiResponse = exports.canConsumeForm = exports.mapValues = exports.querystring = exports.exists = exports.COLLECTION_FORMATS = exports.RequiredError = exports.FetchError = exports.ResponseError = exports.BaseAPI = exports.DefaultConfig = exports.Configuration = exports.BASE_PATH = void 0;
+exports.TextApiResponse = exports.BlobApiResponse = exports.VoidApiResponse = exports.JSONApiResponse = exports.COLLECTION_FORMATS = exports.RequiredError = exports.FetchError = exports.ResponseError = exports.BaseAPI = exports.DefaultConfig = exports.Configuration = exports.BASE_PATH = void 0;
+exports.querystring = querystring;
+exports.exists = exists;
+exports.mapValues = mapValues;
+exports.canConsumeForm = canConsumeForm;
 exports.BASE_PATH = "http://0.0.0.0:8080/api".replace(/\/+$/, "");
 class Configuration {
     constructor(configuration = {}) {
@@ -73,7 +77,7 @@ class Configuration {
 exports.Configuration = Configuration;
 exports.DefaultConfig = new Configuration({
     headers: {
-        'User-Agent': 'geoengine/openapi-client/typescript/0.0.20'
+        'User-Agent': 'geoengine/openapi-client/typescript/0.0.21'
     }
 });
 /**
@@ -257,18 +261,12 @@ exports.COLLECTION_FORMATS = {
     tsv: "\t",
     pipes: "|",
 };
-function exists(json, key) {
-    const value = json[key];
-    return value !== null && value !== undefined;
-}
-exports.exists = exists;
 function querystring(params, prefix = '') {
     return Object.keys(params)
         .map(key => querystringSingleKey(key, params[key], prefix))
         .filter(part => part.length > 0)
         .join('&');
 }
-exports.querystring = querystring;
 function querystringSingleKey(key, value, keyPrefix = '') {
     const fullKey = keyPrefix + (keyPrefix.length ? `[${key}]` : key);
     if (value instanceof Array) {
@@ -288,10 +286,13 @@ function querystringSingleKey(key, value, keyPrefix = '') {
     }
     return `${encodeURIComponent(fullKey)}=${encodeURIComponent(String(value))}`;
 }
+function exists(json, key) {
+    const value = json[key];
+    return value !== null && value !== undefined;
+}
 function mapValues(data, fn) {
     return Object.keys(data).reduce((acc, key) => (Object.assign(Object.assign({}, acc), { [key]: fn(data[key]) })), {});
 }
-exports.mapValues = mapValues;
 function canConsumeForm(consumes) {
     for (const consume of consumes) {
         if ('multipart/form-data' === consume.contentType) {
@@ -300,7 +301,6 @@ function canConsumeForm(consumes) {
     }
     return false;
 }
-exports.canConsumeForm = canConsumeForm;
 class JSONApiResponse {
     constructor(raw, transformer = (jsonValue) => jsonValue) {
         this.raw = raw;

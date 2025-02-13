@@ -13,41 +13,41 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NumberParamToJSON = exports.NumberParamFromJSONTyped = exports.NumberParamFromJSON = void 0;
+exports.NumberParamFromJSON = NumberParamFromJSON;
+exports.NumberParamFromJSONTyped = NumberParamFromJSONTyped;
+exports.NumberParamToJSON = NumberParamToJSON;
+exports.NumberParamToJSONTyped = NumberParamToJSONTyped;
 const DerivedNumber_1 = require("./DerivedNumber");
 const StaticNumberParam_1 = require("./StaticNumberParam");
 function NumberParamFromJSON(json) {
     return NumberParamFromJSONTyped(json, false);
 }
-exports.NumberParamFromJSON = NumberParamFromJSON;
 function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'derived':
-            return Object.assign(Object.assign({}, (0, DerivedNumber_1.DerivedNumberFromJSONTyped)(json, true)), { type: 'derived' });
+            return Object.assign({}, (0, DerivedNumber_1.DerivedNumberFromJSONTyped)(json, true), { type: 'derived' });
         case 'static':
-            return Object.assign(Object.assign({}, (0, StaticNumberParam_1.StaticNumberParamFromJSONTyped)(json, true)), { type: 'static' });
+            return Object.assign({}, (0, StaticNumberParam_1.StaticNumberParamFromJSONTyped)(json, true), { type: 'static' });
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }
 }
-exports.NumberParamFromJSONTyped = NumberParamFromJSONTyped;
-function NumberParamToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function NumberParamToJSON(json) {
+    return NumberParamToJSONTyped(json, false);
+}
+function NumberParamToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'derived':
-            return (0, DerivedNumber_1.DerivedNumberToJSON)(value);
+            return Object.assign({}, (0, DerivedNumber_1.DerivedNumberToJSON)(value), { type: 'derived' });
         case 'static':
-            return (0, StaticNumberParam_1.StaticNumberParamToJSON)(value);
+            return Object.assign({}, (0, StaticNumberParam_1.StaticNumberParamToJSON)(value), { type: 'static' });
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
     }
 }
-exports.NumberParamToJSON = NumberParamToJSON;

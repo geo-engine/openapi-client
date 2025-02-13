@@ -18,6 +18,16 @@
 export const GetCapabilitiesRequest = {
     GetCapabilities: 'GetCapabilities'
 };
+export function instanceOfGetCapabilitiesRequest(value) {
+    for (const key in GetCapabilitiesRequest) {
+        if (Object.prototype.hasOwnProperty.call(GetCapabilitiesRequest, key)) {
+            if (GetCapabilitiesRequest[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function GetCapabilitiesRequestFromJSON(json) {
     return GetCapabilitiesRequestFromJSONTyped(json, false);
 }
@@ -25,5 +35,8 @@ export function GetCapabilitiesRequestFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function GetCapabilitiesRequestToJSON(value) {
+    return value;
+}
+export function GetCapabilitiesRequestToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

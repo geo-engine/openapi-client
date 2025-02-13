@@ -19,6 +19,16 @@ export const OgrSourceErrorSpec = {
     Ignore: 'ignore',
     Abort: 'abort'
 };
+export function instanceOfOgrSourceErrorSpec(value) {
+    for (const key in OgrSourceErrorSpec) {
+        if (Object.prototype.hasOwnProperty.call(OgrSourceErrorSpec, key)) {
+            if (OgrSourceErrorSpec[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function OgrSourceErrorSpecFromJSON(json) {
     return OgrSourceErrorSpecFromJSONTyped(json, false);
 }
@@ -26,5 +36,8 @@ export function OgrSourceErrorSpecFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function OgrSourceErrorSpecToJSON(value) {
+    return value;
+}
+export function OgrSourceErrorSpecToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

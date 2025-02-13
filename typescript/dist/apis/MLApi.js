@@ -34,8 +34,8 @@ class MLApi extends runtime.BaseAPI {
      */
     addMlModelRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.mlModel === null || requestParameters.mlModel === undefined) {
-                throw new runtime.RequiredError('mlModel', 'Required parameter requestParameters.mlModel was null or undefined when calling addMlModel.');
+            if (requestParameters['mlModel'] == null) {
+                throw new runtime.RequiredError('mlModel', 'Required parameter "mlModel" was null or undefined when calling addMlModel().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -52,7 +52,7 @@ class MLApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.MlModelToJSON)(requestParameters.mlModel),
+                body: (0, index_1.MlModelToJSON)(requestParameters['mlModel']),
             }, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MlModelNameResponseFromJSON)(jsonValue));
         });
@@ -71,8 +71,8 @@ class MLApi extends runtime.BaseAPI {
      */
     getMlModelRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.modelName === null || requestParameters.modelName === undefined) {
-                throw new runtime.RequiredError('modelName', 'Required parameter requestParameters.modelName was null or undefined when calling getMlModel.');
+            if (requestParameters['modelName'] == null) {
+                throw new runtime.RequiredError('modelName', 'Required parameter "modelName" was null or undefined when calling getMlModel().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -84,7 +84,7 @@ class MLApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/ml/models/{model_name}`.replace(`{${"model_name"}}`, encodeURIComponent(String(requestParameters.modelName))),
+                path: `/ml/models/{model_name}`.replace(`{${"model_name"}}`, encodeURIComponent(String(requestParameters['modelName']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,

@@ -22,6 +22,16 @@ export const UsageSummaryGranularity = {
     Months: 'months',
     Years: 'years'
 };
+export function instanceOfUsageSummaryGranularity(value) {
+    for (const key in UsageSummaryGranularity) {
+        if (Object.prototype.hasOwnProperty.call(UsageSummaryGranularity, key)) {
+            if (UsageSummaryGranularity[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function UsageSummaryGranularityFromJSON(json) {
     return UsageSummaryGranularityFromJSONTyped(json, false);
 }
@@ -29,5 +39,8 @@ export function UsageSummaryGranularityFromJSONTyped(json, ignoreDiscriminator) 
     return json;
 }
 export function UsageSummaryGranularityToJSON(value) {
+    return value;
+}
+export function UsageSummaryGranularityToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

@@ -31,7 +31,8 @@ export interface Quota {
 /**
  * Check if a given object implements the Quota interface.
  */
-export declare function instanceOfQuota(value: object): boolean;
+export declare function instanceOfQuota(value: object): value is Quota;
 export declare function QuotaFromJSON(json: any): Quota;
 export declare function QuotaFromJSONTyped(json: any, ignoreDiscriminator: boolean): Quota;
-export declare function QuotaToJSON(value?: Quota | null): any;
+export declare function QuotaToJSON(json: any): Quota;
+export declare function QuotaToJSONTyped(value?: Quota | null, ignoreDiscriminator?: boolean): any;

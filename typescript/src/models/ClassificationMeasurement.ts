@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -52,13 +52,11 @@ export type ClassificationMeasurementTypeEnum = typeof ClassificationMeasurement
 /**
  * Check if a given object implements the ClassificationMeasurement interface.
  */
-export function instanceOfClassificationMeasurement(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "classes" in value;
-    isInstance = isInstance && "measurement" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfClassificationMeasurement(value: object): value is ClassificationMeasurement {
+    if (!('classes' in value) || value['classes'] === undefined) return false;
+    if (!('measurement' in value) || value['measurement'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function ClassificationMeasurementFromJSON(json: any): ClassificationMeasurement {
@@ -66,7 +64,7 @@ export function ClassificationMeasurementFromJSON(json: any): ClassificationMeas
 }
 
 export function ClassificationMeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): ClassificationMeasurement {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -77,18 +75,20 @@ export function ClassificationMeasurementFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function ClassificationMeasurementToJSON(value?: ClassificationMeasurement | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ClassificationMeasurementToJSON(json: any): ClassificationMeasurement {
+    return ClassificationMeasurementToJSONTyped(json, false);
+}
+
+export function ClassificationMeasurementToJSONTyped(value?: ClassificationMeasurement | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'classes': value.classes,
-        'measurement': value.measurement,
-        'type': value.type,
+        'classes': value['classes'],
+        'measurement': value['measurement'],
+        'type': value['type'],
     };
 }
 

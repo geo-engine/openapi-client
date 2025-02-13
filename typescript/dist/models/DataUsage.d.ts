@@ -49,7 +49,8 @@ export interface DataUsage {
 /**
  * Check if a given object implements the DataUsage interface.
  */
-export declare function instanceOfDataUsage(value: object): boolean;
+export declare function instanceOfDataUsage(value: object): value is DataUsage;
 export declare function DataUsageFromJSON(json: any): DataUsage;
 export declare function DataUsageFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataUsage;
-export declare function DataUsageToJSON(value?: DataUsage | null): any;
+export declare function DataUsageToJSON(json: any): DataUsage;
+export declare function DataUsageToJSONTyped(value?: DataUsage | null, ignoreDiscriminator?: boolean): any;

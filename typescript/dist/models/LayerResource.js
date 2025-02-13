@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerResourceToJSON = exports.LayerResourceFromJSONTyped = exports.LayerResourceFromJSON = exports.instanceOfLayerResource = exports.LayerResourceTypeEnum = void 0;
+exports.LayerResourceTypeEnum = void 0;
+exports.instanceOfLayerResource = instanceOfLayerResource;
+exports.LayerResourceFromJSON = LayerResourceFromJSON;
+exports.LayerResourceFromJSONTyped = LayerResourceFromJSONTyped;
+exports.LayerResourceToJSON = LayerResourceToJSON;
+exports.LayerResourceToJSONTyped = LayerResourceToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.LayerResourceTypeEnum = {
  * Check if a given object implements the LayerResource interface.
  */
 function instanceOfLayerResource(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfLayerResource = instanceOfLayerResource;
 function LayerResourceFromJSON(json) {
     return LayerResourceFromJSONTyped(json, false);
 }
-exports.LayerResourceFromJSON = LayerResourceFromJSON;
 function LayerResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function LayerResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.LayerResourceFromJSONTyped = LayerResourceFromJSONTyped;
-function LayerResourceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function LayerResourceToJSON(json) {
+    return LayerResourceToJSONTyped(json, false);
+}
+function LayerResourceToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
-exports.LayerResourceToJSON = LayerResourceToJSON;

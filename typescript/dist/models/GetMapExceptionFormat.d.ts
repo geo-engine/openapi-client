@@ -18,6 +18,8 @@ export declare const GetMapExceptionFormat: {
     readonly Json: "JSON";
 };
 export type GetMapExceptionFormat = typeof GetMapExceptionFormat[keyof typeof GetMapExceptionFormat];
+export declare function instanceOfGetMapExceptionFormat(value: any): boolean;
 export declare function GetMapExceptionFormatFromJSON(json: any): GetMapExceptionFormat;
 export declare function GetMapExceptionFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMapExceptionFormat;
 export declare function GetMapExceptionFormatToJSON(value?: GetMapExceptionFormat | null): any;
+export declare function GetMapExceptionFormatToJSONTyped(value: any, ignoreDiscriminator: boolean): GetMapExceptionFormat;

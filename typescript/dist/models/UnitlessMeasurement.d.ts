@@ -27,14 +27,13 @@ export interface UnitlessMeasurement {
  */
 export declare const UnitlessMeasurementTypeEnum: {
     readonly Unitless: "unitless";
-    readonly Continuous: "continuous";
-    readonly Classification: "classification";
 };
 export type UnitlessMeasurementTypeEnum = typeof UnitlessMeasurementTypeEnum[keyof typeof UnitlessMeasurementTypeEnum];
 /**
  * Check if a given object implements the UnitlessMeasurement interface.
  */
-export declare function instanceOfUnitlessMeasurement(value: object): boolean;
+export declare function instanceOfUnitlessMeasurement(value: object): value is UnitlessMeasurement;
 export declare function UnitlessMeasurementFromJSON(json: any): UnitlessMeasurement;
 export declare function UnitlessMeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): UnitlessMeasurement;
-export declare function UnitlessMeasurementToJSON(value?: UnitlessMeasurement | null): any;
+export declare function UnitlessMeasurementToJSON(json: any): UnitlessMeasurement;
+export declare function UnitlessMeasurementToJSONTyped(value?: UnitlessMeasurement | null, ignoreDiscriminator?: boolean): any;

@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WfsVersionToJSON = exports.WfsVersionFromJSONTyped = exports.WfsVersionFromJSON = exports.WfsVersion = void 0;
+exports.WfsVersion = void 0;
+exports.instanceOfWfsVersion = instanceOfWfsVersion;
+exports.WfsVersionFromJSON = WfsVersionFromJSON;
+exports.WfsVersionFromJSONTyped = WfsVersionFromJSONTyped;
+exports.WfsVersionToJSON = WfsVersionToJSON;
+exports.WfsVersionToJSONTyped = WfsVersionToJSONTyped;
 /**
  *
  * @export
@@ -21,15 +26,25 @@ exports.WfsVersionToJSON = exports.WfsVersionFromJSONTyped = exports.WfsVersionF
 exports.WfsVersion = {
     _200: '2.0.0'
 };
+function instanceOfWfsVersion(value) {
+    for (const key in exports.WfsVersion) {
+        if (Object.prototype.hasOwnProperty.call(exports.WfsVersion, key)) {
+            if (exports.WfsVersion[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function WfsVersionFromJSON(json) {
     return WfsVersionFromJSONTyped(json, false);
 }
-exports.WfsVersionFromJSON = WfsVersionFromJSON;
 function WfsVersionFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.WfsVersionFromJSONTyped = WfsVersionFromJSONTyped;
 function WfsVersionToJSON(value) {
     return value;
 }
-exports.WfsVersionToJSON = WfsVersionToJSON;
+function WfsVersionToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

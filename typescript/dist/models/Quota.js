@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QuotaToJSON = exports.QuotaFromJSONTyped = exports.QuotaFromJSON = exports.instanceOfQuota = void 0;
+exports.instanceOfQuota = instanceOfQuota;
+exports.QuotaFromJSON = QuotaFromJSON;
+exports.QuotaFromJSONTyped = QuotaFromJSONTyped;
+exports.QuotaToJSON = QuotaToJSON;
+exports.QuotaToJSONTyped = QuotaToJSONTyped;
 /**
  * Check if a given object implements the Quota interface.
  */
 function instanceOfQuota(value) {
-    let isInstance = true;
-    isInstance = isInstance && "available" in value;
-    isInstance = isInstance && "used" in value;
-    return isInstance;
+    if (!('available' in value) || value['available'] === undefined)
+        return false;
+    if (!('used' in value) || value['used'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfQuota = instanceOfQuota;
 function QuotaFromJSON(json) {
     return QuotaFromJSONTyped(json, false);
 }
-exports.QuotaFromJSON = QuotaFromJSON;
 function QuotaFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function QuotaFromJSONTyped(json, ignoreDiscriminator) {
         'used': json['used'],
     };
 }
-exports.QuotaFromJSONTyped = QuotaFromJSONTyped;
-function QuotaToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function QuotaToJSON(json) {
+    return QuotaToJSONTyped(json, false);
+}
+function QuotaToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'available': value.available,
-        'used': value.used,
+        'available': value['available'],
+        'used': value['used'],
     };
 }
-exports.QuotaToJSON = QuotaToJSON;

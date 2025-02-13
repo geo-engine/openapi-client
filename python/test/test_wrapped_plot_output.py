@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.wrapped_plot_output import WrappedPlotOutput  # noqa: E501
+from geoengine_openapi_client.models.wrapped_plot_output import WrappedPlotOutput
 
 class TestWrappedPlotOutput(unittest.TestCase):
     """WrappedPlotOutput unit test stubs"""
@@ -29,12 +28,12 @@ class TestWrappedPlotOutput(unittest.TestCase):
 
     def make_instance(self, include_optional) -> WrappedPlotOutput:
         """Test WrappedPlotOutput
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `WrappedPlotOutput`
         """
-        model = WrappedPlotOutput()  # noqa: E501
+        model = WrappedPlotOutput()
         if include_optional:
             return WrappedPlotOutput(
                 data = None,

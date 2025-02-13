@@ -33,13 +33,13 @@ export interface InternalDataId {
  */
 export declare const InternalDataIdTypeEnum: {
     readonly Internal: "internal";
-    readonly External: "external";
 };
 export type InternalDataIdTypeEnum = typeof InternalDataIdTypeEnum[keyof typeof InternalDataIdTypeEnum];
 /**
  * Check if a given object implements the InternalDataId interface.
  */
-export declare function instanceOfInternalDataId(value: object): boolean;
+export declare function instanceOfInternalDataId(value: object): value is InternalDataId;
 export declare function InternalDataIdFromJSON(json: any): InternalDataId;
 export declare function InternalDataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): InternalDataId;
-export declare function InternalDataIdToJSON(value?: InternalDataId | null): any;
+export declare function InternalDataIdToJSON(json: any): InternalDataId;
+export declare function InternalDataIdToJSONTyped(value?: InternalDataId | null, ignoreDiscriminator?: boolean): any;

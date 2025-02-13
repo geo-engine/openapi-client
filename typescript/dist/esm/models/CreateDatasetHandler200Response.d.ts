@@ -25,7 +25,8 @@ export interface CreateDatasetHandler200Response {
 /**
  * Check if a given object implements the CreateDatasetHandler200Response interface.
  */
-export declare function instanceOfCreateDatasetHandler200Response(value: object): boolean;
+export declare function instanceOfCreateDatasetHandler200Response(value: object): value is CreateDatasetHandler200Response;
 export declare function CreateDatasetHandler200ResponseFromJSON(json: any): CreateDatasetHandler200Response;
 export declare function CreateDatasetHandler200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateDatasetHandler200Response;
-export declare function CreateDatasetHandler200ResponseToJSON(value?: CreateDatasetHandler200Response | null): any;
+export declare function CreateDatasetHandler200ResponseToJSON(json: any): CreateDatasetHandler200Response;
+export declare function CreateDatasetHandler200ResponseToJSONTyped(value?: CreateDatasetHandler200Response | null, ignoreDiscriminator?: boolean): any;

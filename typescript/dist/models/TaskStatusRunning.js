@@ -13,8 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskStatusRunningToJSON = exports.TaskStatusRunningFromJSONTyped = exports.TaskStatusRunningFromJSON = exports.instanceOfTaskStatusRunning = exports.TaskStatusRunningStatusEnum = void 0;
-const runtime_1 = require("../runtime");
+exports.TaskStatusRunningStatusEnum = void 0;
+exports.instanceOfTaskStatusRunning = instanceOfTaskStatusRunning;
+exports.TaskStatusRunningFromJSON = TaskStatusRunningFromJSON;
+exports.TaskStatusRunningFromJSONTyped = TaskStatusRunningFromJSONTyped;
+exports.TaskStatusRunningToJSON = TaskStatusRunningToJSON;
+exports.TaskStatusRunningToJSONTyped = TaskStatusRunningToJSONTyped;
 /**
  * @export
  */
@@ -25,49 +29,49 @@ exports.TaskStatusRunningStatusEnum = {
  * Check if a given object implements the TaskStatusRunning interface.
  */
 function instanceOfTaskStatusRunning(value) {
-    let isInstance = true;
-    isInstance = isInstance && "estimatedTimeRemaining" in value;
-    isInstance = isInstance && "pctComplete" in value;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "taskType" in value;
-    isInstance = isInstance && "timeStarted" in value;
-    return isInstance;
+    if (!('estimatedTimeRemaining' in value) || value['estimatedTimeRemaining'] === undefined)
+        return false;
+    if (!('pctComplete' in value) || value['pctComplete'] === undefined)
+        return false;
+    if (!('status' in value) || value['status'] === undefined)
+        return false;
+    if (!('taskType' in value) || value['taskType'] === undefined)
+        return false;
+    if (!('timeStarted' in value) || value['timeStarted'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTaskStatusRunning = instanceOfTaskStatusRunning;
 function TaskStatusRunningFromJSON(json) {
     return TaskStatusRunningFromJSONTyped(json, false);
 }
-exports.TaskStatusRunningFromJSON = TaskStatusRunningFromJSON;
 function TaskStatusRunningFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'description': !(0, runtime_1.exists)(json, 'description') ? undefined : json['description'],
+        'description': json['description'] == null ? undefined : json['description'],
         'estimatedTimeRemaining': json['estimatedTimeRemaining'],
-        'info': !(0, runtime_1.exists)(json, 'info') ? undefined : json['info'],
+        'info': json['info'] == null ? undefined : json['info'],
         'pctComplete': json['pctComplete'],
         'status': json['status'],
         'taskType': json['taskType'],
         'timeStarted': json['timeStarted'],
     };
 }
-exports.TaskStatusRunningFromJSONTyped = TaskStatusRunningFromJSONTyped;
-function TaskStatusRunningToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TaskStatusRunningToJSON(json) {
+    return TaskStatusRunningToJSONTyped(json, false);
+}
+function TaskStatusRunningToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'estimatedTimeRemaining': value.estimatedTimeRemaining,
-        'info': value.info,
-        'pctComplete': value.pctComplete,
-        'status': value.status,
-        'taskType': value.taskType,
-        'timeStarted': value.timeStarted,
+        'description': value['description'],
+        'estimatedTimeRemaining': value['estimatedTimeRemaining'],
+        'info': value['info'],
+        'pctComplete': value['pctComplete'],
+        'status': value['status'],
+        'taskType': value['taskType'],
+        'timeStarted': value['timeStarted'],
     };
 }
-exports.TaskStatusRunningToJSON = TaskStatusRunningToJSON;

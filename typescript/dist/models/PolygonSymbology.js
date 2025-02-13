@@ -13,11 +13,15 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PolygonSymbologyToJSON = exports.PolygonSymbologyFromJSONTyped = exports.PolygonSymbologyFromJSON = exports.instanceOfPolygonSymbology = exports.PolygonSymbologyTypeEnum = void 0;
-const runtime_1 = require("../runtime");
-const ColorParam_1 = require("./ColorParam");
-const StrokeParam_1 = require("./StrokeParam");
+exports.PolygonSymbologyTypeEnum = void 0;
+exports.instanceOfPolygonSymbology = instanceOfPolygonSymbology;
+exports.PolygonSymbologyFromJSON = PolygonSymbologyFromJSON;
+exports.PolygonSymbologyFromJSONTyped = PolygonSymbologyFromJSONTyped;
+exports.PolygonSymbologyToJSON = PolygonSymbologyToJSON;
+exports.PolygonSymbologyToJSONTyped = PolygonSymbologyToJSONTyped;
 const TextSymbology_1 = require("./TextSymbology");
+const StrokeParam_1 = require("./StrokeParam");
+const ColorParam_1 = require("./ColorParam");
 /**
  * @export
  */
@@ -28,44 +32,43 @@ exports.PolygonSymbologyTypeEnum = {
  * Check if a given object implements the PolygonSymbology interface.
  */
 function instanceOfPolygonSymbology(value) {
-    let isInstance = true;
-    isInstance = isInstance && "autoSimplified" in value;
-    isInstance = isInstance && "fillColor" in value;
-    isInstance = isInstance && "stroke" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('autoSimplified' in value) || value['autoSimplified'] === undefined)
+        return false;
+    if (!('fillColor' in value) || value['fillColor'] === undefined)
+        return false;
+    if (!('stroke' in value) || value['stroke'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfPolygonSymbology = instanceOfPolygonSymbology;
 function PolygonSymbologyFromJSON(json) {
     return PolygonSymbologyFromJSONTyped(json, false);
 }
-exports.PolygonSymbologyFromJSON = PolygonSymbologyFromJSON;
 function PolygonSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'autoSimplified': json['autoSimplified'],
         'fillColor': (0, ColorParam_1.ColorParamFromJSON)(json['fillColor']),
         'stroke': (0, StrokeParam_1.StrokeParamFromJSON)(json['stroke']),
-        'text': !(0, runtime_1.exists)(json, 'text') ? undefined : (0, TextSymbology_1.TextSymbologyFromJSON)(json['text']),
+        'text': json['text'] == null ? undefined : (0, TextSymbology_1.TextSymbologyFromJSON)(json['text']),
         'type': json['type'],
     };
 }
-exports.PolygonSymbologyFromJSONTyped = PolygonSymbologyFromJSONTyped;
-function PolygonSymbologyToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function PolygonSymbologyToJSON(json) {
+    return PolygonSymbologyToJSONTyped(json, false);
+}
+function PolygonSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'autoSimplified': value.autoSimplified,
-        'fillColor': (0, ColorParam_1.ColorParamToJSON)(value.fillColor),
-        'stroke': (0, StrokeParam_1.StrokeParamToJSON)(value.stroke),
-        'text': (0, TextSymbology_1.TextSymbologyToJSON)(value.text),
-        'type': value.type,
+        'autoSimplified': value['autoSimplified'],
+        'fillColor': (0, ColorParam_1.ColorParamToJSON)(value['fillColor']),
+        'stroke': (0, StrokeParam_1.StrokeParamToJSON)(value['stroke']),
+        'text': (0, TextSymbology_1.TextSymbologyToJSON)(value['text']),
+        'type': value['type'],
     };
 }
-exports.PolygonSymbologyToJSON = PolygonSymbologyToJSON;

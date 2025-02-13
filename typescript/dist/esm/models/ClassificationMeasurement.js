@@ -21,17 +21,19 @@ export const ClassificationMeasurementTypeEnum = {
  * Check if a given object implements the ClassificationMeasurement interface.
  */
 export function instanceOfClassificationMeasurement(value) {
-    let isInstance = true;
-    isInstance = isInstance && "classes" in value;
-    isInstance = isInstance && "measurement" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('classes' in value) || value['classes'] === undefined)
+        return false;
+    if (!('measurement' in value) || value['measurement'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function ClassificationMeasurementFromJSON(json) {
     return ClassificationMeasurementFromJSONTyped(json, false);
 }
 export function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -40,16 +42,16 @@ export function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator
         'type': json['type'],
     };
 }
-export function ClassificationMeasurementToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ClassificationMeasurementToJSON(json) {
+    return ClassificationMeasurementToJSONTyped(json, false);
+}
+export function ClassificationMeasurementToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'classes': value.classes,
-        'measurement': value.measurement,
-        'type': value.type,
+        'classes': value['classes'],
+        'measurement': value['measurement'],
+        'type': value['type'],
     };
 }

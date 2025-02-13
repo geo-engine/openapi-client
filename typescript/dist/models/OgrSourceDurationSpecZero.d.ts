@@ -32,7 +32,8 @@ export type OgrSourceDurationSpecZeroTypeEnum = typeof OgrSourceDurationSpecZero
 /**
  * Check if a given object implements the OgrSourceDurationSpecZero interface.
  */
-export declare function instanceOfOgrSourceDurationSpecZero(value: object): boolean;
+export declare function instanceOfOgrSourceDurationSpecZero(value: object): value is OgrSourceDurationSpecZero;
 export declare function OgrSourceDurationSpecZeroFromJSON(json: any): OgrSourceDurationSpecZero;
 export declare function OgrSourceDurationSpecZeroFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpecZero;
-export declare function OgrSourceDurationSpecZeroToJSON(value?: OgrSourceDurationSpecZero | null): any;
+export declare function OgrSourceDurationSpecZeroToJSON(json: any): OgrSourceDurationSpecZero;
+export declare function OgrSourceDurationSpecZeroToJSONTyped(value?: OgrSourceDurationSpecZero | null, ignoreDiscriminator?: boolean): any;

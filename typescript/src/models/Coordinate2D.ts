@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface Coordinate2D {
 /**
  * Check if a given object implements the Coordinate2D interface.
  */
-export function instanceOfCoordinate2D(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "x" in value;
-    isInstance = isInstance && "y" in value;
-
-    return isInstance;
+export function instanceOfCoordinate2D(value: object): value is Coordinate2D {
+    if (!('x' in value) || value['x'] === undefined) return false;
+    if (!('y' in value) || value['y'] === undefined) return false;
+    return true;
 }
 
 export function Coordinate2DFromJSON(json: any): Coordinate2D {
@@ -49,7 +47,7 @@ export function Coordinate2DFromJSON(json: any): Coordinate2D {
 }
 
 export function Coordinate2DFromJSONTyped(json: any, ignoreDiscriminator: boolean): Coordinate2D {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function Coordinate2DFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function Coordinate2DToJSON(value?: Coordinate2D | null): any {
-    if (value === undefined) {
-        return undefined;
+export function Coordinate2DToJSON(json: any): Coordinate2D {
+    return Coordinate2DToJSONTyped(json, false);
+}
+
+export function Coordinate2DToJSONTyped(value?: Coordinate2D | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'x': value.x,
-        'y': value.y,
+        'x': value['x'],
+        'y': value['y'],
     };
 }
 

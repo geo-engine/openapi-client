@@ -15,14 +15,14 @@
 
 import unittest
 
-from geoengine_openapi_client.api.projects_api import ProjectsApi  # noqa: E501
+from geoengine_openapi_client.api.projects_api import ProjectsApi
 
 
 class TestProjectsApi(unittest.TestCase):
     """ProjectsApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = ProjectsApi()  # noqa: E501
+        self.api = ProjectsApi()
 
     def tearDown(self) -> None:
         pass
@@ -30,49 +30,49 @@ class TestProjectsApi(unittest.TestCase):
     def test_create_project_handler(self) -> None:
         """Test case for create_project_handler
 
-        Create a new project for the user.  # noqa: E501
+        Create a new project for the user.
         """
         pass
 
     def test_delete_project_handler(self) -> None:
         """Test case for delete_project_handler
 
-        Deletes a project.  # noqa: E501
+        Deletes a project.
         """
         pass
 
     def test_list_projects_handler(self) -> None:
         """Test case for list_projects_handler
 
-        List all projects accessible to the user that match the selected criteria.  # noqa: E501
+        List all projects accessible to the user that match the selected criteria.
         """
         pass
 
     def test_load_project_latest_handler(self) -> None:
         """Test case for load_project_latest_handler
 
-        Retrieves details about the latest version of a project.  # noqa: E501
+        Retrieves details about the latest version of a project.
         """
         pass
 
     def test_load_project_version_handler(self) -> None:
         """Test case for load_project_version_handler
 
-        Retrieves details about the given version of a project.  # noqa: E501
+        Retrieves details about the given version of a project.
         """
         pass
 
     def test_project_versions_handler(self) -> None:
         """Test case for project_versions_handler
 
-        Lists all available versions of a project.  # noqa: E501
+        Lists all available versions of a project.
         """
         pass
 
     def test_update_project_handler(self) -> None:
         """Test case for update_project_handler
 
-        Updates a project.  # noqa: E501
+        Updates a project.
         """
         pass
 

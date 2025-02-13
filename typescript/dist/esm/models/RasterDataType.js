@@ -27,6 +27,16 @@ export const RasterDataType = {
     F32: 'F32',
     F64: 'F64'
 };
+export function instanceOfRasterDataType(value) {
+    for (const key in RasterDataType) {
+        if (Object.prototype.hasOwnProperty.call(RasterDataType, key)) {
+            if (RasterDataType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function RasterDataTypeFromJSON(json) {
     return RasterDataTypeFromJSONTyped(json, false);
 }
@@ -34,5 +44,8 @@ export function RasterDataTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function RasterDataTypeToJSON(value) {
+    return value;
+}
+export function RasterDataTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

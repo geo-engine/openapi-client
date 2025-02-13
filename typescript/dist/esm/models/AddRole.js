@@ -15,29 +15,29 @@
  * Check if a given object implements the AddRole interface.
  */
 export function instanceOfAddRole(value) {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    return isInstance;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    return true;
 }
 export function AddRoleFromJSON(json) {
     return AddRoleFromJSONTyped(json, false);
 }
 export function AddRoleFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'name': json['name'],
     };
 }
-export function AddRoleToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function AddRoleToJSON(json) {
+    return AddRoleToJSONTyped(json, false);
+}
+export function AddRoleToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'name': value.name,
+        'name': value['name'],
     };
 }

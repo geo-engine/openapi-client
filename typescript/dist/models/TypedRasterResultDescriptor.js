@@ -13,13 +13,17 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedRasterResultDescriptorToJSON = exports.TypedRasterResultDescriptorFromJSONTyped = exports.TypedRasterResultDescriptorFromJSON = exports.instanceOfTypedRasterResultDescriptor = exports.TypedRasterResultDescriptorTypeEnum = void 0;
-const runtime_1 = require("../runtime");
+exports.TypedRasterResultDescriptorTypeEnum = void 0;
+exports.instanceOfTypedRasterResultDescriptor = instanceOfTypedRasterResultDescriptor;
+exports.TypedRasterResultDescriptorFromJSON = TypedRasterResultDescriptorFromJSON;
+exports.TypedRasterResultDescriptorFromJSONTyped = TypedRasterResultDescriptorFromJSONTyped;
+exports.TypedRasterResultDescriptorToJSON = TypedRasterResultDescriptorToJSON;
+exports.TypedRasterResultDescriptorToJSONTyped = TypedRasterResultDescriptorToJSONTyped;
+const SpatialResolution_1 = require("./SpatialResolution");
+const TimeInterval_1 = require("./TimeInterval");
 const RasterBandDescriptor_1 = require("./RasterBandDescriptor");
 const RasterDataType_1 = require("./RasterDataType");
 const SpatialPartition2D_1 = require("./SpatialPartition2D");
-const SpatialResolution_1 = require("./SpatialResolution");
-const TimeInterval_1 = require("./TimeInterval");
 /**
  * @export
  */
@@ -30,48 +34,47 @@ exports.TypedRasterResultDescriptorTypeEnum = {
  * Check if a given object implements the TypedRasterResultDescriptor interface.
  */
 function instanceOfTypedRasterResultDescriptor(value) {
-    let isInstance = true;
-    isInstance = isInstance && "bands" in value;
-    isInstance = isInstance && "dataType" in value;
-    isInstance = isInstance && "spatialReference" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('bands' in value) || value['bands'] === undefined)
+        return false;
+    if (!('dataType' in value) || value['dataType'] === undefined)
+        return false;
+    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTypedRasterResultDescriptor = instanceOfTypedRasterResultDescriptor;
 function TypedRasterResultDescriptorFromJSON(json) {
     return TypedRasterResultDescriptorFromJSONTyped(json, false);
 }
-exports.TypedRasterResultDescriptorFromJSON = TypedRasterResultDescriptorFromJSON;
 function TypedRasterResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'bands': (json['bands'].map(RasterBandDescriptor_1.RasterBandDescriptorFromJSON)),
-        'bbox': !(0, runtime_1.exists)(json, 'bbox') ? undefined : (0, SpatialPartition2D_1.SpatialPartition2DFromJSON)(json['bbox']),
+        'bbox': json['bbox'] == null ? undefined : (0, SpatialPartition2D_1.SpatialPartition2DFromJSON)(json['bbox']),
         'dataType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['dataType']),
-        'resolution': !(0, runtime_1.exists)(json, 'resolution') ? undefined : (0, SpatialResolution_1.SpatialResolutionFromJSON)(json['resolution']),
+        'resolution': json['resolution'] == null ? undefined : (0, SpatialResolution_1.SpatialResolutionFromJSON)(json['resolution']),
         'spatialReference': json['spatialReference'],
-        'time': !(0, runtime_1.exists)(json, 'time') ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
+        'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
         'type': json['type'],
     };
 }
-exports.TypedRasterResultDescriptorFromJSONTyped = TypedRasterResultDescriptorFromJSONTyped;
-function TypedRasterResultDescriptorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TypedRasterResultDescriptorToJSON(json) {
+    return TypedRasterResultDescriptorToJSONTyped(json, false);
+}
+function TypedRasterResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'bands': (value.bands.map(RasterBandDescriptor_1.RasterBandDescriptorToJSON)),
-        'bbox': (0, SpatialPartition2D_1.SpatialPartition2DToJSON)(value.bbox),
-        'dataType': (0, RasterDataType_1.RasterDataTypeToJSON)(value.dataType),
-        'resolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value.resolution),
-        'spatialReference': value.spatialReference,
-        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value.time),
-        'type': value.type,
+        'bands': (value['bands'].map(RasterBandDescriptor_1.RasterBandDescriptorToJSON)),
+        'bbox': (0, SpatialPartition2D_1.SpatialPartition2DToJSON)(value['bbox']),
+        'dataType': (0, RasterDataType_1.RasterDataTypeToJSON)(value['dataType']),
+        'resolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value['resolution']),
+        'spatialReference': value['spatialReference'],
+        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
+        'type': value['type'],
     };
 }
-exports.TypedRasterResultDescriptorToJSON = TypedRasterResultDescriptorToJSON;

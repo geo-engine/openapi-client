@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,13 +42,11 @@ export interface DataUsageSummary {
 /**
  * Check if a given object implements the DataUsageSummary interface.
  */
-export function instanceOfDataUsageSummary(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "timestamp" in value;
-
-    return isInstance;
+export function instanceOfDataUsageSummary(value: object): value is DataUsageSummary {
+    if (!('count' in value) || value['count'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined) return false;
+    return true;
 }
 
 export function DataUsageSummaryFromJSON(json: any): DataUsageSummary {
@@ -56,7 +54,7 @@ export function DataUsageSummaryFromJSON(json: any): DataUsageSummary {
 }
 
 export function DataUsageSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataUsageSummary {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,18 +65,20 @@ export function DataUsageSummaryFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function DataUsageSummaryToJSON(value?: DataUsageSummary | null): any {
-    if (value === undefined) {
-        return undefined;
+export function DataUsageSummaryToJSON(json: any): DataUsageSummary {
+    return DataUsageSummaryToJSONTyped(json, false);
+}
+
+export function DataUsageSummaryToJSONTyped(value?: DataUsageSummary | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'count': value.count,
-        'data': value.data,
-        'timestamp': (value.timestamp.toISOString()),
+        'count': value['count'],
+        'data': value['data'],
+        'timestamp': ((value['timestamp']).toISOString()),
     };
 }
 

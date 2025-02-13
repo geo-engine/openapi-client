@@ -16,24 +16,25 @@ import { ColorizerFromJSON, ColorizerToJSON, } from './Colorizer';
  * @export
  */
 export const SingleBandRasterColorizerTypeEnum = {
-    SingleBand: 'singleBand',
-    MultiBand: 'multiBand'
+    SingleBand: 'singleBand'
 };
 /**
  * Check if a given object implements the SingleBandRasterColorizer interface.
  */
 export function instanceOfSingleBandRasterColorizer(value) {
-    let isInstance = true;
-    isInstance = isInstance && "band" in value;
-    isInstance = isInstance && "bandColorizer" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('band' in value) || value['band'] === undefined)
+        return false;
+    if (!('bandColorizer' in value) || value['bandColorizer'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function SingleBandRasterColorizerFromJSON(json) {
     return SingleBandRasterColorizerFromJSONTyped(json, false);
 }
 export function SingleBandRasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -42,16 +43,16 @@ export function SingleBandRasterColorizerFromJSONTyped(json, ignoreDiscriminator
         'type': json['type'],
     };
 }
-export function SingleBandRasterColorizerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function SingleBandRasterColorizerToJSON(json) {
+    return SingleBandRasterColorizerToJSONTyped(json, false);
+}
+export function SingleBandRasterColorizerToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'band': value.band,
-        'bandColorizer': ColorizerToJSON(value.bandColorizer),
-        'type': value.type,
+        'band': value['band'],
+        'bandColorizer': ColorizerToJSON(value['bandColorizer']),
+        'type': value['type'],
     };
 }

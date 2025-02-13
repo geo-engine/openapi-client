@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TimeReferenceToJSON = exports.TimeReferenceFromJSONTyped = exports.TimeReferenceFromJSON = exports.TimeReference = void 0;
+exports.TimeReference = void 0;
+exports.instanceOfTimeReference = instanceOfTimeReference;
+exports.TimeReferenceFromJSON = TimeReferenceFromJSON;
+exports.TimeReferenceFromJSONTyped = TimeReferenceFromJSONTyped;
+exports.TimeReferenceToJSON = TimeReferenceToJSON;
+exports.TimeReferenceToJSONTyped = TimeReferenceToJSONTyped;
 /**
  *
  * @export
@@ -22,15 +27,25 @@ exports.TimeReference = {
     Start: 'start',
     End: 'end'
 };
+function instanceOfTimeReference(value) {
+    for (const key in exports.TimeReference) {
+        if (Object.prototype.hasOwnProperty.call(exports.TimeReference, key)) {
+            if (exports.TimeReference[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function TimeReferenceFromJSON(json) {
     return TimeReferenceFromJSONTyped(json, false);
 }
-exports.TimeReferenceFromJSON = TimeReferenceFromJSON;
 function TimeReferenceFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.TimeReferenceFromJSONTyped = TimeReferenceFromJSONTyped;
 function TimeReferenceToJSON(value) {
     return value;
 }
-exports.TimeReferenceToJSON = TimeReferenceToJSON;
+function TimeReferenceToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

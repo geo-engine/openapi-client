@@ -57,7 +57,8 @@ export type LayerListingTypeEnum = typeof LayerListingTypeEnum[keyof typeof Laye
 /**
  * Check if a given object implements the LayerListing interface.
  */
-export declare function instanceOfLayerListing(value: object): boolean;
+export declare function instanceOfLayerListing(value: object): value is LayerListing;
 export declare function LayerListingFromJSON(json: any): LayerListing;
 export declare function LayerListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerListing;
-export declare function LayerListingToJSON(value?: LayerListing | null): any;
+export declare function LayerListingToJSON(json: any): LayerListing;
+export declare function LayerListingToJSONTyped(value?: LayerListing | null, ignoreDiscriminator?: boolean): any;

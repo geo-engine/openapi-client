@@ -19,38 +19,38 @@ export function TaskStatusFromJSON(json) {
     return TaskStatusFromJSONTyped(json, false);
 }
 export function TaskStatusFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['status']) {
         case 'aborted':
-            return Object.assign(Object.assign({}, TaskStatusAbortedFromJSONTyped(json, true)), { status: 'aborted' });
+            return Object.assign({}, TaskStatusAbortedFromJSONTyped(json, true), { status: 'aborted' });
         case 'completed':
-            return Object.assign(Object.assign({}, TaskStatusCompletedFromJSONTyped(json, true)), { status: 'completed' });
+            return Object.assign({}, TaskStatusCompletedFromJSONTyped(json, true), { status: 'completed' });
         case 'failed':
-            return Object.assign(Object.assign({}, TaskStatusFailedFromJSONTyped(json, true)), { status: 'failed' });
+            return Object.assign({}, TaskStatusFailedFromJSONTyped(json, true), { status: 'failed' });
         case 'running':
-            return Object.assign(Object.assign({}, TaskStatusRunningFromJSONTyped(json, true)), { status: 'running' });
+            return Object.assign({}, TaskStatusRunningFromJSONTyped(json, true), { status: 'running' });
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${json['status']}'`);
     }
 }
-export function TaskStatusToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TaskStatusToJSON(json) {
+    return TaskStatusToJSONTyped(json, false);
+}
+export function TaskStatusToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['status']) {
         case 'aborted':
-            return TaskStatusAbortedToJSON(value);
+            return Object.assign({}, TaskStatusAbortedToJSON(value), { status: 'aborted' });
         case 'completed':
-            return TaskStatusCompletedToJSON(value);
+            return Object.assign({}, TaskStatusCompletedToJSON(value), { status: 'completed' });
         case 'failed':
-            return TaskStatusFailedToJSON(value);
+            return Object.assign({}, TaskStatusFailedToJSON(value), { status: 'failed' });
         case 'running':
-            return TaskStatusRunningToJSON(value);
+            return Object.assign({}, TaskStatusRunningToJSON(value), { status: 'running' });
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${value['status']}'`);
     }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,13 +42,11 @@ export interface Provenance {
 /**
  * Check if a given object implements the Provenance interface.
  */
-export function instanceOfProvenance(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "citation" in value;
-    isInstance = isInstance && "license" in value;
-    isInstance = isInstance && "uri" in value;
-
-    return isInstance;
+export function instanceOfProvenance(value: object): value is Provenance {
+    if (!('citation' in value) || value['citation'] === undefined) return false;
+    if (!('license' in value) || value['license'] === undefined) return false;
+    if (!('uri' in value) || value['uri'] === undefined) return false;
+    return true;
 }
 
 export function ProvenanceFromJSON(json: any): Provenance {
@@ -56,7 +54,7 @@ export function ProvenanceFromJSON(json: any): Provenance {
 }
 
 export function ProvenanceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Provenance {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,18 +65,20 @@ export function ProvenanceFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-export function ProvenanceToJSON(value?: Provenance | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ProvenanceToJSON(json: any): Provenance {
+    return ProvenanceToJSONTyped(json, false);
+}
+
+export function ProvenanceToJSONTyped(value?: Provenance | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'citation': value.citation,
-        'license': value.license,
-        'uri': value.uri,
+        'citation': value['citation'],
+        'license': value['license'],
+        'uri': value['uri'],
     };
 }
 

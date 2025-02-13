@@ -38,7 +38,8 @@ export type ResourceIdMlModelTypeEnum = typeof ResourceIdMlModelTypeEnum[keyof t
 /**
  * Check if a given object implements the ResourceIdMlModel interface.
  */
-export declare function instanceOfResourceIdMlModel(value: object): boolean;
+export declare function instanceOfResourceIdMlModel(value: object): value is ResourceIdMlModel;
 export declare function ResourceIdMlModelFromJSON(json: any): ResourceIdMlModel;
 export declare function ResourceIdMlModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceIdMlModel;
-export declare function ResourceIdMlModelToJSON(value?: ResourceIdMlModel | null): any;
+export declare function ResourceIdMlModelToJSON(json: any): ResourceIdMlModel;
+export declare function ResourceIdMlModelToJSONTyped(value?: ResourceIdMlModel | null, ignoreDiscriminator?: boolean): any;

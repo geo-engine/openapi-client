@@ -55,7 +55,8 @@ export interface ProjectListing {
 /**
  * Check if a given object implements the ProjectListing interface.
  */
-export declare function instanceOfProjectListing(value: object): boolean;
+export declare function instanceOfProjectListing(value: object): value is ProjectListing;
 export declare function ProjectListingFromJSON(json: any): ProjectListing;
 export declare function ProjectListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectListing;
-export declare function ProjectListingToJSON(value?: ProjectListing | null): any;
+export declare function ProjectListingToJSON(json: any): ProjectListing;
+export declare function ProjectListingToJSONTyped(value?: ProjectListing | null, ignoreDiscriminator?: boolean): any;

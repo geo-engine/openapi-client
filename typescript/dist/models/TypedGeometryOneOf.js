@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedGeometryOneOfToJSON = exports.TypedGeometryOneOfFromJSONTyped = exports.TypedGeometryOneOfFromJSON = exports.instanceOfTypedGeometryOneOf = void 0;
+exports.instanceOfTypedGeometryOneOf = instanceOfTypedGeometryOneOf;
+exports.TypedGeometryOneOfFromJSON = TypedGeometryOneOfFromJSON;
+exports.TypedGeometryOneOfFromJSONTyped = TypedGeometryOneOfFromJSONTyped;
+exports.TypedGeometryOneOfToJSON = TypedGeometryOneOfToJSON;
+exports.TypedGeometryOneOfToJSONTyped = TypedGeometryOneOfToJSONTyped;
 /**
  * Check if a given object implements the TypedGeometryOneOf interface.
  */
 function instanceOfTypedGeometryOneOf(value) {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    return isInstance;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTypedGeometryOneOf = instanceOfTypedGeometryOneOf;
 function TypedGeometryOneOfFromJSON(json) {
     return TypedGeometryOneOfFromJSONTyped(json, false);
 }
-exports.TypedGeometryOneOfFromJSON = TypedGeometryOneOfFromJSON;
 function TypedGeometryOneOfFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'data': json['Data'],
     };
 }
-exports.TypedGeometryOneOfFromJSONTyped = TypedGeometryOneOfFromJSONTyped;
-function TypedGeometryOneOfToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TypedGeometryOneOfToJSON(json) {
+    return TypedGeometryOneOfToJSONTyped(json, false);
+}
+function TypedGeometryOneOfToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'Data': value.data,
+        'Data': value['data'],
     };
 }
-exports.TypedGeometryOneOfToJSON = TypedGeometryOneOfToJSON;

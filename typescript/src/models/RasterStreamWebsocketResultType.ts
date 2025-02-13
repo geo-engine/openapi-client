@@ -23,6 +23,17 @@ export const RasterStreamWebsocketResultType = {
 export type RasterStreamWebsocketResultType = typeof RasterStreamWebsocketResultType[keyof typeof RasterStreamWebsocketResultType];
 
 
+export function instanceOfRasterStreamWebsocketResultType(value: any): boolean {
+    for (const key in RasterStreamWebsocketResultType) {
+        if (Object.prototype.hasOwnProperty.call(RasterStreamWebsocketResultType, key)) {
+            if (RasterStreamWebsocketResultType[key as keyof typeof RasterStreamWebsocketResultType] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function RasterStreamWebsocketResultTypeFromJSON(json: any): RasterStreamWebsocketResultType {
     return RasterStreamWebsocketResultTypeFromJSONTyped(json, false);
 }
@@ -33,5 +44,9 @@ export function RasterStreamWebsocketResultTypeFromJSONTyped(json: any, ignoreDi
 
 export function RasterStreamWebsocketResultTypeToJSON(value?: RasterStreamWebsocketResultType | null): any {
     return value as any;
+}
+
+export function RasterStreamWebsocketResultTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): RasterStreamWebsocketResultType {
+    return value as RasterStreamWebsocketResultType;
 }
 

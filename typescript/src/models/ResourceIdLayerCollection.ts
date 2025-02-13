@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -46,12 +46,10 @@ export type ResourceIdLayerCollectionTypeEnum = typeof ResourceIdLayerCollection
 /**
  * Check if a given object implements the ResourceIdLayerCollection interface.
  */
-export function instanceOfResourceIdLayerCollection(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfResourceIdLayerCollection(value: object): value is ResourceIdLayerCollection {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function ResourceIdLayerCollectionFromJSON(json: any): ResourceIdLayerCollection {
@@ -59,7 +57,7 @@ export function ResourceIdLayerCollectionFromJSON(json: any): ResourceIdLayerCol
 }
 
 export function ResourceIdLayerCollectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceIdLayerCollection {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -69,17 +67,19 @@ export function ResourceIdLayerCollectionFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function ResourceIdLayerCollectionToJSON(value?: ResourceIdLayerCollection | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ResourceIdLayerCollectionToJSON(json: any): ResourceIdLayerCollection {
+    return ResourceIdLayerCollectionToJSONTyped(json, false);
+}
+
+export function ResourceIdLayerCollectionToJSONTyped(value?: ResourceIdLayerCollection | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
 

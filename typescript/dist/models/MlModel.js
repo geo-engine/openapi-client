@@ -13,27 +13,33 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MlModelToJSON = exports.MlModelFromJSONTyped = exports.MlModelFromJSON = exports.instanceOfMlModel = void 0;
+exports.instanceOfMlModel = instanceOfMlModel;
+exports.MlModelFromJSON = MlModelFromJSON;
+exports.MlModelFromJSONTyped = MlModelFromJSONTyped;
+exports.MlModelToJSON = MlModelToJSON;
+exports.MlModelToJSONTyped = MlModelToJSONTyped;
 const MlModelMetadata_1 = require("./MlModelMetadata");
 /**
  * Check if a given object implements the MlModel interface.
  */
 function instanceOfMlModel(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "metadata" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "upload" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('displayName' in value) || value['displayName'] === undefined)
+        return false;
+    if (!('metadata' in value) || value['metadata'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('upload' in value) || value['upload'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfMlModel = instanceOfMlModel;
 function MlModelFromJSON(json) {
     return MlModelFromJSONTyped(json, false);
 }
-exports.MlModelFromJSON = MlModelFromJSON;
 function MlModelFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -44,20 +50,18 @@ function MlModelFromJSONTyped(json, ignoreDiscriminator) {
         'upload': json['upload'],
     };
 }
-exports.MlModelFromJSONTyped = MlModelFromJSONTyped;
-function MlModelToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function MlModelToJSON(json) {
+    return MlModelToJSONTyped(json, false);
+}
+function MlModelToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'displayName': value.displayName,
-        'metadata': (0, MlModelMetadata_1.MlModelMetadataToJSON)(value.metadata),
-        'name': value.name,
-        'upload': value.upload,
+        'description': value['description'],
+        'displayName': value['displayName'],
+        'metadata': (0, MlModelMetadata_1.MlModelMetadataToJSON)(value['metadata']),
+        'name': value['name'],
+        'upload': value['upload'],
     };
 }
-exports.MlModelToJSON = MlModelToJSON;

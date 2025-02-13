@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.raster_colorizer import RasterColorizer  # noqa: E501
+from geoengine_openapi_client.models.raster_colorizer import RasterColorizer
 
 class TestRasterColorizer(unittest.TestCase):
     """RasterColorizer unit test stubs"""
@@ -29,12 +28,12 @@ class TestRasterColorizer(unittest.TestCase):
 
     def make_instance(self, include_optional) -> RasterColorizer:
         """Test RasterColorizer
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `RasterColorizer`
         """
-        model = RasterColorizer()  # noqa: E501
+        model = RasterColorizer()
         if include_optional:
             return RasterColorizer(
                 band = 0,

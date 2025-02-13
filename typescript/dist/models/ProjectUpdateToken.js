@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectUpdateTokenToJSON = exports.instanceOfProjectUpdateToken = exports.ProjectUpdateTokenFromJSONTyped = exports.ProjectUpdateTokenFromJSON = exports.ProjectUpdateToken = void 0;
+exports.ProjectUpdateToken = void 0;
+exports.instanceOfProjectUpdateToken = instanceOfProjectUpdateToken;
+exports.ProjectUpdateTokenFromJSON = ProjectUpdateTokenFromJSON;
+exports.ProjectUpdateTokenFromJSONTyped = ProjectUpdateTokenFromJSONTyped;
+exports.ProjectUpdateTokenToJSON = ProjectUpdateTokenToJSON;
+exports.ProjectUpdateTokenToJSONTyped = ProjectUpdateTokenToJSONTyped;
 /**
  *
  * @export
@@ -22,19 +27,25 @@ exports.ProjectUpdateToken = {
     None: 'none',
     Delete: 'delete'
 };
+function instanceOfProjectUpdateToken(value) {
+    for (const key in exports.ProjectUpdateToken) {
+        if (Object.prototype.hasOwnProperty.call(exports.ProjectUpdateToken, key)) {
+            if (exports.ProjectUpdateToken[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function ProjectUpdateTokenFromJSON(json) {
     return ProjectUpdateTokenFromJSONTyped(json, false);
 }
-exports.ProjectUpdateTokenFromJSON = ProjectUpdateTokenFromJSON;
 function ProjectUpdateTokenFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.ProjectUpdateTokenFromJSONTyped = ProjectUpdateTokenFromJSONTyped;
-function instanceOfProjectUpdateToken(value) {
-    return value === exports.ProjectUpdateToken.None || value === exports.ProjectUpdateToken.Delete;
-}
-exports.instanceOfProjectUpdateToken = instanceOfProjectUpdateToken;
 function ProjectUpdateTokenToJSON(value) {
     return value;
 }
-exports.ProjectUpdateTokenToJSON = ProjectUpdateTokenToJSON;
+function ProjectUpdateTokenToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

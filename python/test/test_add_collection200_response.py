@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.add_collection200_response import AddCollection200Response  # noqa: E501
+from geoengine_openapi_client.models.add_collection200_response import AddCollection200Response
 
 class TestAddCollection200Response(unittest.TestCase):
     """AddCollection200Response unit test stubs"""
@@ -29,12 +28,12 @@ class TestAddCollection200Response(unittest.TestCase):
 
     def make_instance(self, include_optional) -> AddCollection200Response:
         """Test AddCollection200Response
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `AddCollection200Response`
         """
-        model = AddCollection200Response()  # noqa: E501
+        model = AddCollection200Response()
         if include_optional:
             return AddCollection200Response(
                 id = ''

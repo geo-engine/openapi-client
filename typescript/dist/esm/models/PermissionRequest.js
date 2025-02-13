@@ -17,17 +17,19 @@ import { ResourceFromJSON, ResourceToJSON, } from './Resource';
  * Check if a given object implements the PermissionRequest interface.
  */
 export function instanceOfPermissionRequest(value) {
-    let isInstance = true;
-    isInstance = isInstance && "permission" in value;
-    isInstance = isInstance && "resource" in value;
-    isInstance = isInstance && "roleId" in value;
-    return isInstance;
+    if (!('permission' in value) || value['permission'] === undefined)
+        return false;
+    if (!('resource' in value) || value['resource'] === undefined)
+        return false;
+    if (!('roleId' in value) || value['roleId'] === undefined)
+        return false;
+    return true;
 }
 export function PermissionRequestFromJSON(json) {
     return PermissionRequestFromJSONTyped(json, false);
 }
 export function PermissionRequestFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -36,16 +38,16 @@ export function PermissionRequestFromJSONTyped(json, ignoreDiscriminator) {
         'roleId': json['roleId'],
     };
 }
-export function PermissionRequestToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function PermissionRequestToJSON(json) {
+    return PermissionRequestToJSONTyped(json, false);
+}
+export function PermissionRequestToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'permission': PermissionToJSON(value.permission),
-        'resource': ResourceToJSON(value.resource),
-        'roleId': value.roleId,
+        'permission': PermissionToJSON(value['permission']),
+        'resource': ResourceToJSON(value['resource']),
+        'roleId': value['roleId'],
     };
 }

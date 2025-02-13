@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Coordinate2D } from './Coordinate2D';
 import {
     Coordinate2DFromJSON,
     Coordinate2DFromJSONTyped,
     Coordinate2DToJSON,
+    Coordinate2DToJSONTyped,
 } from './Coordinate2D';
 
 /**
@@ -44,12 +45,10 @@ export interface BoundingBox2D {
 /**
  * Check if a given object implements the BoundingBox2D interface.
  */
-export function instanceOfBoundingBox2D(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "lowerLeftCoordinate" in value;
-    isInstance = isInstance && "upperRightCoordinate" in value;
-
-    return isInstance;
+export function instanceOfBoundingBox2D(value: object): value is BoundingBox2D {
+    if (!('lowerLeftCoordinate' in value) || value['lowerLeftCoordinate'] === undefined) return false;
+    if (!('upperRightCoordinate' in value) || value['upperRightCoordinate'] === undefined) return false;
+    return true;
 }
 
 export function BoundingBox2DFromJSON(json: any): BoundingBox2D {
@@ -57,7 +56,7 @@ export function BoundingBox2DFromJSON(json: any): BoundingBox2D {
 }
 
 export function BoundingBox2DFromJSONTyped(json: any, ignoreDiscriminator: boolean): BoundingBox2D {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,17 +66,19 @@ export function BoundingBox2DFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function BoundingBox2DToJSON(value?: BoundingBox2D | null): any {
-    if (value === undefined) {
-        return undefined;
+export function BoundingBox2DToJSON(json: any): BoundingBox2D {
+    return BoundingBox2DToJSONTyped(json, false);
+}
+
+export function BoundingBox2DToJSONTyped(value?: BoundingBox2D | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'lowerLeftCoordinate': Coordinate2DToJSON(value.lowerLeftCoordinate),
-        'upperRightCoordinate': Coordinate2DToJSON(value.upperRightCoordinate),
+        'lowerLeftCoordinate': Coordinate2DToJSON(value['lowerLeftCoordinate']),
+        'upperRightCoordinate': Coordinate2DToJSON(value['upperRightCoordinate']),
     };
 }
 

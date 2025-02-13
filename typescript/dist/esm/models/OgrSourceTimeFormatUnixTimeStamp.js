@@ -22,16 +22,17 @@ export const OgrSourceTimeFormatUnixTimeStampFormatEnum = {
  * Check if a given object implements the OgrSourceTimeFormatUnixTimeStamp interface.
  */
 export function instanceOfOgrSourceTimeFormatUnixTimeStamp(value) {
-    let isInstance = true;
-    isInstance = isInstance && "format" in value;
-    isInstance = isInstance && "timestampType" in value;
-    return isInstance;
+    if (!('format' in value) || value['format'] === undefined)
+        return false;
+    if (!('timestampType' in value) || value['timestampType'] === undefined)
+        return false;
+    return true;
 }
 export function OgrSourceTimeFormatUnixTimeStampFromJSON(json) {
     return OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, false);
 }
 export function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +40,15 @@ export function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, ignoreDiscri
         'timestampType': UnixTimeStampTypeFromJSON(json['timestampType']),
     };
 }
-export function OgrSourceTimeFormatUnixTimeStampToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function OgrSourceTimeFormatUnixTimeStampToJSON(json) {
+    return OgrSourceTimeFormatUnixTimeStampToJSONTyped(json, false);
+}
+export function OgrSourceTimeFormatUnixTimeStampToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'format': value.format,
-        'timestampType': UnixTimeStampTypeToJSON(value.timestampType),
+        'format': value['format'],
+        'timestampType': UnixTimeStampTypeToJSON(value['timestampType']),
     };
 }

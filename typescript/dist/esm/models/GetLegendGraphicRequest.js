@@ -18,6 +18,16 @@
 export const GetLegendGraphicRequest = {
     GetLegendGraphic: 'GetLegendGraphic'
 };
+export function instanceOfGetLegendGraphicRequest(value) {
+    for (const key in GetLegendGraphicRequest) {
+        if (Object.prototype.hasOwnProperty.call(GetLegendGraphicRequest, key)) {
+            if (GetLegendGraphicRequest[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function GetLegendGraphicRequestFromJSON(json) {
     return GetLegendGraphicRequestFromJSONTyped(json, false);
 }
@@ -25,5 +35,8 @@ export function GetLegendGraphicRequestFromJSONTyped(json, ignoreDiscriminator) 
     return json;
 }
 export function GetLegendGraphicRequestToJSON(value) {
+    return value;
+}
+export function GetLegendGraphicRequestToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

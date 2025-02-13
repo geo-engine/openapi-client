@@ -13,24 +13,27 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GdalSourceTimePlaceholderToJSON = exports.GdalSourceTimePlaceholderFromJSONTyped = exports.GdalSourceTimePlaceholderFromJSON = exports.instanceOfGdalSourceTimePlaceholder = void 0;
+exports.instanceOfGdalSourceTimePlaceholder = instanceOfGdalSourceTimePlaceholder;
+exports.GdalSourceTimePlaceholderFromJSON = GdalSourceTimePlaceholderFromJSON;
+exports.GdalSourceTimePlaceholderFromJSONTyped = GdalSourceTimePlaceholderFromJSONTyped;
+exports.GdalSourceTimePlaceholderToJSON = GdalSourceTimePlaceholderToJSON;
+exports.GdalSourceTimePlaceholderToJSONTyped = GdalSourceTimePlaceholderToJSONTyped;
 const TimeReference_1 = require("./TimeReference");
 /**
  * Check if a given object implements the GdalSourceTimePlaceholder interface.
  */
 function instanceOfGdalSourceTimePlaceholder(value) {
-    let isInstance = true;
-    isInstance = isInstance && "format" in value;
-    isInstance = isInstance && "reference" in value;
-    return isInstance;
+    if (!('format' in value) || value['format'] === undefined)
+        return false;
+    if (!('reference' in value) || value['reference'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfGdalSourceTimePlaceholder = instanceOfGdalSourceTimePlaceholder;
 function GdalSourceTimePlaceholderFromJSON(json) {
     return GdalSourceTimePlaceholderFromJSONTyped(json, false);
 }
-exports.GdalSourceTimePlaceholderFromJSON = GdalSourceTimePlaceholderFromJSON;
 function GdalSourceTimePlaceholderFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,17 +41,15 @@ function GdalSourceTimePlaceholderFromJSONTyped(json, ignoreDiscriminator) {
         'reference': (0, TimeReference_1.TimeReferenceFromJSON)(json['reference']),
     };
 }
-exports.GdalSourceTimePlaceholderFromJSONTyped = GdalSourceTimePlaceholderFromJSONTyped;
-function GdalSourceTimePlaceholderToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function GdalSourceTimePlaceholderToJSON(json) {
+    return GdalSourceTimePlaceholderToJSONTyped(json, false);
+}
+function GdalSourceTimePlaceholderToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'format': value.format,
-        'reference': (0, TimeReference_1.TimeReferenceToJSON)(value.reference),
+        'format': value['format'],
+        'reference': (0, TimeReference_1.TimeReferenceToJSON)(value['reference']),
     };
 }
-exports.GdalSourceTimePlaceholderToJSON = GdalSourceTimePlaceholderToJSON;

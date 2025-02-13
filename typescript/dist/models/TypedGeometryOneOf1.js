@@ -13,39 +13,39 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedGeometryOneOf1ToJSON = exports.TypedGeometryOneOf1FromJSONTyped = exports.TypedGeometryOneOf1FromJSON = exports.instanceOfTypedGeometryOneOf1 = void 0;
+exports.instanceOfTypedGeometryOneOf1 = instanceOfTypedGeometryOneOf1;
+exports.TypedGeometryOneOf1FromJSON = TypedGeometryOneOf1FromJSON;
+exports.TypedGeometryOneOf1FromJSONTyped = TypedGeometryOneOf1FromJSONTyped;
+exports.TypedGeometryOneOf1ToJSON = TypedGeometryOneOf1ToJSON;
+exports.TypedGeometryOneOf1ToJSONTyped = TypedGeometryOneOf1ToJSONTyped;
 const MultiPoint_1 = require("./MultiPoint");
 /**
  * Check if a given object implements the TypedGeometryOneOf1 interface.
  */
 function instanceOfTypedGeometryOneOf1(value) {
-    let isInstance = true;
-    isInstance = isInstance && "multiPoint" in value;
-    return isInstance;
+    if (!('multiPoint' in value) || value['multiPoint'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTypedGeometryOneOf1 = instanceOfTypedGeometryOneOf1;
 function TypedGeometryOneOf1FromJSON(json) {
     return TypedGeometryOneOf1FromJSONTyped(json, false);
 }
-exports.TypedGeometryOneOf1FromJSON = TypedGeometryOneOf1FromJSON;
 function TypedGeometryOneOf1FromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'multiPoint': (0, MultiPoint_1.MultiPointFromJSON)(json['MultiPoint']),
     };
 }
-exports.TypedGeometryOneOf1FromJSONTyped = TypedGeometryOneOf1FromJSONTyped;
-function TypedGeometryOneOf1ToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TypedGeometryOneOf1ToJSON(json) {
+    return TypedGeometryOneOf1ToJSONTyped(json, false);
+}
+function TypedGeometryOneOf1ToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'MultiPoint': (0, MultiPoint_1.MultiPointToJSON)(value.multiPoint),
+        'MultiPoint': (0, MultiPoint_1.MultiPointToJSON)(value['multiPoint']),
     };
 }
-exports.TypedGeometryOneOf1ToJSON = TypedGeometryOneOf1ToJSON;

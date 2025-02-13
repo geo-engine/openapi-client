@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { STRectangle } from './STRectangle';
 import type { TimeStep } from './TimeStep';
+import type { STRectangle } from './STRectangle';
 /**
  *
  * @export
@@ -45,7 +45,8 @@ export interface CreateProject {
 /**
  * Check if a given object implements the CreateProject interface.
  */
-export declare function instanceOfCreateProject(value: object): boolean;
+export declare function instanceOfCreateProject(value: object): value is CreateProject;
 export declare function CreateProjectFromJSON(json: any): CreateProject;
 export declare function CreateProjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateProject;
-export declare function CreateProjectToJSON(value?: CreateProject | null): any;
+export declare function CreateProjectToJSON(json: any): CreateProject;
+export declare function CreateProjectToJSONTyped(value?: CreateProject | null, ignoreDiscriminator?: boolean): any;

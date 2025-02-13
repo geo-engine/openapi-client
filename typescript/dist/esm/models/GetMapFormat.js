@@ -18,6 +18,16 @@
 export const GetMapFormat = {
     ImagePng: 'image/png'
 };
+export function instanceOfGetMapFormat(value) {
+    for (const key in GetMapFormat) {
+        if (Object.prototype.hasOwnProperty.call(GetMapFormat, key)) {
+            if (GetMapFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function GetMapFormatFromJSON(json) {
     return GetMapFormatFromJSONTyped(json, false);
 }
@@ -25,5 +35,8 @@ export function GetMapFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function GetMapFormatToJSON(value) {
+    return value;
+}
+export function GetMapFormatToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

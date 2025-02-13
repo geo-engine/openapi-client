@@ -21,16 +21,17 @@ export const DatasetResourceTypeEnum = {
  * Check if a given object implements the DatasetResource interface.
  */
 export function instanceOfDatasetResource(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function DatasetResourceFromJSON(json) {
     return DatasetResourceFromJSONTyped(json, false);
 }
 export function DatasetResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,15 +39,15 @@ export function DatasetResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function DatasetResourceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function DatasetResourceToJSON(json) {
+    return DatasetResourceToJSONTyped(json, false);
+}
+export function DatasetResourceToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }

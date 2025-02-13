@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface UserCredentials {
 /**
  * Check if a given object implements the UserCredentials interface.
  */
-export function instanceOfUserCredentials(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "password" in value;
-
-    return isInstance;
+export function instanceOfUserCredentials(value: object): value is UserCredentials {
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
+    return true;
 }
 
 export function UserCredentialsFromJSON(json: any): UserCredentials {
@@ -49,7 +47,7 @@ export function UserCredentialsFromJSON(json: any): UserCredentials {
 }
 
 export function UserCredentialsFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserCredentials {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function UserCredentialsFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function UserCredentialsToJSON(value?: UserCredentials | null): any {
-    if (value === undefined) {
-        return undefined;
+export function UserCredentialsToJSON(json: any): UserCredentials {
+    return UserCredentialsToJSONTyped(json, false);
+}
+
+export function UserCredentialsToJSONTyped(value?: UserCredentials | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'email': value.email,
-        'password': value.password,
+        'email': value['email'],
+        'password': value['password'],
     };
 }
 

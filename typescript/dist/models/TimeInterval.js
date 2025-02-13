@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TimeIntervalToJSON = exports.TimeIntervalFromJSONTyped = exports.TimeIntervalFromJSON = exports.instanceOfTimeInterval = void 0;
+exports.instanceOfTimeInterval = instanceOfTimeInterval;
+exports.TimeIntervalFromJSON = TimeIntervalFromJSON;
+exports.TimeIntervalFromJSONTyped = TimeIntervalFromJSONTyped;
+exports.TimeIntervalToJSON = TimeIntervalToJSON;
+exports.TimeIntervalToJSONTyped = TimeIntervalToJSONTyped;
 /**
  * Check if a given object implements the TimeInterval interface.
  */
 function instanceOfTimeInterval(value) {
-    let isInstance = true;
-    isInstance = isInstance && "end" in value;
-    isInstance = isInstance && "start" in value;
-    return isInstance;
+    if (!('end' in value) || value['end'] === undefined)
+        return false;
+    if (!('start' in value) || value['start'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTimeInterval = instanceOfTimeInterval;
 function TimeIntervalFromJSON(json) {
     return TimeIntervalFromJSONTyped(json, false);
 }
-exports.TimeIntervalFromJSON = TimeIntervalFromJSON;
 function TimeIntervalFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function TimeIntervalFromJSONTyped(json, ignoreDiscriminator) {
         'start': json['start'],
     };
 }
-exports.TimeIntervalFromJSONTyped = TimeIntervalFromJSONTyped;
-function TimeIntervalToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TimeIntervalToJSON(json) {
+    return TimeIntervalToJSONTyped(json, false);
+}
+function TimeIntervalToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'end': value.end,
-        'start': value.start,
+        'end': value['end'],
+        'start': value['start'],
     };
 }
-exports.TimeIntervalToJSON = TimeIntervalToJSON;

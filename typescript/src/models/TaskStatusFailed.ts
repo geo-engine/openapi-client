@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -52,13 +52,11 @@ export type TaskStatusFailedStatusEnum = typeof TaskStatusFailedStatusEnum[keyof
 /**
  * Check if a given object implements the TaskStatusFailed interface.
  */
-export function instanceOfTaskStatusFailed(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "cleanUp" in value;
-    isInstance = isInstance && "error" in value;
-    isInstance = isInstance && "status" in value;
-
-    return isInstance;
+export function instanceOfTaskStatusFailed(value: object): value is TaskStatusFailed {
+    if (!('cleanUp' in value) || value['cleanUp'] === undefined) return false;
+    if (!('error' in value) || value['error'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    return true;
 }
 
 export function TaskStatusFailedFromJSON(json: any): TaskStatusFailed {
@@ -66,7 +64,7 @@ export function TaskStatusFailedFromJSON(json: any): TaskStatusFailed {
 }
 
 export function TaskStatusFailedFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatusFailed {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -77,18 +75,20 @@ export function TaskStatusFailedFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function TaskStatusFailedToJSON(value?: TaskStatusFailed | null): any {
-    if (value === undefined) {
-        return undefined;
+export function TaskStatusFailedToJSON(json: any): TaskStatusFailed {
+    return TaskStatusFailedToJSONTyped(json, false);
+}
+
+export function TaskStatusFailedToJSONTyped(value?: TaskStatusFailed | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'cleanUp': value.cleanUp,
-        'error': value.error,
-        'status': value.status,
+        'cleanUp': value['cleanUp'],
+        'error': value['error'],
+        'status': value['status'],
     };
 }
 

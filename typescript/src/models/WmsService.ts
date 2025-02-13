@@ -23,6 +23,17 @@ export const WmsService = {
 export type WmsService = typeof WmsService[keyof typeof WmsService];
 
 
+export function instanceOfWmsService(value: any): boolean {
+    for (const key in WmsService) {
+        if (Object.prototype.hasOwnProperty.call(WmsService, key)) {
+            if (WmsService[key as keyof typeof WmsService] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function WmsServiceFromJSON(json: any): WmsService {
     return WmsServiceFromJSONTyped(json, false);
 }
@@ -33,5 +44,9 @@ export function WmsServiceFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 
 export function WmsServiceToJSON(value?: WmsService | null): any {
     return value as any;
+}
+
+export function WmsServiceToJSONTyped(value: any, ignoreDiscriminator: boolean): WmsService {
+    return value as WmsService;
 }
 

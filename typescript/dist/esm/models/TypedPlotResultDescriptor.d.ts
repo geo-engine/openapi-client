@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { BoundingBox2D } from './BoundingBox2D';
 import type { TimeInterval } from './TimeInterval';
+import type { BoundingBox2D } from './BoundingBox2D';
 /**
  * A `ResultDescriptor` for plot queries
  * @export
@@ -52,7 +52,8 @@ export type TypedPlotResultDescriptorTypeEnum = typeof TypedPlotResultDescriptor
 /**
  * Check if a given object implements the TypedPlotResultDescriptor interface.
  */
-export declare function instanceOfTypedPlotResultDescriptor(value: object): boolean;
+export declare function instanceOfTypedPlotResultDescriptor(value: object): value is TypedPlotResultDescriptor;
 export declare function TypedPlotResultDescriptorFromJSON(json: any): TypedPlotResultDescriptor;
 export declare function TypedPlotResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedPlotResultDescriptor;
-export declare function TypedPlotResultDescriptorToJSON(value?: TypedPlotResultDescriptor | null): any;
+export declare function TypedPlotResultDescriptorToJSON(json: any): TypedPlotResultDescriptor;
+export declare function TypedPlotResultDescriptorToJSONTyped(value?: TypedPlotResultDescriptor | null, ignoreDiscriminator?: boolean): any;

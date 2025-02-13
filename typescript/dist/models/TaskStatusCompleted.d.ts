@@ -62,7 +62,8 @@ export type TaskStatusCompletedStatusEnum = typeof TaskStatusCompletedStatusEnum
 /**
  * Check if a given object implements the TaskStatusCompleted interface.
  */
-export declare function instanceOfTaskStatusCompleted(value: object): boolean;
+export declare function instanceOfTaskStatusCompleted(value: object): value is TaskStatusCompleted;
 export declare function TaskStatusCompletedFromJSON(json: any): TaskStatusCompleted;
 export declare function TaskStatusCompletedFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatusCompleted;
-export declare function TaskStatusCompletedToJSON(value?: TaskStatusCompleted | null): any;
+export declare function TaskStatusCompletedToJSON(json: any): TaskStatusCompleted;
+export declare function TaskStatusCompletedToJSONTyped(value?: TaskStatusCompleted | null, ignoreDiscriminator?: boolean): any;

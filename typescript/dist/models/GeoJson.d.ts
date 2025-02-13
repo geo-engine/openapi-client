@@ -32,7 +32,8 @@ export interface GeoJson {
 /**
  * Check if a given object implements the GeoJson interface.
  */
-export declare function instanceOfGeoJson(value: object): boolean;
+export declare function instanceOfGeoJson(value: object): value is GeoJson;
 export declare function GeoJsonFromJSON(json: any): GeoJson;
 export declare function GeoJsonFromJSONTyped(json: any, ignoreDiscriminator: boolean): GeoJson;
-export declare function GeoJsonToJSON(value?: GeoJson | null): any;
+export declare function GeoJsonToJSON(json: any): GeoJson;
+export declare function GeoJsonToJSONTyped(value?: GeoJson | null, ignoreDiscriminator?: boolean): any;

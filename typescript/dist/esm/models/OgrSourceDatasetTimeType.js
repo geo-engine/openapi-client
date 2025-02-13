@@ -19,38 +19,38 @@ export function OgrSourceDatasetTimeTypeFromJSON(json) {
     return OgrSourceDatasetTimeTypeFromJSONTyped(json, false);
 }
 export function OgrSourceDatasetTimeTypeFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'none':
-            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, true)), { type: 'none' });
+            return Object.assign({}, OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, true), { type: 'none' });
         case 'start':
-            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeStartFromJSONTyped(json, true)), { type: 'start' });
+            return Object.assign({}, OgrSourceDatasetTimeTypeStartFromJSONTyped(json, true), { type: 'start' });
         case 'start+duration':
-            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, true)), { type: 'start+duration' });
+            return Object.assign({}, OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, true), { type: 'start+duration' });
         case 'start+end':
-            return Object.assign(Object.assign({}, OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, true)), { type: 'start+end' });
+            return Object.assign({}, OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, true), { type: 'start+end' });
         default:
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${json['type']}'`);
     }
 }
-export function OgrSourceDatasetTimeTypeToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function OgrSourceDatasetTimeTypeToJSON(json) {
+    return OgrSourceDatasetTimeTypeToJSONTyped(json, false);
+}
+export function OgrSourceDatasetTimeTypeToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'none':
-            return OgrSourceDatasetTimeTypeNoneToJSON(value);
+            return Object.assign({}, OgrSourceDatasetTimeTypeNoneToJSON(value), { type: 'none' });
         case 'start':
-            return OgrSourceDatasetTimeTypeStartToJSON(value);
+            return Object.assign({}, OgrSourceDatasetTimeTypeStartToJSON(value), { type: 'start' });
         case 'start+duration':
-            return OgrSourceDatasetTimeTypeStartDurationToJSON(value);
+            return Object.assign({}, OgrSourceDatasetTimeTypeStartDurationToJSON(value), { type: 'start+duration' });
         case 'start+end':
-            return OgrSourceDatasetTimeTypeStartEndToJSON(value);
+            return Object.assign({}, OgrSourceDatasetTimeTypeStartEndToJSON(value), { type: 'start+end' });
         default:
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${value['type']}'`);
     }

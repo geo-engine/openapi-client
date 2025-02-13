@@ -15,29 +15,29 @@
  * Check if a given object implements the VolumeFileLayersResponse interface.
  */
 export function instanceOfVolumeFileLayersResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "layers" in value;
-    return isInstance;
+    if (!('layers' in value) || value['layers'] === undefined)
+        return false;
+    return true;
 }
 export function VolumeFileLayersResponseFromJSON(json) {
     return VolumeFileLayersResponseFromJSONTyped(json, false);
 }
 export function VolumeFileLayersResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'layers': json['layers'],
     };
 }
-export function VolumeFileLayersResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function VolumeFileLayersResponseToJSON(json) {
+    return VolumeFileLayersResponseToJSONTyped(json, false);
+}
+export function VolumeFileLayersResponseToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'layers': value.layers,
+        'layers': value['layers'],
     };
 }

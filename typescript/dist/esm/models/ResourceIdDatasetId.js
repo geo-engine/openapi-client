@@ -21,16 +21,17 @@ export const ResourceIdDatasetIdTypeEnum = {
  * Check if a given object implements the ResourceIdDatasetId interface.
  */
 export function instanceOfResourceIdDatasetId(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function ResourceIdDatasetIdFromJSON(json) {
     return ResourceIdDatasetIdFromJSONTyped(json, false);
 }
 export function ResourceIdDatasetIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,15 +39,15 @@ export function ResourceIdDatasetIdFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function ResourceIdDatasetIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ResourceIdDatasetIdToJSON(json) {
+    return ResourceIdDatasetIdToJSONTyped(json, false);
+}
+export function ResourceIdDatasetIdToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }

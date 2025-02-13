@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { OgrSourceDurationSpec } from './OgrSourceDurationSpec';
 import type { OgrSourceTimeFormat } from './OgrSourceTimeFormat';
+import type { OgrSourceDurationSpec } from './OgrSourceDurationSpec';
 /**
  *
  * @export
@@ -52,7 +52,8 @@ export type OgrSourceDatasetTimeTypeStartTypeEnum = typeof OgrSourceDatasetTimeT
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeStart interface.
  */
-export declare function instanceOfOgrSourceDatasetTimeTypeStart(value: object): boolean;
+export declare function instanceOfOgrSourceDatasetTimeTypeStart(value: object): value is OgrSourceDatasetTimeTypeStart;
 export declare function OgrSourceDatasetTimeTypeStartFromJSON(json: any): OgrSourceDatasetTimeTypeStart;
 export declare function OgrSourceDatasetTimeTypeStartFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDatasetTimeTypeStart;
-export declare function OgrSourceDatasetTimeTypeStartToJSON(value?: OgrSourceDatasetTimeTypeStart | null): any;
+export declare function OgrSourceDatasetTimeTypeStartToJSON(json: any): OgrSourceDatasetTimeTypeStart;
+export declare function OgrSourceDatasetTimeTypeStartToJSONTyped(value?: OgrSourceDatasetTimeTypeStart | null, ignoreDiscriminator?: boolean): any;

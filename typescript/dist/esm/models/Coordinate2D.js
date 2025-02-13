@@ -15,16 +15,17 @@
  * Check if a given object implements the Coordinate2D interface.
  */
 export function instanceOfCoordinate2D(value) {
-    let isInstance = true;
-    isInstance = isInstance && "x" in value;
-    isInstance = isInstance && "y" in value;
-    return isInstance;
+    if (!('x' in value) || value['x'] === undefined)
+        return false;
+    if (!('y' in value) || value['y'] === undefined)
+        return false;
+    return true;
 }
 export function Coordinate2DFromJSON(json) {
     return Coordinate2DFromJSONTyped(json, false);
 }
 export function Coordinate2DFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -32,15 +33,15 @@ export function Coordinate2DFromJSONTyped(json, ignoreDiscriminator) {
         'y': json['y'],
     };
 }
-export function Coordinate2DToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function Coordinate2DToJSON(json) {
+    return Coordinate2DToJSONTyped(json, false);
+}
+export function Coordinate2DToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'x': value.x,
-        'y': value.y,
+        'x': value['x'],
+        'y': value['y'],
     };
 }

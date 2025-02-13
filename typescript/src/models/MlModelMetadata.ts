@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { RasterDataType } from './RasterDataType';
 import {
     RasterDataTypeFromJSON,
     RasterDataTypeFromJSONTyped,
     RasterDataTypeToJSON,
+    RasterDataTypeToJSONTyped,
 } from './RasterDataType';
 
 /**
@@ -52,17 +53,17 @@ export interface MlModelMetadata {
     outputType: RasterDataType;
 }
 
+
+
 /**
  * Check if a given object implements the MlModelMetadata interface.
  */
-export function instanceOfMlModelMetadata(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "fileName" in value;
-    isInstance = isInstance && "inputType" in value;
-    isInstance = isInstance && "numInputBands" in value;
-    isInstance = isInstance && "outputType" in value;
-
-    return isInstance;
+export function instanceOfMlModelMetadata(value: object): value is MlModelMetadata {
+    if (!('fileName' in value) || value['fileName'] === undefined) return false;
+    if (!('inputType' in value) || value['inputType'] === undefined) return false;
+    if (!('numInputBands' in value) || value['numInputBands'] === undefined) return false;
+    if (!('outputType' in value) || value['outputType'] === undefined) return false;
+    return true;
 }
 
 export function MlModelMetadataFromJSON(json: any): MlModelMetadata {
@@ -70,7 +71,7 @@ export function MlModelMetadataFromJSON(json: any): MlModelMetadata {
 }
 
 export function MlModelMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): MlModelMetadata {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -82,19 +83,21 @@ export function MlModelMetadataFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function MlModelMetadataToJSON(value?: MlModelMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
+export function MlModelMetadataToJSON(json: any): MlModelMetadata {
+    return MlModelMetadataToJSONTyped(json, false);
+}
+
+export function MlModelMetadataToJSONTyped(value?: MlModelMetadata | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'fileName': value.fileName,
-        'inputType': RasterDataTypeToJSON(value.inputType),
-        'numInputBands': value.numInputBands,
-        'outputType': RasterDataTypeToJSON(value.outputType),
+        'fileName': value['fileName'],
+        'inputType': RasterDataTypeToJSON(value['inputType']),
+        'numInputBands': value['numInputBands'],
+        'outputType': RasterDataTypeToJSON(value['outputType']),
     };
 }
 

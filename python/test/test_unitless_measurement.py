@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.unitless_measurement import UnitlessMeasurement  # noqa: E501
+from geoengine_openapi_client.models.unitless_measurement import UnitlessMeasurement
 
 class TestUnitlessMeasurement(unittest.TestCase):
     """UnitlessMeasurement unit test stubs"""
@@ -29,12 +28,12 @@ class TestUnitlessMeasurement(unittest.TestCase):
 
     def make_instance(self, include_optional) -> UnitlessMeasurement:
         """Test UnitlessMeasurement
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UnitlessMeasurement`
         """
-        model = UnitlessMeasurement()  # noqa: E501
+        model = UnitlessMeasurement()
         if include_optional:
             return UnitlessMeasurement(
                 type = 'unitless'

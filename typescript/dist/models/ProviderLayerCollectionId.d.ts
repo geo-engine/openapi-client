@@ -31,7 +31,8 @@ export interface ProviderLayerCollectionId {
 /**
  * Check if a given object implements the ProviderLayerCollectionId interface.
  */
-export declare function instanceOfProviderLayerCollectionId(value: object): boolean;
+export declare function instanceOfProviderLayerCollectionId(value: object): value is ProviderLayerCollectionId;
 export declare function ProviderLayerCollectionIdFromJSON(json: any): ProviderLayerCollectionId;
 export declare function ProviderLayerCollectionIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProviderLayerCollectionId;
-export declare function ProviderLayerCollectionIdToJSON(value?: ProviderLayerCollectionId | null): any;
+export declare function ProviderLayerCollectionIdToJSON(json: any): ProviderLayerCollectionId;
+export declare function ProviderLayerCollectionIdToJSONTyped(value?: ProviderLayerCollectionId | null, ignoreDiscriminator?: boolean): any;

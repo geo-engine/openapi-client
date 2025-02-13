@@ -31,7 +31,8 @@ export interface SpatialResolution {
 /**
  * Check if a given object implements the SpatialResolution interface.
  */
-export declare function instanceOfSpatialResolution(value: object): boolean;
+export declare function instanceOfSpatialResolution(value: object): value is SpatialResolution;
 export declare function SpatialResolutionFromJSON(json: any): SpatialResolution;
 export declare function SpatialResolutionFromJSONTyped(json: any, ignoreDiscriminator: boolean): SpatialResolution;
-export declare function SpatialResolutionToJSON(value?: SpatialResolution | null): any;
+export declare function SpatialResolutionToJSON(json: any): SpatialResolution;
+export declare function SpatialResolutionToJSONTyped(value?: SpatialResolution | null, ignoreDiscriminator?: boolean): any;

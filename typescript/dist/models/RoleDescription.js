@@ -13,24 +13,27 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RoleDescriptionToJSON = exports.RoleDescriptionFromJSONTyped = exports.RoleDescriptionFromJSON = exports.instanceOfRoleDescription = void 0;
+exports.instanceOfRoleDescription = instanceOfRoleDescription;
+exports.RoleDescriptionFromJSON = RoleDescriptionFromJSON;
+exports.RoleDescriptionFromJSONTyped = RoleDescriptionFromJSONTyped;
+exports.RoleDescriptionToJSON = RoleDescriptionToJSON;
+exports.RoleDescriptionToJSONTyped = RoleDescriptionToJSONTyped;
 const Role_1 = require("./Role");
 /**
  * Check if a given object implements the RoleDescription interface.
  */
 function instanceOfRoleDescription(value) {
-    let isInstance = true;
-    isInstance = isInstance && "individual" in value;
-    isInstance = isInstance && "role" in value;
-    return isInstance;
+    if (!('individual' in value) || value['individual'] === undefined)
+        return false;
+    if (!('role' in value) || value['role'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfRoleDescription = instanceOfRoleDescription;
 function RoleDescriptionFromJSON(json) {
     return RoleDescriptionFromJSONTyped(json, false);
 }
-exports.RoleDescriptionFromJSON = RoleDescriptionFromJSON;
 function RoleDescriptionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,17 +41,15 @@ function RoleDescriptionFromJSONTyped(json, ignoreDiscriminator) {
         'role': (0, Role_1.RoleFromJSON)(json['role']),
     };
 }
-exports.RoleDescriptionFromJSONTyped = RoleDescriptionFromJSONTyped;
-function RoleDescriptionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function RoleDescriptionToJSON(json) {
+    return RoleDescriptionToJSONTyped(json, false);
+}
+function RoleDescriptionToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'individual': value.individual,
-        'role': (0, Role_1.RoleToJSON)(value.role),
+        'individual': value['individual'],
+        'role': (0, Role_1.RoleToJSON)(value['role']),
     };
 }
-exports.RoleDescriptionToJSON = RoleDescriptionToJSON;

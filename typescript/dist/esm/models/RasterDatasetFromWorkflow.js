@@ -11,44 +11,44 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { RasterQueryRectangleFromJSON, RasterQueryRectangleToJSON, } from './RasterQueryRectangle';
 /**
  * Check if a given object implements the RasterDatasetFromWorkflow interface.
  */
 export function instanceOfRasterDatasetFromWorkflow(value) {
-    let isInstance = true;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "query" in value;
-    return isInstance;
+    if (!('displayName' in value) || value['displayName'] === undefined)
+        return false;
+    if (!('query' in value) || value['query'] === undefined)
+        return false;
+    return true;
 }
 export function RasterDatasetFromWorkflowFromJSON(json) {
     return RasterDatasetFromWorkflowFromJSONTyped(json, false);
 }
 export function RasterDatasetFromWorkflowFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'asCog': !exists(json, 'asCog') ? undefined : json['asCog'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
+        'asCog': json['asCog'] == null ? undefined : json['asCog'],
+        'description': json['description'] == null ? undefined : json['description'],
         'displayName': json['displayName'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        'name': json['name'] == null ? undefined : json['name'],
         'query': RasterQueryRectangleFromJSON(json['query']),
     };
 }
-export function RasterDatasetFromWorkflowToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function RasterDatasetFromWorkflowToJSON(json) {
+    return RasterDatasetFromWorkflowToJSONTyped(json, false);
+}
+export function RasterDatasetFromWorkflowToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'asCog': value.asCog,
-        'description': value.description,
-        'displayName': value.displayName,
-        'name': value.name,
-        'query': RasterQueryRectangleToJSON(value.query),
+        'asCog': value['asCog'],
+        'description': value['description'],
+        'displayName': value['displayName'],
+        'name': value['name'],
+        'query': RasterQueryRectangleToJSON(value['query']),
     };
 }

@@ -37,7 +37,8 @@ export interface UserRegistration {
 /**
  * Check if a given object implements the UserRegistration interface.
  */
-export declare function instanceOfUserRegistration(value: object): boolean;
+export declare function instanceOfUserRegistration(value: object): value is UserRegistration;
 export declare function UserRegistrationFromJSON(json: any): UserRegistration;
 export declare function UserRegistrationFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserRegistration;
-export declare function UserRegistrationToJSON(value?: UserRegistration | null): any;
+export declare function UserRegistrationToJSON(json: any): UserRegistration;
+export declare function UserRegistrationToJSONTyped(value?: UserRegistration | null, ignoreDiscriminator?: boolean): any;

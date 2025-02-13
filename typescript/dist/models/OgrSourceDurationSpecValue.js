@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDurationSpecValueToJSON = exports.OgrSourceDurationSpecValueFromJSONTyped = exports.OgrSourceDurationSpecValueFromJSON = exports.instanceOfOgrSourceDurationSpecValue = exports.OgrSourceDurationSpecValueTypeEnum = void 0;
+exports.OgrSourceDurationSpecValueTypeEnum = void 0;
+exports.instanceOfOgrSourceDurationSpecValue = instanceOfOgrSourceDurationSpecValue;
+exports.OgrSourceDurationSpecValueFromJSON = OgrSourceDurationSpecValueFromJSON;
+exports.OgrSourceDurationSpecValueFromJSONTyped = OgrSourceDurationSpecValueFromJSONTyped;
+exports.OgrSourceDurationSpecValueToJSON = OgrSourceDurationSpecValueToJSON;
+exports.OgrSourceDurationSpecValueToJSONTyped = OgrSourceDurationSpecValueToJSONTyped;
 const TimeGranularity_1 = require("./TimeGranularity");
 /**
  * @export
@@ -25,19 +30,19 @@ exports.OgrSourceDurationSpecValueTypeEnum = {
  * Check if a given object implements the OgrSourceDurationSpecValue interface.
  */
 function instanceOfOgrSourceDurationSpecValue(value) {
-    let isInstance = true;
-    isInstance = isInstance && "granularity" in value;
-    isInstance = isInstance && "step" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('granularity' in value) || value['granularity'] === undefined)
+        return false;
+    if (!('step' in value) || value['step'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfOgrSourceDurationSpecValue = instanceOfOgrSourceDurationSpecValue;
 function OgrSourceDurationSpecValueFromJSON(json) {
     return OgrSourceDurationSpecValueFromJSONTyped(json, false);
 }
-exports.OgrSourceDurationSpecValueFromJSON = OgrSourceDurationSpecValueFromJSON;
 function OgrSourceDurationSpecValueFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -46,18 +51,16 @@ function OgrSourceDurationSpecValueFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.OgrSourceDurationSpecValueFromJSONTyped = OgrSourceDurationSpecValueFromJSONTyped;
-function OgrSourceDurationSpecValueToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function OgrSourceDurationSpecValueToJSON(json) {
+    return OgrSourceDurationSpecValueToJSONTyped(json, false);
+}
+function OgrSourceDurationSpecValueToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'granularity': (0, TimeGranularity_1.TimeGranularityToJSON)(value.granularity),
-        'step': value.step,
-        'type': value.type,
+        'granularity': (0, TimeGranularity_1.TimeGranularityToJSON)(value['granularity']),
+        'step': value['step'],
+        'type': value['type'],
     };
 }
-exports.OgrSourceDurationSpecValueToJSON = OgrSourceDurationSpecValueToJSON;

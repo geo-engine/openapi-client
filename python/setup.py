@@ -22,13 +22,13 @@ from setuptools import setup, find_packages  # noqa: H301
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 NAME = "geoengine-openapi-client"
-VERSION = "0.0.20"
-PYTHON_REQUIRES = ">=3.7"
+VERSION = "0.0.21"
+PYTHON_REQUIRES = ">= 3.8"
 REQUIRES = [
-    "urllib3 >= 1.25.3, < 2.1.0",
-    "python-dateutil",
-    "pydantic >= 1.10.5, < 2",
-    "aenum"
+    "urllib3 >= 1.25.3, < 3.0.0",
+    "python-dateutil >= 2.8.2",
+    "pydantic >= 2",
+    "typing-extensions >= 4.7.1",
 ]
 
 setup(

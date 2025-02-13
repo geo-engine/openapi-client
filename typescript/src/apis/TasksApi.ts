@@ -53,14 +53,17 @@ export class TasksApi extends runtime.BaseAPI {
      * Abort a running task.
      */
     async abortHandlerRaw(requestParameters: AbortHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling abortHandler.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling abortHandler().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.force !== undefined) {
-            queryParameters['force'] = requestParameters.force;
+        if (requestParameters['force'] != null) {
+            queryParameters['force'] = requestParameters['force'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -74,7 +77,7 @@ export class TasksApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/tasks/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/tasks/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -95,16 +98,25 @@ export class TasksApi extends runtime.BaseAPI {
      * Retrieve the status of all tasks.
      */
     async listHandlerRaw(requestParameters: ListHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaskStatusWithId>>> {
-        if (requestParameters.filter === null || requestParameters.filter === undefined) {
-            throw new runtime.RequiredError('filter','Required parameter requestParameters.filter was null or undefined when calling listHandler.');
+        if (requestParameters['filter'] == null) {
+            throw new runtime.RequiredError(
+                'filter',
+                'Required parameter "filter" was null or undefined when calling listHandler().'
+            );
         }
 
-        if (requestParameters.offset === null || requestParameters.offset === undefined) {
-            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling listHandler.');
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError(
+                'offset',
+                'Required parameter "offset" was null or undefined when calling listHandler().'
+            );
         }
 
-        if (requestParameters.limit === null || requestParameters.limit === undefined) {
-            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling listHandler.');
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError(
+                'limit',
+                'Required parameter "limit" was null or undefined when calling listHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -120,7 +132,7 @@ export class TasksApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/tasks/list`.replace(`{${"filter"}}`, encodeURIComponent(String(requestParameters.filter))).replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters.offset))).replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters.limit))),
+            path: `/tasks/list`.replace(`{${"filter"}}`, encodeURIComponent(String(requestParameters['filter']))).replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset']))).replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -141,8 +153,11 @@ export class TasksApi extends runtime.BaseAPI {
      * Retrieve the status of a task.
      */
     async statusHandlerRaw(requestParameters: StatusHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskStatus>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling statusHandler.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling statusHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -158,7 +173,7 @@ export class TasksApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/tasks/{id}/status`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/tasks/{id}/status`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

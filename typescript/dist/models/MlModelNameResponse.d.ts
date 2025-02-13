@@ -25,7 +25,8 @@ export interface MlModelNameResponse {
 /**
  * Check if a given object implements the MlModelNameResponse interface.
  */
-export declare function instanceOfMlModelNameResponse(value: object): boolean;
+export declare function instanceOfMlModelNameResponse(value: object): value is MlModelNameResponse;
 export declare function MlModelNameResponseFromJSON(json: any): MlModelNameResponse;
 export declare function MlModelNameResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MlModelNameResponse;
-export declare function MlModelNameResponseToJSON(value?: MlModelNameResponse | null): any;
+export declare function MlModelNameResponseToJSON(json: any): MlModelNameResponse;
+export declare function MlModelNameResponseToJSONTyped(value?: MlModelNameResponse | null, ignoreDiscriminator?: boolean): any;

@@ -13,44 +13,43 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SuggestMetaDataToJSON = exports.SuggestMetaDataFromJSONTyped = exports.SuggestMetaDataFromJSON = exports.instanceOfSuggestMetaData = void 0;
-const runtime_1 = require("../runtime");
+exports.instanceOfSuggestMetaData = instanceOfSuggestMetaData;
+exports.SuggestMetaDataFromJSON = SuggestMetaDataFromJSON;
+exports.SuggestMetaDataFromJSONTyped = SuggestMetaDataFromJSONTyped;
+exports.SuggestMetaDataToJSON = SuggestMetaDataToJSON;
+exports.SuggestMetaDataToJSONTyped = SuggestMetaDataToJSONTyped;
 const DataPath_1 = require("./DataPath");
 /**
  * Check if a given object implements the SuggestMetaData interface.
  */
 function instanceOfSuggestMetaData(value) {
-    let isInstance = true;
-    isInstance = isInstance && "dataPath" in value;
-    return isInstance;
+    if (!('dataPath' in value) || value['dataPath'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfSuggestMetaData = instanceOfSuggestMetaData;
 function SuggestMetaDataFromJSON(json) {
     return SuggestMetaDataFromJSONTyped(json, false);
 }
-exports.SuggestMetaDataFromJSON = SuggestMetaDataFromJSON;
 function SuggestMetaDataFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'dataPath': (0, DataPath_1.DataPathFromJSON)(json['dataPath']),
-        'layerName': !(0, runtime_1.exists)(json, 'layerName') ? undefined : json['layerName'],
-        'mainFile': !(0, runtime_1.exists)(json, 'mainFile') ? undefined : json['mainFile'],
+        'layerName': json['layerName'] == null ? undefined : json['layerName'],
+        'mainFile': json['mainFile'] == null ? undefined : json['mainFile'],
     };
 }
-exports.SuggestMetaDataFromJSONTyped = SuggestMetaDataFromJSONTyped;
-function SuggestMetaDataToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function SuggestMetaDataToJSON(json) {
+    return SuggestMetaDataToJSONTyped(json, false);
+}
+function SuggestMetaDataToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'dataPath': (0, DataPath_1.DataPathToJSON)(value.dataPath),
-        'layerName': value.layerName,
-        'mainFile': value.mainFile,
+        'dataPath': (0, DataPath_1.DataPathToJSON)(value['dataPath']),
+        'layerName': value['layerName'],
+        'mainFile': value['mainFile'],
     };
 }
-exports.SuggestMetaDataToJSON = SuggestMetaDataToJSON;

@@ -12,19 +12,21 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { AxisOrder } from './AxisOrder';
-import {
-    AxisOrderFromJSON,
-    AxisOrderFromJSONTyped,
-    AxisOrderToJSON,
-} from './AxisOrder';
+import { mapValues } from '../runtime';
 import type { BoundingBox2D } from './BoundingBox2D';
 import {
     BoundingBox2DFromJSON,
     BoundingBox2DFromJSONTyped,
     BoundingBox2DToJSON,
+    BoundingBox2DToJSONTyped,
 } from './BoundingBox2D';
+import type { AxisOrder } from './AxisOrder';
+import {
+    AxisOrderFromJSON,
+    AxisOrderFromJSONTyped,
+    AxisOrderToJSON,
+    AxisOrderToJSONTyped,
+} from './AxisOrder';
 
 /**
  * The specification of a spatial reference, where extent and axis labels are given
@@ -71,17 +73,17 @@ export interface SpatialReferenceSpecification {
     spatialReference: string;
 }
 
+
+
 /**
  * Check if a given object implements the SpatialReferenceSpecification interface.
  */
-export function instanceOfSpatialReferenceSpecification(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "extent" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "projString" in value;
-    isInstance = isInstance && "spatialReference" in value;
-
-    return isInstance;
+export function instanceOfSpatialReferenceSpecification(value: object): value is SpatialReferenceSpecification {
+    if (!('extent' in value) || value['extent'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('projString' in value) || value['projString'] === undefined) return false;
+    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
+    return true;
 }
 
 export function SpatialReferenceSpecificationFromJSON(json: any): SpatialReferenceSpecification {
@@ -89,13 +91,13 @@ export function SpatialReferenceSpecificationFromJSON(json: any): SpatialReferen
 }
 
 export function SpatialReferenceSpecificationFromJSONTyped(json: any, ignoreDiscriminator: boolean): SpatialReferenceSpecification {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'axisLabels': !exists(json, 'axisLabels') ? undefined : json['axisLabels'],
-        'axisOrder': !exists(json, 'axisOrder') ? undefined : AxisOrderFromJSON(json['axisOrder']),
+        'axisLabels': json['axisLabels'] == null ? undefined : json['axisLabels'],
+        'axisOrder': json['axisOrder'] == null ? undefined : AxisOrderFromJSON(json['axisOrder']),
         'extent': BoundingBox2DFromJSON(json['extent']),
         'name': json['name'],
         'projString': json['projString'],
@@ -103,21 +105,23 @@ export function SpatialReferenceSpecificationFromJSONTyped(json: any, ignoreDisc
     };
 }
 
-export function SpatialReferenceSpecificationToJSON(value?: SpatialReferenceSpecification | null): any {
-    if (value === undefined) {
-        return undefined;
+export function SpatialReferenceSpecificationToJSON(json: any): SpatialReferenceSpecification {
+    return SpatialReferenceSpecificationToJSONTyped(json, false);
+}
+
+export function SpatialReferenceSpecificationToJSONTyped(value?: SpatialReferenceSpecification | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'axisLabels': value.axisLabels,
-        'axisOrder': AxisOrderToJSON(value.axisOrder),
-        'extent': BoundingBox2DToJSON(value.extent),
-        'name': value.name,
-        'projString': value.projString,
-        'spatialReference': value.spatialReference,
+        'axisLabels': value['axisLabels'],
+        'axisOrder': AxisOrderToJSON(value['axisOrder']),
+        'extent': BoundingBox2DToJSON(value['extent']),
+        'name': value['name'],
+        'projString': value['projString'],
+        'spatialReference': value['spatialReference'],
     };
 }
 

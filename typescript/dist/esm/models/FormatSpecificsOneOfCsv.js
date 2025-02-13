@@ -16,29 +16,29 @@ import { CsvHeaderFromJSON, CsvHeaderToJSON, } from './CsvHeader';
  * Check if a given object implements the FormatSpecificsOneOfCsv interface.
  */
 export function instanceOfFormatSpecificsOneOfCsv(value) {
-    let isInstance = true;
-    isInstance = isInstance && "header" in value;
-    return isInstance;
+    if (!('header' in value) || value['header'] === undefined)
+        return false;
+    return true;
 }
 export function FormatSpecificsOneOfCsvFromJSON(json) {
     return FormatSpecificsOneOfCsvFromJSONTyped(json, false);
 }
 export function FormatSpecificsOneOfCsvFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'header': CsvHeaderFromJSON(json['header']),
     };
 }
-export function FormatSpecificsOneOfCsvToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function FormatSpecificsOneOfCsvToJSON(json) {
+    return FormatSpecificsOneOfCsvToJSONTyped(json, false);
+}
+export function FormatSpecificsOneOfCsvToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'header': CsvHeaderToJSON(value.header),
+        'header': CsvHeaderToJSON(value['header']),
     };
 }

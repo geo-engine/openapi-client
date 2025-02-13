@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -38,8 +38,7 @@ export interface StaticNumberParam {
  * @export
  */
 export const StaticNumberParamTypeEnum = {
-    Static: 'static',
-    Derived: 'derived'
+    Static: 'static'
 } as const;
 export type StaticNumberParamTypeEnum = typeof StaticNumberParamTypeEnum[keyof typeof StaticNumberParamTypeEnum];
 
@@ -47,12 +46,10 @@ export type StaticNumberParamTypeEnum = typeof StaticNumberParamTypeEnum[keyof t
 /**
  * Check if a given object implements the StaticNumberParam interface.
  */
-export function instanceOfStaticNumberParam(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "value" in value;
-
-    return isInstance;
+export function instanceOfStaticNumberParam(value: object): value is StaticNumberParam {
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('value' in value) || value['value'] === undefined) return false;
+    return true;
 }
 
 export function StaticNumberParamFromJSON(json: any): StaticNumberParam {
@@ -60,7 +57,7 @@ export function StaticNumberParamFromJSON(json: any): StaticNumberParam {
 }
 
 export function StaticNumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): StaticNumberParam {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -70,17 +67,19 @@ export function StaticNumberParamFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function StaticNumberParamToJSON(value?: StaticNumberParam | null): any {
-    if (value === undefined) {
-        return undefined;
+export function StaticNumberParamToJSON(json: any): StaticNumberParam {
+    return StaticNumberParamToJSONTyped(json, false);
+}
+
+export function StaticNumberParamToJSONTyped(value?: StaticNumberParam | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'type': value.type,
-        'value': value.value,
+        'type': value['type'],
+        'value': value['value'],
     };
 }
 

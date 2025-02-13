@@ -23,6 +23,17 @@ export const GetCoverageRequest = {
 export type GetCoverageRequest = typeof GetCoverageRequest[keyof typeof GetCoverageRequest];
 
 
+export function instanceOfGetCoverageRequest(value: any): boolean {
+    for (const key in GetCoverageRequest) {
+        if (Object.prototype.hasOwnProperty.call(GetCoverageRequest, key)) {
+            if (GetCoverageRequest[key as keyof typeof GetCoverageRequest] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function GetCoverageRequestFromJSON(json: any): GetCoverageRequest {
     return GetCoverageRequestFromJSONTyped(json, false);
 }
@@ -33,5 +44,9 @@ export function GetCoverageRequestFromJSONTyped(json: any, ignoreDiscriminator: 
 
 export function GetCoverageRequestToJSON(value?: GetCoverageRequest | null): any {
     return value as any;
+}
+
+export function GetCoverageRequestToJSONTyped(value: any, ignoreDiscriminator: boolean): GetCoverageRequest {
+    return value as GetCoverageRequest;
 }
 

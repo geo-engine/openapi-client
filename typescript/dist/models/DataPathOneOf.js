@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataPathOneOfToJSON = exports.DataPathOneOfFromJSONTyped = exports.DataPathOneOfFromJSON = exports.instanceOfDataPathOneOf = void 0;
+exports.instanceOfDataPathOneOf = instanceOfDataPathOneOf;
+exports.DataPathOneOfFromJSON = DataPathOneOfFromJSON;
+exports.DataPathOneOfFromJSONTyped = DataPathOneOfFromJSONTyped;
+exports.DataPathOneOfToJSON = DataPathOneOfToJSON;
+exports.DataPathOneOfToJSONTyped = DataPathOneOfToJSONTyped;
 /**
  * Check if a given object implements the DataPathOneOf interface.
  */
 function instanceOfDataPathOneOf(value) {
-    let isInstance = true;
-    isInstance = isInstance && "volume" in value;
-    return isInstance;
+    if (!('volume' in value) || value['volume'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfDataPathOneOf = instanceOfDataPathOneOf;
 function DataPathOneOfFromJSON(json) {
     return DataPathOneOfFromJSONTyped(json, false);
 }
-exports.DataPathOneOfFromJSON = DataPathOneOfFromJSON;
 function DataPathOneOfFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'volume': json['volume'],
     };
 }
-exports.DataPathOneOfFromJSONTyped = DataPathOneOfFromJSONTyped;
-function DataPathOneOfToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function DataPathOneOfToJSON(json) {
+    return DataPathOneOfToJSONTyped(json, false);
+}
+function DataPathOneOfToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'volume': value.volume,
+        'volume': value['volume'],
     };
 }
-exports.DataPathOneOfToJSON = DataPathOneOfToJSON;

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -32,10 +32,7 @@ export interface OgrSourceDatasetTimeTypeNone {
  * @export
  */
 export const OgrSourceDatasetTimeTypeNoneTypeEnum = {
-    None: 'none',
-    Start: 'start',
-    Startend: 'start+end',
-    Startduration: 'start+duration'
+    None: 'none'
 } as const;
 export type OgrSourceDatasetTimeTypeNoneTypeEnum = typeof OgrSourceDatasetTimeTypeNoneTypeEnum[keyof typeof OgrSourceDatasetTimeTypeNoneTypeEnum];
 
@@ -43,11 +40,9 @@ export type OgrSourceDatasetTimeTypeNoneTypeEnum = typeof OgrSourceDatasetTimeTy
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeNone interface.
  */
-export function instanceOfOgrSourceDatasetTimeTypeNone(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfOgrSourceDatasetTimeTypeNone(value: object): value is OgrSourceDatasetTimeTypeNone {
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function OgrSourceDatasetTimeTypeNoneFromJSON(json: any): OgrSourceDatasetTimeTypeNone {
@@ -55,7 +50,7 @@ export function OgrSourceDatasetTimeTypeNoneFromJSON(json: any): OgrSourceDatase
 }
 
 export function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDatasetTimeTypeNone {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -64,16 +59,18 @@ export function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json: any, ignoreDiscr
     };
 }
 
-export function OgrSourceDatasetTimeTypeNoneToJSON(value?: OgrSourceDatasetTimeTypeNone | null): any {
-    if (value === undefined) {
-        return undefined;
+export function OgrSourceDatasetTimeTypeNoneToJSON(json: any): OgrSourceDatasetTimeTypeNone {
+    return OgrSourceDatasetTimeTypeNoneToJSONTyped(json, false);
+}
+
+export function OgrSourceDatasetTimeTypeNoneToJSONTyped(value?: OgrSourceDatasetTimeTypeNone | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'type': value.type,
+        'type': value['type'],
     };
 }
 

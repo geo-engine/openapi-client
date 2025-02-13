@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Colorizer } from './Colorizer';
 import {
     ColorizerFromJSON,
     ColorizerFromJSONTyped,
     ColorizerToJSON,
+    ColorizerToJSONTyped,
 } from './Colorizer';
 
 /**
@@ -51,8 +52,7 @@ export interface SingleBandRasterColorizer {
  * @export
  */
 export const SingleBandRasterColorizerTypeEnum = {
-    SingleBand: 'singleBand',
-    MultiBand: 'multiBand'
+    SingleBand: 'singleBand'
 } as const;
 export type SingleBandRasterColorizerTypeEnum = typeof SingleBandRasterColorizerTypeEnum[keyof typeof SingleBandRasterColorizerTypeEnum];
 
@@ -60,13 +60,11 @@ export type SingleBandRasterColorizerTypeEnum = typeof SingleBandRasterColorizer
 /**
  * Check if a given object implements the SingleBandRasterColorizer interface.
  */
-export function instanceOfSingleBandRasterColorizer(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "band" in value;
-    isInstance = isInstance && "bandColorizer" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfSingleBandRasterColorizer(value: object): value is SingleBandRasterColorizer {
+    if (!('band' in value) || value['band'] === undefined) return false;
+    if (!('bandColorizer' in value) || value['bandColorizer'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function SingleBandRasterColorizerFromJSON(json: any): SingleBandRasterColorizer {
@@ -74,7 +72,7 @@ export function SingleBandRasterColorizerFromJSON(json: any): SingleBandRasterCo
 }
 
 export function SingleBandRasterColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): SingleBandRasterColorizer {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -85,18 +83,20 @@ export function SingleBandRasterColorizerFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function SingleBandRasterColorizerToJSON(value?: SingleBandRasterColorizer | null): any {
-    if (value === undefined) {
-        return undefined;
+export function SingleBandRasterColorizerToJSON(json: any): SingleBandRasterColorizer {
+    return SingleBandRasterColorizerToJSONTyped(json, false);
+}
+
+export function SingleBandRasterColorizerToJSONTyped(value?: SingleBandRasterColorizer | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'band': value.band,
-        'bandColorizer': ColorizerToJSON(value.bandColorizer),
-        'type': value.type,
+        'band': value['band'],
+        'bandColorizer': ColorizerToJSON(value['bandColorizer']),
+        'type': value['type'],
     };
 }
 

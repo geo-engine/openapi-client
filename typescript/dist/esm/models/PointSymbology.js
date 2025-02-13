@@ -11,11 +11,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
-import { ColorParamFromJSON, ColorParamToJSON, } from './ColorParam';
-import { NumberParamFromJSON, NumberParamToJSON, } from './NumberParam';
-import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
+import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
+import { NumberParamFromJSON, NumberParamToJSON, } from './NumberParam';
+import { ColorParamFromJSON, ColorParamToJSON, } from './ColorParam';
 /**
  * @export
  */
@@ -26,40 +25,43 @@ export const PointSymbologyTypeEnum = {
  * Check if a given object implements the PointSymbology interface.
  */
 export function instanceOfPointSymbology(value) {
-    let isInstance = true;
-    isInstance = isInstance && "fillColor" in value;
-    isInstance = isInstance && "radius" in value;
-    isInstance = isInstance && "stroke" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('fillColor' in value) || value['fillColor'] === undefined)
+        return false;
+    if (!('radius' in value) || value['radius'] === undefined)
+        return false;
+    if (!('stroke' in value) || value['stroke'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function PointSymbologyFromJSON(json) {
     return PointSymbologyFromJSONTyped(json, false);
 }
 export function PointSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'fillColor': ColorParamFromJSON(json['fillColor']),
         'radius': NumberParamFromJSON(json['radius']),
         'stroke': StrokeParamFromJSON(json['stroke']),
-        'text': !exists(json, 'text') ? undefined : TextSymbologyFromJSON(json['text']),
+        'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
         'type': json['type'],
     };
 }
-export function PointSymbologyToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function PointSymbologyToJSON(json) {
+    return PointSymbologyToJSONTyped(json, false);
+}
+export function PointSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'fillColor': ColorParamToJSON(value.fillColor),
-        'radius': NumberParamToJSON(value.radius),
-        'stroke': StrokeParamToJSON(value.stroke),
-        'text': TextSymbologyToJSON(value.text),
-        'type': value.type,
+        'fillColor': ColorParamToJSON(value['fillColor']),
+        'radius': NumberParamToJSON(value['radius']),
+        'stroke': StrokeParamToJSON(value['stroke']),
+        'text': TextSymbologyToJSON(value['text']),
+        'type': value['type'],
     };
 }

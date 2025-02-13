@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -60,14 +60,12 @@ export type PaletteColorizerTypeEnum = typeof PaletteColorizerTypeEnum[keyof typ
 /**
  * Check if a given object implements the PaletteColorizer interface.
  */
-export function instanceOfPaletteColorizer(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "colors" in value;
-    isInstance = isInstance && "defaultColor" in value;
-    isInstance = isInstance && "noDataColor" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfPaletteColorizer(value: object): value is PaletteColorizer {
+    if (!('colors' in value) || value['colors'] === undefined) return false;
+    if (!('defaultColor' in value) || value['defaultColor'] === undefined) return false;
+    if (!('noDataColor' in value) || value['noDataColor'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function PaletteColorizerFromJSON(json: any): PaletteColorizer {
@@ -75,7 +73,7 @@ export function PaletteColorizerFromJSON(json: any): PaletteColorizer {
 }
 
 export function PaletteColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaletteColorizer {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -87,19 +85,21 @@ export function PaletteColorizerFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function PaletteColorizerToJSON(value?: PaletteColorizer | null): any {
-    if (value === undefined) {
-        return undefined;
+export function PaletteColorizerToJSON(json: any): PaletteColorizer {
+    return PaletteColorizerToJSONTyped(json, false);
+}
+
+export function PaletteColorizerToJSONTyped(value?: PaletteColorizer | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'colors': value.colors,
-        'defaultColor': value.defaultColor,
-        'noDataColor': value.noDataColor,
-        'type': value.type,
+        'colors': value['colors'],
+        'defaultColor': value['defaultColor'],
+        'noDataColor': value['noDataColor'],
+        'type': value['type'],
     };
 }
 

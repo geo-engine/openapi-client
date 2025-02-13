@@ -38,7 +38,8 @@ export type OgrSourceTimeFormatCustomFormatEnum = typeof OgrSourceTimeFormatCust
 /**
  * Check if a given object implements the OgrSourceTimeFormatCustom interface.
  */
-export declare function instanceOfOgrSourceTimeFormatCustom(value: object): boolean;
+export declare function instanceOfOgrSourceTimeFormatCustom(value: object): value is OgrSourceTimeFormatCustom;
 export declare function OgrSourceTimeFormatCustomFromJSON(json: any): OgrSourceTimeFormatCustom;
 export declare function OgrSourceTimeFormatCustomFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceTimeFormatCustom;
-export declare function OgrSourceTimeFormatCustomToJSON(value?: OgrSourceTimeFormatCustom | null): any;
+export declare function OgrSourceTimeFormatCustomToJSON(json: any): OgrSourceTimeFormatCustom;
+export declare function OgrSourceTimeFormatCustomToJSONTyped(value?: OgrSourceTimeFormatCustom | null, ignoreDiscriminator?: boolean): any;

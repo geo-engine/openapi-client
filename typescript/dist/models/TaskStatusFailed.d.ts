@@ -44,7 +44,8 @@ export type TaskStatusFailedStatusEnum = typeof TaskStatusFailedStatusEnum[keyof
 /**
  * Check if a given object implements the TaskStatusFailed interface.
  */
-export declare function instanceOfTaskStatusFailed(value: object): boolean;
+export declare function instanceOfTaskStatusFailed(value: object): value is TaskStatusFailed;
 export declare function TaskStatusFailedFromJSON(json: any): TaskStatusFailed;
 export declare function TaskStatusFailedFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatusFailed;
-export declare function TaskStatusFailedToJSON(value?: TaskStatusFailed | null): any;
+export declare function TaskStatusFailedToJSON(json: any): TaskStatusFailed;
+export declare function TaskStatusFailedToJSONTyped(value?: TaskStatusFailed | null, ignoreDiscriminator?: boolean): any;

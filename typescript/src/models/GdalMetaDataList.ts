@@ -12,19 +12,21 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { GdalLoadingInfoTemporalSlice } from './GdalLoadingInfoTemporalSlice';
-import {
-    GdalLoadingInfoTemporalSliceFromJSON,
-    GdalLoadingInfoTemporalSliceFromJSONTyped,
-    GdalLoadingInfoTemporalSliceToJSON,
-} from './GdalLoadingInfoTemporalSlice';
+import { mapValues } from '../runtime';
 import type { RasterResultDescriptor } from './RasterResultDescriptor';
 import {
     RasterResultDescriptorFromJSON,
     RasterResultDescriptorFromJSONTyped,
     RasterResultDescriptorToJSON,
+    RasterResultDescriptorToJSONTyped,
 } from './RasterResultDescriptor';
+import type { GdalLoadingInfoTemporalSlice } from './GdalLoadingInfoTemporalSlice';
+import {
+    GdalLoadingInfoTemporalSliceFromJSON,
+    GdalLoadingInfoTemporalSliceFromJSONTyped,
+    GdalLoadingInfoTemporalSliceToJSON,
+    GdalLoadingInfoTemporalSliceToJSONTyped,
+} from './GdalLoadingInfoTemporalSlice';
 
 /**
  * 
@@ -65,13 +67,11 @@ export type GdalMetaDataListTypeEnum = typeof GdalMetaDataListTypeEnum[keyof typ
 /**
  * Check if a given object implements the GdalMetaDataList interface.
  */
-export function instanceOfGdalMetaDataList(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "params" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfGdalMetaDataList(value: object): value is GdalMetaDataList {
+    if (!('params' in value) || value['params'] === undefined) return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function GdalMetaDataListFromJSON(json: any): GdalMetaDataList {
@@ -79,7 +79,7 @@ export function GdalMetaDataListFromJSON(json: any): GdalMetaDataList {
 }
 
 export function GdalMetaDataListFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalMetaDataList {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -90,18 +90,20 @@ export function GdalMetaDataListFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function GdalMetaDataListToJSON(value?: GdalMetaDataList | null): any {
-    if (value === undefined) {
-        return undefined;
+export function GdalMetaDataListToJSON(json: any): GdalMetaDataList {
+    return GdalMetaDataListToJSONTyped(json, false);
+}
+
+export function GdalMetaDataListToJSONTyped(value?: GdalMetaDataList | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'params': ((value.params as Array<any>).map(GdalLoadingInfoTemporalSliceToJSON)),
-        'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
-        'type': value.type,
+        'params': ((value['params'] as Array<any>).map(GdalLoadingInfoTemporalSliceToJSON)),
+        'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
+        'type': value['type'],
     };
 }
 

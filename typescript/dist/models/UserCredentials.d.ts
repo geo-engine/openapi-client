@@ -31,7 +31,8 @@ export interface UserCredentials {
 /**
  * Check if a given object implements the UserCredentials interface.
  */
-export declare function instanceOfUserCredentials(value: object): boolean;
+export declare function instanceOfUserCredentials(value: object): value is UserCredentials;
 export declare function UserCredentialsFromJSON(json: any): UserCredentials;
 export declare function UserCredentialsFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserCredentials;
-export declare function UserCredentialsToJSON(value?: UserCredentials | null): any;
+export declare function UserCredentialsToJSON(json: any): UserCredentials;
+export declare function UserCredentialsToJSONTyped(value?: UserCredentials | null, ignoreDiscriminator?: boolean): any;

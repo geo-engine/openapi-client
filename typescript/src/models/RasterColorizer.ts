@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
+import type { MultiBandRasterColorizer } from './MultiBandRasterColorizer';
 import {
-    MultiBandRasterColorizer,
     instanceOfMultiBandRasterColorizer,
     MultiBandRasterColorizerFromJSON,
     MultiBandRasterColorizerFromJSONTyped,
     MultiBandRasterColorizerToJSON,
 } from './MultiBandRasterColorizer';
+import type { SingleBandRasterColorizer } from './SingleBandRasterColorizer';
 import {
-    SingleBandRasterColorizer,
     instanceOfSingleBandRasterColorizer,
     SingleBandRasterColorizerFromJSON,
     SingleBandRasterColorizerFromJSONTyped,
@@ -39,31 +39,32 @@ export function RasterColorizerFromJSON(json: any): RasterColorizer {
 }
 
 export function RasterColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterColorizer {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'multiBand':
-            return {...MultiBandRasterColorizerFromJSONTyped(json, true), type: 'multiBand'};
+            return Object.assign({}, MultiBandRasterColorizerFromJSONTyped(json, true), { type: 'multiBand' } as const);
         case 'singleBand':
-            return {...SingleBandRasterColorizerFromJSONTyped(json, true), type: 'singleBand'};
+            return Object.assign({}, SingleBandRasterColorizerFromJSONTyped(json, true), { type: 'singleBand' } as const);
         default:
             throw new Error(`No variant of RasterColorizer exists with 'type=${json['type']}'`);
     }
 }
 
-export function RasterColorizerToJSON(value?: RasterColorizer | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function RasterColorizerToJSON(json: any): any {
+    return RasterColorizerToJSONTyped(json, false);
+}
+
+export function RasterColorizerToJSONTyped(value?: RasterColorizer | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'multiBand':
-            return MultiBandRasterColorizerToJSON(value);
+            return Object.assign({}, MultiBandRasterColorizerToJSON(value), { type: 'multiBand' } as const);
         case 'singleBand':
-            return SingleBandRasterColorizerToJSON(value);
+            return Object.assign({}, SingleBandRasterColorizerToJSON(value), { type: 'singleBand' } as const);
         default:
             throw new Error(`No variant of RasterColorizer exists with 'type=${value['type']}'`);
     }

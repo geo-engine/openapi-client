@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CollectionTypeToJSON = exports.CollectionTypeFromJSONTyped = exports.CollectionTypeFromJSON = exports.CollectionType = void 0;
+exports.CollectionType = void 0;
+exports.instanceOfCollectionType = instanceOfCollectionType;
+exports.CollectionTypeFromJSON = CollectionTypeFromJSON;
+exports.CollectionTypeFromJSONTyped = CollectionTypeFromJSONTyped;
+exports.CollectionTypeToJSON = CollectionTypeToJSON;
+exports.CollectionTypeToJSONTyped = CollectionTypeToJSONTyped;
 /**
  *
  * @export
@@ -21,15 +26,25 @@ exports.CollectionTypeToJSON = exports.CollectionTypeFromJSONTyped = exports.Col
 exports.CollectionType = {
     FeatureCollection: 'FeatureCollection'
 };
+function instanceOfCollectionType(value) {
+    for (const key in exports.CollectionType) {
+        if (Object.prototype.hasOwnProperty.call(exports.CollectionType, key)) {
+            if (exports.CollectionType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function CollectionTypeFromJSON(json) {
     return CollectionTypeFromJSONTyped(json, false);
 }
-exports.CollectionTypeFromJSON = CollectionTypeFromJSON;
 function CollectionTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.CollectionTypeFromJSONTyped = CollectionTypeFromJSONTyped;
 function CollectionTypeToJSON(value) {
     return value;
 }
-exports.CollectionTypeToJSON = CollectionTypeToJSON;
+function CollectionTypeToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

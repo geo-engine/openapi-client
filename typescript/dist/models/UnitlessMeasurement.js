@@ -13,46 +13,45 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UnitlessMeasurementToJSON = exports.UnitlessMeasurementFromJSONTyped = exports.UnitlessMeasurementFromJSON = exports.instanceOfUnitlessMeasurement = exports.UnitlessMeasurementTypeEnum = void 0;
+exports.UnitlessMeasurementTypeEnum = void 0;
+exports.instanceOfUnitlessMeasurement = instanceOfUnitlessMeasurement;
+exports.UnitlessMeasurementFromJSON = UnitlessMeasurementFromJSON;
+exports.UnitlessMeasurementFromJSONTyped = UnitlessMeasurementFromJSONTyped;
+exports.UnitlessMeasurementToJSON = UnitlessMeasurementToJSON;
+exports.UnitlessMeasurementToJSONTyped = UnitlessMeasurementToJSONTyped;
 /**
  * @export
  */
 exports.UnitlessMeasurementTypeEnum = {
-    Unitless: 'unitless',
-    Continuous: 'continuous',
-    Classification: 'classification'
+    Unitless: 'unitless'
 };
 /**
  * Check if a given object implements the UnitlessMeasurement interface.
  */
 function instanceOfUnitlessMeasurement(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfUnitlessMeasurement = instanceOfUnitlessMeasurement;
 function UnitlessMeasurementFromJSON(json) {
     return UnitlessMeasurementFromJSONTyped(json, false);
 }
-exports.UnitlessMeasurementFromJSON = UnitlessMeasurementFromJSON;
 function UnitlessMeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'type': json['type'],
     };
 }
-exports.UnitlessMeasurementFromJSONTyped = UnitlessMeasurementFromJSONTyped;
-function UnitlessMeasurementToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function UnitlessMeasurementToJSON(json) {
+    return UnitlessMeasurementToJSONTyped(json, false);
+}
+function UnitlessMeasurementToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'type': value.type,
+        'type': value['type'],
     };
 }
-exports.UnitlessMeasurementToJSON = UnitlessMeasurementToJSON;

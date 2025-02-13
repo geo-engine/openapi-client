@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VectorDataTypeToJSON = exports.VectorDataTypeFromJSONTyped = exports.VectorDataTypeFromJSON = exports.VectorDataType = void 0;
+exports.VectorDataType = void 0;
+exports.instanceOfVectorDataType = instanceOfVectorDataType;
+exports.VectorDataTypeFromJSON = VectorDataTypeFromJSON;
+exports.VectorDataTypeFromJSONTyped = VectorDataTypeFromJSONTyped;
+exports.VectorDataTypeToJSON = VectorDataTypeToJSON;
+exports.VectorDataTypeToJSONTyped = VectorDataTypeToJSONTyped;
 /**
  * An enum that contains all possible vector data types
  * @export
@@ -24,15 +29,25 @@ exports.VectorDataType = {
     MultiLineString: 'MultiLineString',
     MultiPolygon: 'MultiPolygon'
 };
+function instanceOfVectorDataType(value) {
+    for (const key in exports.VectorDataType) {
+        if (Object.prototype.hasOwnProperty.call(exports.VectorDataType, key)) {
+            if (exports.VectorDataType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function VectorDataTypeFromJSON(json) {
     return VectorDataTypeFromJSONTyped(json, false);
 }
-exports.VectorDataTypeFromJSON = VectorDataTypeFromJSON;
 function VectorDataTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.VectorDataTypeFromJSONTyped = VectorDataTypeFromJSONTyped;
 function VectorDataTypeToJSON(value) {
     return value;
 }
-exports.VectorDataTypeToJSON = VectorDataTypeToJSON;
+function VectorDataTypeToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

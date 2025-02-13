@@ -26,7 +26,8 @@ export interface MultiPolygon {
 /**
  * Check if a given object implements the MultiPolygon interface.
  */
-export declare function instanceOfMultiPolygon(value: object): boolean;
+export declare function instanceOfMultiPolygon(value: object): value is MultiPolygon;
 export declare function MultiPolygonFromJSON(json: any): MultiPolygon;
 export declare function MultiPolygonFromJSONTyped(json: any, ignoreDiscriminator: boolean): MultiPolygon;
-export declare function MultiPolygonToJSON(value?: MultiPolygon | null): any;
+export declare function MultiPolygonToJSON(json: any): MultiPolygon;
+export declare function MultiPolygonToJSONTyped(value?: MultiPolygon | null, ignoreDiscriminator?: boolean): any;

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,12 +42,10 @@ export interface UpdateLayerCollection {
 /**
  * Check if a given object implements the UpdateLayerCollection interface.
  */
-export function instanceOfUpdateLayerCollection(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+export function instanceOfUpdateLayerCollection(value: object): value is UpdateLayerCollection {
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    return true;
 }
 
 export function UpdateLayerCollectionFromJSON(json: any): UpdateLayerCollection {
@@ -55,29 +53,31 @@ export function UpdateLayerCollectionFromJSON(json: any): UpdateLayerCollection 
 }
 
 export function UpdateLayerCollectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateLayerCollection {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'description': json['description'],
         'name': json['name'],
-        'properties': !exists(json, 'properties') ? undefined : json['properties'],
+        'properties': json['properties'] == null ? undefined : json['properties'],
     };
 }
 
-export function UpdateLayerCollectionToJSON(value?: UpdateLayerCollection | null): any {
-    if (value === undefined) {
-        return undefined;
+export function UpdateLayerCollectionToJSON(json: any): UpdateLayerCollection {
+    return UpdateLayerCollectionToJSONTyped(json, false);
+}
+
+export function UpdateLayerCollectionToJSONTyped(value?: UpdateLayerCollection | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'description': value.description,
-        'name': value.name,
-        'properties': value.properties,
+        'description': value['description'],
+        'name': value['name'],
+        'properties': value['properties'],
     };
 }
 

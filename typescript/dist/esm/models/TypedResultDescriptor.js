@@ -18,34 +18,34 @@ export function TypedResultDescriptorFromJSON(json) {
     return TypedResultDescriptorFromJSONTyped(json, false);
 }
 export function TypedResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'plot':
-            return Object.assign(Object.assign({}, TypedPlotResultDescriptorFromJSONTyped(json, true)), { type: 'plot' });
+            return Object.assign({}, TypedPlotResultDescriptorFromJSONTyped(json, true), { type: 'plot' });
         case 'raster':
-            return Object.assign(Object.assign({}, TypedRasterResultDescriptorFromJSONTyped(json, true)), { type: 'raster' });
+            return Object.assign({}, TypedRasterResultDescriptorFromJSONTyped(json, true), { type: 'raster' });
         case 'vector':
-            return Object.assign(Object.assign({}, TypedVectorResultDescriptorFromJSONTyped(json, true)), { type: 'vector' });
+            return Object.assign({}, TypedVectorResultDescriptorFromJSONTyped(json, true), { type: 'vector' });
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${json['type']}'`);
     }
 }
-export function TypedResultDescriptorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TypedResultDescriptorToJSON(json) {
+    return TypedResultDescriptorToJSONTyped(json, false);
+}
+export function TypedResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'plot':
-            return TypedPlotResultDescriptorToJSON(value);
+            return Object.assign({}, TypedPlotResultDescriptorToJSON(value), { type: 'plot' });
         case 'raster':
-            return TypedRasterResultDescriptorToJSON(value);
+            return Object.assign({}, TypedRasterResultDescriptorToJSON(value), { type: 'raster' });
         case 'vector':
-            return TypedVectorResultDescriptorToJSON(value);
+            return Object.assign({}, TypedVectorResultDescriptorToJSON(value), { type: 'vector' });
         default:
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${value['type']}'`);
     }

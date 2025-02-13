@@ -32,7 +32,8 @@ export type OgrSourceTimeFormatAutoFormatEnum = typeof OgrSourceTimeFormatAutoFo
 /**
  * Check if a given object implements the OgrSourceTimeFormatAuto interface.
  */
-export declare function instanceOfOgrSourceTimeFormatAuto(value: object): boolean;
+export declare function instanceOfOgrSourceTimeFormatAuto(value: object): value is OgrSourceTimeFormatAuto;
 export declare function OgrSourceTimeFormatAutoFromJSON(json: any): OgrSourceTimeFormatAuto;
 export declare function OgrSourceTimeFormatAutoFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceTimeFormatAuto;
-export declare function OgrSourceTimeFormatAutoToJSON(value?: OgrSourceTimeFormatAuto | null): any;
+export declare function OgrSourceTimeFormatAutoToJSON(json: any): OgrSourceTimeFormatAuto;
+export declare function OgrSourceTimeFormatAutoToJSONTyped(value?: OgrSourceTimeFormatAuto | null, ignoreDiscriminator?: boolean): any;

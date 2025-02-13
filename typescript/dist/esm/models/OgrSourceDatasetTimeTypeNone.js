@@ -15,38 +15,35 @@
  * @export
  */
 export const OgrSourceDatasetTimeTypeNoneTypeEnum = {
-    None: 'none',
-    Start: 'start',
-    Startend: 'start+end',
-    Startduration: 'start+duration'
+    None: 'none'
 };
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeNone interface.
  */
 export function instanceOfOgrSourceDatasetTimeTypeNone(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function OgrSourceDatasetTimeTypeNoneFromJSON(json) {
     return OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, false);
 }
 export function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'type': json['type'],
     };
 }
-export function OgrSourceDatasetTimeTypeNoneToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function OgrSourceDatasetTimeTypeNoneToJSON(json) {
+    return OgrSourceDatasetTimeTypeNoneToJSONTyped(json, false);
+}
+export function OgrSourceDatasetTimeTypeNoneToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'type': value.type,
+        'type': value['type'],
     };
 }

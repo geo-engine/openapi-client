@@ -11,39 +11,38 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { DataPathFromJSON, DataPathToJSON, } from './DataPath';
 /**
  * Check if a given object implements the SuggestMetaData interface.
  */
 export function instanceOfSuggestMetaData(value) {
-    let isInstance = true;
-    isInstance = isInstance && "dataPath" in value;
-    return isInstance;
+    if (!('dataPath' in value) || value['dataPath'] === undefined)
+        return false;
+    return true;
 }
 export function SuggestMetaDataFromJSON(json) {
     return SuggestMetaDataFromJSONTyped(json, false);
 }
 export function SuggestMetaDataFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'dataPath': DataPathFromJSON(json['dataPath']),
-        'layerName': !exists(json, 'layerName') ? undefined : json['layerName'],
-        'mainFile': !exists(json, 'mainFile') ? undefined : json['mainFile'],
+        'layerName': json['layerName'] == null ? undefined : json['layerName'],
+        'mainFile': json['mainFile'] == null ? undefined : json['mainFile'],
     };
 }
-export function SuggestMetaDataToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function SuggestMetaDataToJSON(json) {
+    return SuggestMetaDataToJSONTyped(json, false);
+}
+export function SuggestMetaDataToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'dataPath': DataPathToJSON(value.dataPath),
-        'layerName': value.layerName,
-        'mainFile': value.mainFile,
+        'dataPath': DataPathToJSON(value['dataPath']),
+        'layerName': value['layerName'],
+        'mainFile': value['mainFile'],
     };
 }

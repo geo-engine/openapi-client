@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from geoengine_openapi_client.models.plot_update import PlotUpdate  # noqa: E501
+from geoengine_openapi_client.models.plot_update import PlotUpdate
 
 class TestPlotUpdate(unittest.TestCase):
     """PlotUpdate unit test stubs"""
@@ -29,12 +28,12 @@ class TestPlotUpdate(unittest.TestCase):
 
     def make_instance(self, include_optional) -> PlotUpdate:
         """Test PlotUpdate
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PlotUpdate`
         """
-        model = PlotUpdate()  # noqa: E501
+        model = PlotUpdate()
         if include_optional:
             return PlotUpdate(
                 name = '',

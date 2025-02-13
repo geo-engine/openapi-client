@@ -21,16 +21,17 @@ export const TaskStatusAbortedStatusEnum = {
  * Check if a given object implements the TaskStatusAborted interface.
  */
 export function instanceOfTaskStatusAborted(value) {
-    let isInstance = true;
-    isInstance = isInstance && "cleanUp" in value;
-    isInstance = isInstance && "status" in value;
-    return isInstance;
+    if (!('cleanUp' in value) || value['cleanUp'] === undefined)
+        return false;
+    if (!('status' in value) || value['status'] === undefined)
+        return false;
+    return true;
 }
 export function TaskStatusAbortedFromJSON(json) {
     return TaskStatusAbortedFromJSONTyped(json, false);
 }
 export function TaskStatusAbortedFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,15 +39,15 @@ export function TaskStatusAbortedFromJSONTyped(json, ignoreDiscriminator) {
         'status': json['status'],
     };
 }
-export function TaskStatusAbortedToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TaskStatusAbortedToJSON(json) {
+    return TaskStatusAbortedToJSONTyped(json, false);
+}
+export function TaskStatusAbortedToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'cleanUp': value.cleanUp,
-        'status': value.status,
+        'cleanUp': value['cleanUp'],
+        'status': value['status'],
     };
 }

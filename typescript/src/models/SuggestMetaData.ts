@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { DataPath } from './DataPath';
 import {
     DataPathFromJSON,
     DataPathFromJSONTyped,
     DataPathToJSON,
+    DataPathToJSONTyped,
 } from './DataPath';
 
 /**
@@ -49,11 +50,9 @@ export interface SuggestMetaData {
 /**
  * Check if a given object implements the SuggestMetaData interface.
  */
-export function instanceOfSuggestMetaData(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "dataPath" in value;
-
-    return isInstance;
+export function instanceOfSuggestMetaData(value: object): value is SuggestMetaData {
+    if (!('dataPath' in value) || value['dataPath'] === undefined) return false;
+    return true;
 }
 
 export function SuggestMetaDataFromJSON(json: any): SuggestMetaData {
@@ -61,29 +60,31 @@ export function SuggestMetaDataFromJSON(json: any): SuggestMetaData {
 }
 
 export function SuggestMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): SuggestMetaData {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'dataPath': DataPathFromJSON(json['dataPath']),
-        'layerName': !exists(json, 'layerName') ? undefined : json['layerName'],
-        'mainFile': !exists(json, 'mainFile') ? undefined : json['mainFile'],
+        'layerName': json['layerName'] == null ? undefined : json['layerName'],
+        'mainFile': json['mainFile'] == null ? undefined : json['mainFile'],
     };
 }
 
-export function SuggestMetaDataToJSON(value?: SuggestMetaData | null): any {
-    if (value === undefined) {
-        return undefined;
+export function SuggestMetaDataToJSON(json: any): SuggestMetaData {
+    return SuggestMetaDataToJSONTyped(json, false);
+}
+
+export function SuggestMetaDataToJSONTyped(value?: SuggestMetaData | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'dataPath': DataPathToJSON(value.dataPath),
-        'layerName': value.layerName,
-        'mainFile': value.mainFile,
+        'dataPath': DataPathToJSON(value['dataPath']),
+        'layerName': value['layerName'],
+        'mainFile': value['mainFile'],
     };
 }
 

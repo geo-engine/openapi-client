@@ -13,25 +13,30 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateDatasetToJSON = exports.UpdateDatasetFromJSONTyped = exports.UpdateDatasetFromJSON = exports.instanceOfUpdateDataset = void 0;
+exports.instanceOfUpdateDataset = instanceOfUpdateDataset;
+exports.UpdateDatasetFromJSON = UpdateDatasetFromJSON;
+exports.UpdateDatasetFromJSONTyped = UpdateDatasetFromJSONTyped;
+exports.UpdateDatasetToJSON = UpdateDatasetToJSON;
+exports.UpdateDatasetToJSONTyped = UpdateDatasetToJSONTyped;
 /**
  * Check if a given object implements the UpdateDataset interface.
  */
 function instanceOfUpdateDataset(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "tags" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('displayName' in value) || value['displayName'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('tags' in value) || value['tags'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfUpdateDataset = instanceOfUpdateDataset;
 function UpdateDatasetFromJSON(json) {
     return UpdateDatasetFromJSONTyped(json, false);
 }
-exports.UpdateDatasetFromJSON = UpdateDatasetFromJSON;
 function UpdateDatasetFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,19 +46,17 @@ function UpdateDatasetFromJSONTyped(json, ignoreDiscriminator) {
         'tags': json['tags'],
     };
 }
-exports.UpdateDatasetFromJSONTyped = UpdateDatasetFromJSONTyped;
-function UpdateDatasetToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function UpdateDatasetToJSON(json) {
+    return UpdateDatasetToJSONTyped(json, false);
+}
+function UpdateDatasetToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'display_name': value.displayName,
-        'name': value.name,
-        'tags': value.tags,
+        'description': value['description'],
+        'display_name': value['displayName'],
+        'name': value['name'],
+        'tags': value['tags'],
     };
 }
-exports.UpdateDatasetToJSON = UpdateDatasetToJSON;

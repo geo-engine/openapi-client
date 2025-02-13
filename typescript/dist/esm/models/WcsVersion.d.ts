@@ -14,10 +14,12 @@
  * @export
  */
 export declare const WcsVersion: {
-    readonly _0: "1.1.0";
-    readonly _1: "1.1.1";
+    readonly _110: "1.1.0";
+    readonly _111: "1.1.1";
 };
 export type WcsVersion = typeof WcsVersion[keyof typeof WcsVersion];
+export declare function instanceOfWcsVersion(value: any): boolean;
 export declare function WcsVersionFromJSON(json: any): WcsVersion;
 export declare function WcsVersionFromJSONTyped(json: any, ignoreDiscriminator: boolean): WcsVersion;
 export declare function WcsVersionToJSON(value?: WcsVersion | null): any;
+export declare function WcsVersionToJSONTyped(value: any, ignoreDiscriminator: boolean): WcsVersion;

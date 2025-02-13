@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
+import type { ColorParamStatic } from './ColorParamStatic';
 import {
-    ColorParamStatic,
     instanceOfColorParamStatic,
     ColorParamStaticFromJSON,
     ColorParamStaticFromJSONTyped,
     ColorParamStaticToJSON,
 } from './ColorParamStatic';
+import type { DerivedColor } from './DerivedColor';
 import {
-    DerivedColor,
     instanceOfDerivedColor,
     DerivedColorFromJSON,
     DerivedColorFromJSONTyped,
@@ -39,31 +39,32 @@ export function ColorParamFromJSON(json: any): ColorParam {
 }
 
 export function ColorParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): ColorParam {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'derived':
-            return {...DerivedColorFromJSONTyped(json, true), type: 'derived'};
+            return Object.assign({}, DerivedColorFromJSONTyped(json, true), { type: 'derived' } as const);
         case 'static':
-            return {...ColorParamStaticFromJSONTyped(json, true), type: 'static'};
+            return Object.assign({}, ColorParamStaticFromJSONTyped(json, true), { type: 'static' } as const);
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${json['type']}'`);
     }
 }
 
-export function ColorParamToJSON(value?: ColorParam | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ColorParamToJSON(json: any): any {
+    return ColorParamToJSONTyped(json, false);
+}
+
+export function ColorParamToJSONTyped(value?: ColorParam | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'derived':
-            return DerivedColorToJSON(value);
+            return Object.assign({}, DerivedColorToJSON(value), { type: 'derived' } as const);
         case 'static':
-            return ColorParamStaticToJSON(value);
+            return Object.assign({}, ColorParamStaticToJSON(value), { type: 'static' } as const);
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${value['type']}'`);
     }

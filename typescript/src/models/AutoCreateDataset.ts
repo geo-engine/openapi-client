@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -60,14 +60,12 @@ export interface AutoCreateDataset {
 /**
  * Check if a given object implements the AutoCreateDataset interface.
  */
-export function instanceOfAutoCreateDataset(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "datasetDescription" in value;
-    isInstance = isInstance && "datasetName" in value;
-    isInstance = isInstance && "mainFile" in value;
-    isInstance = isInstance && "upload" in value;
-
-    return isInstance;
+export function instanceOfAutoCreateDataset(value: object): value is AutoCreateDataset {
+    if (!('datasetDescription' in value) || value['datasetDescription'] === undefined) return false;
+    if (!('datasetName' in value) || value['datasetName'] === undefined) return false;
+    if (!('mainFile' in value) || value['mainFile'] === undefined) return false;
+    if (!('upload' in value) || value['upload'] === undefined) return false;
+    return true;
 }
 
 export function AutoCreateDatasetFromJSON(json: any): AutoCreateDataset {
@@ -75,35 +73,37 @@ export function AutoCreateDatasetFromJSON(json: any): AutoCreateDataset {
 }
 
 export function AutoCreateDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): AutoCreateDataset {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'datasetDescription': json['datasetDescription'],
         'datasetName': json['datasetName'],
-        'layerName': !exists(json, 'layerName') ? undefined : json['layerName'],
+        'layerName': json['layerName'] == null ? undefined : json['layerName'],
         'mainFile': json['mainFile'],
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
         'upload': json['upload'],
     };
 }
 
-export function AutoCreateDatasetToJSON(value?: AutoCreateDataset | null): any {
-    if (value === undefined) {
-        return undefined;
+export function AutoCreateDatasetToJSON(json: any): AutoCreateDataset {
+    return AutoCreateDatasetToJSONTyped(json, false);
+}
+
+export function AutoCreateDatasetToJSONTyped(value?: AutoCreateDataset | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'datasetDescription': value.datasetDescription,
-        'datasetName': value.datasetName,
-        'layerName': value.layerName,
-        'mainFile': value.mainFile,
-        'tags': value.tags,
-        'upload': value.upload,
+        'datasetDescription': value['datasetDescription'],
+        'datasetName': value['datasetName'],
+        'layerName': value['layerName'],
+        'mainFile': value['mainFile'],
+        'tags': value['tags'],
+        'upload': value['upload'],
     };
 }
 

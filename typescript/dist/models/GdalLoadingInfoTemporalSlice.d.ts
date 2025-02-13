@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { GdalDatasetParameters } from './GdalDatasetParameters';
 import type { TimeInterval } from './TimeInterval';
+import type { GdalDatasetParameters } from './GdalDatasetParameters';
 /**
  * one temporal slice of the dataset that requires reading from exactly one Gdal dataset
  * @export
@@ -39,7 +39,8 @@ export interface GdalLoadingInfoTemporalSlice {
 /**
  * Check if a given object implements the GdalLoadingInfoTemporalSlice interface.
  */
-export declare function instanceOfGdalLoadingInfoTemporalSlice(value: object): boolean;
+export declare function instanceOfGdalLoadingInfoTemporalSlice(value: object): value is GdalLoadingInfoTemporalSlice;
 export declare function GdalLoadingInfoTemporalSliceFromJSON(json: any): GdalLoadingInfoTemporalSlice;
 export declare function GdalLoadingInfoTemporalSliceFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalLoadingInfoTemporalSlice;
-export declare function GdalLoadingInfoTemporalSliceToJSON(value?: GdalLoadingInfoTemporalSlice | null): any;
+export declare function GdalLoadingInfoTemporalSliceToJSON(json: any): GdalLoadingInfoTemporalSlice;
+export declare function GdalLoadingInfoTemporalSliceToJSONTyped(value?: GdalLoadingInfoTemporalSlice | null, ignoreDiscriminator?: boolean): any;

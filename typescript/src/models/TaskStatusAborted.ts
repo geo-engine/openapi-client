@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -46,12 +46,10 @@ export type TaskStatusAbortedStatusEnum = typeof TaskStatusAbortedStatusEnum[key
 /**
  * Check if a given object implements the TaskStatusAborted interface.
  */
-export function instanceOfTaskStatusAborted(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "cleanUp" in value;
-    isInstance = isInstance && "status" in value;
-
-    return isInstance;
+export function instanceOfTaskStatusAborted(value: object): value is TaskStatusAborted {
+    if (!('cleanUp' in value) || value['cleanUp'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    return true;
 }
 
 export function TaskStatusAbortedFromJSON(json: any): TaskStatusAborted {
@@ -59,7 +57,7 @@ export function TaskStatusAbortedFromJSON(json: any): TaskStatusAborted {
 }
 
 export function TaskStatusAbortedFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatusAborted {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -69,17 +67,19 @@ export function TaskStatusAbortedFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function TaskStatusAbortedToJSON(value?: TaskStatusAborted | null): any {
-    if (value === undefined) {
-        return undefined;
+export function TaskStatusAbortedToJSON(json: any): TaskStatusAborted {
+    return TaskStatusAbortedToJSONTyped(json, false);
+}
+
+export function TaskStatusAbortedToJSONTyped(value?: TaskStatusAborted | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'cleanUp': value.cleanUp,
-        'status': value.status,
+        'cleanUp': value['cleanUp'],
+        'status': value['status'],
     };
 }
 

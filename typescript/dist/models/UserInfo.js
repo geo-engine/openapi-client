@@ -13,43 +13,42 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserInfoToJSON = exports.UserInfoFromJSONTyped = exports.UserInfoFromJSON = exports.instanceOfUserInfo = void 0;
-const runtime_1 = require("../runtime");
+exports.instanceOfUserInfo = instanceOfUserInfo;
+exports.UserInfoFromJSON = UserInfoFromJSON;
+exports.UserInfoFromJSONTyped = UserInfoFromJSONTyped;
+exports.UserInfoToJSON = UserInfoToJSON;
+exports.UserInfoToJSONTyped = UserInfoToJSONTyped;
 /**
  * Check if a given object implements the UserInfo interface.
  */
 function instanceOfUserInfo(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfUserInfo = instanceOfUserInfo;
 function UserInfoFromJSON(json) {
     return UserInfoFromJSONTyped(json, false);
 }
-exports.UserInfoFromJSON = UserInfoFromJSON;
 function UserInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'email': !(0, runtime_1.exists)(json, 'email') ? undefined : json['email'],
+        'email': json['email'] == null ? undefined : json['email'],
         'id': json['id'],
-        'realName': !(0, runtime_1.exists)(json, 'realName') ? undefined : json['realName'],
+        'realName': json['realName'] == null ? undefined : json['realName'],
     };
 }
-exports.UserInfoFromJSONTyped = UserInfoFromJSONTyped;
-function UserInfoToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function UserInfoToJSON(json) {
+    return UserInfoToJSONTyped(json, false);
+}
+function UserInfoToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'email': value.email,
-        'id': value.id,
-        'realName': value.realName,
+        'email': value['email'],
+        'id': value['id'],
+        'realName': value['realName'],
     };
 }
-exports.UserInfoToJSON = UserInfoToJSON;

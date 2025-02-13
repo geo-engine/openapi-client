@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TaskStatus } from './TaskStatus';
 import {
     TaskStatusFromJSON,
     TaskStatusFromJSONTyped,
     TaskStatusToJSON,
+    TaskStatusToJSONTyped,
 } from './TaskStatus';
 
 /**
@@ -41,11 +42,9 @@ export interface _TaskStatusWithId /* extends TaskStatus */ {
 /**
  * Check if a given object implements the TaskStatusWithId interface.
  */
-export function instanceOfTaskStatusWithId(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "taskId" in value;
-
-    return isInstance;
+export function instanceOfTaskStatusWithId(value: object): value is TaskStatusWithId {
+    if (!('taskId' in value) || value['taskId'] === undefined) return false;
+    return true;
 }
 
 export function TaskStatusWithIdFromJSON(json: any): TaskStatusWithId {
@@ -53,25 +52,27 @@ export function TaskStatusWithIdFromJSON(json: any): TaskStatusWithId {
 }
 
 export function TaskStatusWithIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatusWithId {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        ...TaskStatusFromJSONTyped(json, ignoreDiscriminator),
+        ...TaskStatusFromJSONTyped(json, true),
         'taskId': json['taskId'],
     };
 }
 
-export function TaskStatusWithIdToJSON(value?: TaskStatusWithId | null): any {
-    if (value === undefined) {
-        return undefined;
+export function TaskStatusWithIdToJSON(json: any): TaskStatusWithId {
+    return TaskStatusWithIdToJSONTyped(json, false);
+}
+
+export function TaskStatusWithIdToJSONTyped(value?: TaskStatusWithId | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
-        ...TaskStatusToJSON(value),
-        'taskId': value.taskId,
+        ...TaskStatusToJSONTyped(value, true),
+        'taskId': value['taskId'],
     };
 }
 

@@ -18,11 +18,22 @@
  * @export
  */
 export const WcsVersion = {
-    _0: '1.1.0',
-    _1: '1.1.1'
+    _110: '1.1.0',
+    _111: '1.1.1'
 } as const;
 export type WcsVersion = typeof WcsVersion[keyof typeof WcsVersion];
 
+
+export function instanceOfWcsVersion(value: any): boolean {
+    for (const key in WcsVersion) {
+        if (Object.prototype.hasOwnProperty.call(WcsVersion, key)) {
+            if (WcsVersion[key as keyof typeof WcsVersion] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 export function WcsVersionFromJSON(json: any): WcsVersion {
     return WcsVersionFromJSONTyped(json, false);
@@ -34,5 +45,9 @@ export function WcsVersionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 
 export function WcsVersionToJSON(value?: WcsVersion | null): any {
     return value as any;
+}
+
+export function WcsVersionToJSONTyped(value: any, ignoreDiscriminator: boolean): WcsVersion {
+    return value as WcsVersion;
 }
 

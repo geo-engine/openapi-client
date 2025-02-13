@@ -13,39 +13,39 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FormatSpecificsOneOfToJSON = exports.FormatSpecificsOneOfFromJSONTyped = exports.FormatSpecificsOneOfFromJSON = exports.instanceOfFormatSpecificsOneOf = void 0;
+exports.instanceOfFormatSpecificsOneOf = instanceOfFormatSpecificsOneOf;
+exports.FormatSpecificsOneOfFromJSON = FormatSpecificsOneOfFromJSON;
+exports.FormatSpecificsOneOfFromJSONTyped = FormatSpecificsOneOfFromJSONTyped;
+exports.FormatSpecificsOneOfToJSON = FormatSpecificsOneOfToJSON;
+exports.FormatSpecificsOneOfToJSONTyped = FormatSpecificsOneOfToJSONTyped;
 const FormatSpecificsOneOfCsv_1 = require("./FormatSpecificsOneOfCsv");
 /**
  * Check if a given object implements the FormatSpecificsOneOf interface.
  */
 function instanceOfFormatSpecificsOneOf(value) {
-    let isInstance = true;
-    isInstance = isInstance && "csv" in value;
-    return isInstance;
+    if (!('csv' in value) || value['csv'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfFormatSpecificsOneOf = instanceOfFormatSpecificsOneOf;
 function FormatSpecificsOneOfFromJSON(json) {
     return FormatSpecificsOneOfFromJSONTyped(json, false);
 }
-exports.FormatSpecificsOneOfFromJSON = FormatSpecificsOneOfFromJSON;
 function FormatSpecificsOneOfFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'csv': (0, FormatSpecificsOneOfCsv_1.FormatSpecificsOneOfCsvFromJSON)(json['csv']),
     };
 }
-exports.FormatSpecificsOneOfFromJSONTyped = FormatSpecificsOneOfFromJSONTyped;
-function FormatSpecificsOneOfToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function FormatSpecificsOneOfToJSON(json) {
+    return FormatSpecificsOneOfToJSONTyped(json, false);
+}
+function FormatSpecificsOneOfToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'csv': (0, FormatSpecificsOneOfCsv_1.FormatSpecificsOneOfCsvToJSON)(value.csv),
+        'csv': (0, FormatSpecificsOneOfCsv_1.FormatSpecificsOneOfCsvToJSON)(value['csv']),
     };
 }
-exports.FormatSpecificsOneOfToJSON = FormatSpecificsOneOfToJSON;

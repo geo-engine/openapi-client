@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DescribeCoverageRequestToJSON = exports.DescribeCoverageRequestFromJSONTyped = exports.DescribeCoverageRequestFromJSON = exports.DescribeCoverageRequest = void 0;
+exports.DescribeCoverageRequest = void 0;
+exports.instanceOfDescribeCoverageRequest = instanceOfDescribeCoverageRequest;
+exports.DescribeCoverageRequestFromJSON = DescribeCoverageRequestFromJSON;
+exports.DescribeCoverageRequestFromJSONTyped = DescribeCoverageRequestFromJSONTyped;
+exports.DescribeCoverageRequestToJSON = DescribeCoverageRequestToJSON;
+exports.DescribeCoverageRequestToJSONTyped = DescribeCoverageRequestToJSONTyped;
 /**
  *
  * @export
@@ -21,15 +26,25 @@ exports.DescribeCoverageRequestToJSON = exports.DescribeCoverageRequestFromJSONT
 exports.DescribeCoverageRequest = {
     DescribeCoverage: 'DescribeCoverage'
 };
+function instanceOfDescribeCoverageRequest(value) {
+    for (const key in exports.DescribeCoverageRequest) {
+        if (Object.prototype.hasOwnProperty.call(exports.DescribeCoverageRequest, key)) {
+            if (exports.DescribeCoverageRequest[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function DescribeCoverageRequestFromJSON(json) {
     return DescribeCoverageRequestFromJSONTyped(json, false);
 }
-exports.DescribeCoverageRequestFromJSON = DescribeCoverageRequestFromJSON;
 function DescribeCoverageRequestFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.DescribeCoverageRequestFromJSONTyped = DescribeCoverageRequestFromJSONTyped;
 function DescribeCoverageRequestToJSON(value) {
     return value;
 }
-exports.DescribeCoverageRequestToJSON = DescribeCoverageRequestToJSON;
+function DescribeCoverageRequestToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

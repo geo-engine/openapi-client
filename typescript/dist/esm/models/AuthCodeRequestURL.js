@@ -15,29 +15,29 @@
  * Check if a given object implements the AuthCodeRequestURL interface.
  */
 export function instanceOfAuthCodeRequestURL(value) {
-    let isInstance = true;
-    isInstance = isInstance && "url" in value;
-    return isInstance;
+    if (!('url' in value) || value['url'] === undefined)
+        return false;
+    return true;
 }
 export function AuthCodeRequestURLFromJSON(json) {
     return AuthCodeRequestURLFromJSONTyped(json, false);
 }
 export function AuthCodeRequestURLFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'url': json['url'],
     };
 }
-export function AuthCodeRequestURLToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function AuthCodeRequestURLToJSON(json) {
+    return AuthCodeRequestURLToJSONTyped(json, false);
+}
+export function AuthCodeRequestURLToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'url': value.url,
+        'url': value['url'],
     };
 }

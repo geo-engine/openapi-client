@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -118,20 +118,18 @@ export type MultiBandRasterColorizerTypeEnum = typeof MultiBandRasterColorizerTy
 /**
  * Check if a given object implements the MultiBandRasterColorizer interface.
  */
-export function instanceOfMultiBandRasterColorizer(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "blueBand" in value;
-    isInstance = isInstance && "blueMax" in value;
-    isInstance = isInstance && "blueMin" in value;
-    isInstance = isInstance && "greenBand" in value;
-    isInstance = isInstance && "greenMax" in value;
-    isInstance = isInstance && "greenMin" in value;
-    isInstance = isInstance && "redBand" in value;
-    isInstance = isInstance && "redMax" in value;
-    isInstance = isInstance && "redMin" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfMultiBandRasterColorizer(value: object): value is MultiBandRasterColorizer {
+    if (!('blueBand' in value) || value['blueBand'] === undefined) return false;
+    if (!('blueMax' in value) || value['blueMax'] === undefined) return false;
+    if (!('blueMin' in value) || value['blueMin'] === undefined) return false;
+    if (!('greenBand' in value) || value['greenBand'] === undefined) return false;
+    if (!('greenMax' in value) || value['greenMax'] === undefined) return false;
+    if (!('greenMin' in value) || value['greenMin'] === undefined) return false;
+    if (!('redBand' in value) || value['redBand'] === undefined) return false;
+    if (!('redMax' in value) || value['redMax'] === undefined) return false;
+    if (!('redMin' in value) || value['redMin'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function MultiBandRasterColorizerFromJSON(json: any): MultiBandRasterColorizer {
@@ -139,7 +137,7 @@ export function MultiBandRasterColorizerFromJSON(json: any): MultiBandRasterColo
 }
 
 export function MultiBandRasterColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): MultiBandRasterColorizer {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -147,43 +145,45 @@ export function MultiBandRasterColorizerFromJSONTyped(json: any, ignoreDiscrimin
         'blueBand': json['blueBand'],
         'blueMax': json['blueMax'],
         'blueMin': json['blueMin'],
-        'blueScale': !exists(json, 'blueScale') ? undefined : json['blueScale'],
+        'blueScale': json['blueScale'] == null ? undefined : json['blueScale'],
         'greenBand': json['greenBand'],
         'greenMax': json['greenMax'],
         'greenMin': json['greenMin'],
-        'greenScale': !exists(json, 'greenScale') ? undefined : json['greenScale'],
-        'noDataColor': !exists(json, 'noDataColor') ? undefined : json['noDataColor'],
+        'greenScale': json['greenScale'] == null ? undefined : json['greenScale'],
+        'noDataColor': json['noDataColor'] == null ? undefined : json['noDataColor'],
         'redBand': json['redBand'],
         'redMax': json['redMax'],
         'redMin': json['redMin'],
-        'redScale': !exists(json, 'redScale') ? undefined : json['redScale'],
+        'redScale': json['redScale'] == null ? undefined : json['redScale'],
         'type': json['type'],
     };
 }
 
-export function MultiBandRasterColorizerToJSON(value?: MultiBandRasterColorizer | null): any {
-    if (value === undefined) {
-        return undefined;
+export function MultiBandRasterColorizerToJSON(json: any): MultiBandRasterColorizer {
+    return MultiBandRasterColorizerToJSONTyped(json, false);
+}
+
+export function MultiBandRasterColorizerToJSONTyped(value?: MultiBandRasterColorizer | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'blueBand': value.blueBand,
-        'blueMax': value.blueMax,
-        'blueMin': value.blueMin,
-        'blueScale': value.blueScale,
-        'greenBand': value.greenBand,
-        'greenMax': value.greenMax,
-        'greenMin': value.greenMin,
-        'greenScale': value.greenScale,
-        'noDataColor': value.noDataColor,
-        'redBand': value.redBand,
-        'redMax': value.redMax,
-        'redMin': value.redMin,
-        'redScale': value.redScale,
-        'type': value.type,
+        'blueBand': value['blueBand'],
+        'blueMax': value['blueMax'],
+        'blueMin': value['blueMin'],
+        'blueScale': value['blueScale'],
+        'greenBand': value['greenBand'],
+        'greenMax': value['greenMax'],
+        'greenMin': value['greenMin'],
+        'greenScale': value['greenScale'],
+        'noDataColor': value['noDataColor'],
+        'redBand': value['redBand'],
+        'redMax': value['redMax'],
+        'redMin': value['redMin'],
+        'redScale': value['redScale'],
+        'type': value['type'],
     };
 }
 

@@ -13,24 +13,28 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthCodeResponseToJSON = exports.AuthCodeResponseFromJSONTyped = exports.AuthCodeResponseFromJSON = exports.instanceOfAuthCodeResponse = void 0;
+exports.instanceOfAuthCodeResponse = instanceOfAuthCodeResponse;
+exports.AuthCodeResponseFromJSON = AuthCodeResponseFromJSON;
+exports.AuthCodeResponseFromJSONTyped = AuthCodeResponseFromJSONTyped;
+exports.AuthCodeResponseToJSON = AuthCodeResponseToJSON;
+exports.AuthCodeResponseToJSONTyped = AuthCodeResponseToJSONTyped;
 /**
  * Check if a given object implements the AuthCodeResponse interface.
  */
 function instanceOfAuthCodeResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "code" in value;
-    isInstance = isInstance && "sessionState" in value;
-    isInstance = isInstance && "state" in value;
-    return isInstance;
+    if (!('code' in value) || value['code'] === undefined)
+        return false;
+    if (!('sessionState' in value) || value['sessionState'] === undefined)
+        return false;
+    if (!('state' in value) || value['state'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfAuthCodeResponse = instanceOfAuthCodeResponse;
 function AuthCodeResponseFromJSON(json) {
     return AuthCodeResponseFromJSONTyped(json, false);
 }
-exports.AuthCodeResponseFromJSON = AuthCodeResponseFromJSON;
 function AuthCodeResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,18 +43,16 @@ function AuthCodeResponseFromJSONTyped(json, ignoreDiscriminator) {
         'state': json['state'],
     };
 }
-exports.AuthCodeResponseFromJSONTyped = AuthCodeResponseFromJSONTyped;
-function AuthCodeResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function AuthCodeResponseToJSON(json) {
+    return AuthCodeResponseToJSONTyped(json, false);
+}
+function AuthCodeResponseToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'code': value.code,
-        'sessionState': value.sessionState,
-        'state': value.state,
+        'code': value['code'],
+        'sessionState': value['sessionState'],
+        'state': value['state'],
     };
 }
-exports.AuthCodeResponseToJSON = AuthCodeResponseToJSON;

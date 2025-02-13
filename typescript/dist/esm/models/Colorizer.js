@@ -18,34 +18,34 @@ export function ColorizerFromJSON(json) {
     return ColorizerFromJSONTyped(json, false);
 }
 export function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'linearGradient':
-            return Object.assign(Object.assign({}, LinearGradientFromJSONTyped(json, true)), { type: 'linearGradient' });
+            return Object.assign({}, LinearGradientFromJSONTyped(json, true), { type: 'linearGradient' });
         case 'logarithmicGradient':
-            return Object.assign(Object.assign({}, LogarithmicGradientFromJSONTyped(json, true)), { type: 'logarithmicGradient' });
+            return Object.assign({}, LogarithmicGradientFromJSONTyped(json, true), { type: 'logarithmicGradient' });
         case 'palette':
-            return Object.assign(Object.assign({}, PaletteColorizerFromJSONTyped(json, true)), { type: 'palette' });
+            return Object.assign({}, PaletteColorizerFromJSONTyped(json, true), { type: 'palette' });
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${json['type']}'`);
     }
 }
-export function ColorizerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ColorizerToJSON(json) {
+    return ColorizerToJSONTyped(json, false);
+}
+export function ColorizerToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'linearGradient':
-            return LinearGradientToJSON(value);
+            return Object.assign({}, LinearGradientToJSON(value), { type: 'linearGradient' });
         case 'logarithmicGradient':
-            return LogarithmicGradientToJSON(value);
+            return Object.assign({}, LogarithmicGradientToJSON(value), { type: 'logarithmicGradient' });
         case 'palette':
-            return PaletteColorizerToJSON(value);
+            return Object.assign({}, PaletteColorizerToJSON(value), { type: 'palette' });
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${value['type']}'`);
     }

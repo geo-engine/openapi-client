@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,13 +42,11 @@ export interface UserRegistration {
 /**
  * Check if a given object implements the UserRegistration interface.
  */
-export function instanceOfUserRegistration(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "password" in value;
-    isInstance = isInstance && "realName" in value;
-
-    return isInstance;
+export function instanceOfUserRegistration(value: object): value is UserRegistration {
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
+    if (!('realName' in value) || value['realName'] === undefined) return false;
+    return true;
 }
 
 export function UserRegistrationFromJSON(json: any): UserRegistration {
@@ -56,7 +54,7 @@ export function UserRegistrationFromJSON(json: any): UserRegistration {
 }
 
 export function UserRegistrationFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserRegistration {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,18 +65,20 @@ export function UserRegistrationFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function UserRegistrationToJSON(value?: UserRegistration | null): any {
-    if (value === undefined) {
-        return undefined;
+export function UserRegistrationToJSON(json: any): UserRegistration {
+    return UserRegistrationToJSONTyped(json, false);
+}
+
+export function UserRegistrationToJSONTyped(value?: UserRegistration | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'email': value.email,
-        'password': value.password,
-        'realName': value.realName,
+        'email': value['email'],
+        'password': value['password'],
+        'realName': value['realName'],
     };
 }
 

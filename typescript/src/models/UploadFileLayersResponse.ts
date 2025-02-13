@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface UploadFileLayersResponse {
 /**
  * Check if a given object implements the UploadFileLayersResponse interface.
  */
-export function instanceOfUploadFileLayersResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "layers" in value;
-
-    return isInstance;
+export function instanceOfUploadFileLayersResponse(value: object): value is UploadFileLayersResponse {
+    if (!('layers' in value) || value['layers'] === undefined) return false;
+    return true;
 }
 
 export function UploadFileLayersResponseFromJSON(json: any): UploadFileLayersResponse {
@@ -42,7 +40,7 @@ export function UploadFileLayersResponseFromJSON(json: any): UploadFileLayersRes
 }
 
 export function UploadFileLayersResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UploadFileLayersResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function UploadFileLayersResponseFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function UploadFileLayersResponseToJSON(value?: UploadFileLayersResponse | null): any {
-    if (value === undefined) {
-        return undefined;
+export function UploadFileLayersResponseToJSON(json: any): UploadFileLayersResponse {
+    return UploadFileLayersResponseToJSONTyped(json, false);
+}
+
+export function UploadFileLayersResponseToJSONTyped(value?: UploadFileLayersResponse | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'layers': value.layers,
+        'layers': value['layers'],
     };
 }
 

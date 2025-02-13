@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ExternalDataIdToJSON = exports.ExternalDataIdFromJSONTyped = exports.ExternalDataIdFromJSON = exports.instanceOfExternalDataId = exports.ExternalDataIdTypeEnum = void 0;
+exports.ExternalDataIdTypeEnum = void 0;
+exports.instanceOfExternalDataId = instanceOfExternalDataId;
+exports.ExternalDataIdFromJSON = ExternalDataIdFromJSON;
+exports.ExternalDataIdFromJSONTyped = ExternalDataIdFromJSONTyped;
+exports.ExternalDataIdToJSON = ExternalDataIdToJSON;
+exports.ExternalDataIdToJSONTyped = ExternalDataIdToJSONTyped;
 /**
  * @export
  */
@@ -24,19 +29,19 @@ exports.ExternalDataIdTypeEnum = {
  * Check if a given object implements the ExternalDataId interface.
  */
 function instanceOfExternalDataId(value) {
-    let isInstance = true;
-    isInstance = isInstance && "layerId" in value;
-    isInstance = isInstance && "providerId" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('layerId' in value) || value['layerId'] === undefined)
+        return false;
+    if (!('providerId' in value) || value['providerId'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfExternalDataId = instanceOfExternalDataId;
 function ExternalDataIdFromJSON(json) {
     return ExternalDataIdFromJSONTyped(json, false);
 }
-exports.ExternalDataIdFromJSON = ExternalDataIdFromJSON;
 function ExternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -45,18 +50,16 @@ function ExternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.ExternalDataIdFromJSONTyped = ExternalDataIdFromJSONTyped;
-function ExternalDataIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ExternalDataIdToJSON(json) {
+    return ExternalDataIdToJSONTyped(json, false);
+}
+function ExternalDataIdToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'layerId': value.layerId,
-        'providerId': value.providerId,
-        'type': value.type,
+        'layerId': value['layerId'],
+        'providerId': value['providerId'],
+        'type': value['type'],
     };
 }
-exports.ExternalDataIdToJSON = ExternalDataIdToJSON;

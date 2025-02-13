@@ -11,12 +11,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists, mapValues } from '../runtime';
-import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './GdalDatasetParameters';
+import { mapValues } from '../runtime';
+import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
+import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 import { GdalSourceTimePlaceholderFromJSON, GdalSourceTimePlaceholderToJSON, } from './GdalSourceTimePlaceholder';
 import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
-import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
-import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
+import { GdalDatasetParametersFromJSON, GdalDatasetParametersToJSON, } from './GdalDatasetParameters';
 /**
  * @export
  */
@@ -27,24 +27,29 @@ export const GdalMetaDataRegularTypeEnum = {
  * Check if a given object implements the GdalMetaDataRegular interface.
  */
 export function instanceOfGdalMetaDataRegular(value) {
-    let isInstance = true;
-    isInstance = isInstance && "dataTime" in value;
-    isInstance = isInstance && "params" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "step" in value;
-    isInstance = isInstance && "timePlaceholders" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('dataTime' in value) || value['dataTime'] === undefined)
+        return false;
+    if (!('params' in value) || value['params'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    if (!('step' in value) || value['step'] === undefined)
+        return false;
+    if (!('timePlaceholders' in value) || value['timePlaceholders'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function GdalMetaDataRegularFromJSON(json) {
     return GdalMetaDataRegularFromJSONTyped(json, false);
 }
 export function GdalMetaDataRegularFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'cacheTtl': !exists(json, 'cacheTtl') ? undefined : json['cacheTtl'],
+        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
         'dataTime': TimeIntervalFromJSON(json['dataTime']),
         'params': GdalDatasetParametersFromJSON(json['params']),
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
@@ -53,20 +58,20 @@ export function GdalMetaDataRegularFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function GdalMetaDataRegularToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function GdalMetaDataRegularToJSON(json) {
+    return GdalMetaDataRegularToJSONTyped(json, false);
+}
+export function GdalMetaDataRegularToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'cacheTtl': value.cacheTtl,
-        'dataTime': TimeIntervalToJSON(value.dataTime),
-        'params': GdalDatasetParametersToJSON(value.params),
-        'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
-        'step': TimeStepToJSON(value.step),
-        'timePlaceholders': (mapValues(value.timePlaceholders, GdalSourceTimePlaceholderToJSON)),
-        'type': value.type,
+        'cacheTtl': value['cacheTtl'],
+        'dataTime': TimeIntervalToJSON(value['dataTime']),
+        'params': GdalDatasetParametersToJSON(value['params']),
+        'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
+        'step': TimeStepToJSON(value['step']),
+        'timePlaceholders': (mapValues(value['timePlaceholders'], GdalSourceTimePlaceholderToJSON)),
+        'type': value['type'],
     };
 }

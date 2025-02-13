@@ -40,13 +40,13 @@ export interface SingleBandRasterColorizer {
  */
 export declare const SingleBandRasterColorizerTypeEnum: {
     readonly SingleBand: "singleBand";
-    readonly MultiBand: "multiBand";
 };
 export type SingleBandRasterColorizerTypeEnum = typeof SingleBandRasterColorizerTypeEnum[keyof typeof SingleBandRasterColorizerTypeEnum];
 /**
  * Check if a given object implements the SingleBandRasterColorizer interface.
  */
-export declare function instanceOfSingleBandRasterColorizer(value: object): boolean;
+export declare function instanceOfSingleBandRasterColorizer(value: object): value is SingleBandRasterColorizer;
 export declare function SingleBandRasterColorizerFromJSON(json: any): SingleBandRasterColorizer;
 export declare function SingleBandRasterColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): SingleBandRasterColorizer;
-export declare function SingleBandRasterColorizerToJSON(value?: SingleBandRasterColorizer | null): any;
+export declare function SingleBandRasterColorizerToJSON(json: any): SingleBandRasterColorizer;
+export declare function SingleBandRasterColorizerToJSONTyped(value?: SingleBandRasterColorizer | null, ignoreDiscriminator?: boolean): any;

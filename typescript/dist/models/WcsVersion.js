@@ -13,24 +13,39 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WcsVersionToJSON = exports.WcsVersionFromJSONTyped = exports.WcsVersionFromJSON = exports.WcsVersion = void 0;
+exports.WcsVersion = void 0;
+exports.instanceOfWcsVersion = instanceOfWcsVersion;
+exports.WcsVersionFromJSON = WcsVersionFromJSON;
+exports.WcsVersionFromJSONTyped = WcsVersionFromJSONTyped;
+exports.WcsVersionToJSON = WcsVersionToJSON;
+exports.WcsVersionToJSONTyped = WcsVersionToJSONTyped;
 /**
  *
  * @export
  */
 exports.WcsVersion = {
-    _0: '1.1.0',
-    _1: '1.1.1'
+    _110: '1.1.0',
+    _111: '1.1.1'
 };
+function instanceOfWcsVersion(value) {
+    for (const key in exports.WcsVersion) {
+        if (Object.prototype.hasOwnProperty.call(exports.WcsVersion, key)) {
+            if (exports.WcsVersion[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function WcsVersionFromJSON(json) {
     return WcsVersionFromJSONTyped(json, false);
 }
-exports.WcsVersionFromJSON = WcsVersionFromJSON;
 function WcsVersionFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.WcsVersionFromJSONTyped = WcsVersionFromJSONTyped;
 function WcsVersionToJSON(value) {
     return value;
 }
-exports.WcsVersionToJSON = WcsVersionToJSON;
+function WcsVersionToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

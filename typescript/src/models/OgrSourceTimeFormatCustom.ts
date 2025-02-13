@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -46,12 +46,10 @@ export type OgrSourceTimeFormatCustomFormatEnum = typeof OgrSourceTimeFormatCust
 /**
  * Check if a given object implements the OgrSourceTimeFormatCustom interface.
  */
-export function instanceOfOgrSourceTimeFormatCustom(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "customFormat" in value;
-    isInstance = isInstance && "format" in value;
-
-    return isInstance;
+export function instanceOfOgrSourceTimeFormatCustom(value: object): value is OgrSourceTimeFormatCustom {
+    if (!('customFormat' in value) || value['customFormat'] === undefined) return false;
+    if (!('format' in value) || value['format'] === undefined) return false;
+    return true;
 }
 
 export function OgrSourceTimeFormatCustomFromJSON(json: any): OgrSourceTimeFormatCustom {
@@ -59,7 +57,7 @@ export function OgrSourceTimeFormatCustomFromJSON(json: any): OgrSourceTimeForma
 }
 
 export function OgrSourceTimeFormatCustomFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceTimeFormatCustom {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -69,17 +67,19 @@ export function OgrSourceTimeFormatCustomFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function OgrSourceTimeFormatCustomToJSON(value?: OgrSourceTimeFormatCustom | null): any {
-    if (value === undefined) {
-        return undefined;
+export function OgrSourceTimeFormatCustomToJSON(json: any): OgrSourceTimeFormatCustom {
+    return OgrSourceTimeFormatCustomToJSONTyped(json, false);
+}
+
+export function OgrSourceTimeFormatCustomToJSONTyped(value?: OgrSourceTimeFormatCustom | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'customFormat': value.customFormat,
-        'format': value.format,
+        'customFormat': value['customFormat'],
+        'format': value['format'],
     };
 }
 

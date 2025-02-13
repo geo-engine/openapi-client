@@ -32,7 +32,8 @@ export interface GdalSourceTimePlaceholder {
 /**
  * Check if a given object implements the GdalSourceTimePlaceholder interface.
  */
-export declare function instanceOfGdalSourceTimePlaceholder(value: object): boolean;
+export declare function instanceOfGdalSourceTimePlaceholder(value: object): value is GdalSourceTimePlaceholder;
 export declare function GdalSourceTimePlaceholderFromJSON(json: any): GdalSourceTimePlaceholder;
 export declare function GdalSourceTimePlaceholderFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalSourceTimePlaceholder;
-export declare function GdalSourceTimePlaceholderToJSON(value?: GdalSourceTimePlaceholder | null): any;
+export declare function GdalSourceTimePlaceholderToJSON(json: any): GdalSourceTimePlaceholder;
+export declare function GdalSourceTimePlaceholderToJSONTyped(value?: GdalSourceTimePlaceholder | null, ignoreDiscriminator?: boolean): any;

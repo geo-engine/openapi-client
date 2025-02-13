@@ -11,52 +11,54 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
-import { ProviderLayerIdFromJSON, ProviderLayerIdToJSON, } from './ProviderLayerId';
 import { SymbologyFromJSON, SymbologyToJSON, } from './Symbology';
+import { ProviderLayerIdFromJSON, ProviderLayerIdToJSON, } from './ProviderLayerId';
 import { WorkflowFromJSON, WorkflowToJSON, } from './Workflow';
 /**
  * Check if a given object implements the Layer interface.
  */
 export function instanceOfLayer(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "workflow" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('workflow' in value) || value['workflow'] === undefined)
+        return false;
+    return true;
 }
 export function LayerFromJSON(json) {
     return LayerFromJSONTyped(json, false);
 }
 export function LayerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
         'id': ProviderLayerIdFromJSON(json['id']),
-        'metadata': !exists(json, 'metadata') ? undefined : json['metadata'],
+        'metadata': json['metadata'] == null ? undefined : json['metadata'],
         'name': json['name'],
-        'properties': !exists(json, 'properties') ? undefined : json['properties'],
-        'symbology': !exists(json, 'symbology') ? undefined : SymbologyFromJSON(json['symbology']),
+        'properties': json['properties'] == null ? undefined : json['properties'],
+        'symbology': json['symbology'] == null ? undefined : SymbologyFromJSON(json['symbology']),
         'workflow': WorkflowFromJSON(json['workflow']),
     };
 }
-export function LayerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function LayerToJSON(json) {
+    return LayerToJSONTyped(json, false);
+}
+export function LayerToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'id': ProviderLayerIdToJSON(value.id),
-        'metadata': value.metadata,
-        'name': value.name,
-        'properties': value.properties,
-        'symbology': SymbologyToJSON(value.symbology),
-        'workflow': WorkflowToJSON(value.workflow),
+        'description': value['description'],
+        'id': ProviderLayerIdToJSON(value['id']),
+        'metadata': value['metadata'],
+        'name': value['name'],
+        'properties': value['properties'],
+        'symbology': SymbologyToJSON(value['symbology']),
+        'workflow': WorkflowToJSON(value['workflow']),
     };
 }

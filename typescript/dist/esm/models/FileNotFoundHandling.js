@@ -19,6 +19,16 @@ export const FileNotFoundHandling = {
     NoData: 'NoData',
     Error: 'Error'
 };
+export function instanceOfFileNotFoundHandling(value) {
+    for (const key in FileNotFoundHandling) {
+        if (Object.prototype.hasOwnProperty.call(FileNotFoundHandling, key)) {
+            if (FileNotFoundHandling[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function FileNotFoundHandlingFromJSON(json) {
     return FileNotFoundHandlingFromJSONTyped(json, false);
 }
@@ -26,5 +36,8 @@ export function FileNotFoundHandlingFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function FileNotFoundHandlingToJSON(value) {
+    return value;
+}
+export function FileNotFoundHandlingToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

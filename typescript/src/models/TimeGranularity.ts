@@ -29,6 +29,17 @@ export const TimeGranularity = {
 export type TimeGranularity = typeof TimeGranularity[keyof typeof TimeGranularity];
 
 
+export function instanceOfTimeGranularity(value: any): boolean {
+    for (const key in TimeGranularity) {
+        if (Object.prototype.hasOwnProperty.call(TimeGranularity, key)) {
+            if (TimeGranularity[key as keyof typeof TimeGranularity] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function TimeGranularityFromJSON(json: any): TimeGranularity {
     return TimeGranularityFromJSONTyped(json, false);
 }
@@ -39,5 +50,9 @@ export function TimeGranularityFromJSONTyped(json: any, ignoreDiscriminator: boo
 
 export function TimeGranularityToJSON(value?: TimeGranularity | null): any {
     return value as any;
+}
+
+export function TimeGranularityToJSONTyped(value: any, ignoreDiscriminator: boolean): TimeGranularity {
+    return value as TimeGranularity;
 }
 

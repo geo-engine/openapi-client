@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetCapabilitiesFormatToJSON = exports.GetCapabilitiesFormatFromJSONTyped = exports.GetCapabilitiesFormatFromJSON = exports.GetCapabilitiesFormat = void 0;
+exports.GetCapabilitiesFormat = void 0;
+exports.instanceOfGetCapabilitiesFormat = instanceOfGetCapabilitiesFormat;
+exports.GetCapabilitiesFormatFromJSON = GetCapabilitiesFormatFromJSON;
+exports.GetCapabilitiesFormatFromJSONTyped = GetCapabilitiesFormatFromJSONTyped;
+exports.GetCapabilitiesFormatToJSON = GetCapabilitiesFormatToJSON;
+exports.GetCapabilitiesFormatToJSONTyped = GetCapabilitiesFormatToJSONTyped;
 /**
  *
  * @export
@@ -21,15 +26,25 @@ exports.GetCapabilitiesFormatToJSON = exports.GetCapabilitiesFormatFromJSONTyped
 exports.GetCapabilitiesFormat = {
     TextXml: 'text/xml'
 };
+function instanceOfGetCapabilitiesFormat(value) {
+    for (const key in exports.GetCapabilitiesFormat) {
+        if (Object.prototype.hasOwnProperty.call(exports.GetCapabilitiesFormat, key)) {
+            if (exports.GetCapabilitiesFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function GetCapabilitiesFormatFromJSON(json) {
     return GetCapabilitiesFormatFromJSONTyped(json, false);
 }
-exports.GetCapabilitiesFormatFromJSON = GetCapabilitiesFormatFromJSON;
 function GetCapabilitiesFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.GetCapabilitiesFormatFromJSONTyped = GetCapabilitiesFormatFromJSONTyped;
 function GetCapabilitiesFormatToJSON(value) {
     return value;
 }
-exports.GetCapabilitiesFormatToJSON = GetCapabilitiesFormatToJSON;
+function GetCapabilitiesFormatToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

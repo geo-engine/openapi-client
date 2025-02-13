@@ -38,7 +38,8 @@ export type LayerResourceTypeEnum = typeof LayerResourceTypeEnum[keyof typeof La
 /**
  * Check if a given object implements the LayerResource interface.
  */
-export declare function instanceOfLayerResource(value: object): boolean;
+export declare function instanceOfLayerResource(value: object): value is LayerResource;
 export declare function LayerResourceFromJSON(json: any): LayerResource;
 export declare function LayerResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerResource;
-export declare function LayerResourceToJSON(value?: LayerResource | null): any;
+export declare function LayerResourceToJSON(json: any): LayerResource;
+export declare function LayerResourceToJSONTyped(value?: LayerResource | null, ignoreDiscriminator?: boolean): any;

@@ -13,39 +13,39 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProvenancesToJSON = exports.ProvenancesFromJSONTyped = exports.ProvenancesFromJSON = exports.instanceOfProvenances = void 0;
+exports.instanceOfProvenances = instanceOfProvenances;
+exports.ProvenancesFromJSON = ProvenancesFromJSON;
+exports.ProvenancesFromJSONTyped = ProvenancesFromJSONTyped;
+exports.ProvenancesToJSON = ProvenancesToJSON;
+exports.ProvenancesToJSONTyped = ProvenancesToJSONTyped;
 const Provenance_1 = require("./Provenance");
 /**
  * Check if a given object implements the Provenances interface.
  */
 function instanceOfProvenances(value) {
-    let isInstance = true;
-    isInstance = isInstance && "provenances" in value;
-    return isInstance;
+    if (!('provenances' in value) || value['provenances'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfProvenances = instanceOfProvenances;
 function ProvenancesFromJSON(json) {
     return ProvenancesFromJSONTyped(json, false);
 }
-exports.ProvenancesFromJSON = ProvenancesFromJSON;
 function ProvenancesFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'provenances': (json['provenances'].map(Provenance_1.ProvenanceFromJSON)),
     };
 }
-exports.ProvenancesFromJSONTyped = ProvenancesFromJSONTyped;
-function ProvenancesToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ProvenancesToJSON(json) {
+    return ProvenancesToJSONTyped(json, false);
+}
+function ProvenancesToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'provenances': (value.provenances.map(Provenance_1.ProvenanceToJSON)),
+        'provenances': (value['provenances'].map(Provenance_1.ProvenanceToJSON)),
     };
 }
-exports.ProvenancesToJSON = ProvenancesToJSON;

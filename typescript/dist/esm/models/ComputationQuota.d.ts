@@ -43,7 +43,8 @@ export interface ComputationQuota {
 /**
  * Check if a given object implements the ComputationQuota interface.
  */
-export declare function instanceOfComputationQuota(value: object): boolean;
+export declare function instanceOfComputationQuota(value: object): value is ComputationQuota;
 export declare function ComputationQuotaFromJSON(json: any): ComputationQuota;
 export declare function ComputationQuotaFromJSONTyped(json: any, ignoreDiscriminator: boolean): ComputationQuota;
-export declare function ComputationQuotaToJSON(value?: ComputationQuota | null): any;
+export declare function ComputationQuotaToJSON(json: any): ComputationQuota;
+export declare function ComputationQuotaToJSONTyped(value?: ComputationQuota | null, ignoreDiscriminator?: boolean): any;

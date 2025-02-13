@@ -13,26 +13,32 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataUsageToJSON = exports.DataUsageFromJSONTyped = exports.DataUsageFromJSON = exports.instanceOfDataUsage = void 0;
+exports.instanceOfDataUsage = instanceOfDataUsage;
+exports.DataUsageFromJSON = DataUsageFromJSON;
+exports.DataUsageFromJSONTyped = DataUsageFromJSONTyped;
+exports.DataUsageToJSON = DataUsageToJSON;
+exports.DataUsageToJSONTyped = DataUsageToJSONTyped;
 /**
  * Check if a given object implements the DataUsage interface.
  */
 function instanceOfDataUsage(value) {
-    let isInstance = true;
-    isInstance = isInstance && "computationId" in value;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "timestamp" in value;
-    isInstance = isInstance && "userId" in value;
-    return isInstance;
+    if (!('computationId' in value) || value['computationId'] === undefined)
+        return false;
+    if (!('count' in value) || value['count'] === undefined)
+        return false;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined)
+        return false;
+    if (!('userId' in value) || value['userId'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfDataUsage = instanceOfDataUsage;
 function DataUsageFromJSON(json) {
     return DataUsageFromJSONTyped(json, false);
 }
-exports.DataUsageFromJSON = DataUsageFromJSON;
 function DataUsageFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,20 +49,18 @@ function DataUsageFromJSONTyped(json, ignoreDiscriminator) {
         'userId': json['userId'],
     };
 }
-exports.DataUsageFromJSONTyped = DataUsageFromJSONTyped;
-function DataUsageToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function DataUsageToJSON(json) {
+    return DataUsageToJSONTyped(json, false);
+}
+function DataUsageToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'computationId': value.computationId,
-        'count': value.count,
-        'data': value.data,
-        'timestamp': (value.timestamp.toISOString()),
-        'userId': value.userId,
+        'computationId': value['computationId'],
+        'count': value['count'],
+        'data': value['data'],
+        'timestamp': ((value['timestamp']).toISOString()),
+        'userId': value['userId'],
     };
 }
-exports.DataUsageToJSON = DataUsageToJSON;

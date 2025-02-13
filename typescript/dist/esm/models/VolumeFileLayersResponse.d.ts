@@ -25,7 +25,8 @@ export interface VolumeFileLayersResponse {
 /**
  * Check if a given object implements the VolumeFileLayersResponse interface.
  */
-export declare function instanceOfVolumeFileLayersResponse(value: object): boolean;
+export declare function instanceOfVolumeFileLayersResponse(value: object): value is VolumeFileLayersResponse;
 export declare function VolumeFileLayersResponseFromJSON(json: any): VolumeFileLayersResponse;
 export declare function VolumeFileLayersResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): VolumeFileLayersResponse;
-export declare function VolumeFileLayersResponseToJSON(value?: VolumeFileLayersResponse | null): any;
+export declare function VolumeFileLayersResponseToJSON(json: any): VolumeFileLayersResponse;
+export declare function VolumeFileLayersResponseToJSONTyped(value?: VolumeFileLayersResponse | null, ignoreDiscriminator?: boolean): any;

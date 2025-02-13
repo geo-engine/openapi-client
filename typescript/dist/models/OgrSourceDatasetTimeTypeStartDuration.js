@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDatasetTimeTypeStartDurationToJSON = exports.OgrSourceDatasetTimeTypeStartDurationFromJSONTyped = exports.OgrSourceDatasetTimeTypeStartDurationFromJSON = exports.instanceOfOgrSourceDatasetTimeTypeStartDuration = exports.OgrSourceDatasetTimeTypeStartDurationTypeEnum = void 0;
+exports.OgrSourceDatasetTimeTypeStartDurationTypeEnum = void 0;
+exports.instanceOfOgrSourceDatasetTimeTypeStartDuration = instanceOfOgrSourceDatasetTimeTypeStartDuration;
+exports.OgrSourceDatasetTimeTypeStartDurationFromJSON = OgrSourceDatasetTimeTypeStartDurationFromJSON;
+exports.OgrSourceDatasetTimeTypeStartDurationFromJSONTyped = OgrSourceDatasetTimeTypeStartDurationFromJSONTyped;
+exports.OgrSourceDatasetTimeTypeStartDurationToJSON = OgrSourceDatasetTimeTypeStartDurationToJSON;
+exports.OgrSourceDatasetTimeTypeStartDurationToJSONTyped = OgrSourceDatasetTimeTypeStartDurationToJSONTyped;
 const OgrSourceTimeFormat_1 = require("./OgrSourceTimeFormat");
 /**
  * @export
@@ -25,20 +30,21 @@ exports.OgrSourceDatasetTimeTypeStartDurationTypeEnum = {
  * Check if a given object implements the OgrSourceDatasetTimeTypeStartDuration interface.
  */
 function instanceOfOgrSourceDatasetTimeTypeStartDuration(value) {
-    let isInstance = true;
-    isInstance = isInstance && "durationField" in value;
-    isInstance = isInstance && "startField" in value;
-    isInstance = isInstance && "startFormat" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('durationField' in value) || value['durationField'] === undefined)
+        return false;
+    if (!('startField' in value) || value['startField'] === undefined)
+        return false;
+    if (!('startFormat' in value) || value['startFormat'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfOgrSourceDatasetTimeTypeStartDuration = instanceOfOgrSourceDatasetTimeTypeStartDuration;
 function OgrSourceDatasetTimeTypeStartDurationFromJSON(json) {
     return OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, false);
 }
-exports.OgrSourceDatasetTimeTypeStartDurationFromJSON = OgrSourceDatasetTimeTypeStartDurationFromJSON;
 function OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -48,19 +54,17 @@ function OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, ignoreDiscrimi
         'type': json['type'],
     };
 }
-exports.OgrSourceDatasetTimeTypeStartDurationFromJSONTyped = OgrSourceDatasetTimeTypeStartDurationFromJSONTyped;
-function OgrSourceDatasetTimeTypeStartDurationToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function OgrSourceDatasetTimeTypeStartDurationToJSON(json) {
+    return OgrSourceDatasetTimeTypeStartDurationToJSONTyped(json, false);
+}
+function OgrSourceDatasetTimeTypeStartDurationToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'durationField': value.durationField,
-        'startField': value.startField,
-        'startFormat': (0, OgrSourceTimeFormat_1.OgrSourceTimeFormatToJSON)(value.startFormat),
-        'type': value.type,
+        'durationField': value['durationField'],
+        'startField': value['startField'],
+        'startFormat': (0, OgrSourceTimeFormat_1.OgrSourceTimeFormatToJSON)(value['startFormat']),
+        'type': value['type'],
     };
 }
-exports.OgrSourceDatasetTimeTypeStartDurationToJSON = OgrSourceDatasetTimeTypeStartDurationToJSON;

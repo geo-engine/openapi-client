@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
+import type { DerivedNumber } from './DerivedNumber';
 import {
-    DerivedNumber,
     instanceOfDerivedNumber,
     DerivedNumberFromJSON,
     DerivedNumberFromJSONTyped,
     DerivedNumberToJSON,
 } from './DerivedNumber';
+import type { StaticNumberParam } from './StaticNumberParam';
 import {
-    StaticNumberParam,
     instanceOfStaticNumberParam,
     StaticNumberParamFromJSON,
     StaticNumberParamFromJSONTyped,
@@ -39,31 +39,32 @@ export function NumberParamFromJSON(json: any): NumberParam {
 }
 
 export function NumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): NumberParam {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'derived':
-            return {...DerivedNumberFromJSONTyped(json, true), type: 'derived'};
+            return Object.assign({}, DerivedNumberFromJSONTyped(json, true), { type: 'derived' } as const);
         case 'static':
-            return {...StaticNumberParamFromJSONTyped(json, true), type: 'static'};
+            return Object.assign({}, StaticNumberParamFromJSONTyped(json, true), { type: 'static' } as const);
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }
 }
 
-export function NumberParamToJSON(value?: NumberParam | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function NumberParamToJSON(json: any): any {
+    return NumberParamToJSONTyped(json, false);
+}
+
+export function NumberParamToJSONTyped(value?: NumberParam | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'derived':
-            return DerivedNumberToJSON(value);
+            return Object.assign({}, DerivedNumberToJSON(value), { type: 'derived' } as const);
         case 'static':
-            return StaticNumberParamToJSON(value);
+            return Object.assign({}, StaticNumberParamToJSON(value), { type: 'static' } as const);
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
     }

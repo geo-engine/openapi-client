@@ -39,7 +39,8 @@ export interface PermissionRequest {
 /**
  * Check if a given object implements the PermissionRequest interface.
  */
-export declare function instanceOfPermissionRequest(value: object): boolean;
+export declare function instanceOfPermissionRequest(value: object): value is PermissionRequest;
 export declare function PermissionRequestFromJSON(json: any): PermissionRequest;
 export declare function PermissionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): PermissionRequest;
-export declare function PermissionRequestToJSON(value?: PermissionRequest | null): any;
+export declare function PermissionRequestToJSON(json: any): PermissionRequest;
+export declare function PermissionRequestToJSONTyped(value?: PermissionRequest | null, ignoreDiscriminator?: boolean): any;

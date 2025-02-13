@@ -18,6 +18,16 @@
 export const GetCoverageFormat = {
     ImageTiff: 'image/tiff'
 };
+export function instanceOfGetCoverageFormat(value) {
+    for (const key in GetCoverageFormat) {
+        if (Object.prototype.hasOwnProperty.call(GetCoverageFormat, key)) {
+            if (GetCoverageFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function GetCoverageFormatFromJSON(json) {
     return GetCoverageFormatFromJSONTyped(json, false);
 }
@@ -25,5 +35,8 @@ export function GetCoverageFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function GetCoverageFormatToJSON(value) {
+    return value;
+}
+export function GetCoverageFormatToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

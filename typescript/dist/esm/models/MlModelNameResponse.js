@@ -15,29 +15,29 @@
  * Check if a given object implements the MlModelNameResponse interface.
  */
 export function instanceOfMlModelNameResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "mlModelName" in value;
-    return isInstance;
+    if (!('mlModelName' in value) || value['mlModelName'] === undefined)
+        return false;
+    return true;
 }
 export function MlModelNameResponseFromJSON(json) {
     return MlModelNameResponseFromJSONTyped(json, false);
 }
 export function MlModelNameResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'mlModelName': json['mlModelName'],
     };
 }
-export function MlModelNameResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function MlModelNameResponseToJSON(json) {
+    return MlModelNameResponseToJSONTyped(json, false);
+}
+export function MlModelNameResponseToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'mlModelName': value.mlModelName,
+        'mlModelName': value['mlModelName'],
     };
 }

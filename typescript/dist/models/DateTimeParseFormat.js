@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DateTimeParseFormatToJSON = exports.DateTimeParseFormatFromJSONTyped = exports.DateTimeParseFormatFromJSON = exports.instanceOfDateTimeParseFormat = void 0;
+exports.instanceOfDateTimeParseFormat = instanceOfDateTimeParseFormat;
+exports.DateTimeParseFormatFromJSON = DateTimeParseFormatFromJSON;
+exports.DateTimeParseFormatFromJSONTyped = DateTimeParseFormatFromJSONTyped;
+exports.DateTimeParseFormatToJSON = DateTimeParseFormatToJSON;
 /**
  * Check if a given object implements the DateTimeParseFormat interface.
  */
@@ -24,11 +27,9 @@ function instanceOfDateTimeParseFormat(value) {
     isInstance = isInstance && "hasTz" in value;
     return isInstance;
 }
-exports.instanceOfDateTimeParseFormat = instanceOfDateTimeParseFormat;
 function DateTimeParseFormatFromJSON(json) {
     return DateTimeParseFormatFromJSONTyped(json, false);
 }
-exports.DateTimeParseFormatFromJSON = DateTimeParseFormatFromJSON;
 function DateTimeParseFormatFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
@@ -39,7 +40,6 @@ function DateTimeParseFormatFromJSONTyped(json, ignoreDiscriminator) {
         'hasTz': json['has_tz'],
     };
 }
-exports.DateTimeParseFormatFromJSONTyped = DateTimeParseFormatFromJSONTyped;
 function DateTimeParseFormatToJSON(value) {
     if (value === undefined) {
         return undefined;
@@ -53,4 +53,3 @@ function DateTimeParseFormatToJSON(value) {
         'has_tz': value.hasTz,
     };
 }
-exports.DateTimeParseFormatToJSON = DateTimeParseFormatToJSON;

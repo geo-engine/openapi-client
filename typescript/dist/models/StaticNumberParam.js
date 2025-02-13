@@ -13,30 +13,33 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StaticNumberParamToJSON = exports.StaticNumberParamFromJSONTyped = exports.StaticNumberParamFromJSON = exports.instanceOfStaticNumberParam = exports.StaticNumberParamTypeEnum = void 0;
+exports.StaticNumberParamTypeEnum = void 0;
+exports.instanceOfStaticNumberParam = instanceOfStaticNumberParam;
+exports.StaticNumberParamFromJSON = StaticNumberParamFromJSON;
+exports.StaticNumberParamFromJSONTyped = StaticNumberParamFromJSONTyped;
+exports.StaticNumberParamToJSON = StaticNumberParamToJSON;
+exports.StaticNumberParamToJSONTyped = StaticNumberParamToJSONTyped;
 /**
  * @export
  */
 exports.StaticNumberParamTypeEnum = {
-    Static: 'static',
-    Derived: 'derived'
+    Static: 'static'
 };
 /**
  * Check if a given object implements the StaticNumberParam interface.
  */
 function instanceOfStaticNumberParam(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "value" in value;
-    return isInstance;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    if (!('value' in value) || value['value'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfStaticNumberParam = instanceOfStaticNumberParam;
 function StaticNumberParamFromJSON(json) {
     return StaticNumberParamFromJSONTyped(json, false);
 }
-exports.StaticNumberParamFromJSON = StaticNumberParamFromJSON;
 function StaticNumberParamFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -44,17 +47,15 @@ function StaticNumberParamFromJSONTyped(json, ignoreDiscriminator) {
         'value': json['value'],
     };
 }
-exports.StaticNumberParamFromJSONTyped = StaticNumberParamFromJSONTyped;
-function StaticNumberParamToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function StaticNumberParamToJSON(json) {
+    return StaticNumberParamToJSONTyped(json, false);
+}
+function StaticNumberParamToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'type': value.type,
-        'value': value.value,
+        'type': value['type'],
+        'value': value['value'],
     };
 }
-exports.StaticNumberParamToJSON = StaticNumberParamToJSON;

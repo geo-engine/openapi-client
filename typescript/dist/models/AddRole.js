@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddRoleToJSON = exports.AddRoleFromJSONTyped = exports.AddRoleFromJSON = exports.instanceOfAddRole = void 0;
+exports.instanceOfAddRole = instanceOfAddRole;
+exports.AddRoleFromJSON = AddRoleFromJSON;
+exports.AddRoleFromJSONTyped = AddRoleFromJSONTyped;
+exports.AddRoleToJSON = AddRoleToJSON;
+exports.AddRoleToJSONTyped = AddRoleToJSONTyped;
 /**
  * Check if a given object implements the AddRole interface.
  */
 function instanceOfAddRole(value) {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    return isInstance;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfAddRole = instanceOfAddRole;
 function AddRoleFromJSON(json) {
     return AddRoleFromJSONTyped(json, false);
 }
-exports.AddRoleFromJSON = AddRoleFromJSON;
 function AddRoleFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'name': json['name'],
     };
 }
-exports.AddRoleFromJSONTyped = AddRoleFromJSONTyped;
-function AddRoleToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function AddRoleToJSON(json) {
+    return AddRoleToJSONTyped(json, false);
+}
+function AddRoleToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'name': value.name,
+        'name': value['name'],
     };
 }
-exports.AddRoleToJSON = AddRoleToJSON;

@@ -11,7 +11,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 /**
  * @export
  */
@@ -22,42 +21,45 @@ export const TaskStatusCompletedStatusEnum = {
  * Check if a given object implements the TaskStatusCompleted interface.
  */
 export function instanceOfTaskStatusCompleted(value) {
-    let isInstance = true;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "taskType" in value;
-    isInstance = isInstance && "timeStarted" in value;
-    isInstance = isInstance && "timeTotal" in value;
-    return isInstance;
+    if (!('status' in value) || value['status'] === undefined)
+        return false;
+    if (!('taskType' in value) || value['taskType'] === undefined)
+        return false;
+    if (!('timeStarted' in value) || value['timeStarted'] === undefined)
+        return false;
+    if (!('timeTotal' in value) || value['timeTotal'] === undefined)
+        return false;
+    return true;
 }
 export function TaskStatusCompletedFromJSON(json) {
     return TaskStatusCompletedFromJSONTyped(json, false);
 }
 export function TaskStatusCompletedFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'info': !exists(json, 'info') ? undefined : json['info'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'info': json['info'] == null ? undefined : json['info'],
         'status': json['status'],
         'taskType': json['taskType'],
         'timeStarted': json['timeStarted'],
         'timeTotal': json['timeTotal'],
     };
 }
-export function TaskStatusCompletedToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TaskStatusCompletedToJSON(json) {
+    return TaskStatusCompletedToJSONTyped(json, false);
+}
+export function TaskStatusCompletedToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'info': value.info,
-        'status': value.status,
-        'taskType': value.taskType,
-        'timeStarted': value.timeStarted,
-        'timeTotal': value.timeTotal,
+        'description': value['description'],
+        'info': value['info'],
+        'status': value['status'],
+        'taskType': value['taskType'],
+        'timeStarted': value['timeStarted'],
+        'timeTotal': value['timeTotal'],
     };
 }

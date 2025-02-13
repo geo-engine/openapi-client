@@ -86,8 +86,11 @@ export class SessionApi extends runtime.BaseAPI {
      * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      */
     async loginHandlerRaw(requestParameters: LoginHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
-        if (requestParameters.userCredentials === null || requestParameters.userCredentials === undefined) {
-            throw new runtime.RequiredError('userCredentials','Required parameter requestParameters.userCredentials was null or undefined when calling loginHandler.');
+        if (requestParameters['userCredentials'] == null) {
+            throw new runtime.RequiredError(
+                'userCredentials',
+                'Required parameter "userCredentials" was null or undefined when calling loginHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -101,7 +104,7 @@ export class SessionApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UserCredentialsToJSON(requestParameters.userCredentials),
+            body: UserCredentialsToJSON(requestParameters['userCredentials']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserSessionFromJSON(jsonValue));
@@ -153,14 +156,17 @@ export class SessionApi extends runtime.BaseAPI {
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
     async oidcInitRaw(requestParameters: OidcInitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCodeRequestURL>> {
-        if (requestParameters.redirectUri === null || requestParameters.redirectUri === undefined) {
-            throw new runtime.RequiredError('redirectUri','Required parameter requestParameters.redirectUri was null or undefined when calling oidcInit.');
+        if (requestParameters['redirectUri'] == null) {
+            throw new runtime.RequiredError(
+                'redirectUri',
+                'Required parameter "redirectUri" was null or undefined when calling oidcInit().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.redirectUri !== undefined) {
-            queryParameters['redirectUri'] = requestParameters.redirectUri;
+        if (requestParameters['redirectUri'] != null) {
+            queryParameters['redirectUri'] = requestParameters['redirectUri'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -189,18 +195,24 @@ export class SessionApi extends runtime.BaseAPI {
      * Creates a session for a user via a login with Open Id Connect.
      */
     async oidcLoginRaw(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
-        if (requestParameters.redirectUri === null || requestParameters.redirectUri === undefined) {
-            throw new runtime.RequiredError('redirectUri','Required parameter requestParameters.redirectUri was null or undefined when calling oidcLogin.');
+        if (requestParameters['redirectUri'] == null) {
+            throw new runtime.RequiredError(
+                'redirectUri',
+                'Required parameter "redirectUri" was null or undefined when calling oidcLogin().'
+            );
         }
 
-        if (requestParameters.authCodeResponse === null || requestParameters.authCodeResponse === undefined) {
-            throw new runtime.RequiredError('authCodeResponse','Required parameter requestParameters.authCodeResponse was null or undefined when calling oidcLogin.');
+        if (requestParameters['authCodeResponse'] == null) {
+            throw new runtime.RequiredError(
+                'authCodeResponse',
+                'Required parameter "authCodeResponse" was null or undefined when calling oidcLogin().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.redirectUri !== undefined) {
-            queryParameters['redirectUri'] = requestParameters.redirectUri;
+        if (requestParameters['redirectUri'] != null) {
+            queryParameters['redirectUri'] = requestParameters['redirectUri'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -212,7 +224,7 @@ export class SessionApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AuthCodeResponseToJSON(requestParameters.authCodeResponse),
+            body: AuthCodeResponseToJSON(requestParameters['authCodeResponse']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserSessionFromJSON(jsonValue));
@@ -231,8 +243,11 @@ export class SessionApi extends runtime.BaseAPI {
      * Registers a user.
      */
     async registerUserHandlerRaw(requestParameters: RegisterUserHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
-        if (requestParameters.userRegistration === null || requestParameters.userRegistration === undefined) {
-            throw new runtime.RequiredError('userRegistration','Required parameter requestParameters.userRegistration was null or undefined when calling registerUserHandler.');
+        if (requestParameters['userRegistration'] == null) {
+            throw new runtime.RequiredError(
+                'userRegistration',
+                'Required parameter "userRegistration" was null or undefined when calling registerUserHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -246,7 +261,7 @@ export class SessionApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UserRegistrationToJSON(requestParameters.userRegistration),
+            body: UserRegistrationToJSON(requestParameters['userRegistration']),
         }, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {

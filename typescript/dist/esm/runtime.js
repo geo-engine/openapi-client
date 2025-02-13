@@ -69,7 +69,7 @@ export class Configuration {
 }
 export const DefaultConfig = new Configuration({
     headers: {
-        'User-Agent': 'geoengine/openapi-client/typescript/0.0.20'
+        'User-Agent': 'geoengine/openapi-client/typescript/0.0.21'
     }
 });
 /**
@@ -249,10 +249,6 @@ export const COLLECTION_FORMATS = {
     tsv: "\t",
     pipes: "|",
 };
-export function exists(json, key) {
-    const value = json[key];
-    return value !== null && value !== undefined;
-}
 export function querystring(params, prefix = '') {
     return Object.keys(params)
         .map(key => querystringSingleKey(key, params[key], prefix))
@@ -277,6 +273,10 @@ function querystringSingleKey(key, value, keyPrefix = '') {
         return querystring(value, fullKey);
     }
     return `${encodeURIComponent(fullKey)}=${encodeURIComponent(String(value))}`;
+}
+export function exists(json, key) {
+    const value = json[key];
+    return value !== null && value !== undefined;
 }
 export function mapValues(data, fn) {
     return Object.keys(data).reduce((acc, key) => (Object.assign(Object.assign({}, acc), { [key]: fn(data[key]) })), {});

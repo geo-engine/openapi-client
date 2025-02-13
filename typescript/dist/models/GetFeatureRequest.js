@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetFeatureRequestToJSON = exports.GetFeatureRequestFromJSONTyped = exports.GetFeatureRequestFromJSON = exports.GetFeatureRequest = void 0;
+exports.GetFeatureRequest = void 0;
+exports.instanceOfGetFeatureRequest = instanceOfGetFeatureRequest;
+exports.GetFeatureRequestFromJSON = GetFeatureRequestFromJSON;
+exports.GetFeatureRequestFromJSONTyped = GetFeatureRequestFromJSONTyped;
+exports.GetFeatureRequestToJSON = GetFeatureRequestToJSON;
+exports.GetFeatureRequestToJSONTyped = GetFeatureRequestToJSONTyped;
 /**
  *
  * @export
@@ -21,15 +26,25 @@ exports.GetFeatureRequestToJSON = exports.GetFeatureRequestFromJSONTyped = expor
 exports.GetFeatureRequest = {
     GetFeature: 'GetFeature'
 };
+function instanceOfGetFeatureRequest(value) {
+    for (const key in exports.GetFeatureRequest) {
+        if (Object.prototype.hasOwnProperty.call(exports.GetFeatureRequest, key)) {
+            if (exports.GetFeatureRequest[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function GetFeatureRequestFromJSON(json) {
     return GetFeatureRequestFromJSONTyped(json, false);
 }
-exports.GetFeatureRequestFromJSON = GetFeatureRequestFromJSON;
 function GetFeatureRequestFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.GetFeatureRequestFromJSONTyped = GetFeatureRequestFromJSONTyped;
 function GetFeatureRequestToJSON(value) {
     return value;
 }
-exports.GetFeatureRequestToJSON = GetFeatureRequestToJSON;
+function GetFeatureRequestToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

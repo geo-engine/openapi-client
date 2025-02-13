@@ -25,7 +25,8 @@ export interface UpdateQuota {
 /**
  * Check if a given object implements the UpdateQuota interface.
  */
-export declare function instanceOfUpdateQuota(value: object): boolean;
+export declare function instanceOfUpdateQuota(value: object): value is UpdateQuota;
 export declare function UpdateQuotaFromJSON(json: any): UpdateQuota;
 export declare function UpdateQuotaFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateQuota;
-export declare function UpdateQuotaToJSON(value?: UpdateQuota | null): any;
+export declare function UpdateQuotaToJSON(json: any): UpdateQuota;
+export declare function UpdateQuotaToJSONTyped(value?: UpdateQuota | null, ignoreDiscriminator?: boolean): any;

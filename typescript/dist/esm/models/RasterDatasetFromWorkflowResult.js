@@ -15,16 +15,17 @@
  * Check if a given object implements the RasterDatasetFromWorkflowResult interface.
  */
 export function instanceOfRasterDatasetFromWorkflowResult(value) {
-    let isInstance = true;
-    isInstance = isInstance && "dataset" in value;
-    isInstance = isInstance && "upload" in value;
-    return isInstance;
+    if (!('dataset' in value) || value['dataset'] === undefined)
+        return false;
+    if (!('upload' in value) || value['upload'] === undefined)
+        return false;
+    return true;
 }
 export function RasterDatasetFromWorkflowResultFromJSON(json) {
     return RasterDatasetFromWorkflowResultFromJSONTyped(json, false);
 }
 export function RasterDatasetFromWorkflowResultFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -32,15 +33,15 @@ export function RasterDatasetFromWorkflowResultFromJSONTyped(json, ignoreDiscrim
         'upload': json['upload'],
     };
 }
-export function RasterDatasetFromWorkflowResultToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function RasterDatasetFromWorkflowResultToJSON(json) {
+    return RasterDatasetFromWorkflowResultToJSONTyped(json, false);
+}
+export function RasterDatasetFromWorkflowResultToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'dataset': value.dataset,
-        'upload': value.upload,
+        'dataset': value['dataset'],
+        'upload': value['upload'],
     };
 }

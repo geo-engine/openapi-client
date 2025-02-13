@@ -13,7 +13,11 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RgbaColorizerToJSON = exports.RgbaColorizerFromJSONTyped = exports.RgbaColorizerFromJSON = exports.instanceOfRgbaColorizer = exports.RgbaColorizerTypeEnum = void 0;
+exports.RgbaColorizerTypeEnum = void 0;
+exports.instanceOfRgbaColorizer = instanceOfRgbaColorizer;
+exports.RgbaColorizerFromJSON = RgbaColorizerFromJSON;
+exports.RgbaColorizerFromJSONTyped = RgbaColorizerFromJSONTyped;
+exports.RgbaColorizerToJSON = RgbaColorizerToJSON;
 /**
  * @export
  */
@@ -28,11 +32,9 @@ function instanceOfRgbaColorizer(value) {
     isInstance = isInstance && "type" in value;
     return isInstance;
 }
-exports.instanceOfRgbaColorizer = instanceOfRgbaColorizer;
 function RgbaColorizerFromJSON(json) {
     return RgbaColorizerFromJSONTyped(json, false);
 }
-exports.RgbaColorizerFromJSON = RgbaColorizerFromJSON;
 function RgbaColorizerFromJSONTyped(json, ignoreDiscriminator) {
     if ((json === undefined) || (json === null)) {
         return json;
@@ -41,7 +43,6 @@ function RgbaColorizerFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.RgbaColorizerFromJSONTyped = RgbaColorizerFromJSONTyped;
 function RgbaColorizerToJSON(value) {
     if (value === undefined) {
         return undefined;
@@ -53,4 +54,3 @@ function RgbaColorizerToJSON(value) {
         'type': value.type,
     };
 }
-exports.RgbaColorizerToJSON = RgbaColorizerToJSON;

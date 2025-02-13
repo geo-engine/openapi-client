@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface MlModelNameResponse {
 /**
  * Check if a given object implements the MlModelNameResponse interface.
  */
-export function instanceOfMlModelNameResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "mlModelName" in value;
-
-    return isInstance;
+export function instanceOfMlModelNameResponse(value: object): value is MlModelNameResponse {
+    if (!('mlModelName' in value) || value['mlModelName'] === undefined) return false;
+    return true;
 }
 
 export function MlModelNameResponseFromJSON(json: any): MlModelNameResponse {
@@ -42,7 +40,7 @@ export function MlModelNameResponseFromJSON(json: any): MlModelNameResponse {
 }
 
 export function MlModelNameResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MlModelNameResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function MlModelNameResponseFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function MlModelNameResponseToJSON(value?: MlModelNameResponse | null): any {
-    if (value === undefined) {
-        return undefined;
+export function MlModelNameResponseToJSON(json: any): MlModelNameResponse {
+    return MlModelNameResponseToJSONTyped(json, false);
+}
+
+export function MlModelNameResponseToJSONTyped(value?: MlModelNameResponse | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'mlModelName': value.mlModelName,
+        'mlModelName': value['mlModelName'],
     };
 }
 

@@ -43,7 +43,8 @@ export interface UpdateDataset {
 /**
  * Check if a given object implements the UpdateDataset interface.
  */
-export declare function instanceOfUpdateDataset(value: object): boolean;
+export declare function instanceOfUpdateDataset(value: object): value is UpdateDataset;
 export declare function UpdateDatasetFromJSON(json: any): UpdateDataset;
 export declare function UpdateDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateDataset;
-export declare function UpdateDatasetToJSON(value?: UpdateDataset | null): any;
+export declare function UpdateDatasetToJSON(json: any): UpdateDataset;
+export declare function UpdateDatasetToJSONTyped(value?: UpdateDataset | null, ignoreDiscriminator?: boolean): any;

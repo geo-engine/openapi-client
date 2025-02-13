@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WcsServiceToJSON = exports.WcsServiceFromJSONTyped = exports.WcsServiceFromJSON = exports.WcsService = void 0;
+exports.WcsService = void 0;
+exports.instanceOfWcsService = instanceOfWcsService;
+exports.WcsServiceFromJSON = WcsServiceFromJSON;
+exports.WcsServiceFromJSONTyped = WcsServiceFromJSONTyped;
+exports.WcsServiceToJSON = WcsServiceToJSON;
+exports.WcsServiceToJSONTyped = WcsServiceToJSONTyped;
 /**
  *
  * @export
@@ -21,15 +26,25 @@ exports.WcsServiceToJSON = exports.WcsServiceFromJSONTyped = exports.WcsServiceF
 exports.WcsService = {
     Wcs: 'WCS'
 };
+function instanceOfWcsService(value) {
+    for (const key in exports.WcsService) {
+        if (Object.prototype.hasOwnProperty.call(exports.WcsService, key)) {
+            if (exports.WcsService[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function WcsServiceFromJSON(json) {
     return WcsServiceFromJSONTyped(json, false);
 }
-exports.WcsServiceFromJSON = WcsServiceFromJSON;
 function WcsServiceFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.WcsServiceFromJSONTyped = WcsServiceFromJSONTyped;
 function WcsServiceToJSON(value) {
     return value;
 }
-exports.WcsServiceToJSON = WcsServiceToJSON;
+function WcsServiceToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

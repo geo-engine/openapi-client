@@ -18,6 +18,8 @@ export declare const SearchType: {
     readonly Prefix: "prefix";
 };
 export type SearchType = typeof SearchType[keyof typeof SearchType];
+export declare function instanceOfSearchType(value: any): boolean;
 export declare function SearchTypeFromJSON(json: any): SearchType;
 export declare function SearchTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchType;
 export declare function SearchTypeToJSON(value?: SearchType | null): any;
+export declare function SearchTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): SearchType;

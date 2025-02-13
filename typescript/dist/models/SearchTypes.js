@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SearchTypesToJSON = exports.SearchTypesFromJSONTyped = exports.SearchTypesFromJSON = exports.instanceOfSearchTypes = void 0;
+exports.instanceOfSearchTypes = instanceOfSearchTypes;
+exports.SearchTypesFromJSON = SearchTypesFromJSON;
+exports.SearchTypesFromJSONTyped = SearchTypesFromJSONTyped;
+exports.SearchTypesToJSON = SearchTypesToJSON;
+exports.SearchTypesToJSONTyped = SearchTypesToJSONTyped;
 /**
  * Check if a given object implements the SearchTypes interface.
  */
 function instanceOfSearchTypes(value) {
-    let isInstance = true;
-    isInstance = isInstance && "fulltext" in value;
-    isInstance = isInstance && "prefix" in value;
-    return isInstance;
+    if (!('fulltext' in value) || value['fulltext'] === undefined)
+        return false;
+    if (!('prefix' in value) || value['prefix'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfSearchTypes = instanceOfSearchTypes;
 function SearchTypesFromJSON(json) {
     return SearchTypesFromJSONTyped(json, false);
 }
-exports.SearchTypesFromJSON = SearchTypesFromJSON;
 function SearchTypesFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function SearchTypesFromJSONTyped(json, ignoreDiscriminator) {
         'prefix': json['prefix'],
     };
 }
-exports.SearchTypesFromJSONTyped = SearchTypesFromJSONTyped;
-function SearchTypesToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function SearchTypesToJSON(json) {
+    return SearchTypesToJSONTyped(json, false);
+}
+function SearchTypesToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'fulltext': value.fulltext,
-        'prefix': value.prefix,
+        'fulltext': value['fulltext'],
+        'prefix': value['prefix'],
     };
 }
-exports.SearchTypesToJSON = SearchTypesToJSON;

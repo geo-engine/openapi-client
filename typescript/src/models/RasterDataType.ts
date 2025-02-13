@@ -32,6 +32,17 @@ export const RasterDataType = {
 export type RasterDataType = typeof RasterDataType[keyof typeof RasterDataType];
 
 
+export function instanceOfRasterDataType(value: any): boolean {
+    for (const key in RasterDataType) {
+        if (Object.prototype.hasOwnProperty.call(RasterDataType, key)) {
+            if (RasterDataType[key as keyof typeof RasterDataType] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function RasterDataTypeFromJSON(json: any): RasterDataType {
     return RasterDataTypeFromJSONTyped(json, false);
 }
@@ -42,5 +53,9 @@ export function RasterDataTypeFromJSONTyped(json: any, ignoreDiscriminator: bool
 
 export function RasterDataTypeToJSON(value?: RasterDataType | null): any {
     return value as any;
+}
+
+export function RasterDataTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): RasterDataType {
+    return value as RasterDataType;
 }
 

@@ -15,18 +15,21 @@
  * Check if a given object implements the ServerInfo interface.
  */
 export function instanceOfServerInfo(value) {
-    let isInstance = true;
-    isInstance = isInstance && "buildDate" in value;
-    isInstance = isInstance && "commitHash" in value;
-    isInstance = isInstance && "features" in value;
-    isInstance = isInstance && "version" in value;
-    return isInstance;
+    if (!('buildDate' in value) || value['buildDate'] === undefined)
+        return false;
+    if (!('commitHash' in value) || value['commitHash'] === undefined)
+        return false;
+    if (!('features' in value) || value['features'] === undefined)
+        return false;
+    if (!('version' in value) || value['version'] === undefined)
+        return false;
+    return true;
 }
 export function ServerInfoFromJSON(json) {
     return ServerInfoFromJSONTyped(json, false);
 }
 export function ServerInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -36,17 +39,17 @@ export function ServerInfoFromJSONTyped(json, ignoreDiscriminator) {
         'version': json['version'],
     };
 }
-export function ServerInfoToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ServerInfoToJSON(json) {
+    return ServerInfoToJSONTyped(json, false);
+}
+export function ServerInfoToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'buildDate': value.buildDate,
-        'commitHash': value.commitHash,
-        'features': value.features,
-        'version': value.version,
+        'buildDate': value['buildDate'],
+        'commitHash': value['commitHash'],
+        'features': value['features'],
+        'version': value['version'],
     };
 }

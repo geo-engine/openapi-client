@@ -81,8 +81,11 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Create a new project for the user.
      */
     async createProjectHandlerRaw(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
-        if (requestParameters.createProject === null || requestParameters.createProject === undefined) {
-            throw new runtime.RequiredError('createProject','Required parameter requestParameters.createProject was null or undefined when calling createProjectHandler.');
+        if (requestParameters['createProject'] == null) {
+            throw new runtime.RequiredError(
+                'createProject',
+                'Required parameter "createProject" was null or undefined when calling createProjectHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -104,7 +107,7 @@ export class ProjectsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateProjectToJSON(requestParameters.createProject),
+            body: CreateProjectToJSON(requestParameters['createProject']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
@@ -122,8 +125,11 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Deletes a project.
      */
     async deleteProjectHandlerRaw(requestParameters: DeleteProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.project === null || requestParameters.project === undefined) {
-            throw new runtime.RequiredError('project','Required parameter requestParameters.project was null or undefined when calling deleteProjectHandler.');
+        if (requestParameters['project'] == null) {
+            throw new runtime.RequiredError(
+                'project',
+                'Required parameter "project" was null or undefined when calling deleteProjectHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -139,7 +145,7 @@ export class ProjectsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters.project))),
+            path: `/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -159,16 +165,25 @@ export class ProjectsApi extends runtime.BaseAPI {
      * List all projects accessible to the user that match the selected criteria.
      */
     async listProjectsHandlerRaw(requestParameters: ListProjectsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectListing>>> {
-        if (requestParameters.order === null || requestParameters.order === undefined) {
-            throw new runtime.RequiredError('order','Required parameter requestParameters.order was null or undefined when calling listProjectsHandler.');
+        if (requestParameters['order'] == null) {
+            throw new runtime.RequiredError(
+                'order',
+                'Required parameter "order" was null or undefined when calling listProjectsHandler().'
+            );
         }
 
-        if (requestParameters.offset === null || requestParameters.offset === undefined) {
-            throw new runtime.RequiredError('offset','Required parameter requestParameters.offset was null or undefined when calling listProjectsHandler.');
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError(
+                'offset',
+                'Required parameter "offset" was null or undefined when calling listProjectsHandler().'
+            );
         }
 
-        if (requestParameters.limit === null || requestParameters.limit === undefined) {
-            throw new runtime.RequiredError('limit','Required parameter requestParameters.limit was null or undefined when calling listProjectsHandler.');
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError(
+                'limit',
+                'Required parameter "limit" was null or undefined when calling listProjectsHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -184,7 +199,7 @@ export class ProjectsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/projects`.replace(`{${"order"}}`, encodeURIComponent(String(requestParameters.order))).replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters.offset))).replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters.limit))),
+            path: `/projects`.replace(`{${"order"}}`, encodeURIComponent(String(requestParameters['order']))).replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset']))).replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -205,8 +220,11 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Retrieves details about the latest version of a project.
      */
     async loadProjectLatestHandlerRaw(requestParameters: LoadProjectLatestHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
-        if (requestParameters.project === null || requestParameters.project === undefined) {
-            throw new runtime.RequiredError('project','Required parameter requestParameters.project was null or undefined when calling loadProjectLatestHandler.');
+        if (requestParameters['project'] == null) {
+            throw new runtime.RequiredError(
+                'project',
+                'Required parameter "project" was null or undefined when calling loadProjectLatestHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -222,7 +240,7 @@ export class ProjectsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters.project))),
+            path: `/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -243,12 +261,18 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Retrieves details about the given version of a project.
      */
     async loadProjectVersionHandlerRaw(requestParameters: LoadProjectVersionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
-        if (requestParameters.project === null || requestParameters.project === undefined) {
-            throw new runtime.RequiredError('project','Required parameter requestParameters.project was null or undefined when calling loadProjectVersionHandler.');
+        if (requestParameters['project'] == null) {
+            throw new runtime.RequiredError(
+                'project',
+                'Required parameter "project" was null or undefined when calling loadProjectVersionHandler().'
+            );
         }
 
-        if (requestParameters.version === null || requestParameters.version === undefined) {
-            throw new runtime.RequiredError('version','Required parameter requestParameters.version was null or undefined when calling loadProjectVersionHandler.');
+        if (requestParameters['version'] == null) {
+            throw new runtime.RequiredError(
+                'version',
+                'Required parameter "version" was null or undefined when calling loadProjectVersionHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -264,7 +288,7 @@ export class ProjectsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/project/{project}/{version}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters.project))).replace(`{${"version"}}`, encodeURIComponent(String(requestParameters.version))),
+            path: `/project/{project}/{version}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))).replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -285,8 +309,11 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Lists all available versions of a project.
      */
     async projectVersionsHandlerRaw(requestParameters: ProjectVersionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectVersion>>> {
-        if (requestParameters.project === null || requestParameters.project === undefined) {
-            throw new runtime.RequiredError('project','Required parameter requestParameters.project was null or undefined when calling projectVersionsHandler.');
+        if (requestParameters['project'] == null) {
+            throw new runtime.RequiredError(
+                'project',
+                'Required parameter "project" was null or undefined when calling projectVersionsHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -302,7 +329,7 @@ export class ProjectsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/project/{project}/versions`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters.project))),
+            path: `/project/{project}/versions`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -324,12 +351,18 @@ export class ProjectsApi extends runtime.BaseAPI {
      * Updates a project.
      */
     async updateProjectHandlerRaw(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.project === null || requestParameters.project === undefined) {
-            throw new runtime.RequiredError('project','Required parameter requestParameters.project was null or undefined when calling updateProjectHandler.');
+        if (requestParameters['project'] == null) {
+            throw new runtime.RequiredError(
+                'project',
+                'Required parameter "project" was null or undefined when calling updateProjectHandler().'
+            );
         }
 
-        if (requestParameters.updateProject === null || requestParameters.updateProject === undefined) {
-            throw new runtime.RequiredError('updateProject','Required parameter requestParameters.updateProject was null or undefined when calling updateProjectHandler.');
+        if (requestParameters['updateProject'] == null) {
+            throw new runtime.RequiredError(
+                'updateProject',
+                'Required parameter "updateProject" was null or undefined when calling updateProjectHandler().'
+            );
         }
 
         const queryParameters: any = {};
@@ -347,11 +380,11 @@ export class ProjectsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters.project))),
+            path: `/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateProjectToJSON(requestParameters.updateProject),
+            body: UpdateProjectToJSON(requestParameters['updateProject']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);

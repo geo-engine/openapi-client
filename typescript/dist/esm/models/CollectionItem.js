@@ -17,30 +17,30 @@ export function CollectionItemFromJSON(json) {
     return CollectionItemFromJSONTyped(json, false);
 }
 export function CollectionItemFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'collection':
-            return Object.assign(Object.assign({}, LayerCollectionListingFromJSONTyped(json, true)), { type: 'collection' });
+            return Object.assign({}, LayerCollectionListingFromJSONTyped(json, true), { type: 'collection' });
         case 'layer':
-            return Object.assign(Object.assign({}, LayerListingFromJSONTyped(json, true)), { type: 'layer' });
+            return Object.assign({}, LayerListingFromJSONTyped(json, true), { type: 'layer' });
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }
 }
-export function CollectionItemToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function CollectionItemToJSON(json) {
+    return CollectionItemToJSONTyped(json, false);
+}
+export function CollectionItemToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'collection':
-            return LayerCollectionListingToJSON(value);
+            return Object.assign({}, LayerCollectionListingToJSON(value), { type: 'collection' });
         case 'layer':
-            return LayerListingToJSON(value);
+            return Object.assign({}, LayerListingToJSON(value), { type: 'layer' });
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${value['type']}'`);
     }

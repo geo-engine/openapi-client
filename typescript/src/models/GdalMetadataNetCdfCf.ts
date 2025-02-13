@@ -12,25 +12,28 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { GdalDatasetParameters } from './GdalDatasetParameters';
-import {
-    GdalDatasetParametersFromJSON,
-    GdalDatasetParametersFromJSONTyped,
-    GdalDatasetParametersToJSON,
-} from './GdalDatasetParameters';
-import type { RasterResultDescriptor } from './RasterResultDescriptor';
-import {
-    RasterResultDescriptorFromJSON,
-    RasterResultDescriptorFromJSONTyped,
-    RasterResultDescriptorToJSON,
-} from './RasterResultDescriptor';
+import { mapValues } from '../runtime';
 import type { TimeStep } from './TimeStep';
 import {
     TimeStepFromJSON,
     TimeStepFromJSONTyped,
     TimeStepToJSON,
+    TimeStepToJSONTyped,
 } from './TimeStep';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import {
+    RasterResultDescriptorFromJSON,
+    RasterResultDescriptorFromJSONTyped,
+    RasterResultDescriptorToJSON,
+    RasterResultDescriptorToJSONTyped,
+} from './RasterResultDescriptor';
+import type { GdalDatasetParameters } from './GdalDatasetParameters';
+import {
+    GdalDatasetParametersFromJSON,
+    GdalDatasetParametersFromJSONTyped,
+    GdalDatasetParametersToJSON,
+    GdalDatasetParametersToJSONTyped,
+} from './GdalDatasetParameters';
 
 /**
  * Meta data for 4D `NetCDF` CF datasets
@@ -102,17 +105,15 @@ export type GdalMetadataNetCdfCfTypeEnum = typeof GdalMetadataNetCdfCfTypeEnum[k
 /**
  * Check if a given object implements the GdalMetadataNetCdfCf interface.
  */
-export function instanceOfGdalMetadataNetCdfCf(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "bandOffset" in value;
-    isInstance = isInstance && "end" in value;
-    isInstance = isInstance && "params" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "start" in value;
-    isInstance = isInstance && "step" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfGdalMetadataNetCdfCf(value: object): value is GdalMetadataNetCdfCf {
+    if (!('bandOffset' in value) || value['bandOffset'] === undefined) return false;
+    if (!('end' in value) || value['end'] === undefined) return false;
+    if (!('params' in value) || value['params'] === undefined) return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
+    if (!('start' in value) || value['start'] === undefined) return false;
+    if (!('step' in value) || value['step'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function GdalMetadataNetCdfCfFromJSON(json: any): GdalMetadataNetCdfCf {
@@ -120,13 +121,13 @@ export function GdalMetadataNetCdfCfFromJSON(json: any): GdalMetadataNetCdfCf {
 }
 
 export function GdalMetadataNetCdfCfFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalMetadataNetCdfCf {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'bandOffset': json['bandOffset'],
-        'cacheTtl': !exists(json, 'cacheTtl') ? undefined : json['cacheTtl'],
+        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
         'end': json['end'],
         'params': GdalDatasetParametersFromJSON(json['params']),
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
@@ -136,23 +137,25 @@ export function GdalMetadataNetCdfCfFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-export function GdalMetadataNetCdfCfToJSON(value?: GdalMetadataNetCdfCf | null): any {
-    if (value === undefined) {
-        return undefined;
+export function GdalMetadataNetCdfCfToJSON(json: any): GdalMetadataNetCdfCf {
+    return GdalMetadataNetCdfCfToJSONTyped(json, false);
+}
+
+export function GdalMetadataNetCdfCfToJSONTyped(value?: GdalMetadataNetCdfCf | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'bandOffset': value.bandOffset,
-        'cacheTtl': value.cacheTtl,
-        'end': value.end,
-        'params': GdalDatasetParametersToJSON(value.params),
-        'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
-        'start': value.start,
-        'step': TimeStepToJSON(value.step),
-        'type': value.type,
+        'bandOffset': value['bandOffset'],
+        'cacheTtl': value['cacheTtl'],
+        'end': value['end'],
+        'params': GdalDatasetParametersToJSON(value['params']),
+        'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
+        'start': value['start'],
+        'step': TimeStepToJSON(value['step']),
+        'type': value['type'],
     };
 }
 

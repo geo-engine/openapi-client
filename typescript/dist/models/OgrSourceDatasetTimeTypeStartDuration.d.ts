@@ -51,7 +51,8 @@ export type OgrSourceDatasetTimeTypeStartDurationTypeEnum = typeof OgrSourceData
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeStartDuration interface.
  */
-export declare function instanceOfOgrSourceDatasetTimeTypeStartDuration(value: object): boolean;
+export declare function instanceOfOgrSourceDatasetTimeTypeStartDuration(value: object): value is OgrSourceDatasetTimeTypeStartDuration;
 export declare function OgrSourceDatasetTimeTypeStartDurationFromJSON(json: any): OgrSourceDatasetTimeTypeStartDuration;
 export declare function OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDatasetTimeTypeStartDuration;
-export declare function OgrSourceDatasetTimeTypeStartDurationToJSON(value?: OgrSourceDatasetTimeTypeStartDuration | null): any;
+export declare function OgrSourceDatasetTimeTypeStartDurationToJSON(json: any): OgrSourceDatasetTimeTypeStartDuration;
+export declare function OgrSourceDatasetTimeTypeStartDurationToJSONTyped(value?: OgrSourceDatasetTimeTypeStartDuration | null, ignoreDiscriminator?: boolean): any;

@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectVersionToJSON = exports.ProjectVersionFromJSONTyped = exports.ProjectVersionFromJSON = exports.instanceOfProjectVersion = void 0;
+exports.instanceOfProjectVersion = instanceOfProjectVersion;
+exports.ProjectVersionFromJSON = ProjectVersionFromJSON;
+exports.ProjectVersionFromJSONTyped = ProjectVersionFromJSONTyped;
+exports.ProjectVersionToJSON = ProjectVersionToJSON;
+exports.ProjectVersionToJSONTyped = ProjectVersionToJSONTyped;
 /**
  * Check if a given object implements the ProjectVersion interface.
  */
 function instanceOfProjectVersion(value) {
-    let isInstance = true;
-    isInstance = isInstance && "changed" in value;
-    isInstance = isInstance && "id" in value;
-    return isInstance;
+    if (!('changed' in value) || value['changed'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfProjectVersion = instanceOfProjectVersion;
 function ProjectVersionFromJSON(json) {
     return ProjectVersionFromJSONTyped(json, false);
 }
-exports.ProjectVersionFromJSON = ProjectVersionFromJSON;
 function ProjectVersionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function ProjectVersionFromJSONTyped(json, ignoreDiscriminator) {
         'id': json['id'],
     };
 }
-exports.ProjectVersionFromJSONTyped = ProjectVersionFromJSONTyped;
-function ProjectVersionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ProjectVersionToJSON(json) {
+    return ProjectVersionToJSONTyped(json, false);
+}
+function ProjectVersionToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'changed': (value.changed.toISOString()),
-        'id': value.id,
+        'changed': ((value['changed']).toISOString()),
+        'id': value['id'],
     };
 }
-exports.ProjectVersionToJSON = ProjectVersionToJSON;

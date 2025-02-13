@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsageSummaryGranularityToJSON = exports.UsageSummaryGranularityFromJSONTyped = exports.UsageSummaryGranularityFromJSON = exports.UsageSummaryGranularity = void 0;
+exports.UsageSummaryGranularity = void 0;
+exports.instanceOfUsageSummaryGranularity = instanceOfUsageSummaryGranularity;
+exports.UsageSummaryGranularityFromJSON = UsageSummaryGranularityFromJSON;
+exports.UsageSummaryGranularityFromJSONTyped = UsageSummaryGranularityFromJSONTyped;
+exports.UsageSummaryGranularityToJSON = UsageSummaryGranularityToJSON;
+exports.UsageSummaryGranularityToJSONTyped = UsageSummaryGranularityToJSONTyped;
 /**
  *
  * @export
@@ -25,15 +30,25 @@ exports.UsageSummaryGranularity = {
     Months: 'months',
     Years: 'years'
 };
+function instanceOfUsageSummaryGranularity(value) {
+    for (const key in exports.UsageSummaryGranularity) {
+        if (Object.prototype.hasOwnProperty.call(exports.UsageSummaryGranularity, key)) {
+            if (exports.UsageSummaryGranularity[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function UsageSummaryGranularityFromJSON(json) {
     return UsageSummaryGranularityFromJSONTyped(json, false);
 }
-exports.UsageSummaryGranularityFromJSON = UsageSummaryGranularityFromJSON;
 function UsageSummaryGranularityFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.UsageSummaryGranularityFromJSONTyped = UsageSummaryGranularityFromJSONTyped;
 function UsageSummaryGranularityToJSON(value) {
     return value;
 }
-exports.UsageSummaryGranularityToJSON = UsageSummaryGranularityToJSON;
+function UsageSummaryGranularityToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { AddDataset } from './AddDataset';
 import type { MetaDataDefinition } from './MetaDataDefinition';
+import type { AddDataset } from './AddDataset';
 /**
  *
  * @export
@@ -33,7 +33,8 @@ export interface DatasetDefinition {
 /**
  * Check if a given object implements the DatasetDefinition interface.
  */
-export declare function instanceOfDatasetDefinition(value: object): boolean;
+export declare function instanceOfDatasetDefinition(value: object): value is DatasetDefinition;
 export declare function DatasetDefinitionFromJSON(json: any): DatasetDefinition;
 export declare function DatasetDefinitionFromJSONTyped(json: any, ignoreDiscriminator: boolean): DatasetDefinition;
-export declare function DatasetDefinitionToJSON(value?: DatasetDefinition | null): any;
+export declare function DatasetDefinitionToJSON(json: any): DatasetDefinition;
+export declare function DatasetDefinitionToJSONTyped(value?: DatasetDefinition | null, ignoreDiscriminator?: boolean): any;

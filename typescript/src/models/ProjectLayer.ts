@@ -12,18 +12,20 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { LayerVisibility } from './LayerVisibility';
 import {
     LayerVisibilityFromJSON,
     LayerVisibilityFromJSONTyped,
     LayerVisibilityToJSON,
+    LayerVisibilityToJSONTyped,
 } from './LayerVisibility';
 import type { Symbology } from './Symbology';
 import {
     SymbologyFromJSON,
     SymbologyFromJSONTyped,
     SymbologyToJSON,
+    SymbologyToJSONTyped,
 } from './Symbology';
 
 /**
@@ -61,14 +63,12 @@ export interface ProjectLayer {
 /**
  * Check if a given object implements the ProjectLayer interface.
  */
-export function instanceOfProjectLayer(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "symbology" in value;
-    isInstance = isInstance && "visibility" in value;
-    isInstance = isInstance && "workflow" in value;
-
-    return isInstance;
+export function instanceOfProjectLayer(value: object): value is ProjectLayer {
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('symbology' in value) || value['symbology'] === undefined) return false;
+    if (!('visibility' in value) || value['visibility'] === undefined) return false;
+    if (!('workflow' in value) || value['workflow'] === undefined) return false;
+    return true;
 }
 
 export function ProjectLayerFromJSON(json: any): ProjectLayer {
@@ -76,7 +76,7 @@ export function ProjectLayerFromJSON(json: any): ProjectLayer {
 }
 
 export function ProjectLayerFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProjectLayer {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -88,19 +88,21 @@ export function ProjectLayerFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function ProjectLayerToJSON(value?: ProjectLayer | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ProjectLayerToJSON(json: any): ProjectLayer {
+    return ProjectLayerToJSONTyped(json, false);
+}
+
+export function ProjectLayerToJSONTyped(value?: ProjectLayer | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'name': value.name,
-        'symbology': SymbologyToJSON(value.symbology),
-        'visibility': LayerVisibilityToJSON(value.visibility),
-        'workflow': value.workflow,
+        'name': value['name'],
+        'symbology': SymbologyToJSON(value['symbology']),
+        'visibility': LayerVisibilityToJSON(value['visibility']),
+        'workflow': value['workflow'],
     };
 }
 

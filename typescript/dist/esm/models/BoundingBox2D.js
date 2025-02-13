@@ -16,16 +16,17 @@ import { Coordinate2DFromJSON, Coordinate2DToJSON, } from './Coordinate2D';
  * Check if a given object implements the BoundingBox2D interface.
  */
 export function instanceOfBoundingBox2D(value) {
-    let isInstance = true;
-    isInstance = isInstance && "lowerLeftCoordinate" in value;
-    isInstance = isInstance && "upperRightCoordinate" in value;
-    return isInstance;
+    if (!('lowerLeftCoordinate' in value) || value['lowerLeftCoordinate'] === undefined)
+        return false;
+    if (!('upperRightCoordinate' in value) || value['upperRightCoordinate'] === undefined)
+        return false;
+    return true;
 }
 export function BoundingBox2DFromJSON(json) {
     return BoundingBox2DFromJSONTyped(json, false);
 }
 export function BoundingBox2DFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -33,15 +34,15 @@ export function BoundingBox2DFromJSONTyped(json, ignoreDiscriminator) {
         'upperRightCoordinate': Coordinate2DFromJSON(json['upperRightCoordinate']),
     };
 }
-export function BoundingBox2DToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function BoundingBox2DToJSON(json) {
+    return BoundingBox2DToJSONTyped(json, false);
+}
+export function BoundingBox2DToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'lowerLeftCoordinate': Coordinate2DToJSON(value.lowerLeftCoordinate),
-        'upperRightCoordinate': Coordinate2DToJSON(value.upperRightCoordinate),
+        'lowerLeftCoordinate': Coordinate2DToJSON(value['lowerLeftCoordinate']),
+        'upperRightCoordinate': Coordinate2DToJSON(value['upperRightCoordinate']),
     };
 }

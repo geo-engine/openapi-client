@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AxisOrderToJSON = exports.AxisOrderFromJSONTyped = exports.AxisOrderFromJSON = exports.AxisOrder = void 0;
+exports.AxisOrder = void 0;
+exports.instanceOfAxisOrder = instanceOfAxisOrder;
+exports.AxisOrderFromJSON = AxisOrderFromJSON;
+exports.AxisOrderFromJSONTyped = AxisOrderFromJSONTyped;
+exports.AxisOrderToJSON = AxisOrderToJSON;
+exports.AxisOrderToJSONTyped = AxisOrderToJSONTyped;
 /**
  *
  * @export
@@ -22,15 +27,25 @@ exports.AxisOrder = {
     NorthEast: 'northEast',
     EastNorth: 'eastNorth'
 };
+function instanceOfAxisOrder(value) {
+    for (const key in exports.AxisOrder) {
+        if (Object.prototype.hasOwnProperty.call(exports.AxisOrder, key)) {
+            if (exports.AxisOrder[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function AxisOrderFromJSON(json) {
     return AxisOrderFromJSONTyped(json, false);
 }
-exports.AxisOrderFromJSON = AxisOrderFromJSON;
 function AxisOrderFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.AxisOrderFromJSONTyped = AxisOrderFromJSONTyped;
 function AxisOrderToJSON(value) {
     return value;
 }
-exports.AxisOrderToJSON = AxisOrderToJSON;
+function AxisOrderToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

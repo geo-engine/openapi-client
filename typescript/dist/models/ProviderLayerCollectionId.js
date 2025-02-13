@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProviderLayerCollectionIdToJSON = exports.ProviderLayerCollectionIdFromJSONTyped = exports.ProviderLayerCollectionIdFromJSON = exports.instanceOfProviderLayerCollectionId = void 0;
+exports.instanceOfProviderLayerCollectionId = instanceOfProviderLayerCollectionId;
+exports.ProviderLayerCollectionIdFromJSON = ProviderLayerCollectionIdFromJSON;
+exports.ProviderLayerCollectionIdFromJSONTyped = ProviderLayerCollectionIdFromJSONTyped;
+exports.ProviderLayerCollectionIdToJSON = ProviderLayerCollectionIdToJSON;
+exports.ProviderLayerCollectionIdToJSONTyped = ProviderLayerCollectionIdToJSONTyped;
 /**
  * Check if a given object implements the ProviderLayerCollectionId interface.
  */
 function instanceOfProviderLayerCollectionId(value) {
-    let isInstance = true;
-    isInstance = isInstance && "collectionId" in value;
-    isInstance = isInstance && "providerId" in value;
-    return isInstance;
+    if (!('collectionId' in value) || value['collectionId'] === undefined)
+        return false;
+    if (!('providerId' in value) || value['providerId'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfProviderLayerCollectionId = instanceOfProviderLayerCollectionId;
 function ProviderLayerCollectionIdFromJSON(json) {
     return ProviderLayerCollectionIdFromJSONTyped(json, false);
 }
-exports.ProviderLayerCollectionIdFromJSON = ProviderLayerCollectionIdFromJSON;
 function ProviderLayerCollectionIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function ProviderLayerCollectionIdFromJSONTyped(json, ignoreDiscriminator) {
         'providerId': json['providerId'],
     };
 }
-exports.ProviderLayerCollectionIdFromJSONTyped = ProviderLayerCollectionIdFromJSONTyped;
-function ProviderLayerCollectionIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ProviderLayerCollectionIdToJSON(json) {
+    return ProviderLayerCollectionIdToJSONTyped(json, false);
+}
+function ProviderLayerCollectionIdToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'collectionId': value.collectionId,
-        'providerId': value.providerId,
+        'collectionId': value['collectionId'],
+        'providerId': value['providerId'],
     };
 }
-exports.ProviderLayerCollectionIdToJSON = ProviderLayerCollectionIdToJSON;

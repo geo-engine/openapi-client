@@ -38,7 +38,8 @@ export interface GdalDatasetGeoTransform {
 /**
  * Check if a given object implements the GdalDatasetGeoTransform interface.
  */
-export declare function instanceOfGdalDatasetGeoTransform(value: object): boolean;
+export declare function instanceOfGdalDatasetGeoTransform(value: object): value is GdalDatasetGeoTransform;
 export declare function GdalDatasetGeoTransformFromJSON(json: any): GdalDatasetGeoTransform;
 export declare function GdalDatasetGeoTransformFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalDatasetGeoTransform;
-export declare function GdalDatasetGeoTransformToJSON(value?: GdalDatasetGeoTransform | null): any;
+export declare function GdalDatasetGeoTransformToJSON(json: any): GdalDatasetGeoTransform;
+export declare function GdalDatasetGeoTransformToJSONTyped(value?: GdalDatasetGeoTransform | null, ignoreDiscriminator?: boolean): any;

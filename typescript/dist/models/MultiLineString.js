@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MultiLineStringToJSON = exports.MultiLineStringFromJSONTyped = exports.MultiLineStringFromJSON = exports.instanceOfMultiLineString = void 0;
+exports.instanceOfMultiLineString = instanceOfMultiLineString;
+exports.MultiLineStringFromJSON = MultiLineStringFromJSON;
+exports.MultiLineStringFromJSONTyped = MultiLineStringFromJSONTyped;
+exports.MultiLineStringToJSON = MultiLineStringToJSON;
+exports.MultiLineStringToJSONTyped = MultiLineStringToJSONTyped;
 /**
  * Check if a given object implements the MultiLineString interface.
  */
 function instanceOfMultiLineString(value) {
-    let isInstance = true;
-    isInstance = isInstance && "coordinates" in value;
-    return isInstance;
+    if (!('coordinates' in value) || value['coordinates'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfMultiLineString = instanceOfMultiLineString;
 function MultiLineStringFromJSON(json) {
     return MultiLineStringFromJSONTyped(json, false);
 }
-exports.MultiLineStringFromJSON = MultiLineStringFromJSON;
 function MultiLineStringFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'coordinates': json['coordinates'],
     };
 }
-exports.MultiLineStringFromJSONTyped = MultiLineStringFromJSONTyped;
-function MultiLineStringToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function MultiLineStringToJSON(json) {
+    return MultiLineStringToJSONTyped(json, false);
+}
+function MultiLineStringToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'coordinates': value.coordinates,
+        'coordinates': value['coordinates'],
     };
 }
-exports.MultiLineStringToJSON = MultiLineStringToJSON;

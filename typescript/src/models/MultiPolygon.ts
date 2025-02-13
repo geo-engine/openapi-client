@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Coordinate2D } from './Coordinate2D';
 import {
     Coordinate2DFromJSON,
     Coordinate2DFromJSONTyped,
     Coordinate2DToJSON,
+    Coordinate2DToJSONTyped,
 } from './Coordinate2D';
 
 /**
@@ -37,11 +38,9 @@ export interface MultiPolygon {
 /**
  * Check if a given object implements the MultiPolygon interface.
  */
-export function instanceOfMultiPolygon(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "polygons" in value;
-
-    return isInstance;
+export function instanceOfMultiPolygon(value: object): value is MultiPolygon {
+    if (!('polygons' in value) || value['polygons'] === undefined) return false;
+    return true;
 }
 
 export function MultiPolygonFromJSON(json: any): MultiPolygon {
@@ -49,7 +48,7 @@ export function MultiPolygonFromJSON(json: any): MultiPolygon {
 }
 
 export function MultiPolygonFromJSONTyped(json: any, ignoreDiscriminator: boolean): MultiPolygon {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -58,16 +57,18 @@ export function MultiPolygonFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function MultiPolygonToJSON(value?: MultiPolygon | null): any {
-    if (value === undefined) {
-        return undefined;
+export function MultiPolygonToJSON(json: any): MultiPolygon {
+    return MultiPolygonToJSONTyped(json, false);
+}
+
+export function MultiPolygonToJSONTyped(value?: MultiPolygon | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'polygons': value.polygons,
+        'polygons': value['polygons'],
     };
 }
 

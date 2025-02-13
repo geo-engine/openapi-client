@@ -37,7 +37,8 @@ export interface OperatorQuota {
 /**
  * Check if a given object implements the OperatorQuota interface.
  */
-export declare function instanceOfOperatorQuota(value: object): boolean;
+export declare function instanceOfOperatorQuota(value: object): value is OperatorQuota;
 export declare function OperatorQuotaFromJSON(json: any): OperatorQuota;
 export declare function OperatorQuotaFromJSONTyped(json: any, ignoreDiscriminator: boolean): OperatorQuota;
-export declare function OperatorQuotaToJSON(value?: OperatorQuota | null): any;
+export declare function OperatorQuotaToJSON(json: any): OperatorQuota;
+export declare function OperatorQuotaToJSONTyped(value?: OperatorQuota | null, ignoreDiscriminator?: boolean): any;

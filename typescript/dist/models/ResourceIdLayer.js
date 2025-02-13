@@ -13,33 +13,33 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ResourceIdLayerToJSON = exports.ResourceIdLayerFromJSONTyped = exports.ResourceIdLayerFromJSON = exports.instanceOfResourceIdLayer = exports.ResourceIdLayerTypeEnum = void 0;
+exports.ResourceIdLayerTypeEnum = void 0;
+exports.instanceOfResourceIdLayer = instanceOfResourceIdLayer;
+exports.ResourceIdLayerFromJSON = ResourceIdLayerFromJSON;
+exports.ResourceIdLayerFromJSONTyped = ResourceIdLayerFromJSONTyped;
+exports.ResourceIdLayerToJSON = ResourceIdLayerToJSON;
+exports.ResourceIdLayerToJSONTyped = ResourceIdLayerToJSONTyped;
 /**
  * @export
  */
 exports.ResourceIdLayerTypeEnum = {
-    Layer: 'Layer',
-    LayerCollection: 'LayerCollection',
-    Project: 'Project',
-    DatasetId: 'DatasetId',
-    MlModel: 'MlModel'
+    Layer: 'Layer'
 };
 /**
  * Check if a given object implements the ResourceIdLayer interface.
  */
 function instanceOfResourceIdLayer(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfResourceIdLayer = instanceOfResourceIdLayer;
 function ResourceIdLayerFromJSON(json) {
     return ResourceIdLayerFromJSONTyped(json, false);
 }
-exports.ResourceIdLayerFromJSON = ResourceIdLayerFromJSON;
 function ResourceIdLayerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -47,17 +47,15 @@ function ResourceIdLayerFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.ResourceIdLayerFromJSONTyped = ResourceIdLayerFromJSONTyped;
-function ResourceIdLayerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ResourceIdLayerToJSON(json) {
+    return ResourceIdLayerToJSONTyped(json, false);
+}
+function ResourceIdLayerToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
-exports.ResourceIdLayerToJSON = ResourceIdLayerToJSON;

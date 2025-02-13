@@ -11,53 +11,54 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 import { ProviderLayerCollectionIdFromJSON, ProviderLayerCollectionIdToJSON, } from './ProviderLayerCollectionId';
 /**
  * @export
  */
 export const LayerCollectionListingTypeEnum = {
-    Collection: 'collection',
-    Layer: 'layer'
+    Collection: 'collection'
 };
 /**
  * Check if a given object implements the LayerCollectionListing interface.
  */
 export function instanceOfLayerCollectionListing(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function LayerCollectionListingFromJSON(json) {
     return LayerCollectionListingFromJSONTyped(json, false);
 }
 export function LayerCollectionListingFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
         'id': ProviderLayerCollectionIdFromJSON(json['id']),
         'name': json['name'],
-        'properties': !exists(json, 'properties') ? undefined : json['properties'],
+        'properties': json['properties'] == null ? undefined : json['properties'],
         'type': json['type'],
     };
 }
-export function LayerCollectionListingToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function LayerCollectionListingToJSON(json) {
+    return LayerCollectionListingToJSONTyped(json, false);
+}
+export function LayerCollectionListingToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'id': ProviderLayerCollectionIdToJSON(value.id),
-        'name': value.name,
-        'properties': value.properties,
-        'type': value.type,
+        'description': value['description'],
+        'id': ProviderLayerCollectionIdToJSON(value['id']),
+        'name': value['name'],
+        'properties': value['properties'],
+        'type': value['type'],
     };
 }

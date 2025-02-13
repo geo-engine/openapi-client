@@ -63,7 +63,8 @@ export interface AddDataset {
 /**
  * Check if a given object implements the AddDataset interface.
  */
-export declare function instanceOfAddDataset(value: object): boolean;
+export declare function instanceOfAddDataset(value: object): value is AddDataset;
 export declare function AddDatasetFromJSON(json: any): AddDataset;
 export declare function AddDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddDataset;
-export declare function AddDatasetToJSON(value?: AddDataset | null): any;
+export declare function AddDatasetToJSON(json: any): AddDataset;
+export declare function AddDatasetToJSONTyped(value?: AddDataset | null, ignoreDiscriminator?: boolean): any;

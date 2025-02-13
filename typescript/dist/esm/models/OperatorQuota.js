@@ -15,17 +15,19 @@
  * Check if a given object implements the OperatorQuota interface.
  */
 export function instanceOfOperatorQuota(value) {
-    let isInstance = true;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "operatorName" in value;
-    isInstance = isInstance && "operatorPath" in value;
-    return isInstance;
+    if (!('count' in value) || value['count'] === undefined)
+        return false;
+    if (!('operatorName' in value) || value['operatorName'] === undefined)
+        return false;
+    if (!('operatorPath' in value) || value['operatorPath'] === undefined)
+        return false;
+    return true;
 }
 export function OperatorQuotaFromJSON(json) {
     return OperatorQuotaFromJSONTyped(json, false);
 }
 export function OperatorQuotaFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -34,16 +36,16 @@ export function OperatorQuotaFromJSONTyped(json, ignoreDiscriminator) {
         'operatorPath': json['operatorPath'],
     };
 }
-export function OperatorQuotaToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function OperatorQuotaToJSON(json) {
+    return OperatorQuotaToJSONTyped(json, false);
+}
+export function OperatorQuotaToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'count': value.count,
-        'operatorName': value.operatorName,
-        'operatorPath': value.operatorPath,
+        'count': value['count'],
+        'operatorName': value['operatorName'],
+        'operatorPath': value['operatorPath'],
     };
 }

@@ -13,25 +13,29 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GdalDatasetGeoTransformToJSON = exports.GdalDatasetGeoTransformFromJSONTyped = exports.GdalDatasetGeoTransformFromJSON = exports.instanceOfGdalDatasetGeoTransform = void 0;
+exports.instanceOfGdalDatasetGeoTransform = instanceOfGdalDatasetGeoTransform;
+exports.GdalDatasetGeoTransformFromJSON = GdalDatasetGeoTransformFromJSON;
+exports.GdalDatasetGeoTransformFromJSONTyped = GdalDatasetGeoTransformFromJSONTyped;
+exports.GdalDatasetGeoTransformToJSON = GdalDatasetGeoTransformToJSON;
+exports.GdalDatasetGeoTransformToJSONTyped = GdalDatasetGeoTransformToJSONTyped;
 const Coordinate2D_1 = require("./Coordinate2D");
 /**
  * Check if a given object implements the GdalDatasetGeoTransform interface.
  */
 function instanceOfGdalDatasetGeoTransform(value) {
-    let isInstance = true;
-    isInstance = isInstance && "originCoordinate" in value;
-    isInstance = isInstance && "xPixelSize" in value;
-    isInstance = isInstance && "yPixelSize" in value;
-    return isInstance;
+    if (!('originCoordinate' in value) || value['originCoordinate'] === undefined)
+        return false;
+    if (!('xPixelSize' in value) || value['xPixelSize'] === undefined)
+        return false;
+    if (!('yPixelSize' in value) || value['yPixelSize'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfGdalDatasetGeoTransform = instanceOfGdalDatasetGeoTransform;
 function GdalDatasetGeoTransformFromJSON(json) {
     return GdalDatasetGeoTransformFromJSONTyped(json, false);
 }
-exports.GdalDatasetGeoTransformFromJSON = GdalDatasetGeoTransformFromJSON;
 function GdalDatasetGeoTransformFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -40,18 +44,16 @@ function GdalDatasetGeoTransformFromJSONTyped(json, ignoreDiscriminator) {
         'yPixelSize': json['yPixelSize'],
     };
 }
-exports.GdalDatasetGeoTransformFromJSONTyped = GdalDatasetGeoTransformFromJSONTyped;
-function GdalDatasetGeoTransformToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function GdalDatasetGeoTransformToJSON(json) {
+    return GdalDatasetGeoTransformToJSONTyped(json, false);
+}
+function GdalDatasetGeoTransformToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'originCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value.originCoordinate),
-        'xPixelSize': value.xPixelSize,
-        'yPixelSize': value.yPixelSize,
+        'originCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value['originCoordinate']),
+        'xPixelSize': value['xPixelSize'],
+        'yPixelSize': value['yPixelSize'],
     };
 }
-exports.GdalDatasetGeoTransformToJSON = GdalDatasetGeoTransformToJSON;

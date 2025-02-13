@@ -22,17 +22,19 @@ export const RasterSymbologyTypeEnum = {
  * Check if a given object implements the RasterSymbology interface.
  */
 export function instanceOfRasterSymbology(value) {
-    let isInstance = true;
-    isInstance = isInstance && "opacity" in value;
-    isInstance = isInstance && "rasterColorizer" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('opacity' in value) || value['opacity'] === undefined)
+        return false;
+    if (!('rasterColorizer' in value) || value['rasterColorizer'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function RasterSymbologyFromJSON(json) {
     return RasterSymbologyFromJSONTyped(json, false);
 }
 export function RasterSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,16 +43,16 @@ export function RasterSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function RasterSymbologyToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function RasterSymbologyToJSON(json) {
+    return RasterSymbologyToJSONTyped(json, false);
+}
+export function RasterSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'opacity': value.opacity,
-        'rasterColorizer': RasterColorizerToJSON(value.rasterColorizer),
-        'type': value.type,
+        'opacity': value['opacity'],
+        'rasterColorizer': RasterColorizerToJSON(value['rasterColorizer']),
+        'type': value['type'],
     };
 }

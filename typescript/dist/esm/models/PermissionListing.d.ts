@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { Role } from './Role';
 import type { Permission } from './Permission';
 import type { Resource } from './Resource';
-import type { Role } from './Role';
 /**
  *
  * @export
@@ -40,7 +40,8 @@ export interface PermissionListing {
 /**
  * Check if a given object implements the PermissionListing interface.
  */
-export declare function instanceOfPermissionListing(value: object): boolean;
+export declare function instanceOfPermissionListing(value: object): value is PermissionListing;
 export declare function PermissionListingFromJSON(json: any): PermissionListing;
 export declare function PermissionListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): PermissionListing;
-export declare function PermissionListingToJSON(value?: PermissionListing | null): any;
+export declare function PermissionListingToJSON(json: any): PermissionListing;
+export declare function PermissionListingToJSONTyped(value?: PermissionListing | null, ignoreDiscriminator?: boolean): any;

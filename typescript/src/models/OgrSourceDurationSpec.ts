@@ -12,22 +12,22 @@
  * Do not edit the class manually.
  */
 
+import type { OgrSourceDurationSpecInfinite } from './OgrSourceDurationSpecInfinite';
 import {
-    OgrSourceDurationSpecInfinite,
     instanceOfOgrSourceDurationSpecInfinite,
     OgrSourceDurationSpecInfiniteFromJSON,
     OgrSourceDurationSpecInfiniteFromJSONTyped,
     OgrSourceDurationSpecInfiniteToJSON,
 } from './OgrSourceDurationSpecInfinite';
+import type { OgrSourceDurationSpecValue } from './OgrSourceDurationSpecValue';
 import {
-    OgrSourceDurationSpecValue,
     instanceOfOgrSourceDurationSpecValue,
     OgrSourceDurationSpecValueFromJSON,
     OgrSourceDurationSpecValueFromJSONTyped,
     OgrSourceDurationSpecValueToJSON,
 } from './OgrSourceDurationSpecValue';
+import type { OgrSourceDurationSpecZero } from './OgrSourceDurationSpecZero';
 import {
-    OgrSourceDurationSpecZero,
     instanceOfOgrSourceDurationSpecZero,
     OgrSourceDurationSpecZeroFromJSON,
     OgrSourceDurationSpecZeroFromJSONTyped,
@@ -46,35 +46,36 @@ export function OgrSourceDurationSpecFromJSON(json: any): OgrSourceDurationSpec 
 }
 
 export function OgrSourceDurationSpecFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpec {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'infinite':
-            return {...OgrSourceDurationSpecInfiniteFromJSONTyped(json, true), type: 'infinite'};
+            return Object.assign({}, OgrSourceDurationSpecInfiniteFromJSONTyped(json, true), { type: 'infinite' } as const);
         case 'value':
-            return {...OgrSourceDurationSpecValueFromJSONTyped(json, true), type: 'value'};
+            return Object.assign({}, OgrSourceDurationSpecValueFromJSONTyped(json, true), { type: 'value' } as const);
         case 'zero':
-            return {...OgrSourceDurationSpecZeroFromJSONTyped(json, true), type: 'zero'};
+            return Object.assign({}, OgrSourceDurationSpecZeroFromJSONTyped(json, true), { type: 'zero' } as const);
         default:
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${json['type']}'`);
     }
 }
 
-export function OgrSourceDurationSpecToJSON(value?: OgrSourceDurationSpec | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function OgrSourceDurationSpecToJSON(json: any): any {
+    return OgrSourceDurationSpecToJSONTyped(json, false);
+}
+
+export function OgrSourceDurationSpecToJSONTyped(value?: OgrSourceDurationSpec | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'infinite':
-            return OgrSourceDurationSpecInfiniteToJSON(value);
+            return Object.assign({}, OgrSourceDurationSpecInfiniteToJSON(value), { type: 'infinite' } as const);
         case 'value':
-            return OgrSourceDurationSpecValueToJSON(value);
+            return Object.assign({}, OgrSourceDurationSpecValueToJSON(value), { type: 'value' } as const);
         case 'zero':
-            return OgrSourceDurationSpecZeroToJSON(value);
+            return Object.assign({}, OgrSourceDurationSpecZeroToJSON(value), { type: 'zero' } as const);
         default:
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${value['type']}'`);
     }

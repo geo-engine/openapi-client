@@ -38,7 +38,8 @@ export type MlModelResourceTypeEnum = typeof MlModelResourceTypeEnum[keyof typeo
 /**
  * Check if a given object implements the MlModelResource interface.
  */
-export declare function instanceOfMlModelResource(value: object): boolean;
+export declare function instanceOfMlModelResource(value: object): value is MlModelResource;
 export declare function MlModelResourceFromJSON(json: any): MlModelResource;
 export declare function MlModelResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): MlModelResource;
-export declare function MlModelResourceToJSON(value?: MlModelResource | null): any;
+export declare function MlModelResourceToJSON(json: any): MlModelResource;
+export declare function MlModelResourceToJSONTyped(value?: MlModelResource | null, ignoreDiscriminator?: boolean): any;

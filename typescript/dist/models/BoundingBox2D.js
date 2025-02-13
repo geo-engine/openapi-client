@@ -13,24 +13,27 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BoundingBox2DToJSON = exports.BoundingBox2DFromJSONTyped = exports.BoundingBox2DFromJSON = exports.instanceOfBoundingBox2D = void 0;
+exports.instanceOfBoundingBox2D = instanceOfBoundingBox2D;
+exports.BoundingBox2DFromJSON = BoundingBox2DFromJSON;
+exports.BoundingBox2DFromJSONTyped = BoundingBox2DFromJSONTyped;
+exports.BoundingBox2DToJSON = BoundingBox2DToJSON;
+exports.BoundingBox2DToJSONTyped = BoundingBox2DToJSONTyped;
 const Coordinate2D_1 = require("./Coordinate2D");
 /**
  * Check if a given object implements the BoundingBox2D interface.
  */
 function instanceOfBoundingBox2D(value) {
-    let isInstance = true;
-    isInstance = isInstance && "lowerLeftCoordinate" in value;
-    isInstance = isInstance && "upperRightCoordinate" in value;
-    return isInstance;
+    if (!('lowerLeftCoordinate' in value) || value['lowerLeftCoordinate'] === undefined)
+        return false;
+    if (!('upperRightCoordinate' in value) || value['upperRightCoordinate'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfBoundingBox2D = instanceOfBoundingBox2D;
 function BoundingBox2DFromJSON(json) {
     return BoundingBox2DFromJSONTyped(json, false);
 }
-exports.BoundingBox2DFromJSON = BoundingBox2DFromJSON;
 function BoundingBox2DFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,17 +41,15 @@ function BoundingBox2DFromJSONTyped(json, ignoreDiscriminator) {
         'upperRightCoordinate': (0, Coordinate2D_1.Coordinate2DFromJSON)(json['upperRightCoordinate']),
     };
 }
-exports.BoundingBox2DFromJSONTyped = BoundingBox2DFromJSONTyped;
-function BoundingBox2DToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function BoundingBox2DToJSON(json) {
+    return BoundingBox2DToJSONTyped(json, false);
+}
+function BoundingBox2DToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'lowerLeftCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value.lowerLeftCoordinate),
-        'upperRightCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value.upperRightCoordinate),
+        'lowerLeftCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value['lowerLeftCoordinate']),
+        'upperRightCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value['upperRightCoordinate']),
     };
 }
-exports.BoundingBox2DToJSON = BoundingBox2DToJSON;

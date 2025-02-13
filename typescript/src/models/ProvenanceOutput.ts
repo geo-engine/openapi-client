@@ -12,19 +12,21 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { DataId } from './DataId';
-import {
-    DataIdFromJSON,
-    DataIdFromJSONTyped,
-    DataIdToJSON,
-} from './DataId';
+import { mapValues } from '../runtime';
 import type { Provenance } from './Provenance';
 import {
     ProvenanceFromJSON,
     ProvenanceFromJSONTyped,
     ProvenanceToJSON,
+    ProvenanceToJSONTyped,
 } from './Provenance';
+import type { DataId } from './DataId';
+import {
+    DataIdFromJSON,
+    DataIdFromJSONTyped,
+    DataIdToJSON,
+    DataIdToJSONTyped,
+} from './DataId';
 
 /**
  * 
@@ -49,11 +51,9 @@ export interface ProvenanceOutput {
 /**
  * Check if a given object implements the ProvenanceOutput interface.
  */
-export function instanceOfProvenanceOutput(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-
-    return isInstance;
+export function instanceOfProvenanceOutput(value: object): value is ProvenanceOutput {
+    if (!('data' in value) || value['data'] === undefined) return false;
+    return true;
 }
 
 export function ProvenanceOutputFromJSON(json: any): ProvenanceOutput {
@@ -61,27 +61,29 @@ export function ProvenanceOutputFromJSON(json: any): ProvenanceOutput {
 }
 
 export function ProvenanceOutputFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProvenanceOutput {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'data': DataIdFromJSON(json['data']),
-        'provenance': !exists(json, 'provenance') ? undefined : (json['provenance'] === null ? null : (json['provenance'] as Array<any>).map(ProvenanceFromJSON)),
+        'provenance': json['provenance'] == null ? undefined : ((json['provenance'] as Array<any>).map(ProvenanceFromJSON)),
     };
 }
 
-export function ProvenanceOutputToJSON(value?: ProvenanceOutput | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ProvenanceOutputToJSON(json: any): ProvenanceOutput {
+    return ProvenanceOutputToJSONTyped(json, false);
+}
+
+export function ProvenanceOutputToJSONTyped(value?: ProvenanceOutput | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'data': DataIdToJSON(value.data),
-        'provenance': value.provenance === undefined ? undefined : (value.provenance === null ? null : (value.provenance as Array<any>).map(ProvenanceToJSON)),
+        'data': DataIdToJSON(value['data']),
+        'provenance': value['provenance'] == null ? undefined : ((value['provenance'] as Array<any>).map(ProvenanceToJSON)),
     };
 }
 

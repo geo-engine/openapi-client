@@ -18,6 +18,16 @@
 export const CollectionType = {
     FeatureCollection: 'FeatureCollection'
 };
+export function instanceOfCollectionType(value) {
+    for (const key in CollectionType) {
+        if (Object.prototype.hasOwnProperty.call(CollectionType, key)) {
+            if (CollectionType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function CollectionTypeFromJSON(json) {
     return CollectionTypeFromJSONTyped(json, false);
 }
@@ -25,5 +35,8 @@ export function CollectionTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function CollectionTypeToJSON(value) {
+    return value;
+}
+export function CollectionTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

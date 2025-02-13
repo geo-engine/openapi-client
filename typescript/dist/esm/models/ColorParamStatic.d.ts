@@ -33,13 +33,13 @@ export interface ColorParamStatic {
  */
 export declare const ColorParamStaticTypeEnum: {
     readonly Static: "static";
-    readonly Derived: "derived";
 };
 export type ColorParamStaticTypeEnum = typeof ColorParamStaticTypeEnum[keyof typeof ColorParamStaticTypeEnum];
 /**
  * Check if a given object implements the ColorParamStatic interface.
  */
-export declare function instanceOfColorParamStatic(value: object): boolean;
+export declare function instanceOfColorParamStatic(value: object): value is ColorParamStatic;
 export declare function ColorParamStaticFromJSON(json: any): ColorParamStatic;
 export declare function ColorParamStaticFromJSONTyped(json: any, ignoreDiscriminator: boolean): ColorParamStatic;
-export declare function ColorParamStaticToJSON(value?: ColorParamStatic | null): any;
+export declare function ColorParamStaticToJSON(json: any): ColorParamStatic;
+export declare function ColorParamStaticToJSONTyped(value?: ColorParamStatic | null, ignoreDiscriminator?: boolean): any;

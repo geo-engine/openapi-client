@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkflowToJSON = exports.WorkflowFromJSONTyped = exports.WorkflowFromJSON = exports.instanceOfWorkflow = exports.WorkflowTypeEnum = void 0;
+exports.WorkflowTypeEnum = void 0;
+exports.instanceOfWorkflow = instanceOfWorkflow;
+exports.WorkflowFromJSON = WorkflowFromJSON;
+exports.WorkflowFromJSONTyped = WorkflowFromJSONTyped;
+exports.WorkflowToJSON = WorkflowToJSON;
+exports.WorkflowToJSONTyped = WorkflowToJSONTyped;
 const TypedOperatorOperator_1 = require("./TypedOperatorOperator");
 /**
  * @export
@@ -27,18 +32,17 @@ exports.WorkflowTypeEnum = {
  * Check if a given object implements the Workflow interface.
  */
 function instanceOfWorkflow(value) {
-    let isInstance = true;
-    isInstance = isInstance && "operator" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('operator' in value) || value['operator'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfWorkflow = instanceOfWorkflow;
 function WorkflowFromJSON(json) {
     return WorkflowFromJSONTyped(json, false);
 }
-exports.WorkflowFromJSON = WorkflowFromJSON;
 function WorkflowFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -46,17 +50,15 @@ function WorkflowFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.WorkflowFromJSONTyped = WorkflowFromJSONTyped;
-function WorkflowToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function WorkflowToJSON(json) {
+    return WorkflowToJSONTyped(json, false);
+}
+function WorkflowToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorToJSON)(value.operator),
-        'type': value.type,
+        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorToJSON)(value['operator']),
+        'type': value['type'],
     };
 }
-exports.WorkflowToJSON = WorkflowToJSON;

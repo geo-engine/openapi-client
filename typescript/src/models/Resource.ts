@@ -12,36 +12,36 @@
  * Do not edit the class manually.
  */
 
+import type { DatasetResource } from './DatasetResource';
 import {
-    DatasetResource,
     instanceOfDatasetResource,
     DatasetResourceFromJSON,
     DatasetResourceFromJSONTyped,
     DatasetResourceToJSON,
 } from './DatasetResource';
+import type { LayerCollectionResource } from './LayerCollectionResource';
 import {
-    LayerCollectionResource,
     instanceOfLayerCollectionResource,
     LayerCollectionResourceFromJSON,
     LayerCollectionResourceFromJSONTyped,
     LayerCollectionResourceToJSON,
 } from './LayerCollectionResource';
+import type { LayerResource } from './LayerResource';
 import {
-    LayerResource,
     instanceOfLayerResource,
     LayerResourceFromJSON,
     LayerResourceFromJSONTyped,
     LayerResourceToJSON,
 } from './LayerResource';
+import type { MlModelResource } from './MlModelResource';
 import {
-    MlModelResource,
     instanceOfMlModelResource,
     MlModelResourceFromJSON,
     MlModelResourceFromJSONTyped,
     MlModelResourceToJSON,
 } from './MlModelResource';
+import type { ProjectResource } from './ProjectResource';
 import {
-    ProjectResource,
     instanceOfProjectResource,
     ProjectResourceFromJSON,
     ProjectResourceFromJSONTyped,
@@ -60,43 +60,44 @@ export function ResourceFromJSON(json: any): Resource {
 }
 
 export function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Resource {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'dataset':
-            return {...DatasetResourceFromJSONTyped(json, true), type: 'dataset'};
+            return Object.assign({}, DatasetResourceFromJSONTyped(json, true), { type: 'dataset' } as const);
         case 'layer':
-            return {...LayerResourceFromJSONTyped(json, true), type: 'layer'};
+            return Object.assign({}, LayerResourceFromJSONTyped(json, true), { type: 'layer' } as const);
         case 'layerCollection':
-            return {...LayerCollectionResourceFromJSONTyped(json, true), type: 'layerCollection'};
+            return Object.assign({}, LayerCollectionResourceFromJSONTyped(json, true), { type: 'layerCollection' } as const);
         case 'mlModel':
-            return {...MlModelResourceFromJSONTyped(json, true), type: 'mlModel'};
+            return Object.assign({}, MlModelResourceFromJSONTyped(json, true), { type: 'mlModel' } as const);
         case 'project':
-            return {...ProjectResourceFromJSONTyped(json, true), type: 'project'};
+            return Object.assign({}, ProjectResourceFromJSONTyped(json, true), { type: 'project' } as const);
         default:
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }
 }
 
-export function ResourceToJSON(value?: Resource | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ResourceToJSON(json: any): any {
+    return ResourceToJSONTyped(json, false);
+}
+
+export function ResourceToJSONTyped(value?: Resource | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'dataset':
-            return DatasetResourceToJSON(value);
+            return Object.assign({}, DatasetResourceToJSON(value), { type: 'dataset' } as const);
         case 'layer':
-            return LayerResourceToJSON(value);
+            return Object.assign({}, LayerResourceToJSON(value), { type: 'layer' } as const);
         case 'layerCollection':
-            return LayerCollectionResourceToJSON(value);
+            return Object.assign({}, LayerCollectionResourceToJSON(value), { type: 'layerCollection' } as const);
         case 'mlModel':
-            return MlModelResourceToJSON(value);
+            return Object.assign({}, MlModelResourceToJSON(value), { type: 'mlModel' } as const);
         case 'project':
-            return ProjectResourceToJSON(value);
+            return Object.assign({}, ProjectResourceToJSON(value), { type: 'project' } as const);
         default:
             throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
     }

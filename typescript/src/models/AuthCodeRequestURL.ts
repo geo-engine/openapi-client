@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface AuthCodeRequestURL {
 /**
  * Check if a given object implements the AuthCodeRequestURL interface.
  */
-export function instanceOfAuthCodeRequestURL(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "url" in value;
-
-    return isInstance;
+export function instanceOfAuthCodeRequestURL(value: object): value is AuthCodeRequestURL {
+    if (!('url' in value) || value['url'] === undefined) return false;
+    return true;
 }
 
 export function AuthCodeRequestURLFromJSON(json: any): AuthCodeRequestURL {
@@ -42,7 +40,7 @@ export function AuthCodeRequestURLFromJSON(json: any): AuthCodeRequestURL {
 }
 
 export function AuthCodeRequestURLFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthCodeRequestURL {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function AuthCodeRequestURLFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function AuthCodeRequestURLToJSON(value?: AuthCodeRequestURL | null): any {
-    if (value === undefined) {
-        return undefined;
+export function AuthCodeRequestURLToJSON(json: any): AuthCodeRequestURL {
+    return AuthCodeRequestURLToJSONTyped(json, false);
+}
+
+export function AuthCodeRequestURLToJSONTyped(value?: AuthCodeRequestURL | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'url': value.url,
+        'url': value['url'],
     };
 }
 

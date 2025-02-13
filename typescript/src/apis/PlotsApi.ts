@@ -40,38 +40,50 @@ export class PlotsApi extends runtime.BaseAPI {
      * Generates a plot.
      */
     async getPlotHandlerRaw(requestParameters: GetPlotHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WrappedPlotOutput>> {
-        if (requestParameters.bbox === null || requestParameters.bbox === undefined) {
-            throw new runtime.RequiredError('bbox','Required parameter requestParameters.bbox was null or undefined when calling getPlotHandler.');
+        if (requestParameters['bbox'] == null) {
+            throw new runtime.RequiredError(
+                'bbox',
+                'Required parameter "bbox" was null or undefined when calling getPlotHandler().'
+            );
         }
 
-        if (requestParameters.time === null || requestParameters.time === undefined) {
-            throw new runtime.RequiredError('time','Required parameter requestParameters.time was null or undefined when calling getPlotHandler.');
+        if (requestParameters['time'] == null) {
+            throw new runtime.RequiredError(
+                'time',
+                'Required parameter "time" was null or undefined when calling getPlotHandler().'
+            );
         }
 
-        if (requestParameters.spatialResolution === null || requestParameters.spatialResolution === undefined) {
-            throw new runtime.RequiredError('spatialResolution','Required parameter requestParameters.spatialResolution was null or undefined when calling getPlotHandler.');
+        if (requestParameters['spatialResolution'] == null) {
+            throw new runtime.RequiredError(
+                'spatialResolution',
+                'Required parameter "spatialResolution" was null or undefined when calling getPlotHandler().'
+            );
         }
 
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getPlotHandler.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getPlotHandler().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.bbox !== undefined) {
-            queryParameters['bbox'] = requestParameters.bbox;
+        if (requestParameters['bbox'] != null) {
+            queryParameters['bbox'] = requestParameters['bbox'];
         }
 
-        if (requestParameters.crs !== undefined) {
-            queryParameters['crs'] = requestParameters.crs;
+        if (requestParameters['crs'] != null) {
+            queryParameters['crs'] = requestParameters['crs'];
         }
 
-        if (requestParameters.time !== undefined) {
-            queryParameters['time'] = requestParameters.time;
+        if (requestParameters['time'] != null) {
+            queryParameters['time'] = requestParameters['time'];
         }
 
-        if (requestParameters.spatialResolution !== undefined) {
-            queryParameters['spatialResolution'] = requestParameters.spatialResolution;
+        if (requestParameters['spatialResolution'] != null) {
+            queryParameters['spatialResolution'] = requestParameters['spatialResolution'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -85,7 +97,7 @@ export class PlotsApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/plot/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/plot/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

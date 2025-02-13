@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -32,9 +32,7 @@ export interface OgrSourceDurationSpecInfinite {
  * @export
  */
 export const OgrSourceDurationSpecInfiniteTypeEnum = {
-    Infinite: 'infinite',
-    Zero: 'zero',
-    Value: 'value'
+    Infinite: 'infinite'
 } as const;
 export type OgrSourceDurationSpecInfiniteTypeEnum = typeof OgrSourceDurationSpecInfiniteTypeEnum[keyof typeof OgrSourceDurationSpecInfiniteTypeEnum];
 
@@ -42,11 +40,9 @@ export type OgrSourceDurationSpecInfiniteTypeEnum = typeof OgrSourceDurationSpec
 /**
  * Check if a given object implements the OgrSourceDurationSpecInfinite interface.
  */
-export function instanceOfOgrSourceDurationSpecInfinite(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfOgrSourceDurationSpecInfinite(value: object): value is OgrSourceDurationSpecInfinite {
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function OgrSourceDurationSpecInfiniteFromJSON(json: any): OgrSourceDurationSpecInfinite {
@@ -54,7 +50,7 @@ export function OgrSourceDurationSpecInfiniteFromJSON(json: any): OgrSourceDurat
 }
 
 export function OgrSourceDurationSpecInfiniteFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpecInfinite {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -63,16 +59,18 @@ export function OgrSourceDurationSpecInfiniteFromJSONTyped(json: any, ignoreDisc
     };
 }
 
-export function OgrSourceDurationSpecInfiniteToJSON(value?: OgrSourceDurationSpecInfinite | null): any {
-    if (value === undefined) {
-        return undefined;
+export function OgrSourceDurationSpecInfiniteToJSON(json: any): OgrSourceDurationSpecInfinite {
+    return OgrSourceDurationSpecInfiniteToJSONTyped(json, false);
+}
+
+export function OgrSourceDurationSpecInfiniteToJSONTyped(value?: OgrSourceDurationSpecInfinite | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'type': value.type,
+        'type': value['type'],
     };
 }
 

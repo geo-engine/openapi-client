@@ -34,11 +34,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     addCollectionRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling addCollection.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling addCollection().');
             }
-            if (requestParameters.addLayerCollection === null || requestParameters.addLayerCollection === undefined) {
-                throw new runtime.RequiredError('addLayerCollection', 'Required parameter requestParameters.addLayerCollection was null or undefined when calling addCollection.');
+            if (requestParameters['addLayerCollection'] == null) {
+                throw new runtime.RequiredError('addLayerCollection', 'Required parameter "addLayerCollection" was null or undefined when calling addCollection().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -51,11 +51,11 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layerDb/collections/{collection}/collections`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+                path: `/layerDb/collections/{collection}/collections`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.AddLayerCollectionToJSON)(requestParameters.addLayerCollection),
+                body: (0, index_1.AddLayerCollectionToJSON)(requestParameters['addLayerCollection']),
             }, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AddCollection200ResponseFromJSON)(jsonValue));
         });
@@ -74,11 +74,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     addExistingCollectionToCollectionRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.parent === null || requestParameters.parent === undefined) {
-                throw new runtime.RequiredError('parent', 'Required parameter requestParameters.parent was null or undefined when calling addExistingCollectionToCollection.');
+            if (requestParameters['parent'] == null) {
+                throw new runtime.RequiredError('parent', 'Required parameter "parent" was null or undefined when calling addExistingCollectionToCollection().');
             }
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling addExistingCollectionToCollection.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling addExistingCollectionToCollection().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -90,7 +90,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layerDb/collections/{parent}/collections/{collection}`.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters.parent))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+                path: `/layerDb/collections/{parent}/collections/{collection}`.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters['parent']))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -111,11 +111,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     addExistingLayerToCollectionRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling addExistingLayerToCollection.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling addExistingLayerToCollection().');
             }
-            if (requestParameters.layer === null || requestParameters.layer === undefined) {
-                throw new runtime.RequiredError('layer', 'Required parameter requestParameters.layer was null or undefined when calling addExistingLayerToCollection.');
+            if (requestParameters['layer'] == null) {
+                throw new runtime.RequiredError('layer', 'Required parameter "layer" was null or undefined when calling addExistingLayerToCollection().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -127,7 +127,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layerDb/collections/{collection}/layers/{layer}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+                path: `/layerDb/collections/{collection}/layers/{layer}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -148,11 +148,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     addLayerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling addLayer.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling addLayer().');
             }
-            if (requestParameters.addLayer === null || requestParameters.addLayer === undefined) {
-                throw new runtime.RequiredError('addLayer', 'Required parameter requestParameters.addLayer was null or undefined when calling addLayer.');
+            if (requestParameters['addLayer'] == null) {
+                throw new runtime.RequiredError('addLayer', 'Required parameter "addLayer" was null or undefined when calling addLayer().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -165,11 +165,11 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layerDb/collections/{collection}/layers`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+                path: `/layerDb/collections/{collection}/layers`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.AddLayerToJSON)(requestParameters.addLayer),
+                body: (0, index_1.AddLayerToJSON)(requestParameters['addLayer']),
             }, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AddCollection200ResponseFromJSON)(jsonValue));
         });
@@ -188,36 +188,36 @@ class LayersApi extends runtime.BaseAPI {
      */
     autocompleteHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.provider === null || requestParameters.provider === undefined) {
-                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling autocompleteHandler.');
+            if (requestParameters['provider'] == null) {
+                throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling autocompleteHandler().');
             }
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling autocompleteHandler.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling autocompleteHandler().');
             }
-            if (requestParameters.searchType === null || requestParameters.searchType === undefined) {
-                throw new runtime.RequiredError('searchType', 'Required parameter requestParameters.searchType was null or undefined when calling autocompleteHandler.');
+            if (requestParameters['searchType'] == null) {
+                throw new runtime.RequiredError('searchType', 'Required parameter "searchType" was null or undefined when calling autocompleteHandler().');
             }
-            if (requestParameters.searchString === null || requestParameters.searchString === undefined) {
-                throw new runtime.RequiredError('searchString', 'Required parameter requestParameters.searchString was null or undefined when calling autocompleteHandler.');
+            if (requestParameters['searchString'] == null) {
+                throw new runtime.RequiredError('searchString', 'Required parameter "searchString" was null or undefined when calling autocompleteHandler().');
             }
-            if (requestParameters.limit === null || requestParameters.limit === undefined) {
-                throw new runtime.RequiredError('limit', 'Required parameter requestParameters.limit was null or undefined when calling autocompleteHandler.');
+            if (requestParameters['limit'] == null) {
+                throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling autocompleteHandler().');
             }
-            if (requestParameters.offset === null || requestParameters.offset === undefined) {
-                throw new runtime.RequiredError('offset', 'Required parameter requestParameters.offset was null or undefined when calling autocompleteHandler.');
+            if (requestParameters['offset'] == null) {
+                throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling autocompleteHandler().');
             }
             const queryParameters = {};
-            if (requestParameters.searchType !== undefined) {
-                queryParameters['searchType'] = requestParameters.searchType;
+            if (requestParameters['searchType'] != null) {
+                queryParameters['searchType'] = requestParameters['searchType'];
             }
-            if (requestParameters.searchString !== undefined) {
-                queryParameters['searchString'] = requestParameters.searchString;
+            if (requestParameters['searchString'] != null) {
+                queryParameters['searchString'] = requestParameters['searchString'];
             }
-            if (requestParameters.limit !== undefined) {
-                queryParameters['limit'] = requestParameters.limit;
+            if (requestParameters['limit'] != null) {
+                queryParameters['limit'] = requestParameters['limit'];
             }
-            if (requestParameters.offset !== undefined) {
-                queryParameters['offset'] = requestParameters.offset;
+            if (requestParameters['offset'] != null) {
+                queryParameters['offset'] = requestParameters['offset'];
             }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
@@ -228,7 +228,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layers/collections/search/autocomplete/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+                path: `/layers/collections/search/autocomplete/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -250,11 +250,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     layerHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.provider === null || requestParameters.provider === undefined) {
-                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling layerHandler.');
+            if (requestParameters['provider'] == null) {
+                throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling layerHandler().');
             }
-            if (requestParameters.layer === null || requestParameters.layer === undefined) {
-                throw new runtime.RequiredError('layer', 'Required parameter requestParameters.layer was null or undefined when calling layerHandler.');
+            if (requestParameters['layer'] == null) {
+                throw new runtime.RequiredError('layer', 'Required parameter "layer" was null or undefined when calling layerHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -266,7 +266,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layers/{provider}/{layer}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+                path: `/layers/{provider}/{layer}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -288,11 +288,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     layerToDatasetRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.provider === null || requestParameters.provider === undefined) {
-                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling layerToDataset.');
+            if (requestParameters['provider'] == null) {
+                throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling layerToDataset().');
             }
-            if (requestParameters.layer === null || requestParameters.layer === undefined) {
-                throw new runtime.RequiredError('layer', 'Required parameter requestParameters.layer was null or undefined when calling layerToDataset.');
+            if (requestParameters['layer'] == null) {
+                throw new runtime.RequiredError('layer', 'Required parameter "layer" was null or undefined when calling layerToDataset().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -304,7 +304,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layers/{provider}/{layer}/dataset`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+                path: `/layers/{provider}/{layer}/dataset`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -326,11 +326,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     layerToWorkflowIdHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.provider === null || requestParameters.provider === undefined) {
-                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling layerToWorkflowIdHandler.');
+            if (requestParameters['provider'] == null) {
+                throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling layerToWorkflowIdHandler().');
             }
-            if (requestParameters.layer === null || requestParameters.layer === undefined) {
-                throw new runtime.RequiredError('layer', 'Required parameter requestParameters.layer was null or undefined when calling layerToWorkflowIdHandler.');
+            if (requestParameters['layer'] == null) {
+                throw new runtime.RequiredError('layer', 'Required parameter "layer" was null or undefined when calling layerToWorkflowIdHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -342,7 +342,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layers/{provider}/{layer}/workflowId`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+                path: `/layers/{provider}/{layer}/workflowId`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -364,24 +364,24 @@ class LayersApi extends runtime.BaseAPI {
      */
     listCollectionHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.provider === null || requestParameters.provider === undefined) {
-                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling listCollectionHandler.');
+            if (requestParameters['provider'] == null) {
+                throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling listCollectionHandler().');
             }
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling listCollectionHandler.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling listCollectionHandler().');
             }
-            if (requestParameters.offset === null || requestParameters.offset === undefined) {
-                throw new runtime.RequiredError('offset', 'Required parameter requestParameters.offset was null or undefined when calling listCollectionHandler.');
+            if (requestParameters['offset'] == null) {
+                throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling listCollectionHandler().');
             }
-            if (requestParameters.limit === null || requestParameters.limit === undefined) {
-                throw new runtime.RequiredError('limit', 'Required parameter requestParameters.limit was null or undefined when calling listCollectionHandler.');
+            if (requestParameters['limit'] == null) {
+                throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling listCollectionHandler().');
             }
             const queryParameters = {};
-            if (requestParameters.offset !== undefined) {
-                queryParameters['offset'] = requestParameters.offset;
+            if (requestParameters['offset'] != null) {
+                queryParameters['offset'] = requestParameters['offset'];
             }
-            if (requestParameters.limit !== undefined) {
-                queryParameters['limit'] = requestParameters.limit;
+            if (requestParameters['limit'] != null) {
+                queryParameters['limit'] = requestParameters['limit'];
             }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
@@ -392,7 +392,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layers/collections/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+                path: `/layers/collections/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -414,18 +414,18 @@ class LayersApi extends runtime.BaseAPI {
      */
     listRootCollectionsHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.offset === null || requestParameters.offset === undefined) {
-                throw new runtime.RequiredError('offset', 'Required parameter requestParameters.offset was null or undefined when calling listRootCollectionsHandler.');
+            if (requestParameters['offset'] == null) {
+                throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling listRootCollectionsHandler().');
             }
-            if (requestParameters.limit === null || requestParameters.limit === undefined) {
-                throw new runtime.RequiredError('limit', 'Required parameter requestParameters.limit was null or undefined when calling listRootCollectionsHandler.');
+            if (requestParameters['limit'] == null) {
+                throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling listRootCollectionsHandler().');
             }
             const queryParameters = {};
-            if (requestParameters.offset !== undefined) {
-                queryParameters['offset'] = requestParameters.offset;
+            if (requestParameters['offset'] != null) {
+                queryParameters['offset'] = requestParameters['offset'];
             }
-            if (requestParameters.limit !== undefined) {
-                queryParameters['limit'] = requestParameters.limit;
+            if (requestParameters['limit'] != null) {
+                queryParameters['limit'] = requestParameters['limit'];
             }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
@@ -457,8 +457,8 @@ class LayersApi extends runtime.BaseAPI {
      */
     providerCapabilitiesHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.provider === null || requestParameters.provider === undefined) {
-                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling providerCapabilitiesHandler.');
+            if (requestParameters['provider'] == null) {
+                throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling providerCapabilitiesHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -470,7 +470,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layers/{provider}/capabilities`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))),
+                path: `/layers/{provider}/capabilities`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -491,8 +491,8 @@ class LayersApi extends runtime.BaseAPI {
      */
     removeCollectionRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling removeCollection.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling removeCollection().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -504,7 +504,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layerDb/collections/{collection}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+                path: `/layerDb/collections/{collection}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
@@ -525,11 +525,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     removeCollectionFromCollectionRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.parent === null || requestParameters.parent === undefined) {
-                throw new runtime.RequiredError('parent', 'Required parameter requestParameters.parent was null or undefined when calling removeCollectionFromCollection.');
+            if (requestParameters['parent'] == null) {
+                throw new runtime.RequiredError('parent', 'Required parameter "parent" was null or undefined when calling removeCollectionFromCollection().');
             }
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling removeCollectionFromCollection.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling removeCollectionFromCollection().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -541,7 +541,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layerDb/collections/{parent}/collections/{collection}`.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters.parent))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+                path: `/layerDb/collections/{parent}/collections/{collection}`.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters['parent']))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
@@ -562,8 +562,8 @@ class LayersApi extends runtime.BaseAPI {
      */
     removeLayerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.layer === null || requestParameters.layer === undefined) {
-                throw new runtime.RequiredError('layer', 'Required parameter requestParameters.layer was null or undefined when calling removeLayer.');
+            if (requestParameters['layer'] == null) {
+                throw new runtime.RequiredError('layer', 'Required parameter "layer" was null or undefined when calling removeLayer().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -575,7 +575,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layerDb/layers/{layer}`.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+                path: `/layerDb/layers/{layer}`.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
@@ -596,11 +596,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     removeLayerFromCollectionRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling removeLayerFromCollection.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling removeLayerFromCollection().');
             }
-            if (requestParameters.layer === null || requestParameters.layer === undefined) {
-                throw new runtime.RequiredError('layer', 'Required parameter requestParameters.layer was null or undefined when calling removeLayerFromCollection.');
+            if (requestParameters['layer'] == null) {
+                throw new runtime.RequiredError('layer', 'Required parameter "layer" was null or undefined when calling removeLayerFromCollection().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -612,7 +612,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layerDb/collections/{collection}/layers/{layer}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+                path: `/layerDb/collections/{collection}/layers/{layer}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
@@ -633,36 +633,36 @@ class LayersApi extends runtime.BaseAPI {
      */
     searchHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.provider === null || requestParameters.provider === undefined) {
-                throw new runtime.RequiredError('provider', 'Required parameter requestParameters.provider was null or undefined when calling searchHandler.');
+            if (requestParameters['provider'] == null) {
+                throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling searchHandler().');
             }
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling searchHandler.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling searchHandler().');
             }
-            if (requestParameters.searchType === null || requestParameters.searchType === undefined) {
-                throw new runtime.RequiredError('searchType', 'Required parameter requestParameters.searchType was null or undefined when calling searchHandler.');
+            if (requestParameters['searchType'] == null) {
+                throw new runtime.RequiredError('searchType', 'Required parameter "searchType" was null or undefined when calling searchHandler().');
             }
-            if (requestParameters.searchString === null || requestParameters.searchString === undefined) {
-                throw new runtime.RequiredError('searchString', 'Required parameter requestParameters.searchString was null or undefined when calling searchHandler.');
+            if (requestParameters['searchString'] == null) {
+                throw new runtime.RequiredError('searchString', 'Required parameter "searchString" was null or undefined when calling searchHandler().');
             }
-            if (requestParameters.limit === null || requestParameters.limit === undefined) {
-                throw new runtime.RequiredError('limit', 'Required parameter requestParameters.limit was null or undefined when calling searchHandler.');
+            if (requestParameters['limit'] == null) {
+                throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling searchHandler().');
             }
-            if (requestParameters.offset === null || requestParameters.offset === undefined) {
-                throw new runtime.RequiredError('offset', 'Required parameter requestParameters.offset was null or undefined when calling searchHandler.');
+            if (requestParameters['offset'] == null) {
+                throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling searchHandler().');
             }
             const queryParameters = {};
-            if (requestParameters.searchType !== undefined) {
-                queryParameters['searchType'] = requestParameters.searchType;
+            if (requestParameters['searchType'] != null) {
+                queryParameters['searchType'] = requestParameters['searchType'];
             }
-            if (requestParameters.searchString !== undefined) {
-                queryParameters['searchString'] = requestParameters.searchString;
+            if (requestParameters['searchString'] != null) {
+                queryParameters['searchString'] = requestParameters['searchString'];
             }
-            if (requestParameters.limit !== undefined) {
-                queryParameters['limit'] = requestParameters.limit;
+            if (requestParameters['limit'] != null) {
+                queryParameters['limit'] = requestParameters['limit'];
             }
-            if (requestParameters.offset !== undefined) {
-                queryParameters['offset'] = requestParameters.offset;
+            if (requestParameters['offset'] != null) {
+                queryParameters['offset'] = requestParameters['offset'];
             }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
@@ -673,7 +673,7 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layers/collections/search/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters.provider))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+                path: `/layers/collections/search/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -695,11 +695,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     updateCollectionRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.collection === null || requestParameters.collection === undefined) {
-                throw new runtime.RequiredError('collection', 'Required parameter requestParameters.collection was null or undefined when calling updateCollection.');
+            if (requestParameters['collection'] == null) {
+                throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling updateCollection().');
             }
-            if (requestParameters.updateLayerCollection === null || requestParameters.updateLayerCollection === undefined) {
-                throw new runtime.RequiredError('updateLayerCollection', 'Required parameter requestParameters.updateLayerCollection was null or undefined when calling updateCollection.');
+            if (requestParameters['updateLayerCollection'] == null) {
+                throw new runtime.RequiredError('updateLayerCollection', 'Required parameter "updateLayerCollection" was null or undefined when calling updateCollection().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -712,11 +712,11 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layerDb/collections/{collection}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters.collection))),
+                path: `/layerDb/collections/{collection}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.UpdateLayerCollectionToJSON)(requestParameters.updateLayerCollection),
+                body: (0, index_1.UpdateLayerCollectionToJSON)(requestParameters['updateLayerCollection']),
             }, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
@@ -734,11 +734,11 @@ class LayersApi extends runtime.BaseAPI {
      */
     updateLayerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.layer === null || requestParameters.layer === undefined) {
-                throw new runtime.RequiredError('layer', 'Required parameter requestParameters.layer was null or undefined when calling updateLayer.');
+            if (requestParameters['layer'] == null) {
+                throw new runtime.RequiredError('layer', 'Required parameter "layer" was null or undefined when calling updateLayer().');
             }
-            if (requestParameters.updateLayer === null || requestParameters.updateLayer === undefined) {
-                throw new runtime.RequiredError('updateLayer', 'Required parameter requestParameters.updateLayer was null or undefined when calling updateLayer.');
+            if (requestParameters['updateLayer'] == null) {
+                throw new runtime.RequiredError('updateLayer', 'Required parameter "updateLayer" was null or undefined when calling updateLayer().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -751,11 +751,11 @@ class LayersApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/layerDb/layers/{layer}`.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters.layer))),
+                path: `/layerDb/layers/{layer}`.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.UpdateLayerToJSON)(requestParameters.updateLayer),
+                body: (0, index_1.UpdateLayerToJSON)(requestParameters['updateLayer']),
             }, initOverrides);
             return new runtime.VoidApiResponse(response);
         });

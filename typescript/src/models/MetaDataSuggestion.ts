@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MetaDataDefinition } from './MetaDataDefinition';
 import {
     MetaDataDefinitionFromJSON,
     MetaDataDefinitionFromJSONTyped,
     MetaDataDefinitionToJSON,
+    MetaDataDefinitionToJSONTyped,
 } from './MetaDataDefinition';
 
 /**
@@ -49,13 +50,11 @@ export interface MetaDataSuggestion {
 /**
  * Check if a given object implements the MetaDataSuggestion interface.
  */
-export function instanceOfMetaDataSuggestion(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "layerName" in value;
-    isInstance = isInstance && "mainFile" in value;
-    isInstance = isInstance && "metaData" in value;
-
-    return isInstance;
+export function instanceOfMetaDataSuggestion(value: object): value is MetaDataSuggestion {
+    if (!('layerName' in value) || value['layerName'] === undefined) return false;
+    if (!('mainFile' in value) || value['mainFile'] === undefined) return false;
+    if (!('metaData' in value) || value['metaData'] === undefined) return false;
+    return true;
 }
 
 export function MetaDataSuggestionFromJSON(json: any): MetaDataSuggestion {
@@ -63,7 +62,7 @@ export function MetaDataSuggestionFromJSON(json: any): MetaDataSuggestion {
 }
 
 export function MetaDataSuggestionFromJSONTyped(json: any, ignoreDiscriminator: boolean): MetaDataSuggestion {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -74,18 +73,20 @@ export function MetaDataSuggestionFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function MetaDataSuggestionToJSON(value?: MetaDataSuggestion | null): any {
-    if (value === undefined) {
-        return undefined;
+export function MetaDataSuggestionToJSON(json: any): MetaDataSuggestion {
+    return MetaDataSuggestionToJSONTyped(json, false);
+}
+
+export function MetaDataSuggestionToJSONTyped(value?: MetaDataSuggestion | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'layerName': value.layerName,
-        'mainFile': value.mainFile,
-        'metaData': MetaDataDefinitionToJSON(value.metaData),
+        'layerName': value['layerName'],
+        'mainFile': value['mainFile'],
+        'metaData': MetaDataDefinitionToJSON(value['metaData']),
     };
 }
 

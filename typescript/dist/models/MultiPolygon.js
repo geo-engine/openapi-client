@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MultiPolygonToJSON = exports.MultiPolygonFromJSONTyped = exports.MultiPolygonFromJSON = exports.instanceOfMultiPolygon = void 0;
+exports.instanceOfMultiPolygon = instanceOfMultiPolygon;
+exports.MultiPolygonFromJSON = MultiPolygonFromJSON;
+exports.MultiPolygonFromJSONTyped = MultiPolygonFromJSONTyped;
+exports.MultiPolygonToJSON = MultiPolygonToJSON;
+exports.MultiPolygonToJSONTyped = MultiPolygonToJSONTyped;
 /**
  * Check if a given object implements the MultiPolygon interface.
  */
 function instanceOfMultiPolygon(value) {
-    let isInstance = true;
-    isInstance = isInstance && "polygons" in value;
-    return isInstance;
+    if (!('polygons' in value) || value['polygons'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfMultiPolygon = instanceOfMultiPolygon;
 function MultiPolygonFromJSON(json) {
     return MultiPolygonFromJSONTyped(json, false);
 }
-exports.MultiPolygonFromJSON = MultiPolygonFromJSON;
 function MultiPolygonFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'polygons': json['polygons'],
     };
 }
-exports.MultiPolygonFromJSONTyped = MultiPolygonFromJSONTyped;
-function MultiPolygonToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function MultiPolygonToJSON(json) {
+    return MultiPolygonToJSONTyped(json, false);
+}
+function MultiPolygonToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'polygons': value.polygons,
+        'polygons': value['polygons'],
     };
 }
-exports.MultiPolygonToJSON = MultiPolygonToJSON;

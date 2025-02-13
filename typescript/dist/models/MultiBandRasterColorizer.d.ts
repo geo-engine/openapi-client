@@ -110,7 +110,8 @@ export type MultiBandRasterColorizerTypeEnum = typeof MultiBandRasterColorizerTy
 /**
  * Check if a given object implements the MultiBandRasterColorizer interface.
  */
-export declare function instanceOfMultiBandRasterColorizer(value: object): boolean;
+export declare function instanceOfMultiBandRasterColorizer(value: object): value is MultiBandRasterColorizer;
 export declare function MultiBandRasterColorizerFromJSON(json: any): MultiBandRasterColorizer;
 export declare function MultiBandRasterColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean): MultiBandRasterColorizer;
-export declare function MultiBandRasterColorizerToJSON(value?: MultiBandRasterColorizer | null): any;
+export declare function MultiBandRasterColorizerToJSON(json: any): MultiBandRasterColorizer;
+export declare function MultiBandRasterColorizerToJSONTyped(value?: MultiBandRasterColorizer | null, ignoreDiscriminator?: boolean): any;

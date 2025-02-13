@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Coordinate2DToJSON = exports.Coordinate2DFromJSONTyped = exports.Coordinate2DFromJSON = exports.instanceOfCoordinate2D = void 0;
+exports.instanceOfCoordinate2D = instanceOfCoordinate2D;
+exports.Coordinate2DFromJSON = Coordinate2DFromJSON;
+exports.Coordinate2DFromJSONTyped = Coordinate2DFromJSONTyped;
+exports.Coordinate2DToJSON = Coordinate2DToJSON;
+exports.Coordinate2DToJSONTyped = Coordinate2DToJSONTyped;
 /**
  * Check if a given object implements the Coordinate2D interface.
  */
 function instanceOfCoordinate2D(value) {
-    let isInstance = true;
-    isInstance = isInstance && "x" in value;
-    isInstance = isInstance && "y" in value;
-    return isInstance;
+    if (!('x' in value) || value['x'] === undefined)
+        return false;
+    if (!('y' in value) || value['y'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfCoordinate2D = instanceOfCoordinate2D;
 function Coordinate2DFromJSON(json) {
     return Coordinate2DFromJSONTyped(json, false);
 }
-exports.Coordinate2DFromJSON = Coordinate2DFromJSON;
 function Coordinate2DFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function Coordinate2DFromJSONTyped(json, ignoreDiscriminator) {
         'y': json['y'],
     };
 }
-exports.Coordinate2DFromJSONTyped = Coordinate2DFromJSONTyped;
-function Coordinate2DToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function Coordinate2DToJSON(json) {
+    return Coordinate2DToJSONTyped(json, false);
+}
+function Coordinate2DToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'x': value.x,
-        'y': value.y,
+        'x': value['x'],
+        'y': value['y'],
     };
 }
-exports.Coordinate2DToJSON = Coordinate2DToJSON;

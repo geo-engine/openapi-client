@@ -21,29 +21,29 @@ export const OgrSourceTimeFormatAutoFormatEnum = {
  * Check if a given object implements the OgrSourceTimeFormatAuto interface.
  */
 export function instanceOfOgrSourceTimeFormatAuto(value) {
-    let isInstance = true;
-    isInstance = isInstance && "format" in value;
-    return isInstance;
+    if (!('format' in value) || value['format'] === undefined)
+        return false;
+    return true;
 }
 export function OgrSourceTimeFormatAutoFromJSON(json) {
     return OgrSourceTimeFormatAutoFromJSONTyped(json, false);
 }
 export function OgrSourceTimeFormatAutoFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'format': json['format'],
     };
 }
-export function OgrSourceTimeFormatAutoToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function OgrSourceTimeFormatAutoToJSON(json) {
+    return OgrSourceTimeFormatAutoToJSONTyped(json, false);
+}
+export function OgrSourceTimeFormatAutoToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'format': value.format,
+        'format': value['format'],
     };
 }

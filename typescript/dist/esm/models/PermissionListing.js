@@ -11,24 +11,26 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { RoleFromJSON, RoleToJSON, } from './Role';
 import { PermissionFromJSON, PermissionToJSON, } from './Permission';
 import { ResourceFromJSON, ResourceToJSON, } from './Resource';
-import { RoleFromJSON, RoleToJSON, } from './Role';
 /**
  * Check if a given object implements the PermissionListing interface.
  */
 export function instanceOfPermissionListing(value) {
-    let isInstance = true;
-    isInstance = isInstance && "permission" in value;
-    isInstance = isInstance && "resource" in value;
-    isInstance = isInstance && "role" in value;
-    return isInstance;
+    if (!('permission' in value) || value['permission'] === undefined)
+        return false;
+    if (!('resource' in value) || value['resource'] === undefined)
+        return false;
+    if (!('role' in value) || value['role'] === undefined)
+        return false;
+    return true;
 }
 export function PermissionListingFromJSON(json) {
     return PermissionListingFromJSONTyped(json, false);
 }
 export function PermissionListingFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,16 +39,16 @@ export function PermissionListingFromJSONTyped(json, ignoreDiscriminator) {
         'role': RoleFromJSON(json['role']),
     };
 }
-export function PermissionListingToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function PermissionListingToJSON(json) {
+    return PermissionListingToJSONTyped(json, false);
+}
+export function PermissionListingToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'permission': PermissionToJSON(value.permission),
-        'resource': ResourceToJSON(value.resource),
-        'role': RoleToJSON(value.role),
+        'permission': PermissionToJSON(value['permission']),
+        'resource': ResourceToJSON(value['resource']),
+        'role': RoleToJSON(value['role']),
     };
 }

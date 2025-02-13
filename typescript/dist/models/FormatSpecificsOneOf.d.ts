@@ -26,7 +26,8 @@ export interface FormatSpecificsOneOf {
 /**
  * Check if a given object implements the FormatSpecificsOneOf interface.
  */
-export declare function instanceOfFormatSpecificsOneOf(value: object): boolean;
+export declare function instanceOfFormatSpecificsOneOf(value: object): value is FormatSpecificsOneOf;
 export declare function FormatSpecificsOneOfFromJSON(json: any): FormatSpecificsOneOf;
 export declare function FormatSpecificsOneOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatSpecificsOneOf;
-export declare function FormatSpecificsOneOfToJSON(value?: FormatSpecificsOneOf | null): any;
+export declare function FormatSpecificsOneOfToJSON(json: any): FormatSpecificsOneOf;
+export declare function FormatSpecificsOneOfToJSONTyped(value?: FormatSpecificsOneOf | null, ignoreDiscriminator?: boolean): any;

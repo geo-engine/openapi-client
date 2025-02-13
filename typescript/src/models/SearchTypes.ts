@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface SearchTypes {
 /**
  * Check if a given object implements the SearchTypes interface.
  */
-export function instanceOfSearchTypes(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "fulltext" in value;
-    isInstance = isInstance && "prefix" in value;
-
-    return isInstance;
+export function instanceOfSearchTypes(value: object): value is SearchTypes {
+    if (!('fulltext' in value) || value['fulltext'] === undefined) return false;
+    if (!('prefix' in value) || value['prefix'] === undefined) return false;
+    return true;
 }
 
 export function SearchTypesFromJSON(json: any): SearchTypes {
@@ -49,7 +47,7 @@ export function SearchTypesFromJSON(json: any): SearchTypes {
 }
 
 export function SearchTypesFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchTypes {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function SearchTypesFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function SearchTypesToJSON(value?: SearchTypes | null): any {
-    if (value === undefined) {
-        return undefined;
+export function SearchTypesToJSON(json: any): SearchTypes {
+    return SearchTypesToJSONTyped(json, false);
+}
+
+export function SearchTypesToJSONTyped(value?: SearchTypes | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'fulltext': value.fulltext,
-        'prefix': value.prefix,
+        'fulltext': value['fulltext'],
+        'prefix': value['prefix'],
     };
 }
 

@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DerivedNumberToJSON = exports.DerivedNumberFromJSONTyped = exports.DerivedNumberFromJSON = exports.instanceOfDerivedNumber = exports.DerivedNumberTypeEnum = void 0;
+exports.DerivedNumberTypeEnum = void 0;
+exports.instanceOfDerivedNumber = instanceOfDerivedNumber;
+exports.DerivedNumberFromJSON = DerivedNumberFromJSON;
+exports.DerivedNumberFromJSONTyped = DerivedNumberFromJSONTyped;
+exports.DerivedNumberToJSON = DerivedNumberToJSON;
+exports.DerivedNumberToJSONTyped = DerivedNumberToJSONTyped;
 /**
  * @export
  */
@@ -24,20 +29,21 @@ exports.DerivedNumberTypeEnum = {
  * Check if a given object implements the DerivedNumber interface.
  */
 function instanceOfDerivedNumber(value) {
-    let isInstance = true;
-    isInstance = isInstance && "attribute" in value;
-    isInstance = isInstance && "defaultValue" in value;
-    isInstance = isInstance && "factor" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('attribute' in value) || value['attribute'] === undefined)
+        return false;
+    if (!('defaultValue' in value) || value['defaultValue'] === undefined)
+        return false;
+    if (!('factor' in value) || value['factor'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfDerivedNumber = instanceOfDerivedNumber;
 function DerivedNumberFromJSON(json) {
     return DerivedNumberFromJSONTyped(json, false);
 }
-exports.DerivedNumberFromJSON = DerivedNumberFromJSON;
 function DerivedNumberFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -47,19 +53,17 @@ function DerivedNumberFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.DerivedNumberFromJSONTyped = DerivedNumberFromJSONTyped;
-function DerivedNumberToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function DerivedNumberToJSON(json) {
+    return DerivedNumberToJSONTyped(json, false);
+}
+function DerivedNumberToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'attribute': value.attribute,
-        'defaultValue': value.defaultValue,
-        'factor': value.factor,
-        'type': value.type,
+        'attribute': value['attribute'],
+        'defaultValue': value['defaultValue'],
+        'factor': value['factor'],
+        'type': value['type'],
     };
 }
-exports.DerivedNumberToJSON = DerivedNumberToJSON;

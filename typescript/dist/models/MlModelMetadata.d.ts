@@ -44,7 +44,8 @@ export interface MlModelMetadata {
 /**
  * Check if a given object implements the MlModelMetadata interface.
  */
-export declare function instanceOfMlModelMetadata(value: object): boolean;
+export declare function instanceOfMlModelMetadata(value: object): value is MlModelMetadata;
 export declare function MlModelMetadataFromJSON(json: any): MlModelMetadata;
 export declare function MlModelMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): MlModelMetadata;
-export declare function MlModelMetadataToJSON(value?: MlModelMetadata | null): any;
+export declare function MlModelMetadataToJSON(json: any): MlModelMetadata;
+export declare function MlModelMetadataToJSONTyped(value?: MlModelMetadata | null, ignoreDiscriminator?: boolean): any;

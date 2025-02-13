@@ -13,25 +13,28 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProvenanceEntryToJSON = exports.ProvenanceEntryFromJSONTyped = exports.ProvenanceEntryFromJSON = exports.instanceOfProvenanceEntry = void 0;
-const DataId_1 = require("./DataId");
+exports.instanceOfProvenanceEntry = instanceOfProvenanceEntry;
+exports.ProvenanceEntryFromJSON = ProvenanceEntryFromJSON;
+exports.ProvenanceEntryFromJSONTyped = ProvenanceEntryFromJSONTyped;
+exports.ProvenanceEntryToJSON = ProvenanceEntryToJSON;
+exports.ProvenanceEntryToJSONTyped = ProvenanceEntryToJSONTyped;
 const Provenance_1 = require("./Provenance");
+const DataId_1 = require("./DataId");
 /**
  * Check if a given object implements the ProvenanceEntry interface.
  */
 function instanceOfProvenanceEntry(value) {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "provenance" in value;
-    return isInstance;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    if (!('provenance' in value) || value['provenance'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfProvenanceEntry = instanceOfProvenanceEntry;
 function ProvenanceEntryFromJSON(json) {
     return ProvenanceEntryFromJSONTyped(json, false);
 }
-exports.ProvenanceEntryFromJSON = ProvenanceEntryFromJSON;
 function ProvenanceEntryFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,17 +42,15 @@ function ProvenanceEntryFromJSONTyped(json, ignoreDiscriminator) {
         'provenance': (0, Provenance_1.ProvenanceFromJSON)(json['provenance']),
     };
 }
-exports.ProvenanceEntryFromJSONTyped = ProvenanceEntryFromJSONTyped;
-function ProvenanceEntryToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ProvenanceEntryToJSON(json) {
+    return ProvenanceEntryToJSONTyped(json, false);
+}
+function ProvenanceEntryToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'data': (value.data.map(DataId_1.DataIdToJSON)),
-        'provenance': (0, Provenance_1.ProvenanceToJSON)(value.provenance),
+        'data': (value['data'].map(DataId_1.DataIdToJSON)),
+        'provenance': (0, Provenance_1.ProvenanceToJSON)(value['provenance']),
     };
 }
-exports.ProvenanceEntryToJSON = ProvenanceEntryToJSON;

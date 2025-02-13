@@ -15,26 +15,23 @@
  * @export
  */
 export const ResourceIdLayerTypeEnum = {
-    Layer: 'Layer',
-    LayerCollection: 'LayerCollection',
-    Project: 'Project',
-    DatasetId: 'DatasetId',
-    MlModel: 'MlModel'
+    Layer: 'Layer'
 };
 /**
  * Check if a given object implements the ResourceIdLayer interface.
  */
 export function instanceOfResourceIdLayer(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function ResourceIdLayerFromJSON(json) {
     return ResourceIdLayerFromJSONTyped(json, false);
 }
 export function ResourceIdLayerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -42,15 +39,15 @@ export function ResourceIdLayerFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function ResourceIdLayerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ResourceIdLayerToJSON(json) {
+    return ResourceIdLayerToJSONTyped(json, false);
+}
+export function ResourceIdLayerToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }

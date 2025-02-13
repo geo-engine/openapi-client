@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Plot } from './Plot';
-import { ProjectUpdateToken } from './ProjectUpdateToken';
+import type { Plot } from './Plot';
+import type { ProjectUpdateToken } from './ProjectUpdateToken';
 /**
  * @type PlotUpdate
  *
@@ -19,4 +19,5 @@ import { ProjectUpdateToken } from './ProjectUpdateToken';
 export type PlotUpdate = Plot | ProjectUpdateToken;
 export declare function PlotUpdateFromJSON(json: any): PlotUpdate;
 export declare function PlotUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlotUpdate;
-export declare function PlotUpdateToJSON(value?: PlotUpdate | null): any;
+export declare function PlotUpdateToJSON(json: any): any;
+export declare function PlotUpdateToJSONTyped(value?: PlotUpdate | null, ignoreDiscriminator?: boolean): any;

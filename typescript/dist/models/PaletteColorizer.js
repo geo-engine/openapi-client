@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaletteColorizerToJSON = exports.PaletteColorizerFromJSONTyped = exports.PaletteColorizerFromJSON = exports.instanceOfPaletteColorizer = exports.PaletteColorizerTypeEnum = void 0;
+exports.PaletteColorizerTypeEnum = void 0;
+exports.instanceOfPaletteColorizer = instanceOfPaletteColorizer;
+exports.PaletteColorizerFromJSON = PaletteColorizerFromJSON;
+exports.PaletteColorizerFromJSONTyped = PaletteColorizerFromJSONTyped;
+exports.PaletteColorizerToJSON = PaletteColorizerToJSON;
+exports.PaletteColorizerToJSONTyped = PaletteColorizerToJSONTyped;
 /**
  * @export
  */
@@ -24,20 +29,21 @@ exports.PaletteColorizerTypeEnum = {
  * Check if a given object implements the PaletteColorizer interface.
  */
 function instanceOfPaletteColorizer(value) {
-    let isInstance = true;
-    isInstance = isInstance && "colors" in value;
-    isInstance = isInstance && "defaultColor" in value;
-    isInstance = isInstance && "noDataColor" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('colors' in value) || value['colors'] === undefined)
+        return false;
+    if (!('defaultColor' in value) || value['defaultColor'] === undefined)
+        return false;
+    if (!('noDataColor' in value) || value['noDataColor'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfPaletteColorizer = instanceOfPaletteColorizer;
 function PaletteColorizerFromJSON(json) {
     return PaletteColorizerFromJSONTyped(json, false);
 }
-exports.PaletteColorizerFromJSON = PaletteColorizerFromJSON;
 function PaletteColorizerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -47,19 +53,17 @@ function PaletteColorizerFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.PaletteColorizerFromJSONTyped = PaletteColorizerFromJSONTyped;
-function PaletteColorizerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function PaletteColorizerToJSON(json) {
+    return PaletteColorizerToJSONTyped(json, false);
+}
+function PaletteColorizerToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'colors': value.colors,
-        'defaultColor': value.defaultColor,
-        'noDataColor': value.noDataColor,
-        'type': value.type,
+        'colors': value['colors'],
+        'defaultColor': value['defaultColor'],
+        'noDataColor': value['noDataColor'],
+        'type': value['type'],
     };
 }
-exports.PaletteColorizerToJSON = PaletteColorizerToJSON;

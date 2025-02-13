@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerCollectionResourceToJSON = exports.LayerCollectionResourceFromJSONTyped = exports.LayerCollectionResourceFromJSON = exports.instanceOfLayerCollectionResource = exports.LayerCollectionResourceTypeEnum = void 0;
+exports.LayerCollectionResourceTypeEnum = void 0;
+exports.instanceOfLayerCollectionResource = instanceOfLayerCollectionResource;
+exports.LayerCollectionResourceFromJSON = LayerCollectionResourceFromJSON;
+exports.LayerCollectionResourceFromJSONTyped = LayerCollectionResourceFromJSONTyped;
+exports.LayerCollectionResourceToJSON = LayerCollectionResourceToJSON;
+exports.LayerCollectionResourceToJSONTyped = LayerCollectionResourceToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.LayerCollectionResourceTypeEnum = {
  * Check if a given object implements the LayerCollectionResource interface.
  */
 function instanceOfLayerCollectionResource(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfLayerCollectionResource = instanceOfLayerCollectionResource;
 function LayerCollectionResourceFromJSON(json) {
     return LayerCollectionResourceFromJSONTyped(json, false);
 }
-exports.LayerCollectionResourceFromJSON = LayerCollectionResourceFromJSON;
 function LayerCollectionResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function LayerCollectionResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.LayerCollectionResourceFromJSONTyped = LayerCollectionResourceFromJSONTyped;
-function LayerCollectionResourceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function LayerCollectionResourceToJSON(json) {
+    return LayerCollectionResourceToJSONTyped(json, false);
+}
+function LayerCollectionResourceToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
-exports.LayerCollectionResourceToJSON = LayerCollectionResourceToJSON;

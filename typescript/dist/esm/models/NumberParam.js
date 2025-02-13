@@ -17,30 +17,30 @@ export function NumberParamFromJSON(json) {
     return NumberParamFromJSONTyped(json, false);
 }
 export function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'derived':
-            return Object.assign(Object.assign({}, DerivedNumberFromJSONTyped(json, true)), { type: 'derived' });
+            return Object.assign({}, DerivedNumberFromJSONTyped(json, true), { type: 'derived' });
         case 'static':
-            return Object.assign(Object.assign({}, StaticNumberParamFromJSONTyped(json, true)), { type: 'static' });
+            return Object.assign({}, StaticNumberParamFromJSONTyped(json, true), { type: 'static' });
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }
 }
-export function NumberParamToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function NumberParamToJSON(json) {
+    return NumberParamToJSONTyped(json, false);
+}
+export function NumberParamToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'derived':
-            return DerivedNumberToJSON(value);
+            return Object.assign({}, DerivedNumberToJSON(value), { type: 'derived' });
         case 'static':
-            return StaticNumberParamToJSON(value);
+            return Object.assign({}, StaticNumberParamToJSON(value), { type: 'static' });
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
     }

@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { BoundingBox2D } from './BoundingBox2D';
 import type { TimeInterval } from './TimeInterval';
+import type { BoundingBox2D } from './BoundingBox2D';
 /**
  *
  * @export
@@ -39,7 +39,8 @@ export interface STRectangle {
 /**
  * Check if a given object implements the STRectangle interface.
  */
-export declare function instanceOfSTRectangle(value: object): boolean;
+export declare function instanceOfSTRectangle(value: object): value is STRectangle;
 export declare function STRectangleFromJSON(json: any): STRectangle;
 export declare function STRectangleFromJSONTyped(json: any, ignoreDiscriminator: boolean): STRectangle;
-export declare function STRectangleToJSON(value?: STRectangle | null): any;
+export declare function STRectangleToJSON(json: any): STRectangle;
+export declare function STRectangleToJSONTyped(value?: STRectangle | null, ignoreDiscriminator?: boolean): any;

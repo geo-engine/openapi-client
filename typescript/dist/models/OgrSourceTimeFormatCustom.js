@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceTimeFormatCustomToJSON = exports.OgrSourceTimeFormatCustomFromJSONTyped = exports.OgrSourceTimeFormatCustomFromJSON = exports.instanceOfOgrSourceTimeFormatCustom = exports.OgrSourceTimeFormatCustomFormatEnum = void 0;
+exports.OgrSourceTimeFormatCustomFormatEnum = void 0;
+exports.instanceOfOgrSourceTimeFormatCustom = instanceOfOgrSourceTimeFormatCustom;
+exports.OgrSourceTimeFormatCustomFromJSON = OgrSourceTimeFormatCustomFromJSON;
+exports.OgrSourceTimeFormatCustomFromJSONTyped = OgrSourceTimeFormatCustomFromJSONTyped;
+exports.OgrSourceTimeFormatCustomToJSON = OgrSourceTimeFormatCustomToJSON;
+exports.OgrSourceTimeFormatCustomToJSONTyped = OgrSourceTimeFormatCustomToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.OgrSourceTimeFormatCustomFormatEnum = {
  * Check if a given object implements the OgrSourceTimeFormatCustom interface.
  */
 function instanceOfOgrSourceTimeFormatCustom(value) {
-    let isInstance = true;
-    isInstance = isInstance && "customFormat" in value;
-    isInstance = isInstance && "format" in value;
-    return isInstance;
+    if (!('customFormat' in value) || value['customFormat'] === undefined)
+        return false;
+    if (!('format' in value) || value['format'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfOgrSourceTimeFormatCustom = instanceOfOgrSourceTimeFormatCustom;
 function OgrSourceTimeFormatCustomFromJSON(json) {
     return OgrSourceTimeFormatCustomFromJSONTyped(json, false);
 }
-exports.OgrSourceTimeFormatCustomFromJSON = OgrSourceTimeFormatCustomFromJSON;
 function OgrSourceTimeFormatCustomFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function OgrSourceTimeFormatCustomFromJSONTyped(json, ignoreDiscriminator) {
         'format': json['format'],
     };
 }
-exports.OgrSourceTimeFormatCustomFromJSONTyped = OgrSourceTimeFormatCustomFromJSONTyped;
-function OgrSourceTimeFormatCustomToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function OgrSourceTimeFormatCustomToJSON(json) {
+    return OgrSourceTimeFormatCustomToJSONTyped(json, false);
+}
+function OgrSourceTimeFormatCustomToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'customFormat': value.customFormat,
-        'format': value.format,
+        'customFormat': value['customFormat'],
+        'format': value['format'],
     };
 }
-exports.OgrSourceTimeFormatCustomToJSON = OgrSourceTimeFormatCustomToJSON;

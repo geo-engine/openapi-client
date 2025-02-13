@@ -21,18 +21,21 @@ export const DerivedNumberTypeEnum = {
  * Check if a given object implements the DerivedNumber interface.
  */
 export function instanceOfDerivedNumber(value) {
-    let isInstance = true;
-    isInstance = isInstance && "attribute" in value;
-    isInstance = isInstance && "defaultValue" in value;
-    isInstance = isInstance && "factor" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('attribute' in value) || value['attribute'] === undefined)
+        return false;
+    if (!('defaultValue' in value) || value['defaultValue'] === undefined)
+        return false;
+    if (!('factor' in value) || value['factor'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function DerivedNumberFromJSON(json) {
     return DerivedNumberFromJSONTyped(json, false);
 }
 export function DerivedNumberFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -42,17 +45,17 @@ export function DerivedNumberFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function DerivedNumberToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function DerivedNumberToJSON(json) {
+    return DerivedNumberToJSONTyped(json, false);
+}
+export function DerivedNumberToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'attribute': value.attribute,
-        'defaultValue': value.defaultValue,
-        'factor': value.factor,
-        'type': value.type,
+        'attribute': value['attribute'],
+        'defaultValue': value['defaultValue'],
+        'factor': value['factor'],
+        'type': value['type'],
     };
 }

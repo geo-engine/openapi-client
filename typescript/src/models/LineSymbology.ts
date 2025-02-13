@@ -12,19 +12,21 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { StrokeParam } from './StrokeParam';
-import {
-    StrokeParamFromJSON,
-    StrokeParamFromJSONTyped,
-    StrokeParamToJSON,
-} from './StrokeParam';
+import { mapValues } from '../runtime';
 import type { TextSymbology } from './TextSymbology';
 import {
     TextSymbologyFromJSON,
     TextSymbologyFromJSONTyped,
     TextSymbologyToJSON,
+    TextSymbologyToJSONTyped,
 } from './TextSymbology';
+import type { StrokeParam } from './StrokeParam';
+import {
+    StrokeParamFromJSON,
+    StrokeParamFromJSONTyped,
+    StrokeParamToJSON,
+    StrokeParamToJSONTyped,
+} from './StrokeParam';
 
 /**
  * 
@@ -71,13 +73,11 @@ export type LineSymbologyTypeEnum = typeof LineSymbologyTypeEnum[keyof typeof Li
 /**
  * Check if a given object implements the LineSymbology interface.
  */
-export function instanceOfLineSymbology(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "autoSimplified" in value;
-    isInstance = isInstance && "stroke" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfLineSymbology(value: object): value is LineSymbology {
+    if (!('autoSimplified' in value) || value['autoSimplified'] === undefined) return false;
+    if (!('stroke' in value) || value['stroke'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function LineSymbologyFromJSON(json: any): LineSymbology {
@@ -85,31 +85,33 @@ export function LineSymbologyFromJSON(json: any): LineSymbology {
 }
 
 export function LineSymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): LineSymbology {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'autoSimplified': json['autoSimplified'],
         'stroke': StrokeParamFromJSON(json['stroke']),
-        'text': !exists(json, 'text') ? undefined : TextSymbologyFromJSON(json['text']),
+        'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
         'type': json['type'],
     };
 }
 
-export function LineSymbologyToJSON(value?: LineSymbology | null): any {
-    if (value === undefined) {
-        return undefined;
+export function LineSymbologyToJSON(json: any): LineSymbology {
+    return LineSymbologyToJSONTyped(json, false);
+}
+
+export function LineSymbologyToJSONTyped(value?: LineSymbology | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'autoSimplified': value.autoSimplified,
-        'stroke': StrokeParamToJSON(value.stroke),
-        'text': TextSymbologyToJSON(value.text),
-        'type': value.type,
+        'autoSimplified': value['autoSimplified'],
+        'stroke': StrokeParamToJSON(value['stroke']),
+        'text': TextSymbologyToJSON(value['text']),
+        'type': value['type'],
     };
 }
 

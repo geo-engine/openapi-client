@@ -13,39 +13,39 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedGeometryOneOf2ToJSON = exports.TypedGeometryOneOf2FromJSONTyped = exports.TypedGeometryOneOf2FromJSON = exports.instanceOfTypedGeometryOneOf2 = void 0;
+exports.instanceOfTypedGeometryOneOf2 = instanceOfTypedGeometryOneOf2;
+exports.TypedGeometryOneOf2FromJSON = TypedGeometryOneOf2FromJSON;
+exports.TypedGeometryOneOf2FromJSONTyped = TypedGeometryOneOf2FromJSONTyped;
+exports.TypedGeometryOneOf2ToJSON = TypedGeometryOneOf2ToJSON;
+exports.TypedGeometryOneOf2ToJSONTyped = TypedGeometryOneOf2ToJSONTyped;
 const MultiLineString_1 = require("./MultiLineString");
 /**
  * Check if a given object implements the TypedGeometryOneOf2 interface.
  */
 function instanceOfTypedGeometryOneOf2(value) {
-    let isInstance = true;
-    isInstance = isInstance && "multiLineString" in value;
-    return isInstance;
+    if (!('multiLineString' in value) || value['multiLineString'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTypedGeometryOneOf2 = instanceOfTypedGeometryOneOf2;
 function TypedGeometryOneOf2FromJSON(json) {
     return TypedGeometryOneOf2FromJSONTyped(json, false);
 }
-exports.TypedGeometryOneOf2FromJSON = TypedGeometryOneOf2FromJSON;
 function TypedGeometryOneOf2FromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'multiLineString': (0, MultiLineString_1.MultiLineStringFromJSON)(json['MultiLineString']),
     };
 }
-exports.TypedGeometryOneOf2FromJSONTyped = TypedGeometryOneOf2FromJSONTyped;
-function TypedGeometryOneOf2ToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TypedGeometryOneOf2ToJSON(json) {
+    return TypedGeometryOneOf2ToJSONTyped(json, false);
+}
+function TypedGeometryOneOf2ToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'MultiLineString': (0, MultiLineString_1.MultiLineStringToJSON)(value.multiLineString),
+        'MultiLineString': (0, MultiLineString_1.MultiLineStringToJSON)(value['multiLineString']),
     };
 }
-exports.TypedGeometryOneOf2ToJSON = TypedGeometryOneOf2ToJSON;

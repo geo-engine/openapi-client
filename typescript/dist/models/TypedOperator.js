@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedOperatorToJSON = exports.TypedOperatorFromJSONTyped = exports.TypedOperatorFromJSON = exports.instanceOfTypedOperator = exports.TypedOperatorTypeEnum = void 0;
+exports.TypedOperatorTypeEnum = void 0;
+exports.instanceOfTypedOperator = instanceOfTypedOperator;
+exports.TypedOperatorFromJSON = TypedOperatorFromJSON;
+exports.TypedOperatorFromJSONTyped = TypedOperatorFromJSONTyped;
+exports.TypedOperatorToJSON = TypedOperatorToJSON;
+exports.TypedOperatorToJSONTyped = TypedOperatorToJSONTyped;
 const TypedOperatorOperator_1 = require("./TypedOperatorOperator");
 /**
  * @export
@@ -27,18 +32,17 @@ exports.TypedOperatorTypeEnum = {
  * Check if a given object implements the TypedOperator interface.
  */
 function instanceOfTypedOperator(value) {
-    let isInstance = true;
-    isInstance = isInstance && "operator" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('operator' in value) || value['operator'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTypedOperator = instanceOfTypedOperator;
 function TypedOperatorFromJSON(json) {
     return TypedOperatorFromJSONTyped(json, false);
 }
-exports.TypedOperatorFromJSON = TypedOperatorFromJSON;
 function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -46,17 +50,15 @@ function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.TypedOperatorFromJSONTyped = TypedOperatorFromJSONTyped;
-function TypedOperatorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TypedOperatorToJSON(json) {
+    return TypedOperatorToJSONTyped(json, false);
+}
+function TypedOperatorToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorToJSON)(value.operator),
-        'type': value.type,
+        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorToJSON)(value['operator']),
+        'type': value['type'],
     };
 }
-exports.TypedOperatorToJSON = TypedOperatorToJSON;

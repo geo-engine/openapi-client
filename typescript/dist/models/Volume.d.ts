@@ -31,7 +31,8 @@ export interface Volume {
 /**
  * Check if a given object implements the Volume interface.
  */
-export declare function instanceOfVolume(value: object): boolean;
+export declare function instanceOfVolume(value: object): value is Volume;
 export declare function VolumeFromJSON(json: any): Volume;
 export declare function VolumeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Volume;
-export declare function VolumeToJSON(value?: Volume | null): any;
+export declare function VolumeToJSON(json: any): Volume;
+export declare function VolumeToJSONTyped(value?: Volume | null, ignoreDiscriminator?: boolean): any;

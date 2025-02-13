@@ -38,7 +38,8 @@ export type DatasetResourceTypeEnum = typeof DatasetResourceTypeEnum[keyof typeo
 /**
  * Check if a given object implements the DatasetResource interface.
  */
-export declare function instanceOfDatasetResource(value: object): boolean;
+export declare function instanceOfDatasetResource(value: object): value is DatasetResource;
 export declare function DatasetResourceFromJSON(json: any): DatasetResource;
 export declare function DatasetResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): DatasetResource;
-export declare function DatasetResourceToJSON(value?: DatasetResource | null): any;
+export declare function DatasetResourceToJSON(json: any): DatasetResource;
+export declare function DatasetResourceToJSONTyped(value?: DatasetResource | null, ignoreDiscriminator?: boolean): any;

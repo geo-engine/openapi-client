@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { LineSymbology } from './LineSymbology';
-import { PointSymbology } from './PointSymbology';
-import { PolygonSymbology } from './PolygonSymbology';
-import { RasterSymbology } from './RasterSymbology';
+import type { LineSymbology } from './LineSymbology';
+import type { PointSymbology } from './PointSymbology';
+import type { PolygonSymbology } from './PolygonSymbology';
+import type { RasterSymbology } from './RasterSymbology';
 /**
  * @type Symbology
  *
@@ -29,4 +29,5 @@ export type Symbology = {
 } & RasterSymbology;
 export declare function SymbologyFromJSON(json: any): Symbology;
 export declare function SymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean): Symbology;
-export declare function SymbologyToJSON(value?: Symbology | null): any;
+export declare function SymbologyToJSON(json: any): any;
+export declare function SymbologyToJSONTyped(value?: Symbology | null, ignoreDiscriminator?: boolean): any;

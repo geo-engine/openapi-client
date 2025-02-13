@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetMapFormatToJSON = exports.GetMapFormatFromJSONTyped = exports.GetMapFormatFromJSON = exports.GetMapFormat = void 0;
+exports.GetMapFormat = void 0;
+exports.instanceOfGetMapFormat = instanceOfGetMapFormat;
+exports.GetMapFormatFromJSON = GetMapFormatFromJSON;
+exports.GetMapFormatFromJSONTyped = GetMapFormatFromJSONTyped;
+exports.GetMapFormatToJSON = GetMapFormatToJSON;
+exports.GetMapFormatToJSONTyped = GetMapFormatToJSONTyped;
 /**
  *
  * @export
@@ -21,15 +26,25 @@ exports.GetMapFormatToJSON = exports.GetMapFormatFromJSONTyped = exports.GetMapF
 exports.GetMapFormat = {
     ImagePng: 'image/png'
 };
+function instanceOfGetMapFormat(value) {
+    for (const key in exports.GetMapFormat) {
+        if (Object.prototype.hasOwnProperty.call(exports.GetMapFormat, key)) {
+            if (exports.GetMapFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function GetMapFormatFromJSON(json) {
     return GetMapFormatFromJSONTyped(json, false);
 }
-exports.GetMapFormatFromJSON = GetMapFormatFromJSON;
 function GetMapFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.GetMapFormatFromJSONTyped = GetMapFormatFromJSONTyped;
 function GetMapFormatToJSON(value) {
     return value;
 }
-exports.GetMapFormatToJSON = GetMapFormatToJSON;
+function GetMapFormatToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

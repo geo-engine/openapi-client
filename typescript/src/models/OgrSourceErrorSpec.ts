@@ -24,6 +24,17 @@ export const OgrSourceErrorSpec = {
 export type OgrSourceErrorSpec = typeof OgrSourceErrorSpec[keyof typeof OgrSourceErrorSpec];
 
 
+export function instanceOfOgrSourceErrorSpec(value: any): boolean {
+    for (const key in OgrSourceErrorSpec) {
+        if (Object.prototype.hasOwnProperty.call(OgrSourceErrorSpec, key)) {
+            if (OgrSourceErrorSpec[key as keyof typeof OgrSourceErrorSpec] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function OgrSourceErrorSpecFromJSON(json: any): OgrSourceErrorSpec {
     return OgrSourceErrorSpecFromJSONTyped(json, false);
 }
@@ -34,5 +45,9 @@ export function OgrSourceErrorSpecFromJSONTyped(json: any, ignoreDiscriminator: 
 
 export function OgrSourceErrorSpecToJSON(value?: OgrSourceErrorSpec | null): any {
     return value as any;
+}
+
+export function OgrSourceErrorSpecToJSONTyped(value: any, ignoreDiscriminator: boolean): OgrSourceErrorSpec {
+    return value as OgrSourceErrorSpec;
 }
 

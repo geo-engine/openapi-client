@@ -18,6 +18,8 @@ export declare const TimeReference: {
     readonly End: "end";
 };
 export type TimeReference = typeof TimeReference[keyof typeof TimeReference];
+export declare function instanceOfTimeReference(value: any): boolean;
 export declare function TimeReferenceFromJSON(json: any): TimeReference;
 export declare function TimeReferenceFromJSONTyped(json: any, ignoreDiscriminator: boolean): TimeReference;
 export declare function TimeReferenceToJSON(value?: TimeReference | null): any;
+export declare function TimeReferenceToJSONTyped(value: any, ignoreDiscriminator: boolean): TimeReference;

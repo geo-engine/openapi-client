@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { GdalDatasetParameters } from './GdalDatasetParameters';
-import type { RasterResultDescriptor } from './RasterResultDescriptor';
 import type { TimeInterval } from './TimeInterval';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import type { GdalDatasetParameters } from './GdalDatasetParameters';
 /**
  *
  * @export
@@ -59,7 +59,8 @@ export type GdalMetaDataStaticTypeEnum = typeof GdalMetaDataStaticTypeEnum[keyof
 /**
  * Check if a given object implements the GdalMetaDataStatic interface.
  */
-export declare function instanceOfGdalMetaDataStatic(value: object): boolean;
+export declare function instanceOfGdalMetaDataStatic(value: object): value is GdalMetaDataStatic;
 export declare function GdalMetaDataStaticFromJSON(json: any): GdalMetaDataStatic;
 export declare function GdalMetaDataStaticFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalMetaDataStatic;
-export declare function GdalMetaDataStaticToJSON(value?: GdalMetaDataStatic | null): any;
+export declare function GdalMetaDataStaticToJSON(json: any): GdalMetaDataStatic;
+export declare function GdalMetaDataStaticToJSONTyped(value?: GdalMetaDataStatic | null, ignoreDiscriminator?: boolean): any;

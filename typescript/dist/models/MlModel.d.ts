@@ -50,7 +50,8 @@ export interface MlModel {
 /**
  * Check if a given object implements the MlModel interface.
  */
-export declare function instanceOfMlModel(value: object): boolean;
+export declare function instanceOfMlModel(value: object): value is MlModel;
 export declare function MlModelFromJSON(json: any): MlModel;
 export declare function MlModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): MlModel;
-export declare function MlModelToJSON(value?: MlModel | null): any;
+export declare function MlModelToJSON(json: any): MlModel;
+export declare function MlModelToJSONTyped(value?: MlModel | null, ignoreDiscriminator?: boolean): any;

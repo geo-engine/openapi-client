@@ -13,39 +13,39 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FormatSpecificsOneOfCsvToJSON = exports.FormatSpecificsOneOfCsvFromJSONTyped = exports.FormatSpecificsOneOfCsvFromJSON = exports.instanceOfFormatSpecificsOneOfCsv = void 0;
+exports.instanceOfFormatSpecificsOneOfCsv = instanceOfFormatSpecificsOneOfCsv;
+exports.FormatSpecificsOneOfCsvFromJSON = FormatSpecificsOneOfCsvFromJSON;
+exports.FormatSpecificsOneOfCsvFromJSONTyped = FormatSpecificsOneOfCsvFromJSONTyped;
+exports.FormatSpecificsOneOfCsvToJSON = FormatSpecificsOneOfCsvToJSON;
+exports.FormatSpecificsOneOfCsvToJSONTyped = FormatSpecificsOneOfCsvToJSONTyped;
 const CsvHeader_1 = require("./CsvHeader");
 /**
  * Check if a given object implements the FormatSpecificsOneOfCsv interface.
  */
 function instanceOfFormatSpecificsOneOfCsv(value) {
-    let isInstance = true;
-    isInstance = isInstance && "header" in value;
-    return isInstance;
+    if (!('header' in value) || value['header'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfFormatSpecificsOneOfCsv = instanceOfFormatSpecificsOneOfCsv;
 function FormatSpecificsOneOfCsvFromJSON(json) {
     return FormatSpecificsOneOfCsvFromJSONTyped(json, false);
 }
-exports.FormatSpecificsOneOfCsvFromJSON = FormatSpecificsOneOfCsvFromJSON;
 function FormatSpecificsOneOfCsvFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'header': (0, CsvHeader_1.CsvHeaderFromJSON)(json['header']),
     };
 }
-exports.FormatSpecificsOneOfCsvFromJSONTyped = FormatSpecificsOneOfCsvFromJSONTyped;
-function FormatSpecificsOneOfCsvToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function FormatSpecificsOneOfCsvToJSON(json) {
+    return FormatSpecificsOneOfCsvToJSONTyped(json, false);
+}
+function FormatSpecificsOneOfCsvToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'header': (0, CsvHeader_1.CsvHeaderToJSON)(value.header),
+        'header': (0, CsvHeader_1.CsvHeaderToJSON)(value['header']),
     };
 }
-exports.FormatSpecificsOneOfCsvToJSON = FormatSpecificsOneOfCsvToJSON;

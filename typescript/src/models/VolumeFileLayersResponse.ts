@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface VolumeFileLayersResponse {
 /**
  * Check if a given object implements the VolumeFileLayersResponse interface.
  */
-export function instanceOfVolumeFileLayersResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "layers" in value;
-
-    return isInstance;
+export function instanceOfVolumeFileLayersResponse(value: object): value is VolumeFileLayersResponse {
+    if (!('layers' in value) || value['layers'] === undefined) return false;
+    return true;
 }
 
 export function VolumeFileLayersResponseFromJSON(json: any): VolumeFileLayersResponse {
@@ -42,7 +40,7 @@ export function VolumeFileLayersResponseFromJSON(json: any): VolumeFileLayersRes
 }
 
 export function VolumeFileLayersResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): VolumeFileLayersResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function VolumeFileLayersResponseFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function VolumeFileLayersResponseToJSON(value?: VolumeFileLayersResponse | null): any {
-    if (value === undefined) {
-        return undefined;
+export function VolumeFileLayersResponseToJSON(json: any): VolumeFileLayersResponse {
+    return VolumeFileLayersResponseToJSONTyped(json, false);
+}
+
+export function VolumeFileLayersResponseToJSONTyped(value?: VolumeFileLayersResponse | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'layers': value.layers,
+        'layers': value['layers'],
     };
 }
 

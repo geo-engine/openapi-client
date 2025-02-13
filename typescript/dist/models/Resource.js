@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ResourceToJSON = exports.ResourceFromJSONTyped = exports.ResourceFromJSON = void 0;
+exports.ResourceFromJSON = ResourceFromJSON;
+exports.ResourceFromJSONTyped = ResourceFromJSONTyped;
+exports.ResourceToJSON = ResourceToJSON;
+exports.ResourceToJSONTyped = ResourceToJSONTyped;
 const DatasetResource_1 = require("./DatasetResource");
 const LayerCollectionResource_1 = require("./LayerCollectionResource");
 const LayerResource_1 = require("./LayerResource");
@@ -22,47 +25,44 @@ const ProjectResource_1 = require("./ProjectResource");
 function ResourceFromJSON(json) {
     return ResourceFromJSONTyped(json, false);
 }
-exports.ResourceFromJSON = ResourceFromJSON;
 function ResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'dataset':
-            return Object.assign(Object.assign({}, (0, DatasetResource_1.DatasetResourceFromJSONTyped)(json, true)), { type: 'dataset' });
+            return Object.assign({}, (0, DatasetResource_1.DatasetResourceFromJSONTyped)(json, true), { type: 'dataset' });
         case 'layer':
-            return Object.assign(Object.assign({}, (0, LayerResource_1.LayerResourceFromJSONTyped)(json, true)), { type: 'layer' });
+            return Object.assign({}, (0, LayerResource_1.LayerResourceFromJSONTyped)(json, true), { type: 'layer' });
         case 'layerCollection':
-            return Object.assign(Object.assign({}, (0, LayerCollectionResource_1.LayerCollectionResourceFromJSONTyped)(json, true)), { type: 'layerCollection' });
+            return Object.assign({}, (0, LayerCollectionResource_1.LayerCollectionResourceFromJSONTyped)(json, true), { type: 'layerCollection' });
         case 'mlModel':
-            return Object.assign(Object.assign({}, (0, MlModelResource_1.MlModelResourceFromJSONTyped)(json, true)), { type: 'mlModel' });
+            return Object.assign({}, (0, MlModelResource_1.MlModelResourceFromJSONTyped)(json, true), { type: 'mlModel' });
         case 'project':
-            return Object.assign(Object.assign({}, (0, ProjectResource_1.ProjectResourceFromJSONTyped)(json, true)), { type: 'project' });
+            return Object.assign({}, (0, ProjectResource_1.ProjectResourceFromJSONTyped)(json, true), { type: 'project' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }
 }
-exports.ResourceFromJSONTyped = ResourceFromJSONTyped;
-function ResourceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ResourceToJSON(json) {
+    return ResourceToJSONTyped(json, false);
+}
+function ResourceToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'dataset':
-            return (0, DatasetResource_1.DatasetResourceToJSON)(value);
+            return Object.assign({}, (0, DatasetResource_1.DatasetResourceToJSON)(value), { type: 'dataset' });
         case 'layer':
-            return (0, LayerResource_1.LayerResourceToJSON)(value);
+            return Object.assign({}, (0, LayerResource_1.LayerResourceToJSON)(value), { type: 'layer' });
         case 'layerCollection':
-            return (0, LayerCollectionResource_1.LayerCollectionResourceToJSON)(value);
+            return Object.assign({}, (0, LayerCollectionResource_1.LayerCollectionResourceToJSON)(value), { type: 'layerCollection' });
         case 'mlModel':
-            return (0, MlModelResource_1.MlModelResourceToJSON)(value);
+            return Object.assign({}, (0, MlModelResource_1.MlModelResourceToJSON)(value), { type: 'mlModel' });
         case 'project':
-            return (0, ProjectResource_1.ProjectResourceToJSON)(value);
+            return Object.assign({}, (0, ProjectResource_1.ProjectResourceToJSON)(value), { type: 'project' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
     }
 }
-exports.ResourceToJSON = ResourceToJSON;

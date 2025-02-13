@@ -13,24 +13,27 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GeoJsonToJSON = exports.GeoJsonFromJSONTyped = exports.GeoJsonFromJSON = exports.instanceOfGeoJson = void 0;
+exports.instanceOfGeoJson = instanceOfGeoJson;
+exports.GeoJsonFromJSON = GeoJsonFromJSON;
+exports.GeoJsonFromJSONTyped = GeoJsonFromJSONTyped;
+exports.GeoJsonToJSON = GeoJsonToJSON;
+exports.GeoJsonToJSONTyped = GeoJsonToJSONTyped;
 const CollectionType_1 = require("./CollectionType");
 /**
  * Check if a given object implements the GeoJson interface.
  */
 function instanceOfGeoJson(value) {
-    let isInstance = true;
-    isInstance = isInstance && "features" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('features' in value) || value['features'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfGeoJson = instanceOfGeoJson;
 function GeoJsonFromJSON(json) {
     return GeoJsonFromJSONTyped(json, false);
 }
-exports.GeoJsonFromJSON = GeoJsonFromJSON;
 function GeoJsonFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,17 +41,15 @@ function GeoJsonFromJSONTyped(json, ignoreDiscriminator) {
         'type': (0, CollectionType_1.CollectionTypeFromJSON)(json['type']),
     };
 }
-exports.GeoJsonFromJSONTyped = GeoJsonFromJSONTyped;
-function GeoJsonToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function GeoJsonToJSON(json) {
+    return GeoJsonToJSONTyped(json, false);
+}
+function GeoJsonToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'features': value.features,
-        'type': (0, CollectionType_1.CollectionTypeToJSON)(value.type),
+        'features': value['features'],
+        'type': (0, CollectionType_1.CollectionTypeToJSON)(value['type']),
     };
 }
-exports.GeoJsonToJSON = GeoJsonToJSON;

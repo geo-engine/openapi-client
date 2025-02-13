@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GdalLoadingInfoTemporalSliceFromJSON, GdalLoadingInfoTemporalSliceToJSON, } from './GdalLoadingInfoTemporalSlice';
 import { RasterResultDescriptorFromJSON, RasterResultDescriptorToJSON, } from './RasterResultDescriptor';
+import { GdalLoadingInfoTemporalSliceFromJSON, GdalLoadingInfoTemporalSliceToJSON, } from './GdalLoadingInfoTemporalSlice';
 /**
  * @export
  */
@@ -23,17 +23,19 @@ export const GdalMetaDataListTypeEnum = {
  * Check if a given object implements the GdalMetaDataList interface.
  */
 export function instanceOfGdalMetaDataList(value) {
-    let isInstance = true;
-    isInstance = isInstance && "params" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('params' in value) || value['params'] === undefined)
+        return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function GdalMetaDataListFromJSON(json) {
     return GdalMetaDataListFromJSONTyped(json, false);
 }
 export function GdalMetaDataListFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -42,16 +44,16 @@ export function GdalMetaDataListFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function GdalMetaDataListToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function GdalMetaDataListToJSON(json) {
+    return GdalMetaDataListToJSONTyped(json, false);
+}
+export function GdalMetaDataListToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'params': (value.params.map(GdalLoadingInfoTemporalSliceToJSON)),
-        'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
-        'type': value.type,
+        'params': (value['params'].map(GdalLoadingInfoTemporalSliceToJSON)),
+        'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
+        'type': value['type'],
     };
 }

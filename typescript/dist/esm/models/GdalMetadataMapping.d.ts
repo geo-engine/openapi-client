@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { RasterPropertiesEntryType } from './RasterPropertiesEntryType';
 import type { RasterPropertiesKey } from './RasterPropertiesKey';
+import type { RasterPropertiesEntryType } from './RasterPropertiesEntryType';
 /**
  *
  * @export
@@ -39,7 +39,8 @@ export interface GdalMetadataMapping {
 /**
  * Check if a given object implements the GdalMetadataMapping interface.
  */
-export declare function instanceOfGdalMetadataMapping(value: object): boolean;
+export declare function instanceOfGdalMetadataMapping(value: object): value is GdalMetadataMapping;
 export declare function GdalMetadataMappingFromJSON(json: any): GdalMetadataMapping;
 export declare function GdalMetadataMappingFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalMetadataMapping;
-export declare function GdalMetadataMappingToJSON(value?: GdalMetadataMapping | null): any;
+export declare function GdalMetadataMappingToJSON(json: any): GdalMetadataMapping;
+export declare function GdalMetadataMappingToJSONTyped(value?: GdalMetadataMapping | null, ignoreDiscriminator?: boolean): any;

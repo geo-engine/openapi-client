@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { OgrSourceDataset } from './OgrSourceDataset';
 import type { VectorResultDescriptor } from './VectorResultDescriptor';
+import type { OgrSourceDataset } from './OgrSourceDataset';
 /**
  *
  * @export
@@ -46,7 +46,8 @@ export type OgrMetaDataTypeEnum = typeof OgrMetaDataTypeEnum[keyof typeof OgrMet
 /**
  * Check if a given object implements the OgrMetaData interface.
  */
-export declare function instanceOfOgrMetaData(value: object): boolean;
+export declare function instanceOfOgrMetaData(value: object): value is OgrMetaData;
 export declare function OgrMetaDataFromJSON(json: any): OgrMetaData;
 export declare function OgrMetaDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrMetaData;
-export declare function OgrMetaDataToJSON(value?: OgrMetaData | null): any;
+export declare function OgrMetaDataToJSON(json: any): OgrMetaData;
+export declare function OgrMetaDataToJSONTyped(value?: OgrMetaData | null, ignoreDiscriminator?: boolean): any;

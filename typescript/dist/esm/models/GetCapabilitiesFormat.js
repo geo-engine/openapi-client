@@ -18,6 +18,16 @@
 export const GetCapabilitiesFormat = {
     TextXml: 'text/xml'
 };
+export function instanceOfGetCapabilitiesFormat(value) {
+    for (const key in GetCapabilitiesFormat) {
+        if (Object.prototype.hasOwnProperty.call(GetCapabilitiesFormat, key)) {
+            if (GetCapabilitiesFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function GetCapabilitiesFormatFromJSON(json) {
     return GetCapabilitiesFormatFromJSONTyped(json, false);
 }
@@ -25,5 +35,8 @@ export function GetCapabilitiesFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function GetCapabilitiesFormatToJSON(value) {
+    return value;
+}
+export function GetCapabilitiesFormatToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

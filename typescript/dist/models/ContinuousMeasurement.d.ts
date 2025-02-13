@@ -44,7 +44,8 @@ export type ContinuousMeasurementTypeEnum = typeof ContinuousMeasurementTypeEnum
 /**
  * Check if a given object implements the ContinuousMeasurement interface.
  */
-export declare function instanceOfContinuousMeasurement(value: object): boolean;
+export declare function instanceOfContinuousMeasurement(value: object): value is ContinuousMeasurement;
 export declare function ContinuousMeasurementFromJSON(json: any): ContinuousMeasurement;
 export declare function ContinuousMeasurementFromJSONTyped(json: any, ignoreDiscriminator: boolean): ContinuousMeasurement;
-export declare function ContinuousMeasurementToJSON(value?: ContinuousMeasurement | null): any;
+export declare function ContinuousMeasurementToJSON(json: any): ContinuousMeasurement;
+export declare function ContinuousMeasurementToJSONTyped(value?: ContinuousMeasurement | null, ignoreDiscriminator?: boolean): any;

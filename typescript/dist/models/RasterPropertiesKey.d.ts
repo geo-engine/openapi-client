@@ -31,7 +31,8 @@ export interface RasterPropertiesKey {
 /**
  * Check if a given object implements the RasterPropertiesKey interface.
  */
-export declare function instanceOfRasterPropertiesKey(value: object): boolean;
+export declare function instanceOfRasterPropertiesKey(value: object): value is RasterPropertiesKey;
 export declare function RasterPropertiesKeyFromJSON(json: any): RasterPropertiesKey;
 export declare function RasterPropertiesKeyFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterPropertiesKey;
-export declare function RasterPropertiesKeyToJSON(value?: RasterPropertiesKey | null): any;
+export declare function RasterPropertiesKeyToJSON(json: any): RasterPropertiesKey;
+export declare function RasterPropertiesKeyToJSONTyped(value?: RasterPropertiesKey | null, ignoreDiscriminator?: boolean): any;

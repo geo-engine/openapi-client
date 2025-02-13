@@ -15,16 +15,17 @@
  * Check if a given object implements the LayerVisibility interface.
  */
 export function instanceOfLayerVisibility(value) {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "legend" in value;
-    return isInstance;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    if (!('legend' in value) || value['legend'] === undefined)
+        return false;
+    return true;
 }
 export function LayerVisibilityFromJSON(json) {
     return LayerVisibilityFromJSONTyped(json, false);
 }
 export function LayerVisibilityFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -32,15 +33,15 @@ export function LayerVisibilityFromJSONTyped(json, ignoreDiscriminator) {
         'legend': json['legend'],
     };
 }
-export function LayerVisibilityToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function LayerVisibilityToJSON(json) {
+    return LayerVisibilityToJSONTyped(json, false);
+}
+export function LayerVisibilityToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'data': value.data,
-        'legend': value.legend,
+        'data': value['data'],
+        'legend': value['legend'],
     };
 }

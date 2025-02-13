@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -54,15 +54,13 @@ export interface DataUsage {
 /**
  * Check if a given object implements the DataUsage interface.
  */
-export function instanceOfDataUsage(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "computationId" in value;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "timestamp" in value;
-    isInstance = isInstance && "userId" in value;
-
-    return isInstance;
+export function instanceOfDataUsage(value: object): value is DataUsage {
+    if (!('computationId' in value) || value['computationId'] === undefined) return false;
+    if (!('count' in value) || value['count'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined) return false;
+    if (!('userId' in value) || value['userId'] === undefined) return false;
+    return true;
 }
 
 export function DataUsageFromJSON(json: any): DataUsage {
@@ -70,7 +68,7 @@ export function DataUsageFromJSON(json: any): DataUsage {
 }
 
 export function DataUsageFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataUsage {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -83,20 +81,22 @@ export function DataUsageFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     };
 }
 
-export function DataUsageToJSON(value?: DataUsage | null): any {
-    if (value === undefined) {
-        return undefined;
+export function DataUsageToJSON(json: any): DataUsage {
+    return DataUsageToJSONTyped(json, false);
+}
+
+export function DataUsageToJSONTyped(value?: DataUsage | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'computationId': value.computationId,
-        'count': value.count,
-        'data': value.data,
-        'timestamp': (value.timestamp.toISOString()),
-        'userId': value.userId,
+        'computationId': value['computationId'],
+        'count': value['count'],
+        'data': value['data'],
+        'timestamp': ((value['timestamp']).toISOString()),
+        'userId': value['userId'],
     };
 }
 

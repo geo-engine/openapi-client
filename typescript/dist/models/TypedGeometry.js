@@ -13,7 +13,10 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedGeometryToJSON = exports.TypedGeometryFromJSONTyped = exports.TypedGeometryFromJSON = void 0;
+exports.TypedGeometryFromJSON = TypedGeometryFromJSON;
+exports.TypedGeometryFromJSONTyped = TypedGeometryFromJSONTyped;
+exports.TypedGeometryToJSON = TypedGeometryToJSON;
+exports.TypedGeometryToJSONTyped = TypedGeometryToJSONTyped;
 const TypedGeometryOneOf_1 = require("./TypedGeometryOneOf");
 const TypedGeometryOneOf1_1 = require("./TypedGeometryOneOf1");
 const TypedGeometryOneOf2_1 = require("./TypedGeometryOneOf2");
@@ -21,20 +24,30 @@ const TypedGeometryOneOf3_1 = require("./TypedGeometryOneOf3");
 function TypedGeometryFromJSON(json) {
     return TypedGeometryFromJSONTyped(json, false);
 }
-exports.TypedGeometryFromJSON = TypedGeometryFromJSON;
 function TypedGeometryFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return Object.assign(Object.assign(Object.assign(Object.assign({}, (0, TypedGeometryOneOf_1.TypedGeometryOneOfFromJSONTyped)(json, true)), (0, TypedGeometryOneOf1_1.TypedGeometryOneOf1FromJSONTyped)(json, true)), (0, TypedGeometryOneOf2_1.TypedGeometryOneOf2FromJSONTyped)(json, true)), (0, TypedGeometryOneOf3_1.TypedGeometryOneOf3FromJSONTyped)(json, true));
-}
-exports.TypedGeometryFromJSONTyped = TypedGeometryFromJSONTyped;
-function TypedGeometryToJSON(value) {
-    if (value === undefined) {
-        return undefined;
+    if ((0, TypedGeometryOneOf_1.instanceOfTypedGeometryOneOf)(json)) {
+        return (0, TypedGeometryOneOf_1.TypedGeometryOneOfFromJSONTyped)(json, true);
     }
-    if (value === null) {
-        return null;
+    if ((0, TypedGeometryOneOf1_1.instanceOfTypedGeometryOneOf1)(json)) {
+        return (0, TypedGeometryOneOf1_1.TypedGeometryOneOf1FromJSONTyped)(json, true);
+    }
+    if ((0, TypedGeometryOneOf2_1.instanceOfTypedGeometryOneOf2)(json)) {
+        return (0, TypedGeometryOneOf2_1.TypedGeometryOneOf2FromJSONTyped)(json, true);
+    }
+    if ((0, TypedGeometryOneOf3_1.instanceOfTypedGeometryOneOf3)(json)) {
+        return (0, TypedGeometryOneOf3_1.TypedGeometryOneOf3FromJSONTyped)(json, true);
+    }
+    return {};
+}
+function TypedGeometryToJSON(json) {
+    return TypedGeometryToJSONTyped(json, false);
+}
+function TypedGeometryToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     if ((0, TypedGeometryOneOf_1.instanceOfTypedGeometryOneOf)(value)) {
         return (0, TypedGeometryOneOf_1.TypedGeometryOneOfToJSON)(value);
@@ -50,4 +63,3 @@ function TypedGeometryToJSON(value) {
     }
     return {};
 }
-exports.TypedGeometryToJSON = TypedGeometryToJSON;

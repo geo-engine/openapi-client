@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ResourceIdProjectToJSON = exports.ResourceIdProjectFromJSONTyped = exports.ResourceIdProjectFromJSON = exports.instanceOfResourceIdProject = exports.ResourceIdProjectTypeEnum = void 0;
+exports.ResourceIdProjectTypeEnum = void 0;
+exports.instanceOfResourceIdProject = instanceOfResourceIdProject;
+exports.ResourceIdProjectFromJSON = ResourceIdProjectFromJSON;
+exports.ResourceIdProjectFromJSONTyped = ResourceIdProjectFromJSONTyped;
+exports.ResourceIdProjectToJSON = ResourceIdProjectToJSON;
+exports.ResourceIdProjectToJSONTyped = ResourceIdProjectToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.ResourceIdProjectTypeEnum = {
  * Check if a given object implements the ResourceIdProject interface.
  */
 function instanceOfResourceIdProject(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfResourceIdProject = instanceOfResourceIdProject;
 function ResourceIdProjectFromJSON(json) {
     return ResourceIdProjectFromJSONTyped(json, false);
 }
-exports.ResourceIdProjectFromJSON = ResourceIdProjectFromJSON;
 function ResourceIdProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function ResourceIdProjectFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.ResourceIdProjectFromJSONTyped = ResourceIdProjectFromJSONTyped;
-function ResourceIdProjectToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ResourceIdProjectToJSON(json) {
+    return ResourceIdProjectToJSONTyped(json, false);
+}
+function ResourceIdProjectToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
-exports.ResourceIdProjectToJSON = ResourceIdProjectToJSON;

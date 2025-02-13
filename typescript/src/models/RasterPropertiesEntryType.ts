@@ -24,6 +24,17 @@ export const RasterPropertiesEntryType = {
 export type RasterPropertiesEntryType = typeof RasterPropertiesEntryType[keyof typeof RasterPropertiesEntryType];
 
 
+export function instanceOfRasterPropertiesEntryType(value: any): boolean {
+    for (const key in RasterPropertiesEntryType) {
+        if (Object.prototype.hasOwnProperty.call(RasterPropertiesEntryType, key)) {
+            if (RasterPropertiesEntryType[key as keyof typeof RasterPropertiesEntryType] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function RasterPropertiesEntryTypeFromJSON(json: any): RasterPropertiesEntryType {
     return RasterPropertiesEntryTypeFromJSONTyped(json, false);
 }
@@ -34,5 +45,9 @@ export function RasterPropertiesEntryTypeFromJSONTyped(json: any, ignoreDiscrimi
 
 export function RasterPropertiesEntryTypeToJSON(value?: RasterPropertiesEntryType | null): any {
     return value as any;
+}
+
+export function RasterPropertiesEntryTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): RasterPropertiesEntryType {
+    return value as RasterPropertiesEntryType;
 }
 

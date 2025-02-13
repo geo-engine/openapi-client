@@ -15,37 +15,35 @@
  * @export
  */
 export const UnitlessMeasurementTypeEnum = {
-    Unitless: 'unitless',
-    Continuous: 'continuous',
-    Classification: 'classification'
+    Unitless: 'unitless'
 };
 /**
  * Check if a given object implements the UnitlessMeasurement interface.
  */
 export function instanceOfUnitlessMeasurement(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function UnitlessMeasurementFromJSON(json) {
     return UnitlessMeasurementFromJSONTyped(json, false);
 }
 export function UnitlessMeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'type': json['type'],
     };
 }
-export function UnitlessMeasurementToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function UnitlessMeasurementToJSON(json) {
+    return UnitlessMeasurementToJSONTyped(json, false);
+}
+export function UnitlessMeasurementToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'type': value.type,
+        'type': value['type'],
     };
 }

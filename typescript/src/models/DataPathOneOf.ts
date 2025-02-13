@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface DataPathOneOf {
 /**
  * Check if a given object implements the DataPathOneOf interface.
  */
-export function instanceOfDataPathOneOf(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "volume" in value;
-
-    return isInstance;
+export function instanceOfDataPathOneOf(value: object): value is DataPathOneOf {
+    if (!('volume' in value) || value['volume'] === undefined) return false;
+    return true;
 }
 
 export function DataPathOneOfFromJSON(json: any): DataPathOneOf {
@@ -42,7 +40,7 @@ export function DataPathOneOfFromJSON(json: any): DataPathOneOf {
 }
 
 export function DataPathOneOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataPathOneOf {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function DataPathOneOfFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function DataPathOneOfToJSON(value?: DataPathOneOf | null): any {
-    if (value === undefined) {
-        return undefined;
+export function DataPathOneOfToJSON(json: any): DataPathOneOf {
+    return DataPathOneOfToJSONTyped(json, false);
+}
+
+export function DataPathOneOfToJSONTyped(value?: DataPathOneOf | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'volume': value.volume,
+        'volume': value['volume'],
     };
 }
 

@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ResourceIdDatasetIdToJSON = exports.ResourceIdDatasetIdFromJSONTyped = exports.ResourceIdDatasetIdFromJSON = exports.instanceOfResourceIdDatasetId = exports.ResourceIdDatasetIdTypeEnum = void 0;
+exports.ResourceIdDatasetIdTypeEnum = void 0;
+exports.instanceOfResourceIdDatasetId = instanceOfResourceIdDatasetId;
+exports.ResourceIdDatasetIdFromJSON = ResourceIdDatasetIdFromJSON;
+exports.ResourceIdDatasetIdFromJSONTyped = ResourceIdDatasetIdFromJSONTyped;
+exports.ResourceIdDatasetIdToJSON = ResourceIdDatasetIdToJSON;
+exports.ResourceIdDatasetIdToJSONTyped = ResourceIdDatasetIdToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.ResourceIdDatasetIdTypeEnum = {
  * Check if a given object implements the ResourceIdDatasetId interface.
  */
 function instanceOfResourceIdDatasetId(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfResourceIdDatasetId = instanceOfResourceIdDatasetId;
 function ResourceIdDatasetIdFromJSON(json) {
     return ResourceIdDatasetIdFromJSONTyped(json, false);
 }
-exports.ResourceIdDatasetIdFromJSON = ResourceIdDatasetIdFromJSON;
 function ResourceIdDatasetIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function ResourceIdDatasetIdFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.ResourceIdDatasetIdFromJSONTyped = ResourceIdDatasetIdFromJSONTyped;
-function ResourceIdDatasetIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ResourceIdDatasetIdToJSON(json) {
+    return ResourceIdDatasetIdToJSONTyped(json, false);
+}
+function ResourceIdDatasetIdToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
-exports.ResourceIdDatasetIdToJSON = ResourceIdDatasetIdToJSON;

@@ -11,38 +11,37 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
 /**
  * Check if a given object implements the TypedOperatorOperator interface.
  */
 export function instanceOfTypedOperatorOperator(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function TypedOperatorOperatorFromJSON(json) {
     return TypedOperatorOperatorFromJSONTyped(json, false);
 }
 export function TypedOperatorOperatorFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'params': !exists(json, 'params') ? undefined : json['params'],
-        'sources': !exists(json, 'sources') ? undefined : json['sources'],
+        'params': json['params'] == null ? undefined : json['params'],
+        'sources': json['sources'] == null ? undefined : json['sources'],
         'type': json['type'],
     };
 }
-export function TypedOperatorOperatorToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TypedOperatorOperatorToJSON(json) {
+    return TypedOperatorOperatorToJSONTyped(json, false);
+}
+export function TypedOperatorOperatorToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'params': value.params,
-        'sources': value.sources,
-        'type': value.type,
+        'params': value['params'],
+        'sources': value['sources'],
+        'type': value['type'],
     };
 }

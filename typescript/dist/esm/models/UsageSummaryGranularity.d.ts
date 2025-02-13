@@ -21,6 +21,8 @@ export declare const UsageSummaryGranularity: {
     readonly Years: "years";
 };
 export type UsageSummaryGranularity = typeof UsageSummaryGranularity[keyof typeof UsageSummaryGranularity];
+export declare function instanceOfUsageSummaryGranularity(value: any): boolean;
 export declare function UsageSummaryGranularityFromJSON(json: any): UsageSummaryGranularity;
 export declare function UsageSummaryGranularityFromJSONTyped(json: any, ignoreDiscriminator: boolean): UsageSummaryGranularity;
 export declare function UsageSummaryGranularityToJSON(value?: UsageSummaryGranularity | null): any;
+export declare function UsageSummaryGranularityToJSONTyped(value: any, ignoreDiscriminator: boolean): UsageSummaryGranularity;

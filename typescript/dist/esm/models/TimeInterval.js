@@ -15,16 +15,17 @@
  * Check if a given object implements the TimeInterval interface.
  */
 export function instanceOfTimeInterval(value) {
-    let isInstance = true;
-    isInstance = isInstance && "end" in value;
-    isInstance = isInstance && "start" in value;
-    return isInstance;
+    if (!('end' in value) || value['end'] === undefined)
+        return false;
+    if (!('start' in value) || value['start'] === undefined)
+        return false;
+    return true;
 }
 export function TimeIntervalFromJSON(json) {
     return TimeIntervalFromJSONTyped(json, false);
 }
 export function TimeIntervalFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -32,15 +33,15 @@ export function TimeIntervalFromJSONTyped(json, ignoreDiscriminator) {
         'start': json['start'],
     };
 }
-export function TimeIntervalToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TimeIntervalToJSON(json) {
+    return TimeIntervalToJSONTyped(json, false);
+}
+export function TimeIntervalToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'end': value.end,
-        'start': value.start,
+        'end': value['end'],
+        'start': value['start'],
     };
 }

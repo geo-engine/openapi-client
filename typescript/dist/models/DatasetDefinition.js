@@ -13,25 +13,28 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DatasetDefinitionToJSON = exports.DatasetDefinitionFromJSONTyped = exports.DatasetDefinitionFromJSON = exports.instanceOfDatasetDefinition = void 0;
-const AddDataset_1 = require("./AddDataset");
+exports.instanceOfDatasetDefinition = instanceOfDatasetDefinition;
+exports.DatasetDefinitionFromJSON = DatasetDefinitionFromJSON;
+exports.DatasetDefinitionFromJSONTyped = DatasetDefinitionFromJSONTyped;
+exports.DatasetDefinitionToJSON = DatasetDefinitionToJSON;
+exports.DatasetDefinitionToJSONTyped = DatasetDefinitionToJSONTyped;
 const MetaDataDefinition_1 = require("./MetaDataDefinition");
+const AddDataset_1 = require("./AddDataset");
 /**
  * Check if a given object implements the DatasetDefinition interface.
  */
 function instanceOfDatasetDefinition(value) {
-    let isInstance = true;
-    isInstance = isInstance && "metaData" in value;
-    isInstance = isInstance && "properties" in value;
-    return isInstance;
+    if (!('metaData' in value) || value['metaData'] === undefined)
+        return false;
+    if (!('properties' in value) || value['properties'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfDatasetDefinition = instanceOfDatasetDefinition;
 function DatasetDefinitionFromJSON(json) {
     return DatasetDefinitionFromJSONTyped(json, false);
 }
-exports.DatasetDefinitionFromJSON = DatasetDefinitionFromJSON;
 function DatasetDefinitionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,17 +42,15 @@ function DatasetDefinitionFromJSONTyped(json, ignoreDiscriminator) {
         'properties': (0, AddDataset_1.AddDatasetFromJSON)(json['properties']),
     };
 }
-exports.DatasetDefinitionFromJSONTyped = DatasetDefinitionFromJSONTyped;
-function DatasetDefinitionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function DatasetDefinitionToJSON(json) {
+    return DatasetDefinitionToJSONTyped(json, false);
+}
+function DatasetDefinitionToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'metaData': (0, MetaDataDefinition_1.MetaDataDefinitionToJSON)(value.metaData),
-        'properties': (0, AddDataset_1.AddDatasetToJSON)(value.properties),
+        'metaData': (0, MetaDataDefinition_1.MetaDataDefinitionToJSON)(value['metaData']),
+        'properties': (0, AddDataset_1.AddDatasetToJSON)(value['properties']),
     };
 }
-exports.DatasetDefinitionToJSON = DatasetDefinitionToJSON;

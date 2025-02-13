@@ -15,23 +15,23 @@
  * @export
  */
 export const StaticNumberParamTypeEnum = {
-    Static: 'static',
-    Derived: 'derived'
+    Static: 'static'
 };
 /**
  * Check if a given object implements the StaticNumberParam interface.
  */
 export function instanceOfStaticNumberParam(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "value" in value;
-    return isInstance;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    if (!('value' in value) || value['value'] === undefined)
+        return false;
+    return true;
 }
 export function StaticNumberParamFromJSON(json) {
     return StaticNumberParamFromJSONTyped(json, false);
 }
 export function StaticNumberParamFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +39,15 @@ export function StaticNumberParamFromJSONTyped(json, ignoreDiscriminator) {
         'value': json['value'],
     };
 }
-export function StaticNumberParamToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function StaticNumberParamToJSON(json) {
+    return StaticNumberParamToJSONTyped(json, false);
+}
+export function StaticNumberParamToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'type': value.type,
-        'value': value.value,
+        'type': value['type'],
+        'value': value['value'],
     };
 }

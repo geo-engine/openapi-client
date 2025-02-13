@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UploadFilesResponseToJSON = exports.UploadFilesResponseFromJSONTyped = exports.UploadFilesResponseFromJSON = exports.instanceOfUploadFilesResponse = void 0;
+exports.instanceOfUploadFilesResponse = instanceOfUploadFilesResponse;
+exports.UploadFilesResponseFromJSON = UploadFilesResponseFromJSON;
+exports.UploadFilesResponseFromJSONTyped = UploadFilesResponseFromJSONTyped;
+exports.UploadFilesResponseToJSON = UploadFilesResponseToJSON;
+exports.UploadFilesResponseToJSONTyped = UploadFilesResponseToJSONTyped;
 /**
  * Check if a given object implements the UploadFilesResponse interface.
  */
 function instanceOfUploadFilesResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "files" in value;
-    return isInstance;
+    if (!('files' in value) || value['files'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfUploadFilesResponse = instanceOfUploadFilesResponse;
 function UploadFilesResponseFromJSON(json) {
     return UploadFilesResponseFromJSONTyped(json, false);
 }
-exports.UploadFilesResponseFromJSON = UploadFilesResponseFromJSON;
 function UploadFilesResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'files': json['files'],
     };
 }
-exports.UploadFilesResponseFromJSONTyped = UploadFilesResponseFromJSONTyped;
-function UploadFilesResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function UploadFilesResponseToJSON(json) {
+    return UploadFilesResponseToJSONTyped(json, false);
+}
+function UploadFilesResponseToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'files': value.files,
+        'files': value['files'],
     };
 }
-exports.UploadFilesResponseToJSON = UploadFilesResponseToJSON;

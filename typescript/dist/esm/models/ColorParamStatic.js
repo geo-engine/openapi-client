@@ -15,23 +15,23 @@
  * @export
  */
 export const ColorParamStaticTypeEnum = {
-    Static: 'static',
-    Derived: 'derived'
+    Static: 'static'
 };
 /**
  * Check if a given object implements the ColorParamStatic interface.
  */
 export function instanceOfColorParamStatic(value) {
-    let isInstance = true;
-    isInstance = isInstance && "color" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('color' in value) || value['color'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function ColorParamStaticFromJSON(json) {
     return ColorParamStaticFromJSONTyped(json, false);
 }
 export function ColorParamStaticFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,15 +39,15 @@ export function ColorParamStaticFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function ColorParamStaticToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ColorParamStaticToJSON(json) {
+    return ColorParamStaticToJSONTyped(json, false);
+}
+export function ColorParamStaticToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'color': value.color,
-        'type': value.type,
+        'color': value['color'],
+        'type': value['type'],
     };
 }

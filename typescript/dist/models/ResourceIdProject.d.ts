@@ -38,7 +38,8 @@ export type ResourceIdProjectTypeEnum = typeof ResourceIdProjectTypeEnum[keyof t
 /**
  * Check if a given object implements the ResourceIdProject interface.
  */
-export declare function instanceOfResourceIdProject(value: object): boolean;
+export declare function instanceOfResourceIdProject(value: object): value is ResourceIdProject;
 export declare function ResourceIdProjectFromJSON(json: any): ResourceIdProject;
 export declare function ResourceIdProjectFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceIdProject;
-export declare function ResourceIdProjectToJSON(value?: ResourceIdProject | null): any;
+export declare function ResourceIdProjectToJSON(json: any): ResourceIdProject;
+export declare function ResourceIdProjectToJSONTyped(value?: ResourceIdProject | null, ignoreDiscriminator?: boolean): any;

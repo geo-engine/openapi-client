@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterDataTypeToJSON = exports.RasterDataTypeFromJSONTyped = exports.RasterDataTypeFromJSON = exports.RasterDataType = void 0;
+exports.RasterDataType = void 0;
+exports.instanceOfRasterDataType = instanceOfRasterDataType;
+exports.RasterDataTypeFromJSON = RasterDataTypeFromJSON;
+exports.RasterDataTypeFromJSONTyped = RasterDataTypeFromJSONTyped;
+exports.RasterDataTypeToJSON = RasterDataTypeToJSON;
+exports.RasterDataTypeToJSONTyped = RasterDataTypeToJSONTyped;
 /**
  *
  * @export
@@ -30,15 +35,25 @@ exports.RasterDataType = {
     F32: 'F32',
     F64: 'F64'
 };
+function instanceOfRasterDataType(value) {
+    for (const key in exports.RasterDataType) {
+        if (Object.prototype.hasOwnProperty.call(exports.RasterDataType, key)) {
+            if (exports.RasterDataType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function RasterDataTypeFromJSON(json) {
     return RasterDataTypeFromJSONTyped(json, false);
 }
-exports.RasterDataTypeFromJSON = RasterDataTypeFromJSON;
 function RasterDataTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.RasterDataTypeFromJSONTyped = RasterDataTypeFromJSONTyped;
 function RasterDataTypeToJSON(value) {
     return value;
 }
-exports.RasterDataTypeToJSON = RasterDataTypeToJSON;
+function RasterDataTypeToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

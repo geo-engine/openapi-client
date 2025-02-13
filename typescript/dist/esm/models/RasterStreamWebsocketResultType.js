@@ -18,6 +18,16 @@
 export const RasterStreamWebsocketResultType = {
     Arrow: 'arrow'
 };
+export function instanceOfRasterStreamWebsocketResultType(value) {
+    for (const key in RasterStreamWebsocketResultType) {
+        if (Object.prototype.hasOwnProperty.call(RasterStreamWebsocketResultType, key)) {
+            if (RasterStreamWebsocketResultType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function RasterStreamWebsocketResultTypeFromJSON(json) {
     return RasterStreamWebsocketResultTypeFromJSONTyped(json, false);
 }
@@ -25,5 +35,8 @@ export function RasterStreamWebsocketResultTypeFromJSONTyped(json, ignoreDiscrim
     return json;
 }
 export function RasterStreamWebsocketResultTypeToJSON(value) {
+    return value;
+}
+export function RasterStreamWebsocketResultTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

@@ -20,42 +20,42 @@ export function ResourceFromJSON(json) {
     return ResourceFromJSONTyped(json, false);
 }
 export function ResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'dataset':
-            return Object.assign(Object.assign({}, DatasetResourceFromJSONTyped(json, true)), { type: 'dataset' });
+            return Object.assign({}, DatasetResourceFromJSONTyped(json, true), { type: 'dataset' });
         case 'layer':
-            return Object.assign(Object.assign({}, LayerResourceFromJSONTyped(json, true)), { type: 'layer' });
+            return Object.assign({}, LayerResourceFromJSONTyped(json, true), { type: 'layer' });
         case 'layerCollection':
-            return Object.assign(Object.assign({}, LayerCollectionResourceFromJSONTyped(json, true)), { type: 'layerCollection' });
+            return Object.assign({}, LayerCollectionResourceFromJSONTyped(json, true), { type: 'layerCollection' });
         case 'mlModel':
-            return Object.assign(Object.assign({}, MlModelResourceFromJSONTyped(json, true)), { type: 'mlModel' });
+            return Object.assign({}, MlModelResourceFromJSONTyped(json, true), { type: 'mlModel' });
         case 'project':
-            return Object.assign(Object.assign({}, ProjectResourceFromJSONTyped(json, true)), { type: 'project' });
+            return Object.assign({}, ProjectResourceFromJSONTyped(json, true), { type: 'project' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }
 }
-export function ResourceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function ResourceToJSON(json) {
+    return ResourceToJSONTyped(json, false);
+}
+export function ResourceToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'dataset':
-            return DatasetResourceToJSON(value);
+            return Object.assign({}, DatasetResourceToJSON(value), { type: 'dataset' });
         case 'layer':
-            return LayerResourceToJSON(value);
+            return Object.assign({}, LayerResourceToJSON(value), { type: 'layer' });
         case 'layerCollection':
-            return LayerCollectionResourceToJSON(value);
+            return Object.assign({}, LayerCollectionResourceToJSON(value), { type: 'layerCollection' });
         case 'mlModel':
-            return MlModelResourceToJSON(value);
+            return Object.assign({}, MlModelResourceToJSON(value), { type: 'mlModel' });
         case 'project':
-            return ProjectResourceToJSON(value);
+            return Object.assign({}, ProjectResourceToJSON(value), { type: 'project' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
     }

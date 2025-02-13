@@ -39,7 +39,8 @@ export type OgrSourceTimeFormatUnixTimeStampFormatEnum = typeof OgrSourceTimeFor
 /**
  * Check if a given object implements the OgrSourceTimeFormatUnixTimeStamp interface.
  */
-export declare function instanceOfOgrSourceTimeFormatUnixTimeStamp(value: object): boolean;
+export declare function instanceOfOgrSourceTimeFormatUnixTimeStamp(value: object): value is OgrSourceTimeFormatUnixTimeStamp;
 export declare function OgrSourceTimeFormatUnixTimeStampFromJSON(json: any): OgrSourceTimeFormatUnixTimeStamp;
 export declare function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceTimeFormatUnixTimeStamp;
-export declare function OgrSourceTimeFormatUnixTimeStampToJSON(value?: OgrSourceTimeFormatUnixTimeStamp | null): any;
+export declare function OgrSourceTimeFormatUnixTimeStampToJSON(json: any): OgrSourceTimeFormatUnixTimeStamp;
+export declare function OgrSourceTimeFormatUnixTimeStampToJSONTyped(value?: OgrSourceTimeFormatUnixTimeStamp | null, ignoreDiscriminator?: boolean): any;

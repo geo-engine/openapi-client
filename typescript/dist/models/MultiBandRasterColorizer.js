@@ -13,8 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MultiBandRasterColorizerToJSON = exports.MultiBandRasterColorizerFromJSONTyped = exports.MultiBandRasterColorizerFromJSON = exports.instanceOfMultiBandRasterColorizer = exports.MultiBandRasterColorizerTypeEnum = void 0;
-const runtime_1 = require("../runtime");
+exports.MultiBandRasterColorizerTypeEnum = void 0;
+exports.instanceOfMultiBandRasterColorizer = instanceOfMultiBandRasterColorizer;
+exports.MultiBandRasterColorizerFromJSON = MultiBandRasterColorizerFromJSON;
+exports.MultiBandRasterColorizerFromJSONTyped = MultiBandRasterColorizerFromJSONTyped;
+exports.MultiBandRasterColorizerToJSON = MultiBandRasterColorizerToJSON;
+exports.MultiBandRasterColorizerToJSONTyped = MultiBandRasterColorizerToJSONTyped;
 /**
  * @export
  */
@@ -25,68 +29,73 @@ exports.MultiBandRasterColorizerTypeEnum = {
  * Check if a given object implements the MultiBandRasterColorizer interface.
  */
 function instanceOfMultiBandRasterColorizer(value) {
-    let isInstance = true;
-    isInstance = isInstance && "blueBand" in value;
-    isInstance = isInstance && "blueMax" in value;
-    isInstance = isInstance && "blueMin" in value;
-    isInstance = isInstance && "greenBand" in value;
-    isInstance = isInstance && "greenMax" in value;
-    isInstance = isInstance && "greenMin" in value;
-    isInstance = isInstance && "redBand" in value;
-    isInstance = isInstance && "redMax" in value;
-    isInstance = isInstance && "redMin" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('blueBand' in value) || value['blueBand'] === undefined)
+        return false;
+    if (!('blueMax' in value) || value['blueMax'] === undefined)
+        return false;
+    if (!('blueMin' in value) || value['blueMin'] === undefined)
+        return false;
+    if (!('greenBand' in value) || value['greenBand'] === undefined)
+        return false;
+    if (!('greenMax' in value) || value['greenMax'] === undefined)
+        return false;
+    if (!('greenMin' in value) || value['greenMin'] === undefined)
+        return false;
+    if (!('redBand' in value) || value['redBand'] === undefined)
+        return false;
+    if (!('redMax' in value) || value['redMax'] === undefined)
+        return false;
+    if (!('redMin' in value) || value['redMin'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfMultiBandRasterColorizer = instanceOfMultiBandRasterColorizer;
 function MultiBandRasterColorizerFromJSON(json) {
     return MultiBandRasterColorizerFromJSONTyped(json, false);
 }
-exports.MultiBandRasterColorizerFromJSON = MultiBandRasterColorizerFromJSON;
 function MultiBandRasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'blueBand': json['blueBand'],
         'blueMax': json['blueMax'],
         'blueMin': json['blueMin'],
-        'blueScale': !(0, runtime_1.exists)(json, 'blueScale') ? undefined : json['blueScale'],
+        'blueScale': json['blueScale'] == null ? undefined : json['blueScale'],
         'greenBand': json['greenBand'],
         'greenMax': json['greenMax'],
         'greenMin': json['greenMin'],
-        'greenScale': !(0, runtime_1.exists)(json, 'greenScale') ? undefined : json['greenScale'],
-        'noDataColor': !(0, runtime_1.exists)(json, 'noDataColor') ? undefined : json['noDataColor'],
+        'greenScale': json['greenScale'] == null ? undefined : json['greenScale'],
+        'noDataColor': json['noDataColor'] == null ? undefined : json['noDataColor'],
         'redBand': json['redBand'],
         'redMax': json['redMax'],
         'redMin': json['redMin'],
-        'redScale': !(0, runtime_1.exists)(json, 'redScale') ? undefined : json['redScale'],
+        'redScale': json['redScale'] == null ? undefined : json['redScale'],
         'type': json['type'],
     };
 }
-exports.MultiBandRasterColorizerFromJSONTyped = MultiBandRasterColorizerFromJSONTyped;
-function MultiBandRasterColorizerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function MultiBandRasterColorizerToJSON(json) {
+    return MultiBandRasterColorizerToJSONTyped(json, false);
+}
+function MultiBandRasterColorizerToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'blueBand': value.blueBand,
-        'blueMax': value.blueMax,
-        'blueMin': value.blueMin,
-        'blueScale': value.blueScale,
-        'greenBand': value.greenBand,
-        'greenMax': value.greenMax,
-        'greenMin': value.greenMin,
-        'greenScale': value.greenScale,
-        'noDataColor': value.noDataColor,
-        'redBand': value.redBand,
-        'redMax': value.redMax,
-        'redMin': value.redMin,
-        'redScale': value.redScale,
-        'type': value.type,
+        'blueBand': value['blueBand'],
+        'blueMax': value['blueMax'],
+        'blueMin': value['blueMin'],
+        'blueScale': value['blueScale'],
+        'greenBand': value['greenBand'],
+        'greenMax': value['greenMax'],
+        'greenMin': value['greenMin'],
+        'greenScale': value['greenScale'],
+        'noDataColor': value['noDataColor'],
+        'redBand': value['redBand'],
+        'redMax': value['redMax'],
+        'redMin': value['redMin'],
+        'redScale': value['redScale'],
+        'type': value['type'],
     };
 }
-exports.MultiBandRasterColorizerToJSON = MultiBandRasterColorizerToJSON;

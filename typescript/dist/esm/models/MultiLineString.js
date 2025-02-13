@@ -15,29 +15,29 @@
  * Check if a given object implements the MultiLineString interface.
  */
 export function instanceOfMultiLineString(value) {
-    let isInstance = true;
-    isInstance = isInstance && "coordinates" in value;
-    return isInstance;
+    if (!('coordinates' in value) || value['coordinates'] === undefined)
+        return false;
+    return true;
 }
 export function MultiLineStringFromJSON(json) {
     return MultiLineStringFromJSONTyped(json, false);
 }
 export function MultiLineStringFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'coordinates': json['coordinates'],
     };
 }
-export function MultiLineStringToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function MultiLineStringToJSON(json) {
+    return MultiLineStringToJSONTyped(json, false);
+}
+export function MultiLineStringToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'coordinates': value.coordinates,
+        'coordinates': value['coordinates'],
     };
 }

@@ -13,41 +13,40 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VolumeToJSON = exports.VolumeFromJSONTyped = exports.VolumeFromJSON = exports.instanceOfVolume = void 0;
-const runtime_1 = require("../runtime");
+exports.instanceOfVolume = instanceOfVolume;
+exports.VolumeFromJSON = VolumeFromJSON;
+exports.VolumeFromJSONTyped = VolumeFromJSONTyped;
+exports.VolumeToJSON = VolumeToJSON;
+exports.VolumeToJSONTyped = VolumeToJSONTyped;
 /**
  * Check if a given object implements the Volume interface.
  */
 function instanceOfVolume(value) {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    return isInstance;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfVolume = instanceOfVolume;
 function VolumeFromJSON(json) {
     return VolumeFromJSONTyped(json, false);
 }
-exports.VolumeFromJSON = VolumeFromJSON;
 function VolumeFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'name': json['name'],
-        'path': !(0, runtime_1.exists)(json, 'path') ? undefined : json['path'],
+        'path': json['path'] == null ? undefined : json['path'],
     };
 }
-exports.VolumeFromJSONTyped = VolumeFromJSONTyped;
-function VolumeToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function VolumeToJSON(json) {
+    return VolumeToJSONTyped(json, false);
+}
+function VolumeToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'name': value.name,
-        'path': value.path,
+        'name': value['name'],
+        'path': value['path'],
     };
 }
-exports.VolumeToJSON = VolumeToJSON;

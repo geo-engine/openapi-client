@@ -38,7 +38,8 @@ export type ResourceIdDatasetIdTypeEnum = typeof ResourceIdDatasetIdTypeEnum[key
 /**
  * Check if a given object implements the ResourceIdDatasetId interface.
  */
-export declare function instanceOfResourceIdDatasetId(value: object): boolean;
+export declare function instanceOfResourceIdDatasetId(value: object): value is ResourceIdDatasetId;
 export declare function ResourceIdDatasetIdFromJSON(json: any): ResourceIdDatasetId;
 export declare function ResourceIdDatasetIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceIdDatasetId;
-export declare function ResourceIdDatasetIdToJSON(value?: ResourceIdDatasetId | null): any;
+export declare function ResourceIdDatasetIdToJSON(json: any): ResourceIdDatasetId;
+export declare function ResourceIdDatasetIdToJSONTyped(value?: ResourceIdDatasetId | null, ignoreDiscriminator?: boolean): any;

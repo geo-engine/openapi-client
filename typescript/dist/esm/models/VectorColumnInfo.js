@@ -11,22 +11,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { FeatureDataTypeFromJSON, FeatureDataTypeToJSON, } from './FeatureDataType';
 import { MeasurementFromJSON, MeasurementToJSON, } from './Measurement';
+import { FeatureDataTypeFromJSON, FeatureDataTypeToJSON, } from './FeatureDataType';
 /**
  * Check if a given object implements the VectorColumnInfo interface.
  */
 export function instanceOfVectorColumnInfo(value) {
-    let isInstance = true;
-    isInstance = isInstance && "dataType" in value;
-    isInstance = isInstance && "measurement" in value;
-    return isInstance;
+    if (!('dataType' in value) || value['dataType'] === undefined)
+        return false;
+    if (!('measurement' in value) || value['measurement'] === undefined)
+        return false;
+    return true;
 }
 export function VectorColumnInfoFromJSON(json) {
     return VectorColumnInfoFromJSONTyped(json, false);
 }
 export function VectorColumnInfoFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -34,15 +35,15 @@ export function VectorColumnInfoFromJSONTyped(json, ignoreDiscriminator) {
         'measurement': MeasurementFromJSON(json['measurement']),
     };
 }
-export function VectorColumnInfoToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function VectorColumnInfoToJSON(json) {
+    return VectorColumnInfoToJSONTyped(json, false);
+}
+export function VectorColumnInfoToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'dataType': FeatureDataTypeToJSON(value.dataType),
-        'measurement': MeasurementToJSON(value.measurement),
+        'dataType': FeatureDataTypeToJSON(value['dataType']),
+        'measurement': MeasurementToJSON(value['measurement']),
     };
 }

@@ -23,6 +23,17 @@ export const GetFeatureRequest = {
 export type GetFeatureRequest = typeof GetFeatureRequest[keyof typeof GetFeatureRequest];
 
 
+export function instanceOfGetFeatureRequest(value: any): boolean {
+    for (const key in GetFeatureRequest) {
+        if (Object.prototype.hasOwnProperty.call(GetFeatureRequest, key)) {
+            if (GetFeatureRequest[key as keyof typeof GetFeatureRequest] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function GetFeatureRequestFromJSON(json: any): GetFeatureRequest {
     return GetFeatureRequestFromJSONTyped(json, false);
 }
@@ -33,5 +44,9 @@ export function GetFeatureRequestFromJSONTyped(json: any, ignoreDiscriminator: b
 
 export function GetFeatureRequestToJSON(value?: GetFeatureRequest | null): any {
     return value as any;
+}
+
+export function GetFeatureRequestToJSONTyped(value: any, ignoreDiscriminator: boolean): GetFeatureRequest {
+    return value as GetFeatureRequest;
 }
 

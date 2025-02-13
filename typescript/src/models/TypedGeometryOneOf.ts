@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -30,11 +30,9 @@ export interface TypedGeometryOneOf {
 /**
  * Check if a given object implements the TypedGeometryOneOf interface.
  */
-export function instanceOfTypedGeometryOneOf(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-
-    return isInstance;
+export function instanceOfTypedGeometryOneOf(value: object): value is TypedGeometryOneOf {
+    if (!('data' in value) || value['data'] === undefined) return false;
+    return true;
 }
 
 export function TypedGeometryOneOfFromJSON(json: any): TypedGeometryOneOf {
@@ -42,7 +40,7 @@ export function TypedGeometryOneOfFromJSON(json: any): TypedGeometryOneOf {
 }
 
 export function TypedGeometryOneOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedGeometryOneOf {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -51,16 +49,18 @@ export function TypedGeometryOneOfFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function TypedGeometryOneOfToJSON(value?: TypedGeometryOneOf | null): any {
-    if (value === undefined) {
-        return undefined;
+export function TypedGeometryOneOfToJSON(json: any): TypedGeometryOneOf {
+    return TypedGeometryOneOfToJSONTyped(json, false);
+}
+
+export function TypedGeometryOneOfToJSONTyped(value?: TypedGeometryOneOf | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'Data': value.data,
+        'Data': value['data'],
     };
 }
 

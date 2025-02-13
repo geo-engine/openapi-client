@@ -45,7 +45,8 @@ export type DerivedColorTypeEnum = typeof DerivedColorTypeEnum[keyof typeof Deri
 /**
  * Check if a given object implements the DerivedColor interface.
  */
-export declare function instanceOfDerivedColor(value: object): boolean;
+export declare function instanceOfDerivedColor(value: object): value is DerivedColor;
 export declare function DerivedColorFromJSON(json: any): DerivedColor;
 export declare function DerivedColorFromJSONTyped(json: any, ignoreDiscriminator: boolean): DerivedColor;
-export declare function DerivedColorToJSON(value?: DerivedColor | null): any;
+export declare function DerivedColorToJSON(json: any): DerivedColor;
+export declare function DerivedColorToJSONTyped(value?: DerivedColor | null, ignoreDiscriminator?: boolean): any;

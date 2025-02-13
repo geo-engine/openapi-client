@@ -12,29 +12,29 @@
  * Do not edit the class manually.
  */
 
+import type { TaskStatusAborted } from './TaskStatusAborted';
 import {
-    TaskStatusAborted,
     instanceOfTaskStatusAborted,
     TaskStatusAbortedFromJSON,
     TaskStatusAbortedFromJSONTyped,
     TaskStatusAbortedToJSON,
 } from './TaskStatusAborted';
+import type { TaskStatusCompleted } from './TaskStatusCompleted';
 import {
-    TaskStatusCompleted,
     instanceOfTaskStatusCompleted,
     TaskStatusCompletedFromJSON,
     TaskStatusCompletedFromJSONTyped,
     TaskStatusCompletedToJSON,
 } from './TaskStatusCompleted';
+import type { TaskStatusFailed } from './TaskStatusFailed';
 import {
-    TaskStatusFailed,
     instanceOfTaskStatusFailed,
     TaskStatusFailedFromJSON,
     TaskStatusFailedFromJSONTyped,
     TaskStatusFailedToJSON,
 } from './TaskStatusFailed';
+import type { TaskStatusRunning } from './TaskStatusRunning';
 import {
-    TaskStatusRunning,
     instanceOfTaskStatusRunning,
     TaskStatusRunningFromJSON,
     TaskStatusRunningFromJSONTyped,
@@ -53,39 +53,40 @@ export function TaskStatusFromJSON(json: any): TaskStatus {
 }
 
 export function TaskStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatus {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['status']) {
         case 'aborted':
-            return {...TaskStatusAbortedFromJSONTyped(json, true), status: 'aborted'};
+            return Object.assign({}, TaskStatusAbortedFromJSONTyped(json, true), { status: 'aborted' } as const);
         case 'completed':
-            return {...TaskStatusCompletedFromJSONTyped(json, true), status: 'completed'};
+            return Object.assign({}, TaskStatusCompletedFromJSONTyped(json, true), { status: 'completed' } as const);
         case 'failed':
-            return {...TaskStatusFailedFromJSONTyped(json, true), status: 'failed'};
+            return Object.assign({}, TaskStatusFailedFromJSONTyped(json, true), { status: 'failed' } as const);
         case 'running':
-            return {...TaskStatusRunningFromJSONTyped(json, true), status: 'running'};
+            return Object.assign({}, TaskStatusRunningFromJSONTyped(json, true), { status: 'running' } as const);
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${json['status']}'`);
     }
 }
 
-export function TaskStatusToJSON(value?: TaskStatus | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TaskStatusToJSON(json: any): any {
+    return TaskStatusToJSONTyped(json, false);
+}
+
+export function TaskStatusToJSONTyped(value?: TaskStatus | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
     switch (value['status']) {
         case 'aborted':
-            return TaskStatusAbortedToJSON(value);
+            return Object.assign({}, TaskStatusAbortedToJSON(value), { status: 'aborted' } as const);
         case 'completed':
-            return TaskStatusCompletedToJSON(value);
+            return Object.assign({}, TaskStatusCompletedToJSON(value), { status: 'completed' } as const);
         case 'failed':
-            return TaskStatusFailedToJSON(value);
+            return Object.assign({}, TaskStatusFailedToJSON(value), { status: 'failed' } as const);
         case 'running':
-            return TaskStatusRunningToJSON(value);
+            return Object.assign({}, TaskStatusRunningToJSON(value), { status: 'running' } as const);
         default:
             throw new Error(`No variant of TaskStatus exists with 'status=${value['status']}'`);
     }

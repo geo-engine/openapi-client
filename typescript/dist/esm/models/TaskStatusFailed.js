@@ -21,17 +21,19 @@ export const TaskStatusFailedStatusEnum = {
  * Check if a given object implements the TaskStatusFailed interface.
  */
 export function instanceOfTaskStatusFailed(value) {
-    let isInstance = true;
-    isInstance = isInstance && "cleanUp" in value;
-    isInstance = isInstance && "error" in value;
-    isInstance = isInstance && "status" in value;
-    return isInstance;
+    if (!('cleanUp' in value) || value['cleanUp'] === undefined)
+        return false;
+    if (!('error' in value) || value['error'] === undefined)
+        return false;
+    if (!('status' in value) || value['status'] === undefined)
+        return false;
+    return true;
 }
 export function TaskStatusFailedFromJSON(json) {
     return TaskStatusFailedFromJSONTyped(json, false);
 }
 export function TaskStatusFailedFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -40,16 +42,16 @@ export function TaskStatusFailedFromJSONTyped(json, ignoreDiscriminator) {
         'status': json['status'],
     };
 }
-export function TaskStatusFailedToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TaskStatusFailedToJSON(json) {
+    return TaskStatusFailedToJSONTyped(json, false);
+}
+export function TaskStatusFailedToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'cleanUp': value.cleanUp,
-        'error': value.error,
-        'status': value.status,
+        'cleanUp': value['cleanUp'],
+        'error': value['error'],
+        'status': value['status'],
     };
 }

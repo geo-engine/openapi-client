@@ -18,6 +18,8 @@ export declare const UnixTimeStampType: {
     readonly EpochMilliseconds: "epochMilliseconds";
 };
 export type UnixTimeStampType = typeof UnixTimeStampType[keyof typeof UnixTimeStampType];
+export declare function instanceOfUnixTimeStampType(value: any): boolean;
 export declare function UnixTimeStampTypeFromJSON(json: any): UnixTimeStampType;
 export declare function UnixTimeStampTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): UnixTimeStampType;
 export declare function UnixTimeStampTypeToJSON(value?: UnixTimeStampType | null): any;
+export declare function UnixTimeStampTypeToJSONTyped(value: any, ignoreDiscriminator: boolean): UnixTimeStampType;

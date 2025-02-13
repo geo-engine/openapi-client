@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetCapabilitiesRequestToJSON = exports.GetCapabilitiesRequestFromJSONTyped = exports.GetCapabilitiesRequestFromJSON = exports.GetCapabilitiesRequest = void 0;
+exports.GetCapabilitiesRequest = void 0;
+exports.instanceOfGetCapabilitiesRequest = instanceOfGetCapabilitiesRequest;
+exports.GetCapabilitiesRequestFromJSON = GetCapabilitiesRequestFromJSON;
+exports.GetCapabilitiesRequestFromJSONTyped = GetCapabilitiesRequestFromJSONTyped;
+exports.GetCapabilitiesRequestToJSON = GetCapabilitiesRequestToJSON;
+exports.GetCapabilitiesRequestToJSONTyped = GetCapabilitiesRequestToJSONTyped;
 /**
  *
  * @export
@@ -21,15 +26,25 @@ exports.GetCapabilitiesRequestToJSON = exports.GetCapabilitiesRequestFromJSONTyp
 exports.GetCapabilitiesRequest = {
     GetCapabilities: 'GetCapabilities'
 };
+function instanceOfGetCapabilitiesRequest(value) {
+    for (const key in exports.GetCapabilitiesRequest) {
+        if (Object.prototype.hasOwnProperty.call(exports.GetCapabilitiesRequest, key)) {
+            if (exports.GetCapabilitiesRequest[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function GetCapabilitiesRequestFromJSON(json) {
     return GetCapabilitiesRequestFromJSONTyped(json, false);
 }
-exports.GetCapabilitiesRequestFromJSON = GetCapabilitiesRequestFromJSON;
 function GetCapabilitiesRequestFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.GetCapabilitiesRequestFromJSONTyped = GetCapabilitiesRequestFromJSONTyped;
 function GetCapabilitiesRequestToJSON(value) {
     return value;
 }
-exports.GetCapabilitiesRequestToJSON = GetCapabilitiesRequestToJSON;
+function GetCapabilitiesRequestToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

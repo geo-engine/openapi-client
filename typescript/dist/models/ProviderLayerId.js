@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProviderLayerIdToJSON = exports.ProviderLayerIdFromJSONTyped = exports.ProviderLayerIdFromJSON = exports.instanceOfProviderLayerId = void 0;
+exports.instanceOfProviderLayerId = instanceOfProviderLayerId;
+exports.ProviderLayerIdFromJSON = ProviderLayerIdFromJSON;
+exports.ProviderLayerIdFromJSONTyped = ProviderLayerIdFromJSONTyped;
+exports.ProviderLayerIdToJSON = ProviderLayerIdToJSON;
+exports.ProviderLayerIdToJSONTyped = ProviderLayerIdToJSONTyped;
 /**
  * Check if a given object implements the ProviderLayerId interface.
  */
 function instanceOfProviderLayerId(value) {
-    let isInstance = true;
-    isInstance = isInstance && "layerId" in value;
-    isInstance = isInstance && "providerId" in value;
-    return isInstance;
+    if (!('layerId' in value) || value['layerId'] === undefined)
+        return false;
+    if (!('providerId' in value) || value['providerId'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfProviderLayerId = instanceOfProviderLayerId;
 function ProviderLayerIdFromJSON(json) {
     return ProviderLayerIdFromJSONTyped(json, false);
 }
-exports.ProviderLayerIdFromJSON = ProviderLayerIdFromJSON;
 function ProviderLayerIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function ProviderLayerIdFromJSONTyped(json, ignoreDiscriminator) {
         'providerId': json['providerId'],
     };
 }
-exports.ProviderLayerIdFromJSONTyped = ProviderLayerIdFromJSONTyped;
-function ProviderLayerIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ProviderLayerIdToJSON(json) {
+    return ProviderLayerIdToJSONTyped(json, false);
+}
+function ProviderLayerIdToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'layerId': value.layerId,
-        'providerId': value.providerId,
+        'layerId': value['layerId'],
+        'providerId': value['providerId'],
     };
 }
-exports.ProviderLayerIdToJSON = ProviderLayerIdToJSON;

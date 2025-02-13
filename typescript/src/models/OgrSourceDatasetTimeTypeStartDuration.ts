@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { OgrSourceTimeFormat } from './OgrSourceTimeFormat';
 import {
     OgrSourceTimeFormatFromJSON,
     OgrSourceTimeFormatFromJSONTyped,
     OgrSourceTimeFormatToJSON,
+    OgrSourceTimeFormatToJSONTyped,
 } from './OgrSourceTimeFormat';
 
 /**
@@ -65,14 +66,12 @@ export type OgrSourceDatasetTimeTypeStartDurationTypeEnum = typeof OgrSourceData
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeStartDuration interface.
  */
-export function instanceOfOgrSourceDatasetTimeTypeStartDuration(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "durationField" in value;
-    isInstance = isInstance && "startField" in value;
-    isInstance = isInstance && "startFormat" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfOgrSourceDatasetTimeTypeStartDuration(value: object): value is OgrSourceDatasetTimeTypeStartDuration {
+    if (!('durationField' in value) || value['durationField'] === undefined) return false;
+    if (!('startField' in value) || value['startField'] === undefined) return false;
+    if (!('startFormat' in value) || value['startFormat'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function OgrSourceDatasetTimeTypeStartDurationFromJSON(json: any): OgrSourceDatasetTimeTypeStartDuration {
@@ -80,7 +79,7 @@ export function OgrSourceDatasetTimeTypeStartDurationFromJSON(json: any): OgrSou
 }
 
 export function OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDatasetTimeTypeStartDuration {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -92,19 +91,21 @@ export function OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json: any, ig
     };
 }
 
-export function OgrSourceDatasetTimeTypeStartDurationToJSON(value?: OgrSourceDatasetTimeTypeStartDuration | null): any {
-    if (value === undefined) {
-        return undefined;
+export function OgrSourceDatasetTimeTypeStartDurationToJSON(json: any): OgrSourceDatasetTimeTypeStartDuration {
+    return OgrSourceDatasetTimeTypeStartDurationToJSONTyped(json, false);
+}
+
+export function OgrSourceDatasetTimeTypeStartDurationToJSONTyped(value?: OgrSourceDatasetTimeTypeStartDuration | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'durationField': value.durationField,
-        'startField': value.startField,
-        'startFormat': OgrSourceTimeFormatToJSON(value.startFormat),
-        'type': value.type,
+        'durationField': value['durationField'],
+        'startField': value['startField'],
+        'startFormat': OgrSourceTimeFormatToJSON(value['startFormat']),
+        'type': value['type'],
     };
 }
 

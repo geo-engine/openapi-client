@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VolumeFileLayersResponseToJSON = exports.VolumeFileLayersResponseFromJSONTyped = exports.VolumeFileLayersResponseFromJSON = exports.instanceOfVolumeFileLayersResponse = void 0;
+exports.instanceOfVolumeFileLayersResponse = instanceOfVolumeFileLayersResponse;
+exports.VolumeFileLayersResponseFromJSON = VolumeFileLayersResponseFromJSON;
+exports.VolumeFileLayersResponseFromJSONTyped = VolumeFileLayersResponseFromJSONTyped;
+exports.VolumeFileLayersResponseToJSON = VolumeFileLayersResponseToJSON;
+exports.VolumeFileLayersResponseToJSONTyped = VolumeFileLayersResponseToJSONTyped;
 /**
  * Check if a given object implements the VolumeFileLayersResponse interface.
  */
 function instanceOfVolumeFileLayersResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "layers" in value;
-    return isInstance;
+    if (!('layers' in value) || value['layers'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfVolumeFileLayersResponse = instanceOfVolumeFileLayersResponse;
 function VolumeFileLayersResponseFromJSON(json) {
     return VolumeFileLayersResponseFromJSONTyped(json, false);
 }
-exports.VolumeFileLayersResponseFromJSON = VolumeFileLayersResponseFromJSON;
 function VolumeFileLayersResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'layers': json['layers'],
     };
 }
-exports.VolumeFileLayersResponseFromJSONTyped = VolumeFileLayersResponseFromJSONTyped;
-function VolumeFileLayersResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function VolumeFileLayersResponseToJSON(json) {
+    return VolumeFileLayersResponseToJSONTyped(json, false);
+}
+function VolumeFileLayersResponseToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'layers': value.layers,
+        'layers': value['layers'],
     };
 }
-exports.VolumeFileLayersResponseToJSON = VolumeFileLayersResponseToJSON;

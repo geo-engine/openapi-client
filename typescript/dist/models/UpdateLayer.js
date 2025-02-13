@@ -13,53 +13,54 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateLayerToJSON = exports.UpdateLayerFromJSONTyped = exports.UpdateLayerFromJSON = exports.instanceOfUpdateLayer = void 0;
-const runtime_1 = require("../runtime");
+exports.instanceOfUpdateLayer = instanceOfUpdateLayer;
+exports.UpdateLayerFromJSON = UpdateLayerFromJSON;
+exports.UpdateLayerFromJSONTyped = UpdateLayerFromJSONTyped;
+exports.UpdateLayerToJSON = UpdateLayerToJSON;
+exports.UpdateLayerToJSONTyped = UpdateLayerToJSONTyped;
 const Symbology_1 = require("./Symbology");
 const Workflow_1 = require("./Workflow");
 /**
  * Check if a given object implements the UpdateLayer interface.
  */
 function instanceOfUpdateLayer(value) {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "workflow" in value;
-    return isInstance;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('workflow' in value) || value['workflow'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfUpdateLayer = instanceOfUpdateLayer;
 function UpdateLayerFromJSON(json) {
     return UpdateLayerFromJSONTyped(json, false);
 }
-exports.UpdateLayerFromJSON = UpdateLayerFromJSON;
 function UpdateLayerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'description': json['description'],
-        'metadata': !(0, runtime_1.exists)(json, 'metadata') ? undefined : json['metadata'],
+        'metadata': json['metadata'] == null ? undefined : json['metadata'],
         'name': json['name'],
-        'properties': !(0, runtime_1.exists)(json, 'properties') ? undefined : json['properties'],
-        'symbology': !(0, runtime_1.exists)(json, 'symbology') ? undefined : (0, Symbology_1.SymbologyFromJSON)(json['symbology']),
+        'properties': json['properties'] == null ? undefined : json['properties'],
+        'symbology': json['symbology'] == null ? undefined : (0, Symbology_1.SymbologyFromJSON)(json['symbology']),
         'workflow': (0, Workflow_1.WorkflowFromJSON)(json['workflow']),
     };
 }
-exports.UpdateLayerFromJSONTyped = UpdateLayerFromJSONTyped;
-function UpdateLayerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function UpdateLayerToJSON(json) {
+    return UpdateLayerToJSONTyped(json, false);
+}
+function UpdateLayerToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'metadata': value.metadata,
-        'name': value.name,
-        'properties': value.properties,
-        'symbology': (0, Symbology_1.SymbologyToJSON)(value.symbology),
-        'workflow': (0, Workflow_1.WorkflowToJSON)(value.workflow),
+        'description': value['description'],
+        'metadata': value['metadata'],
+        'name': value['name'],
+        'properties': value['properties'],
+        'symbology': (0, Symbology_1.SymbologyToJSON)(value['symbology']),
+        'workflow': (0, Workflow_1.WorkflowToJSON)(value['workflow']),
     };
 }
-exports.UpdateLayerToJSON = UpdateLayerToJSON;

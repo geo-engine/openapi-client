@@ -80,6 +80,7 @@ __exportStar(require("./GetLegendGraphicRequest"), exports);
 __exportStar(require("./GetMapExceptionFormat"), exports);
 __exportStar(require("./GetMapFormat"), exports);
 __exportStar(require("./GetMapRequest"), exports);
+__exportStar(require("./InlineObject"), exports);
 __exportStar(require("./InternalDataId"), exports);
 __exportStar(require("./Layer"), exports);
 __exportStar(require("./LayerCollection"), exports);

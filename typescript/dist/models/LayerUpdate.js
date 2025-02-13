@@ -13,34 +13,33 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerUpdateToJSON = exports.LayerUpdateFromJSONTyped = exports.LayerUpdateFromJSON = void 0;
+exports.LayerUpdateFromJSON = LayerUpdateFromJSON;
+exports.LayerUpdateFromJSONTyped = LayerUpdateFromJSONTyped;
+exports.LayerUpdateToJSON = LayerUpdateToJSON;
+exports.LayerUpdateToJSONTyped = LayerUpdateToJSONTyped;
 const ProjectLayer_1 = require("./ProjectLayer");
 const ProjectUpdateToken_1 = require("./ProjectUpdateToken");
 function LayerUpdateFromJSON(json) {
     return LayerUpdateFromJSONTyped(json, false);
 }
-exports.LayerUpdateFromJSON = LayerUpdateFromJSON;
 function LayerUpdateFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    if (json === ProjectUpdateToken_1.ProjectUpdateToken.None) {
-        return ProjectUpdateToken_1.ProjectUpdateToken.None;
+    if ((0, ProjectLayer_1.instanceOfProjectLayer)(json)) {
+        return (0, ProjectLayer_1.ProjectLayerFromJSONTyped)(json, true);
     }
-    else if (json === ProjectUpdateToken_1.ProjectUpdateToken.Delete) {
-        return ProjectUpdateToken_1.ProjectUpdateToken.Delete;
+    if ((0, ProjectUpdateToken_1.instanceOfProjectUpdateToken)(json)) {
+        return (0, ProjectUpdateToken_1.ProjectUpdateTokenFromJSONTyped)(json, true);
     }
-    else {
-        return Object.assign({}, (0, ProjectLayer_1.ProjectLayerFromJSONTyped)(json, true));
-    }
+    return {};
 }
-exports.LayerUpdateFromJSONTyped = LayerUpdateFromJSONTyped;
-function LayerUpdateToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function LayerUpdateToJSON(json) {
+    return LayerUpdateToJSONTyped(json, false);
+}
+function LayerUpdateToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     if (typeof value === 'object' && (0, ProjectLayer_1.instanceOfProjectLayer)(value)) {
         return (0, ProjectLayer_1.ProjectLayerToJSON)(value);
@@ -50,4 +49,3 @@ function LayerUpdateToJSON(value) {
     }
     return {};
 }
-exports.LayerUpdateToJSON = LayerUpdateToJSON;

@@ -13,24 +13,28 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataUsageSummaryToJSON = exports.DataUsageSummaryFromJSONTyped = exports.DataUsageSummaryFromJSON = exports.instanceOfDataUsageSummary = void 0;
+exports.instanceOfDataUsageSummary = instanceOfDataUsageSummary;
+exports.DataUsageSummaryFromJSON = DataUsageSummaryFromJSON;
+exports.DataUsageSummaryFromJSONTyped = DataUsageSummaryFromJSONTyped;
+exports.DataUsageSummaryToJSON = DataUsageSummaryToJSON;
+exports.DataUsageSummaryToJSONTyped = DataUsageSummaryToJSONTyped;
 /**
  * Check if a given object implements the DataUsageSummary interface.
  */
 function instanceOfDataUsageSummary(value) {
-    let isInstance = true;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "timestamp" in value;
-    return isInstance;
+    if (!('count' in value) || value['count'] === undefined)
+        return false;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfDataUsageSummary = instanceOfDataUsageSummary;
 function DataUsageSummaryFromJSON(json) {
     return DataUsageSummaryFromJSONTyped(json, false);
 }
-exports.DataUsageSummaryFromJSON = DataUsageSummaryFromJSON;
 function DataUsageSummaryFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -39,18 +43,16 @@ function DataUsageSummaryFromJSONTyped(json, ignoreDiscriminator) {
         'timestamp': (new Date(json['timestamp'])),
     };
 }
-exports.DataUsageSummaryFromJSONTyped = DataUsageSummaryFromJSONTyped;
-function DataUsageSummaryToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function DataUsageSummaryToJSON(json) {
+    return DataUsageSummaryToJSONTyped(json, false);
+}
+function DataUsageSummaryToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'count': value.count,
-        'data': value.data,
-        'timestamp': (value.timestamp.toISOString()),
+        'count': value['count'],
+        'data': value['data'],
+        'timestamp': ((value['timestamp']).toISOString()),
     };
 }
-exports.DataUsageSummaryToJSON = DataUsageSummaryToJSON;

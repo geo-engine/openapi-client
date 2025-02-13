@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterDatasetFromWorkflowResultToJSON = exports.RasterDatasetFromWorkflowResultFromJSONTyped = exports.RasterDatasetFromWorkflowResultFromJSON = exports.instanceOfRasterDatasetFromWorkflowResult = void 0;
+exports.instanceOfRasterDatasetFromWorkflowResult = instanceOfRasterDatasetFromWorkflowResult;
+exports.RasterDatasetFromWorkflowResultFromJSON = RasterDatasetFromWorkflowResultFromJSON;
+exports.RasterDatasetFromWorkflowResultFromJSONTyped = RasterDatasetFromWorkflowResultFromJSONTyped;
+exports.RasterDatasetFromWorkflowResultToJSON = RasterDatasetFromWorkflowResultToJSON;
+exports.RasterDatasetFromWorkflowResultToJSONTyped = RasterDatasetFromWorkflowResultToJSONTyped;
 /**
  * Check if a given object implements the RasterDatasetFromWorkflowResult interface.
  */
 function instanceOfRasterDatasetFromWorkflowResult(value) {
-    let isInstance = true;
-    isInstance = isInstance && "dataset" in value;
-    isInstance = isInstance && "upload" in value;
-    return isInstance;
+    if (!('dataset' in value) || value['dataset'] === undefined)
+        return false;
+    if (!('upload' in value) || value['upload'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfRasterDatasetFromWorkflowResult = instanceOfRasterDatasetFromWorkflowResult;
 function RasterDatasetFromWorkflowResultFromJSON(json) {
     return RasterDatasetFromWorkflowResultFromJSONTyped(json, false);
 }
-exports.RasterDatasetFromWorkflowResultFromJSON = RasterDatasetFromWorkflowResultFromJSON;
 function RasterDatasetFromWorkflowResultFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function RasterDatasetFromWorkflowResultFromJSONTyped(json, ignoreDiscriminator)
         'upload': json['upload'],
     };
 }
-exports.RasterDatasetFromWorkflowResultFromJSONTyped = RasterDatasetFromWorkflowResultFromJSONTyped;
-function RasterDatasetFromWorkflowResultToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function RasterDatasetFromWorkflowResultToJSON(json) {
+    return RasterDatasetFromWorkflowResultToJSONTyped(json, false);
+}
+function RasterDatasetFromWorkflowResultToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'dataset': value.dataset,
-        'upload': value.upload,
+        'dataset': value['dataset'],
+        'upload': value['upload'],
     };
 }
-exports.RasterDatasetFromWorkflowResultToJSON = RasterDatasetFromWorkflowResultToJSON;

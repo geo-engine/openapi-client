@@ -68,7 +68,8 @@ export type TaskStatusRunningStatusEnum = typeof TaskStatusRunningStatusEnum[key
 /**
  * Check if a given object implements the TaskStatusRunning interface.
  */
-export declare function instanceOfTaskStatusRunning(value: object): boolean;
+export declare function instanceOfTaskStatusRunning(value: object): value is TaskStatusRunning;
 export declare function TaskStatusRunningFromJSON(json: any): TaskStatusRunning;
 export declare function TaskStatusRunningFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatusRunning;
-export declare function TaskStatusRunningToJSON(value?: TaskStatusRunning | null): any;
+export declare function TaskStatusRunningToJSON(json: any): TaskStatusRunning;
+export declare function TaskStatusRunningToJSONTyped(value?: TaskStatusRunning | null, ignoreDiscriminator?: boolean): any;

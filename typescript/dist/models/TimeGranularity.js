@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TimeGranularityToJSON = exports.TimeGranularityFromJSONTyped = exports.TimeGranularityFromJSON = exports.TimeGranularity = void 0;
+exports.TimeGranularity = void 0;
+exports.instanceOfTimeGranularity = instanceOfTimeGranularity;
+exports.TimeGranularityFromJSON = TimeGranularityFromJSON;
+exports.TimeGranularityFromJSONTyped = TimeGranularityFromJSONTyped;
+exports.TimeGranularityToJSON = TimeGranularityToJSON;
+exports.TimeGranularityToJSONTyped = TimeGranularityToJSONTyped;
 /**
  * A time granularity.
  * @export
@@ -27,15 +32,25 @@ exports.TimeGranularity = {
     Months: 'months',
     Years: 'years'
 };
+function instanceOfTimeGranularity(value) {
+    for (const key in exports.TimeGranularity) {
+        if (Object.prototype.hasOwnProperty.call(exports.TimeGranularity, key)) {
+            if (exports.TimeGranularity[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function TimeGranularityFromJSON(json) {
     return TimeGranularityFromJSONTyped(json, false);
 }
-exports.TimeGranularityFromJSON = TimeGranularityFromJSON;
 function TimeGranularityFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.TimeGranularityFromJSONTyped = TimeGranularityFromJSONTyped;
 function TimeGranularityToJSON(value) {
     return value;
 }
-exports.TimeGranularityToJSON = TimeGranularityToJSON;
+function TimeGranularityToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

@@ -19,6 +19,16 @@ export const UnixTimeStampType = {
     EpochSeconds: 'epochSeconds',
     EpochMilliseconds: 'epochMilliseconds'
 };
+export function instanceOfUnixTimeStampType(value) {
+    for (const key in UnixTimeStampType) {
+        if (Object.prototype.hasOwnProperty.call(UnixTimeStampType, key)) {
+            if (UnixTimeStampType[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function UnixTimeStampTypeFromJSON(json) {
     return UnixTimeStampTypeFromJSONTyped(json, false);
 }
@@ -26,5 +36,8 @@ export function UnixTimeStampTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
 export function UnixTimeStampTypeToJSON(value) {
+    return value;
+}
+export function UnixTimeStampTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

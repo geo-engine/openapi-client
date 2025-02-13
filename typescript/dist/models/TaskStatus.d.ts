@@ -9,10 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TaskStatusAborted } from './TaskStatusAborted';
-import { TaskStatusCompleted } from './TaskStatusCompleted';
-import { TaskStatusFailed } from './TaskStatusFailed';
-import { TaskStatusRunning } from './TaskStatusRunning';
+import type { TaskStatusAborted } from './TaskStatusAborted';
+import type { TaskStatusCompleted } from './TaskStatusCompleted';
+import type { TaskStatusFailed } from './TaskStatusFailed';
+import type { TaskStatusRunning } from './TaskStatusRunning';
 /**
  * @type TaskStatus
  *
@@ -29,4 +29,5 @@ export type TaskStatus = {
 } & TaskStatusRunning;
 export declare function TaskStatusFromJSON(json: any): TaskStatus;
 export declare function TaskStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaskStatus;
-export declare function TaskStatusToJSON(value?: TaskStatus | null): any;
+export declare function TaskStatusToJSON(json: any): any;
+export declare function TaskStatusToJSONTyped(value?: TaskStatus | null, ignoreDiscriminator?: boolean): any;

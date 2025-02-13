@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface LayerVisibility {
 /**
  * Check if a given object implements the LayerVisibility interface.
  */
-export function instanceOfLayerVisibility(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "legend" in value;
-
-    return isInstance;
+export function instanceOfLayerVisibility(value: object): value is LayerVisibility {
+    if (!('data' in value) || value['data'] === undefined) return false;
+    if (!('legend' in value) || value['legend'] === undefined) return false;
+    return true;
 }
 
 export function LayerVisibilityFromJSON(json: any): LayerVisibility {
@@ -49,7 +47,7 @@ export function LayerVisibilityFromJSON(json: any): LayerVisibility {
 }
 
 export function LayerVisibilityFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerVisibility {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function LayerVisibilityFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function LayerVisibilityToJSON(value?: LayerVisibility | null): any {
-    if (value === undefined) {
-        return undefined;
+export function LayerVisibilityToJSON(json: any): LayerVisibility {
+    return LayerVisibilityToJSONTyped(json, false);
+}
+
+export function LayerVisibilityToJSONTyped(value?: LayerVisibility | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'data': value.data,
-        'legend': value.legend,
+        'data': value['data'],
+        'legend': value['legend'],
     };
 }
 

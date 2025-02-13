@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { BoundingBox2D } from './BoundingBox2D';
 import type { TimeInterval } from './TimeInterval';
+import type { BoundingBox2D } from './BoundingBox2D';
 /**
  * A `ResultDescriptor` for plot queries
  * @export
@@ -39,7 +39,8 @@ export interface PlotResultDescriptor {
 /**
  * Check if a given object implements the PlotResultDescriptor interface.
  */
-export declare function instanceOfPlotResultDescriptor(value: object): boolean;
+export declare function instanceOfPlotResultDescriptor(value: object): value is PlotResultDescriptor;
 export declare function PlotResultDescriptorFromJSON(json: any): PlotResultDescriptor;
 export declare function PlotResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlotResultDescriptor;
-export declare function PlotResultDescriptorToJSON(value?: PlotResultDescriptor | null): any;
+export declare function PlotResultDescriptorToJSON(json: any): PlotResultDescriptor;
+export declare function PlotResultDescriptorToJSONTyped(value?: PlotResultDescriptor | null, ignoreDiscriminator?: boolean): any;

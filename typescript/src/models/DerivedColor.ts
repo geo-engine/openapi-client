@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Colorizer } from './Colorizer';
 import {
     ColorizerFromJSON,
     ColorizerFromJSONTyped,
     ColorizerToJSON,
+    ColorizerToJSONTyped,
 } from './Colorizer';
 
 /**
@@ -59,13 +60,11 @@ export type DerivedColorTypeEnum = typeof DerivedColorTypeEnum[keyof typeof Deri
 /**
  * Check if a given object implements the DerivedColor interface.
  */
-export function instanceOfDerivedColor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "attribute" in value;
-    isInstance = isInstance && "colorizer" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfDerivedColor(value: object): value is DerivedColor {
+    if (!('attribute' in value) || value['attribute'] === undefined) return false;
+    if (!('colorizer' in value) || value['colorizer'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function DerivedColorFromJSON(json: any): DerivedColor {
@@ -73,7 +72,7 @@ export function DerivedColorFromJSON(json: any): DerivedColor {
 }
 
 export function DerivedColorFromJSONTyped(json: any, ignoreDiscriminator: boolean): DerivedColor {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -84,18 +83,20 @@ export function DerivedColorFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function DerivedColorToJSON(value?: DerivedColor | null): any {
-    if (value === undefined) {
-        return undefined;
+export function DerivedColorToJSON(json: any): DerivedColor {
+    return DerivedColorToJSONTyped(json, false);
+}
+
+export function DerivedColorToJSONTyped(value?: DerivedColor | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'attribute': value.attribute,
-        'colorizer': ColorizerToJSON(value.colorizer),
-        'type': value.type,
+        'attribute': value['attribute'],
+        'colorizer': ColorizerToJSON(value['colorizer']),
+        'type': value['type'],
     };
 }
 

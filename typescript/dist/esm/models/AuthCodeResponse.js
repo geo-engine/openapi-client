@@ -15,17 +15,19 @@
  * Check if a given object implements the AuthCodeResponse interface.
  */
 export function instanceOfAuthCodeResponse(value) {
-    let isInstance = true;
-    isInstance = isInstance && "code" in value;
-    isInstance = isInstance && "sessionState" in value;
-    isInstance = isInstance && "state" in value;
-    return isInstance;
+    if (!('code' in value) || value['code'] === undefined)
+        return false;
+    if (!('sessionState' in value) || value['sessionState'] === undefined)
+        return false;
+    if (!('state' in value) || value['state'] === undefined)
+        return false;
+    return true;
 }
 export function AuthCodeResponseFromJSON(json) {
     return AuthCodeResponseFromJSONTyped(json, false);
 }
 export function AuthCodeResponseFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -34,16 +36,16 @@ export function AuthCodeResponseFromJSONTyped(json, ignoreDiscriminator) {
         'state': json['state'],
     };
 }
-export function AuthCodeResponseToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function AuthCodeResponseToJSON(json) {
+    return AuthCodeResponseToJSONTyped(json, false);
+}
+export function AuthCodeResponseToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'code': value.code,
-        'sessionState': value.sessionState,
-        'state': value.state,
+        'code': value['code'],
+        'sessionState': value['sessionState'],
+        'state': value['state'],
     };
 }

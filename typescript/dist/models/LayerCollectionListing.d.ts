@@ -52,13 +52,13 @@ export interface LayerCollectionListing {
  */
 export declare const LayerCollectionListingTypeEnum: {
     readonly Collection: "collection";
-    readonly Layer: "layer";
 };
 export type LayerCollectionListingTypeEnum = typeof LayerCollectionListingTypeEnum[keyof typeof LayerCollectionListingTypeEnum];
 /**
  * Check if a given object implements the LayerCollectionListing interface.
  */
-export declare function instanceOfLayerCollectionListing(value: object): boolean;
+export declare function instanceOfLayerCollectionListing(value: object): value is LayerCollectionListing;
 export declare function LayerCollectionListingFromJSON(json: any): LayerCollectionListing;
 export declare function LayerCollectionListingFromJSONTyped(json: any, ignoreDiscriminator: boolean): LayerCollectionListing;
-export declare function LayerCollectionListingToJSON(value?: LayerCollectionListing | null): any;
+export declare function LayerCollectionListingToJSON(json: any): LayerCollectionListing;
+export declare function LayerCollectionListingToJSONTyped(value?: LayerCollectionListing | null, ignoreDiscriminator?: boolean): any;

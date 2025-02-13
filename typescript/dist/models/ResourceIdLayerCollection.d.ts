@@ -38,7 +38,8 @@ export type ResourceIdLayerCollectionTypeEnum = typeof ResourceIdLayerCollection
 /**
  * Check if a given object implements the ResourceIdLayerCollection interface.
  */
-export declare function instanceOfResourceIdLayerCollection(value: object): boolean;
+export declare function instanceOfResourceIdLayerCollection(value: object): value is ResourceIdLayerCollection;
 export declare function ResourceIdLayerCollectionFromJSON(json: any): ResourceIdLayerCollection;
 export declare function ResourceIdLayerCollectionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ResourceIdLayerCollection;
-export declare function ResourceIdLayerCollectionToJSON(value?: ResourceIdLayerCollection | null): any;
+export declare function ResourceIdLayerCollectionToJSON(json: any): ResourceIdLayerCollection;
+export declare function ResourceIdLayerCollectionToJSONTyped(value?: ResourceIdLayerCollection | null, ignoreDiscriminator?: boolean): any;

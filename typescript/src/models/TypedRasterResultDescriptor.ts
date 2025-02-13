@@ -12,37 +12,42 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { RasterBandDescriptor } from './RasterBandDescriptor';
-import {
-    RasterBandDescriptorFromJSON,
-    RasterBandDescriptorFromJSONTyped,
-    RasterBandDescriptorToJSON,
-} from './RasterBandDescriptor';
-import type { RasterDataType } from './RasterDataType';
-import {
-    RasterDataTypeFromJSON,
-    RasterDataTypeFromJSONTyped,
-    RasterDataTypeToJSON,
-} from './RasterDataType';
-import type { SpatialPartition2D } from './SpatialPartition2D';
-import {
-    SpatialPartition2DFromJSON,
-    SpatialPartition2DFromJSONTyped,
-    SpatialPartition2DToJSON,
-} from './SpatialPartition2D';
+import { mapValues } from '../runtime';
 import type { SpatialResolution } from './SpatialResolution';
 import {
     SpatialResolutionFromJSON,
     SpatialResolutionFromJSONTyped,
     SpatialResolutionToJSON,
+    SpatialResolutionToJSONTyped,
 } from './SpatialResolution';
 import type { TimeInterval } from './TimeInterval';
 import {
     TimeIntervalFromJSON,
     TimeIntervalFromJSONTyped,
     TimeIntervalToJSON,
+    TimeIntervalToJSONTyped,
 } from './TimeInterval';
+import type { RasterBandDescriptor } from './RasterBandDescriptor';
+import {
+    RasterBandDescriptorFromJSON,
+    RasterBandDescriptorFromJSONTyped,
+    RasterBandDescriptorToJSON,
+    RasterBandDescriptorToJSONTyped,
+} from './RasterBandDescriptor';
+import type { RasterDataType } from './RasterDataType';
+import {
+    RasterDataTypeFromJSON,
+    RasterDataTypeFromJSONTyped,
+    RasterDataTypeToJSON,
+    RasterDataTypeToJSONTyped,
+} from './RasterDataType';
+import type { SpatialPartition2D } from './SpatialPartition2D';
+import {
+    SpatialPartition2DFromJSON,
+    SpatialPartition2DFromJSONTyped,
+    SpatialPartition2DToJSON,
+    SpatialPartition2DToJSONTyped,
+} from './SpatialPartition2D';
 
 /**
  * A `ResultDescriptor` for raster queries
@@ -107,14 +112,12 @@ export type TypedRasterResultDescriptorTypeEnum = typeof TypedRasterResultDescri
 /**
  * Check if a given object implements the TypedRasterResultDescriptor interface.
  */
-export function instanceOfTypedRasterResultDescriptor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "bands" in value;
-    isInstance = isInstance && "dataType" in value;
-    isInstance = isInstance && "spatialReference" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfTypedRasterResultDescriptor(value: object): value is TypedRasterResultDescriptor {
+    if (!('bands' in value) || value['bands'] === undefined) return false;
+    if (!('dataType' in value) || value['dataType'] === undefined) return false;
+    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function TypedRasterResultDescriptorFromJSON(json: any): TypedRasterResultDescriptor {
@@ -122,37 +125,39 @@ export function TypedRasterResultDescriptorFromJSON(json: any): TypedRasterResul
 }
 
 export function TypedRasterResultDescriptorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedRasterResultDescriptor {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'bands': ((json['bands'] as Array<any>).map(RasterBandDescriptorFromJSON)),
-        'bbox': !exists(json, 'bbox') ? undefined : SpatialPartition2DFromJSON(json['bbox']),
+        'bbox': json['bbox'] == null ? undefined : SpatialPartition2DFromJSON(json['bbox']),
         'dataType': RasterDataTypeFromJSON(json['dataType']),
-        'resolution': !exists(json, 'resolution') ? undefined : SpatialResolutionFromJSON(json['resolution']),
+        'resolution': json['resolution'] == null ? undefined : SpatialResolutionFromJSON(json['resolution']),
         'spatialReference': json['spatialReference'],
-        'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
         'type': json['type'],
     };
 }
 
-export function TypedRasterResultDescriptorToJSON(value?: TypedRasterResultDescriptor | null): any {
-    if (value === undefined) {
-        return undefined;
+export function TypedRasterResultDescriptorToJSON(json: any): TypedRasterResultDescriptor {
+    return TypedRasterResultDescriptorToJSONTyped(json, false);
+}
+
+export function TypedRasterResultDescriptorToJSONTyped(value?: TypedRasterResultDescriptor | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'bands': ((value.bands as Array<any>).map(RasterBandDescriptorToJSON)),
-        'bbox': SpatialPartition2DToJSON(value.bbox),
-        'dataType': RasterDataTypeToJSON(value.dataType),
-        'resolution': SpatialResolutionToJSON(value.resolution),
-        'spatialReference': value.spatialReference,
-        'time': TimeIntervalToJSON(value.time),
-        'type': value.type,
+        'bands': ((value['bands'] as Array<any>).map(RasterBandDescriptorToJSON)),
+        'bbox': SpatialPartition2DToJSON(value['bbox']),
+        'dataType': RasterDataTypeToJSON(value['dataType']),
+        'resolution': SpatialResolutionToJSON(value['resolution']),
+        'spatialReference': value['spatialReference'],
+        'time': TimeIntervalToJSON(value['time']),
+        'type': value['type'],
     };
 }
 

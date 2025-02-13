@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { FormatSpecificsOneOf } from './FormatSpecificsOneOf';
+import type { FormatSpecificsOneOf } from './FormatSpecificsOneOf';
 /**
  * @type FormatSpecifics
  *
@@ -18,4 +18,5 @@ import { FormatSpecificsOneOf } from './FormatSpecificsOneOf';
 export type FormatSpecifics = FormatSpecificsOneOf;
 export declare function FormatSpecificsFromJSON(json: any): FormatSpecifics;
 export declare function FormatSpecificsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatSpecifics;
-export declare function FormatSpecificsToJSON(value?: FormatSpecifics | null): any;
+export declare function FormatSpecificsToJSON(json: any): any;
+export declare function FormatSpecificsToJSONTyped(value?: FormatSpecifics | null, ignoreDiscriminator?: boolean): any;

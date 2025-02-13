@@ -13,27 +13,31 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlotQueryRectangleToJSON = exports.PlotQueryRectangleFromJSONTyped = exports.PlotQueryRectangleFromJSON = exports.instanceOfPlotQueryRectangle = void 0;
-const BoundingBox2D_1 = require("./BoundingBox2D");
+exports.instanceOfPlotQueryRectangle = instanceOfPlotQueryRectangle;
+exports.PlotQueryRectangleFromJSON = PlotQueryRectangleFromJSON;
+exports.PlotQueryRectangleFromJSONTyped = PlotQueryRectangleFromJSONTyped;
+exports.PlotQueryRectangleToJSON = PlotQueryRectangleToJSON;
+exports.PlotQueryRectangleToJSONTyped = PlotQueryRectangleToJSONTyped;
 const SpatialResolution_1 = require("./SpatialResolution");
 const TimeInterval_1 = require("./TimeInterval");
+const BoundingBox2D_1 = require("./BoundingBox2D");
 /**
  * Check if a given object implements the PlotQueryRectangle interface.
  */
 function instanceOfPlotQueryRectangle(value) {
-    let isInstance = true;
-    isInstance = isInstance && "spatialBounds" in value;
-    isInstance = isInstance && "spatialResolution" in value;
-    isInstance = isInstance && "timeInterval" in value;
-    return isInstance;
+    if (!('spatialBounds' in value) || value['spatialBounds'] === undefined)
+        return false;
+    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined)
+        return false;
+    if (!('timeInterval' in value) || value['timeInterval'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfPlotQueryRectangle = instanceOfPlotQueryRectangle;
 function PlotQueryRectangleFromJSON(json) {
     return PlotQueryRectangleFromJSONTyped(json, false);
 }
-exports.PlotQueryRectangleFromJSON = PlotQueryRectangleFromJSON;
 function PlotQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -42,18 +46,16 @@ function PlotQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
         'timeInterval': (0, TimeInterval_1.TimeIntervalFromJSON)(json['timeInterval']),
     };
 }
-exports.PlotQueryRectangleFromJSONTyped = PlotQueryRectangleFromJSONTyped;
-function PlotQueryRectangleToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function PlotQueryRectangleToJSON(json) {
+    return PlotQueryRectangleToJSONTyped(json, false);
+}
+function PlotQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'spatialBounds': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value.spatialBounds),
-        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value.spatialResolution),
-        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value.timeInterval),
+        'spatialBounds': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value['spatialBounds']),
+        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value['spatialResolution']),
+        'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
     };
 }
-exports.PlotQueryRectangleToJSON = PlotQueryRectangleToJSON;

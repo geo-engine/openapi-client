@@ -11,44 +11,45 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
-import { STRectangleFromJSON, STRectangleToJSON, } from './STRectangle';
 import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
+import { STRectangleFromJSON, STRectangleToJSON, } from './STRectangle';
 /**
  * Check if a given object implements the CreateProject interface.
  */
 export function instanceOfCreateProject(value) {
-    let isInstance = true;
-    isInstance = isInstance && "bounds" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "name" in value;
-    return isInstance;
+    if (!('bounds' in value) || value['bounds'] === undefined)
+        return false;
+    if (!('description' in value) || value['description'] === undefined)
+        return false;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    return true;
 }
 export function CreateProjectFromJSON(json) {
     return CreateProjectFromJSONTyped(json, false);
 }
 export function CreateProjectFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'bounds': STRectangleFromJSON(json['bounds']),
         'description': json['description'],
         'name': json['name'],
-        'timeStep': !exists(json, 'timeStep') ? undefined : TimeStepFromJSON(json['timeStep']),
+        'timeStep': json['timeStep'] == null ? undefined : TimeStepFromJSON(json['timeStep']),
     };
 }
-export function CreateProjectToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function CreateProjectToJSON(json) {
+    return CreateProjectToJSONTyped(json, false);
+}
+export function CreateProjectToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'bounds': STRectangleToJSON(value.bounds),
-        'description': value.description,
-        'name': value.name,
-        'timeStep': TimeStepToJSON(value.timeStep),
+        'bounds': STRectangleToJSON(value['bounds']),
+        'description': value['description'],
+        'name': value['name'],
+        'timeStep': TimeStepToJSON(value['timeStep']),
     };
 }

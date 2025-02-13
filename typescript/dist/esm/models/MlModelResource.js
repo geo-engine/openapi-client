@@ -21,16 +21,17 @@ export const MlModelResourceTypeEnum = {
  * Check if a given object implements the MlModelResource interface.
  */
 export function instanceOfMlModelResource(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function MlModelResourceFromJSON(json) {
     return MlModelResourceFromJSONTyped(json, false);
 }
 export function MlModelResourceFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -38,15 +39,15 @@ export function MlModelResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function MlModelResourceToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function MlModelResourceToJSON(json) {
+    return MlModelResourceToJSONTyped(json, false);
+}
+export function MlModelResourceToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }

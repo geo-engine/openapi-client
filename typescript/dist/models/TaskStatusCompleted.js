@@ -13,8 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskStatusCompletedToJSON = exports.TaskStatusCompletedFromJSONTyped = exports.TaskStatusCompletedFromJSON = exports.instanceOfTaskStatusCompleted = exports.TaskStatusCompletedStatusEnum = void 0;
-const runtime_1 = require("../runtime");
+exports.TaskStatusCompletedStatusEnum = void 0;
+exports.instanceOfTaskStatusCompleted = instanceOfTaskStatusCompleted;
+exports.TaskStatusCompletedFromJSON = TaskStatusCompletedFromJSON;
+exports.TaskStatusCompletedFromJSONTyped = TaskStatusCompletedFromJSONTyped;
+exports.TaskStatusCompletedToJSON = TaskStatusCompletedToJSON;
+exports.TaskStatusCompletedToJSONTyped = TaskStatusCompletedToJSONTyped;
 /**
  * @export
  */
@@ -25,46 +29,45 @@ exports.TaskStatusCompletedStatusEnum = {
  * Check if a given object implements the TaskStatusCompleted interface.
  */
 function instanceOfTaskStatusCompleted(value) {
-    let isInstance = true;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "taskType" in value;
-    isInstance = isInstance && "timeStarted" in value;
-    isInstance = isInstance && "timeTotal" in value;
-    return isInstance;
+    if (!('status' in value) || value['status'] === undefined)
+        return false;
+    if (!('taskType' in value) || value['taskType'] === undefined)
+        return false;
+    if (!('timeStarted' in value) || value['timeStarted'] === undefined)
+        return false;
+    if (!('timeTotal' in value) || value['timeTotal'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfTaskStatusCompleted = instanceOfTaskStatusCompleted;
 function TaskStatusCompletedFromJSON(json) {
     return TaskStatusCompletedFromJSONTyped(json, false);
 }
-exports.TaskStatusCompletedFromJSON = TaskStatusCompletedFromJSON;
 function TaskStatusCompletedFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
-        'description': !(0, runtime_1.exists)(json, 'description') ? undefined : json['description'],
-        'info': !(0, runtime_1.exists)(json, 'info') ? undefined : json['info'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'info': json['info'] == null ? undefined : json['info'],
         'status': json['status'],
         'taskType': json['taskType'],
         'timeStarted': json['timeStarted'],
         'timeTotal': json['timeTotal'],
     };
 }
-exports.TaskStatusCompletedFromJSONTyped = TaskStatusCompletedFromJSONTyped;
-function TaskStatusCompletedToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function TaskStatusCompletedToJSON(json) {
+    return TaskStatusCompletedToJSONTyped(json, false);
+}
+function TaskStatusCompletedToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'description': value.description,
-        'info': value.info,
-        'status': value.status,
-        'taskType': value.taskType,
-        'timeStarted': value.timeStarted,
-        'timeTotal': value.timeTotal,
+        'description': value['description'],
+        'info': value['info'],
+        'status': value['status'],
+        'taskType': value['taskType'],
+        'timeStarted': value['timeStarted'],
+        'timeTotal': value['timeTotal'],
     };
 }
-exports.TaskStatusCompletedToJSON = TaskStatusCompletedToJSON;

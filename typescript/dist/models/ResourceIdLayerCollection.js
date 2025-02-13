@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ResourceIdLayerCollectionToJSON = exports.ResourceIdLayerCollectionFromJSONTyped = exports.ResourceIdLayerCollectionFromJSON = exports.instanceOfResourceIdLayerCollection = exports.ResourceIdLayerCollectionTypeEnum = void 0;
+exports.ResourceIdLayerCollectionTypeEnum = void 0;
+exports.instanceOfResourceIdLayerCollection = instanceOfResourceIdLayerCollection;
+exports.ResourceIdLayerCollectionFromJSON = ResourceIdLayerCollectionFromJSON;
+exports.ResourceIdLayerCollectionFromJSONTyped = ResourceIdLayerCollectionFromJSONTyped;
+exports.ResourceIdLayerCollectionToJSON = ResourceIdLayerCollectionToJSON;
+exports.ResourceIdLayerCollectionToJSONTyped = ResourceIdLayerCollectionToJSONTyped;
 /**
  * @export
  */
@@ -24,18 +29,17 @@ exports.ResourceIdLayerCollectionTypeEnum = {
  * Check if a given object implements the ResourceIdLayerCollection interface.
  */
 function instanceOfResourceIdLayerCollection(value) {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfResourceIdLayerCollection = instanceOfResourceIdLayerCollection;
 function ResourceIdLayerCollectionFromJSON(json) {
     return ResourceIdLayerCollectionFromJSONTyped(json, false);
 }
-exports.ResourceIdLayerCollectionFromJSON = ResourceIdLayerCollectionFromJSON;
 function ResourceIdLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -43,17 +47,15 @@ function ResourceIdLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.ResourceIdLayerCollectionFromJSONTyped = ResourceIdLayerCollectionFromJSONTyped;
-function ResourceIdLayerCollectionToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ResourceIdLayerCollectionToJSON(json) {
+    return ResourceIdLayerCollectionToJSONTyped(json, false);
+}
+function ResourceIdLayerCollectionToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'id': value.id,
-        'type': value.type,
+        'id': value['id'],
+        'type': value['type'],
     };
 }
-exports.ResourceIdLayerCollectionToJSON = ResourceIdLayerCollectionToJSON;

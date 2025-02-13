@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
+import type { LayerCollectionListing } from './LayerCollectionListing';
 import {
-    LayerCollectionListing,
     instanceOfLayerCollectionListing,
     LayerCollectionListingFromJSON,
     LayerCollectionListingFromJSONTyped,
     LayerCollectionListingToJSON,
 } from './LayerCollectionListing';
+import type { LayerListing } from './LayerListing';
 import {
-    LayerListing,
     instanceOfLayerListing,
     LayerListingFromJSON,
     LayerListingFromJSONTyped,
@@ -39,31 +39,32 @@ export function CollectionItemFromJSON(json: any): CollectionItem {
 }
 
 export function CollectionItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): CollectionItem {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'collection':
-            return {...LayerCollectionListingFromJSONTyped(json, true), type: 'collection'};
+            return Object.assign({}, LayerCollectionListingFromJSONTyped(json, true), { type: 'collection' } as const);
         case 'layer':
-            return {...LayerListingFromJSONTyped(json, true), type: 'layer'};
+            return Object.assign({}, LayerListingFromJSONTyped(json, true), { type: 'layer' } as const);
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }
 }
 
-export function CollectionItemToJSON(value?: CollectionItem | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function CollectionItemToJSON(json: any): any {
+    return CollectionItemToJSONTyped(json, false);
+}
+
+export function CollectionItemToJSONTyped(value?: CollectionItem | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'collection':
-            return LayerCollectionListingToJSON(value);
+            return Object.assign({}, LayerCollectionListingToJSON(value), { type: 'collection' } as const);
         case 'layer':
-            return LayerListingToJSON(value);
+            return Object.assign({}, LayerListingToJSON(value), { type: 'layer' } as const);
         default:
             throw new Error(`No variant of CollectionItem exists with 'type=${value['type']}'`);
     }

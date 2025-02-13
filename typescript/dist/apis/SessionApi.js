@@ -59,8 +59,8 @@ class SessionApi extends runtime.BaseAPI {
      */
     loginHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.userCredentials === null || requestParameters.userCredentials === undefined) {
-                throw new runtime.RequiredError('userCredentials', 'Required parameter requestParameters.userCredentials was null or undefined when calling loginHandler.');
+            if (requestParameters['userCredentials'] == null) {
+                throw new runtime.RequiredError('userCredentials', 'Required parameter "userCredentials" was null or undefined when calling loginHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -70,7 +70,7 @@ class SessionApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.UserCredentialsToJSON)(requestParameters.userCredentials),
+                body: (0, index_1.UserCredentialsToJSON)(requestParameters['userCredentials']),
             }, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserSessionFromJSON)(jsonValue));
         });
@@ -121,12 +121,12 @@ class SessionApi extends runtime.BaseAPI {
      */
     oidcInitRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.redirectUri === null || requestParameters.redirectUri === undefined) {
-                throw new runtime.RequiredError('redirectUri', 'Required parameter requestParameters.redirectUri was null or undefined when calling oidcInit.');
+            if (requestParameters['redirectUri'] == null) {
+                throw new runtime.RequiredError('redirectUri', 'Required parameter "redirectUri" was null or undefined when calling oidcInit().');
             }
             const queryParameters = {};
-            if (requestParameters.redirectUri !== undefined) {
-                queryParameters['redirectUri'] = requestParameters.redirectUri;
+            if (requestParameters['redirectUri'] != null) {
+                queryParameters['redirectUri'] = requestParameters['redirectUri'];
             }
             const headerParameters = {};
             const response = yield this.request({
@@ -154,15 +154,15 @@ class SessionApi extends runtime.BaseAPI {
      */
     oidcLoginRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.redirectUri === null || requestParameters.redirectUri === undefined) {
-                throw new runtime.RequiredError('redirectUri', 'Required parameter requestParameters.redirectUri was null or undefined when calling oidcLogin.');
+            if (requestParameters['redirectUri'] == null) {
+                throw new runtime.RequiredError('redirectUri', 'Required parameter "redirectUri" was null or undefined when calling oidcLogin().');
             }
-            if (requestParameters.authCodeResponse === null || requestParameters.authCodeResponse === undefined) {
-                throw new runtime.RequiredError('authCodeResponse', 'Required parameter requestParameters.authCodeResponse was null or undefined when calling oidcLogin.');
+            if (requestParameters['authCodeResponse'] == null) {
+                throw new runtime.RequiredError('authCodeResponse', 'Required parameter "authCodeResponse" was null or undefined when calling oidcLogin().');
             }
             const queryParameters = {};
-            if (requestParameters.redirectUri !== undefined) {
-                queryParameters['redirectUri'] = requestParameters.redirectUri;
+            if (requestParameters['redirectUri'] != null) {
+                queryParameters['redirectUri'] = requestParameters['redirectUri'];
             }
             const headerParameters = {};
             headerParameters['Content-Type'] = 'application/json';
@@ -171,7 +171,7 @@ class SessionApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.AuthCodeResponseToJSON)(requestParameters.authCodeResponse),
+                body: (0, index_1.AuthCodeResponseToJSON)(requestParameters['authCodeResponse']),
             }, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserSessionFromJSON)(jsonValue));
         });
@@ -191,8 +191,8 @@ class SessionApi extends runtime.BaseAPI {
      */
     registerUserHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.userRegistration === null || requestParameters.userRegistration === undefined) {
-                throw new runtime.RequiredError('userRegistration', 'Required parameter requestParameters.userRegistration was null or undefined when calling registerUserHandler.');
+            if (requestParameters['userRegistration'] == null) {
+                throw new runtime.RequiredError('userRegistration', 'Required parameter "userRegistration" was null or undefined when calling registerUserHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -202,7 +202,7 @@ class SessionApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.UserRegistrationToJSON)(requestParameters.userRegistration),
+                body: (0, index_1.UserRegistrationToJSON)(requestParameters['userRegistration']),
             }, initOverrides);
             if (this.isJsonMime(response.headers.get('content-type'))) {
                 return new runtime.JSONApiResponse(response);

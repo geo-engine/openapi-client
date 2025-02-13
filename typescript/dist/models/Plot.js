@@ -13,23 +13,26 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlotToJSON = exports.PlotFromJSONTyped = exports.PlotFromJSON = exports.instanceOfPlot = void 0;
+exports.instanceOfPlot = instanceOfPlot;
+exports.PlotFromJSON = PlotFromJSON;
+exports.PlotFromJSONTyped = PlotFromJSONTyped;
+exports.PlotToJSON = PlotToJSON;
+exports.PlotToJSONTyped = PlotToJSONTyped;
 /**
  * Check if a given object implements the Plot interface.
  */
 function instanceOfPlot(value) {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "workflow" in value;
-    return isInstance;
+    if (!('name' in value) || value['name'] === undefined)
+        return false;
+    if (!('workflow' in value) || value['workflow'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfPlot = instanceOfPlot;
 function PlotFromJSON(json) {
     return PlotFromJSONTyped(json, false);
 }
-exports.PlotFromJSON = PlotFromJSON;
 function PlotFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -37,17 +40,15 @@ function PlotFromJSONTyped(json, ignoreDiscriminator) {
         'workflow': json['workflow'],
     };
 }
-exports.PlotFromJSONTyped = PlotFromJSONTyped;
-function PlotToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function PlotToJSON(json) {
+    return PlotToJSONTyped(json, false);
+}
+function PlotToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'name': value.name,
-        'workflow': value.workflow,
+        'name': value['name'],
+        'workflow': value['workflow'],
     };
 }
-exports.PlotToJSON = PlotToJSON;

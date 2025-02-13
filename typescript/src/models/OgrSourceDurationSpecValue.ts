@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TimeGranularity } from './TimeGranularity';
 import {
     TimeGranularityFromJSON,
     TimeGranularityFromJSONTyped,
     TimeGranularityToJSON,
+    TimeGranularityToJSONTyped,
 } from './TimeGranularity';
 
 /**
@@ -59,13 +60,11 @@ export type OgrSourceDurationSpecValueTypeEnum = typeof OgrSourceDurationSpecVal
 /**
  * Check if a given object implements the OgrSourceDurationSpecValue interface.
  */
-export function instanceOfOgrSourceDurationSpecValue(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "granularity" in value;
-    isInstance = isInstance && "step" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfOgrSourceDurationSpecValue(value: object): value is OgrSourceDurationSpecValue {
+    if (!('granularity' in value) || value['granularity'] === undefined) return false;
+    if (!('step' in value) || value['step'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function OgrSourceDurationSpecValueFromJSON(json: any): OgrSourceDurationSpecValue {
@@ -73,7 +72,7 @@ export function OgrSourceDurationSpecValueFromJSON(json: any): OgrSourceDuration
 }
 
 export function OgrSourceDurationSpecValueFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpecValue {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -84,18 +83,20 @@ export function OgrSourceDurationSpecValueFromJSONTyped(json: any, ignoreDiscrim
     };
 }
 
-export function OgrSourceDurationSpecValueToJSON(value?: OgrSourceDurationSpecValue | null): any {
-    if (value === undefined) {
-        return undefined;
+export function OgrSourceDurationSpecValueToJSON(json: any): OgrSourceDurationSpecValue {
+    return OgrSourceDurationSpecValueToJSONTyped(json, false);
+}
+
+export function OgrSourceDurationSpecValueToJSONTyped(value?: OgrSourceDurationSpecValue | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'granularity': TimeGranularityToJSON(value.granularity),
-        'step': value.step,
-        'type': value.type,
+        'granularity': TimeGranularityToJSON(value['granularity']),
+        'step': value['step'],
+        'type': value['type'],
     };
 }
 

@@ -33,13 +33,13 @@ export interface StaticNumberParam {
  */
 export declare const StaticNumberParamTypeEnum: {
     readonly Static: "static";
-    readonly Derived: "derived";
 };
 export type StaticNumberParamTypeEnum = typeof StaticNumberParamTypeEnum[keyof typeof StaticNumberParamTypeEnum];
 /**
  * Check if a given object implements the StaticNumberParam interface.
  */
-export declare function instanceOfStaticNumberParam(value: object): boolean;
+export declare function instanceOfStaticNumberParam(value: object): value is StaticNumberParam;
 export declare function StaticNumberParamFromJSON(json: any): StaticNumberParam;
 export declare function StaticNumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): StaticNumberParam;
-export declare function StaticNumberParamToJSON(value?: StaticNumberParam | null): any;
+export declare function StaticNumberParamToJSON(json: any): StaticNumberParam;
+export declare function StaticNumberParamToJSONTyped(value?: StaticNumberParam | null, ignoreDiscriminator?: boolean): any;

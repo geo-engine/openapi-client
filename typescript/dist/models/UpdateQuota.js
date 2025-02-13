@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateQuotaToJSON = exports.UpdateQuotaFromJSONTyped = exports.UpdateQuotaFromJSON = exports.instanceOfUpdateQuota = void 0;
+exports.instanceOfUpdateQuota = instanceOfUpdateQuota;
+exports.UpdateQuotaFromJSON = UpdateQuotaFromJSON;
+exports.UpdateQuotaFromJSONTyped = UpdateQuotaFromJSONTyped;
+exports.UpdateQuotaToJSON = UpdateQuotaToJSON;
+exports.UpdateQuotaToJSONTyped = UpdateQuotaToJSONTyped;
 /**
  * Check if a given object implements the UpdateQuota interface.
  */
 function instanceOfUpdateQuota(value) {
-    let isInstance = true;
-    isInstance = isInstance && "available" in value;
-    return isInstance;
+    if (!('available' in value) || value['available'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfUpdateQuota = instanceOfUpdateQuota;
 function UpdateQuotaFromJSON(json) {
     return UpdateQuotaFromJSONTyped(json, false);
 }
-exports.UpdateQuotaFromJSON = UpdateQuotaFromJSON;
 function UpdateQuotaFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'available': json['available'],
     };
 }
-exports.UpdateQuotaFromJSONTyped = UpdateQuotaFromJSONTyped;
-function UpdateQuotaToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function UpdateQuotaToJSON(json) {
+    return UpdateQuotaToJSONTyped(json, false);
+}
+function UpdateQuotaToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'available': value.available,
+        'available': value['available'],
     };
 }
-exports.UpdateQuotaToJSON = UpdateQuotaToJSON;

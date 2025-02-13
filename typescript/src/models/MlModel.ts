@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MlModelMetadata } from './MlModelMetadata';
 import {
     MlModelMetadataFromJSON,
     MlModelMetadataFromJSONTyped,
     MlModelMetadataToJSON,
+    MlModelMetadataToJSONTyped,
 } from './MlModelMetadata';
 
 /**
@@ -61,15 +62,13 @@ export interface MlModel {
 /**
  * Check if a given object implements the MlModel interface.
  */
-export function instanceOfMlModel(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "displayName" in value;
-    isInstance = isInstance && "metadata" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "upload" in value;
-
-    return isInstance;
+export function instanceOfMlModel(value: object): value is MlModel {
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('displayName' in value) || value['displayName'] === undefined) return false;
+    if (!('metadata' in value) || value['metadata'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('upload' in value) || value['upload'] === undefined) return false;
+    return true;
 }
 
 export function MlModelFromJSON(json: any): MlModel {
@@ -77,7 +76,7 @@ export function MlModelFromJSON(json: any): MlModel {
 }
 
 export function MlModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): MlModel {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -90,20 +89,22 @@ export function MlModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
     };
 }
 
-export function MlModelToJSON(value?: MlModel | null): any {
-    if (value === undefined) {
-        return undefined;
+export function MlModelToJSON(json: any): MlModel {
+    return MlModelToJSONTyped(json, false);
+}
+
+export function MlModelToJSONTyped(value?: MlModel | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'description': value.description,
-        'displayName': value.displayName,
-        'metadata': MlModelMetadataToJSON(value.metadata),
-        'name': value.name,
-        'upload': value.upload,
+        'description': value['description'],
+        'displayName': value['displayName'],
+        'metadata': MlModelMetadataToJSON(value['metadata']),
+        'name': value['name'],
+        'upload': value['upload'],
     };
 }
 

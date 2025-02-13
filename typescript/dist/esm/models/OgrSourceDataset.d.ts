@@ -9,11 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { OgrSourceErrorSpec } from './OgrSourceErrorSpec';
+import type { VectorDataType } from './VectorDataType';
+import type { TypedGeometry } from './TypedGeometry';
 import type { OgrSourceColumnSpec } from './OgrSourceColumnSpec';
 import type { OgrSourceDatasetTimeType } from './OgrSourceDatasetTimeType';
-import type { OgrSourceErrorSpec } from './OgrSourceErrorSpec';
-import type { TypedGeometry } from './TypedGeometry';
-import type { VectorDataType } from './VectorDataType';
 /**
  *
  * @export
@@ -96,7 +96,8 @@ export interface OgrSourceDataset {
 /**
  * Check if a given object implements the OgrSourceDataset interface.
  */
-export declare function instanceOfOgrSourceDataset(value: object): boolean;
+export declare function instanceOfOgrSourceDataset(value: object): value is OgrSourceDataset;
 export declare function OgrSourceDatasetFromJSON(json: any): OgrSourceDataset;
 export declare function OgrSourceDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDataset;
-export declare function OgrSourceDatasetToJSON(value?: OgrSourceDataset | null): any;
+export declare function OgrSourceDatasetToJSON(json: any): OgrSourceDataset;
+export declare function OgrSourceDatasetToJSONTyped(value?: OgrSourceDataset | null, ignoreDiscriminator?: boolean): any;

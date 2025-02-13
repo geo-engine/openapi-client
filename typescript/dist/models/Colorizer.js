@@ -13,46 +13,46 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ColorizerToJSON = exports.ColorizerFromJSONTyped = exports.ColorizerFromJSON = void 0;
+exports.ColorizerFromJSON = ColorizerFromJSON;
+exports.ColorizerFromJSONTyped = ColorizerFromJSONTyped;
+exports.ColorizerToJSON = ColorizerToJSON;
+exports.ColorizerToJSONTyped = ColorizerToJSONTyped;
 const LinearGradient_1 = require("./LinearGradient");
 const LogarithmicGradient_1 = require("./LogarithmicGradient");
 const PaletteColorizer_1 = require("./PaletteColorizer");
 function ColorizerFromJSON(json) {
     return ColorizerFromJSONTyped(json, false);
 }
-exports.ColorizerFromJSON = ColorizerFromJSON;
 function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'linearGradient':
-            return Object.assign(Object.assign({}, (0, LinearGradient_1.LinearGradientFromJSONTyped)(json, true)), { type: 'linearGradient' });
+            return Object.assign({}, (0, LinearGradient_1.LinearGradientFromJSONTyped)(json, true), { type: 'linearGradient' });
         case 'logarithmicGradient':
-            return Object.assign(Object.assign({}, (0, LogarithmicGradient_1.LogarithmicGradientFromJSONTyped)(json, true)), { type: 'logarithmicGradient' });
+            return Object.assign({}, (0, LogarithmicGradient_1.LogarithmicGradientFromJSONTyped)(json, true), { type: 'logarithmicGradient' });
         case 'palette':
-            return Object.assign(Object.assign({}, (0, PaletteColorizer_1.PaletteColorizerFromJSONTyped)(json, true)), { type: 'palette' });
+            return Object.assign({}, (0, PaletteColorizer_1.PaletteColorizerFromJSONTyped)(json, true), { type: 'palette' });
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${json['type']}'`);
     }
 }
-exports.ColorizerFromJSONTyped = ColorizerFromJSONTyped;
-function ColorizerToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ColorizerToJSON(json) {
+    return ColorizerToJSONTyped(json, false);
+}
+function ColorizerToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'linearGradient':
-            return (0, LinearGradient_1.LinearGradientToJSON)(value);
+            return Object.assign({}, (0, LinearGradient_1.LinearGradientToJSON)(value), { type: 'linearGradient' });
         case 'logarithmicGradient':
-            return (0, LogarithmicGradient_1.LogarithmicGradientToJSON)(value);
+            return Object.assign({}, (0, LogarithmicGradient_1.LogarithmicGradientToJSON)(value), { type: 'logarithmicGradient' });
         case 'palette':
-            return (0, PaletteColorizer_1.PaletteColorizerToJSON)(value);
+            return Object.assign({}, (0, PaletteColorizer_1.PaletteColorizerToJSON)(value), { type: 'palette' });
         default:
             throw new Error(`No variant of Colorizer exists with 'type=${value['type']}'`);
     }
 }
-exports.ColorizerToJSON = ColorizerToJSON;

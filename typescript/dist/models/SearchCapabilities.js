@@ -13,45 +13,45 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SearchCapabilitiesToJSON = exports.SearchCapabilitiesFromJSONTyped = exports.SearchCapabilitiesFromJSON = exports.instanceOfSearchCapabilities = void 0;
-const runtime_1 = require("../runtime");
+exports.instanceOfSearchCapabilities = instanceOfSearchCapabilities;
+exports.SearchCapabilitiesFromJSON = SearchCapabilitiesFromJSON;
+exports.SearchCapabilitiesFromJSONTyped = SearchCapabilitiesFromJSONTyped;
+exports.SearchCapabilitiesToJSON = SearchCapabilitiesToJSON;
+exports.SearchCapabilitiesToJSONTyped = SearchCapabilitiesToJSONTyped;
 const SearchTypes_1 = require("./SearchTypes");
 /**
  * Check if a given object implements the SearchCapabilities interface.
  */
 function instanceOfSearchCapabilities(value) {
-    let isInstance = true;
-    isInstance = isInstance && "autocomplete" in value;
-    isInstance = isInstance && "searchTypes" in value;
-    return isInstance;
+    if (!('autocomplete' in value) || value['autocomplete'] === undefined)
+        return false;
+    if (!('searchTypes' in value) || value['searchTypes'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfSearchCapabilities = instanceOfSearchCapabilities;
 function SearchCapabilitiesFromJSON(json) {
     return SearchCapabilitiesFromJSONTyped(json, false);
 }
-exports.SearchCapabilitiesFromJSON = SearchCapabilitiesFromJSON;
 function SearchCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'autocomplete': json['autocomplete'],
-        'filters': !(0, runtime_1.exists)(json, 'filters') ? undefined : json['filters'],
+        'filters': json['filters'] == null ? undefined : json['filters'],
         'searchTypes': (0, SearchTypes_1.SearchTypesFromJSON)(json['searchTypes']),
     };
 }
-exports.SearchCapabilitiesFromJSONTyped = SearchCapabilitiesFromJSONTyped;
-function SearchCapabilitiesToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function SearchCapabilitiesToJSON(json) {
+    return SearchCapabilitiesToJSONTyped(json, false);
+}
+function SearchCapabilitiesToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'autocomplete': value.autocomplete,
-        'filters': value.filters,
-        'searchTypes': (0, SearchTypes_1.SearchTypesToJSON)(value.searchTypes),
+        'autocomplete': value['autocomplete'],
+        'filters': value['filters'],
+        'searchTypes': (0, SearchTypes_1.SearchTypesToJSON)(value['searchTypes']),
     };
 }
-exports.SearchCapabilitiesToJSON = SearchCapabilitiesToJSON;

@@ -31,7 +31,8 @@ export interface Plot {
 /**
  * Check if a given object implements the Plot interface.
  */
-export declare function instanceOfPlot(value: object): boolean;
+export declare function instanceOfPlot(value: object): value is Plot;
 export declare function PlotFromJSON(json: any): Plot;
 export declare function PlotFromJSONTyped(json: any, ignoreDiscriminator: boolean): Plot;
-export declare function PlotToJSON(value?: Plot | null): any;
+export declare function PlotToJSON(json: any): Plot;
+export declare function PlotToJSONTyped(value?: Plot | null, ignoreDiscriminator?: boolean): any;

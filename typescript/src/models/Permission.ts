@@ -24,6 +24,17 @@ export const Permission = {
 export type Permission = typeof Permission[keyof typeof Permission];
 
 
+export function instanceOfPermission(value: any): boolean {
+    for (const key in Permission) {
+        if (Object.prototype.hasOwnProperty.call(Permission, key)) {
+            if (Permission[key as keyof typeof Permission] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function PermissionFromJSON(json: any): Permission {
     return PermissionFromJSONTyped(json, false);
 }
@@ -34,5 +45,9 @@ export function PermissionFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 
 export function PermissionToJSON(value?: Permission | null): any {
     return value as any;
+}
+
+export function PermissionToJSONTyped(value: any, ignoreDiscriminator: boolean): Permission {
+    return value as Permission;
 }
 

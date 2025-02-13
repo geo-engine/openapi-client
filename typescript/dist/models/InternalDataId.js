@@ -13,30 +13,33 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.InternalDataIdToJSON = exports.InternalDataIdFromJSONTyped = exports.InternalDataIdFromJSON = exports.instanceOfInternalDataId = exports.InternalDataIdTypeEnum = void 0;
+exports.InternalDataIdTypeEnum = void 0;
+exports.instanceOfInternalDataId = instanceOfInternalDataId;
+exports.InternalDataIdFromJSON = InternalDataIdFromJSON;
+exports.InternalDataIdFromJSONTyped = InternalDataIdFromJSONTyped;
+exports.InternalDataIdToJSON = InternalDataIdToJSON;
+exports.InternalDataIdToJSONTyped = InternalDataIdToJSONTyped;
 /**
  * @export
  */
 exports.InternalDataIdTypeEnum = {
-    Internal: 'internal',
-    External: 'external'
+    Internal: 'internal'
 };
 /**
  * Check if a given object implements the InternalDataId interface.
  */
 function instanceOfInternalDataId(value) {
-    let isInstance = true;
-    isInstance = isInstance && "datasetId" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('datasetId' in value) || value['datasetId'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfInternalDataId = instanceOfInternalDataId;
 function InternalDataIdFromJSON(json) {
     return InternalDataIdFromJSONTyped(json, false);
 }
-exports.InternalDataIdFromJSON = InternalDataIdFromJSON;
 function InternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -44,17 +47,15 @@ function InternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-exports.InternalDataIdFromJSONTyped = InternalDataIdFromJSONTyped;
-function InternalDataIdToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function InternalDataIdToJSON(json) {
+    return InternalDataIdToJSONTyped(json, false);
+}
+function InternalDataIdToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'datasetId': value.datasetId,
-        'type': value.type,
+        'datasetId': value['datasetId'],
+        'type': value['type'],
     };
 }
-exports.InternalDataIdToJSON = InternalDataIdToJSON;

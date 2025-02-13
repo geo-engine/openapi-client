@@ -55,7 +55,8 @@ export interface AutoCreateDataset {
 /**
  * Check if a given object implements the AutoCreateDataset interface.
  */
-export declare function instanceOfAutoCreateDataset(value: object): boolean;
+export declare function instanceOfAutoCreateDataset(value: object): value is AutoCreateDataset;
 export declare function AutoCreateDatasetFromJSON(json: any): AutoCreateDataset;
 export declare function AutoCreateDatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): AutoCreateDataset;
-export declare function AutoCreateDatasetToJSON(value?: AutoCreateDataset | null): any;
+export declare function AutoCreateDatasetToJSON(json: any): AutoCreateDataset;
+export declare function AutoCreateDatasetToJSONTyped(value?: AutoCreateDataset | null, ignoreDiscriminator?: boolean): any;

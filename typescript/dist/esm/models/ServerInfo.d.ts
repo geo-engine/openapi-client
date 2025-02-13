@@ -43,7 +43,8 @@ export interface ServerInfo {
 /**
  * Check if a given object implements the ServerInfo interface.
  */
-export declare function instanceOfServerInfo(value: object): boolean;
+export declare function instanceOfServerInfo(value: object): value is ServerInfo;
 export declare function ServerInfoFromJSON(json: any): ServerInfo;
 export declare function ServerInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ServerInfo;
-export declare function ServerInfoToJSON(value?: ServerInfo | null): any;
+export declare function ServerInfoToJSON(json: any): ServerInfo;
+export declare function ServerInfoToJSONTyped(value?: ServerInfo | null, ignoreDiscriminator?: boolean): any;

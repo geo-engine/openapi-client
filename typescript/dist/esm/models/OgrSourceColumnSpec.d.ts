@@ -76,7 +76,8 @@ export interface OgrSourceColumnSpec {
 /**
  * Check if a given object implements the OgrSourceColumnSpec interface.
  */
-export declare function instanceOfOgrSourceColumnSpec(value: object): boolean;
+export declare function instanceOfOgrSourceColumnSpec(value: object): value is OgrSourceColumnSpec;
 export declare function OgrSourceColumnSpecFromJSON(json: any): OgrSourceColumnSpec;
 export declare function OgrSourceColumnSpecFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceColumnSpec;
-export declare function OgrSourceColumnSpecToJSON(value?: OgrSourceColumnSpec | null): any;
+export declare function OgrSourceColumnSpecToJSON(json: any): OgrSourceColumnSpec;
+export declare function OgrSourceColumnSpecToJSONTyped(value?: OgrSourceColumnSpec | null, ignoreDiscriminator?: boolean): any;

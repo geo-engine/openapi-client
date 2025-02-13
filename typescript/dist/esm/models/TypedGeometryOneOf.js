@@ -15,29 +15,29 @@
  * Check if a given object implements the TypedGeometryOneOf interface.
  */
 export function instanceOfTypedGeometryOneOf(value) {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
-    return isInstance;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    return true;
 }
 export function TypedGeometryOneOfFromJSON(json) {
     return TypedGeometryOneOfFromJSONTyped(json, false);
 }
 export function TypedGeometryOneOfFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'data': json['Data'],
     };
 }
-export function TypedGeometryOneOfToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function TypedGeometryOneOfToJSON(json) {
+    return TypedGeometryOneOfToJSONTyped(json, false);
+}
+export function TypedGeometryOneOfToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'Data': value.data,
+        'Data': value['data'],
     };
 }

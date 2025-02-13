@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthCodeRequestURLToJSON = exports.AuthCodeRequestURLFromJSONTyped = exports.AuthCodeRequestURLFromJSON = exports.instanceOfAuthCodeRequestURL = void 0;
+exports.instanceOfAuthCodeRequestURL = instanceOfAuthCodeRequestURL;
+exports.AuthCodeRequestURLFromJSON = AuthCodeRequestURLFromJSON;
+exports.AuthCodeRequestURLFromJSONTyped = AuthCodeRequestURLFromJSONTyped;
+exports.AuthCodeRequestURLToJSON = AuthCodeRequestURLToJSON;
+exports.AuthCodeRequestURLToJSONTyped = AuthCodeRequestURLToJSONTyped;
 /**
  * Check if a given object implements the AuthCodeRequestURL interface.
  */
 function instanceOfAuthCodeRequestURL(value) {
-    let isInstance = true;
-    isInstance = isInstance && "url" in value;
-    return isInstance;
+    if (!('url' in value) || value['url'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfAuthCodeRequestURL = instanceOfAuthCodeRequestURL;
 function AuthCodeRequestURLFromJSON(json) {
     return AuthCodeRequestURLFromJSONTyped(json, false);
 }
-exports.AuthCodeRequestURLFromJSON = AuthCodeRequestURLFromJSON;
 function AuthCodeRequestURLFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'url': json['url'],
     };
 }
-exports.AuthCodeRequestURLFromJSONTyped = AuthCodeRequestURLFromJSONTyped;
-function AuthCodeRequestURLToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function AuthCodeRequestURLToJSON(json) {
+    return AuthCodeRequestURLToJSONTyped(json, false);
+}
+function AuthCodeRequestURLToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'url': value.url,
+        'url': value['url'],
     };
 }
-exports.AuthCodeRequestURLToJSON = AuthCodeRequestURLToJSON;

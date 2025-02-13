@@ -63,7 +63,8 @@ export interface UserSession {
 /**
  * Check if a given object implements the UserSession interface.
  */
-export declare function instanceOfUserSession(value: object): boolean;
+export declare function instanceOfUserSession(value: object): value is UserSession;
 export declare function UserSessionFromJSON(json: any): UserSession;
 export declare function UserSessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserSession;
-export declare function UserSessionToJSON(value?: UserSession | null): any;
+export declare function UserSessionToJSON(json: any): UserSession;
+export declare function UserSessionToJSONTyped(value?: UserSession | null, ignoreDiscriminator?: boolean): any;

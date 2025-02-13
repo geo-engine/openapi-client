@@ -18,6 +18,16 @@
 export const DescribeCoverageRequest = {
     DescribeCoverage: 'DescribeCoverage'
 };
+export function instanceOfDescribeCoverageRequest(value) {
+    for (const key in DescribeCoverageRequest) {
+        if (Object.prototype.hasOwnProperty.call(DescribeCoverageRequest, key)) {
+            if (DescribeCoverageRequest[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 export function DescribeCoverageRequestFromJSON(json) {
     return DescribeCoverageRequestFromJSONTyped(json, false);
 }
@@ -25,5 +35,8 @@ export function DescribeCoverageRequestFromJSONTyped(json, ignoreDiscriminator) 
     return json;
 }
 export function DescribeCoverageRequestToJSON(value) {
+    return value;
+}
+export function DescribeCoverageRequestToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

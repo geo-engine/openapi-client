@@ -9,12 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GdalMetaDataList } from './GdalMetaDataList';
-import { GdalMetaDataRegular } from './GdalMetaDataRegular';
-import { GdalMetaDataStatic } from './GdalMetaDataStatic';
-import { GdalMetadataNetCdfCf } from './GdalMetadataNetCdfCf';
-import { MockMetaData } from './MockMetaData';
-import { OgrMetaData } from './OgrMetaData';
+import type { GdalMetaDataList } from './GdalMetaDataList';
+import type { GdalMetaDataRegular } from './GdalMetaDataRegular';
+import type { GdalMetaDataStatic } from './GdalMetaDataStatic';
+import type { GdalMetadataNetCdfCf } from './GdalMetadataNetCdfCf';
+import type { MockMetaData } from './MockMetaData';
+import type { OgrMetaData } from './OgrMetaData';
 /**
  * @type MetaDataDefinition
  *
@@ -35,4 +35,5 @@ export type MetaDataDefinition = {
 } & OgrMetaData;
 export declare function MetaDataDefinitionFromJSON(json: any): MetaDataDefinition;
 export declare function MetaDataDefinitionFromJSONTyped(json: any, ignoreDiscriminator: boolean): MetaDataDefinition;
-export declare function MetaDataDefinitionToJSON(value?: MetaDataDefinition | null): any;
+export declare function MetaDataDefinitionToJSON(json: any): any;
+export declare function MetaDataDefinitionToJSONTyped(value?: MetaDataDefinition | null, ignoreDiscriminator?: boolean): any;

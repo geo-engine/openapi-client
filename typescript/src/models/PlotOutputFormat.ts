@@ -25,6 +25,17 @@ export const PlotOutputFormat = {
 export type PlotOutputFormat = typeof PlotOutputFormat[keyof typeof PlotOutputFormat];
 
 
+export function instanceOfPlotOutputFormat(value: any): boolean {
+    for (const key in PlotOutputFormat) {
+        if (Object.prototype.hasOwnProperty.call(PlotOutputFormat, key)) {
+            if (PlotOutputFormat[key as keyof typeof PlotOutputFormat] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 export function PlotOutputFormatFromJSON(json: any): PlotOutputFormat {
     return PlotOutputFormatFromJSONTyped(json, false);
 }
@@ -35,5 +46,9 @@ export function PlotOutputFormatFromJSONTyped(json: any, ignoreDiscriminator: bo
 
 export function PlotOutputFormatToJSON(value?: PlotOutputFormat | null): any {
     return value as any;
+}
+
+export function PlotOutputFormatToJSONTyped(value: any, ignoreDiscriminator: boolean): PlotOutputFormat {
+    return value as PlotOutputFormat;
 }
 

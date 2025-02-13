@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,12 +36,10 @@ export interface ErrorResponse {
 /**
  * Check if a given object implements the ErrorResponse interface.
  */
-export function instanceOfErrorResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "error" in value;
-    isInstance = isInstance && "message" in value;
-
-    return isInstance;
+export function instanceOfErrorResponse(value: object): value is ErrorResponse {
+    if (!('error' in value) || value['error'] === undefined) return false;
+    if (!('message' in value) || value['message'] === undefined) return false;
+    return true;
 }
 
 export function ErrorResponseFromJSON(json: any): ErrorResponse {
@@ -49,7 +47,7 @@ export function ErrorResponseFromJSON(json: any): ErrorResponse {
 }
 
 export function ErrorResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ErrorResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,17 +57,19 @@ export function ErrorResponseFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function ErrorResponseToJSON(value?: ErrorResponse | null): any {
-    if (value === undefined) {
-        return undefined;
+export function ErrorResponseToJSON(json: any): ErrorResponse {
+    return ErrorResponseToJSONTyped(json, false);
+}
+
+export function ErrorResponseToJSONTyped(value?: ErrorResponse | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'error': value.error,
-        'message': value.message,
+        'error': value['error'],
+        'message': value['message'],
     };
 }
 

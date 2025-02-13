@@ -13,39 +13,39 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MultiPointToJSON = exports.MultiPointFromJSONTyped = exports.MultiPointFromJSON = exports.instanceOfMultiPoint = void 0;
+exports.instanceOfMultiPoint = instanceOfMultiPoint;
+exports.MultiPointFromJSON = MultiPointFromJSON;
+exports.MultiPointFromJSONTyped = MultiPointFromJSONTyped;
+exports.MultiPointToJSON = MultiPointToJSON;
+exports.MultiPointToJSONTyped = MultiPointToJSONTyped;
 const Coordinate2D_1 = require("./Coordinate2D");
 /**
  * Check if a given object implements the MultiPoint interface.
  */
 function instanceOfMultiPoint(value) {
-    let isInstance = true;
-    isInstance = isInstance && "coordinates" in value;
-    return isInstance;
+    if (!('coordinates' in value) || value['coordinates'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfMultiPoint = instanceOfMultiPoint;
 function MultiPointFromJSON(json) {
     return MultiPointFromJSONTyped(json, false);
 }
-exports.MultiPointFromJSON = MultiPointFromJSON;
 function MultiPointFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'coordinates': (json['coordinates'].map(Coordinate2D_1.Coordinate2DFromJSON)),
     };
 }
-exports.MultiPointFromJSONTyped = MultiPointFromJSONTyped;
-function MultiPointToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function MultiPointToJSON(json) {
+    return MultiPointToJSONTyped(json, false);
+}
+function MultiPointToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'coordinates': (value.coordinates.map(Coordinate2D_1.Coordinate2DToJSON)),
+        'coordinates': (value['coordinates'].map(Coordinate2D_1.Coordinate2DToJSON)),
     };
 }
-exports.MultiPointToJSON = MultiPointToJSON;

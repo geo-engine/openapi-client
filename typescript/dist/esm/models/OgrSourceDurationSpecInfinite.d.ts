@@ -27,14 +27,13 @@ export interface OgrSourceDurationSpecInfinite {
  */
 export declare const OgrSourceDurationSpecInfiniteTypeEnum: {
     readonly Infinite: "infinite";
-    readonly Zero: "zero";
-    readonly Value: "value";
 };
 export type OgrSourceDurationSpecInfiniteTypeEnum = typeof OgrSourceDurationSpecInfiniteTypeEnum[keyof typeof OgrSourceDurationSpecInfiniteTypeEnum];
 /**
  * Check if a given object implements the OgrSourceDurationSpecInfinite interface.
  */
-export declare function instanceOfOgrSourceDurationSpecInfinite(value: object): boolean;
+export declare function instanceOfOgrSourceDurationSpecInfinite(value: object): value is OgrSourceDurationSpecInfinite;
 export declare function OgrSourceDurationSpecInfiniteFromJSON(json: any): OgrSourceDurationSpecInfinite;
 export declare function OgrSourceDurationSpecInfiniteFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpecInfinite;
-export declare function OgrSourceDurationSpecInfiniteToJSON(value?: OgrSourceDurationSpecInfinite | null): any;
+export declare function OgrSourceDurationSpecInfiniteToJSON(json: any): OgrSourceDurationSpecInfinite;
+export declare function OgrSourceDurationSpecInfiniteToJSONTyped(value?: OgrSourceDurationSpecInfinite | null, ignoreDiscriminator?: boolean): any;

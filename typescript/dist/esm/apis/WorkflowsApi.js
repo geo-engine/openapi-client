@@ -32,11 +32,11 @@ export class WorkflowsApi extends runtime.BaseAPI {
      */
     datasetFromWorkflowHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.id === null || requestParameters.id === undefined) {
-                throw new runtime.RequiredError('id', 'Required parameter requestParameters.id was null or undefined when calling datasetFromWorkflowHandler.');
+            if (requestParameters['id'] == null) {
+                throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling datasetFromWorkflowHandler().');
             }
-            if (requestParameters.rasterDatasetFromWorkflow === null || requestParameters.rasterDatasetFromWorkflow === undefined) {
-                throw new runtime.RequiredError('rasterDatasetFromWorkflow', 'Required parameter requestParameters.rasterDatasetFromWorkflow was null or undefined when calling datasetFromWorkflowHandler.');
+            if (requestParameters['rasterDatasetFromWorkflow'] == null) {
+                throw new runtime.RequiredError('rasterDatasetFromWorkflow', 'Required parameter "rasterDatasetFromWorkflow" was null or undefined when calling datasetFromWorkflowHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -49,11 +49,11 @@ export class WorkflowsApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/datasetFromWorkflow/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+                path: `/datasetFromWorkflow/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: RasterDatasetFromWorkflowToJSON(requestParameters.rasterDatasetFromWorkflow),
+                body: RasterDatasetFromWorkflowToJSON(requestParameters['rasterDatasetFromWorkflow']),
             }, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => TaskResponseFromJSON(jsonValue));
         });
@@ -73,8 +73,8 @@ export class WorkflowsApi extends runtime.BaseAPI {
      */
     getWorkflowAllMetadataZipHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.id === null || requestParameters.id === undefined) {
-                throw new runtime.RequiredError('id', 'Required parameter requestParameters.id was null or undefined when calling getWorkflowAllMetadataZipHandler.');
+            if (requestParameters['id'] == null) {
+                throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getWorkflowAllMetadataZipHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -86,7 +86,7 @@ export class WorkflowsApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/workflow/{id}/allMetadata/zip`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+                path: `/workflow/{id}/allMetadata/zip`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -108,8 +108,8 @@ export class WorkflowsApi extends runtime.BaseAPI {
      */
     getWorkflowMetadataHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.id === null || requestParameters.id === undefined) {
-                throw new runtime.RequiredError('id', 'Required parameter requestParameters.id was null or undefined when calling getWorkflowMetadataHandler.');
+            if (requestParameters['id'] == null) {
+                throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getWorkflowMetadataHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -121,7 +121,7 @@ export class WorkflowsApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/workflow/{id}/metadata`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+                path: `/workflow/{id}/metadata`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -143,8 +143,8 @@ export class WorkflowsApi extends runtime.BaseAPI {
      */
     getWorkflowProvenanceHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.id === null || requestParameters.id === undefined) {
-                throw new runtime.RequiredError('id', 'Required parameter requestParameters.id was null or undefined when calling getWorkflowProvenanceHandler.');
+            if (requestParameters['id'] == null) {
+                throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getWorkflowProvenanceHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -156,7 +156,7 @@ export class WorkflowsApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/workflow/{id}/provenance`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+                path: `/workflow/{id}/provenance`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -178,8 +178,8 @@ export class WorkflowsApi extends runtime.BaseAPI {
      */
     loadWorkflowHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.id === null || requestParameters.id === undefined) {
-                throw new runtime.RequiredError('id', 'Required parameter requestParameters.id was null or undefined when calling loadWorkflowHandler.');
+            if (requestParameters['id'] == null) {
+                throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling loadWorkflowHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -191,7 +191,7 @@ export class WorkflowsApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/workflow/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+                path: `/workflow/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -213,39 +213,39 @@ export class WorkflowsApi extends runtime.BaseAPI {
      */
     rasterStreamWebsocketRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.id === null || requestParameters.id === undefined) {
-                throw new runtime.RequiredError('id', 'Required parameter requestParameters.id was null or undefined when calling rasterStreamWebsocket.');
+            if (requestParameters['id'] == null) {
+                throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling rasterStreamWebsocket().');
             }
-            if (requestParameters.spatialBounds === null || requestParameters.spatialBounds === undefined) {
-                throw new runtime.RequiredError('spatialBounds', 'Required parameter requestParameters.spatialBounds was null or undefined when calling rasterStreamWebsocket.');
+            if (requestParameters['spatialBounds'] == null) {
+                throw new runtime.RequiredError('spatialBounds', 'Required parameter "spatialBounds" was null or undefined when calling rasterStreamWebsocket().');
             }
-            if (requestParameters.timeInterval === null || requestParameters.timeInterval === undefined) {
-                throw new runtime.RequiredError('timeInterval', 'Required parameter requestParameters.timeInterval was null or undefined when calling rasterStreamWebsocket.');
+            if (requestParameters['timeInterval'] == null) {
+                throw new runtime.RequiredError('timeInterval', 'Required parameter "timeInterval" was null or undefined when calling rasterStreamWebsocket().');
             }
-            if (requestParameters.spatialResolution === null || requestParameters.spatialResolution === undefined) {
-                throw new runtime.RequiredError('spatialResolution', 'Required parameter requestParameters.spatialResolution was null or undefined when calling rasterStreamWebsocket.');
+            if (requestParameters['spatialResolution'] == null) {
+                throw new runtime.RequiredError('spatialResolution', 'Required parameter "spatialResolution" was null or undefined when calling rasterStreamWebsocket().');
             }
-            if (requestParameters.attributes === null || requestParameters.attributes === undefined) {
-                throw new runtime.RequiredError('attributes', 'Required parameter requestParameters.attributes was null or undefined when calling rasterStreamWebsocket.');
+            if (requestParameters['attributes'] == null) {
+                throw new runtime.RequiredError('attributes', 'Required parameter "attributes" was null or undefined when calling rasterStreamWebsocket().');
             }
-            if (requestParameters.resultType === null || requestParameters.resultType === undefined) {
-                throw new runtime.RequiredError('resultType', 'Required parameter requestParameters.resultType was null or undefined when calling rasterStreamWebsocket.');
+            if (requestParameters['resultType'] == null) {
+                throw new runtime.RequiredError('resultType', 'Required parameter "resultType" was null or undefined when calling rasterStreamWebsocket().');
             }
             const queryParameters = {};
-            if (requestParameters.spatialBounds !== undefined) {
-                queryParameters['spatialBounds'] = requestParameters.spatialBounds;
+            if (requestParameters['spatialBounds'] != null) {
+                queryParameters['spatialBounds'] = requestParameters['spatialBounds'];
             }
-            if (requestParameters.timeInterval !== undefined) {
-                queryParameters['timeInterval'] = requestParameters.timeInterval;
+            if (requestParameters['timeInterval'] != null) {
+                queryParameters['timeInterval'] = requestParameters['timeInterval'];
             }
-            if (requestParameters.spatialResolution !== undefined) {
-                queryParameters['spatialResolution'] = requestParameters.spatialResolution;
+            if (requestParameters['spatialResolution'] != null) {
+                queryParameters['spatialResolution'] = requestParameters['spatialResolution'];
             }
-            if (requestParameters.attributes !== undefined) {
-                queryParameters['attributes'] = requestParameters.attributes;
+            if (requestParameters['attributes'] != null) {
+                queryParameters['attributes'] = requestParameters['attributes'];
             }
-            if (requestParameters.resultType !== undefined) {
-                queryParameters['resultType'] = requestParameters.resultType;
+            if (requestParameters['resultType'] != null) {
+                queryParameters['resultType'] = requestParameters['resultType'];
             }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
@@ -256,7 +256,7 @@ export class WorkflowsApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/workflow/{id}/rasterStream`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+                path: `/workflow/{id}/rasterStream`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -277,8 +277,8 @@ export class WorkflowsApi extends runtime.BaseAPI {
      */
     registerWorkflowHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters.workflow === null || requestParameters.workflow === undefined) {
-                throw new runtime.RequiredError('workflow', 'Required parameter requestParameters.workflow was null or undefined when calling registerWorkflowHandler.');
+            if (requestParameters['workflow'] == null) {
+                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling registerWorkflowHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -295,7 +295,7 @@ export class WorkflowsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: WorkflowToJSON(requestParameters.workflow),
+                body: WorkflowToJSON(requestParameters['workflow']),
             }, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
         });

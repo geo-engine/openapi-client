@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -40,11 +40,9 @@ export type OgrSourceDurationSpecZeroTypeEnum = typeof OgrSourceDurationSpecZero
 /**
  * Check if a given object implements the OgrSourceDurationSpecZero interface.
  */
-export function instanceOfOgrSourceDurationSpecZero(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfOgrSourceDurationSpecZero(value: object): value is OgrSourceDurationSpecZero {
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function OgrSourceDurationSpecZeroFromJSON(json: any): OgrSourceDurationSpecZero {
@@ -52,7 +50,7 @@ export function OgrSourceDurationSpecZeroFromJSON(json: any): OgrSourceDurationS
 }
 
 export function OgrSourceDurationSpecZeroFromJSONTyped(json: any, ignoreDiscriminator: boolean): OgrSourceDurationSpecZero {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -61,16 +59,18 @@ export function OgrSourceDurationSpecZeroFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function OgrSourceDurationSpecZeroToJSON(value?: OgrSourceDurationSpecZero | null): any {
-    if (value === undefined) {
-        return undefined;
+export function OgrSourceDurationSpecZeroToJSON(json: any): OgrSourceDurationSpecZero {
+    return OgrSourceDurationSpecZeroToJSONTyped(json, false);
+}
+
+export function OgrSourceDurationSpecZeroToJSONTyped(value?: OgrSourceDurationSpecZero | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'type': value.type,
+        'type': value['type'],
     };
 }
 

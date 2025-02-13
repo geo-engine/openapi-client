@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DerivedNumber } from './DerivedNumber';
-import { StaticNumberParam } from './StaticNumberParam';
+import type { DerivedNumber } from './DerivedNumber';
+import type { StaticNumberParam } from './StaticNumberParam';
 /**
  * @type NumberParam
  *
@@ -23,4 +23,5 @@ export type NumberParam = {
 } & StaticNumberParam;
 export declare function NumberParamFromJSON(json: any): NumberParam;
 export declare function NumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean): NumberParam;
-export declare function NumberParamToJSON(value?: NumberParam | null): any;
+export declare function NumberParamToJSON(json: any): any;
+export declare function NumberParamToJSONTyped(value?: NumberParam | null, ignoreDiscriminator?: boolean): any;

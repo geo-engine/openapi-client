@@ -15,17 +15,19 @@
  * Check if a given object implements the DataUsageSummary interface.
  */
 export function instanceOfDataUsageSummary(value) {
-    let isInstance = true;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "timestamp" in value;
-    return isInstance;
+    if (!('count' in value) || value['count'] === undefined)
+        return false;
+    if (!('data' in value) || value['data'] === undefined)
+        return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined)
+        return false;
+    return true;
 }
 export function DataUsageSummaryFromJSON(json) {
     return DataUsageSummaryFromJSONTyped(json, false);
 }
 export function DataUsageSummaryFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -34,16 +36,16 @@ export function DataUsageSummaryFromJSONTyped(json, ignoreDiscriminator) {
         'timestamp': (new Date(json['timestamp'])),
     };
 }
-export function DataUsageSummaryToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function DataUsageSummaryToJSON(json) {
+    return DataUsageSummaryToJSONTyped(json, false);
+}
+export function DataUsageSummaryToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'count': value.count,
-        'data': value.data,
-        'timestamp': (value.timestamp.toISOString()),
+        'count': value['count'],
+        'data': value['data'],
+        'timestamp': ((value['timestamp']).toISOString()),
     };
 }

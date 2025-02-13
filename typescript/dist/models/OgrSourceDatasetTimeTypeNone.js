@@ -13,47 +13,45 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDatasetTimeTypeNoneToJSON = exports.OgrSourceDatasetTimeTypeNoneFromJSONTyped = exports.OgrSourceDatasetTimeTypeNoneFromJSON = exports.instanceOfOgrSourceDatasetTimeTypeNone = exports.OgrSourceDatasetTimeTypeNoneTypeEnum = void 0;
+exports.OgrSourceDatasetTimeTypeNoneTypeEnum = void 0;
+exports.instanceOfOgrSourceDatasetTimeTypeNone = instanceOfOgrSourceDatasetTimeTypeNone;
+exports.OgrSourceDatasetTimeTypeNoneFromJSON = OgrSourceDatasetTimeTypeNoneFromJSON;
+exports.OgrSourceDatasetTimeTypeNoneFromJSONTyped = OgrSourceDatasetTimeTypeNoneFromJSONTyped;
+exports.OgrSourceDatasetTimeTypeNoneToJSON = OgrSourceDatasetTimeTypeNoneToJSON;
+exports.OgrSourceDatasetTimeTypeNoneToJSONTyped = OgrSourceDatasetTimeTypeNoneToJSONTyped;
 /**
  * @export
  */
 exports.OgrSourceDatasetTimeTypeNoneTypeEnum = {
-    None: 'none',
-    Start: 'start',
-    Startend: 'start+end',
-    Startduration: 'start+duration'
+    None: 'none'
 };
 /**
  * Check if a given object implements the OgrSourceDatasetTimeTypeNone interface.
  */
 function instanceOfOgrSourceDatasetTimeTypeNone(value) {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfOgrSourceDatasetTimeTypeNone = instanceOfOgrSourceDatasetTimeTypeNone;
 function OgrSourceDatasetTimeTypeNoneFromJSON(json) {
     return OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, false);
 }
-exports.OgrSourceDatasetTimeTypeNoneFromJSON = OgrSourceDatasetTimeTypeNoneFromJSON;
 function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'type': json['type'],
     };
 }
-exports.OgrSourceDatasetTimeTypeNoneFromJSONTyped = OgrSourceDatasetTimeTypeNoneFromJSONTyped;
-function OgrSourceDatasetTimeTypeNoneToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function OgrSourceDatasetTimeTypeNoneToJSON(json) {
+    return OgrSourceDatasetTimeTypeNoneToJSONTyped(json, false);
+}
+function OgrSourceDatasetTimeTypeNoneToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'type': value.type,
+        'type': value['type'],
     };
 }
-exports.OgrSourceDatasetTimeTypeNoneToJSON = OgrSourceDatasetTimeTypeNoneToJSON;

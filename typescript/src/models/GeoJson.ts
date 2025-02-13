@@ -12,12 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CollectionType } from './CollectionType';
 import {
     CollectionTypeFromJSON,
     CollectionTypeFromJSONTyped,
     CollectionTypeToJSON,
+    CollectionTypeToJSONTyped,
 } from './CollectionType';
 
 /**
@@ -40,15 +41,15 @@ export interface GeoJson {
     type: CollectionType;
 }
 
+
+
 /**
  * Check if a given object implements the GeoJson interface.
  */
-export function instanceOfGeoJson(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "features" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfGeoJson(value: object): value is GeoJson {
+    if (!('features' in value) || value['features'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function GeoJsonFromJSON(json: any): GeoJson {
@@ -56,7 +57,7 @@ export function GeoJsonFromJSON(json: any): GeoJson {
 }
 
 export function GeoJsonFromJSONTyped(json: any, ignoreDiscriminator: boolean): GeoJson {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -66,17 +67,19 @@ export function GeoJsonFromJSONTyped(json: any, ignoreDiscriminator: boolean): G
     };
 }
 
-export function GeoJsonToJSON(value?: GeoJson | null): any {
-    if (value === undefined) {
-        return undefined;
+export function GeoJsonToJSON(json: any): GeoJson {
+    return GeoJsonToJSONTyped(json, false);
+}
+
+export function GeoJsonToJSONTyped(value?: GeoJson | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'features': value.features,
-        'type': CollectionTypeToJSON(value.type),
+        'features': value['features'],
+        'type': CollectionTypeToJSON(value['type']),
     };
 }
 

@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderByToJSON = exports.OrderByFromJSONTyped = exports.OrderByFromJSON = exports.OrderBy = void 0;
+exports.OrderBy = void 0;
+exports.instanceOfOrderBy = instanceOfOrderBy;
+exports.OrderByFromJSON = OrderByFromJSON;
+exports.OrderByFromJSONTyped = OrderByFromJSONTyped;
+exports.OrderByToJSON = OrderByToJSON;
+exports.OrderByToJSONTyped = OrderByToJSONTyped;
 /**
  *
  * @export
@@ -22,15 +27,25 @@ exports.OrderBy = {
     NameAsc: 'NameAsc',
     NameDesc: 'NameDesc'
 };
+function instanceOfOrderBy(value) {
+    for (const key in exports.OrderBy) {
+        if (Object.prototype.hasOwnProperty.call(exports.OrderBy, key)) {
+            if (exports.OrderBy[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function OrderByFromJSON(json) {
     return OrderByFromJSONTyped(json, false);
 }
-exports.OrderByFromJSON = OrderByFromJSON;
 function OrderByFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.OrderByFromJSONTyped = OrderByFromJSONTyped;
 function OrderByToJSON(value) {
     return value;
 }
-exports.OrderByToJSON = OrderByToJSON;
+function OrderByToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlotOutputFormatToJSON = exports.PlotOutputFormatFromJSONTyped = exports.PlotOutputFormatFromJSON = exports.PlotOutputFormat = void 0;
+exports.PlotOutputFormat = void 0;
+exports.instanceOfPlotOutputFormat = instanceOfPlotOutputFormat;
+exports.PlotOutputFormatFromJSON = PlotOutputFormatFromJSON;
+exports.PlotOutputFormatFromJSONTyped = PlotOutputFormatFromJSONTyped;
+exports.PlotOutputFormatToJSON = PlotOutputFormatToJSON;
+exports.PlotOutputFormatToJSONTyped = PlotOutputFormatToJSONTyped;
 /**
  *
  * @export
@@ -23,15 +28,25 @@ exports.PlotOutputFormat = {
     JsonVega: 'JsonVega',
     ImagePng: 'ImagePng'
 };
+function instanceOfPlotOutputFormat(value) {
+    for (const key in exports.PlotOutputFormat) {
+        if (Object.prototype.hasOwnProperty.call(exports.PlotOutputFormat, key)) {
+            if (exports.PlotOutputFormat[key] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 function PlotOutputFormatFromJSON(json) {
     return PlotOutputFormatFromJSONTyped(json, false);
 }
-exports.PlotOutputFormatFromJSON = PlotOutputFormatFromJSON;
 function PlotOutputFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-exports.PlotOutputFormatFromJSONTyped = PlotOutputFormatFromJSONTyped;
 function PlotOutputFormatToJSON(value) {
     return value;
 }
-exports.PlotOutputFormatToJSON = PlotOutputFormatToJSON;
+function PlotOutputFormatToJSONTyped(value, ignoreDiscriminator) {
+    return value;
+}

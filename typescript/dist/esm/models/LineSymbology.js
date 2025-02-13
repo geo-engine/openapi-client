@@ -11,9 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { exists } from '../runtime';
-import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 import { TextSymbologyFromJSON, TextSymbologyToJSON, } from './TextSymbology';
+import { StrokeParamFromJSON, StrokeParamToJSON, } from './StrokeParam';
 /**
  * @export
  */
@@ -24,37 +23,39 @@ export const LineSymbologyTypeEnum = {
  * Check if a given object implements the LineSymbology interface.
  */
 export function instanceOfLineSymbology(value) {
-    let isInstance = true;
-    isInstance = isInstance && "autoSimplified" in value;
-    isInstance = isInstance && "stroke" in value;
-    isInstance = isInstance && "type" in value;
-    return isInstance;
+    if (!('autoSimplified' in value) || value['autoSimplified'] === undefined)
+        return false;
+    if (!('stroke' in value) || value['stroke'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    return true;
 }
 export function LineSymbologyFromJSON(json) {
     return LineSymbologyFromJSONTyped(json, false);
 }
 export function LineSymbologyFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'autoSimplified': json['autoSimplified'],
         'stroke': StrokeParamFromJSON(json['stroke']),
-        'text': !exists(json, 'text') ? undefined : TextSymbologyFromJSON(json['text']),
+        'text': json['text'] == null ? undefined : TextSymbologyFromJSON(json['text']),
         'type': json['type'],
     };
 }
-export function LineSymbologyToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function LineSymbologyToJSON(json) {
+    return LineSymbologyToJSONTyped(json, false);
+}
+export function LineSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'autoSimplified': value.autoSimplified,
-        'stroke': StrokeParamToJSON(value.stroke),
-        'text': TextSymbologyToJSON(value.text),
-        'type': value.type,
+        'autoSimplified': value['autoSimplified'],
+        'stroke': StrokeParamToJSON(value['stroke']),
+        'text': TextSymbologyToJSON(value['text']),
+        'type': value['type'],
     };
 }

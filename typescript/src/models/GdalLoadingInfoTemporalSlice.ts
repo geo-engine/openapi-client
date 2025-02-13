@@ -12,19 +12,21 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { GdalDatasetParameters } from './GdalDatasetParameters';
-import {
-    GdalDatasetParametersFromJSON,
-    GdalDatasetParametersFromJSONTyped,
-    GdalDatasetParametersToJSON,
-} from './GdalDatasetParameters';
+import { mapValues } from '../runtime';
 import type { TimeInterval } from './TimeInterval';
 import {
     TimeIntervalFromJSON,
     TimeIntervalFromJSONTyped,
     TimeIntervalToJSON,
+    TimeIntervalToJSONTyped,
 } from './TimeInterval';
+import type { GdalDatasetParameters } from './GdalDatasetParameters';
+import {
+    GdalDatasetParametersFromJSON,
+    GdalDatasetParametersFromJSONTyped,
+    GdalDatasetParametersToJSON,
+    GdalDatasetParametersToJSONTyped,
+} from './GdalDatasetParameters';
 
 /**
  * one temporal slice of the dataset that requires reading from exactly one Gdal dataset
@@ -55,11 +57,9 @@ export interface GdalLoadingInfoTemporalSlice {
 /**
  * Check if a given object implements the GdalLoadingInfoTemporalSlice interface.
  */
-export function instanceOfGdalLoadingInfoTemporalSlice(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "time" in value;
-
-    return isInstance;
+export function instanceOfGdalLoadingInfoTemporalSlice(value: object): value is GdalLoadingInfoTemporalSlice {
+    if (!('time' in value) || value['time'] === undefined) return false;
+    return true;
 }
 
 export function GdalLoadingInfoTemporalSliceFromJSON(json: any): GdalLoadingInfoTemporalSlice {
@@ -67,29 +67,31 @@ export function GdalLoadingInfoTemporalSliceFromJSON(json: any): GdalLoadingInfo
 }
 
 export function GdalLoadingInfoTemporalSliceFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalLoadingInfoTemporalSlice {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'cacheTtl': !exists(json, 'cacheTtl') ? undefined : json['cacheTtl'],
-        'params': !exists(json, 'params') ? undefined : GdalDatasetParametersFromJSON(json['params']),
+        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
+        'params': json['params'] == null ? undefined : GdalDatasetParametersFromJSON(json['params']),
         'time': TimeIntervalFromJSON(json['time']),
     };
 }
 
-export function GdalLoadingInfoTemporalSliceToJSON(value?: GdalLoadingInfoTemporalSlice | null): any {
-    if (value === undefined) {
-        return undefined;
+export function GdalLoadingInfoTemporalSliceToJSON(json: any): GdalLoadingInfoTemporalSlice {
+    return GdalLoadingInfoTemporalSliceToJSONTyped(json, false);
+}
+
+export function GdalLoadingInfoTemporalSliceToJSONTyped(value?: GdalLoadingInfoTemporalSlice | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'cacheTtl': value.cacheTtl,
-        'params': GdalDatasetParametersToJSON(value.params),
-        'time': TimeIntervalToJSON(value.time),
+        'cacheTtl': value['cacheTtl'],
+        'params': GdalDatasetParametersToJSON(value['params']),
+        'time': TimeIntervalToJSON(value['time']),
     };
 }
 

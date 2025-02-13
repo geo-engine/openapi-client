@@ -13,38 +13,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataPathOneOf1ToJSON = exports.DataPathOneOf1FromJSONTyped = exports.DataPathOneOf1FromJSON = exports.instanceOfDataPathOneOf1 = void 0;
+exports.instanceOfDataPathOneOf1 = instanceOfDataPathOneOf1;
+exports.DataPathOneOf1FromJSON = DataPathOneOf1FromJSON;
+exports.DataPathOneOf1FromJSONTyped = DataPathOneOf1FromJSONTyped;
+exports.DataPathOneOf1ToJSON = DataPathOneOf1ToJSON;
+exports.DataPathOneOf1ToJSONTyped = DataPathOneOf1ToJSONTyped;
 /**
  * Check if a given object implements the DataPathOneOf1 interface.
  */
 function instanceOfDataPathOneOf1(value) {
-    let isInstance = true;
-    isInstance = isInstance && "upload" in value;
-    return isInstance;
+    if (!('upload' in value) || value['upload'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfDataPathOneOf1 = instanceOfDataPathOneOf1;
 function DataPathOneOf1FromJSON(json) {
     return DataPathOneOf1FromJSONTyped(json, false);
 }
-exports.DataPathOneOf1FromJSON = DataPathOneOf1FromJSON;
 function DataPathOneOf1FromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'upload': json['upload'],
     };
 }
-exports.DataPathOneOf1FromJSONTyped = DataPathOneOf1FromJSONTyped;
-function DataPathOneOf1ToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function DataPathOneOf1ToJSON(json) {
+    return DataPathOneOf1ToJSONTyped(json, false);
+}
+function DataPathOneOf1ToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'upload': value.upload,
+        'upload': value['upload'],
     };
 }
-exports.DataPathOneOf1ToJSON = DataPathOneOf1ToJSON;

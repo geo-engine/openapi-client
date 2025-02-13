@@ -25,7 +25,8 @@ export interface DateTime {
 /**
  * Check if a given object implements the DateTime interface.
  */
-export declare function instanceOfDateTime(value: object): boolean;
+export declare function instanceOfDateTime(value: object): value is DateTime;
 export declare function DateTimeFromJSON(json: any): DateTime;
 export declare function DateTimeFromJSONTyped(json: any, ignoreDiscriminator: boolean): DateTime;
-export declare function DateTimeToJSON(value?: DateTime | null): any;
+export declare function DateTimeToJSON(json: any): DateTime;
+export declare function DateTimeToJSONTyped(value?: DateTime | null, ignoreDiscriminator?: boolean): any;

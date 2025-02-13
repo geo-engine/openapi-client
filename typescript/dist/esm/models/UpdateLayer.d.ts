@@ -59,7 +59,8 @@ export interface UpdateLayer {
 /**
  * Check if a given object implements the UpdateLayer interface.
  */
-export declare function instanceOfUpdateLayer(value: object): boolean;
+export declare function instanceOfUpdateLayer(value: object): value is UpdateLayer;
 export declare function UpdateLayerFromJSON(json: any): UpdateLayer;
 export declare function UpdateLayerFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateLayer;
-export declare function UpdateLayerToJSON(value?: UpdateLayer | null): any;
+export declare function UpdateLayerToJSON(json: any): UpdateLayer;
+export declare function UpdateLayerToJSONTyped(value?: UpdateLayer | null, ignoreDiscriminator?: boolean): any;

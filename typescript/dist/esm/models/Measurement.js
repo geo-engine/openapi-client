@@ -18,34 +18,34 @@ export function MeasurementFromJSON(json) {
     return MeasurementFromJSONTyped(json, false);
 }
 export function MeasurementFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     switch (json['type']) {
         case 'classification':
-            return Object.assign(Object.assign({}, ClassificationMeasurementFromJSONTyped(json, true)), { type: 'classification' });
+            return Object.assign({}, ClassificationMeasurementFromJSONTyped(json, true), { type: 'classification' });
         case 'continuous':
-            return Object.assign(Object.assign({}, ContinuousMeasurementFromJSONTyped(json, true)), { type: 'continuous' });
+            return Object.assign({}, ContinuousMeasurementFromJSONTyped(json, true), { type: 'continuous' });
         case 'unitless':
-            return Object.assign(Object.assign({}, UnitlessMeasurementFromJSONTyped(json, true)), { type: 'unitless' });
+            return Object.assign({}, UnitlessMeasurementFromJSONTyped(json, true), { type: 'unitless' });
         default:
             throw new Error(`No variant of Measurement exists with 'type=${json['type']}'`);
     }
 }
-export function MeasurementToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+export function MeasurementToJSON(json) {
+    return MeasurementToJSONTyped(json, false);
+}
+export function MeasurementToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     switch (value['type']) {
         case 'classification':
-            return ClassificationMeasurementToJSON(value);
+            return Object.assign({}, ClassificationMeasurementToJSON(value), { type: 'classification' });
         case 'continuous':
-            return ContinuousMeasurementToJSON(value);
+            return Object.assign({}, ContinuousMeasurementToJSON(value), { type: 'continuous' });
         case 'unitless':
-            return UnitlessMeasurementToJSON(value);
+            return Object.assign({}, UnitlessMeasurementToJSON(value), { type: 'unitless' });
         default:
             throw new Error(`No variant of Measurement exists with 'type=${value['type']}'`);
     }

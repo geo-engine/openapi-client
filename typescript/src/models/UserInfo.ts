@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -42,11 +42,9 @@ export interface UserInfo {
 /**
  * Check if a given object implements the UserInfo interface.
  */
-export function instanceOfUserInfo(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-
-    return isInstance;
+export function instanceOfUserInfo(value: object): value is UserInfo {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    return true;
 }
 
 export function UserInfoFromJSON(json: any): UserInfo {
@@ -54,29 +52,31 @@ export function UserInfoFromJSON(json: any): UserInfo {
 }
 
 export function UserInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'email': !exists(json, 'email') ? undefined : json['email'],
+        'email': json['email'] == null ? undefined : json['email'],
         'id': json['id'],
-        'realName': !exists(json, 'realName') ? undefined : json['realName'],
+        'realName': json['realName'] == null ? undefined : json['realName'],
     };
 }
 
-export function UserInfoToJSON(value?: UserInfo | null): any {
-    if (value === undefined) {
-        return undefined;
+export function UserInfoToJSON(json: any): UserInfo {
+    return UserInfoToJSONTyped(json, false);
+}
+
+export function UserInfoToJSONTyped(value?: UserInfo | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'email': value.email,
-        'id': value.id,
-        'realName': value.realName,
+        'email': value['email'],
+        'id': value['id'],
+        'realName': value['realName'],
     };
 }
 

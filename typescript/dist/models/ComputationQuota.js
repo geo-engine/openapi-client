@@ -13,25 +13,30 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComputationQuotaToJSON = exports.ComputationQuotaFromJSONTyped = exports.ComputationQuotaFromJSON = exports.instanceOfComputationQuota = void 0;
+exports.instanceOfComputationQuota = instanceOfComputationQuota;
+exports.ComputationQuotaFromJSON = ComputationQuotaFromJSON;
+exports.ComputationQuotaFromJSONTyped = ComputationQuotaFromJSONTyped;
+exports.ComputationQuotaToJSON = ComputationQuotaToJSON;
+exports.ComputationQuotaToJSONTyped = ComputationQuotaToJSONTyped;
 /**
  * Check if a given object implements the ComputationQuota interface.
  */
 function instanceOfComputationQuota(value) {
-    let isInstance = true;
-    isInstance = isInstance && "computationId" in value;
-    isInstance = isInstance && "count" in value;
-    isInstance = isInstance && "timestamp" in value;
-    isInstance = isInstance && "workflowId" in value;
-    return isInstance;
+    if (!('computationId' in value) || value['computationId'] === undefined)
+        return false;
+    if (!('count' in value) || value['count'] === undefined)
+        return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined)
+        return false;
+    if (!('workflowId' in value) || value['workflowId'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfComputationQuota = instanceOfComputationQuota;
 function ComputationQuotaFromJSON(json) {
     return ComputationQuotaFromJSONTyped(json, false);
 }
-exports.ComputationQuotaFromJSON = ComputationQuotaFromJSON;
 function ComputationQuotaFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -41,19 +46,17 @@ function ComputationQuotaFromJSONTyped(json, ignoreDiscriminator) {
         'workflowId': json['workflowId'],
     };
 }
-exports.ComputationQuotaFromJSONTyped = ComputationQuotaFromJSONTyped;
-function ComputationQuotaToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function ComputationQuotaToJSON(json) {
+    return ComputationQuotaToJSONTyped(json, false);
+}
+function ComputationQuotaToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'computationId': value.computationId,
-        'count': value.count,
-        'timestamp': (value.timestamp.toISOString()),
-        'workflowId': value.workflowId,
+        'computationId': value['computationId'],
+        'count': value['count'],
+        'timestamp': ((value['timestamp']).toISOString()),
+        'workflowId': value['workflowId'],
     };
 }
-exports.ComputationQuotaToJSON = ComputationQuotaToJSON;

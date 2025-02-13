@@ -12,25 +12,28 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { GdalDatasetParameters } from './GdalDatasetParameters';
-import {
-    GdalDatasetParametersFromJSON,
-    GdalDatasetParametersFromJSONTyped,
-    GdalDatasetParametersToJSON,
-} from './GdalDatasetParameters';
-import type { RasterResultDescriptor } from './RasterResultDescriptor';
-import {
-    RasterResultDescriptorFromJSON,
-    RasterResultDescriptorFromJSONTyped,
-    RasterResultDescriptorToJSON,
-} from './RasterResultDescriptor';
+import { mapValues } from '../runtime';
 import type { TimeInterval } from './TimeInterval';
 import {
     TimeIntervalFromJSON,
     TimeIntervalFromJSONTyped,
     TimeIntervalToJSON,
+    TimeIntervalToJSONTyped,
 } from './TimeInterval';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import {
+    RasterResultDescriptorFromJSON,
+    RasterResultDescriptorFromJSONTyped,
+    RasterResultDescriptorToJSON,
+    RasterResultDescriptorToJSONTyped,
+} from './RasterResultDescriptor';
+import type { GdalDatasetParameters } from './GdalDatasetParameters';
+import {
+    GdalDatasetParametersFromJSON,
+    GdalDatasetParametersFromJSONTyped,
+    GdalDatasetParametersToJSON,
+    GdalDatasetParametersToJSONTyped,
+} from './GdalDatasetParameters';
 
 /**
  * 
@@ -83,13 +86,11 @@ export type GdalMetaDataStaticTypeEnum = typeof GdalMetaDataStaticTypeEnum[keyof
 /**
  * Check if a given object implements the GdalMetaDataStatic interface.
  */
-export function instanceOfGdalMetaDataStatic(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "params" in value;
-    isInstance = isInstance && "resultDescriptor" in value;
-    isInstance = isInstance && "type" in value;
-
-    return isInstance;
+export function instanceOfGdalMetaDataStatic(value: object): value is GdalMetaDataStatic {
+    if (!('params' in value) || value['params'] === undefined) return false;
+    if (!('resultDescriptor' in value) || value['resultDescriptor'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    return true;
 }
 
 export function GdalMetaDataStaticFromJSON(json: any): GdalMetaDataStatic {
@@ -97,33 +98,35 @@ export function GdalMetaDataStaticFromJSON(json: any): GdalMetaDataStatic {
 }
 
 export function GdalMetaDataStaticFromJSONTyped(json: any, ignoreDiscriminator: boolean): GdalMetaDataStatic {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'cacheTtl': !exists(json, 'cacheTtl') ? undefined : json['cacheTtl'],
+        'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
         'params': GdalDatasetParametersFromJSON(json['params']),
         'resultDescriptor': RasterResultDescriptorFromJSON(json['resultDescriptor']),
-        'time': !exists(json, 'time') ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
         'type': json['type'],
     };
 }
 
-export function GdalMetaDataStaticToJSON(value?: GdalMetaDataStatic | null): any {
-    if (value === undefined) {
-        return undefined;
+export function GdalMetaDataStaticToJSON(json: any): GdalMetaDataStatic {
+    return GdalMetaDataStaticToJSONTyped(json, false);
+}
+
+export function GdalMetaDataStaticToJSONTyped(value?: GdalMetaDataStatic | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
     }
-    if (value === null) {
-        return null;
-    }
+
     return {
         
-        'cacheTtl': value.cacheTtl,
-        'params': GdalDatasetParametersToJSON(value.params),
-        'resultDescriptor': RasterResultDescriptorToJSON(value.resultDescriptor),
-        'time': TimeIntervalToJSON(value.time),
-        'type': value.type,
+        'cacheTtl': value['cacheTtl'],
+        'params': GdalDatasetParametersToJSON(value['params']),
+        'resultDescriptor': RasterResultDescriptorToJSON(value['resultDescriptor']),
+        'time': TimeIntervalToJSON(value['time']),
+        'type': value['type'],
     };
 }
 

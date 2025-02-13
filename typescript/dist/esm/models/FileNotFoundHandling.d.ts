@@ -18,6 +18,8 @@ export declare const FileNotFoundHandling: {
     readonly Error: "Error";
 };
 export type FileNotFoundHandling = typeof FileNotFoundHandling[keyof typeof FileNotFoundHandling];
+export declare function instanceOfFileNotFoundHandling(value: any): boolean;
 export declare function FileNotFoundHandlingFromJSON(json: any): FileNotFoundHandling;
 export declare function FileNotFoundHandlingFromJSONTyped(json: any, ignoreDiscriminator: boolean): FileNotFoundHandling;
 export declare function FileNotFoundHandlingToJSON(value?: FileNotFoundHandling | null): any;
+export declare function FileNotFoundHandlingToJSONTyped(value: any, ignoreDiscriminator: boolean): FileNotFoundHandling;

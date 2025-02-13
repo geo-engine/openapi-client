@@ -13,7 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceTimeFormatAutoToJSON = exports.OgrSourceTimeFormatAutoFromJSONTyped = exports.OgrSourceTimeFormatAutoFromJSON = exports.instanceOfOgrSourceTimeFormatAuto = exports.OgrSourceTimeFormatAutoFormatEnum = void 0;
+exports.OgrSourceTimeFormatAutoFormatEnum = void 0;
+exports.instanceOfOgrSourceTimeFormatAuto = instanceOfOgrSourceTimeFormatAuto;
+exports.OgrSourceTimeFormatAutoFromJSON = OgrSourceTimeFormatAutoFromJSON;
+exports.OgrSourceTimeFormatAutoFromJSONTyped = OgrSourceTimeFormatAutoFromJSONTyped;
+exports.OgrSourceTimeFormatAutoToJSON = OgrSourceTimeFormatAutoToJSON;
+exports.OgrSourceTimeFormatAutoToJSONTyped = OgrSourceTimeFormatAutoToJSONTyped;
 /**
  * @export
  */
@@ -24,33 +29,29 @@ exports.OgrSourceTimeFormatAutoFormatEnum = {
  * Check if a given object implements the OgrSourceTimeFormatAuto interface.
  */
 function instanceOfOgrSourceTimeFormatAuto(value) {
-    let isInstance = true;
-    isInstance = isInstance && "format" in value;
-    return isInstance;
+    if (!('format' in value) || value['format'] === undefined)
+        return false;
+    return true;
 }
-exports.instanceOfOgrSourceTimeFormatAuto = instanceOfOgrSourceTimeFormatAuto;
 function OgrSourceTimeFormatAutoFromJSON(json) {
     return OgrSourceTimeFormatAutoFromJSONTyped(json, false);
 }
-exports.OgrSourceTimeFormatAutoFromJSON = OgrSourceTimeFormatAutoFromJSON;
 function OgrSourceTimeFormatAutoFromJSONTyped(json, ignoreDiscriminator) {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         'format': json['format'],
     };
 }
-exports.OgrSourceTimeFormatAutoFromJSONTyped = OgrSourceTimeFormatAutoFromJSONTyped;
-function OgrSourceTimeFormatAutoToJSON(value) {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+function OgrSourceTimeFormatAutoToJSON(json) {
+    return OgrSourceTimeFormatAutoToJSONTyped(json, false);
+}
+function OgrSourceTimeFormatAutoToJSONTyped(value, ignoreDiscriminator = false) {
+    if (value == null) {
+        return value;
     }
     return {
-        'format': value.format,
+        'format': value['format'],
     };
 }
-exports.OgrSourceTimeFormatAutoToJSON = OgrSourceTimeFormatAutoToJSON;

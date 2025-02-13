@@ -116,9 +116,15 @@ export class SessionApi extends runtime.BaseAPI {
      * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
-    oidcInitRaw(initOverrides) {
+    oidcInitRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.redirectUri === null || requestParameters.redirectUri === undefined) {
+                throw new runtime.RequiredError('redirectUri', 'Required parameter requestParameters.redirectUri was null or undefined when calling oidcInit.');
+            }
             const queryParameters = {};
+            if (requestParameters.redirectUri !== undefined) {
+                queryParameters['redirectUri'] = requestParameters.redirectUri;
+            }
             const headerParameters = {};
             const response = yield this.request({
                 path: `/oidcInit`,
@@ -133,9 +139,9 @@ export class SessionApi extends runtime.BaseAPI {
      * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
-    oidcInit(initOverrides) {
+    oidcInit(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.oidcInitRaw(initOverrides);
+            const response = yield this.oidcInitRaw(requestParameters, initOverrides);
             return yield response.value();
         });
     }
@@ -145,10 +151,16 @@ export class SessionApi extends runtime.BaseAPI {
      */
     oidcLoginRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters.redirectUri === null || requestParameters.redirectUri === undefined) {
+                throw new runtime.RequiredError('redirectUri', 'Required parameter requestParameters.redirectUri was null or undefined when calling oidcLogin.');
+            }
             if (requestParameters.authCodeResponse === null || requestParameters.authCodeResponse === undefined) {
                 throw new runtime.RequiredError('authCodeResponse', 'Required parameter requestParameters.authCodeResponse was null or undefined when calling oidcLogin.');
             }
             const queryParameters = {};
+            if (requestParameters.redirectUri !== undefined) {
+                queryParameters['redirectUri'] = requestParameters.redirectUri;
+            }
             const headerParameters = {};
             headerParameters['Content-Type'] = 'application/json';
             const response = yield this.request({

@@ -20,6 +20,13 @@ import {
     VectorDataTypeToJSON,
     VectorDataTypeToJSONTyped,
 } from './VectorDataType';
+import type { VectorResultDescriptor } from './VectorResultDescriptor';
+import {
+    VectorResultDescriptorFromJSON,
+    VectorResultDescriptorFromJSONTyped,
+    VectorResultDescriptorToJSON,
+    VectorResultDescriptorToJSONTyped,
+} from './VectorResultDescriptor';
 import type { TimeInterval } from './TimeInterval';
 import {
     TimeIntervalFromJSON,
@@ -47,37 +54,7 @@ import {
  * @export
  * @interface TypedVectorResultDescriptor
  */
-export interface TypedVectorResultDescriptor {
-    /**
-     * 
-     * @type {BoundingBox2D}
-     * @memberof TypedVectorResultDescriptor
-     */
-    bbox?: BoundingBox2D | null;
-    /**
-     * 
-     * @type {{ [key: string]: VectorColumnInfo; }}
-     * @memberof TypedVectorResultDescriptor
-     */
-    columns: { [key: string]: VectorColumnInfo; };
-    /**
-     * 
-     * @type {VectorDataType}
-     * @memberof TypedVectorResultDescriptor
-     */
-    dataType: VectorDataType;
-    /**
-     * 
-     * @type {string}
-     * @memberof TypedVectorResultDescriptor
-     */
-    spatialReference: string;
-    /**
-     * 
-     * @type {TimeInterval}
-     * @memberof TypedVectorResultDescriptor
-     */
-    time?: TimeInterval | null;
+export interface TypedVectorResultDescriptor extends VectorResultDescriptor {
     /**
      * 
      * @type {string}
@@ -100,9 +77,6 @@ export type TypedVectorResultDescriptorTypeEnum = typeof TypedVectorResultDescri
  * Check if a given object implements the TypedVectorResultDescriptor interface.
  */
 export function instanceOfTypedVectorResultDescriptor(value: object): value is TypedVectorResultDescriptor {
-    if (!('columns' in value) || value['columns'] === undefined) return false;
-    if (!('dataType' in value) || value['dataType'] === undefined) return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
@@ -116,12 +90,7 @@ export function TypedVectorResultDescriptorFromJSONTyped(json: any, ignoreDiscri
         return json;
     }
     return {
-        
-        'bbox': json['bbox'] == null ? undefined : BoundingBox2DFromJSON(json['bbox']),
-        'columns': (mapValues(json['columns'], VectorColumnInfoFromJSON)),
-        'dataType': VectorDataTypeFromJSON(json['dataType']),
-        'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        ...VectorResultDescriptorFromJSONTyped(json, true),
         'type': json['type'],
     };
 }
@@ -136,12 +105,7 @@ export function TypedVectorResultDescriptorToJSONTyped(value?: TypedVectorResult
     }
 
     return {
-        
-        'bbox': BoundingBox2DToJSON(value['bbox']),
-        'columns': (mapValues(value['columns'], VectorColumnInfoToJSON)),
-        'dataType': VectorDataTypeToJSON(value['dataType']),
-        'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
+        ...VectorResultDescriptorToJSONTyped(value, true),
         'type': value['type'],
     };
 }

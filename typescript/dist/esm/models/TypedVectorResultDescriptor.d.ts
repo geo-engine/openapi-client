@@ -9,48 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { VectorDataType } from './VectorDataType';
-import type { TimeInterval } from './TimeInterval';
-import type { VectorColumnInfo } from './VectorColumnInfo';
-import type { BoundingBox2D } from './BoundingBox2D';
+import type { VectorResultDescriptor } from './VectorResultDescriptor';
 /**
  *
  * @export
  * @interface TypedVectorResultDescriptor
  */
-export interface TypedVectorResultDescriptor {
-    /**
-     *
-     * @type {BoundingBox2D}
-     * @memberof TypedVectorResultDescriptor
-     */
-    bbox?: BoundingBox2D | null;
-    /**
-     *
-     * @type {{ [key: string]: VectorColumnInfo; }}
-     * @memberof TypedVectorResultDescriptor
-     */
-    columns: {
-        [key: string]: VectorColumnInfo;
-    };
-    /**
-     *
-     * @type {VectorDataType}
-     * @memberof TypedVectorResultDescriptor
-     */
-    dataType: VectorDataType;
-    /**
-     *
-     * @type {string}
-     * @memberof TypedVectorResultDescriptor
-     */
-    spatialReference: string;
-    /**
-     *
-     * @type {TimeInterval}
-     * @memberof TypedVectorResultDescriptor
-     */
-    time?: TimeInterval | null;
+export interface TypedVectorResultDescriptor extends VectorResultDescriptor {
     /**
      *
      * @type {string}

@@ -15,9 +15,9 @@
 
 import * as runtime from '../runtime';
 import type {
-  AddCollection200Response,
   AddLayer,
   AddLayerCollection,
+  IdResponse,
   Layer,
   LayerCollection,
   ProviderCapabilities,
@@ -27,12 +27,12 @@ import type {
   UpdateLayerCollection,
 } from '../models/index';
 import {
-    AddCollection200ResponseFromJSON,
-    AddCollection200ResponseToJSON,
     AddLayerFromJSON,
     AddLayerToJSON,
     AddLayerCollectionFromJSON,
     AddLayerCollectionToJSON,
+    IdResponseFromJSON,
+    IdResponseToJSON,
     LayerFromJSON,
     LayerToJSON,
     LayerCollectionFromJSON,
@@ -154,7 +154,7 @@ export class LayersApi extends runtime.BaseAPI {
     /**
      * Add a new collection to an existing collection
      */
-    async addCollectionRaw(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
+    async addCollectionRaw(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
         if (requestParameters['collection'] == null) {
             throw new runtime.RequiredError(
                 'collection',
@@ -191,13 +191,13 @@ export class LayersApi extends runtime.BaseAPI {
             body: AddLayerCollectionToJSON(requestParameters['addLayerCollection']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
 
     /**
      * Add a new collection to an existing collection
      */
-    async addCollection(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
+    async addCollection(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse> {
         const response = await this.addCollectionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -299,7 +299,7 @@ export class LayersApi extends runtime.BaseAPI {
     /**
      * Add a new layer to a collection
      */
-    async addLayerRaw(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
+    async addLayerRaw(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
         if (requestParameters['collection'] == null) {
             throw new runtime.RequiredError(
                 'collection',
@@ -336,13 +336,13 @@ export class LayersApi extends runtime.BaseAPI {
             body: AddLayerToJSON(requestParameters['addLayer']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
 
     /**
      * Add a new layer to a collection
      */
-    async addLayer(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
+    async addLayer(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse> {
         const response = await this.addLayerRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -538,7 +538,7 @@ export class LayersApi extends runtime.BaseAPI {
     /**
      * Registers a layer from a provider as a workflow and returns the workflow id
      */
-    async layerToWorkflowIdHandlerRaw(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
+    async layerToWorkflowIdHandlerRaw(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -572,13 +572,13 @@ export class LayersApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
 
     /**
      * Registers a layer from a provider as a workflow and returns the workflow id
      */
-    async layerToWorkflowIdHandler(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
+    async layerToWorkflowIdHandler(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse> {
         const response = await this.layerToWorkflowIdHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }

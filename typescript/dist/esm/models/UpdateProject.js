@@ -12,9 +12,8 @@
  * Do not edit the class manually.
  */
 import { TimeStepFromJSON, TimeStepToJSON, } from './TimeStep';
-import { PlotUpdateFromJSON, PlotUpdateToJSON, } from './PlotUpdate';
 import { STRectangleFromJSON, STRectangleToJSON, } from './STRectangle';
-import { LayerUpdateFromJSON, LayerUpdateToJSON, } from './LayerUpdate';
+import { VecUpdateFromJSON, VecUpdateToJSON, } from './VecUpdate';
 /**
  * Check if a given object implements the UpdateProject interface.
  */
@@ -34,9 +33,9 @@ export function UpdateProjectFromJSONTyped(json, ignoreDiscriminator) {
         'bounds': json['bounds'] == null ? undefined : STRectangleFromJSON(json['bounds']),
         'description': json['description'] == null ? undefined : json['description'],
         'id': json['id'],
-        'layers': json['layers'] == null ? undefined : (json['layers'].map(LayerUpdateFromJSON)),
+        'layers': json['layers'] == null ? undefined : (json['layers'].map(VecUpdateFromJSON)),
         'name': json['name'] == null ? undefined : json['name'],
-        'plots': json['plots'] == null ? undefined : (json['plots'].map(PlotUpdateFromJSON)),
+        'plots': json['plots'] == null ? undefined : (json['plots'].map(VecUpdateFromJSON)),
         'timeStep': json['timeStep'] == null ? undefined : TimeStepFromJSON(json['timeStep']),
     };
 }
@@ -51,9 +50,9 @@ export function UpdateProjectToJSONTyped(value, ignoreDiscriminator = false) {
         'bounds': STRectangleToJSON(value['bounds']),
         'description': value['description'],
         'id': value['id'],
-        'layers': value['layers'] == null ? undefined : (value['layers'].map(LayerUpdateToJSON)),
+        'layers': value['layers'] == null ? undefined : (value['layers'].map(VecUpdateToJSON)),
         'name': value['name'],
-        'plots': value['plots'] == null ? undefined : (value['plots'].map(PlotUpdateToJSON)),
+        'plots': value['plots'] == null ? undefined : (value['plots'].map(VecUpdateToJSON)),
         'timeStep': TimeStepToJSON(value['timeStep']),
     };
 }

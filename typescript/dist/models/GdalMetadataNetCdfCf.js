@@ -26,7 +26,7 @@ const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
  * @export
  */
 exports.GdalMetadataNetCdfCfTypeEnum = {
-    GdalMetadataNetCdfCf: 'GdalMetadataNetCdfCf'
+    GdalMetaDataNetCdfCf: 'GdalMetaDataNetCdfCf'
 };
 /**
  * Check if a given object implements the GdalMetadataNetCdfCf interface.

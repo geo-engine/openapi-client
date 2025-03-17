@@ -30,14 +30,14 @@ class TestDatasetsApi(unittest.TestCase):
     def test_auto_create_dataset_handler(self) -> None:
         """Test case for auto_create_dataset_handler
 
-        Creates a new dataset using previously uploaded files.
+        Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
         """
         pass
 
     def test_create_dataset_handler(self) -> None:
         """Test case for create_dataset_handler
 
-        Creates a new dataset referencing files.
+        Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
         """
         pass
 
@@ -86,7 +86,7 @@ class TestDatasetsApi(unittest.TestCase):
     def test_suggest_meta_data_handler(self) -> None:
         """Test case for suggest_meta_data_handler
 
-        Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+        Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
         """
         pass
 

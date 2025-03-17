@@ -18,10 +18,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBool, StrictBytes, StrictStr
-from typing import Any, Optional, Tuple, Union
+from typing import Optional, Tuple, Union
 from typing_extensions import Annotated
+from geoengine_openapi_client.models.get_capabilities_format import GetCapabilitiesFormat
 from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest
 from geoengine_openapi_client.models.get_legend_graphic_request import GetLegendGraphicRequest
+from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat
 from geoengine_openapi_client.models.get_map_format import GetMapFormat
 from geoengine_openapi_client.models.get_map_request import GetMapRequest
 from geoengine_openapi_client.models.wms_service import WmsService
@@ -49,10 +51,10 @@ class OGCWMSApi:
     def wms_capabilities_handler(
         self,
         workflow: Annotated[StrictStr, Field(description="Workflow id")],
-        version: Optional[Any],
+        version: Optional[WmsVersion],
         service: WmsService,
         request: GetCapabilitiesRequest,
-        format: Optional[Any],
+        format: Optional[GetCapabilitiesFormat],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -131,10 +133,10 @@ class OGCWMSApi:
     def wms_capabilities_handler_with_http_info(
         self,
         workflow: Annotated[StrictStr, Field(description="Workflow id")],
-        version: Optional[Any],
+        version: Optional[WmsVersion],
         service: WmsService,
         request: GetCapabilitiesRequest,
-        format: Optional[Any],
+        format: Optional[GetCapabilitiesFormat],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -213,10 +215,10 @@ class OGCWMSApi:
     def wms_capabilities_handler_without_preload_content(
         self,
         workflow: Annotated[StrictStr, Field(description="Workflow id")],
-        version: Optional[Any],
+        version: Optional[WmsVersion],
         service: WmsService,
         request: GetCapabilitiesRequest,
-        format: Optional[Any],
+        format: Optional[GetCapabilitiesFormat],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -696,7 +698,7 @@ class OGCWMSApi:
         sld: Optional[StrictStr] = None,
         sld_body: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
-        exceptions: Optional[Any] = None,
+        exceptions: Optional[GetMapExceptionFormat] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -830,7 +832,7 @@ class OGCWMSApi:
         sld: Optional[StrictStr] = None,
         sld_body: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
-        exceptions: Optional[Any] = None,
+        exceptions: Optional[GetMapExceptionFormat] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -964,7 +966,7 @@ class OGCWMSApi:
         sld: Optional[StrictStr] = None,
         sld_body: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
-        exceptions: Optional[Any] = None,
+        exceptions: Optional[GetMapExceptionFormat] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

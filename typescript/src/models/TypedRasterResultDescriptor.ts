@@ -27,6 +27,13 @@ import {
     TimeIntervalToJSON,
     TimeIntervalToJSONTyped,
 } from './TimeInterval';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
+import {
+    RasterResultDescriptorFromJSON,
+    RasterResultDescriptorFromJSONTyped,
+    RasterResultDescriptorToJSON,
+    RasterResultDescriptorToJSONTyped,
+} from './RasterResultDescriptor';
 import type { RasterBandDescriptor } from './RasterBandDescriptor';
 import {
     RasterBandDescriptorFromJSON,
@@ -50,47 +57,11 @@ import {
 } from './SpatialPartition2D';
 
 /**
- * A `ResultDescriptor` for raster queries
+ * 
  * @export
  * @interface TypedRasterResultDescriptor
  */
-export interface TypedRasterResultDescriptor {
-    /**
-     * 
-     * @type {Array<RasterBandDescriptor>}
-     * @memberof TypedRasterResultDescriptor
-     */
-    bands: Array<RasterBandDescriptor>;
-    /**
-     * 
-     * @type {SpatialPartition2D}
-     * @memberof TypedRasterResultDescriptor
-     */
-    bbox?: SpatialPartition2D | null;
-    /**
-     * 
-     * @type {RasterDataType}
-     * @memberof TypedRasterResultDescriptor
-     */
-    dataType: RasterDataType;
-    /**
-     * 
-     * @type {SpatialResolution}
-     * @memberof TypedRasterResultDescriptor
-     */
-    resolution?: SpatialResolution | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof TypedRasterResultDescriptor
-     */
-    spatialReference: string;
-    /**
-     * 
-     * @type {TimeInterval}
-     * @memberof TypedRasterResultDescriptor
-     */
-    time?: TimeInterval | null;
+export interface TypedRasterResultDescriptor extends RasterResultDescriptor {
     /**
      * 
      * @type {string}
@@ -113,9 +84,6 @@ export type TypedRasterResultDescriptorTypeEnum = typeof TypedRasterResultDescri
  * Check if a given object implements the TypedRasterResultDescriptor interface.
  */
 export function instanceOfTypedRasterResultDescriptor(value: object): value is TypedRasterResultDescriptor {
-    if (!('bands' in value) || value['bands'] === undefined) return false;
-    if (!('dataType' in value) || value['dataType'] === undefined) return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
@@ -129,13 +97,7 @@ export function TypedRasterResultDescriptorFromJSONTyped(json: any, ignoreDiscri
         return json;
     }
     return {
-        
-        'bands': ((json['bands'] as Array<any>).map(RasterBandDescriptorFromJSON)),
-        'bbox': json['bbox'] == null ? undefined : SpatialPartition2DFromJSON(json['bbox']),
-        'dataType': RasterDataTypeFromJSON(json['dataType']),
-        'resolution': json['resolution'] == null ? undefined : SpatialResolutionFromJSON(json['resolution']),
-        'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        ...RasterResultDescriptorFromJSONTyped(json, true),
         'type': json['type'],
     };
 }
@@ -150,13 +112,7 @@ export function TypedRasterResultDescriptorToJSONTyped(value?: TypedRasterResult
     }
 
     return {
-        
-        'bands': ((value['bands'] as Array<any>).map(RasterBandDescriptorToJSON)),
-        'bbox': SpatialPartition2DToJSON(value['bbox']),
-        'dataType': RasterDataTypeToJSON(value['dataType']),
-        'resolution': SpatialResolutionToJSON(value['resolution']),
-        'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
+        ...RasterResultDescriptorToJSONTyped(value, true),
         'type': value['type'],
     };
 }

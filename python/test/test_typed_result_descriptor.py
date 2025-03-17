@@ -36,6 +36,11 @@ class TestTypedResultDescriptor(unittest.TestCase):
         model = TypedResultDescriptor()
         if include_optional:
             return TypedResultDescriptor(
+                bands = [
+                    geoengine_openapi_client.models.raster_band_descriptor.RasterBandDescriptor(
+                        measurement = null, 
+                        name = '', )
+                    ],
                 bbox = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(
                     lower_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                         x = 1.337, 
@@ -43,20 +48,15 @@ class TestTypedResultDescriptor(unittest.TestCase):
                     upper_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                         x = 1.337, 
                         y = 1.337, ), ),
-                spatial_reference = '',
-                time = geoengine_openapi_client.models.time_interval.TimeInterval(
-                    end = 56, 
-                    start = 56, ),
-                type = 'plot',
-                bands = [
-                    geoengine_openapi_client.models.raster_band_descriptor.RasterBandDescriptor(
-                        measurement = null, 
-                        name = '', )
-                    ],
                 data_type = 'Data',
                 resolution = geoengine_openapi_client.models.spatial_resolution.SpatialResolution(
                     x = 1.337, 
                     y = 1.337, ),
+                spatial_reference = '',
+                time = geoengine_openapi_client.models.time_interval.TimeInterval(
+                    end = 56, 
+                    start = 56, ),
+                type = 'raster',
                 columns = {
                     'key' : geoengine_openapi_client.models.vector_column_info.VectorColumnInfo(
                         data_type = 'category', 
@@ -65,14 +65,14 @@ class TestTypedResultDescriptor(unittest.TestCase):
             )
         else:
             return TypedResultDescriptor(
-                spatial_reference = '',
-                type = 'plot',
                 bands = [
                     geoengine_openapi_client.models.raster_band_descriptor.RasterBandDescriptor(
                         measurement = null, 
                         name = '', )
                     ],
                 data_type = 'Data',
+                spatial_reference = '',
+                type = 'raster',
                 columns = {
                     'key' : geoengine_openapi_client.models.vector_column_info.VectorColumnInfo(
                         data_type = 'category', 

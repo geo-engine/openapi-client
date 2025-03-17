@@ -10,9 +10,8 @@
  * Do not edit the class manually.
  */
 import type { TimeStep } from './TimeStep';
-import type { PlotUpdate } from './PlotUpdate';
 import type { STRectangle } from './STRectangle';
-import type { LayerUpdate } from './LayerUpdate';
+import type { VecUpdate } from './VecUpdate';
 /**
  *
  * @export
@@ -39,10 +38,10 @@ export interface UpdateProject {
     id: string;
     /**
      *
-     * @type {Array<LayerUpdate>}
+     * @type {Array<VecUpdate>}
      * @memberof UpdateProject
      */
-    layers?: Array<LayerUpdate> | null;
+    layers?: Array<VecUpdate> | null;
     /**
      *
      * @type {string}
@@ -51,10 +50,10 @@ export interface UpdateProject {
     name?: string | null;
     /**
      *
-     * @type {Array<PlotUpdate>}
+     * @type {Array<VecUpdate>}
      * @memberof UpdateProject
      */
-    plots?: Array<PlotUpdate> | null;
+    plots?: Array<VecUpdate> | null;
     /**
      *
      * @type {TimeStep}

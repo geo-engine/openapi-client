@@ -23,10 +23,10 @@ import type { OgrMetaData } from './OgrMetaData';
 export type MetaDataDefinition = {
     type: 'GdalMetaDataList';
 } & GdalMetaDataList | {
+    type: 'GdalMetaDataNetCdfCf';
+} & GdalMetadataNetCdfCf | {
     type: 'GdalMetaDataRegular';
 } & GdalMetaDataRegular | {
-    type: 'GdalMetadataNetCdfCf';
-} & GdalMetadataNetCdfCf | {
     type: 'GdalStatic';
 } & GdalMetaDataStatic | {
     type: 'MockMetaData';

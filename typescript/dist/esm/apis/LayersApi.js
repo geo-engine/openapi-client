@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as runtime from '../runtime';
-import { AddCollection200ResponseFromJSON, AddLayerToJSON, AddLayerCollectionToJSON, LayerFromJSON, LayerCollectionFromJSON, ProviderCapabilitiesFromJSON, TaskResponseFromJSON, UpdateLayerToJSON, UpdateLayerCollectionToJSON, } from '../models/index';
+import { AddLayerToJSON, AddLayerCollectionToJSON, IdResponseFromJSON, LayerFromJSON, LayerCollectionFromJSON, ProviderCapabilitiesFromJSON, TaskResponseFromJSON, UpdateLayerToJSON, UpdateLayerCollectionToJSON, } from '../models/index';
 /**
  *
  */
@@ -54,7 +54,7 @@ export class LayersApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: AddLayerCollectionToJSON(requestParameters['addLayerCollection']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
     /**
@@ -168,7 +168,7 @@ export class LayersApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: AddLayerToJSON(requestParameters['addLayer']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
     /**
@@ -344,7 +344,7 @@ export class LayersApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
     /**

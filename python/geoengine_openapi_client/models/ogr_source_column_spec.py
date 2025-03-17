@@ -86,11 +86,6 @@ class OgrSourceColumnSpec(BaseModel):
         if self.format_specifics is None and "format_specifics" in self.model_fields_set:
             _dict['formatSpecifics'] = None
 
-        # set to None if rename (nullable) is None
-        # and model_fields_set contains the field
-        if self.rename is None and "rename" in self.model_fields_set:
-            _dict['rename'] = None
-
         # set to None if y (nullable) is None
         # and model_fields_set contains the field
         if self.y is None and "y" in self.model_fields_set:

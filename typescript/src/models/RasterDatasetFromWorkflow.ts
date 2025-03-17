@@ -50,7 +50,7 @@ export interface RasterDatasetFromWorkflow {
      * @type {string}
      * @memberof RasterDatasetFromWorkflow
      */
-    name?: string | null;
+    name?: string;
     /**
      * 
      * @type {RasterQueryRectangle}

@@ -18,20 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import ConfigDict, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
 from geoengine_openapi_client.models.bounding_box2_d import BoundingBox2D
+from geoengine_openapi_client.models.plot_result_descriptor import PlotResultDescriptor
 from geoengine_openapi_client.models.time_interval import TimeInterval
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TypedPlotResultDescriptor(BaseModel):
+class TypedPlotResultDescriptor(PlotResultDescriptor):
     """
-    A `ResultDescriptor` for plot queries
+    TypedPlotResultDescriptor
     """ # noqa: E501
-    bbox: Optional[BoundingBox2D] = None
-    spatial_reference: StrictStr = Field(alias="spatialReference")
-    time: Optional[TimeInterval] = None
     type: StrictStr
     __properties: ClassVar[List[str]] = ["bbox", "spatialReference", "time", "type"]
 

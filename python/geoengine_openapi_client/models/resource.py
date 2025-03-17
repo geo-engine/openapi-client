@@ -31,7 +31,7 @@ RESOURCE_ONE_OF_SCHEMAS = ["DatasetResource", "LayerCollectionResource", "LayerR
 
 class Resource(BaseModel):
     """
-    Resource
+    A resource that is affected by a permission.
     """
     # data type: LayerResource
     oneof_schema_1_validator: Optional[LayerResource] = None

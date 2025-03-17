@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as runtime from '../runtime';
-import { AddCollection200ResponseFromJSON, CreateProjectToJSON, ProjectFromJSON, ProjectListingFromJSON, ProjectVersionFromJSON, UpdateProjectToJSON, } from '../models/index';
+import { CreateProjectToJSON, IdResponseFromJSON, ProjectFromJSON, ProjectListingFromJSON, ProjectVersionFromJSON, UpdateProjectToJSON, } from '../models/index';
 /**
  *
  */
@@ -51,7 +51,7 @@ export class ProjectsApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: CreateProjectToJSON(requestParameters['createProject']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
     /**
@@ -247,8 +247,7 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * This will create a new version.
-     * Updates a project.
+     * Updates a project. This will create a new version.
      */
     updateProjectHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -279,8 +278,7 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * This will create a new version.
-     * Updates a project.
+     * Updates a project. This will create a new version.
      */
     updateProjectHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AddCollection200Response, AddRole, ComputationQuota, DataUsage, DataUsageSummary, OperatorQuota, Quota, RoleDescription, UpdateQuota, UsageSummaryGranularity } from '../models/index';
+import type { AddRole, ComputationQuota, DataUsage, DataUsageSummary, IdResponse, OperatorQuota, Quota, RoleDescription, UpdateQuota, UsageSummaryGranularity } from '../models/index';
 export interface AddRoleHandlerRequest {
     addRole: AddRole;
 }
@@ -107,11 +107,11 @@ export declare class UserApi extends runtime.BaseAPI {
     /**
      * Get role by name
      */
-    getRoleByNameHandlerRaw(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>>;
+    getRoleByNameHandlerRaw(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
     /**
      * Get role by name
      */
-    getRoleByNameHandler(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;
+    getRoleByNameHandler(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
     /**
      * Query roles for the current user.
      */

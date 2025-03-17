@@ -20,8 +20,8 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import List
 from typing_extensions import Annotated
-from geoengine_openapi_client.models.add_collection200_response import AddCollection200Response
 from geoengine_openapi_client.models.create_project import CreateProject
+from geoengine_openapi_client.models.id_response import IdResponse
 from geoengine_openapi_client.models.order_by import OrderBy
 from geoengine_openapi_client.models.project import Project
 from geoengine_openapi_client.models.project_listing import ProjectListing
@@ -62,7 +62,7 @@ class ProjectsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AddCollection200Response:
+    ) -> IdResponse:
         """Create a new project for the user.
 
 
@@ -99,7 +99,7 @@ class ProjectsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -128,7 +128,7 @@ class ProjectsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AddCollection200Response]:
+    ) -> ApiResponse[IdResponse]:
         """Create a new project for the user.
 
 
@@ -165,7 +165,7 @@ class ProjectsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -231,7 +231,7 @@ class ProjectsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1663,9 +1663,8 @@ class ProjectsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """Updates a project.
+        """Updates a project. This will create a new version.
 
-        This will create a new version.
 
         :param project: Project id (required)
         :type project: str
@@ -1734,9 +1733,8 @@ class ProjectsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """Updates a project.
+        """Updates a project. This will create a new version.
 
-        This will create a new version.
 
         :param project: Project id (required)
         :type project: str
@@ -1805,9 +1803,8 @@ class ProjectsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Updates a project.
+        """Updates a project. This will create a new version.
 
-        This will create a new version.
 
         :param project: Project id (required)
         :type project: str

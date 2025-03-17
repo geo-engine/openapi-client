@@ -49,7 +49,7 @@ export interface StatusHandlerRequest {
 export class TasksApi extends runtime.BaseAPI {
 
     /**
-     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     async abortHandlerRaw(requestParameters: AbortHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -87,7 +87,7 @@ export class TasksApi extends runtime.BaseAPI {
     }
 
     /**
-     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     async abortHandler(requestParameters: AbortHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {

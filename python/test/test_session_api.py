@@ -58,7 +58,7 @@ class TestSessionApi(unittest.TestCase):
     def test_oidc_login(self) -> None:
         """Test case for oidc_login
 
-        Creates a session for a user via a login with Open Id Connect.
+        Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
         """
         pass
 

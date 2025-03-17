@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AddCollection200Response, UploadFileLayersResponse, UploadFilesResponse } from '../models/index';
+import type { IdResponse, UploadFileLayersResponse, UploadFilesResponse } from '../models/index';
 export interface ListUploadFileLayersHandlerRequest {
     uploadId: string;
     fileName: string;
@@ -44,9 +44,9 @@ export declare class UploadsApi extends runtime.BaseAPI {
     /**
      * Uploads files.
      */
-    uploadHandlerRaw(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>>;
+    uploadHandlerRaw(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
     /**
      * Uploads files.
      */
-    uploadHandler(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;
+    uploadHandler(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
 }

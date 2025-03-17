@@ -19,20 +19,20 @@ import {
     DerivedNumberFromJSONTyped,
     DerivedNumberToJSON,
 } from './DerivedNumber';
-import type { StaticNumberParam } from './StaticNumberParam';
+import type { StaticNumber } from './StaticNumber';
 import {
-    instanceOfStaticNumberParam,
-    StaticNumberParamFromJSON,
-    StaticNumberParamFromJSONTyped,
-    StaticNumberParamToJSON,
-} from './StaticNumberParam';
+    instanceOfStaticNumber,
+    StaticNumberFromJSON,
+    StaticNumberFromJSONTyped,
+    StaticNumberToJSON,
+} from './StaticNumber';
 
 /**
  * @type NumberParam
  * 
  * @export
  */
-export type NumberParam = { type: 'derived' } & DerivedNumber | { type: 'static' } & StaticNumberParam;
+export type NumberParam = { type: 'derived' } & DerivedNumber | { type: 'static' } & StaticNumber;
 
 export function NumberParamFromJSON(json: any): NumberParam {
     return NumberParamFromJSONTyped(json, false);
@@ -46,7 +46,7 @@ export function NumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean
         case 'derived':
             return Object.assign({}, DerivedNumberFromJSONTyped(json, true), { type: 'derived' } as const);
         case 'static':
-            return Object.assign({}, StaticNumberParamFromJSONTyped(json, true), { type: 'static' } as const);
+            return Object.assign({}, StaticNumberFromJSONTyped(json, true), { type: 'static' } as const);
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }
@@ -64,7 +64,7 @@ export function NumberParamToJSONTyped(value?: NumberParam | null, ignoreDiscrim
         case 'derived':
             return Object.assign({}, DerivedNumberToJSON(value), { type: 'derived' } as const);
         case 'static':
-            return Object.assign({}, StaticNumberParamToJSON(value), { type: 'static' } as const);
+            return Object.assign({}, StaticNumberToJSON(value), { type: 'static' } as const);
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
     }

@@ -20,7 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBytes, StrictStr
 from typing import List, Tuple, Union
 from typing_extensions import Annotated
-from geoengine_openapi_client.models.add_collection200_response import AddCollection200Response
+from geoengine_openapi_client.models.id_response import IdResponse
 from geoengine_openapi_client.models.upload_file_layers_response import UploadFileLayersResponse
 from geoengine_openapi_client.models.upload_files_response import UploadFilesResponse
 
@@ -589,7 +589,7 @@ class UploadsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AddCollection200Response:
+    ) -> IdResponse:
         """Uploads files.
 
 
@@ -626,7 +626,7 @@ class UploadsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -655,7 +655,7 @@ class UploadsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AddCollection200Response]:
+    ) -> ApiResponse[IdResponse]:
         """Uploads files.
 
 
@@ -692,7 +692,7 @@ class UploadsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -758,7 +758,7 @@ class UploadsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

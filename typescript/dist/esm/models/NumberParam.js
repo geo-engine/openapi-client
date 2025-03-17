@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import { DerivedNumberFromJSONTyped, DerivedNumberToJSON, } from './DerivedNumber';
-import { StaticNumberParamFromJSONTyped, StaticNumberParamToJSON, } from './StaticNumberParam';
+import { StaticNumberFromJSONTyped, StaticNumberToJSON, } from './StaticNumber';
 export function NumberParamFromJSON(json) {
     return NumberParamFromJSONTyped(json, false);
 }
@@ -24,7 +24,7 @@ export function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
         case 'derived':
             return Object.assign({}, DerivedNumberFromJSONTyped(json, true), { type: 'derived' });
         case 'static':
-            return Object.assign({}, StaticNumberParamFromJSONTyped(json, true), { type: 'static' });
+            return Object.assign({}, StaticNumberFromJSONTyped(json, true), { type: 'static' });
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }
@@ -40,7 +40,7 @@ export function NumberParamToJSONTyped(value, ignoreDiscriminator = false) {
         case 'derived':
             return Object.assign({}, DerivedNumberToJSON(value), { type: 'derived' });
         case 'static':
-            return Object.assign({}, StaticNumberParamToJSON(value), { type: 'static' });
+            return Object.assign({}, StaticNumberToJSON(value), { type: 'static' });
         default:
             throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
     }

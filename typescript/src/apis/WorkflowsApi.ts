@@ -15,7 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
-  AddCollection200Response,
+  IdResponse,
   ProvenanceEntry,
   RasterDatasetFromWorkflow,
   RasterStreamWebsocketResultType,
@@ -26,8 +26,8 @@ import type {
   Workflow,
 } from '../models/index';
 import {
-    AddCollection200ResponseFromJSON,
-    AddCollection200ResponseToJSON,
+    IdResponseFromJSON,
+    IdResponseToJSON,
     ProvenanceEntryFromJSON,
     ProvenanceEntryToJSON,
     RasterDatasetFromWorkflowFromJSON,
@@ -86,8 +86,7 @@ export interface RegisterWorkflowHandlerRequest {
 export class WorkflowsApi extends runtime.BaseAPI {
 
     /**
-     * Returns the id of the created task
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
+     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
      */
     async datasetFromWorkflowHandlerRaw(requestParameters: DatasetFromWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskResponse>> {
         if (requestParameters['id'] == null) {
@@ -130,8 +129,7 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns the id of the created task
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
+     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
      */
     async datasetFromWorkflowHandler(requestParameters: DatasetFromWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaskResponse> {
         const response = await this.datasetFromWorkflowHandlerRaw(requestParameters, initOverrides);
@@ -400,7 +398,7 @@ export class WorkflowsApi extends runtime.BaseAPI {
     /**
      * Registers a new Workflow.
      */
-    async registerWorkflowHandlerRaw(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
+    async registerWorkflowHandlerRaw(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
         if (requestParameters['workflow'] == null) {
             throw new runtime.RequiredError(
                 'workflow',
@@ -430,13 +428,13 @@ export class WorkflowsApi extends runtime.BaseAPI {
             body: WorkflowToJSON(requestParameters['workflow']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
 
     /**
      * Registers a new Workflow.
      */
-    async registerWorkflowHandler(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
+    async registerWorkflowHandler(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse> {
         const response = await this.registerWorkflowHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }

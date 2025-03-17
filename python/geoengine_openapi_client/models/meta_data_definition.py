@@ -133,14 +133,14 @@ class MetaDataDefinition(BaseModel):
             instance.actual_instance = GdalMetaDataList.from_json(json_str)
             return instance
 
+        # check if data type is `GdalMetadataNetCdfCf`
+        if _data_type == "GdalMetaDataNetCdfCf":
+            instance.actual_instance = GdalMetadataNetCdfCf.from_json(json_str)
+            return instance
+
         # check if data type is `GdalMetaDataRegular`
         if _data_type == "GdalMetaDataRegular":
             instance.actual_instance = GdalMetaDataRegular.from_json(json_str)
-            return instance
-
-        # check if data type is `GdalMetadataNetCdfCf`
-        if _data_type == "GdalMetadataNetCdfCf":
-            instance.actual_instance = GdalMetadataNetCdfCf.from_json(json_str)
             return instance
 
         # check if data type is `GdalMetaDataStatic`
@@ -161,6 +161,11 @@ class MetaDataDefinition(BaseModel):
         # check if data type is `GdalMetaDataStatic`
         if _data_type == "GdalMetaDataStatic":
             instance.actual_instance = GdalMetaDataStatic.from_json(json_str)
+            return instance
+
+        # check if data type is `GdalMetadataNetCdfCf`
+        if _data_type == "GdalMetadataNetCdfCf":
+            instance.actual_instance = GdalMetadataNetCdfCf.from_json(json_str)
             return instance
 
         # deserialize data into MockMetaData

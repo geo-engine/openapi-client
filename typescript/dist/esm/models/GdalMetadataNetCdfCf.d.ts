@@ -72,7 +72,7 @@ export interface GdalMetadataNetCdfCf {
  * @export
  */
 export declare const GdalMetadataNetCdfCfTypeEnum: {
-    readonly GdalMetadataNetCdfCf: "GdalMetadataNetCdfCf";
+    readonly GdalMetaDataNetCdfCf: "GdalMetaDataNetCdfCf";
 };
 export type GdalMetadataNetCdfCfTypeEnum = typeof GdalMetadataNetCdfCfTypeEnum[keyof typeof GdalMetadataNetCdfCfTypeEnum];
 /**

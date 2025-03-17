@@ -17,9 +17,9 @@ import * as runtime from '../runtime';
 import type {
   AutoCreateDataset,
   CreateDataset,
-  CreateDatasetHandler200Response,
   Dataset,
   DatasetListing,
+  DatasetNameResponse,
   ErrorResponse,
   MetaDataDefinition,
   MetaDataSuggestion,
@@ -36,12 +36,12 @@ import {
     AutoCreateDatasetToJSON,
     CreateDatasetFromJSON,
     CreateDatasetToJSON,
-    CreateDatasetHandler200ResponseFromJSON,
-    CreateDatasetHandler200ResponseToJSON,
     DatasetFromJSON,
     DatasetToJSON,
     DatasetListingFromJSON,
     DatasetListingToJSON,
+    DatasetNameResponseFromJSON,
+    DatasetNameResponseToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     MetaDataDefinitionFromJSON,
@@ -88,8 +88,8 @@ export interface ListDatasetsHandlerRequest {
     order: OrderBy;
     offset: number;
     limit: number;
-    filter?: string | null;
-    tags?: Array<string> | null;
+    filter?: string;
+    tags?: Array<string>;
 }
 
 export interface ListVolumeFileLayersHandlerRequest {
@@ -127,10 +127,9 @@ export interface UpdateLoadingInfoHandlerRequest {
 export class DatasetsApi extends runtime.BaseAPI {
 
     /**
-     * The format of the files will be automatically detected when possible.
-     * Creates a new dataset using previously uploaded files.
+     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
-    async autoCreateDatasetHandlerRaw(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDatasetHandler200Response>> {
+    async autoCreateDatasetHandlerRaw(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DatasetNameResponse>> {
         if (requestParameters['autoCreateDataset'] == null) {
             throw new runtime.RequiredError(
                 'autoCreateDataset',
@@ -160,23 +159,21 @@ export class DatasetsApi extends runtime.BaseAPI {
             body: AutoCreateDatasetToJSON(requestParameters['autoCreateDataset']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateDatasetHandler200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DatasetNameResponseFromJSON(jsonValue));
     }
 
     /**
-     * The format of the files will be automatically detected when possible.
-     * Creates a new dataset using previously uploaded files.
+     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
-    async autoCreateDatasetHandler(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateDatasetHandler200Response> {
+    async autoCreateDatasetHandler(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DatasetNameResponse> {
         const response = await this.autoCreateDatasetHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Users can reference previously uploaded files. Admins can reference files from a volume.
-     * Creates a new dataset referencing files.
+     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
-    async createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDatasetHandler200Response>> {
+    async createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DatasetNameResponse>> {
         if (requestParameters['createDataset'] == null) {
             throw new runtime.RequiredError(
                 'createDataset',
@@ -206,14 +203,13 @@ export class DatasetsApi extends runtime.BaseAPI {
             body: CreateDatasetToJSON(requestParameters['createDataset']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateDatasetHandler200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => DatasetNameResponseFromJSON(jsonValue));
     }
 
     /**
-     * Users can reference previously uploaded files. Admins can reference files from a volume.
-     * Creates a new dataset referencing files.
+     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
-    async createDatasetHandler(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateDatasetHandler200Response> {
+    async createDatasetHandler(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DatasetNameResponse> {
         const response = await this.createDatasetHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -498,8 +494,7 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Tries to automatically detect the main file and layer name if not specified.
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
      */
     async suggestMetaDataHandlerRaw(requestParameters: SuggestMetaDataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetaDataSuggestion>> {
         if (requestParameters['suggestMetaData'] == null) {
@@ -535,8 +530,7 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Tries to automatically detect the main file and layer name if not specified.
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
      */
     async suggestMetaDataHandler(requestParameters: SuggestMetaDataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetaDataSuggestion> {
         const response = await this.suggestMetaDataHandlerRaw(requestParameters, initOverrides);

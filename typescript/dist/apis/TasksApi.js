@@ -30,7 +30,7 @@ const index_1 = require("../models/index");
  */
 class TasksApi extends runtime.BaseAPI {
     /**
-     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     abortHandlerRaw(requestParameters, initOverrides) {
@@ -60,7 +60,7 @@ class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
     abortHandler(requestParameters, initOverrides) {

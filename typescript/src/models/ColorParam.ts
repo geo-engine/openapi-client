@@ -12,13 +12,6 @@
  * Do not edit the class manually.
  */
 
-import type { ColorParamStatic } from './ColorParamStatic';
-import {
-    instanceOfColorParamStatic,
-    ColorParamStaticFromJSON,
-    ColorParamStaticFromJSONTyped,
-    ColorParamStaticToJSON,
-} from './ColorParamStatic';
 import type { DerivedColor } from './DerivedColor';
 import {
     instanceOfDerivedColor,
@@ -26,13 +19,20 @@ import {
     DerivedColorFromJSONTyped,
     DerivedColorToJSON,
 } from './DerivedColor';
+import type { StaticColor } from './StaticColor';
+import {
+    instanceOfStaticColor,
+    StaticColorFromJSON,
+    StaticColorFromJSONTyped,
+    StaticColorToJSON,
+} from './StaticColor';
 
 /**
  * @type ColorParam
  * 
  * @export
  */
-export type ColorParam = { type: 'derived' } & DerivedColor | { type: 'static' } & ColorParamStatic;
+export type ColorParam = { type: 'derived' } & DerivedColor | { type: 'static' } & StaticColor;
 
 export function ColorParamFromJSON(json: any): ColorParam {
     return ColorParamFromJSONTyped(json, false);
@@ -46,7 +46,7 @@ export function ColorParamFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         case 'derived':
             return Object.assign({}, DerivedColorFromJSONTyped(json, true), { type: 'derived' } as const);
         case 'static':
-            return Object.assign({}, ColorParamStaticFromJSONTyped(json, true), { type: 'static' } as const);
+            return Object.assign({}, StaticColorFromJSONTyped(json, true), { type: 'static' } as const);
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${json['type']}'`);
     }
@@ -64,7 +64,7 @@ export function ColorParamToJSONTyped(value?: ColorParam | null, ignoreDiscrimin
         case 'derived':
             return Object.assign({}, DerivedColorToJSON(value), { type: 'derived' } as const);
         case 'static':
-            return Object.assign({}, ColorParamStaticToJSON(value), { type: 'static' } as const);
+            return Object.assign({}, StaticColorToJSON(value), { type: 'static' } as const);
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${value['type']}'`);
     }

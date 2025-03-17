@@ -39,8 +39,29 @@ class TestOgrMetaData(unittest.TestCase):
                 loading_info = geoengine_openapi_client.models.ogr_source_dataset.OgrSourceDataset(
                     attribute_query = '', 
                     cache_ttl = 0, 
-                    columns = null, 
-                    data_type = null, 
+                    columns = geoengine_openapi_client.models.ogr_source_column_spec.OgrSourceColumnSpec(
+                        bool = [
+                            ''
+                            ], 
+                        datetime = [
+                            ''
+                            ], 
+                        float = [
+                            ''
+                            ], 
+                        format_specifics = null, 
+                        int = [
+                            ''
+                            ], 
+                        rename = {
+                            'key' : ''
+                            }, 
+                        text = [
+                            ''
+                            ], 
+                        x = '', 
+                        y = '', ), 
+                    data_type = 'Data', 
                     default_geometry = null, 
                     file_name = '', 
                     force_ogr_spatial_filter = True, 
@@ -50,7 +71,13 @@ class TestOgrMetaData(unittest.TestCase):
                     sql_query = '', 
                     time = null, ),
                 result_descriptor = geoengine_openapi_client.models.vector_result_descriptor.VectorResultDescriptor(
-                    bbox = null, 
+                    bbox = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(
+                        lower_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                            x = 1.337, 
+                            y = 1.337, ), 
+                        upper_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                            x = 1.337, 
+                            y = 1.337, ), ), 
                     columns = {
                         'key' : geoengine_openapi_client.models.vector_column_info.VectorColumnInfo(
                             data_type = 'category', 
@@ -58,7 +85,9 @@ class TestOgrMetaData(unittest.TestCase):
                         }, 
                     data_type = 'Data', 
                     spatial_reference = '', 
-                    time = null, ),
+                    time = geoengine_openapi_client.models.time_interval.TimeInterval(
+                        end = 56, 
+                        start = 56, ), ),
                 type = 'OgrMetaData'
             )
         else:
@@ -66,8 +95,29 @@ class TestOgrMetaData(unittest.TestCase):
                 loading_info = geoengine_openapi_client.models.ogr_source_dataset.OgrSourceDataset(
                     attribute_query = '', 
                     cache_ttl = 0, 
-                    columns = null, 
-                    data_type = null, 
+                    columns = geoengine_openapi_client.models.ogr_source_column_spec.OgrSourceColumnSpec(
+                        bool = [
+                            ''
+                            ], 
+                        datetime = [
+                            ''
+                            ], 
+                        float = [
+                            ''
+                            ], 
+                        format_specifics = null, 
+                        int = [
+                            ''
+                            ], 
+                        rename = {
+                            'key' : ''
+                            }, 
+                        text = [
+                            ''
+                            ], 
+                        x = '', 
+                        y = '', ), 
+                    data_type = 'Data', 
                     default_geometry = null, 
                     file_name = '', 
                     force_ogr_spatial_filter = True, 
@@ -77,7 +127,13 @@ class TestOgrMetaData(unittest.TestCase):
                     sql_query = '', 
                     time = null, ),
                 result_descriptor = geoengine_openapi_client.models.vector_result_descriptor.VectorResultDescriptor(
-                    bbox = null, 
+                    bbox = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(
+                        lower_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                            x = 1.337, 
+                            y = 1.337, ), 
+                        upper_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                            x = 1.337, 
+                            y = 1.337, ), ), 
                     columns = {
                         'key' : geoengine_openapi_client.models.vector_column_info.VectorColumnInfo(
                             data_type = 'category', 
@@ -85,7 +141,9 @@ class TestOgrMetaData(unittest.TestCase):
                         }, 
                     data_type = 'Data', 
                     spatial_reference = '', 
-                    time = null, ),
+                    time = geoengine_openapi_client.models.time_interval.TimeInterval(
+                        end = 56, 
+                        start = 56, ), ),
                 type = 'OgrMetaData',
         )
         """

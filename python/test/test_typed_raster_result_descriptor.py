@@ -36,37 +36,10 @@ class TestTypedRasterResultDescriptor(unittest.TestCase):
         model = TypedRasterResultDescriptor()
         if include_optional:
             return TypedRasterResultDescriptor(
-                bands = [
-                    geoengine_openapi_client.models.raster_band_descriptor.RasterBandDescriptor(
-                        measurement = null, 
-                        name = '', )
-                    ],
-                bbox = geoengine_openapi_client.models.spatial_partition2_d.SpatialPartition2D(
-                    lower_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
-                        x = 1.337, 
-                        y = 1.337, ), 
-                    upper_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
-                        x = 1.337, 
-                        y = 1.337, ), ),
-                data_type = 'U8',
-                resolution = geoengine_openapi_client.models.spatial_resolution.SpatialResolution(
-                    x = 1.337, 
-                    y = 1.337, ),
-                spatial_reference = '',
-                time = geoengine_openapi_client.models.time_interval.TimeInterval(
-                    end = 56, 
-                    start = 56, ),
                 type = 'raster'
             )
         else:
             return TypedRasterResultDescriptor(
-                bands = [
-                    geoengine_openapi_client.models.raster_band_descriptor.RasterBandDescriptor(
-                        measurement = null, 
-                        name = '', )
-                    ],
-                data_type = 'U8',
-                spatial_reference = '',
                 type = 'raster',
         )
         """

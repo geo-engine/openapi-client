@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AddCollection200Response, AddLayer, AddLayerCollection, Layer, LayerCollection, ProviderCapabilities, SearchType, TaskResponse, UpdateLayer, UpdateLayerCollection } from '../models/index';
+import type { AddLayer, AddLayerCollection, IdResponse, Layer, LayerCollection, ProviderCapabilities, SearchType, TaskResponse, UpdateLayer, UpdateLayerCollection } from '../models/index';
 export interface AddCollectionRequest {
     collection: string;
     addLayerCollection: AddLayerCollection;
@@ -97,11 +97,11 @@ export declare class LayersApi extends runtime.BaseAPI {
     /**
      * Add a new collection to an existing collection
      */
-    addCollectionRaw(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>>;
+    addCollectionRaw(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
     /**
      * Add a new collection to an existing collection
      */
-    addCollection(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;
+    addCollection(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
     /**
      * Add an existing collection to a collection
      */
@@ -121,11 +121,11 @@ export declare class LayersApi extends runtime.BaseAPI {
     /**
      * Add a new layer to a collection
      */
-    addLayerRaw(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>>;
+    addLayerRaw(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
     /**
      * Add a new layer to a collection
      */
-    addLayer(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;
+    addLayer(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
     /**
      * Autocompletes the search on the contents of the collection of the given provider
      */
@@ -153,11 +153,11 @@ export declare class LayersApi extends runtime.BaseAPI {
     /**
      * Registers a layer from a provider as a workflow and returns the workflow id
      */
-    layerToWorkflowIdHandlerRaw(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>>;
+    layerToWorkflowIdHandlerRaw(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
     /**
      * Registers a layer from a provider as a workflow and returns the workflow id
      */
-    layerToWorkflowIdHandler(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;
+    layerToWorkflowIdHandler(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
     /**
      * List the contents of the collection of the given provider
      */

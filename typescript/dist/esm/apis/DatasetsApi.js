@@ -21,14 +21,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as runtime from '../runtime';
-import { AutoCreateDatasetToJSON, CreateDatasetToJSON, CreateDatasetHandler200ResponseFromJSON, DatasetFromJSON, DatasetListingFromJSON, MetaDataDefinitionFromJSON, MetaDataDefinitionToJSON, MetaDataSuggestionFromJSON, ProvenancesToJSON, SuggestMetaDataToJSON, SymbologyToJSON, UpdateDatasetToJSON, VolumeFromJSON, VolumeFileLayersResponseFromJSON, } from '../models/index';
+import { AutoCreateDatasetToJSON, CreateDatasetToJSON, DatasetFromJSON, DatasetListingFromJSON, DatasetNameResponseFromJSON, MetaDataDefinitionFromJSON, MetaDataDefinitionToJSON, MetaDataSuggestionFromJSON, ProvenancesToJSON, SuggestMetaDataToJSON, SymbologyToJSON, UpdateDatasetToJSON, VolumeFromJSON, VolumeFileLayersResponseFromJSON, } from '../models/index';
 /**
  *
  */
 export class DatasetsApi extends runtime.BaseAPI {
     /**
-     * The format of the files will be automatically detected when possible.
-     * Creates a new dataset using previously uploaded files.
+     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
     autoCreateDatasetHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -52,12 +51,11 @@ export class DatasetsApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: AutoCreateDatasetToJSON(requestParameters['autoCreateDataset']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => CreateDatasetHandler200ResponseFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => DatasetNameResponseFromJSON(jsonValue));
         });
     }
     /**
-     * The format of the files will be automatically detected when possible.
-     * Creates a new dataset using previously uploaded files.
+     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
     autoCreateDatasetHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -66,8 +64,7 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Users can reference previously uploaded files. Admins can reference files from a volume.
-     * Creates a new dataset referencing files.
+     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     createDatasetHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -91,12 +88,11 @@ export class DatasetsApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: CreateDatasetToJSON(requestParameters['createDataset']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => CreateDatasetHandler200ResponseFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => DatasetNameResponseFromJSON(jsonValue));
         });
     }
     /**
-     * Users can reference previously uploaded files. Admins can reference files from a volume.
-     * Creates a new dataset referencing files.
+     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     createDatasetHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -335,8 +331,7 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Tries to automatically detect the main file and layer name if not specified.
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
      */
     suggestMetaDataHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -364,8 +359,7 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Tries to automatically detect the main file and layer name if not specified.
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
      */
     suggestMetaDataHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {

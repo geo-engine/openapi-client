@@ -19,8 +19,7 @@ exports.TypedPlotResultDescriptorFromJSON = TypedPlotResultDescriptorFromJSON;
 exports.TypedPlotResultDescriptorFromJSONTyped = TypedPlotResultDescriptorFromJSONTyped;
 exports.TypedPlotResultDescriptorToJSON = TypedPlotResultDescriptorToJSON;
 exports.TypedPlotResultDescriptorToJSONTyped = TypedPlotResultDescriptorToJSONTyped;
-const TimeInterval_1 = require("./TimeInterval");
-const BoundingBox2D_1 = require("./BoundingBox2D");
+const PlotResultDescriptor_1 = require("./PlotResultDescriptor");
 /**
  * @export
  */
@@ -31,8 +30,6 @@ exports.TypedPlotResultDescriptorTypeEnum = {
  * Check if a given object implements the TypedPlotResultDescriptor interface.
  */
 function instanceOfTypedPlotResultDescriptor(value) {
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
-        return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
@@ -44,12 +41,7 @@ function TypedPlotResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    return {
-        'bbox': json['bbox'] == null ? undefined : (0, BoundingBox2D_1.BoundingBox2DFromJSON)(json['bbox']),
-        'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
-        'type': json['type'],
-    };
+    return Object.assign(Object.assign({}, (0, PlotResultDescriptor_1.PlotResultDescriptorFromJSONTyped)(json, true)), { 'type': json['type'] });
 }
 function TypedPlotResultDescriptorToJSON(json) {
     return TypedPlotResultDescriptorToJSONTyped(json, false);
@@ -58,10 +50,5 @@ function TypedPlotResultDescriptorToJSONTyped(value, ignoreDiscriminator = false
     if (value == null) {
         return value;
     }
-    return {
-        'bbox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value['bbox']),
-        'spatialReference': value['spatialReference'],
-        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
-        'type': value['type'],
-    };
+    return Object.assign(Object.assign({}, (0, PlotResultDescriptor_1.PlotResultDescriptorToJSONTyped)(value, true)), { 'type': value['type'] });
 }

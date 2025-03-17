@@ -15,7 +15,6 @@
 
 
 # import models into model package
-from geoengine_openapi_client.models.add_collection200_response import AddCollection200Response
 from geoengine_openapi_client.models.add_dataset import AddDataset
 from geoengine_openapi_client.models.add_layer import AddLayer
 from geoengine_openapi_client.models.add_layer_collection import AddLayerCollection
@@ -30,13 +29,11 @@ from geoengine_openapi_client.models.classification_measurement import Classific
 from geoengine_openapi_client.models.collection_item import CollectionItem
 from geoengine_openapi_client.models.collection_type import CollectionType
 from geoengine_openapi_client.models.color_param import ColorParam
-from geoengine_openapi_client.models.color_param_static import ColorParamStatic
 from geoengine_openapi_client.models.colorizer import Colorizer
 from geoengine_openapi_client.models.computation_quota import ComputationQuota
 from geoengine_openapi_client.models.continuous_measurement import ContinuousMeasurement
 from geoengine_openapi_client.models.coordinate2_d import Coordinate2D
 from geoengine_openapi_client.models.create_dataset import CreateDataset
-from geoengine_openapi_client.models.create_dataset_handler200_response import CreateDatasetHandler200Response
 from geoengine_openapi_client.models.create_project import CreateProject
 from geoengine_openapi_client.models.csv_header import CsvHeader
 from geoengine_openapi_client.models.data_id import DataId
@@ -48,8 +45,8 @@ from geoengine_openapi_client.models.data_usage_summary import DataUsageSummary
 from geoengine_openapi_client.models.dataset import Dataset
 from geoengine_openapi_client.models.dataset_definition import DatasetDefinition
 from geoengine_openapi_client.models.dataset_listing import DatasetListing
+from geoengine_openapi_client.models.dataset_name_response import DatasetNameResponse
 from geoengine_openapi_client.models.dataset_resource import DatasetResource
-from geoengine_openapi_client.models.date_time import DateTime
 from geoengine_openapi_client.models.derived_color import DerivedColor
 from geoengine_openapi_client.models.derived_number import DerivedNumber
 from geoengine_openapi_client.models.describe_coverage_request import DescribeCoverageRequest
@@ -79,7 +76,7 @@ from geoengine_openapi_client.models.get_legend_graphic_request import GetLegend
 from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat
 from geoengine_openapi_client.models.get_map_format import GetMapFormat
 from geoengine_openapi_client.models.get_map_request import GetMapRequest
-from geoengine_openapi_client.models.inline_object import InlineObject
+from geoengine_openapi_client.models.id_response import IdResponse
 from geoengine_openapi_client.models.internal_data_id import InternalDataId
 from geoengine_openapi_client.models.layer import Layer
 from geoengine_openapi_client.models.layer_collection import LayerCollection
@@ -87,7 +84,6 @@ from geoengine_openapi_client.models.layer_collection_listing import LayerCollec
 from geoengine_openapi_client.models.layer_collection_resource import LayerCollectionResource
 from geoengine_openapi_client.models.layer_listing import LayerListing
 from geoengine_openapi_client.models.layer_resource import LayerResource
-from geoengine_openapi_client.models.layer_update import LayerUpdate
 from geoengine_openapi_client.models.layer_visibility import LayerVisibility
 from geoengine_openapi_client.models.line_symbology import LineSymbology
 from geoengine_openapi_client.models.linear_gradient import LinearGradient
@@ -134,7 +130,6 @@ from geoengine_openapi_client.models.plot import Plot
 from geoengine_openapi_client.models.plot_output_format import PlotOutputFormat
 from geoengine_openapi_client.models.plot_query_rectangle import PlotQueryRectangle
 from geoengine_openapi_client.models.plot_result_descriptor import PlotResultDescriptor
-from geoengine_openapi_client.models.plot_update import PlotUpdate
 from geoengine_openapi_client.models.point_symbology import PointSymbology
 from geoengine_openapi_client.models.polygon_symbology import PolygonSymbology
 from geoengine_openapi_client.models.project import Project
@@ -163,12 +158,6 @@ from geoengine_openapi_client.models.raster_result_descriptor import RasterResul
 from geoengine_openapi_client.models.raster_stream_websocket_result_type import RasterStreamWebsocketResultType
 from geoengine_openapi_client.models.raster_symbology import RasterSymbology
 from geoengine_openapi_client.models.resource import Resource
-from geoengine_openapi_client.models.resource_id import ResourceId
-from geoengine_openapi_client.models.resource_id_dataset_id import ResourceIdDatasetId
-from geoengine_openapi_client.models.resource_id_layer import ResourceIdLayer
-from geoengine_openapi_client.models.resource_id_layer_collection import ResourceIdLayerCollection
-from geoengine_openapi_client.models.resource_id_ml_model import ResourceIdMlModel
-from geoengine_openapi_client.models.resource_id_project import ResourceIdProject
 from geoengine_openapi_client.models.role import Role
 from geoengine_openapi_client.models.role_description import RoleDescription
 from geoengine_openapi_client.models.st_rectangle import STRectangle
@@ -181,7 +170,8 @@ from geoengine_openapi_client.models.spatial_partition2_d import SpatialPartitio
 from geoengine_openapi_client.models.spatial_reference_authority import SpatialReferenceAuthority
 from geoengine_openapi_client.models.spatial_reference_specification import SpatialReferenceSpecification
 from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
-from geoengine_openapi_client.models.static_number_param import StaticNumberParam
+from geoengine_openapi_client.models.static_color import StaticColor
+from geoengine_openapi_client.models.static_number import StaticNumber
 from geoengine_openapi_client.models.stroke_param import StrokeParam
 from geoengine_openapi_client.models.suggest_meta_data import SuggestMetaData
 from geoengine_openapi_client.models.symbology import Symbology
@@ -225,6 +215,7 @@ from geoengine_openapi_client.models.user_credentials import UserCredentials
 from geoengine_openapi_client.models.user_info import UserInfo
 from geoengine_openapi_client.models.user_registration import UserRegistration
 from geoengine_openapi_client.models.user_session import UserSession
+from geoengine_openapi_client.models.vec_update import VecUpdate
 from geoengine_openapi_client.models.vector_column_info import VectorColumnInfo
 from geoengine_openapi_client.models.vector_data_type import VectorDataType
 from geoengine_openapi_client.models.vector_query_rectangle import VectorQueryRectangle

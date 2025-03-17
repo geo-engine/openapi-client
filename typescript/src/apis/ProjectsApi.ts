@@ -15,8 +15,8 @@
 
 import * as runtime from '../runtime';
 import type {
-  AddCollection200Response,
   CreateProject,
+  IdResponse,
   OrderBy,
   Project,
   ProjectListing,
@@ -24,10 +24,10 @@ import type {
   UpdateProject,
 } from '../models/index';
 import {
-    AddCollection200ResponseFromJSON,
-    AddCollection200ResponseToJSON,
     CreateProjectFromJSON,
     CreateProjectToJSON,
+    IdResponseFromJSON,
+    IdResponseToJSON,
     OrderByFromJSON,
     OrderByToJSON,
     ProjectFromJSON,
@@ -80,7 +80,7 @@ export class ProjectsApi extends runtime.BaseAPI {
     /**
      * Create a new project for the user.
      */
-    async createProjectHandlerRaw(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
+    async createProjectHandlerRaw(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
         if (requestParameters['createProject'] == null) {
             throw new runtime.RequiredError(
                 'createProject',
@@ -110,13 +110,13 @@ export class ProjectsApi extends runtime.BaseAPI {
             body: CreateProjectToJSON(requestParameters['createProject']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
 
     /**
      * Create a new project for the user.
      */
-    async createProjectHandler(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
+    async createProjectHandler(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse> {
         const response = await this.createProjectHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -347,8 +347,7 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * This will create a new version.
-     * Updates a project.
+     * Updates a project. This will create a new version.
      */
     async updateProjectHandlerRaw(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['project'] == null) {
@@ -391,8 +390,7 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * This will create a new version.
-     * Updates a project.
+     * Updates a project. This will create a new version.
      */
     async updateProjectHandler(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.updateProjectHandlerRaw(requestParameters, initOverrides);

@@ -809,7 +809,7 @@ class SessionApi:
     ) -> AuthCodeRequestURL:
         """Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
 
-        # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
+        # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.  
 
         :param redirect_uri: (required)
         :type redirect_uri: str
@@ -876,7 +876,7 @@ class SessionApi:
     ) -> ApiResponse[AuthCodeRequestURL]:
         """Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
 
-        # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
+        # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.  
 
         :param redirect_uri: (required)
         :type redirect_uri: str
@@ -943,7 +943,7 @@ class SessionApi:
     ) -> RESTResponseType:
         """Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
 
-        # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
+        # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.  
 
         :param redirect_uri: (required)
         :type redirect_uri: str
@@ -1070,9 +1070,9 @@ class SessionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UserSession:
-        """Creates a session for a user via a login with Open Id Connect.
+        """Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
 
-        This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable. 
+        # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.  
 
         :param redirect_uri: (required)
         :type redirect_uri: str
@@ -1141,9 +1141,9 @@ class SessionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UserSession]:
-        """Creates a session for a user via a login with Open Id Connect.
+        """Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
 
-        This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable. 
+        # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.  
 
         :param redirect_uri: (required)
         :type redirect_uri: str
@@ -1212,9 +1212,9 @@ class SessionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Creates a session for a user via a login with Open Id Connect.
+        """Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
 
-        This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable. 
+        # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.  
 
         :param redirect_uri: (required)
         :type redirect_uri: str

@@ -36,14 +36,10 @@ class TestOgrSourceDurationSpecValue(unittest.TestCase):
         model = OgrSourceDurationSpecValue()
         if include_optional:
             return OgrSourceDurationSpecValue(
-                granularity = 'millis',
-                step = 0,
                 type = 'value'
             )
         else:
             return OgrSourceDurationSpecValue(
-                granularity = 'millis',
-                step = 0,
                 type = 'value',
         )
         """

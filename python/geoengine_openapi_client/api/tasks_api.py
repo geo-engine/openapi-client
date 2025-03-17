@@ -18,8 +18,9 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBool, StrictStr
-from typing import Any, List, Optional
+from typing import List, Optional
 from typing_extensions import Annotated
+from geoengine_openapi_client.models.task_filter import TaskFilter
 from geoengine_openapi_client.models.task_status import TaskStatus
 from geoengine_openapi_client.models.task_status_with_id import TaskStatusWithId
 
@@ -61,7 +62,7 @@ class TasksApi:
     ) -> None:
         """Abort a running task.
 
-        # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+        # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
 
         :param id: Task id (required)
         :type id: str
@@ -136,7 +137,7 @@ class TasksApi:
     ) -> ApiResponse[None]:
         """Abort a running task.
 
-        # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+        # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
 
         :param id: Task id (required)
         :type id: str
@@ -207,7 +208,7 @@ class TasksApi:
     ) -> RESTResponseType:
         """Abort a running task.
 
-        # Parameters  * `force` - If true, the task will be aborted without clean-up. You can abort a task that is already in the process of aborting.
+        # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
 
         :param id: Task id (required)
         :type id: str
@@ -319,7 +320,7 @@ class TasksApi:
     @validate_call
     def list_handler(
         self,
-        filter: Optional[Any],
+        filter: Optional[TaskFilter],
         offset: Annotated[int, Field(strict=True, ge=0)],
         limit: Annotated[int, Field(strict=True, ge=0)],
         _request_timeout: Union[
@@ -393,7 +394,7 @@ class TasksApi:
     @validate_call
     def list_handler_with_http_info(
         self,
-        filter: Optional[Any],
+        filter: Optional[TaskFilter],
         offset: Annotated[int, Field(strict=True, ge=0)],
         limit: Annotated[int, Field(strict=True, ge=0)],
         _request_timeout: Union[
@@ -467,7 +468,7 @@ class TasksApi:
     @validate_call
     def list_handler_without_preload_content(
         self,
-        filter: Optional[Any],
+        filter: Optional[TaskFilter],
         offset: Annotated[int, Field(strict=True, ge=0)],
         limit: Annotated[int, Field(strict=True, ge=0)],
         _request_timeout: Union[

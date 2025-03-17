@@ -113,8 +113,10 @@ class RasterResultDescriptor(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: Dict[str, Any]) -> Optional[Self]:
         """Create an instance of RasterResultDescriptor from a dict"""
+
+        # Note: fixed <https://github.com/OpenAPITools/openapi-generator/issues/19926>
         if obj is None:
             return None
 
@@ -127,7 +129,7 @@ class RasterResultDescriptor(BaseModel):
             "dataType": obj.get("dataType"),
             "resolution": SpatialResolution.from_dict(obj["resolution"]) if obj.get("resolution") is not None else None,
             "spatialReference": obj.get("spatialReference"),
-            "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None
+            "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
         })
         return _obj
 

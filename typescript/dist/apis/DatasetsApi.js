@@ -30,8 +30,7 @@ const index_1 = require("../models/index");
  */
 class DatasetsApi extends runtime.BaseAPI {
     /**
-     * The format of the files will be automatically detected when possible.
-     * Creates a new dataset using previously uploaded files.
+     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
     autoCreateDatasetHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -55,12 +54,11 @@ class DatasetsApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: (0, index_1.AutoCreateDatasetToJSON)(requestParameters['autoCreateDataset']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CreateDatasetHandler200ResponseFromJSON)(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.DatasetNameResponseFromJSON)(jsonValue));
         });
     }
     /**
-     * The format of the files will be automatically detected when possible.
-     * Creates a new dataset using previously uploaded files.
+     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
     autoCreateDatasetHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -69,8 +67,7 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Users can reference previously uploaded files. Admins can reference files from a volume.
-     * Creates a new dataset referencing files.
+     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     createDatasetHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -94,12 +91,11 @@ class DatasetsApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: (0, index_1.CreateDatasetToJSON)(requestParameters['createDataset']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CreateDatasetHandler200ResponseFromJSON)(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.DatasetNameResponseFromJSON)(jsonValue));
         });
     }
     /**
-     * Users can reference previously uploaded files. Admins can reference files from a volume.
-     * Creates a new dataset referencing files.
+     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     createDatasetHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -338,8 +334,7 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Tries to automatically detect the main file and layer name if not specified.
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
      */
     suggestMetaDataHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -367,8 +362,7 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Tries to automatically detect the main file and layer name if not specified.
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
      */
     suggestMetaDataHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {

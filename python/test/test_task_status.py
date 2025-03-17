@@ -38,14 +38,14 @@ class TestTaskStatus(unittest.TestCase):
             return TaskStatus(
                 description = '',
                 estimated_time_remaining = '',
-                info = geoengine_openapi_client.models.info.info(),
+                info = None,
                 pct_complete = '',
                 status = 'failed',
                 task_type = '',
                 time_started = '',
                 time_total = '',
-                clean_up = geoengine_openapi_client.models.clean_up.cleanUp(),
-                error = geoengine_openapi_client.models.error.error()
+                clean_up = None,
+                error = None
             )
         else:
             return TaskStatus(
@@ -55,8 +55,8 @@ class TestTaskStatus(unittest.TestCase):
                 task_type = '',
                 time_started = '',
                 time_total = '',
-                clean_up = geoengine_openapi_client.models.clean_up.cleanUp(),
-                error = geoengine_openapi_client.models.error.error(),
+                clean_up = None,
+                error = None,
         )
         """
 

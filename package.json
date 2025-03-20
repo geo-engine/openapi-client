@@ -1,23 +1,12 @@
 {
     "name": "@geoengine/openapi-client",
-    "version": "0.0.22",
-    "description": "OpenAPI client for @geoengine/openapi-client",
-    "author": "OpenAPI-Generator",
     "private": true,
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/geo-engine/openapi-client.git"
-    },
-    "main": "./typescript/dist/index.js",
-    "typings": "./typescript/dist/index.d.ts",
-    "module": "./typescript/dist/esm/index.js",
-    "sideEffects": false,
+    "workspaces": [
+      "typescript"
+    ],
     "scripts": {
-      "build": "cd typescript && tsc && tsc -p tsconfig.esm.json && cd ..",
-      "prepare": "npm run build"
-    },
-    "devDependencies": {
-      "typescript": "^4.0 || ^5.0"
+      "build": "npm run build --workspace=typescript",
+      "prepare": "npm run build --workspace=typescript"
     }
-  }
+}
   

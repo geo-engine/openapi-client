@@ -13,7 +13,7 @@
     "module": "./typescript/dist/esm/index.js",
     "sideEffects": false,
     "scripts": {
-      "build": "cd typescript && tsc && tsc -p tsconfig.esm.json",
+      "build": "cd typescript && tsc && tsc -p tsconfig.esm.json && cd ..",
       "prepare": "npm run build"
     },
     "devDependencies": {

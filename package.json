@@ -1,12 +1,14 @@
 {
-    "name": "@geoengine/openapi-client",
+    "name": "@geoengine/openapi-client-dev",
     "private": true,
     "workspaces": [
       "typescript"
     ],
+    "main": "./typescript/index.js",
+    "typings": "./typescript/dist/index.d.ts",
+    "module": "./typescript/dist/esm/index.js",
     "scripts": {
       "build": "npm run build --workspace=typescript",
       "prepare": "npm run build --workspace=typescript"
     }
 }
-  

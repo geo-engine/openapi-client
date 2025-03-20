@@ -1,0 +1,7 @@
+{
+    "name": "@geoengine/openapi-client",
+    "private": true,
+    "workspaces": [
+        "typescript"
+    ]
+}

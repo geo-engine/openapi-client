@@ -20,7 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBytes, StrictStr
 from typing import List, Tuple, Union
 from typing_extensions import Annotated
-from geoengine_openapi_client.models.add_collection200_response import AddCollection200Response
+from geoengine_openapi_client.models.id_response import IdResponse
 from geoengine_openapi_client.models.provenance_entry import ProvenanceEntry
 from geoengine_openapi_client.models.raster_dataset_from_workflow import RasterDatasetFromWorkflow
 from geoengine_openapi_client.models.raster_stream_websocket_result_type import RasterStreamWebsocketResultType
@@ -66,9 +66,8 @@ class WorkflowsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> TaskResponse:
-        """Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
+        """Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
 
-        Returns the id of the created task
 
         :param id: Workflow id (required)
         :type id: str
@@ -137,9 +136,8 @@ class WorkflowsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[TaskResponse]:
-        """Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
+        """Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
 
-        Returns the id of the created task
 
         :param id: Workflow id (required)
         :type id: str
@@ -208,9 +206,8 @@ class WorkflowsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
+        """Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
 
-        Returns the id of the created task
 
         :param id: Workflow id (required)
         :type id: str
@@ -1721,7 +1718,7 @@ class WorkflowsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AddCollection200Response:
+    ) -> IdResponse:
         """Registers a new Workflow.
 
 
@@ -1758,7 +1755,7 @@ class WorkflowsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1787,7 +1784,7 @@ class WorkflowsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AddCollection200Response]:
+    ) -> ApiResponse[IdResponse]:
         """Registers a new Workflow.
 
 
@@ -1824,7 +1821,7 @@ class WorkflowsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1890,7 +1887,7 @@ class WorkflowsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

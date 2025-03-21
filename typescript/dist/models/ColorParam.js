@@ -17,8 +17,8 @@ exports.ColorParamFromJSON = ColorParamFromJSON;
 exports.ColorParamFromJSONTyped = ColorParamFromJSONTyped;
 exports.ColorParamToJSON = ColorParamToJSON;
 exports.ColorParamToJSONTyped = ColorParamToJSONTyped;
-const ColorParamStatic_1 = require("./ColorParamStatic");
 const DerivedColor_1 = require("./DerivedColor");
+const StaticColor_1 = require("./StaticColor");
 function ColorParamFromJSON(json) {
     return ColorParamFromJSONTyped(json, false);
 }
@@ -30,7 +30,7 @@ function ColorParamFromJSONTyped(json, ignoreDiscriminator) {
         case 'derived':
             return Object.assign({}, (0, DerivedColor_1.DerivedColorFromJSONTyped)(json, true), { type: 'derived' });
         case 'static':
-            return Object.assign({}, (0, ColorParamStatic_1.ColorParamStaticFromJSONTyped)(json, true), { type: 'static' });
+            return Object.assign({}, (0, StaticColor_1.StaticColorFromJSONTyped)(json, true), { type: 'static' });
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${json['type']}'`);
     }
@@ -46,7 +46,7 @@ function ColorParamToJSONTyped(value, ignoreDiscriminator = false) {
         case 'derived':
             return Object.assign({}, (0, DerivedColor_1.DerivedColorToJSON)(value), { type: 'derived' });
         case 'static':
-            return Object.assign({}, (0, ColorParamStatic_1.ColorParamStaticToJSON)(value), { type: 'static' });
+            return Object.assign({}, (0, StaticColor_1.StaticColorToJSON)(value), { type: 'static' });
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${value['type']}'`);
     }

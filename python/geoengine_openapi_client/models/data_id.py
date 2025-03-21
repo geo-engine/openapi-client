@@ -28,7 +28,7 @@ DATAID_ONE_OF_SCHEMAS = ["ExternalDataId", "InternalDataId"]
 
 class DataId(BaseModel):
     """
-    DataId
+    The identifier for loadable data. It is used in the source operators to get the loading info (aka parametrization) for accessing the data. Internal data is loaded from datasets, external from `DataProvider`s.
     """
     # data type: InternalDataId
     oneof_schema_1_validator: Optional[InternalDataId] = None

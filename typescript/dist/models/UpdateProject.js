@@ -19,9 +19,8 @@ exports.UpdateProjectFromJSONTyped = UpdateProjectFromJSONTyped;
 exports.UpdateProjectToJSON = UpdateProjectToJSON;
 exports.UpdateProjectToJSONTyped = UpdateProjectToJSONTyped;
 const TimeStep_1 = require("./TimeStep");
-const PlotUpdate_1 = require("./PlotUpdate");
 const STRectangle_1 = require("./STRectangle");
-const LayerUpdate_1 = require("./LayerUpdate");
+const VecUpdate_1 = require("./VecUpdate");
 /**
  * Check if a given object implements the UpdateProject interface.
  */
@@ -41,9 +40,9 @@ function UpdateProjectFromJSONTyped(json, ignoreDiscriminator) {
         'bounds': json['bounds'] == null ? undefined : (0, STRectangle_1.STRectangleFromJSON)(json['bounds']),
         'description': json['description'] == null ? undefined : json['description'],
         'id': json['id'],
-        'layers': json['layers'] == null ? undefined : (json['layers'].map(LayerUpdate_1.LayerUpdateFromJSON)),
+        'layers': json['layers'] == null ? undefined : (json['layers'].map(VecUpdate_1.VecUpdateFromJSON)),
         'name': json['name'] == null ? undefined : json['name'],
-        'plots': json['plots'] == null ? undefined : (json['plots'].map(PlotUpdate_1.PlotUpdateFromJSON)),
+        'plots': json['plots'] == null ? undefined : (json['plots'].map(VecUpdate_1.VecUpdateFromJSON)),
         'timeStep': json['timeStep'] == null ? undefined : (0, TimeStep_1.TimeStepFromJSON)(json['timeStep']),
     };
 }
@@ -58,9 +57,9 @@ function UpdateProjectToJSONTyped(value, ignoreDiscriminator = false) {
         'bounds': (0, STRectangle_1.STRectangleToJSON)(value['bounds']),
         'description': value['description'],
         'id': value['id'],
-        'layers': value['layers'] == null ? undefined : (value['layers'].map(LayerUpdate_1.LayerUpdateToJSON)),
+        'layers': value['layers'] == null ? undefined : (value['layers'].map(VecUpdate_1.VecUpdateToJSON)),
         'name': value['name'],
-        'plots': value['plots'] == null ? undefined : (value['plots'].map(PlotUpdate_1.PlotUpdateToJSON)),
+        'plots': value['plots'] == null ? undefined : (value['plots'].map(VecUpdate_1.VecUpdateToJSON)),
         'timeStep': (0, TimeStep_1.TimeStepToJSON)(value['timeStep']),
     };
 }

@@ -30,7 +30,7 @@ class TestWorkflowsApi(unittest.TestCase):
     def test_dataset_from_workflow_handler(self) -> None:
         """Test case for dataset_from_workflow_handler
 
-        Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
+        Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
         """
         pass
 

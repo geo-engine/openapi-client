@@ -18,19 +18,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from typing_extensions import Annotated
 from geoengine_openapi_client.models.time_granularity import TimeGranularity
+from geoengine_openapi_client.models.time_step import TimeStep
 from typing import Optional, Set
 from typing_extensions import Self
 
-class OgrSourceDurationSpecValue(BaseModel):
+class OgrSourceDurationSpecValue(TimeStep):
     """
     OgrSourceDurationSpecValue
     """ # noqa: E501
-    granularity: TimeGranularity
-    step: Annotated[int, Field(strict=True, ge=0)]
     type: StrictStr
     __properties: ClassVar[List[str]] = ["granularity", "step", "type"]
 

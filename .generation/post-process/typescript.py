@@ -54,7 +54,7 @@ def layer_update_ts(file_contents: List[str]) -> Generator[str, None, None]:
 
 # Fix: interface cannot inherit union type
 def task_status_with_id_ts(file_contents: List[str]) -> Generator[str, None, None]:
-    '''Modify the LayerUpdate.ts file.'''
+    '''Modify the TaskStatusWithId.ts file.'''
     for line in file_contents:
         dedented_line = dedent(line)
 
@@ -67,6 +67,16 @@ def task_status_with_id_ts(file_contents: List[str]) -> Generator[str, None, Non
 
         yield line
 
+def vec_update_ts(file_contents: List[str]) -> Generator[str, None, None]:
+    '''Modify the VecUpdate.ts file.'''
+    for line in file_contents:
+        dedented_line = dedent(line)
+
+        if dedented_line.startswith('if (instanceOfPlot(value)) {'):
+            line = indent("if (typeof value === 'object' && instanceOfPlot(value)) {\n", INDENT)
+
+        yield line
+
 
 input_file = Path(sys.argv[1])
 
@@ -75,6 +85,7 @@ file_modifications = {
     'PlotUpdate.ts': plot_update_ts,
     'runtime.ts': runtime_ts,
     'TaskStatusWithId.ts': task_status_with_id_ts,
+    'VecUpdate.ts': vec_update_ts,
 }
 if modifier_function := file_modifications.get(input_file.name):
     modify_file(input_file, modifier_function)

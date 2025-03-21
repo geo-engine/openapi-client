@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AddCollection200Response, ProvenanceEntry, RasterDatasetFromWorkflow, RasterStreamWebsocketResultType, SpatialPartition2D, SpatialResolution, TaskResponse, TypedResultDescriptor, Workflow } from '../models/index';
+import type { IdResponse, ProvenanceEntry, RasterDatasetFromWorkflow, RasterStreamWebsocketResultType, SpatialPartition2D, SpatialResolution, TaskResponse, TypedResultDescriptor, Workflow } from '../models/index';
 export interface DatasetFromWorkflowHandlerRequest {
     id: string;
     rasterDatasetFromWorkflow: RasterDatasetFromWorkflow;
@@ -43,13 +43,11 @@ export interface RegisterWorkflowHandlerRequest {
  */
 export declare class WorkflowsApi extends runtime.BaseAPI {
     /**
-     * Returns the id of the created task
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
+     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
      */
     datasetFromWorkflowHandlerRaw(requestParameters: DatasetFromWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskResponse>>;
     /**
-     * Returns the id of the created task
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
+     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
      */
     datasetFromWorkflowHandler(requestParameters: DatasetFromWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaskResponse>;
     /**
@@ -95,9 +93,9 @@ export declare class WorkflowsApi extends runtime.BaseAPI {
     /**
      * Registers a new Workflow.
      */
-    registerWorkflowHandlerRaw(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>>;
+    registerWorkflowHandlerRaw(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
     /**
      * Registers a new Workflow.
      */
-    registerWorkflowHandler(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;
+    registerWorkflowHandler(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
 }

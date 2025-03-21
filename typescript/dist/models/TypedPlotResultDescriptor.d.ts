@@ -9,32 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TimeInterval } from './TimeInterval';
-import type { BoundingBox2D } from './BoundingBox2D';
+import type { PlotResultDescriptor } from './PlotResultDescriptor';
 /**
- * A `ResultDescriptor` for plot queries
+ *
  * @export
  * @interface TypedPlotResultDescriptor
  */
-export interface TypedPlotResultDescriptor {
-    /**
-     *
-     * @type {BoundingBox2D}
-     * @memberof TypedPlotResultDescriptor
-     */
-    bbox?: BoundingBox2D | null;
-    /**
-     *
-     * @type {string}
-     * @memberof TypedPlotResultDescriptor
-     */
-    spatialReference: string;
-    /**
-     *
-     * @type {TimeInterval}
-     * @memberof TypedPlotResultDescriptor
-     */
-    time?: TimeInterval | null;
+export interface TypedPlotResultDescriptor extends PlotResultDescriptor {
     /**
      *
      * @type {string}

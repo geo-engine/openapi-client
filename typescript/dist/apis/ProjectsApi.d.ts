@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AddCollection200Response, CreateProject, OrderBy, Project, ProjectListing, ProjectVersion, UpdateProject } from '../models/index';
+import type { CreateProject, IdResponse, OrderBy, Project, ProjectListing, ProjectVersion, UpdateProject } from '../models/index';
 export interface CreateProjectHandlerRequest {
     createProject: CreateProject;
 }
@@ -43,11 +43,11 @@ export declare class ProjectsApi extends runtime.BaseAPI {
     /**
      * Create a new project for the user.
      */
-    createProjectHandlerRaw(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>>;
+    createProjectHandlerRaw(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
     /**
      * Create a new project for the user.
      */
-    createProjectHandler(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response>;
+    createProjectHandler(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
     /**
      * Deletes a project.
      */
@@ -89,13 +89,11 @@ export declare class ProjectsApi extends runtime.BaseAPI {
      */
     projectVersionsHandler(requestParameters: ProjectVersionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProjectVersion>>;
     /**
-     * This will create a new version.
-     * Updates a project.
+     * Updates a project. This will create a new version.
      */
     updateProjectHandlerRaw(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * This will create a new version.
-     * Updates a project.
+     * Updates a project. This will create a new version.
      */
     updateProjectHandler(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 }

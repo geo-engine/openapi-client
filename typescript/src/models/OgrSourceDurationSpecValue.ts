@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { TimeStep } from './TimeStep';
+import {
+    TimeStepFromJSON,
+    TimeStepFromJSONTyped,
+    TimeStepToJSON,
+    TimeStepToJSONTyped,
+} from './TimeStep';
 import type { TimeGranularity } from './TimeGranularity';
 import {
     TimeGranularityFromJSON,
@@ -26,19 +33,7 @@ import {
  * @export
  * @interface OgrSourceDurationSpecValue
  */
-export interface OgrSourceDurationSpecValue {
-    /**
-     * 
-     * @type {TimeGranularity}
-     * @memberof OgrSourceDurationSpecValue
-     */
-    granularity: TimeGranularity;
-    /**
-     * 
-     * @type {number}
-     * @memberof OgrSourceDurationSpecValue
-     */
-    step: number;
+export interface OgrSourceDurationSpecValue extends TimeStep {
     /**
      * 
      * @type {string}
@@ -61,8 +56,6 @@ export type OgrSourceDurationSpecValueTypeEnum = typeof OgrSourceDurationSpecVal
  * Check if a given object implements the OgrSourceDurationSpecValue interface.
  */
 export function instanceOfOgrSourceDurationSpecValue(value: object): value is OgrSourceDurationSpecValue {
-    if (!('granularity' in value) || value['granularity'] === undefined) return false;
-    if (!('step' in value) || value['step'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
@@ -76,9 +69,7 @@ export function OgrSourceDurationSpecValueFromJSONTyped(json: any, ignoreDiscrim
         return json;
     }
     return {
-        
-        'granularity': TimeGranularityFromJSON(json['granularity']),
-        'step': json['step'],
+        ...TimeStepFromJSONTyped(json, true),
         'type': json['type'],
     };
 }
@@ -93,9 +84,7 @@ export function OgrSourceDurationSpecValueToJSONTyped(value?: OgrSourceDurationS
     }
 
     return {
-        
-        'granularity': TimeGranularityToJSON(value['granularity']),
-        'step': value['step'],
+        ...TimeStepToJSONTyped(value, true),
         'type': value['type'],
     };
 }

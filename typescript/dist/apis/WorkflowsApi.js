@@ -30,8 +30,7 @@ const index_1 = require("../models/index");
  */
 class WorkflowsApi extends runtime.BaseAPI {
     /**
-     * Returns the id of the created task
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
+     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
      */
     datasetFromWorkflowHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -62,8 +61,7 @@ class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Returns the id of the created task
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body.
+     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
      */
     datasetFromWorkflowHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -300,7 +298,7 @@ class WorkflowsApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: (0, index_1.WorkflowToJSON)(requestParameters['workflow']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AddCollection200ResponseFromJSON)(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.IdResponseFromJSON)(jsonValue));
         });
     }
     /**

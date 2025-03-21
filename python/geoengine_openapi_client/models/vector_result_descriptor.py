@@ -103,8 +103,10 @@ class VectorResultDescriptor(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: Dict[str, Any]) -> Optional[Self]:
         """Create an instance of VectorResultDescriptor from a dict"""
+
+        # Note: fixed <https://github.com/OpenAPITools/openapi-generator/issues/19926>
         if obj is None:
             return None
 
@@ -121,7 +123,7 @@ class VectorResultDescriptor(BaseModel):
             else None,
             "dataType": obj.get("dataType"),
             "spatialReference": obj.get("spatialReference"),
-            "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None
+            "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
         })
         return _obj
 

@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as runtime from '../runtime';
-import { AddCollection200ResponseFromJSON, UploadFileLayersResponseFromJSON, UploadFilesResponseFromJSON, } from '../models/index';
+import { IdResponseFromJSON, UploadFileLayersResponseFromJSON, UploadFilesResponseFromJSON, } from '../models/index';
 /**
  *
  */
@@ -143,7 +143,7 @@ export class UploadsApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: formParams,
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
     /**

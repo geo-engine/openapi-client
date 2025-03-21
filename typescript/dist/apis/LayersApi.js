@@ -57,7 +57,7 @@ class LayersApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: (0, index_1.AddLayerCollectionToJSON)(requestParameters['addLayerCollection']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AddCollection200ResponseFromJSON)(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.IdResponseFromJSON)(jsonValue));
         });
     }
     /**
@@ -171,7 +171,7 @@ class LayersApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: (0, index_1.AddLayerToJSON)(requestParameters['addLayer']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AddCollection200ResponseFromJSON)(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.IdResponseFromJSON)(jsonValue));
         });
     }
     /**
@@ -347,7 +347,7 @@ class LayersApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AddCollection200ResponseFromJSON)(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.IdResponseFromJSON)(jsonValue));
         });
     }
     /**

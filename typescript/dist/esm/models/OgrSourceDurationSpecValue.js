@@ -11,7 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TimeGranularityFromJSON, TimeGranularityToJSON, } from './TimeGranularity';
+import { TimeStepFromJSONTyped, TimeStepToJSONTyped, } from './TimeStep';
 /**
  * @export
  */
@@ -22,10 +22,6 @@ export const OgrSourceDurationSpecValueTypeEnum = {
  * Check if a given object implements the OgrSourceDurationSpecValue interface.
  */
 export function instanceOfOgrSourceDurationSpecValue(value) {
-    if (!('granularity' in value) || value['granularity'] === undefined)
-        return false;
-    if (!('step' in value) || value['step'] === undefined)
-        return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
@@ -37,11 +33,7 @@ export function OgrSourceDurationSpecValueFromJSONTyped(json, ignoreDiscriminato
     if (json == null) {
         return json;
     }
-    return {
-        'granularity': TimeGranularityFromJSON(json['granularity']),
-        'step': json['step'],
-        'type': json['type'],
-    };
+    return Object.assign(Object.assign({}, TimeStepFromJSONTyped(json, true)), { 'type': json['type'] });
 }
 export function OgrSourceDurationSpecValueToJSON(json) {
     return OgrSourceDurationSpecValueToJSONTyped(json, false);
@@ -50,9 +42,5 @@ export function OgrSourceDurationSpecValueToJSONTyped(value, ignoreDiscriminator
     if (value == null) {
         return value;
     }
-    return {
-        'granularity': TimeGranularityToJSON(value['granularity']),
-        'step': value['step'],
-        'type': value['type'],
-    };
+    return Object.assign(Object.assign({}, TimeStepToJSONTyped(value, true)), { 'type': value['type'] });
 }

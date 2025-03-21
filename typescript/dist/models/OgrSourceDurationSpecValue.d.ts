@@ -9,25 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TimeGranularity } from './TimeGranularity';
+import type { TimeStep } from './TimeStep';
 /**
  *
  * @export
  * @interface OgrSourceDurationSpecValue
  */
-export interface OgrSourceDurationSpecValue {
-    /**
-     *
-     * @type {TimeGranularity}
-     * @memberof OgrSourceDurationSpecValue
-     */
-    granularity: TimeGranularity;
-    /**
-     *
-     * @type {number}
-     * @memberof OgrSourceDurationSpecValue
-     */
-    step: number;
+export interface OgrSourceDurationSpecValue extends TimeStep {
     /**
      *
      * @type {string}

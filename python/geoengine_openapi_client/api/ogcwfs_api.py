@@ -18,12 +18,13 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-from typing import Any, Optional
+from typing import Optional
 from typing_extensions import Annotated
 from geoengine_openapi_client.models.geo_json import GeoJson
 from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest
 from geoengine_openapi_client.models.get_feature_request import GetFeatureRequest
 from geoengine_openapi_client.models.wfs_service import WfsService
+from geoengine_openapi_client.models.wfs_version import WfsVersion
 
 from geoengine_openapi_client.api_client import ApiClient, RequestSerialized
 from geoengine_openapi_client.api_response import ApiResponse
@@ -47,7 +48,7 @@ class OGCWFSApi:
     def wfs_capabilities_handler(
         self,
         workflow: Annotated[StrictStr, Field(description="Workflow id")],
-        version: Optional[Any],
+        version: Optional[WfsVersion],
         service: WfsService,
         request: GetCapabilitiesRequest,
         _request_timeout: Union[
@@ -125,7 +126,7 @@ class OGCWFSApi:
     def wfs_capabilities_handler_with_http_info(
         self,
         workflow: Annotated[StrictStr, Field(description="Workflow id")],
-        version: Optional[Any],
+        version: Optional[WfsVersion],
         service: WfsService,
         request: GetCapabilitiesRequest,
         _request_timeout: Union[
@@ -203,7 +204,7 @@ class OGCWFSApi:
     def wfs_capabilities_handler_without_preload_content(
         self,
         workflow: Annotated[StrictStr, Field(description="Workflow id")],
-        version: Optional[Any],
+        version: Optional[WfsVersion],
         service: WfsService,
         request: GetCapabilitiesRequest,
         _request_timeout: Union[
@@ -355,7 +356,7 @@ class OGCWFSApi:
         request: GetFeatureRequest,
         type_names: StrictStr,
         bbox: StrictStr,
-        version: Optional[Any] = None,
+        version: Optional[WfsVersion] = None,
         time: Optional[StrictStr] = None,
         srs_name: Optional[StrictStr] = None,
         namespaces: Optional[StrictStr] = None,
@@ -364,7 +365,7 @@ class OGCWFSApi:
         result_type: Optional[StrictStr] = None,
         filter: Optional[StrictStr] = None,
         property_name: Optional[StrictStr] = None,
-        query_resolution: Annotated[Optional[Any], Field(description="Vendor parameter for specifying a spatial query resolution")] = None,
+        query_resolution: Annotated[Optional[StrictStr], Field(description="Vendor parameter for specifying a spatial query resolution")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -477,7 +478,7 @@ class OGCWFSApi:
         request: GetFeatureRequest,
         type_names: StrictStr,
         bbox: StrictStr,
-        version: Optional[Any] = None,
+        version: Optional[WfsVersion] = None,
         time: Optional[StrictStr] = None,
         srs_name: Optional[StrictStr] = None,
         namespaces: Optional[StrictStr] = None,
@@ -486,7 +487,7 @@ class OGCWFSApi:
         result_type: Optional[StrictStr] = None,
         filter: Optional[StrictStr] = None,
         property_name: Optional[StrictStr] = None,
-        query_resolution: Annotated[Optional[Any], Field(description="Vendor parameter for specifying a spatial query resolution")] = None,
+        query_resolution: Annotated[Optional[StrictStr], Field(description="Vendor parameter for specifying a spatial query resolution")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -599,7 +600,7 @@ class OGCWFSApi:
         request: GetFeatureRequest,
         type_names: StrictStr,
         bbox: StrictStr,
-        version: Optional[Any] = None,
+        version: Optional[WfsVersion] = None,
         time: Optional[StrictStr] = None,
         srs_name: Optional[StrictStr] = None,
         namespaces: Optional[StrictStr] = None,
@@ -608,7 +609,7 @@ class OGCWFSApi:
         result_type: Optional[StrictStr] = None,
         filter: Optional[StrictStr] = None,
         property_name: Optional[StrictStr] = None,
-        query_resolution: Annotated[Optional[Any], Field(description="Vendor parameter for specifying a spatial query resolution")] = None,
+        query_resolution: Annotated[Optional[StrictStr], Field(description="Vendor parameter for specifying a spatial query resolution")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

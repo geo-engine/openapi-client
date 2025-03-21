@@ -16,7 +16,7 @@ import type { MlModelResource } from './MlModelResource';
 import type { ProjectResource } from './ProjectResource';
 /**
  * @type Resource
- *
+ * A resource that is affected by a permission.
  * @export
  */
 export type Resource = {

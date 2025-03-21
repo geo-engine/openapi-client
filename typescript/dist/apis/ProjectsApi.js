@@ -54,7 +54,7 @@ class ProjectsApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: (0, index_1.CreateProjectToJSON)(requestParameters['createProject']),
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AddCollection200ResponseFromJSON)(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.IdResponseFromJSON)(jsonValue));
         });
     }
     /**
@@ -250,8 +250,7 @@ class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * This will create a new version.
-     * Updates a project.
+     * Updates a project. This will create a new version.
      */
     updateProjectHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -282,8 +281,7 @@ class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * This will create a new version.
-     * Updates a project.
+     * Updates a project. This will create a new version.
      */
     updateProjectHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {

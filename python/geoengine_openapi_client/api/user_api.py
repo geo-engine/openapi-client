@@ -20,11 +20,11 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
-from geoengine_openapi_client.models.add_collection200_response import AddCollection200Response
 from geoengine_openapi_client.models.add_role import AddRole
 from geoengine_openapi_client.models.computation_quota import ComputationQuota
 from geoengine_openapi_client.models.data_usage import DataUsage
 from geoengine_openapi_client.models.data_usage_summary import DataUsageSummary
+from geoengine_openapi_client.models.id_response import IdResponse
 from geoengine_openapi_client.models.operator_quota import OperatorQuota
 from geoengine_openapi_client.models.quota import Quota
 from geoengine_openapi_client.models.role_description import RoleDescription
@@ -1725,7 +1725,7 @@ class UserApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AddCollection200Response:
+    ) -> IdResponse:
         """Get role by name
 
 
@@ -1762,7 +1762,7 @@ class UserApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1791,7 +1791,7 @@ class UserApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AddCollection200Response]:
+    ) -> ApiResponse[IdResponse]:
         """Get role by name
 
 
@@ -1828,7 +1828,7 @@ class UserApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1894,7 +1894,7 @@ class UserApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

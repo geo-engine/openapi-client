@@ -27,10 +27,10 @@ export function MetaDataDefinitionFromJSONTyped(json, ignoreDiscriminator) {
     switch (json['type']) {
         case 'GdalMetaDataList':
             return Object.assign({}, GdalMetaDataListFromJSONTyped(json, true), { type: 'GdalMetaDataList' });
+        case 'GdalMetaDataNetCdfCf':
+            return Object.assign({}, GdalMetadataNetCdfCfFromJSONTyped(json, true), { type: 'GdalMetaDataNetCdfCf' });
         case 'GdalMetaDataRegular':
             return Object.assign({}, GdalMetaDataRegularFromJSONTyped(json, true), { type: 'GdalMetaDataRegular' });
-        case 'GdalMetadataNetCdfCf':
-            return Object.assign({}, GdalMetadataNetCdfCfFromJSONTyped(json, true), { type: 'GdalMetadataNetCdfCf' });
         case 'GdalStatic':
             return Object.assign({}, GdalMetaDataStaticFromJSONTyped(json, true), { type: 'GdalStatic' });
         case 'MockMetaData':
@@ -51,10 +51,10 @@ export function MetaDataDefinitionToJSONTyped(value, ignoreDiscriminator = false
     switch (value['type']) {
         case 'GdalMetaDataList':
             return Object.assign({}, GdalMetaDataListToJSON(value), { type: 'GdalMetaDataList' });
+        case 'GdalMetaDataNetCdfCf':
+            return Object.assign({}, GdalMetadataNetCdfCfToJSON(value), { type: 'GdalMetaDataNetCdfCf' });
         case 'GdalMetaDataRegular':
             return Object.assign({}, GdalMetaDataRegularToJSON(value), { type: 'GdalMetaDataRegular' });
-        case 'GdalMetadataNetCdfCf':
-            return Object.assign({}, GdalMetadataNetCdfCfToJSON(value), { type: 'GdalMetadataNetCdfCf' });
         case 'GdalStatic':
             return Object.assign({}, GdalMetaDataStaticToJSON(value), { type: 'GdalStatic' });
         case 'MockMetaData':

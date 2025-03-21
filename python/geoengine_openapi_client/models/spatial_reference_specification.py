@@ -80,11 +80,6 @@ class SpatialReferenceSpecification(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of extent
         if self.extent:
             _dict['extent'] = self.extent.to_dict()
-        # set to None if axis_labels (nullable) is None
-        # and model_fields_set contains the field
-        if self.axis_labels is None and "axis_labels" in self.model_fields_set:
-            _dict['axisLabels'] = None
-
         # set to None if axis_order (nullable) is None
         # and model_fields_set contains the field
         if self.axis_order is None and "axis_order" in self.model_fields_set:

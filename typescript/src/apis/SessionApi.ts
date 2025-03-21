@@ -152,7 +152,7 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
+     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.  
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
     async oidcInitRaw(requestParameters: OidcInitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCodeRequestURL>> {
@@ -182,7 +182,7 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable. 
+     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.  
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
      */
     async oidcInit(requestParameters: OidcInitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCodeRequestURL> {
@@ -191,8 +191,8 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable. 
-     * Creates a session for a user via a login with Open Id Connect.
+     * # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.  
+     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
      */
     async oidcLoginRaw(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
         if (requestParameters['redirectUri'] == null) {
@@ -231,8 +231,8 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * This call must be preceded by a call to oidcInit and match the parameters of that call.  # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable. 
-     * Creates a session for a user via a login with Open Id Connect.
+     * # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.  
+     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
      */
     async oidcLogin(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession> {
         const response = await this.oidcLoginRaw(requestParameters, initOverrides);

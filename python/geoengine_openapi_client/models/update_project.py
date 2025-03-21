@@ -20,10 +20,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from geoengine_openapi_client.models.layer_update import LayerUpdate
-from geoengine_openapi_client.models.plot_update import PlotUpdate
 from geoengine_openapi_client.models.st_rectangle import STRectangle
 from geoengine_openapi_client.models.time_step import TimeStep
+from geoengine_openapi_client.models.vec_update import VecUpdate
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -34,9 +33,9 @@ class UpdateProject(BaseModel):
     bounds: Optional[STRectangle] = None
     description: Optional[StrictStr] = None
     id: StrictStr
-    layers: Optional[List[LayerUpdate]] = None
+    layers: Optional[List[VecUpdate]] = None
     name: Optional[StrictStr] = None
-    plots: Optional[List[PlotUpdate]] = None
+    plots: Optional[List[VecUpdate]] = None
     time_step: Optional[TimeStep] = Field(default=None, alias="timeStep")
     __properties: ClassVar[List[str]] = ["bounds", "description", "id", "layers", "name", "plots", "timeStep"]
 
@@ -144,9 +143,9 @@ class UpdateProject(BaseModel):
             "bounds": STRectangle.from_dict(obj["bounds"]) if obj.get("bounds") is not None else None,
             "description": obj.get("description"),
             "id": obj.get("id"),
-            "layers": [LayerUpdate.from_dict(_item) for _item in obj["layers"]] if obj.get("layers") is not None else None,
+            "layers": [VecUpdate.from_dict(_item) for _item in obj["layers"]] if obj.get("layers") is not None else None,
             "name": obj.get("name"),
-            "plots": [PlotUpdate.from_dict(_item) for _item in obj["plots"]] if obj.get("plots") is not None else None,
+            "plots": [VecUpdate.from_dict(_item) for _item in obj["plots"]] if obj.get("plots") is not None else None,
             "timeStep": TimeStep.from_dict(obj["timeStep"]) if obj.get("timeStep") is not None else None
         })
         return _obj

@@ -146,11 +146,28 @@ def build_container():
     )
 
 
-def clean_test_dirs(*, language: Literal['python', 'typescript']):
-    '''Remove the test directory, since it will not be overwritten by the generator.'''
-    test_path = Path(language) / 'test'
-    if os.path.isdir(test_path):
-        shutil.rmtree(test_path)
+def clean_dirs(*, language: Literal['python', 'typescript']):
+    '''Remove some directories because they are not be overwritten by the generator.'''
+
+    dirs_to_remove = [
+        Path(language) / 'test'
+    ]
+
+    match language:
+        case 'typescript':
+            dirs_to_remove.extend([
+                Path(language) / 'src',
+                Path(language) / 'dist',
+            ])
+        case 'python':
+            dirs_to_remove.extend([
+                Path(language) / 'geoengine_openapi_client',
+            ])
+
+    for the_dir in dirs_to_remove:
+        if not os.path.isdir(the_dir):
+            continue
+        shutil.rmtree(the_dir)
 
 
 def generate_python_code(*, package_name: str, package_version: str, package_url: str):
@@ -175,6 +192,7 @@ def generate_python_code(*, package_name: str, package_version: str, package_url
             ]),
             "--enable-post-process-file",
             "-o", "/local/python/",
+            "--openapi-normalizer", "REF_AS_PARENT_IN_ALLOF=true",
         ],
         check=True,
     )
@@ -210,6 +228,7 @@ def generate_typescript_code(*, npm_name: str, npm_version: str, repository_url:
             "--git-repo-id", git_repo_id,
             "--enable-post-process-file",
             "-o", "/local/typescript/",
+            "--openapi-normalizer", "REF_AS_PARENT_IN_ALLOF=true",
         ],
         check=True,
     )
@@ -232,7 +251,7 @@ def main():
     if args.build_container:
         build_container()
 
-    clean_test_dirs(language=args.language)
+    clean_dirs(language=args.language)
 
     if args.language == 'python':
         generate_python_code(

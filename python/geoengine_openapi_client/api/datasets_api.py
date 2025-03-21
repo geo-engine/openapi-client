@@ -22,9 +22,9 @@ from typing import List, Optional
 from typing_extensions import Annotated
 from geoengine_openapi_client.models.auto_create_dataset import AutoCreateDataset
 from geoengine_openapi_client.models.create_dataset import CreateDataset
-from geoengine_openapi_client.models.create_dataset_handler200_response import CreateDatasetHandler200Response
 from geoengine_openapi_client.models.dataset import Dataset
 from geoengine_openapi_client.models.dataset_listing import DatasetListing
+from geoengine_openapi_client.models.dataset_name_response import DatasetNameResponse
 from geoengine_openapi_client.models.meta_data_definition import MetaDataDefinition
 from geoengine_openapi_client.models.meta_data_suggestion import MetaDataSuggestion
 from geoengine_openapi_client.models.order_by import OrderBy
@@ -69,10 +69,9 @@ class DatasetsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CreateDatasetHandler200Response:
-        """Creates a new dataset using previously uploaded files.
+    ) -> DatasetNameResponse:
+        """Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 
-        The format of the files will be automatically detected when possible.
 
         :param auto_create_dataset: (required)
         :type auto_create_dataset: AutoCreateDataset
@@ -107,7 +106,7 @@ class DatasetsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CreateDatasetHandler200Response",
+            '200': "DatasetNameResponse",
             '400': "ErrorResponse",
             '401': "ErrorResponse",
             '413': "ErrorResponse",
@@ -140,10 +139,9 @@ class DatasetsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CreateDatasetHandler200Response]:
-        """Creates a new dataset using previously uploaded files.
+    ) -> ApiResponse[DatasetNameResponse]:
+        """Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 
-        The format of the files will be automatically detected when possible.
 
         :param auto_create_dataset: (required)
         :type auto_create_dataset: AutoCreateDataset
@@ -178,7 +176,7 @@ class DatasetsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CreateDatasetHandler200Response",
+            '200': "DatasetNameResponse",
             '400': "ErrorResponse",
             '401': "ErrorResponse",
             '413': "ErrorResponse",
@@ -212,9 +210,8 @@ class DatasetsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Creates a new dataset using previously uploaded files.
+        """Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 
-        The format of the files will be automatically detected when possible.
 
         :param auto_create_dataset: (required)
         :type auto_create_dataset: AutoCreateDataset
@@ -249,7 +246,7 @@ class DatasetsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CreateDatasetHandler200Response",
+            '200': "DatasetNameResponse",
             '400': "ErrorResponse",
             '401': "ErrorResponse",
             '413': "ErrorResponse",
@@ -355,10 +352,9 @@ class DatasetsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CreateDatasetHandler200Response:
-        """Creates a new dataset referencing files.
+    ) -> DatasetNameResponse:
+        """Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 
-        Users can reference previously uploaded files. Admins can reference files from a volume.
 
         :param create_dataset: (required)
         :type create_dataset: CreateDataset
@@ -393,7 +389,7 @@ class DatasetsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CreateDatasetHandler200Response",
+            '200': "DatasetNameResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -422,10 +418,9 @@ class DatasetsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CreateDatasetHandler200Response]:
-        """Creates a new dataset referencing files.
+    ) -> ApiResponse[DatasetNameResponse]:
+        """Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 
-        Users can reference previously uploaded files. Admins can reference files from a volume.
 
         :param create_dataset: (required)
         :type create_dataset: CreateDataset
@@ -460,7 +455,7 @@ class DatasetsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CreateDatasetHandler200Response",
+            '200': "DatasetNameResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -490,9 +485,8 @@ class DatasetsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Creates a new dataset referencing files.
+        """Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 
-        Users can reference previously uploaded files. Admins can reference files from a volume.
 
         :param create_dataset: (required)
         :type create_dataset: CreateDataset
@@ -527,7 +521,7 @@ class DatasetsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CreateDatasetHandler200Response",
+            '200': "DatasetNameResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2270,9 +2264,8 @@ class DatasetsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> MetaDataSuggestion:
-        """Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+        """Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
 
-        Tries to automatically detect the main file and layer name if not specified.
 
         :param suggest_meta_data: (required)
         :type suggest_meta_data: SuggestMetaData
@@ -2339,9 +2332,8 @@ class DatasetsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[MetaDataSuggestion]:
-        """Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+        """Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
 
-        Tries to automatically detect the main file and layer name if not specified.
 
         :param suggest_meta_data: (required)
         :type suggest_meta_data: SuggestMetaData
@@ -2408,9 +2400,8 @@ class DatasetsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+        """Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
 
-        Tries to automatically detect the main file and layer name if not specified.
 
         :param suggest_meta_data: (required)
         :type suggest_meta_data: SuggestMetaData

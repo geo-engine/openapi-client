@@ -13,7 +13,8 @@ import type { ExternalDataId } from './ExternalDataId';
 import type { InternalDataId } from './InternalDataId';
 /**
  * @type DataId
- *
+ * The identifier for loadable data. It is used in the source operators to get the loading info (aka parametrization)
+ * for accessing the data. Internal data is loaded from datasets, external from `DataProvider`s.
  * @export
  */
 export type DataId = {

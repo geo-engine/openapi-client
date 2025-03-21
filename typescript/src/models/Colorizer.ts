@@ -36,7 +36,8 @@ import {
 
 /**
  * @type Colorizer
- * 
+ * A colorizer specifies a mapping between raster values and an output image
+ * There are different variants that perform different kinds of mapping.
  * @export
  */
 export type Colorizer = { type: 'linearGradient' } & LinearGradient | { type: 'logarithmicGradient' } & LogarithmicGradient | { type: 'palette' } & PaletteColorizer;

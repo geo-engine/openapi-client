@@ -20,13 +20,6 @@ import {
     TimeStepToJSON,
     TimeStepToJSONTyped,
 } from './TimeStep';
-import type { PlotUpdate } from './PlotUpdate';
-import {
-    PlotUpdateFromJSON,
-    PlotUpdateFromJSONTyped,
-    PlotUpdateToJSON,
-    PlotUpdateToJSONTyped,
-} from './PlotUpdate';
 import type { STRectangle } from './STRectangle';
 import {
     STRectangleFromJSON,
@@ -34,13 +27,13 @@ import {
     STRectangleToJSON,
     STRectangleToJSONTyped,
 } from './STRectangle';
-import type { LayerUpdate } from './LayerUpdate';
+import type { VecUpdate } from './VecUpdate';
 import {
-    LayerUpdateFromJSON,
-    LayerUpdateFromJSONTyped,
-    LayerUpdateToJSON,
-    LayerUpdateToJSONTyped,
-} from './LayerUpdate';
+    VecUpdateFromJSON,
+    VecUpdateFromJSONTyped,
+    VecUpdateToJSON,
+    VecUpdateToJSONTyped,
+} from './VecUpdate';
 
 /**
  * 
@@ -68,10 +61,10 @@ export interface UpdateProject {
     id: string;
     /**
      * 
-     * @type {Array<LayerUpdate>}
+     * @type {Array<VecUpdate>}
      * @memberof UpdateProject
      */
-    layers?: Array<LayerUpdate> | null;
+    layers?: Array<VecUpdate> | null;
     /**
      * 
      * @type {string}
@@ -80,10 +73,10 @@ export interface UpdateProject {
     name?: string | null;
     /**
      * 
-     * @type {Array<PlotUpdate>}
+     * @type {Array<VecUpdate>}
      * @memberof UpdateProject
      */
-    plots?: Array<PlotUpdate> | null;
+    plots?: Array<VecUpdate> | null;
     /**
      * 
      * @type {TimeStep}
@@ -113,9 +106,9 @@ export function UpdateProjectFromJSONTyped(json: any, ignoreDiscriminator: boole
         'bounds': json['bounds'] == null ? undefined : STRectangleFromJSON(json['bounds']),
         'description': json['description'] == null ? undefined : json['description'],
         'id': json['id'],
-        'layers': json['layers'] == null ? undefined : ((json['layers'] as Array<any>).map(LayerUpdateFromJSON)),
+        'layers': json['layers'] == null ? undefined : ((json['layers'] as Array<any>).map(VecUpdateFromJSON)),
         'name': json['name'] == null ? undefined : json['name'],
-        'plots': json['plots'] == null ? undefined : ((json['plots'] as Array<any>).map(PlotUpdateFromJSON)),
+        'plots': json['plots'] == null ? undefined : ((json['plots'] as Array<any>).map(VecUpdateFromJSON)),
         'timeStep': json['timeStep'] == null ? undefined : TimeStepFromJSON(json['timeStep']),
     };
 }
@@ -134,9 +127,9 @@ export function UpdateProjectToJSONTyped(value?: UpdateProject | null, ignoreDis
         'bounds': STRectangleToJSON(value['bounds']),
         'description': value['description'],
         'id': value['id'],
-        'layers': value['layers'] == null ? undefined : ((value['layers'] as Array<any>).map(LayerUpdateToJSON)),
+        'layers': value['layers'] == null ? undefined : ((value['layers'] as Array<any>).map(VecUpdateToJSON)),
         'name': value['name'],
-        'plots': value['plots'] == null ? undefined : ((value['plots'] as Array<any>).map(PlotUpdateToJSON)),
+        'plots': value['plots'] == null ? undefined : ((value['plots'] as Array<any>).map(VecUpdateToJSON)),
         'timeStep': TimeStepToJSON(value['timeStep']),
     };
 }

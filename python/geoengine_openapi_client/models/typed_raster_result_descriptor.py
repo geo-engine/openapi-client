@@ -18,26 +18,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import ConfigDict, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
 from geoengine_openapi_client.models.raster_band_descriptor import RasterBandDescriptor
 from geoengine_openapi_client.models.raster_data_type import RasterDataType
+from geoengine_openapi_client.models.raster_result_descriptor import RasterResultDescriptor
 from geoengine_openapi_client.models.spatial_partition2_d import SpatialPartition2D
 from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
 from geoengine_openapi_client.models.time_interval import TimeInterval
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TypedRasterResultDescriptor(BaseModel):
+class TypedRasterResultDescriptor(RasterResultDescriptor):
     """
-    A `ResultDescriptor` for raster queries
+    TypedRasterResultDescriptor
     """ # noqa: E501
-    bands: List[RasterBandDescriptor]
-    bbox: Optional[SpatialPartition2D] = None
-    data_type: RasterDataType = Field(alias="dataType")
-    resolution: Optional[SpatialResolution] = None
-    spatial_reference: StrictStr = Field(alias="spatialReference")
-    time: Optional[TimeInterval] = None
     type: StrictStr
     __properties: ClassVar[List[str]] = ["bands", "bbox", "dataType", "resolution", "spatialReference", "time", "type"]
 

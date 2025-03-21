@@ -15,11 +15,11 @@
 
 import * as runtime from '../runtime';
 import type {
-  AddCollection200Response,
   AddRole,
   ComputationQuota,
   DataUsage,
   DataUsageSummary,
+  IdResponse,
   OperatorQuota,
   Quota,
   RoleDescription,
@@ -27,8 +27,6 @@ import type {
   UsageSummaryGranularity,
 } from '../models/index';
 import {
-    AddCollection200ResponseFromJSON,
-    AddCollection200ResponseToJSON,
     AddRoleFromJSON,
     AddRoleToJSON,
     ComputationQuotaFromJSON,
@@ -37,6 +35,8 @@ import {
     DataUsageToJSON,
     DataUsageSummaryFromJSON,
     DataUsageSummaryToJSON,
+    IdResponseFromJSON,
+    IdResponseToJSON,
     OperatorQuotaFromJSON,
     OperatorQuotaToJSON,
     QuotaFromJSON,
@@ -428,7 +428,7 @@ export class UserApi extends runtime.BaseAPI {
     /**
      * Get role by name
      */
-    async getRoleByNameHandlerRaw(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
+    async getRoleByNameHandlerRaw(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
         if (requestParameters['name'] == null) {
             throw new runtime.RequiredError(
                 'name',
@@ -455,13 +455,13 @@ export class UserApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
 
     /**
      * Get role by name
      */
-    async getRoleByNameHandler(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
+    async getRoleByNameHandler(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse> {
         const response = await this.getRoleByNameHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }

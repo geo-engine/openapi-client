@@ -20,9 +20,9 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import List
 from typing_extensions import Annotated
-from geoengine_openapi_client.models.add_collection200_response import AddCollection200Response
 from geoengine_openapi_client.models.add_layer import AddLayer
 from geoengine_openapi_client.models.add_layer_collection import AddLayerCollection
+from geoengine_openapi_client.models.id_response import IdResponse
 from geoengine_openapi_client.models.layer import Layer
 from geoengine_openapi_client.models.layer_collection import LayerCollection
 from geoengine_openapi_client.models.provider_capabilities import ProviderCapabilities
@@ -66,7 +66,7 @@ class LayersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AddCollection200Response:
+    ) -> IdResponse:
         """Add a new collection to an existing collection
 
 
@@ -106,7 +106,7 @@ class LayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -136,7 +136,7 @@ class LayersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AddCollection200Response]:
+    ) -> ApiResponse[IdResponse]:
         """Add a new collection to an existing collection
 
 
@@ -176,7 +176,7 @@ class LayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -246,7 +246,7 @@ class LayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -892,7 +892,7 @@ class LayersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AddCollection200Response:
+    ) -> IdResponse:
         """Add a new layer to a collection
 
 
@@ -932,7 +932,7 @@ class LayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -962,7 +962,7 @@ class LayersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AddCollection200Response]:
+    ) -> ApiResponse[IdResponse]:
         """Add a new layer to a collection
 
 
@@ -1002,7 +1002,7 @@ class LayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1072,7 +1072,7 @@ class LayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2065,7 +2065,7 @@ class LayersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> AddCollection200Response:
+    ) -> IdResponse:
         """Registers a layer from a provider as a workflow and returns the workflow id
 
 
@@ -2105,7 +2105,7 @@ class LayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2135,7 +2135,7 @@ class LayersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[AddCollection200Response]:
+    ) -> ApiResponse[IdResponse]:
         """Registers a layer from a provider as a workflow and returns the workflow id
 
 
@@ -2175,7 +2175,7 @@ class LayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2245,7 +2245,7 @@ class LayersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "AddCollection200Response",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

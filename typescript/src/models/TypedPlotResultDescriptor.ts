@@ -27,31 +27,20 @@ import {
     BoundingBox2DToJSON,
     BoundingBox2DToJSONTyped,
 } from './BoundingBox2D';
+import type { PlotResultDescriptor } from './PlotResultDescriptor';
+import {
+    PlotResultDescriptorFromJSON,
+    PlotResultDescriptorFromJSONTyped,
+    PlotResultDescriptorToJSON,
+    PlotResultDescriptorToJSONTyped,
+} from './PlotResultDescriptor';
 
 /**
- * A `ResultDescriptor` for plot queries
+ * 
  * @export
  * @interface TypedPlotResultDescriptor
  */
-export interface TypedPlotResultDescriptor {
-    /**
-     * 
-     * @type {BoundingBox2D}
-     * @memberof TypedPlotResultDescriptor
-     */
-    bbox?: BoundingBox2D | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof TypedPlotResultDescriptor
-     */
-    spatialReference: string;
-    /**
-     * 
-     * @type {TimeInterval}
-     * @memberof TypedPlotResultDescriptor
-     */
-    time?: TimeInterval | null;
+export interface TypedPlotResultDescriptor extends PlotResultDescriptor {
     /**
      * 
      * @type {string}
@@ -74,7 +63,6 @@ export type TypedPlotResultDescriptorTypeEnum = typeof TypedPlotResultDescriptor
  * Check if a given object implements the TypedPlotResultDescriptor interface.
  */
 export function instanceOfTypedPlotResultDescriptor(value: object): value is TypedPlotResultDescriptor {
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
@@ -88,10 +76,7 @@ export function TypedPlotResultDescriptorFromJSONTyped(json: any, ignoreDiscrimi
         return json;
     }
     return {
-        
-        'bbox': json['bbox'] == null ? undefined : BoundingBox2DFromJSON(json['bbox']),
-        'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        ...PlotResultDescriptorFromJSONTyped(json, true),
         'type': json['type'],
     };
 }
@@ -106,10 +91,7 @@ export function TypedPlotResultDescriptorToJSONTyped(value?: TypedPlotResultDesc
     }
 
     return {
-        
-        'bbox': BoundingBox2DToJSON(value['bbox']),
-        'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
+        ...PlotResultDescriptorToJSONTyped(value, true),
         'type': value['type'],
     };
 }

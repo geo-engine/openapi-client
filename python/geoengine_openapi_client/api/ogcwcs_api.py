@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBytes, StrictFloat, StrictInt, StrictStr
-from typing import Any, Optional, Tuple, Union
+from typing import Optional, Tuple, Union
 from typing_extensions import Annotated
 from geoengine_openapi_client.models.describe_coverage_request import DescribeCoverageRequest
 from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest
@@ -51,7 +51,7 @@ class OGCWCSApi:
         workflow: Annotated[StrictStr, Field(description="Workflow id")],
         service: WcsService,
         request: GetCapabilitiesRequest,
-        version: Optional[Any] = None,
+        version: Optional[WcsVersion] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -129,7 +129,7 @@ class OGCWCSApi:
         workflow: Annotated[StrictStr, Field(description="Workflow id")],
         service: WcsService,
         request: GetCapabilitiesRequest,
-        version: Optional[Any] = None,
+        version: Optional[WcsVersion] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -207,7 +207,7 @@ class OGCWCSApi:
         workflow: Annotated[StrictStr, Field(description="Workflow id")],
         service: WcsService,
         request: GetCapabilitiesRequest,
-        version: Optional[Any] = None,
+        version: Optional[WcsVersion] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

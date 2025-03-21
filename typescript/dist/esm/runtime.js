@@ -20,7 +20,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-export const BASE_PATH = "http://0.0.0.0:8080/api".replace(/\/+$/, "");
+export const BASE_PATH = "https://geoengine.io/api".replace(/\/+$/, "");
 export class Configuration {
     constructor(configuration = {}) {
         this.configuration = configuration;
@@ -69,7 +69,7 @@ export class Configuration {
 }
 export const DefaultConfig = new Configuration({
     headers: {
-        'User-Agent': 'geoengine/openapi-client/typescript/0.0.21'
+        'User-Agent': 'geoengine/openapi-client/typescript/0.0.22'
     }
 });
 /**

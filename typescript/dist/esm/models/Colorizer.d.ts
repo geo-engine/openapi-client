@@ -14,7 +14,8 @@ import type { LogarithmicGradient } from './LogarithmicGradient';
 import type { PaletteColorizer } from './PaletteColorizer';
 /**
  * @type Colorizer
- *
+ * A colorizer specifies a mapping between raster values and an output image
+ * There are different variants that perform different kinds of mapping.
  * @export
  */
 export type Colorizer = {

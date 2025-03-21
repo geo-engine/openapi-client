@@ -19,23 +19,23 @@ import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
 from geoengine_openapi_client.models.derived_number import DerivedNumber
-from geoengine_openapi_client.models.static_number_param import StaticNumberParam
+from geoengine_openapi_client.models.static_number import StaticNumber
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-NUMBERPARAM_ONE_OF_SCHEMAS = ["DerivedNumber", "StaticNumberParam"]
+NUMBERPARAM_ONE_OF_SCHEMAS = ["DerivedNumber", "StaticNumber"]
 
 class NumberParam(BaseModel):
     """
     NumberParam
     """
-    # data type: StaticNumberParam
-    oneof_schema_1_validator: Optional[StaticNumberParam] = None
+    # data type: StaticNumber
+    oneof_schema_1_validator: Optional[StaticNumber] = None
     # data type: DerivedNumber
     oneof_schema_2_validator: Optional[DerivedNumber] = None
-    actual_instance: Optional[Union[DerivedNumber, StaticNumberParam]] = None
-    one_of_schemas: Set[str] = { "DerivedNumber", "StaticNumberParam" }
+    actual_instance: Optional[Union[DerivedNumber, StaticNumber]] = None
+    one_of_schemas: Set[str] = { "DerivedNumber", "StaticNumber" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -61,9 +61,9 @@ class NumberParam(BaseModel):
         instance = NumberParam.model_construct()
         error_messages = []
         match = 0
-        # validate data type: StaticNumberParam
-        if not isinstance(v, StaticNumberParam):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `StaticNumberParam`")
+        # validate data type: StaticNumber
+        if not isinstance(v, StaticNumber):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `StaticNumber`")
         else:
             match += 1
         # validate data type: DerivedNumber
@@ -73,10 +73,10 @@ class NumberParam(BaseModel):
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in NumberParam with oneOf schemas: DerivedNumber, StaticNumberParam. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in NumberParam with oneOf schemas: DerivedNumber, StaticNumber. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in NumberParam with oneOf schemas: DerivedNumber, StaticNumberParam. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in NumberParam with oneOf schemas: DerivedNumber, StaticNumber. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -101,9 +101,9 @@ class NumberParam(BaseModel):
             instance.actual_instance = DerivedNumber.from_json(json_str)
             return instance
 
-        # check if data type is `StaticNumberParam`
+        # check if data type is `StaticNumber`
         if _data_type == "static":
-            instance.actual_instance = StaticNumberParam.from_json(json_str)
+            instance.actual_instance = StaticNumber.from_json(json_str)
             return instance
 
         # check if data type is `DerivedNumber`
@@ -111,14 +111,14 @@ class NumberParam(BaseModel):
             instance.actual_instance = DerivedNumber.from_json(json_str)
             return instance
 
-        # check if data type is `StaticNumberParam`
-        if _data_type == "StaticNumberParam":
-            instance.actual_instance = StaticNumberParam.from_json(json_str)
+        # check if data type is `StaticNumber`
+        if _data_type == "StaticNumber":
+            instance.actual_instance = StaticNumber.from_json(json_str)
             return instance
 
-        # deserialize data into StaticNumberParam
+        # deserialize data into StaticNumber
         try:
-            instance.actual_instance = StaticNumberParam.from_json(json_str)
+            instance.actual_instance = StaticNumber.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -131,10 +131,10 @@ class NumberParam(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into NumberParam with oneOf schemas: DerivedNumber, StaticNumberParam. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into NumberParam with oneOf schemas: DerivedNumber, StaticNumber. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into NumberParam with oneOf schemas: DerivedNumber, StaticNumberParam. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into NumberParam with oneOf schemas: DerivedNumber, StaticNumber. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -148,7 +148,7 @@ class NumberParam(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], DerivedNumber, StaticNumberParam]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], DerivedNumber, StaticNumber]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

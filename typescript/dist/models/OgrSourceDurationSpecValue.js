@@ -19,7 +19,7 @@ exports.OgrSourceDurationSpecValueFromJSON = OgrSourceDurationSpecValueFromJSON;
 exports.OgrSourceDurationSpecValueFromJSONTyped = OgrSourceDurationSpecValueFromJSONTyped;
 exports.OgrSourceDurationSpecValueToJSON = OgrSourceDurationSpecValueToJSON;
 exports.OgrSourceDurationSpecValueToJSONTyped = OgrSourceDurationSpecValueToJSONTyped;
-const TimeGranularity_1 = require("./TimeGranularity");
+const TimeStep_1 = require("./TimeStep");
 /**
  * @export
  */
@@ -30,10 +30,6 @@ exports.OgrSourceDurationSpecValueTypeEnum = {
  * Check if a given object implements the OgrSourceDurationSpecValue interface.
  */
 function instanceOfOgrSourceDurationSpecValue(value) {
-    if (!('granularity' in value) || value['granularity'] === undefined)
-        return false;
-    if (!('step' in value) || value['step'] === undefined)
-        return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
@@ -45,11 +41,7 @@ function OgrSourceDurationSpecValueFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    return {
-        'granularity': (0, TimeGranularity_1.TimeGranularityFromJSON)(json['granularity']),
-        'step': json['step'],
-        'type': json['type'],
-    };
+    return Object.assign(Object.assign({}, (0, TimeStep_1.TimeStepFromJSONTyped)(json, true)), { 'type': json['type'] });
 }
 function OgrSourceDurationSpecValueToJSON(json) {
     return OgrSourceDurationSpecValueToJSONTyped(json, false);
@@ -58,9 +50,5 @@ function OgrSourceDurationSpecValueToJSONTyped(value, ignoreDiscriminator = fals
     if (value == null) {
         return value;
     }
-    return {
-        'granularity': (0, TimeGranularity_1.TimeGranularityToJSON)(value['granularity']),
-        'step': value['step'],
-        'type': value['type'],
-    };
+    return Object.assign(Object.assign({}, (0, TimeStep_1.TimeStepToJSONTyped)(value, true)), { 'type': value['type'] });
 }

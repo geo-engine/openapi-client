@@ -29,7 +29,7 @@ COLORIZER_ONE_OF_SCHEMAS = ["LinearGradient", "LogarithmicGradient", "PaletteCol
 
 class Colorizer(BaseModel):
     """
-    Colorizer
+    A colorizer specifies a mapping between raster values and an output image There are different variants that perform different kinds of mapping.
     """
     # data type: LinearGradient
     oneof_schema_1_validator: Optional[LinearGradient] = None

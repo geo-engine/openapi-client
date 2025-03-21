@@ -11,11 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { mapValues } from '../runtime';
-import { VectorDataTypeFromJSON, VectorDataTypeToJSON, } from './VectorDataType';
-import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
-import { VectorColumnInfoFromJSON, VectorColumnInfoToJSON, } from './VectorColumnInfo';
-import { BoundingBox2DFromJSON, BoundingBox2DToJSON, } from './BoundingBox2D';
+import { VectorResultDescriptorFromJSONTyped, VectorResultDescriptorToJSONTyped, } from './VectorResultDescriptor';
 /**
  * @export
  */
@@ -26,12 +22,6 @@ export const TypedVectorResultDescriptorTypeEnum = {
  * Check if a given object implements the TypedVectorResultDescriptor interface.
  */
 export function instanceOfTypedVectorResultDescriptor(value) {
-    if (!('columns' in value) || value['columns'] === undefined)
-        return false;
-    if (!('dataType' in value) || value['dataType'] === undefined)
-        return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
-        return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
@@ -43,14 +33,7 @@ export function TypedVectorResultDescriptorFromJSONTyped(json, ignoreDiscriminat
     if (json == null) {
         return json;
     }
-    return {
-        'bbox': json['bbox'] == null ? undefined : BoundingBox2DFromJSON(json['bbox']),
-        'columns': (mapValues(json['columns'], VectorColumnInfoFromJSON)),
-        'dataType': VectorDataTypeFromJSON(json['dataType']),
-        'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
-        'type': json['type'],
-    };
+    return Object.assign(Object.assign({}, VectorResultDescriptorFromJSONTyped(json, true)), { 'type': json['type'] });
 }
 export function TypedVectorResultDescriptorToJSON(json) {
     return TypedVectorResultDescriptorToJSONTyped(json, false);
@@ -59,12 +42,5 @@ export function TypedVectorResultDescriptorToJSONTyped(value, ignoreDiscriminato
     if (value == null) {
         return value;
     }
-    return {
-        'bbox': BoundingBox2DToJSON(value['bbox']),
-        'columns': (mapValues(value['columns'], VectorColumnInfoToJSON)),
-        'dataType': VectorDataTypeToJSON(value['dataType']),
-        'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
-        'type': value['type'],
-    };
+    return Object.assign(Object.assign({}, VectorResultDescriptorToJSONTyped(value, true)), { 'type': value['type'] });
 }

@@ -18,24 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import ConfigDict, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
 from geoengine_openapi_client.models.bounding_box2_d import BoundingBox2D
 from geoengine_openapi_client.models.time_interval import TimeInterval
 from geoengine_openapi_client.models.vector_column_info import VectorColumnInfo
 from geoengine_openapi_client.models.vector_data_type import VectorDataType
+from geoengine_openapi_client.models.vector_result_descriptor import VectorResultDescriptor
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TypedVectorResultDescriptor(BaseModel):
+class TypedVectorResultDescriptor(VectorResultDescriptor):
     """
     TypedVectorResultDescriptor
     """ # noqa: E501
-    bbox: Optional[BoundingBox2D] = None
-    columns: Dict[str, VectorColumnInfo]
-    data_type: VectorDataType = Field(alias="dataType")
-    spatial_reference: StrictStr = Field(alias="spatialReference")
-    time: Optional[TimeInterval] = None
     type: StrictStr
     __properties: ClassVar[List[str]] = ["bbox", "columns", "dataType", "spatialReference", "time", "type"]
 

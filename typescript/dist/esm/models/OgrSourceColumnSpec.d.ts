@@ -53,7 +53,7 @@ export interface OgrSourceColumnSpec {
      */
     rename?: {
         [key: string]: string;
-    } | null;
+    };
     /**
      *
      * @type {Array<string>}

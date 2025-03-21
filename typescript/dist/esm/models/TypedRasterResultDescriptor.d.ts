@@ -9,53 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { SpatialResolution } from './SpatialResolution';
-import type { TimeInterval } from './TimeInterval';
-import type { RasterBandDescriptor } from './RasterBandDescriptor';
-import type { RasterDataType } from './RasterDataType';
-import type { SpatialPartition2D } from './SpatialPartition2D';
+import type { RasterResultDescriptor } from './RasterResultDescriptor';
 /**
- * A `ResultDescriptor` for raster queries
+ *
  * @export
  * @interface TypedRasterResultDescriptor
  */
-export interface TypedRasterResultDescriptor {
-    /**
-     *
-     * @type {Array<RasterBandDescriptor>}
-     * @memberof TypedRasterResultDescriptor
-     */
-    bands: Array<RasterBandDescriptor>;
-    /**
-     *
-     * @type {SpatialPartition2D}
-     * @memberof TypedRasterResultDescriptor
-     */
-    bbox?: SpatialPartition2D | null;
-    /**
-     *
-     * @type {RasterDataType}
-     * @memberof TypedRasterResultDescriptor
-     */
-    dataType: RasterDataType;
-    /**
-     *
-     * @type {SpatialResolution}
-     * @memberof TypedRasterResultDescriptor
-     */
-    resolution?: SpatialResolution | null;
-    /**
-     *
-     * @type {string}
-     * @memberof TypedRasterResultDescriptor
-     */
-    spatialReference: string;
-    /**
-     *
-     * @type {TimeInterval}
-     * @memberof TypedRasterResultDescriptor
-     */
-    time?: TimeInterval | null;
+export interface TypedRasterResultDescriptor extends RasterResultDescriptor {
     /**
      *
      * @type {string}

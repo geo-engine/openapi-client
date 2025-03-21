@@ -123,7 +123,8 @@ def layers_api_py(file_contents: List[str]) -> Generator[str, None, None]:
         yield line
 
 def ogc_xyz_api_py(ogc_api: Literal['wfs', 'wms']) -> Callable[[List[str]], Generator[str, None, None]]:
-    def ogc_wfs_api_py(file_contents: List[str]) -> Generator[str, None, None]:
+    '''Modify the ogc_xyz_api.py file.'''
+    def _ogc_xyz_api_py(file_contents: List[str]) -> Generator[str, None, None]:
         '''Modify the ogc_wfs_api.py file.'''
         for line in file_contents:
             dedented_line = dedent(line)
@@ -134,7 +135,112 @@ def ogc_xyz_api_py(ogc_api: Literal['wfs', 'wms']) -> Callable[[List[str]], Gene
                 '''), 3 * INDENT)
 
             yield line
-    return ogc_wfs_api_py
+    return _ogc_xyz_api_py
+
+
+def raster_result_descriptor_py(file_contents: List[str]) -> Generator[str, None, None]:
+    '''
+    Modify the raster_result_descriptor.py file.
+    
+    TODO: remove when bug is fixed:
+    https://github.com/OpenAPITools/openapi-generator/issues/19926
+    '''
+
+    for line in file_contents:
+        dedented_line = dedent(line)
+        if dedented_line.startswith(
+            '"""Create an instance of RasterResultDescriptor from a dict"""'
+        ):
+            line = line + '\n' + indent(dedent('''\
+            # Note: fixed <https://github.com/OpenAPITools/openapi-generator/issues/19926>
+            if obj is None:
+                return None
+
+            if not isinstance(obj, dict):
+                return cls.model_validate(obj)
+
+            _obj = cls.model_validate({
+                "bands": [RasterBandDescriptor.from_dict(_item) for _item in obj["bands"]] if obj.get("bands") is not None else None,
+                "bbox": SpatialPartition2D.from_dict(obj["bbox"]) if obj.get("bbox") is not None else None,
+                "dataType": obj.get("dataType"),
+                "resolution": SpatialResolution.from_dict(obj["resolution"]) if obj.get("resolution") is not None else None,
+                "spatialReference": obj.get("spatialReference"),
+                "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
+            })
+            return _obj
+            '''), 2 * INDENT)
+
+        yield line
+
+def vector_result_descriptor_py(file_contents: List[str]) -> Generator[str, None, None]:
+    '''
+    Modify the vector_result_descriptor.py file.
+    
+    TODO: remove when bug is fixed:
+    https://github.com/OpenAPITools/openapi-generator/issues/19926
+    '''
+
+    for line in file_contents:
+        dedented_line = dedent(line)
+        if dedented_line.startswith(
+            '"""Create an instance of VectorResultDescriptor from a dict"""'
+        ):
+            line = line + '\n' + indent(dedent('''\
+            # Note: fixed <https://github.com/OpenAPITools/openapi-generator/issues/19926>
+            if obj is None:
+                return None
+
+            if not isinstance(obj, dict):
+                return cls.model_validate(obj)
+
+            _obj = cls.model_validate({
+                "bbox": BoundingBox2D.from_dict(obj["bbox"]) if obj.get("bbox") is not None else None,
+                "columns": dict(
+                    (_k, VectorColumnInfo.from_dict(_v))
+                    for _k, _v in obj["columns"].items()
+                )
+                if obj.get("columns") is not None
+                else None,
+                "dataType": obj.get("dataType"),
+                "spatialReference": obj.get("spatialReference"),
+                "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
+            })
+            return _obj
+            '''), 2 * INDENT)
+
+        yield line
+
+
+def plot_result_descriptor_py(file_contents: List[str]) -> Generator[str, None, None]:
+    '''
+    Modify the plot_result_descriptor.py file.
+    
+    TODO: remove when bug is fixed:
+    https://github.com/OpenAPITools/openapi-generator/issues/19926
+    '''
+
+    for line in file_contents:
+        dedented_line = dedent(line)
+        if dedented_line.startswith(
+            '"""Create an instance of PlotResultDescriptor from a dict"""'
+        ):
+            line = line + '\n' + indent(dedent('''\
+            # Note: fixed <https://github.com/OpenAPITools/openapi-generator/issues/19926>
+            if obj is None:
+                return None
+
+            if not isinstance(obj, dict):
+                return cls.model_validate(obj)
+
+            _obj = cls.model_validate({
+                "bbox": BoundingBox2D.from_dict(obj["bbox"]) if obj.get("bbox") is not None else None,
+                "spatialReference": obj.get("spatialReference"),
+                "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
+            })
+            return _obj
+            '''), 2 * INDENT)
+
+        yield line
 
 input_file = Path(sys.argv[1])
 
@@ -144,8 +250,11 @@ file_modifications = {
     'layers_api.py': layers_api_py,
     'ogcwfs_api.py': ogc_xyz_api_py('wfs'),
     'ogcwms_api.py': ogc_xyz_api_py('wms'),
+    'plot_result_descriptor.py': plot_result_descriptor_py,
+    'raster_result_descriptor.py': raster_result_descriptor_py,
     'task_status_with_id.py': task_status_with_id_py,
     'tasks_api.py': tasks_api_py,
+    'vector_result_descriptor.py': vector_result_descriptor_py,
 }
 
 if modifier_function := file_modifications.get(input_file.name):

@@ -50,7 +50,7 @@ import {
 
 /**
  * @type Resource
- * 
+ * A resource that is affected by a permission.
  * @export
  */
 export type Resource = { type: 'dataset' } & DatasetResource | { type: 'layer' } & LayerResource | { type: 'layerCollection' } & LayerCollectionResource | { type: 'mlModel' } & MlModelResource | { type: 'project' } & ProjectResource;

@@ -19,11 +19,7 @@ exports.TypedVectorResultDescriptorFromJSON = TypedVectorResultDescriptorFromJSO
 exports.TypedVectorResultDescriptorFromJSONTyped = TypedVectorResultDescriptorFromJSONTyped;
 exports.TypedVectorResultDescriptorToJSON = TypedVectorResultDescriptorToJSON;
 exports.TypedVectorResultDescriptorToJSONTyped = TypedVectorResultDescriptorToJSONTyped;
-const runtime_1 = require("../runtime");
-const VectorDataType_1 = require("./VectorDataType");
-const TimeInterval_1 = require("./TimeInterval");
-const VectorColumnInfo_1 = require("./VectorColumnInfo");
-const BoundingBox2D_1 = require("./BoundingBox2D");
+const VectorResultDescriptor_1 = require("./VectorResultDescriptor");
 /**
  * @export
  */
@@ -34,12 +30,6 @@ exports.TypedVectorResultDescriptorTypeEnum = {
  * Check if a given object implements the TypedVectorResultDescriptor interface.
  */
 function instanceOfTypedVectorResultDescriptor(value) {
-    if (!('columns' in value) || value['columns'] === undefined)
-        return false;
-    if (!('dataType' in value) || value['dataType'] === undefined)
-        return false;
-    if (!('spatialReference' in value) || value['spatialReference'] === undefined)
-        return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
@@ -51,14 +41,7 @@ function TypedVectorResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    return {
-        'bbox': json['bbox'] == null ? undefined : (0, BoundingBox2D_1.BoundingBox2DFromJSON)(json['bbox']),
-        'columns': ((0, runtime_1.mapValues)(json['columns'], VectorColumnInfo_1.VectorColumnInfoFromJSON)),
-        'dataType': (0, VectorDataType_1.VectorDataTypeFromJSON)(json['dataType']),
-        'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
-        'type': json['type'],
-    };
+    return Object.assign(Object.assign({}, (0, VectorResultDescriptor_1.VectorResultDescriptorFromJSONTyped)(json, true)), { 'type': json['type'] });
 }
 function TypedVectorResultDescriptorToJSON(json) {
     return TypedVectorResultDescriptorToJSONTyped(json, false);
@@ -67,12 +50,5 @@ function TypedVectorResultDescriptorToJSONTyped(value, ignoreDiscriminator = fal
     if (value == null) {
         return value;
     }
-    return {
-        'bbox': (0, BoundingBox2D_1.BoundingBox2DToJSON)(value['bbox']),
-        'columns': ((0, runtime_1.mapValues)(value['columns'], VectorColumnInfo_1.VectorColumnInfoToJSON)),
-        'dataType': (0, VectorDataType_1.VectorDataTypeToJSON)(value['dataType']),
-        'spatialReference': value['spatialReference'],
-        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
-        'type': value['type'],
-    };
+    return Object.assign(Object.assign({}, (0, VectorResultDescriptor_1.VectorResultDescriptorToJSONTyped)(value, true)), { 'type': value['type'] });
 }

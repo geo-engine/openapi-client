@@ -15,13 +15,13 @@
 
 import * as runtime from '../runtime';
 import type {
-  AddCollection200Response,
+  IdResponse,
   UploadFileLayersResponse,
   UploadFilesResponse,
 } from '../models/index';
 import {
-    AddCollection200ResponseFromJSON,
-    AddCollection200ResponseToJSON,
+    IdResponseFromJSON,
+    IdResponseToJSON,
     UploadFileLayersResponseFromJSON,
     UploadFileLayersResponseToJSON,
     UploadFilesResponseFromJSON,
@@ -138,7 +138,7 @@ export class UploadsApi extends runtime.BaseAPI {
     /**
      * Uploads files.
      */
-    async uploadHandlerRaw(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddCollection200Response>> {
+    async uploadHandlerRaw(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
         if (requestParameters['files'] == null) {
             throw new runtime.RequiredError(
                 'files',
@@ -188,13 +188,13 @@ export class UploadsApi extends runtime.BaseAPI {
             body: formParams,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
 
     /**
      * Uploads files.
      */
-    async uploadHandler(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddCollection200Response> {
+    async uploadHandler(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse> {
         const response = await this.uploadHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }

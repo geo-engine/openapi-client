@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as runtime from '../runtime';
-import { AddCollection200ResponseFromJSON, AddRoleToJSON, ComputationQuotaFromJSON, DataUsageFromJSON, DataUsageSummaryFromJSON, OperatorQuotaFromJSON, QuotaFromJSON, RoleDescriptionFromJSON, UpdateQuotaToJSON, } from '../models/index';
+import { AddRoleToJSON, ComputationQuotaFromJSON, DataUsageFromJSON, DataUsageSummaryFromJSON, IdResponseFromJSON, OperatorQuotaFromJSON, QuotaFromJSON, RoleDescriptionFromJSON, UpdateQuotaToJSON, } from '../models/index';
 /**
  *
  */
@@ -304,7 +304,7 @@ export class UserApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => AddCollection200ResponseFromJSON(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
     /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AutoCreateDataset, CreateDataset, CreateDatasetHandler200Response, Dataset, DatasetListing, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, Volume, VolumeFileLayersResponse } from '../models/index';
+import type { AutoCreateDataset, CreateDataset, Dataset, DatasetListing, DatasetNameResponse, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, Volume, VolumeFileLayersResponse } from '../models/index';
 export interface AutoCreateDatasetHandlerRequest {
     autoCreateDataset: AutoCreateDataset;
 }
@@ -30,8 +30,8 @@ export interface ListDatasetsHandlerRequest {
     order: OrderBy;
     offset: number;
     limit: number;
-    filter?: string | null;
-    tags?: Array<string> | null;
+    filter?: string;
+    tags?: Array<string>;
 }
 export interface ListVolumeFileLayersHandlerRequest {
     volumeName: string;
@@ -61,25 +61,21 @@ export interface UpdateLoadingInfoHandlerRequest {
  */
 export declare class DatasetsApi extends runtime.BaseAPI {
     /**
-     * The format of the files will be automatically detected when possible.
-     * Creates a new dataset using previously uploaded files.
+     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
-    autoCreateDatasetHandlerRaw(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDatasetHandler200Response>>;
+    autoCreateDatasetHandlerRaw(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DatasetNameResponse>>;
     /**
-     * The format of the files will be automatically detected when possible.
-     * Creates a new dataset using previously uploaded files.
+     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
-    autoCreateDatasetHandler(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateDatasetHandler200Response>;
+    autoCreateDatasetHandler(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DatasetNameResponse>;
     /**
-     * Users can reference previously uploaded files. Admins can reference files from a volume.
-     * Creates a new dataset referencing files.
+     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
-    createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDatasetHandler200Response>>;
+    createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DatasetNameResponse>>;
     /**
-     * Users can reference previously uploaded files. Admins can reference files from a volume.
-     * Creates a new dataset referencing files.
+     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
-    createDatasetHandler(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateDatasetHandler200Response>;
+    createDatasetHandler(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DatasetNameResponse>;
     /**
      * Delete a dataset
      */
@@ -129,13 +125,11 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      */
     listVolumesHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Volume>>;
     /**
-     * Tries to automatically detect the main file and layer name if not specified.
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
      */
     suggestMetaDataHandlerRaw(requestParameters: SuggestMetaDataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetaDataSuggestion>>;
     /**
-     * Tries to automatically detect the main file and layer name if not specified.
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it.
+     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
      */
     suggestMetaDataHandler(requestParameters: SuggestMetaDataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetaDataSuggestion>;
     /**

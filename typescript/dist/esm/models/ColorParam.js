@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ColorParamStaticFromJSONTyped, ColorParamStaticToJSON, } from './ColorParamStatic';
 import { DerivedColorFromJSONTyped, DerivedColorToJSON, } from './DerivedColor';
+import { StaticColorFromJSONTyped, StaticColorToJSON, } from './StaticColor';
 export function ColorParamFromJSON(json) {
     return ColorParamFromJSONTyped(json, false);
 }
@@ -24,7 +24,7 @@ export function ColorParamFromJSONTyped(json, ignoreDiscriminator) {
         case 'derived':
             return Object.assign({}, DerivedColorFromJSONTyped(json, true), { type: 'derived' });
         case 'static':
-            return Object.assign({}, ColorParamStaticFromJSONTyped(json, true), { type: 'static' });
+            return Object.assign({}, StaticColorFromJSONTyped(json, true), { type: 'static' });
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${json['type']}'`);
     }
@@ -40,7 +40,7 @@ export function ColorParamToJSONTyped(value, ignoreDiscriminator = false) {
         case 'derived':
             return Object.assign({}, DerivedColorToJSON(value), { type: 'derived' });
         case 'static':
-            return Object.assign({}, ColorParamStaticToJSON(value), { type: 'static' });
+            return Object.assign({}, StaticColorToJSON(value), { type: 'static' });
         default:
             throw new Error(`No variant of ColorParam exists with 'type=${value['type']}'`);
     }

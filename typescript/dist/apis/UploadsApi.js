@@ -146,7 +146,7 @@ class UploadsApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: formParams,
             }, initOverrides);
-            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AddCollection200ResponseFromJSON)(jsonValue));
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.IdResponseFromJSON)(jsonValue));
         });
     }
     /**

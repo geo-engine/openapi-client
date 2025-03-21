@@ -72,7 +72,7 @@ class TestProjectsApi(unittest.TestCase):
     def test_update_project_handler(self) -> None:
         """Test case for update_project_handler
 
-        Updates a project.
+        Updates a project. This will create a new version.
         """
         pass
 

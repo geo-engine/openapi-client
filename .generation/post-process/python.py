@@ -20,7 +20,7 @@ def api_client_py(file_contents: List[str]) -> Generator[str, None, None]:
 
         if dedented_line.startswith('self.user_agent = '):
             line = indent(dedent(f'''\
-            self.user_agent = 'geoengine/openapi-client/python/{version('python')}'
+            self.user_agent = 'geoengine/openapi-client/python/{version()}'
             '''), 2 * INDENT)
 
         yield line

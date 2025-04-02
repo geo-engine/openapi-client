@@ -7,12 +7,6 @@ Auto-generated Python Client API for Geo Engine
 - Python
 - Podman
 
-# Requirements
-
-- Postgres instance running on `localhost:5432` with
-  - `geoengine:geoengine` credentials and
-  - `geoengine` database
-
 # Generation
 
 From the root of the repository run:
@@ -26,9 +20,8 @@ From the root of the repository run:
 To fetch the OpenAPI spec from the backend, run:
 
 ```bash
-cargo run
-wget http://localhost:3030/api/api-docs/openapi.json -O - \
-    | python -m json.tool --indent 2 > .generation/input/openapi.json
+wget -O .generation/input/openapi.json \
+  https://raw.githubusercontent.com/geo-engine/geoengine/refs/heads/main/openapi.json
 ```
 
 To run the generation in dev mode, run:
@@ -45,7 +38,7 @@ It will also stop building the customized generator container.
 To update the config.ini file, run:
 
 ```bash
-.generation/update_config.py --backendTag pro-nightly-2023-11-28
+.generation/update_config.py --backendCommit 1076a616369dcc33e86b422a9364ac99553a18f8
 ```
 
-This will set a new backend tag and increment the version number.
+This will set a new backend commit hash and increment the version number.

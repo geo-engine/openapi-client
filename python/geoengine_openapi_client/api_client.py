@@ -91,7 +91,7 @@ class ApiClient:
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'geoengine/openapi-client/python/0.0.22'
+        self.user_agent = 'geoengine/openapi-client/python/0.0.23'
         self.client_side_validation = configuration.client_side_validation
 
     def __enter__(self):

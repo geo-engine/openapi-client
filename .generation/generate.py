@@ -9,24 +9,17 @@ import argparse
 from dataclasses import dataclass
 from pathlib import Path
 from urllib import request
-from urllib.error import URLError
 from urllib.parse import urlsplit
 import configparser
-import json
 import os
 import shutil
 import subprocess
 import sys
-import time
 from typing import Literal
+import logging
 
 
 CWD = Path('.generation/')
-
-
-def eprint(*args, **kwargs):
-    '''Print to stderr.'''
-    print(*args, file=sys.stderr, **kwargs)
 
 
 class ProgramArgs(argparse.Namespace):
@@ -90,16 +83,17 @@ def fetch_spec(*, ge_backend_commit: str) -> None:
 
     request_url = f"https://raw.githubusercontent.com/geo-engine/geoengine/{ge_backend_commit}/openapi.json"
 
-    eprint(f"Requesting `openapi.json` at `{request_url}`….")
+    logging.info(f"Requesting `openapi.json` at `{request_url}`….")
     with request.urlopen(request_url, timeout=10) as w, \
-        open(CWD / "input/openapi.json", "w", encoding='utf-8') as f:
+            open(CWD / "input/openapi.json", "w", encoding='utf-8') as f:
         f.write(w.read().decode('utf-8'))
 
-    eprint("Stored `openapi.json`.")
+    logging.info("Stored `openapi.json`.")
 
 
 def build_container():
     '''Build the patched generator image'''
+    logging.info("Building patched generator image…")
     subprocess.run(
         [
             "podman", "build",
@@ -108,6 +102,7 @@ def build_container():
         ],
         check=True,
     )
+    logging.info("Patched generator image built.")
 
 
 def clean_dirs(*, language: Literal['python', 'typescript']):
@@ -115,6 +110,7 @@ def clean_dirs(*, language: Literal['python', 'typescript']):
 
     dirs_to_remove = [
         'node_modules',
+        '.mypy_cache',
         Path(language) / 'test'
     ]
 
@@ -123,20 +119,25 @@ def clean_dirs(*, language: Literal['python', 'typescript']):
             dirs_to_remove.extend([
                 Path(language) / 'src',
                 Path(language) / 'dist',
+                Path(language) / 'node_modules',
             ])
         case 'python':
             dirs_to_remove.extend([
                 Path(language) / 'geoengine_openapi_client',
             ])
 
+    logging.info(f"Removing directories:")
+
     for the_dir in dirs_to_remove:
         if not os.path.isdir(the_dir):
             continue
+        logging.info(f"  - {the_dir}")
         shutil.rmtree(the_dir)
 
 
 def generate_python_code(*, package_name: str, package_version: str, package_url: str):
     '''Run the generator.'''
+
     subprocess.run(
         [
             "podman", "run",
@@ -207,6 +208,13 @@ typings
 
 def main():
     '''The entry point of the program'''
+
+    # Set up logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='[%(levelname)s] %(message)s'
+    )
+
     args = ProgramArgs.parse_arguments()
     config = ConfigArgs.parse_config()
 
@@ -219,12 +227,14 @@ def main():
     clean_dirs(language=args.language)
 
     if args.language == 'python':
+        logging.info("Generating Python client…")
         generate_python_code(
             package_name=config.python_package_name,
             package_version=config.package_version,
             package_url=config.github_url,
         )
     elif args.language == 'typescript':
+        logging.info("Generating TypeScript client…")
         generate_typescript_code(
             npm_name=config.typescript_package_name,
             npm_version=config.package_version,
@@ -233,17 +243,18 @@ def main():
 
         # Create dist files.
         # This is necessary for using the package directly from the git repo for development.
+        logging.info("Creating dist files…")
         subprocess.run(
-        [
-            "podman", "run",
-            "--rm",  # remove the container after running
-            "-v", f"{os.getcwd()}:/local",
-            "--workdir=/local/typescript", # set working directory
-            "docker.io/node:lts-alpine3.20",
-            "npm", "install",
-        ],
-        check=True,
-    )
+            [
+                "podman", "run",
+                "--rm",  # remove the container after running
+                "-v", f"{os.getcwd()}/typescript:/local/typescript",
+                "--workdir=/local/typescript",  # set working directory
+                "docker.io/node:lts-alpine3.20",
+                "npm", "install",
+            ],
+            check=True,
+        )
     else:
         raise RuntimeError(f'Unknown language {args.language}.')
 

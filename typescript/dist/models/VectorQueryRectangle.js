@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfVectorQueryRectangle = instanceOfVectorQueryRectangle;
-exports.VectorQueryRectangleFromJSON = VectorQueryRectangleFromJSON;
-exports.VectorQueryRectangleFromJSONTyped = VectorQueryRectangleFromJSONTyped;
-exports.VectorQueryRectangleToJSON = VectorQueryRectangleToJSON;
-exports.VectorQueryRectangleToJSONTyped = VectorQueryRectangleToJSONTyped;
+exports.VectorQueryRectangleToJSONTyped = exports.VectorQueryRectangleToJSON = exports.VectorQueryRectangleFromJSONTyped = exports.VectorQueryRectangleFromJSON = exports.instanceOfVectorQueryRectangle = void 0;
 const SpatialResolution_1 = require("./SpatialResolution");
 const TimeInterval_1 = require("./TimeInterval");
 const BoundingBox2D_1 = require("./BoundingBox2D");
@@ -33,9 +29,11 @@ function instanceOfVectorQueryRectangle(value) {
         return false;
     return true;
 }
+exports.instanceOfVectorQueryRectangle = instanceOfVectorQueryRectangle;
 function VectorQueryRectangleFromJSON(json) {
     return VectorQueryRectangleFromJSONTyped(json, false);
 }
+exports.VectorQueryRectangleFromJSON = VectorQueryRectangleFromJSON;
 function VectorQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -46,9 +44,11 @@ function VectorQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
         'timeInterval': (0, TimeInterval_1.TimeIntervalFromJSON)(json['timeInterval']),
     };
 }
+exports.VectorQueryRectangleFromJSONTyped = VectorQueryRectangleFromJSONTyped;
 function VectorQueryRectangleToJSON(json) {
     return VectorQueryRectangleToJSONTyped(json, false);
 }
+exports.VectorQueryRectangleToJSON = VectorQueryRectangleToJSON;
 function VectorQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +59,4 @@ function VectorQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
         'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
     };
 }
+exports.VectorQueryRectangleToJSONTyped = VectorQueryRectangleToJSONTyped;

@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfPermissionRequest = instanceOfPermissionRequest;
-exports.PermissionRequestFromJSON = PermissionRequestFromJSON;
-exports.PermissionRequestFromJSONTyped = PermissionRequestFromJSONTyped;
-exports.PermissionRequestToJSON = PermissionRequestToJSON;
-exports.PermissionRequestToJSONTyped = PermissionRequestToJSONTyped;
+exports.PermissionRequestToJSONTyped = exports.PermissionRequestToJSON = exports.PermissionRequestFromJSONTyped = exports.PermissionRequestFromJSON = exports.instanceOfPermissionRequest = void 0;
 const Permission_1 = require("./Permission");
 const Resource_1 = require("./Resource");
 /**
@@ -32,9 +28,11 @@ function instanceOfPermissionRequest(value) {
         return false;
     return true;
 }
+exports.instanceOfPermissionRequest = instanceOfPermissionRequest;
 function PermissionRequestFromJSON(json) {
     return PermissionRequestFromJSONTyped(json, false);
 }
+exports.PermissionRequestFromJSON = PermissionRequestFromJSON;
 function PermissionRequestFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -45,9 +43,11 @@ function PermissionRequestFromJSONTyped(json, ignoreDiscriminator) {
         'roleId': json['roleId'],
     };
 }
+exports.PermissionRequestFromJSONTyped = PermissionRequestFromJSONTyped;
 function PermissionRequestToJSON(json) {
     return PermissionRequestToJSONTyped(json, false);
 }
+exports.PermissionRequestToJSON = PermissionRequestToJSON;
 function PermissionRequestToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -58,3 +58,4 @@ function PermissionRequestToJSONTyped(value, ignoreDiscriminator = false) {
         'roleId': value['roleId'],
     };
 }
+exports.PermissionRequestToJSONTyped = PermissionRequestToJSONTyped;

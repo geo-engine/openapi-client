@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfVolumeFileLayersResponse = instanceOfVolumeFileLayersResponse;
-exports.VolumeFileLayersResponseFromJSON = VolumeFileLayersResponseFromJSON;
-exports.VolumeFileLayersResponseFromJSONTyped = VolumeFileLayersResponseFromJSONTyped;
-exports.VolumeFileLayersResponseToJSON = VolumeFileLayersResponseToJSON;
-exports.VolumeFileLayersResponseToJSONTyped = VolumeFileLayersResponseToJSONTyped;
+exports.VolumeFileLayersResponseToJSONTyped = exports.VolumeFileLayersResponseToJSON = exports.VolumeFileLayersResponseFromJSONTyped = exports.VolumeFileLayersResponseFromJSON = exports.instanceOfVolumeFileLayersResponse = void 0;
 /**
  * Check if a given object implements the VolumeFileLayersResponse interface.
  */
@@ -26,9 +22,11 @@ function instanceOfVolumeFileLayersResponse(value) {
         return false;
     return true;
 }
+exports.instanceOfVolumeFileLayersResponse = instanceOfVolumeFileLayersResponse;
 function VolumeFileLayersResponseFromJSON(json) {
     return VolumeFileLayersResponseFromJSONTyped(json, false);
 }
+exports.VolumeFileLayersResponseFromJSON = VolumeFileLayersResponseFromJSON;
 function VolumeFileLayersResponseFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function VolumeFileLayersResponseFromJSONTyped(json, ignoreDiscriminator) {
         'layers': json['layers'],
     };
 }
+exports.VolumeFileLayersResponseFromJSONTyped = VolumeFileLayersResponseFromJSONTyped;
 function VolumeFileLayersResponseToJSON(json) {
     return VolumeFileLayersResponseToJSONTyped(json, false);
 }
+exports.VolumeFileLayersResponseToJSON = VolumeFileLayersResponseToJSON;
 function VolumeFileLayersResponseToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function VolumeFileLayersResponseToJSONTyped(value, ignoreDiscriminator = false)
         'layers': value['layers'],
     };
 }
+exports.VolumeFileLayersResponseToJSONTyped = VolumeFileLayersResponseToJSONTyped;

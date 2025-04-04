@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProvenance = instanceOfProvenance;
-exports.ProvenanceFromJSON = ProvenanceFromJSON;
-exports.ProvenanceFromJSONTyped = ProvenanceFromJSONTyped;
-exports.ProvenanceToJSON = ProvenanceToJSON;
-exports.ProvenanceToJSONTyped = ProvenanceToJSONTyped;
+exports.ProvenanceToJSONTyped = exports.ProvenanceToJSON = exports.ProvenanceFromJSONTyped = exports.ProvenanceFromJSON = exports.instanceOfProvenance = void 0;
 /**
  * Check if a given object implements the Provenance interface.
  */
@@ -30,9 +26,11 @@ function instanceOfProvenance(value) {
         return false;
     return true;
 }
+exports.instanceOfProvenance = instanceOfProvenance;
 function ProvenanceFromJSON(json) {
     return ProvenanceFromJSONTyped(json, false);
 }
+exports.ProvenanceFromJSON = ProvenanceFromJSON;
 function ProvenanceFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -43,9 +41,11 @@ function ProvenanceFromJSONTyped(json, ignoreDiscriminator) {
         'uri': json['uri'],
     };
 }
+exports.ProvenanceFromJSONTyped = ProvenanceFromJSONTyped;
 function ProvenanceToJSON(json) {
     return ProvenanceToJSONTyped(json, false);
 }
+exports.ProvenanceToJSON = ProvenanceToJSON;
 function ProvenanceToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -56,3 +56,4 @@ function ProvenanceToJSONTyped(value, ignoreDiscriminator = false) {
         'uri': value['uri'],
     };
 }
+exports.ProvenanceToJSONTyped = ProvenanceToJSONTyped;

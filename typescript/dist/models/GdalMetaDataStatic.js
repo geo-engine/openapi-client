@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GdalMetaDataStaticTypeEnum = void 0;
-exports.instanceOfGdalMetaDataStatic = instanceOfGdalMetaDataStatic;
-exports.GdalMetaDataStaticFromJSON = GdalMetaDataStaticFromJSON;
-exports.GdalMetaDataStaticFromJSONTyped = GdalMetaDataStaticFromJSONTyped;
-exports.GdalMetaDataStaticToJSON = GdalMetaDataStaticToJSON;
-exports.GdalMetaDataStaticToJSONTyped = GdalMetaDataStaticToJSONTyped;
+exports.GdalMetaDataStaticToJSONTyped = exports.GdalMetaDataStaticToJSON = exports.GdalMetaDataStaticFromJSONTyped = exports.GdalMetaDataStaticFromJSON = exports.instanceOfGdalMetaDataStatic = exports.GdalMetaDataStaticTypeEnum = void 0;
 const TimeInterval_1 = require("./TimeInterval");
 const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
 const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
@@ -40,9 +35,11 @@ function instanceOfGdalMetaDataStatic(value) {
         return false;
     return true;
 }
+exports.instanceOfGdalMetaDataStatic = instanceOfGdalMetaDataStatic;
 function GdalMetaDataStaticFromJSON(json) {
     return GdalMetaDataStaticFromJSONTyped(json, false);
 }
+exports.GdalMetaDataStaticFromJSON = GdalMetaDataStaticFromJSON;
 function GdalMetaDataStaticFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -55,9 +52,11 @@ function GdalMetaDataStaticFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.GdalMetaDataStaticFromJSONTyped = GdalMetaDataStaticFromJSONTyped;
 function GdalMetaDataStaticToJSON(json) {
     return GdalMetaDataStaticToJSONTyped(json, false);
 }
+exports.GdalMetaDataStaticToJSON = GdalMetaDataStaticToJSON;
 function GdalMetaDataStaticToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -70,3 +69,4 @@ function GdalMetaDataStaticToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.GdalMetaDataStaticToJSONTyped = GdalMetaDataStaticToJSONTyped;

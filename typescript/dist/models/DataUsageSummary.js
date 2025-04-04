@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfDataUsageSummary = instanceOfDataUsageSummary;
-exports.DataUsageSummaryFromJSON = DataUsageSummaryFromJSON;
-exports.DataUsageSummaryFromJSONTyped = DataUsageSummaryFromJSONTyped;
-exports.DataUsageSummaryToJSON = DataUsageSummaryToJSON;
-exports.DataUsageSummaryToJSONTyped = DataUsageSummaryToJSONTyped;
+exports.DataUsageSummaryToJSONTyped = exports.DataUsageSummaryToJSON = exports.DataUsageSummaryFromJSONTyped = exports.DataUsageSummaryFromJSON = exports.instanceOfDataUsageSummary = void 0;
 /**
  * Check if a given object implements the DataUsageSummary interface.
  */
@@ -30,9 +26,11 @@ function instanceOfDataUsageSummary(value) {
         return false;
     return true;
 }
+exports.instanceOfDataUsageSummary = instanceOfDataUsageSummary;
 function DataUsageSummaryFromJSON(json) {
     return DataUsageSummaryFromJSONTyped(json, false);
 }
+exports.DataUsageSummaryFromJSON = DataUsageSummaryFromJSON;
 function DataUsageSummaryFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -43,9 +41,11 @@ function DataUsageSummaryFromJSONTyped(json, ignoreDiscriminator) {
         'timestamp': (new Date(json['timestamp'])),
     };
 }
+exports.DataUsageSummaryFromJSONTyped = DataUsageSummaryFromJSONTyped;
 function DataUsageSummaryToJSON(json) {
     return DataUsageSummaryToJSONTyped(json, false);
 }
+exports.DataUsageSummaryToJSON = DataUsageSummaryToJSON;
 function DataUsageSummaryToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -56,3 +56,4 @@ function DataUsageSummaryToJSONTyped(value, ignoreDiscriminator = false) {
         'timestamp': ((value['timestamp']).toISOString()),
     };
 }
+exports.DataUsageSummaryToJSONTyped = DataUsageSummaryToJSONTyped;

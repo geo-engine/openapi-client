@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UnitlessMeasurementTypeEnum = void 0;
-exports.instanceOfUnitlessMeasurement = instanceOfUnitlessMeasurement;
-exports.UnitlessMeasurementFromJSON = UnitlessMeasurementFromJSON;
-exports.UnitlessMeasurementFromJSONTyped = UnitlessMeasurementFromJSONTyped;
-exports.UnitlessMeasurementToJSON = UnitlessMeasurementToJSON;
-exports.UnitlessMeasurementToJSONTyped = UnitlessMeasurementToJSONTyped;
+exports.UnitlessMeasurementToJSONTyped = exports.UnitlessMeasurementToJSON = exports.UnitlessMeasurementFromJSONTyped = exports.UnitlessMeasurementFromJSON = exports.instanceOfUnitlessMeasurement = exports.UnitlessMeasurementTypeEnum = void 0;
 /**
  * @export
  */
@@ -33,9 +28,11 @@ function instanceOfUnitlessMeasurement(value) {
         return false;
     return true;
 }
+exports.instanceOfUnitlessMeasurement = instanceOfUnitlessMeasurement;
 function UnitlessMeasurementFromJSON(json) {
     return UnitlessMeasurementFromJSONTyped(json, false);
 }
+exports.UnitlessMeasurementFromJSON = UnitlessMeasurementFromJSON;
 function UnitlessMeasurementFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -44,9 +41,11 @@ function UnitlessMeasurementFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.UnitlessMeasurementFromJSONTyped = UnitlessMeasurementFromJSONTyped;
 function UnitlessMeasurementToJSON(json) {
     return UnitlessMeasurementToJSONTyped(json, false);
 }
+exports.UnitlessMeasurementToJSON = UnitlessMeasurementToJSON;
 function UnitlessMeasurementToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -55,3 +54,4 @@ function UnitlessMeasurementToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.UnitlessMeasurementToJSONTyped = UnitlessMeasurementToJSONTyped;

@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerResourceTypeEnum = void 0;
-exports.instanceOfLayerResource = instanceOfLayerResource;
-exports.LayerResourceFromJSON = LayerResourceFromJSON;
-exports.LayerResourceFromJSONTyped = LayerResourceFromJSONTyped;
-exports.LayerResourceToJSON = LayerResourceToJSON;
-exports.LayerResourceToJSONTyped = LayerResourceToJSONTyped;
+exports.LayerResourceToJSONTyped = exports.LayerResourceToJSON = exports.LayerResourceFromJSONTyped = exports.LayerResourceFromJSON = exports.instanceOfLayerResource = exports.LayerResourceTypeEnum = void 0;
 /**
  * @export
  */
@@ -35,9 +30,11 @@ function instanceOfLayerResource(value) {
         return false;
     return true;
 }
+exports.instanceOfLayerResource = instanceOfLayerResource;
 function LayerResourceFromJSON(json) {
     return LayerResourceFromJSONTyped(json, false);
 }
+exports.LayerResourceFromJSON = LayerResourceFromJSON;
 function LayerResourceFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +44,11 @@ function LayerResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.LayerResourceFromJSONTyped = LayerResourceFromJSONTyped;
 function LayerResourceToJSON(json) {
     return LayerResourceToJSONTyped(json, false);
 }
+exports.LayerResourceToJSON = LayerResourceToJSON;
 function LayerResourceToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +58,4 @@ function LayerResourceToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.LayerResourceToJSONTyped = LayerResourceToJSONTyped;

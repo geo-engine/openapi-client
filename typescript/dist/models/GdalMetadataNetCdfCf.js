@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GdalMetadataNetCdfCfTypeEnum = void 0;
-exports.instanceOfGdalMetadataNetCdfCf = instanceOfGdalMetadataNetCdfCf;
-exports.GdalMetadataNetCdfCfFromJSON = GdalMetadataNetCdfCfFromJSON;
-exports.GdalMetadataNetCdfCfFromJSONTyped = GdalMetadataNetCdfCfFromJSONTyped;
-exports.GdalMetadataNetCdfCfToJSON = GdalMetadataNetCdfCfToJSON;
-exports.GdalMetadataNetCdfCfToJSONTyped = GdalMetadataNetCdfCfToJSONTyped;
+exports.GdalMetadataNetCdfCfToJSONTyped = exports.GdalMetadataNetCdfCfToJSON = exports.GdalMetadataNetCdfCfFromJSONTyped = exports.GdalMetadataNetCdfCfFromJSON = exports.instanceOfGdalMetadataNetCdfCf = exports.GdalMetadataNetCdfCfTypeEnum = void 0;
 const TimeStep_1 = require("./TimeStep");
 const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
 const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
@@ -48,9 +43,11 @@ function instanceOfGdalMetadataNetCdfCf(value) {
         return false;
     return true;
 }
+exports.instanceOfGdalMetadataNetCdfCf = instanceOfGdalMetadataNetCdfCf;
 function GdalMetadataNetCdfCfFromJSON(json) {
     return GdalMetadataNetCdfCfFromJSONTyped(json, false);
 }
+exports.GdalMetadataNetCdfCfFromJSON = GdalMetadataNetCdfCfFromJSON;
 function GdalMetadataNetCdfCfFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -66,9 +63,11 @@ function GdalMetadataNetCdfCfFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.GdalMetadataNetCdfCfFromJSONTyped = GdalMetadataNetCdfCfFromJSONTyped;
 function GdalMetadataNetCdfCfToJSON(json) {
     return GdalMetadataNetCdfCfToJSONTyped(json, false);
 }
+exports.GdalMetadataNetCdfCfToJSON = GdalMetadataNetCdfCfToJSON;
 function GdalMetadataNetCdfCfToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -84,3 +83,4 @@ function GdalMetadataNetCdfCfToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.GdalMetadataNetCdfCfToJSONTyped = GdalMetadataNetCdfCfToJSONTyped;

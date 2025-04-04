@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfTypedGeometryOneOf = instanceOfTypedGeometryOneOf;
-exports.TypedGeometryOneOfFromJSON = TypedGeometryOneOfFromJSON;
-exports.TypedGeometryOneOfFromJSONTyped = TypedGeometryOneOfFromJSONTyped;
-exports.TypedGeometryOneOfToJSON = TypedGeometryOneOfToJSON;
-exports.TypedGeometryOneOfToJSONTyped = TypedGeometryOneOfToJSONTyped;
+exports.TypedGeometryOneOfToJSONTyped = exports.TypedGeometryOneOfToJSON = exports.TypedGeometryOneOfFromJSONTyped = exports.TypedGeometryOneOfFromJSON = exports.instanceOfTypedGeometryOneOf = void 0;
 /**
  * Check if a given object implements the TypedGeometryOneOf interface.
  */
@@ -26,9 +22,11 @@ function instanceOfTypedGeometryOneOf(value) {
         return false;
     return true;
 }
+exports.instanceOfTypedGeometryOneOf = instanceOfTypedGeometryOneOf;
 function TypedGeometryOneOfFromJSON(json) {
     return TypedGeometryOneOfFromJSONTyped(json, false);
 }
+exports.TypedGeometryOneOfFromJSON = TypedGeometryOneOfFromJSON;
 function TypedGeometryOneOfFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function TypedGeometryOneOfFromJSONTyped(json, ignoreDiscriminator) {
         'data': json['Data'],
     };
 }
+exports.TypedGeometryOneOfFromJSONTyped = TypedGeometryOneOfFromJSONTyped;
 function TypedGeometryOneOfToJSON(json) {
     return TypedGeometryOneOfToJSONTyped(json, false);
 }
+exports.TypedGeometryOneOfToJSON = TypedGeometryOneOfToJSON;
 function TypedGeometryOneOfToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function TypedGeometryOneOfToJSONTyped(value, ignoreDiscriminator = false) {
         'Data': value['data'],
     };
 }
+exports.TypedGeometryOneOfToJSONTyped = TypedGeometryOneOfToJSONTyped;

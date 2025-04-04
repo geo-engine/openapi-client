@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WmsService = void 0;
-exports.instanceOfWmsService = instanceOfWmsService;
-exports.WmsServiceFromJSON = WmsServiceFromJSON;
-exports.WmsServiceFromJSONTyped = WmsServiceFromJSONTyped;
-exports.WmsServiceToJSON = WmsServiceToJSON;
-exports.WmsServiceToJSONTyped = WmsServiceToJSONTyped;
+exports.WmsServiceToJSONTyped = exports.WmsServiceToJSON = exports.WmsServiceFromJSONTyped = exports.WmsServiceFromJSON = exports.instanceOfWmsService = exports.WmsService = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfWmsService(value) {
     }
     return false;
 }
+exports.instanceOfWmsService = instanceOfWmsService;
 function WmsServiceFromJSON(json) {
     return WmsServiceFromJSONTyped(json, false);
 }
+exports.WmsServiceFromJSON = WmsServiceFromJSON;
 function WmsServiceFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.WmsServiceFromJSONTyped = WmsServiceFromJSONTyped;
 function WmsServiceToJSON(value) {
     return value;
 }
+exports.WmsServiceToJSON = WmsServiceToJSON;
 function WmsServiceToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.WmsServiceToJSONTyped = WmsServiceToJSONTyped;

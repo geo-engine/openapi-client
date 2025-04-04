@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StaticNumberTypeEnum = void 0;
-exports.instanceOfStaticNumber = instanceOfStaticNumber;
-exports.StaticNumberFromJSON = StaticNumberFromJSON;
-exports.StaticNumberFromJSONTyped = StaticNumberFromJSONTyped;
-exports.StaticNumberToJSON = StaticNumberToJSON;
-exports.StaticNumberToJSONTyped = StaticNumberToJSONTyped;
+exports.StaticNumberToJSONTyped = exports.StaticNumberToJSON = exports.StaticNumberFromJSONTyped = exports.StaticNumberFromJSON = exports.instanceOfStaticNumber = exports.StaticNumberTypeEnum = void 0;
 /**
  * @export
  */
@@ -35,9 +30,11 @@ function instanceOfStaticNumber(value) {
         return false;
     return true;
 }
+exports.instanceOfStaticNumber = instanceOfStaticNumber;
 function StaticNumberFromJSON(json) {
     return StaticNumberFromJSONTyped(json, false);
 }
+exports.StaticNumberFromJSON = StaticNumberFromJSON;
 function StaticNumberFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +44,11 @@ function StaticNumberFromJSONTyped(json, ignoreDiscriminator) {
         'value': json['value'],
     };
 }
+exports.StaticNumberFromJSONTyped = StaticNumberFromJSONTyped;
 function StaticNumberToJSON(json) {
     return StaticNumberToJSONTyped(json, false);
 }
+exports.StaticNumberToJSON = StaticNumberToJSON;
 function StaticNumberToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +58,4 @@ function StaticNumberToJSONTyped(value, ignoreDiscriminator = false) {
         'value': value['value'],
     };
 }
+exports.StaticNumberToJSONTyped = StaticNumberToJSONTyped;

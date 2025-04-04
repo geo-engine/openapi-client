@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfAddDataset = instanceOfAddDataset;
-exports.AddDatasetFromJSON = AddDatasetFromJSON;
-exports.AddDatasetFromJSONTyped = AddDatasetFromJSONTyped;
-exports.AddDatasetToJSON = AddDatasetToJSON;
-exports.AddDatasetToJSONTyped = AddDatasetToJSONTyped;
+exports.AddDatasetToJSONTyped = exports.AddDatasetToJSON = exports.AddDatasetFromJSONTyped = exports.AddDatasetFromJSON = exports.instanceOfAddDataset = void 0;
 const Provenance_1 = require("./Provenance");
 const Symbology_1 = require("./Symbology");
 /**
@@ -32,9 +28,11 @@ function instanceOfAddDataset(value) {
         return false;
     return true;
 }
+exports.instanceOfAddDataset = instanceOfAddDataset;
 function AddDatasetFromJSON(json) {
     return AddDatasetFromJSONTyped(json, false);
 }
+exports.AddDatasetFromJSON = AddDatasetFromJSON;
 function AddDatasetFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -49,9 +47,11 @@ function AddDatasetFromJSONTyped(json, ignoreDiscriminator) {
         'tags': json['tags'] == null ? undefined : json['tags'],
     };
 }
+exports.AddDatasetFromJSONTyped = AddDatasetFromJSONTyped;
 function AddDatasetToJSON(json) {
     return AddDatasetToJSONTyped(json, false);
 }
+exports.AddDatasetToJSON = AddDatasetToJSON;
 function AddDatasetToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -66,3 +66,4 @@ function AddDatasetToJSONTyped(value, ignoreDiscriminator = false) {
         'tags': value['tags'],
     };
 }
+exports.AddDatasetToJSONTyped = AddDatasetToJSONTyped;

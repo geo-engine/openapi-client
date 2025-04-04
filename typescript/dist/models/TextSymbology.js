@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfTextSymbology = instanceOfTextSymbology;
-exports.TextSymbologyFromJSON = TextSymbologyFromJSON;
-exports.TextSymbologyFromJSONTyped = TextSymbologyFromJSONTyped;
-exports.TextSymbologyToJSON = TextSymbologyToJSON;
-exports.TextSymbologyToJSONTyped = TextSymbologyToJSONTyped;
+exports.TextSymbologyToJSONTyped = exports.TextSymbologyToJSON = exports.TextSymbologyFromJSONTyped = exports.TextSymbologyFromJSON = exports.instanceOfTextSymbology = void 0;
 const StrokeParam_1 = require("./StrokeParam");
 const ColorParam_1 = require("./ColorParam");
 /**
@@ -32,9 +28,11 @@ function instanceOfTextSymbology(value) {
         return false;
     return true;
 }
+exports.instanceOfTextSymbology = instanceOfTextSymbology;
 function TextSymbologyFromJSON(json) {
     return TextSymbologyFromJSONTyped(json, false);
 }
+exports.TextSymbologyFromJSON = TextSymbologyFromJSON;
 function TextSymbologyFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -45,9 +43,11 @@ function TextSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'stroke': (0, StrokeParam_1.StrokeParamFromJSON)(json['stroke']),
     };
 }
+exports.TextSymbologyFromJSONTyped = TextSymbologyFromJSONTyped;
 function TextSymbologyToJSON(json) {
     return TextSymbologyToJSONTyped(json, false);
 }
+exports.TextSymbologyToJSON = TextSymbologyToJSON;
 function TextSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -58,3 +58,4 @@ function TextSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
         'stroke': (0, StrokeParam_1.StrokeParamToJSON)(value['stroke']),
     };
 }
+exports.TextSymbologyToJSONTyped = TextSymbologyToJSONTyped;

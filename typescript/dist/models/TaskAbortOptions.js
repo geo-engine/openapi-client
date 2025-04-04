@@ -13,20 +13,18 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfTaskAbortOptions = instanceOfTaskAbortOptions;
-exports.TaskAbortOptionsFromJSON = TaskAbortOptionsFromJSON;
-exports.TaskAbortOptionsFromJSONTyped = TaskAbortOptionsFromJSONTyped;
-exports.TaskAbortOptionsToJSON = TaskAbortOptionsToJSON;
-exports.TaskAbortOptionsToJSONTyped = TaskAbortOptionsToJSONTyped;
+exports.TaskAbortOptionsToJSONTyped = exports.TaskAbortOptionsToJSON = exports.TaskAbortOptionsFromJSONTyped = exports.TaskAbortOptionsFromJSON = exports.instanceOfTaskAbortOptions = void 0;
 /**
  * Check if a given object implements the TaskAbortOptions interface.
  */
 function instanceOfTaskAbortOptions(value) {
     return true;
 }
+exports.instanceOfTaskAbortOptions = instanceOfTaskAbortOptions;
 function TaskAbortOptionsFromJSON(json) {
     return TaskAbortOptionsFromJSONTyped(json, false);
 }
+exports.TaskAbortOptionsFromJSON = TaskAbortOptionsFromJSON;
 function TaskAbortOptionsFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -35,9 +33,11 @@ function TaskAbortOptionsFromJSONTyped(json, ignoreDiscriminator) {
         'force': json['force'] == null ? undefined : json['force'],
     };
 }
+exports.TaskAbortOptionsFromJSONTyped = TaskAbortOptionsFromJSONTyped;
 function TaskAbortOptionsToJSON(json) {
     return TaskAbortOptionsToJSONTyped(json, false);
 }
+exports.TaskAbortOptionsToJSON = TaskAbortOptionsToJSON;
 function TaskAbortOptionsToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -46,3 +46,4 @@ function TaskAbortOptionsToJSONTyped(value, ignoreDiscriminator = false) {
         'force': value['force'],
     };
 }
+exports.TaskAbortOptionsToJSONTyped = TaskAbortOptionsToJSONTyped;

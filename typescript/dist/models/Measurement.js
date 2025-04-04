@@ -13,16 +13,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MeasurementFromJSON = MeasurementFromJSON;
-exports.MeasurementFromJSONTyped = MeasurementFromJSONTyped;
-exports.MeasurementToJSON = MeasurementToJSON;
-exports.MeasurementToJSONTyped = MeasurementToJSONTyped;
+exports.MeasurementToJSONTyped = exports.MeasurementToJSON = exports.MeasurementFromJSONTyped = exports.MeasurementFromJSON = void 0;
 const ClassificationMeasurement_1 = require("./ClassificationMeasurement");
 const ContinuousMeasurement_1 = require("./ContinuousMeasurement");
 const UnitlessMeasurement_1 = require("./UnitlessMeasurement");
 function MeasurementFromJSON(json) {
     return MeasurementFromJSONTyped(json, false);
 }
+exports.MeasurementFromJSON = MeasurementFromJSON;
 function MeasurementFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function MeasurementFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of Measurement exists with 'type=${json['type']}'`);
     }
 }
+exports.MeasurementFromJSONTyped = MeasurementFromJSONTyped;
 function MeasurementToJSON(json) {
     return MeasurementToJSONTyped(json, false);
 }
+exports.MeasurementToJSON = MeasurementToJSON;
 function MeasurementToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -56,3 +56,4 @@ function MeasurementToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of Measurement exists with 'type=${value['type']}'`);
     }
 }
+exports.MeasurementToJSONTyped = MeasurementToJSONTyped;

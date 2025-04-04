@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfGeoJson = instanceOfGeoJson;
-exports.GeoJsonFromJSON = GeoJsonFromJSON;
-exports.GeoJsonFromJSONTyped = GeoJsonFromJSONTyped;
-exports.GeoJsonToJSON = GeoJsonToJSON;
-exports.GeoJsonToJSONTyped = GeoJsonToJSONTyped;
+exports.GeoJsonToJSONTyped = exports.GeoJsonToJSON = exports.GeoJsonFromJSONTyped = exports.GeoJsonFromJSON = exports.instanceOfGeoJson = void 0;
 const CollectionType_1 = require("./CollectionType");
 /**
  * Check if a given object implements the GeoJson interface.
@@ -29,9 +25,11 @@ function instanceOfGeoJson(value) {
         return false;
     return true;
 }
+exports.instanceOfGeoJson = instanceOfGeoJson;
 function GeoJsonFromJSON(json) {
     return GeoJsonFromJSONTyped(json, false);
 }
+exports.GeoJsonFromJSON = GeoJsonFromJSON;
 function GeoJsonFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function GeoJsonFromJSONTyped(json, ignoreDiscriminator) {
         'type': (0, CollectionType_1.CollectionTypeFromJSON)(json['type']),
     };
 }
+exports.GeoJsonFromJSONTyped = GeoJsonFromJSONTyped;
 function GeoJsonToJSON(json) {
     return GeoJsonToJSONTyped(json, false);
 }
+exports.GeoJsonToJSON = GeoJsonToJSON;
 function GeoJsonToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -53,3 +53,4 @@ function GeoJsonToJSONTyped(value, ignoreDiscriminator = false) {
         'type': (0, CollectionType_1.CollectionTypeToJSON)(value['type']),
     };
 }
+exports.GeoJsonToJSONTyped = GeoJsonToJSONTyped;

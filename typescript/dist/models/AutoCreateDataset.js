@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfAutoCreateDataset = instanceOfAutoCreateDataset;
-exports.AutoCreateDatasetFromJSON = AutoCreateDatasetFromJSON;
-exports.AutoCreateDatasetFromJSONTyped = AutoCreateDatasetFromJSONTyped;
-exports.AutoCreateDatasetToJSON = AutoCreateDatasetToJSON;
-exports.AutoCreateDatasetToJSONTyped = AutoCreateDatasetToJSONTyped;
+exports.AutoCreateDatasetToJSONTyped = exports.AutoCreateDatasetToJSON = exports.AutoCreateDatasetFromJSONTyped = exports.AutoCreateDatasetFromJSON = exports.instanceOfAutoCreateDataset = void 0;
 /**
  * Check if a given object implements the AutoCreateDataset interface.
  */
@@ -32,9 +28,11 @@ function instanceOfAutoCreateDataset(value) {
         return false;
     return true;
 }
+exports.instanceOfAutoCreateDataset = instanceOfAutoCreateDataset;
 function AutoCreateDatasetFromJSON(json) {
     return AutoCreateDatasetFromJSONTyped(json, false);
 }
+exports.AutoCreateDatasetFromJSON = AutoCreateDatasetFromJSON;
 function AutoCreateDatasetFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -48,9 +46,11 @@ function AutoCreateDatasetFromJSONTyped(json, ignoreDiscriminator) {
         'upload': json['upload'],
     };
 }
+exports.AutoCreateDatasetFromJSONTyped = AutoCreateDatasetFromJSONTyped;
 function AutoCreateDatasetToJSON(json) {
     return AutoCreateDatasetToJSONTyped(json, false);
 }
+exports.AutoCreateDatasetToJSON = AutoCreateDatasetToJSON;
 function AutoCreateDatasetToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -64,3 +64,4 @@ function AutoCreateDatasetToJSONTyped(value, ignoreDiscriminator = false) {
         'upload': value['upload'],
     };
 }
+exports.AutoCreateDatasetToJSONTyped = AutoCreateDatasetToJSONTyped;

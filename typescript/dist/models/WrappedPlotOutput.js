@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfWrappedPlotOutput = instanceOfWrappedPlotOutput;
-exports.WrappedPlotOutputFromJSON = WrappedPlotOutputFromJSON;
-exports.WrappedPlotOutputFromJSONTyped = WrappedPlotOutputFromJSONTyped;
-exports.WrappedPlotOutputToJSON = WrappedPlotOutputToJSON;
-exports.WrappedPlotOutputToJSONTyped = WrappedPlotOutputToJSONTyped;
+exports.WrappedPlotOutputToJSONTyped = exports.WrappedPlotOutputToJSON = exports.WrappedPlotOutputFromJSONTyped = exports.WrappedPlotOutputFromJSON = exports.instanceOfWrappedPlotOutput = void 0;
 const PlotOutputFormat_1 = require("./PlotOutputFormat");
 /**
  * Check if a given object implements the WrappedPlotOutput interface.
@@ -31,9 +27,11 @@ function instanceOfWrappedPlotOutput(value) {
         return false;
     return true;
 }
+exports.instanceOfWrappedPlotOutput = instanceOfWrappedPlotOutput;
 function WrappedPlotOutputFromJSON(json) {
     return WrappedPlotOutputFromJSONTyped(json, false);
 }
+exports.WrappedPlotOutputFromJSON = WrappedPlotOutputFromJSON;
 function WrappedPlotOutputFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -44,9 +42,11 @@ function WrappedPlotOutputFromJSONTyped(json, ignoreDiscriminator) {
         'plotType': json['plotType'],
     };
 }
+exports.WrappedPlotOutputFromJSONTyped = WrappedPlotOutputFromJSONTyped;
 function WrappedPlotOutputToJSON(json) {
     return WrappedPlotOutputToJSONTyped(json, false);
 }
+exports.WrappedPlotOutputToJSON = WrappedPlotOutputToJSON;
 function WrappedPlotOutputToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -57,3 +57,4 @@ function WrappedPlotOutputToJSONTyped(value, ignoreDiscriminator = false) {
         'plotType': value['plotType'],
     };
 }
+exports.WrappedPlotOutputToJSONTyped = WrappedPlotOutputToJSONTyped;

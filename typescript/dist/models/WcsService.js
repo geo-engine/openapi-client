@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WcsService = void 0;
-exports.instanceOfWcsService = instanceOfWcsService;
-exports.WcsServiceFromJSON = WcsServiceFromJSON;
-exports.WcsServiceFromJSONTyped = WcsServiceFromJSONTyped;
-exports.WcsServiceToJSON = WcsServiceToJSON;
-exports.WcsServiceToJSONTyped = WcsServiceToJSONTyped;
+exports.WcsServiceToJSONTyped = exports.WcsServiceToJSON = exports.WcsServiceFromJSONTyped = exports.WcsServiceFromJSON = exports.instanceOfWcsService = exports.WcsService = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfWcsService(value) {
     }
     return false;
 }
+exports.instanceOfWcsService = instanceOfWcsService;
 function WcsServiceFromJSON(json) {
     return WcsServiceFromJSONTyped(json, false);
 }
+exports.WcsServiceFromJSON = WcsServiceFromJSON;
 function WcsServiceFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.WcsServiceFromJSONTyped = WcsServiceFromJSONTyped;
 function WcsServiceToJSON(value) {
     return value;
 }
+exports.WcsServiceToJSON = WcsServiceToJSON;
 function WcsServiceToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.WcsServiceToJSONTyped = WcsServiceToJSONTyped;

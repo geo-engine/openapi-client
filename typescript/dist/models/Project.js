@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProject = instanceOfProject;
-exports.ProjectFromJSON = ProjectFromJSON;
-exports.ProjectFromJSONTyped = ProjectFromJSONTyped;
-exports.ProjectToJSON = ProjectToJSON;
-exports.ProjectToJSONTyped = ProjectToJSONTyped;
+exports.ProjectToJSONTyped = exports.ProjectToJSON = exports.ProjectFromJSONTyped = exports.ProjectFromJSON = exports.instanceOfProject = void 0;
 const TimeStep_1 = require("./TimeStep");
 const Plot_1 = require("./Plot");
 const ProjectVersion_1 = require("./ProjectVersion");
@@ -45,9 +41,11 @@ function instanceOfProject(value) {
         return false;
     return true;
 }
+exports.instanceOfProject = instanceOfProject;
 function ProjectFromJSON(json) {
     return ProjectFromJSONTyped(json, false);
 }
+exports.ProjectFromJSON = ProjectFromJSON;
 function ProjectFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -63,9 +61,11 @@ function ProjectFromJSONTyped(json, ignoreDiscriminator) {
         'version': (0, ProjectVersion_1.ProjectVersionFromJSON)(json['version']),
     };
 }
+exports.ProjectFromJSONTyped = ProjectFromJSONTyped;
 function ProjectToJSON(json) {
     return ProjectToJSONTyped(json, false);
 }
+exports.ProjectToJSON = ProjectToJSON;
 function ProjectToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -81,3 +81,4 @@ function ProjectToJSONTyped(value, ignoreDiscriminator = false) {
         'version': (0, ProjectVersion_1.ProjectVersionToJSON)(value['version']),
     };
 }
+exports.ProjectToJSONTyped = ProjectToJSONTyped;

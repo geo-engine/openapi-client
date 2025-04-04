@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfDatasetNameResponse = instanceOfDatasetNameResponse;
-exports.DatasetNameResponseFromJSON = DatasetNameResponseFromJSON;
-exports.DatasetNameResponseFromJSONTyped = DatasetNameResponseFromJSONTyped;
-exports.DatasetNameResponseToJSON = DatasetNameResponseToJSON;
-exports.DatasetNameResponseToJSONTyped = DatasetNameResponseToJSONTyped;
+exports.DatasetNameResponseToJSONTyped = exports.DatasetNameResponseToJSON = exports.DatasetNameResponseFromJSONTyped = exports.DatasetNameResponseFromJSON = exports.instanceOfDatasetNameResponse = void 0;
 /**
  * Check if a given object implements the DatasetNameResponse interface.
  */
@@ -26,9 +22,11 @@ function instanceOfDatasetNameResponse(value) {
         return false;
     return true;
 }
+exports.instanceOfDatasetNameResponse = instanceOfDatasetNameResponse;
 function DatasetNameResponseFromJSON(json) {
     return DatasetNameResponseFromJSONTyped(json, false);
 }
+exports.DatasetNameResponseFromJSON = DatasetNameResponseFromJSON;
 function DatasetNameResponseFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function DatasetNameResponseFromJSONTyped(json, ignoreDiscriminator) {
         'datasetName': json['datasetName'],
     };
 }
+exports.DatasetNameResponseFromJSONTyped = DatasetNameResponseFromJSONTyped;
 function DatasetNameResponseToJSON(json) {
     return DatasetNameResponseToJSONTyped(json, false);
 }
+exports.DatasetNameResponseToJSON = DatasetNameResponseToJSON;
 function DatasetNameResponseToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function DatasetNameResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'datasetName': value['datasetName'],
     };
 }
+exports.DatasetNameResponseToJSONTyped = DatasetNameResponseToJSONTyped;

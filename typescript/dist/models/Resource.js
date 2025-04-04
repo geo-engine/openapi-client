@@ -13,10 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ResourceFromJSON = ResourceFromJSON;
-exports.ResourceFromJSONTyped = ResourceFromJSONTyped;
-exports.ResourceToJSON = ResourceToJSON;
-exports.ResourceToJSONTyped = ResourceToJSONTyped;
+exports.ResourceToJSONTyped = exports.ResourceToJSON = exports.ResourceFromJSONTyped = exports.ResourceFromJSON = void 0;
 const DatasetResource_1 = require("./DatasetResource");
 const LayerCollectionResource_1 = require("./LayerCollectionResource");
 const LayerResource_1 = require("./LayerResource");
@@ -25,6 +22,7 @@ const ProjectResource_1 = require("./ProjectResource");
 function ResourceFromJSON(json) {
     return ResourceFromJSONTyped(json, false);
 }
+exports.ResourceFromJSON = ResourceFromJSON;
 function ResourceFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -44,9 +42,11 @@ function ResourceFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }
 }
+exports.ResourceFromJSONTyped = ResourceFromJSONTyped;
 function ResourceToJSON(json) {
     return ResourceToJSONTyped(json, false);
 }
+exports.ResourceToJSON = ResourceToJSON;
 function ResourceToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -66,3 +66,4 @@ function ResourceToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
     }
 }
+exports.ResourceToJSONTyped = ResourceToJSONTyped;

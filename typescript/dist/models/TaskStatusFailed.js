@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskStatusFailedStatusEnum = void 0;
-exports.instanceOfTaskStatusFailed = instanceOfTaskStatusFailed;
-exports.TaskStatusFailedFromJSON = TaskStatusFailedFromJSON;
-exports.TaskStatusFailedFromJSONTyped = TaskStatusFailedFromJSONTyped;
-exports.TaskStatusFailedToJSON = TaskStatusFailedToJSON;
-exports.TaskStatusFailedToJSONTyped = TaskStatusFailedToJSONTyped;
+exports.TaskStatusFailedToJSONTyped = exports.TaskStatusFailedToJSON = exports.TaskStatusFailedFromJSONTyped = exports.TaskStatusFailedFromJSON = exports.instanceOfTaskStatusFailed = exports.TaskStatusFailedStatusEnum = void 0;
 /**
  * @export
  */
@@ -37,9 +32,11 @@ function instanceOfTaskStatusFailed(value) {
         return false;
     return true;
 }
+exports.instanceOfTaskStatusFailed = instanceOfTaskStatusFailed;
 function TaskStatusFailedFromJSON(json) {
     return TaskStatusFailedFromJSONTyped(json, false);
 }
+exports.TaskStatusFailedFromJSON = TaskStatusFailedFromJSON;
 function TaskStatusFailedFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -50,9 +47,11 @@ function TaskStatusFailedFromJSONTyped(json, ignoreDiscriminator) {
         'status': json['status'],
     };
 }
+exports.TaskStatusFailedFromJSONTyped = TaskStatusFailedFromJSONTyped;
 function TaskStatusFailedToJSON(json) {
     return TaskStatusFailedToJSONTyped(json, false);
 }
+exports.TaskStatusFailedToJSON = TaskStatusFailedToJSON;
 function TaskStatusFailedToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -63,3 +62,4 @@ function TaskStatusFailedToJSONTyped(value, ignoreDiscriminator = false) {
         'status': value['status'],
     };
 }
+exports.TaskStatusFailedToJSONTyped = TaskStatusFailedToJSONTyped;

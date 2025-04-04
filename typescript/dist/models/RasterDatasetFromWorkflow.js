@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfRasterDatasetFromWorkflow = instanceOfRasterDatasetFromWorkflow;
-exports.RasterDatasetFromWorkflowFromJSON = RasterDatasetFromWorkflowFromJSON;
-exports.RasterDatasetFromWorkflowFromJSONTyped = RasterDatasetFromWorkflowFromJSONTyped;
-exports.RasterDatasetFromWorkflowToJSON = RasterDatasetFromWorkflowToJSON;
-exports.RasterDatasetFromWorkflowToJSONTyped = RasterDatasetFromWorkflowToJSONTyped;
+exports.RasterDatasetFromWorkflowToJSONTyped = exports.RasterDatasetFromWorkflowToJSON = exports.RasterDatasetFromWorkflowFromJSONTyped = exports.RasterDatasetFromWorkflowFromJSON = exports.instanceOfRasterDatasetFromWorkflow = void 0;
 const RasterQueryRectangle_1 = require("./RasterQueryRectangle");
 /**
  * Check if a given object implements the RasterDatasetFromWorkflow interface.
@@ -29,9 +25,11 @@ function instanceOfRasterDatasetFromWorkflow(value) {
         return false;
     return true;
 }
+exports.instanceOfRasterDatasetFromWorkflow = instanceOfRasterDatasetFromWorkflow;
 function RasterDatasetFromWorkflowFromJSON(json) {
     return RasterDatasetFromWorkflowFromJSONTyped(json, false);
 }
+exports.RasterDatasetFromWorkflowFromJSON = RasterDatasetFromWorkflowFromJSON;
 function RasterDatasetFromWorkflowFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -44,9 +42,11 @@ function RasterDatasetFromWorkflowFromJSONTyped(json, ignoreDiscriminator) {
         'query': (0, RasterQueryRectangle_1.RasterQueryRectangleFromJSON)(json['query']),
     };
 }
+exports.RasterDatasetFromWorkflowFromJSONTyped = RasterDatasetFromWorkflowFromJSONTyped;
 function RasterDatasetFromWorkflowToJSON(json) {
     return RasterDatasetFromWorkflowToJSONTyped(json, false);
 }
+exports.RasterDatasetFromWorkflowToJSON = RasterDatasetFromWorkflowToJSON;
 function RasterDatasetFromWorkflowToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +59,4 @@ function RasterDatasetFromWorkflowToJSONTyped(value, ignoreDiscriminator = false
         'query': (0, RasterQueryRectangle_1.RasterQueryRectangleToJSON)(value['query']),
     };
 }
+exports.RasterDatasetFromWorkflowToJSONTyped = RasterDatasetFromWorkflowToJSONTyped;

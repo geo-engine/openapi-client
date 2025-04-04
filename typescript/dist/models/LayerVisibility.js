@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfLayerVisibility = instanceOfLayerVisibility;
-exports.LayerVisibilityFromJSON = LayerVisibilityFromJSON;
-exports.LayerVisibilityFromJSONTyped = LayerVisibilityFromJSONTyped;
-exports.LayerVisibilityToJSON = LayerVisibilityToJSON;
-exports.LayerVisibilityToJSONTyped = LayerVisibilityToJSONTyped;
+exports.LayerVisibilityToJSONTyped = exports.LayerVisibilityToJSON = exports.LayerVisibilityFromJSONTyped = exports.LayerVisibilityFromJSON = exports.instanceOfLayerVisibility = void 0;
 /**
  * Check if a given object implements the LayerVisibility interface.
  */
@@ -28,9 +24,11 @@ function instanceOfLayerVisibility(value) {
         return false;
     return true;
 }
+exports.instanceOfLayerVisibility = instanceOfLayerVisibility;
 function LayerVisibilityFromJSON(json) {
     return LayerVisibilityFromJSONTyped(json, false);
 }
+exports.LayerVisibilityFromJSON = LayerVisibilityFromJSON;
 function LayerVisibilityFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function LayerVisibilityFromJSONTyped(json, ignoreDiscriminator) {
         'legend': json['legend'],
     };
 }
+exports.LayerVisibilityFromJSONTyped = LayerVisibilityFromJSONTyped;
 function LayerVisibilityToJSON(json) {
     return LayerVisibilityToJSONTyped(json, false);
 }
+exports.LayerVisibilityToJSON = LayerVisibilityToJSON;
 function LayerVisibilityToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function LayerVisibilityToJSONTyped(value, ignoreDiscriminator = false) {
         'legend': value['legend'],
     };
 }
+exports.LayerVisibilityToJSONTyped = LayerVisibilityToJSONTyped;

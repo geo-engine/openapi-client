@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfMlModelMetadata = instanceOfMlModelMetadata;
-exports.MlModelMetadataFromJSON = MlModelMetadataFromJSON;
-exports.MlModelMetadataFromJSONTyped = MlModelMetadataFromJSONTyped;
-exports.MlModelMetadataToJSON = MlModelMetadataToJSON;
-exports.MlModelMetadataToJSONTyped = MlModelMetadataToJSONTyped;
+exports.MlModelMetadataToJSONTyped = exports.MlModelMetadataToJSON = exports.MlModelMetadataFromJSONTyped = exports.MlModelMetadataFromJSON = exports.instanceOfMlModelMetadata = void 0;
 const RasterDataType_1 = require("./RasterDataType");
 /**
  * Check if a given object implements the MlModelMetadata interface.
@@ -33,9 +29,11 @@ function instanceOfMlModelMetadata(value) {
         return false;
     return true;
 }
+exports.instanceOfMlModelMetadata = instanceOfMlModelMetadata;
 function MlModelMetadataFromJSON(json) {
     return MlModelMetadataFromJSONTyped(json, false);
 }
+exports.MlModelMetadataFromJSON = MlModelMetadataFromJSON;
 function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +45,11 @@ function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
         'outputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['outputType']),
     };
 }
+exports.MlModelMetadataFromJSONTyped = MlModelMetadataFromJSONTyped;
 function MlModelMetadataToJSON(json) {
     return MlModelMetadataToJSONTyped(json, false);
 }
+exports.MlModelMetadataToJSON = MlModelMetadataToJSON;
 function MlModelMetadataToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -61,3 +61,4 @@ function MlModelMetadataToJSONTyped(value, ignoreDiscriminator = false) {
         'outputType': (0, RasterDataType_1.RasterDataTypeToJSON)(value['outputType']),
     };
 }
+exports.MlModelMetadataToJSONTyped = MlModelMetadataToJSONTyped;

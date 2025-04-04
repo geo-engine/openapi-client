@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectUpdateToken = void 0;
-exports.instanceOfProjectUpdateToken = instanceOfProjectUpdateToken;
-exports.ProjectUpdateTokenFromJSON = ProjectUpdateTokenFromJSON;
-exports.ProjectUpdateTokenFromJSONTyped = ProjectUpdateTokenFromJSONTyped;
-exports.ProjectUpdateTokenToJSON = ProjectUpdateTokenToJSON;
-exports.ProjectUpdateTokenToJSONTyped = ProjectUpdateTokenToJSONTyped;
+exports.ProjectUpdateTokenToJSONTyped = exports.ProjectUpdateTokenToJSON = exports.ProjectUpdateTokenFromJSONTyped = exports.ProjectUpdateTokenFromJSON = exports.instanceOfProjectUpdateToken = exports.ProjectUpdateToken = void 0;
 /**
  *
  * @export
@@ -37,15 +32,20 @@ function instanceOfProjectUpdateToken(value) {
     }
     return false;
 }
+exports.instanceOfProjectUpdateToken = instanceOfProjectUpdateToken;
 function ProjectUpdateTokenFromJSON(json) {
     return ProjectUpdateTokenFromJSONTyped(json, false);
 }
+exports.ProjectUpdateTokenFromJSON = ProjectUpdateTokenFromJSON;
 function ProjectUpdateTokenFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.ProjectUpdateTokenFromJSONTyped = ProjectUpdateTokenFromJSONTyped;
 function ProjectUpdateTokenToJSON(value) {
     return value;
 }
+exports.ProjectUpdateTokenToJSON = ProjectUpdateTokenToJSON;
 function ProjectUpdateTokenToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.ProjectUpdateTokenToJSONTyped = ProjectUpdateTokenToJSONTyped;

@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProvenanceOutput = instanceOfProvenanceOutput;
-exports.ProvenanceOutputFromJSON = ProvenanceOutputFromJSON;
-exports.ProvenanceOutputFromJSONTyped = ProvenanceOutputFromJSONTyped;
-exports.ProvenanceOutputToJSON = ProvenanceOutputToJSON;
-exports.ProvenanceOutputToJSONTyped = ProvenanceOutputToJSONTyped;
+exports.ProvenanceOutputToJSONTyped = exports.ProvenanceOutputToJSON = exports.ProvenanceOutputFromJSONTyped = exports.ProvenanceOutputFromJSON = exports.instanceOfProvenanceOutput = void 0;
 const Provenance_1 = require("./Provenance");
 const DataId_1 = require("./DataId");
 /**
@@ -28,9 +24,11 @@ function instanceOfProvenanceOutput(value) {
         return false;
     return true;
 }
+exports.instanceOfProvenanceOutput = instanceOfProvenanceOutput;
 function ProvenanceOutputFromJSON(json) {
     return ProvenanceOutputFromJSONTyped(json, false);
 }
+exports.ProvenanceOutputFromJSON = ProvenanceOutputFromJSON;
 function ProvenanceOutputFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function ProvenanceOutputFromJSONTyped(json, ignoreDiscriminator) {
         'provenance': json['provenance'] == null ? undefined : (json['provenance'].map(Provenance_1.ProvenanceFromJSON)),
     };
 }
+exports.ProvenanceOutputFromJSONTyped = ProvenanceOutputFromJSONTyped;
 function ProvenanceOutputToJSON(json) {
     return ProvenanceOutputToJSONTyped(json, false);
 }
+exports.ProvenanceOutputToJSON = ProvenanceOutputToJSON;
 function ProvenanceOutputToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function ProvenanceOutputToJSONTyped(value, ignoreDiscriminator = false) {
         'provenance': value['provenance'] == null ? undefined : (value['provenance'].map(Provenance_1.ProvenanceToJSON)),
     };
 }
+exports.ProvenanceOutputToJSONTyped = ProvenanceOutputToJSONTyped;

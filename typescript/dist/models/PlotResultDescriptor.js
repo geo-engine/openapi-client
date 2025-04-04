@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfPlotResultDescriptor = instanceOfPlotResultDescriptor;
-exports.PlotResultDescriptorFromJSON = PlotResultDescriptorFromJSON;
-exports.PlotResultDescriptorFromJSONTyped = PlotResultDescriptorFromJSONTyped;
-exports.PlotResultDescriptorToJSON = PlotResultDescriptorToJSON;
-exports.PlotResultDescriptorToJSONTyped = PlotResultDescriptorToJSONTyped;
+exports.PlotResultDescriptorToJSONTyped = exports.PlotResultDescriptorToJSON = exports.PlotResultDescriptorFromJSONTyped = exports.PlotResultDescriptorFromJSON = exports.instanceOfPlotResultDescriptor = void 0;
 const TimeInterval_1 = require("./TimeInterval");
 const BoundingBox2D_1 = require("./BoundingBox2D");
 /**
@@ -28,9 +24,11 @@ function instanceOfPlotResultDescriptor(value) {
         return false;
     return true;
 }
+exports.instanceOfPlotResultDescriptor = instanceOfPlotResultDescriptor;
 function PlotResultDescriptorFromJSON(json) {
     return PlotResultDescriptorFromJSONTyped(json, false);
 }
+exports.PlotResultDescriptorFromJSON = PlotResultDescriptorFromJSON;
 function PlotResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function PlotResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
         'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
     };
 }
+exports.PlotResultDescriptorFromJSONTyped = PlotResultDescriptorFromJSONTyped;
 function PlotResultDescriptorToJSON(json) {
     return PlotResultDescriptorToJSONTyped(json, false);
 }
+exports.PlotResultDescriptorToJSON = PlotResultDescriptorToJSON;
 function PlotResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -54,3 +54,4 @@ function PlotResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
         'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
     };
 }
+exports.PlotResultDescriptorToJSONTyped = PlotResultDescriptorToJSONTyped;

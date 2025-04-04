@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfGdalDatasetGeoTransform = instanceOfGdalDatasetGeoTransform;
-exports.GdalDatasetGeoTransformFromJSON = GdalDatasetGeoTransformFromJSON;
-exports.GdalDatasetGeoTransformFromJSONTyped = GdalDatasetGeoTransformFromJSONTyped;
-exports.GdalDatasetGeoTransformToJSON = GdalDatasetGeoTransformToJSON;
-exports.GdalDatasetGeoTransformToJSONTyped = GdalDatasetGeoTransformToJSONTyped;
+exports.GdalDatasetGeoTransformToJSONTyped = exports.GdalDatasetGeoTransformToJSON = exports.GdalDatasetGeoTransformFromJSONTyped = exports.GdalDatasetGeoTransformFromJSON = exports.instanceOfGdalDatasetGeoTransform = void 0;
 const Coordinate2D_1 = require("./Coordinate2D");
 /**
  * Check if a given object implements the GdalDatasetGeoTransform interface.
@@ -31,9 +27,11 @@ function instanceOfGdalDatasetGeoTransform(value) {
         return false;
     return true;
 }
+exports.instanceOfGdalDatasetGeoTransform = instanceOfGdalDatasetGeoTransform;
 function GdalDatasetGeoTransformFromJSON(json) {
     return GdalDatasetGeoTransformFromJSONTyped(json, false);
 }
+exports.GdalDatasetGeoTransformFromJSON = GdalDatasetGeoTransformFromJSON;
 function GdalDatasetGeoTransformFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -44,9 +42,11 @@ function GdalDatasetGeoTransformFromJSONTyped(json, ignoreDiscriminator) {
         'yPixelSize': json['yPixelSize'],
     };
 }
+exports.GdalDatasetGeoTransformFromJSONTyped = GdalDatasetGeoTransformFromJSONTyped;
 function GdalDatasetGeoTransformToJSON(json) {
     return GdalDatasetGeoTransformToJSONTyped(json, false);
 }
+exports.GdalDatasetGeoTransformToJSON = GdalDatasetGeoTransformToJSON;
 function GdalDatasetGeoTransformToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -57,3 +57,4 @@ function GdalDatasetGeoTransformToJSONTyped(value, ignoreDiscriminator = false) 
         'yPixelSize': value['yPixelSize'],
     };
 }
+exports.GdalDatasetGeoTransformToJSONTyped = GdalDatasetGeoTransformToJSONTyped;

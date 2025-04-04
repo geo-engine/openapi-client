@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WfsService = void 0;
-exports.instanceOfWfsService = instanceOfWfsService;
-exports.WfsServiceFromJSON = WfsServiceFromJSON;
-exports.WfsServiceFromJSONTyped = WfsServiceFromJSONTyped;
-exports.WfsServiceToJSON = WfsServiceToJSON;
-exports.WfsServiceToJSONTyped = WfsServiceToJSONTyped;
+exports.WfsServiceToJSONTyped = exports.WfsServiceToJSON = exports.WfsServiceFromJSONTyped = exports.WfsServiceFromJSON = exports.instanceOfWfsService = exports.WfsService = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfWfsService(value) {
     }
     return false;
 }
+exports.instanceOfWfsService = instanceOfWfsService;
 function WfsServiceFromJSON(json) {
     return WfsServiceFromJSONTyped(json, false);
 }
+exports.WfsServiceFromJSON = WfsServiceFromJSON;
 function WfsServiceFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.WfsServiceFromJSONTyped = WfsServiceFromJSONTyped;
 function WfsServiceToJSON(value) {
     return value;
 }
+exports.WfsServiceToJSON = WfsServiceToJSON;
 function WfsServiceToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.WfsServiceToJSONTyped = WfsServiceToJSONTyped;

@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FeatureDataType = void 0;
-exports.instanceOfFeatureDataType = instanceOfFeatureDataType;
-exports.FeatureDataTypeFromJSON = FeatureDataTypeFromJSON;
-exports.FeatureDataTypeFromJSONTyped = FeatureDataTypeFromJSONTyped;
-exports.FeatureDataTypeToJSON = FeatureDataTypeToJSON;
-exports.FeatureDataTypeToJSONTyped = FeatureDataTypeToJSONTyped;
+exports.FeatureDataTypeToJSONTyped = exports.FeatureDataTypeToJSON = exports.FeatureDataTypeFromJSONTyped = exports.FeatureDataTypeFromJSON = exports.instanceOfFeatureDataType = exports.FeatureDataType = void 0;
 /**
  *
  * @export
@@ -41,15 +36,20 @@ function instanceOfFeatureDataType(value) {
     }
     return false;
 }
+exports.instanceOfFeatureDataType = instanceOfFeatureDataType;
 function FeatureDataTypeFromJSON(json) {
     return FeatureDataTypeFromJSONTyped(json, false);
 }
+exports.FeatureDataTypeFromJSON = FeatureDataTypeFromJSON;
 function FeatureDataTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.FeatureDataTypeFromJSONTyped = FeatureDataTypeFromJSONTyped;
 function FeatureDataTypeToJSON(value) {
     return value;
 }
+exports.FeatureDataTypeToJSON = FeatureDataTypeToJSON;
 function FeatureDataTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.FeatureDataTypeToJSONTyped = FeatureDataTypeToJSONTyped;

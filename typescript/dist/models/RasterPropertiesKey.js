@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfRasterPropertiesKey = instanceOfRasterPropertiesKey;
-exports.RasterPropertiesKeyFromJSON = RasterPropertiesKeyFromJSON;
-exports.RasterPropertiesKeyFromJSONTyped = RasterPropertiesKeyFromJSONTyped;
-exports.RasterPropertiesKeyToJSON = RasterPropertiesKeyToJSON;
-exports.RasterPropertiesKeyToJSONTyped = RasterPropertiesKeyToJSONTyped;
+exports.RasterPropertiesKeyToJSONTyped = exports.RasterPropertiesKeyToJSON = exports.RasterPropertiesKeyFromJSONTyped = exports.RasterPropertiesKeyFromJSON = exports.instanceOfRasterPropertiesKey = void 0;
 /**
  * Check if a given object implements the RasterPropertiesKey interface.
  */
@@ -26,9 +22,11 @@ function instanceOfRasterPropertiesKey(value) {
         return false;
     return true;
 }
+exports.instanceOfRasterPropertiesKey = instanceOfRasterPropertiesKey;
 function RasterPropertiesKeyFromJSON(json) {
     return RasterPropertiesKeyFromJSONTyped(json, false);
 }
+exports.RasterPropertiesKeyFromJSON = RasterPropertiesKeyFromJSON;
 function RasterPropertiesKeyFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function RasterPropertiesKeyFromJSONTyped(json, ignoreDiscriminator) {
         'key': json['key'],
     };
 }
+exports.RasterPropertiesKeyFromJSONTyped = RasterPropertiesKeyFromJSONTyped;
 function RasterPropertiesKeyToJSON(json) {
     return RasterPropertiesKeyToJSONTyped(json, false);
 }
+exports.RasterPropertiesKeyToJSON = RasterPropertiesKeyToJSON;
 function RasterPropertiesKeyToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -50,3 +50,4 @@ function RasterPropertiesKeyToJSONTyped(value, ignoreDiscriminator = false) {
         'key': value['key'],
     };
 }
+exports.RasterPropertiesKeyToJSONTyped = RasterPropertiesKeyToJSONTyped;

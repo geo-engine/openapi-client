@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfPermissionListing = instanceOfPermissionListing;
-exports.PermissionListingFromJSON = PermissionListingFromJSON;
-exports.PermissionListingFromJSONTyped = PermissionListingFromJSONTyped;
-exports.PermissionListingToJSON = PermissionListingToJSON;
-exports.PermissionListingToJSONTyped = PermissionListingToJSONTyped;
+exports.PermissionListingToJSONTyped = exports.PermissionListingToJSON = exports.PermissionListingFromJSONTyped = exports.PermissionListingFromJSON = exports.instanceOfPermissionListing = void 0;
 const Role_1 = require("./Role");
 const Permission_1 = require("./Permission");
 const Resource_1 = require("./Resource");
@@ -33,9 +29,11 @@ function instanceOfPermissionListing(value) {
         return false;
     return true;
 }
+exports.instanceOfPermissionListing = instanceOfPermissionListing;
 function PermissionListingFromJSON(json) {
     return PermissionListingFromJSONTyped(json, false);
 }
+exports.PermissionListingFromJSON = PermissionListingFromJSON;
 function PermissionListingFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -46,9 +44,11 @@ function PermissionListingFromJSONTyped(json, ignoreDiscriminator) {
         'role': (0, Role_1.RoleFromJSON)(json['role']),
     };
 }
+exports.PermissionListingFromJSONTyped = PermissionListingFromJSONTyped;
 function PermissionListingToJSON(json) {
     return PermissionListingToJSONTyped(json, false);
 }
+exports.PermissionListingToJSON = PermissionListingToJSON;
 function PermissionListingToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +59,4 @@ function PermissionListingToJSONTyped(value, ignoreDiscriminator = false) {
         'role': (0, Role_1.RoleToJSON)(value['role']),
     };
 }
+exports.PermissionListingToJSONTyped = PermissionListingToJSONTyped;

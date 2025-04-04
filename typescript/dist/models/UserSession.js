@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfUserSession = instanceOfUserSession;
-exports.UserSessionFromJSON = UserSessionFromJSON;
-exports.UserSessionFromJSONTyped = UserSessionFromJSONTyped;
-exports.UserSessionToJSON = UserSessionToJSON;
-exports.UserSessionToJSONTyped = UserSessionToJSONTyped;
+exports.UserSessionToJSONTyped = exports.UserSessionToJSON = exports.UserSessionFromJSONTyped = exports.UserSessionFromJSON = exports.instanceOfUserSession = void 0;
 const STRectangle_1 = require("./STRectangle");
 const UserInfo_1 = require("./UserInfo");
 /**
@@ -36,9 +32,11 @@ function instanceOfUserSession(value) {
         return false;
     return true;
 }
+exports.instanceOfUserSession = instanceOfUserSession;
 function UserSessionFromJSON(json) {
     return UserSessionFromJSONTyped(json, false);
 }
+exports.UserSessionFromJSON = UserSessionFromJSON;
 function UserSessionFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -53,9 +51,11 @@ function UserSessionFromJSONTyped(json, ignoreDiscriminator) {
         'view': json['view'] == null ? undefined : (0, STRectangle_1.STRectangleFromJSON)(json['view']),
     };
 }
+exports.UserSessionFromJSONTyped = UserSessionFromJSONTyped;
 function UserSessionToJSON(json) {
     return UserSessionToJSONTyped(json, false);
 }
+exports.UserSessionToJSON = UserSessionToJSON;
 function UserSessionToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -70,3 +70,4 @@ function UserSessionToJSONTyped(value, ignoreDiscriminator = false) {
         'view': (0, STRectangle_1.STRectangleToJSON)(value['view']),
     };
 }
+exports.UserSessionToJSONTyped = UserSessionToJSONTyped;

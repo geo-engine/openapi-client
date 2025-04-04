@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfSuggestMetaData = instanceOfSuggestMetaData;
-exports.SuggestMetaDataFromJSON = SuggestMetaDataFromJSON;
-exports.SuggestMetaDataFromJSONTyped = SuggestMetaDataFromJSONTyped;
-exports.SuggestMetaDataToJSON = SuggestMetaDataToJSON;
-exports.SuggestMetaDataToJSONTyped = SuggestMetaDataToJSONTyped;
+exports.SuggestMetaDataToJSONTyped = exports.SuggestMetaDataToJSON = exports.SuggestMetaDataFromJSONTyped = exports.SuggestMetaDataFromJSON = exports.instanceOfSuggestMetaData = void 0;
 const DataPath_1 = require("./DataPath");
 /**
  * Check if a given object implements the SuggestMetaData interface.
@@ -27,9 +23,11 @@ function instanceOfSuggestMetaData(value) {
         return false;
     return true;
 }
+exports.instanceOfSuggestMetaData = instanceOfSuggestMetaData;
 function SuggestMetaDataFromJSON(json) {
     return SuggestMetaDataFromJSONTyped(json, false);
 }
+exports.SuggestMetaDataFromJSON = SuggestMetaDataFromJSON;
 function SuggestMetaDataFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function SuggestMetaDataFromJSONTyped(json, ignoreDiscriminator) {
         'mainFile': json['mainFile'] == null ? undefined : json['mainFile'],
     };
 }
+exports.SuggestMetaDataFromJSONTyped = SuggestMetaDataFromJSONTyped;
 function SuggestMetaDataToJSON(json) {
     return SuggestMetaDataToJSONTyped(json, false);
 }
+exports.SuggestMetaDataToJSON = SuggestMetaDataToJSON;
 function SuggestMetaDataToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -53,3 +53,4 @@ function SuggestMetaDataToJSONTyped(value, ignoreDiscriminator = false) {
         'mainFile': value['mainFile'],
     };
 }
+exports.SuggestMetaDataToJSONTyped = SuggestMetaDataToJSONTyped;

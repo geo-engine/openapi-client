@@ -13,16 +13,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedResultDescriptorFromJSON = TypedResultDescriptorFromJSON;
-exports.TypedResultDescriptorFromJSONTyped = TypedResultDescriptorFromJSONTyped;
-exports.TypedResultDescriptorToJSON = TypedResultDescriptorToJSON;
-exports.TypedResultDescriptorToJSONTyped = TypedResultDescriptorToJSONTyped;
+exports.TypedResultDescriptorToJSONTyped = exports.TypedResultDescriptorToJSON = exports.TypedResultDescriptorFromJSONTyped = exports.TypedResultDescriptorFromJSON = void 0;
 const TypedPlotResultDescriptor_1 = require("./TypedPlotResultDescriptor");
 const TypedRasterResultDescriptor_1 = require("./TypedRasterResultDescriptor");
 const TypedVectorResultDescriptor_1 = require("./TypedVectorResultDescriptor");
 function TypedResultDescriptorFromJSON(json) {
     return TypedResultDescriptorFromJSONTyped(json, false);
 }
+exports.TypedResultDescriptorFromJSON = TypedResultDescriptorFromJSON;
 function TypedResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function TypedResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${json['type']}'`);
     }
 }
+exports.TypedResultDescriptorFromJSONTyped = TypedResultDescriptorFromJSONTyped;
 function TypedResultDescriptorToJSON(json) {
     return TypedResultDescriptorToJSONTyped(json, false);
 }
+exports.TypedResultDescriptorToJSON = TypedResultDescriptorToJSON;
 function TypedResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -56,3 +56,4 @@ function TypedResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of TypedResultDescriptor exists with 'type=${value['type']}'`);
     }
 }
+exports.TypedResultDescriptorToJSONTyped = TypedResultDescriptorToJSONTyped;

@@ -13,16 +13,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceTimeFormatFromJSON = OgrSourceTimeFormatFromJSON;
-exports.OgrSourceTimeFormatFromJSONTyped = OgrSourceTimeFormatFromJSONTyped;
-exports.OgrSourceTimeFormatToJSON = OgrSourceTimeFormatToJSON;
-exports.OgrSourceTimeFormatToJSONTyped = OgrSourceTimeFormatToJSONTyped;
+exports.OgrSourceTimeFormatToJSONTyped = exports.OgrSourceTimeFormatToJSON = exports.OgrSourceTimeFormatFromJSONTyped = exports.OgrSourceTimeFormatFromJSON = void 0;
 const OgrSourceTimeFormatAuto_1 = require("./OgrSourceTimeFormatAuto");
 const OgrSourceTimeFormatCustom_1 = require("./OgrSourceTimeFormatCustom");
 const OgrSourceTimeFormatUnixTimeStamp_1 = require("./OgrSourceTimeFormatUnixTimeStamp");
 function OgrSourceTimeFormatFromJSON(json) {
     return OgrSourceTimeFormatFromJSONTyped(json, false);
 }
+exports.OgrSourceTimeFormatFromJSON = OgrSourceTimeFormatFromJSON;
 function OgrSourceTimeFormatFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function OgrSourceTimeFormatFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${json['format']}'`);
     }
 }
+exports.OgrSourceTimeFormatFromJSONTyped = OgrSourceTimeFormatFromJSONTyped;
 function OgrSourceTimeFormatToJSON(json) {
     return OgrSourceTimeFormatToJSONTyped(json, false);
 }
+exports.OgrSourceTimeFormatToJSON = OgrSourceTimeFormatToJSON;
 function OgrSourceTimeFormatToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -56,3 +56,4 @@ function OgrSourceTimeFormatToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${value['format']}'`);
     }
 }
+exports.OgrSourceTimeFormatToJSONTyped = OgrSourceTimeFormatToJSONTyped;

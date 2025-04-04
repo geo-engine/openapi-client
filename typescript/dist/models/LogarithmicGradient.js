@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogarithmicGradientTypeEnum = void 0;
-exports.instanceOfLogarithmicGradient = instanceOfLogarithmicGradient;
-exports.LogarithmicGradientFromJSON = LogarithmicGradientFromJSON;
-exports.LogarithmicGradientFromJSONTyped = LogarithmicGradientFromJSONTyped;
-exports.LogarithmicGradientToJSON = LogarithmicGradientToJSON;
-exports.LogarithmicGradientToJSONTyped = LogarithmicGradientToJSONTyped;
+exports.LogarithmicGradientToJSONTyped = exports.LogarithmicGradientToJSON = exports.LogarithmicGradientFromJSONTyped = exports.LogarithmicGradientFromJSON = exports.instanceOfLogarithmicGradient = exports.LogarithmicGradientTypeEnum = void 0;
 const Breakpoint_1 = require("./Breakpoint");
 /**
  * @export
@@ -42,9 +37,11 @@ function instanceOfLogarithmicGradient(value) {
         return false;
     return true;
 }
+exports.instanceOfLogarithmicGradient = instanceOfLogarithmicGradient;
 function LogarithmicGradientFromJSON(json) {
     return LogarithmicGradientFromJSONTyped(json, false);
 }
+exports.LogarithmicGradientFromJSON = LogarithmicGradientFromJSON;
 function LogarithmicGradientFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -57,9 +54,11 @@ function LogarithmicGradientFromJSONTyped(json, ignoreDiscriminator) {
         'underColor': json['underColor'],
     };
 }
+exports.LogarithmicGradientFromJSONTyped = LogarithmicGradientFromJSONTyped;
 function LogarithmicGradientToJSON(json) {
     return LogarithmicGradientToJSONTyped(json, false);
 }
+exports.LogarithmicGradientToJSON = LogarithmicGradientToJSON;
 function LogarithmicGradientToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -72,3 +71,4 @@ function LogarithmicGradientToJSONTyped(value, ignoreDiscriminator = false) {
         'underColor': value['underColor'],
     };
 }
+exports.LogarithmicGradientToJSONTyped = LogarithmicGradientToJSONTyped;

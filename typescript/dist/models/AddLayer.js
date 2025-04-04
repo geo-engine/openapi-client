@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfAddLayer = instanceOfAddLayer;
-exports.AddLayerFromJSON = AddLayerFromJSON;
-exports.AddLayerFromJSONTyped = AddLayerFromJSONTyped;
-exports.AddLayerToJSON = AddLayerToJSON;
-exports.AddLayerToJSONTyped = AddLayerToJSONTyped;
+exports.AddLayerToJSONTyped = exports.AddLayerToJSON = exports.AddLayerFromJSONTyped = exports.AddLayerFromJSON = exports.instanceOfAddLayer = void 0;
 const Symbology_1 = require("./Symbology");
 const Workflow_1 = require("./Workflow");
 /**
@@ -32,9 +28,11 @@ function instanceOfAddLayer(value) {
         return false;
     return true;
 }
+exports.instanceOfAddLayer = instanceOfAddLayer;
 function AddLayerFromJSON(json) {
     return AddLayerFromJSONTyped(json, false);
 }
+exports.AddLayerFromJSON = AddLayerFromJSON;
 function AddLayerFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -48,9 +46,11 @@ function AddLayerFromJSONTyped(json, ignoreDiscriminator) {
         'workflow': (0, Workflow_1.WorkflowFromJSON)(json['workflow']),
     };
 }
+exports.AddLayerFromJSONTyped = AddLayerFromJSONTyped;
 function AddLayerToJSON(json) {
     return AddLayerToJSONTyped(json, false);
 }
+exports.AddLayerToJSON = AddLayerToJSON;
 function AddLayerToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -64,3 +64,4 @@ function AddLayerToJSONTyped(value, ignoreDiscriminator = false) {
         'workflow': (0, Workflow_1.WorkflowToJSON)(value['workflow']),
     };
 }
+exports.AddLayerToJSONTyped = AddLayerToJSONTyped;

@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetCoverageFormat = void 0;
-exports.instanceOfGetCoverageFormat = instanceOfGetCoverageFormat;
-exports.GetCoverageFormatFromJSON = GetCoverageFormatFromJSON;
-exports.GetCoverageFormatFromJSONTyped = GetCoverageFormatFromJSONTyped;
-exports.GetCoverageFormatToJSON = GetCoverageFormatToJSON;
-exports.GetCoverageFormatToJSONTyped = GetCoverageFormatToJSONTyped;
+exports.GetCoverageFormatToJSONTyped = exports.GetCoverageFormatToJSON = exports.GetCoverageFormatFromJSONTyped = exports.GetCoverageFormatFromJSON = exports.instanceOfGetCoverageFormat = exports.GetCoverageFormat = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfGetCoverageFormat(value) {
     }
     return false;
 }
+exports.instanceOfGetCoverageFormat = instanceOfGetCoverageFormat;
 function GetCoverageFormatFromJSON(json) {
     return GetCoverageFormatFromJSONTyped(json, false);
 }
+exports.GetCoverageFormatFromJSON = GetCoverageFormatFromJSON;
 function GetCoverageFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.GetCoverageFormatFromJSONTyped = GetCoverageFormatFromJSONTyped;
 function GetCoverageFormatToJSON(value) {
     return value;
 }
+exports.GetCoverageFormatToJSON = GetCoverageFormatToJSON;
 function GetCoverageFormatToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.GetCoverageFormatToJSONTyped = GetCoverageFormatToJSONTyped;

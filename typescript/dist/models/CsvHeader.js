@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CsvHeader = void 0;
-exports.instanceOfCsvHeader = instanceOfCsvHeader;
-exports.CsvHeaderFromJSON = CsvHeaderFromJSON;
-exports.CsvHeaderFromJSONTyped = CsvHeaderFromJSONTyped;
-exports.CsvHeaderToJSON = CsvHeaderToJSON;
-exports.CsvHeaderToJSONTyped = CsvHeaderToJSONTyped;
+exports.CsvHeaderToJSONTyped = exports.CsvHeaderToJSON = exports.CsvHeaderFromJSONTyped = exports.CsvHeaderFromJSON = exports.instanceOfCsvHeader = exports.CsvHeader = void 0;
 /**
  *
  * @export
@@ -38,15 +33,20 @@ function instanceOfCsvHeader(value) {
     }
     return false;
 }
+exports.instanceOfCsvHeader = instanceOfCsvHeader;
 function CsvHeaderFromJSON(json) {
     return CsvHeaderFromJSONTyped(json, false);
 }
+exports.CsvHeaderFromJSON = CsvHeaderFromJSON;
 function CsvHeaderFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.CsvHeaderFromJSONTyped = CsvHeaderFromJSONTyped;
 function CsvHeaderToJSON(value) {
     return value;
 }
+exports.CsvHeaderToJSON = CsvHeaderToJSON;
 function CsvHeaderToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.CsvHeaderToJSONTyped = CsvHeaderToJSONTyped;

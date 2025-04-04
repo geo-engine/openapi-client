@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfCoordinate2D = instanceOfCoordinate2D;
-exports.Coordinate2DFromJSON = Coordinate2DFromJSON;
-exports.Coordinate2DFromJSONTyped = Coordinate2DFromJSONTyped;
-exports.Coordinate2DToJSON = Coordinate2DToJSON;
-exports.Coordinate2DToJSONTyped = Coordinate2DToJSONTyped;
+exports.Coordinate2DToJSONTyped = exports.Coordinate2DToJSON = exports.Coordinate2DFromJSONTyped = exports.Coordinate2DFromJSON = exports.instanceOfCoordinate2D = void 0;
 /**
  * Check if a given object implements the Coordinate2D interface.
  */
@@ -28,9 +24,11 @@ function instanceOfCoordinate2D(value) {
         return false;
     return true;
 }
+exports.instanceOfCoordinate2D = instanceOfCoordinate2D;
 function Coordinate2DFromJSON(json) {
     return Coordinate2DFromJSONTyped(json, false);
 }
+exports.Coordinate2DFromJSON = Coordinate2DFromJSON;
 function Coordinate2DFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function Coordinate2DFromJSONTyped(json, ignoreDiscriminator) {
         'y': json['y'],
     };
 }
+exports.Coordinate2DFromJSONTyped = Coordinate2DFromJSONTyped;
 function Coordinate2DToJSON(json) {
     return Coordinate2DToJSONTyped(json, false);
 }
+exports.Coordinate2DToJSON = Coordinate2DToJSON;
 function Coordinate2DToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function Coordinate2DToJSONTyped(value, ignoreDiscriminator = false) {
         'y': value['y'],
     };
 }
+exports.Coordinate2DToJSONTyped = Coordinate2DToJSONTyped;

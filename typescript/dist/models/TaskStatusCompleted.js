@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskStatusCompletedStatusEnum = void 0;
-exports.instanceOfTaskStatusCompleted = instanceOfTaskStatusCompleted;
-exports.TaskStatusCompletedFromJSON = TaskStatusCompletedFromJSON;
-exports.TaskStatusCompletedFromJSONTyped = TaskStatusCompletedFromJSONTyped;
-exports.TaskStatusCompletedToJSON = TaskStatusCompletedToJSON;
-exports.TaskStatusCompletedToJSONTyped = TaskStatusCompletedToJSONTyped;
+exports.TaskStatusCompletedToJSONTyped = exports.TaskStatusCompletedToJSON = exports.TaskStatusCompletedFromJSONTyped = exports.TaskStatusCompletedFromJSON = exports.instanceOfTaskStatusCompleted = exports.TaskStatusCompletedStatusEnum = void 0;
 /**
  * @export
  */
@@ -39,9 +34,11 @@ function instanceOfTaskStatusCompleted(value) {
         return false;
     return true;
 }
+exports.instanceOfTaskStatusCompleted = instanceOfTaskStatusCompleted;
 function TaskStatusCompletedFromJSON(json) {
     return TaskStatusCompletedFromJSONTyped(json, false);
 }
+exports.TaskStatusCompletedFromJSON = TaskStatusCompletedFromJSON;
 function TaskStatusCompletedFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -55,9 +52,11 @@ function TaskStatusCompletedFromJSONTyped(json, ignoreDiscriminator) {
         'timeTotal': json['timeTotal'],
     };
 }
+exports.TaskStatusCompletedFromJSONTyped = TaskStatusCompletedFromJSONTyped;
 function TaskStatusCompletedToJSON(json) {
     return TaskStatusCompletedToJSONTyped(json, false);
 }
+exports.TaskStatusCompletedToJSON = TaskStatusCompletedToJSON;
 function TaskStatusCompletedToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -71,3 +70,4 @@ function TaskStatusCompletedToJSONTyped(value, ignoreDiscriminator = false) {
         'timeTotal': value['timeTotal'],
     };
 }
+exports.TaskStatusCompletedToJSONTyped = TaskStatusCompletedToJSONTyped;

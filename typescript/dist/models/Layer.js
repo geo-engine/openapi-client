@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfLayer = instanceOfLayer;
-exports.LayerFromJSON = LayerFromJSON;
-exports.LayerFromJSONTyped = LayerFromJSONTyped;
-exports.LayerToJSON = LayerToJSON;
-exports.LayerToJSONTyped = LayerToJSONTyped;
+exports.LayerToJSONTyped = exports.LayerToJSON = exports.LayerFromJSONTyped = exports.LayerFromJSON = exports.instanceOfLayer = void 0;
 const Symbology_1 = require("./Symbology");
 const ProviderLayerId_1 = require("./ProviderLayerId");
 const Workflow_1 = require("./Workflow");
@@ -35,9 +31,11 @@ function instanceOfLayer(value) {
         return false;
     return true;
 }
+exports.instanceOfLayer = instanceOfLayer;
 function LayerFromJSON(json) {
     return LayerFromJSONTyped(json, false);
 }
+exports.LayerFromJSON = LayerFromJSON;
 function LayerFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -52,9 +50,11 @@ function LayerFromJSONTyped(json, ignoreDiscriminator) {
         'workflow': (0, Workflow_1.WorkflowFromJSON)(json['workflow']),
     };
 }
+exports.LayerFromJSONTyped = LayerFromJSONTyped;
 function LayerToJSON(json) {
     return LayerToJSONTyped(json, false);
 }
+exports.LayerToJSON = LayerToJSON;
 function LayerToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -69,3 +69,4 @@ function LayerToJSONTyped(value, ignoreDiscriminator = false) {
         'workflow': (0, Workflow_1.WorkflowToJSON)(value['workflow']),
     };
 }
+exports.LayerToJSONTyped = LayerToJSONTyped;

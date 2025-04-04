@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfUserCredentials = instanceOfUserCredentials;
-exports.UserCredentialsFromJSON = UserCredentialsFromJSON;
-exports.UserCredentialsFromJSONTyped = UserCredentialsFromJSONTyped;
-exports.UserCredentialsToJSON = UserCredentialsToJSON;
-exports.UserCredentialsToJSONTyped = UserCredentialsToJSONTyped;
+exports.UserCredentialsToJSONTyped = exports.UserCredentialsToJSON = exports.UserCredentialsFromJSONTyped = exports.UserCredentialsFromJSON = exports.instanceOfUserCredentials = void 0;
 /**
  * Check if a given object implements the UserCredentials interface.
  */
@@ -28,9 +24,11 @@ function instanceOfUserCredentials(value) {
         return false;
     return true;
 }
+exports.instanceOfUserCredentials = instanceOfUserCredentials;
 function UserCredentialsFromJSON(json) {
     return UserCredentialsFromJSONTyped(json, false);
 }
+exports.UserCredentialsFromJSON = UserCredentialsFromJSON;
 function UserCredentialsFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function UserCredentialsFromJSONTyped(json, ignoreDiscriminator) {
         'password': json['password'],
     };
 }
+exports.UserCredentialsFromJSONTyped = UserCredentialsFromJSONTyped;
 function UserCredentialsToJSON(json) {
     return UserCredentialsToJSONTyped(json, false);
 }
+exports.UserCredentialsToJSON = UserCredentialsToJSON;
 function UserCredentialsToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function UserCredentialsToJSONTyped(value, ignoreDiscriminator = false) {
         'password': value['password'],
     };
 }
+exports.UserCredentialsToJSONTyped = UserCredentialsToJSONTyped;

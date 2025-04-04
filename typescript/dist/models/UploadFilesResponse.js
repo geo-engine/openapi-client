@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfUploadFilesResponse = instanceOfUploadFilesResponse;
-exports.UploadFilesResponseFromJSON = UploadFilesResponseFromJSON;
-exports.UploadFilesResponseFromJSONTyped = UploadFilesResponseFromJSONTyped;
-exports.UploadFilesResponseToJSON = UploadFilesResponseToJSON;
-exports.UploadFilesResponseToJSONTyped = UploadFilesResponseToJSONTyped;
+exports.UploadFilesResponseToJSONTyped = exports.UploadFilesResponseToJSON = exports.UploadFilesResponseFromJSONTyped = exports.UploadFilesResponseFromJSON = exports.instanceOfUploadFilesResponse = void 0;
 /**
  * Check if a given object implements the UploadFilesResponse interface.
  */
@@ -26,9 +22,11 @@ function instanceOfUploadFilesResponse(value) {
         return false;
     return true;
 }
+exports.instanceOfUploadFilesResponse = instanceOfUploadFilesResponse;
 function UploadFilesResponseFromJSON(json) {
     return UploadFilesResponseFromJSONTyped(json, false);
 }
+exports.UploadFilesResponseFromJSON = UploadFilesResponseFromJSON;
 function UploadFilesResponseFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function UploadFilesResponseFromJSONTyped(json, ignoreDiscriminator) {
         'files': json['files'],
     };
 }
+exports.UploadFilesResponseFromJSONTyped = UploadFilesResponseFromJSONTyped;
 function UploadFilesResponseToJSON(json) {
     return UploadFilesResponseToJSONTyped(json, false);
 }
+exports.UploadFilesResponseToJSON = UploadFilesResponseToJSON;
 function UploadFilesResponseToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function UploadFilesResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'files': value['files'],
     };
 }
+exports.UploadFilesResponseToJSONTyped = UploadFilesResponseToJSONTyped;

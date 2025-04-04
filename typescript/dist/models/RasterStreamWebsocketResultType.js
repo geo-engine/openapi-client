@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterStreamWebsocketResultType = void 0;
-exports.instanceOfRasterStreamWebsocketResultType = instanceOfRasterStreamWebsocketResultType;
-exports.RasterStreamWebsocketResultTypeFromJSON = RasterStreamWebsocketResultTypeFromJSON;
-exports.RasterStreamWebsocketResultTypeFromJSONTyped = RasterStreamWebsocketResultTypeFromJSONTyped;
-exports.RasterStreamWebsocketResultTypeToJSON = RasterStreamWebsocketResultTypeToJSON;
-exports.RasterStreamWebsocketResultTypeToJSONTyped = RasterStreamWebsocketResultTypeToJSONTyped;
+exports.RasterStreamWebsocketResultTypeToJSONTyped = exports.RasterStreamWebsocketResultTypeToJSON = exports.RasterStreamWebsocketResultTypeFromJSONTyped = exports.RasterStreamWebsocketResultTypeFromJSON = exports.instanceOfRasterStreamWebsocketResultType = exports.RasterStreamWebsocketResultType = void 0;
 /**
  * The stream result type for `raster_stream_websocket`.
  * @export
@@ -36,15 +31,20 @@ function instanceOfRasterStreamWebsocketResultType(value) {
     }
     return false;
 }
+exports.instanceOfRasterStreamWebsocketResultType = instanceOfRasterStreamWebsocketResultType;
 function RasterStreamWebsocketResultTypeFromJSON(json) {
     return RasterStreamWebsocketResultTypeFromJSONTyped(json, false);
 }
+exports.RasterStreamWebsocketResultTypeFromJSON = RasterStreamWebsocketResultTypeFromJSON;
 function RasterStreamWebsocketResultTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.RasterStreamWebsocketResultTypeFromJSONTyped = RasterStreamWebsocketResultTypeFromJSONTyped;
 function RasterStreamWebsocketResultTypeToJSON(value) {
     return value;
 }
+exports.RasterStreamWebsocketResultTypeToJSON = RasterStreamWebsocketResultTypeToJSON;
 function RasterStreamWebsocketResultTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.RasterStreamWebsocketResultTypeToJSONTyped = RasterStreamWebsocketResultTypeToJSONTyped;

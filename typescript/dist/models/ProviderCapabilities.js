@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProviderCapabilities = instanceOfProviderCapabilities;
-exports.ProviderCapabilitiesFromJSON = ProviderCapabilitiesFromJSON;
-exports.ProviderCapabilitiesFromJSONTyped = ProviderCapabilitiesFromJSONTyped;
-exports.ProviderCapabilitiesToJSON = ProviderCapabilitiesToJSON;
-exports.ProviderCapabilitiesToJSONTyped = ProviderCapabilitiesToJSONTyped;
+exports.ProviderCapabilitiesToJSONTyped = exports.ProviderCapabilitiesToJSON = exports.ProviderCapabilitiesFromJSONTyped = exports.ProviderCapabilitiesFromJSON = exports.instanceOfProviderCapabilities = void 0;
 const SearchCapabilities_1 = require("./SearchCapabilities");
 /**
  * Check if a given object implements the ProviderCapabilities interface.
@@ -29,9 +25,11 @@ function instanceOfProviderCapabilities(value) {
         return false;
     return true;
 }
+exports.instanceOfProviderCapabilities = instanceOfProviderCapabilities;
 function ProviderCapabilitiesFromJSON(json) {
     return ProviderCapabilitiesFromJSONTyped(json, false);
 }
+exports.ProviderCapabilitiesFromJSON = ProviderCapabilitiesFromJSON;
 function ProviderCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function ProviderCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
         'search': (0, SearchCapabilities_1.SearchCapabilitiesFromJSON)(json['search']),
     };
 }
+exports.ProviderCapabilitiesFromJSONTyped = ProviderCapabilitiesFromJSONTyped;
 function ProviderCapabilitiesToJSON(json) {
     return ProviderCapabilitiesToJSONTyped(json, false);
 }
+exports.ProviderCapabilitiesToJSON = ProviderCapabilitiesToJSON;
 function ProviderCapabilitiesToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -53,3 +53,4 @@ function ProviderCapabilitiesToJSONTyped(value, ignoreDiscriminator = false) {
         'search': (0, SearchCapabilities_1.SearchCapabilitiesToJSON)(value['search']),
     };
 }
+exports.ProviderCapabilitiesToJSONTyped = ProviderCapabilitiesToJSONTyped;

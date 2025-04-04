@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MockMetaDataTypeEnum = void 0;
-exports.instanceOfMockMetaData = instanceOfMockMetaData;
-exports.MockMetaDataFromJSON = MockMetaDataFromJSON;
-exports.MockMetaDataFromJSONTyped = MockMetaDataFromJSONTyped;
-exports.MockMetaDataToJSON = MockMetaDataToJSON;
-exports.MockMetaDataToJSONTyped = MockMetaDataToJSONTyped;
+exports.MockMetaDataToJSONTyped = exports.MockMetaDataToJSON = exports.MockMetaDataFromJSONTyped = exports.MockMetaDataFromJSON = exports.instanceOfMockMetaData = exports.MockMetaDataTypeEnum = void 0;
 const VectorResultDescriptor_1 = require("./VectorResultDescriptor");
 const MockDatasetDataSourceLoadingInfo_1 = require("./MockDatasetDataSourceLoadingInfo");
 /**
@@ -39,9 +34,11 @@ function instanceOfMockMetaData(value) {
         return false;
     return true;
 }
+exports.instanceOfMockMetaData = instanceOfMockMetaData;
 function MockMetaDataFromJSON(json) {
     return MockMetaDataFromJSONTyped(json, false);
 }
+exports.MockMetaDataFromJSON = MockMetaDataFromJSON;
 function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -52,9 +49,11 @@ function MockMetaDataFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.MockMetaDataFromJSONTyped = MockMetaDataFromJSONTyped;
 function MockMetaDataToJSON(json) {
     return MockMetaDataToJSONTyped(json, false);
 }
+exports.MockMetaDataToJSON = MockMetaDataToJSON;
 function MockMetaDataToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -65,3 +64,4 @@ function MockMetaDataToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.MockMetaDataToJSONTyped = MockMetaDataToJSONTyped;

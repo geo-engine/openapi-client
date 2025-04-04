@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedRasterResultDescriptorTypeEnum = void 0;
-exports.instanceOfTypedRasterResultDescriptor = instanceOfTypedRasterResultDescriptor;
-exports.TypedRasterResultDescriptorFromJSON = TypedRasterResultDescriptorFromJSON;
-exports.TypedRasterResultDescriptorFromJSONTyped = TypedRasterResultDescriptorFromJSONTyped;
-exports.TypedRasterResultDescriptorToJSON = TypedRasterResultDescriptorToJSON;
-exports.TypedRasterResultDescriptorToJSONTyped = TypedRasterResultDescriptorToJSONTyped;
+exports.TypedRasterResultDescriptorToJSONTyped = exports.TypedRasterResultDescriptorToJSON = exports.TypedRasterResultDescriptorFromJSONTyped = exports.TypedRasterResultDescriptorFromJSON = exports.instanceOfTypedRasterResultDescriptor = exports.TypedRasterResultDescriptorTypeEnum = void 0;
 const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
 /**
  * @export
@@ -34,21 +29,26 @@ function instanceOfTypedRasterResultDescriptor(value) {
         return false;
     return true;
 }
+exports.instanceOfTypedRasterResultDescriptor = instanceOfTypedRasterResultDescriptor;
 function TypedRasterResultDescriptorFromJSON(json) {
     return TypedRasterResultDescriptorFromJSONTyped(json, false);
 }
+exports.TypedRasterResultDescriptorFromJSON = TypedRasterResultDescriptorFromJSON;
 function TypedRasterResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
     return Object.assign(Object.assign({}, (0, RasterResultDescriptor_1.RasterResultDescriptorFromJSONTyped)(json, true)), { 'type': json['type'] });
 }
+exports.TypedRasterResultDescriptorFromJSONTyped = TypedRasterResultDescriptorFromJSONTyped;
 function TypedRasterResultDescriptorToJSON(json) {
     return TypedRasterResultDescriptorToJSONTyped(json, false);
 }
+exports.TypedRasterResultDescriptorToJSON = TypedRasterResultDescriptorToJSON;
 function TypedRasterResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
     return Object.assign(Object.assign({}, (0, RasterResultDescriptor_1.RasterResultDescriptorToJSONTyped)(value, true)), { 'type': value['type'] });
 }
+exports.TypedRasterResultDescriptorToJSONTyped = TypedRasterResultDescriptorToJSONTyped;

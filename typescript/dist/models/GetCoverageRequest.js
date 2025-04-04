@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetCoverageRequest = void 0;
-exports.instanceOfGetCoverageRequest = instanceOfGetCoverageRequest;
-exports.GetCoverageRequestFromJSON = GetCoverageRequestFromJSON;
-exports.GetCoverageRequestFromJSONTyped = GetCoverageRequestFromJSONTyped;
-exports.GetCoverageRequestToJSON = GetCoverageRequestToJSON;
-exports.GetCoverageRequestToJSONTyped = GetCoverageRequestToJSONTyped;
+exports.GetCoverageRequestToJSONTyped = exports.GetCoverageRequestToJSON = exports.GetCoverageRequestFromJSONTyped = exports.GetCoverageRequestFromJSON = exports.instanceOfGetCoverageRequest = exports.GetCoverageRequest = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfGetCoverageRequest(value) {
     }
     return false;
 }
+exports.instanceOfGetCoverageRequest = instanceOfGetCoverageRequest;
 function GetCoverageRequestFromJSON(json) {
     return GetCoverageRequestFromJSONTyped(json, false);
 }
+exports.GetCoverageRequestFromJSON = GetCoverageRequestFromJSON;
 function GetCoverageRequestFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.GetCoverageRequestFromJSONTyped = GetCoverageRequestFromJSONTyped;
 function GetCoverageRequestToJSON(value) {
     return value;
 }
+exports.GetCoverageRequestToJSON = GetCoverageRequestToJSON;
 function GetCoverageRequestToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.GetCoverageRequestToJSONTyped = GetCoverageRequestToJSONTyped;

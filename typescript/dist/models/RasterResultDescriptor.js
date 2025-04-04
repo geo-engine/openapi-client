@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfRasterResultDescriptor = instanceOfRasterResultDescriptor;
-exports.RasterResultDescriptorFromJSON = RasterResultDescriptorFromJSON;
-exports.RasterResultDescriptorFromJSONTyped = RasterResultDescriptorFromJSONTyped;
-exports.RasterResultDescriptorToJSON = RasterResultDescriptorToJSON;
-exports.RasterResultDescriptorToJSONTyped = RasterResultDescriptorToJSONTyped;
+exports.RasterResultDescriptorToJSONTyped = exports.RasterResultDescriptorToJSON = exports.RasterResultDescriptorFromJSONTyped = exports.RasterResultDescriptorFromJSON = exports.instanceOfRasterResultDescriptor = void 0;
 const SpatialResolution_1 = require("./SpatialResolution");
 const TimeInterval_1 = require("./TimeInterval");
 const RasterBandDescriptor_1 = require("./RasterBandDescriptor");
@@ -35,9 +31,11 @@ function instanceOfRasterResultDescriptor(value) {
         return false;
     return true;
 }
+exports.instanceOfRasterResultDescriptor = instanceOfRasterResultDescriptor;
 function RasterResultDescriptorFromJSON(json) {
     return RasterResultDescriptorFromJSONTyped(json, false);
 }
+exports.RasterResultDescriptorFromJSON = RasterResultDescriptorFromJSON;
 function RasterResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -51,9 +49,11 @@ function RasterResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
         'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
     };
 }
+exports.RasterResultDescriptorFromJSONTyped = RasterResultDescriptorFromJSONTyped;
 function RasterResultDescriptorToJSON(json) {
     return RasterResultDescriptorToJSONTyped(json, false);
 }
+exports.RasterResultDescriptorToJSON = RasterResultDescriptorToJSON;
 function RasterResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -67,3 +67,4 @@ function RasterResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
         'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
     };
 }
+exports.RasterResultDescriptorToJSONTyped = RasterResultDescriptorToJSONTyped;

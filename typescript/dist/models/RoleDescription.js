@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfRoleDescription = instanceOfRoleDescription;
-exports.RoleDescriptionFromJSON = RoleDescriptionFromJSON;
-exports.RoleDescriptionFromJSONTyped = RoleDescriptionFromJSONTyped;
-exports.RoleDescriptionToJSON = RoleDescriptionToJSON;
-exports.RoleDescriptionToJSONTyped = RoleDescriptionToJSONTyped;
+exports.RoleDescriptionToJSONTyped = exports.RoleDescriptionToJSON = exports.RoleDescriptionFromJSONTyped = exports.RoleDescriptionFromJSON = exports.instanceOfRoleDescription = void 0;
 const Role_1 = require("./Role");
 /**
  * Check if a given object implements the RoleDescription interface.
@@ -29,9 +25,11 @@ function instanceOfRoleDescription(value) {
         return false;
     return true;
 }
+exports.instanceOfRoleDescription = instanceOfRoleDescription;
 function RoleDescriptionFromJSON(json) {
     return RoleDescriptionFromJSONTyped(json, false);
 }
+exports.RoleDescriptionFromJSON = RoleDescriptionFromJSON;
 function RoleDescriptionFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function RoleDescriptionFromJSONTyped(json, ignoreDiscriminator) {
         'role': (0, Role_1.RoleFromJSON)(json['role']),
     };
 }
+exports.RoleDescriptionFromJSONTyped = RoleDescriptionFromJSONTyped;
 function RoleDescriptionToJSON(json) {
     return RoleDescriptionToJSONTyped(json, false);
 }
+exports.RoleDescriptionToJSON = RoleDescriptionToJSON;
 function RoleDescriptionToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -53,3 +53,4 @@ function RoleDescriptionToJSONTyped(value, ignoreDiscriminator = false) {
         'role': (0, Role_1.RoleToJSON)(value['role']),
     };
 }
+exports.RoleDescriptionToJSONTyped = RoleDescriptionToJSONTyped;

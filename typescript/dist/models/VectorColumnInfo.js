@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfVectorColumnInfo = instanceOfVectorColumnInfo;
-exports.VectorColumnInfoFromJSON = VectorColumnInfoFromJSON;
-exports.VectorColumnInfoFromJSONTyped = VectorColumnInfoFromJSONTyped;
-exports.VectorColumnInfoToJSON = VectorColumnInfoToJSON;
-exports.VectorColumnInfoToJSONTyped = VectorColumnInfoToJSONTyped;
+exports.VectorColumnInfoToJSONTyped = exports.VectorColumnInfoToJSON = exports.VectorColumnInfoFromJSONTyped = exports.VectorColumnInfoFromJSON = exports.instanceOfVectorColumnInfo = void 0;
 const Measurement_1 = require("./Measurement");
 const FeatureDataType_1 = require("./FeatureDataType");
 /**
@@ -30,9 +26,11 @@ function instanceOfVectorColumnInfo(value) {
         return false;
     return true;
 }
+exports.instanceOfVectorColumnInfo = instanceOfVectorColumnInfo;
 function VectorColumnInfoFromJSON(json) {
     return VectorColumnInfoFromJSONTyped(json, false);
 }
+exports.VectorColumnInfoFromJSON = VectorColumnInfoFromJSON;
 function VectorColumnInfoFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -42,9 +40,11 @@ function VectorColumnInfoFromJSONTyped(json, ignoreDiscriminator) {
         'measurement': (0, Measurement_1.MeasurementFromJSON)(json['measurement']),
     };
 }
+exports.VectorColumnInfoFromJSONTyped = VectorColumnInfoFromJSONTyped;
 function VectorColumnInfoToJSON(json) {
     return VectorColumnInfoToJSONTyped(json, false);
 }
+exports.VectorColumnInfoToJSON = VectorColumnInfoToJSON;
 function VectorColumnInfoToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -54,3 +54,4 @@ function VectorColumnInfoToJSONTyped(value, ignoreDiscriminator = false) {
         'measurement': (0, Measurement_1.MeasurementToJSON)(value['measurement']),
     };
 }
+exports.VectorColumnInfoToJSONTyped = VectorColumnInfoToJSONTyped;

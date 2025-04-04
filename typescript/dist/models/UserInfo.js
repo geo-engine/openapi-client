@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfUserInfo = instanceOfUserInfo;
-exports.UserInfoFromJSON = UserInfoFromJSON;
-exports.UserInfoFromJSONTyped = UserInfoFromJSONTyped;
-exports.UserInfoToJSON = UserInfoToJSON;
-exports.UserInfoToJSONTyped = UserInfoToJSONTyped;
+exports.UserInfoToJSONTyped = exports.UserInfoToJSON = exports.UserInfoFromJSONTyped = exports.UserInfoFromJSON = exports.instanceOfUserInfo = void 0;
 /**
  * Check if a given object implements the UserInfo interface.
  */
@@ -26,9 +22,11 @@ function instanceOfUserInfo(value) {
         return false;
     return true;
 }
+exports.instanceOfUserInfo = instanceOfUserInfo;
 function UserInfoFromJSON(json) {
     return UserInfoFromJSONTyped(json, false);
 }
+exports.UserInfoFromJSON = UserInfoFromJSON;
 function UserInfoFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -39,9 +37,11 @@ function UserInfoFromJSONTyped(json, ignoreDiscriminator) {
         'realName': json['realName'] == null ? undefined : json['realName'],
     };
 }
+exports.UserInfoFromJSONTyped = UserInfoFromJSONTyped;
 function UserInfoToJSON(json) {
     return UserInfoToJSONTyped(json, false);
 }
+exports.UserInfoToJSON = UserInfoToJSON;
 function UserInfoToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function UserInfoToJSONTyped(value, ignoreDiscriminator = false) {
         'realName': value['realName'],
     };
 }
+exports.UserInfoToJSONTyped = UserInfoToJSONTyped;

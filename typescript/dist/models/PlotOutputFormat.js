@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlotOutputFormat = void 0;
-exports.instanceOfPlotOutputFormat = instanceOfPlotOutputFormat;
-exports.PlotOutputFormatFromJSON = PlotOutputFormatFromJSON;
-exports.PlotOutputFormatFromJSONTyped = PlotOutputFormatFromJSONTyped;
-exports.PlotOutputFormatToJSON = PlotOutputFormatToJSON;
-exports.PlotOutputFormatToJSONTyped = PlotOutputFormatToJSONTyped;
+exports.PlotOutputFormatToJSONTyped = exports.PlotOutputFormatToJSON = exports.PlotOutputFormatFromJSONTyped = exports.PlotOutputFormatFromJSON = exports.instanceOfPlotOutputFormat = exports.PlotOutputFormat = void 0;
 /**
  *
  * @export
@@ -38,15 +33,20 @@ function instanceOfPlotOutputFormat(value) {
     }
     return false;
 }
+exports.instanceOfPlotOutputFormat = instanceOfPlotOutputFormat;
 function PlotOutputFormatFromJSON(json) {
     return PlotOutputFormatFromJSONTyped(json, false);
 }
+exports.PlotOutputFormatFromJSON = PlotOutputFormatFromJSON;
 function PlotOutputFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.PlotOutputFormatFromJSONTyped = PlotOutputFormatFromJSONTyped;
 function PlotOutputFormatToJSON(value) {
     return value;
 }
+exports.PlotOutputFormatToJSON = PlotOutputFormatToJSON;
 function PlotOutputFormatToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.PlotOutputFormatToJSONTyped = PlotOutputFormatToJSONTyped;

@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfTypedGeometryOneOf2 = instanceOfTypedGeometryOneOf2;
-exports.TypedGeometryOneOf2FromJSON = TypedGeometryOneOf2FromJSON;
-exports.TypedGeometryOneOf2FromJSONTyped = TypedGeometryOneOf2FromJSONTyped;
-exports.TypedGeometryOneOf2ToJSON = TypedGeometryOneOf2ToJSON;
-exports.TypedGeometryOneOf2ToJSONTyped = TypedGeometryOneOf2ToJSONTyped;
+exports.TypedGeometryOneOf2ToJSONTyped = exports.TypedGeometryOneOf2ToJSON = exports.TypedGeometryOneOf2FromJSONTyped = exports.TypedGeometryOneOf2FromJSON = exports.instanceOfTypedGeometryOneOf2 = void 0;
 const MultiLineString_1 = require("./MultiLineString");
 /**
  * Check if a given object implements the TypedGeometryOneOf2 interface.
@@ -27,9 +23,11 @@ function instanceOfTypedGeometryOneOf2(value) {
         return false;
     return true;
 }
+exports.instanceOfTypedGeometryOneOf2 = instanceOfTypedGeometryOneOf2;
 function TypedGeometryOneOf2FromJSON(json) {
     return TypedGeometryOneOf2FromJSONTyped(json, false);
 }
+exports.TypedGeometryOneOf2FromJSON = TypedGeometryOneOf2FromJSON;
 function TypedGeometryOneOf2FromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function TypedGeometryOneOf2FromJSONTyped(json, ignoreDiscriminator) {
         'multiLineString': (0, MultiLineString_1.MultiLineStringFromJSON)(json['MultiLineString']),
     };
 }
+exports.TypedGeometryOneOf2FromJSONTyped = TypedGeometryOneOf2FromJSONTyped;
 function TypedGeometryOneOf2ToJSON(json) {
     return TypedGeometryOneOf2ToJSONTyped(json, false);
 }
+exports.TypedGeometryOneOf2ToJSON = TypedGeometryOneOf2ToJSON;
 function TypedGeometryOneOf2ToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -49,3 +49,4 @@ function TypedGeometryOneOf2ToJSONTyped(value, ignoreDiscriminator = false) {
         'MultiLineString': (0, MultiLineString_1.MultiLineStringToJSON)(value['multiLineString']),
     };
 }
+exports.TypedGeometryOneOf2ToJSONTyped = TypedGeometryOneOf2ToJSONTyped;

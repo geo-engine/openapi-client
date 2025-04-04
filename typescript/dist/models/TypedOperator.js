@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedOperatorTypeEnum = void 0;
-exports.instanceOfTypedOperator = instanceOfTypedOperator;
-exports.TypedOperatorFromJSON = TypedOperatorFromJSON;
-exports.TypedOperatorFromJSONTyped = TypedOperatorFromJSONTyped;
-exports.TypedOperatorToJSON = TypedOperatorToJSON;
-exports.TypedOperatorToJSONTyped = TypedOperatorToJSONTyped;
+exports.TypedOperatorToJSONTyped = exports.TypedOperatorToJSON = exports.TypedOperatorFromJSONTyped = exports.TypedOperatorFromJSON = exports.instanceOfTypedOperator = exports.TypedOperatorTypeEnum = void 0;
 const TypedOperatorOperator_1 = require("./TypedOperatorOperator");
 /**
  * @export
@@ -38,9 +33,11 @@ function instanceOfTypedOperator(value) {
         return false;
     return true;
 }
+exports.instanceOfTypedOperator = instanceOfTypedOperator;
 function TypedOperatorFromJSON(json) {
     return TypedOperatorFromJSONTyped(json, false);
 }
+exports.TypedOperatorFromJSON = TypedOperatorFromJSON;
 function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -50,9 +47,11 @@ function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.TypedOperatorFromJSONTyped = TypedOperatorFromJSONTyped;
 function TypedOperatorToJSON(json) {
     return TypedOperatorToJSONTyped(json, false);
 }
+exports.TypedOperatorToJSON = TypedOperatorToJSON;
 function TypedOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -62,3 +61,4 @@ function TypedOperatorToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.TypedOperatorToJSONTyped = TypedOperatorToJSONTyped;

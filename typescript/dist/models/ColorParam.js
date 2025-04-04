@@ -13,15 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ColorParamFromJSON = ColorParamFromJSON;
-exports.ColorParamFromJSONTyped = ColorParamFromJSONTyped;
-exports.ColorParamToJSON = ColorParamToJSON;
-exports.ColorParamToJSONTyped = ColorParamToJSONTyped;
+exports.ColorParamToJSONTyped = exports.ColorParamToJSON = exports.ColorParamFromJSONTyped = exports.ColorParamFromJSON = void 0;
 const DerivedColor_1 = require("./DerivedColor");
 const StaticColor_1 = require("./StaticColor");
 function ColorParamFromJSON(json) {
     return ColorParamFromJSONTyped(json, false);
 }
+exports.ColorParamFromJSON = ColorParamFromJSON;
 function ColorParamFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -35,9 +33,11 @@ function ColorParamFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of ColorParam exists with 'type=${json['type']}'`);
     }
 }
+exports.ColorParamFromJSONTyped = ColorParamFromJSONTyped;
 function ColorParamToJSON(json) {
     return ColorParamToJSONTyped(json, false);
 }
+exports.ColorParamToJSON = ColorParamToJSON;
 function ColorParamToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -51,3 +51,4 @@ function ColorParamToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of ColorParam exists with 'type=${value['type']}'`);
     }
 }
+exports.ColorParamToJSONTyped = ColorParamToJSONTyped;

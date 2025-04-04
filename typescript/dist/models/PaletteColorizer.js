@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaletteColorizerTypeEnum = void 0;
-exports.instanceOfPaletteColorizer = instanceOfPaletteColorizer;
-exports.PaletteColorizerFromJSON = PaletteColorizerFromJSON;
-exports.PaletteColorizerFromJSONTyped = PaletteColorizerFromJSONTyped;
-exports.PaletteColorizerToJSON = PaletteColorizerToJSON;
-exports.PaletteColorizerToJSONTyped = PaletteColorizerToJSONTyped;
+exports.PaletteColorizerToJSONTyped = exports.PaletteColorizerToJSON = exports.PaletteColorizerFromJSONTyped = exports.PaletteColorizerFromJSON = exports.instanceOfPaletteColorizer = exports.PaletteColorizerTypeEnum = void 0;
 /**
  * @export
  */
@@ -39,9 +34,11 @@ function instanceOfPaletteColorizer(value) {
         return false;
     return true;
 }
+exports.instanceOfPaletteColorizer = instanceOfPaletteColorizer;
 function PaletteColorizerFromJSON(json) {
     return PaletteColorizerFromJSONTyped(json, false);
 }
+exports.PaletteColorizerFromJSON = PaletteColorizerFromJSON;
 function PaletteColorizerFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -53,9 +50,11 @@ function PaletteColorizerFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.PaletteColorizerFromJSONTyped = PaletteColorizerFromJSONTyped;
 function PaletteColorizerToJSON(json) {
     return PaletteColorizerToJSONTyped(json, false);
 }
+exports.PaletteColorizerToJSON = PaletteColorizerToJSON;
 function PaletteColorizerToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -67,3 +66,4 @@ function PaletteColorizerToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.PaletteColorizerToJSONTyped = PaletteColorizerToJSONTyped;

@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfGdalLoadingInfoTemporalSlice = instanceOfGdalLoadingInfoTemporalSlice;
-exports.GdalLoadingInfoTemporalSliceFromJSON = GdalLoadingInfoTemporalSliceFromJSON;
-exports.GdalLoadingInfoTemporalSliceFromJSONTyped = GdalLoadingInfoTemporalSliceFromJSONTyped;
-exports.GdalLoadingInfoTemporalSliceToJSON = GdalLoadingInfoTemporalSliceToJSON;
-exports.GdalLoadingInfoTemporalSliceToJSONTyped = GdalLoadingInfoTemporalSliceToJSONTyped;
+exports.GdalLoadingInfoTemporalSliceToJSONTyped = exports.GdalLoadingInfoTemporalSliceToJSON = exports.GdalLoadingInfoTemporalSliceFromJSONTyped = exports.GdalLoadingInfoTemporalSliceFromJSON = exports.instanceOfGdalLoadingInfoTemporalSlice = void 0;
 const TimeInterval_1 = require("./TimeInterval");
 const GdalDatasetParameters_1 = require("./GdalDatasetParameters");
 /**
@@ -28,9 +24,11 @@ function instanceOfGdalLoadingInfoTemporalSlice(value) {
         return false;
     return true;
 }
+exports.instanceOfGdalLoadingInfoTemporalSlice = instanceOfGdalLoadingInfoTemporalSlice;
 function GdalLoadingInfoTemporalSliceFromJSON(json) {
     return GdalLoadingInfoTemporalSliceFromJSONTyped(json, false);
 }
+exports.GdalLoadingInfoTemporalSliceFromJSON = GdalLoadingInfoTemporalSliceFromJSON;
 function GdalLoadingInfoTemporalSliceFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function GdalLoadingInfoTemporalSliceFromJSONTyped(json, ignoreDiscriminator) {
         'time': (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
     };
 }
+exports.GdalLoadingInfoTemporalSliceFromJSONTyped = GdalLoadingInfoTemporalSliceFromJSONTyped;
 function GdalLoadingInfoTemporalSliceToJSON(json) {
     return GdalLoadingInfoTemporalSliceToJSONTyped(json, false);
 }
+exports.GdalLoadingInfoTemporalSliceToJSON = GdalLoadingInfoTemporalSliceToJSON;
 function GdalLoadingInfoTemporalSliceToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -54,3 +54,4 @@ function GdalLoadingInfoTemporalSliceToJSONTyped(value, ignoreDiscriminator = fa
         'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
     };
 }
+exports.GdalLoadingInfoTemporalSliceToJSONTyped = GdalLoadingInfoTemporalSliceToJSONTyped;

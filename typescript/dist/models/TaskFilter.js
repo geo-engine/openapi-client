@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskFilter = void 0;
-exports.instanceOfTaskFilter = instanceOfTaskFilter;
-exports.TaskFilterFromJSON = TaskFilterFromJSON;
-exports.TaskFilterFromJSONTyped = TaskFilterFromJSONTyped;
-exports.TaskFilterToJSON = TaskFilterToJSON;
-exports.TaskFilterToJSONTyped = TaskFilterToJSONTyped;
+exports.TaskFilterToJSONTyped = exports.TaskFilterToJSON = exports.TaskFilterFromJSONTyped = exports.TaskFilterFromJSON = exports.instanceOfTaskFilter = exports.TaskFilter = void 0;
 /**
  *
  * @export
@@ -39,15 +34,20 @@ function instanceOfTaskFilter(value) {
     }
     return false;
 }
+exports.instanceOfTaskFilter = instanceOfTaskFilter;
 function TaskFilterFromJSON(json) {
     return TaskFilterFromJSONTyped(json, false);
 }
+exports.TaskFilterFromJSON = TaskFilterFromJSON;
 function TaskFilterFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.TaskFilterFromJSONTyped = TaskFilterFromJSONTyped;
 function TaskFilterToJSON(value) {
     return value;
 }
+exports.TaskFilterToJSON = TaskFilterToJSON;
 function TaskFilterToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.TaskFilterToJSONTyped = TaskFilterToJSONTyped;

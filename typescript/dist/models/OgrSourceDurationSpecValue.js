@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDurationSpecValueTypeEnum = void 0;
-exports.instanceOfOgrSourceDurationSpecValue = instanceOfOgrSourceDurationSpecValue;
-exports.OgrSourceDurationSpecValueFromJSON = OgrSourceDurationSpecValueFromJSON;
-exports.OgrSourceDurationSpecValueFromJSONTyped = OgrSourceDurationSpecValueFromJSONTyped;
-exports.OgrSourceDurationSpecValueToJSON = OgrSourceDurationSpecValueToJSON;
-exports.OgrSourceDurationSpecValueToJSONTyped = OgrSourceDurationSpecValueToJSONTyped;
+exports.OgrSourceDurationSpecValueToJSONTyped = exports.OgrSourceDurationSpecValueToJSON = exports.OgrSourceDurationSpecValueFromJSONTyped = exports.OgrSourceDurationSpecValueFromJSON = exports.instanceOfOgrSourceDurationSpecValue = exports.OgrSourceDurationSpecValueTypeEnum = void 0;
 const TimeStep_1 = require("./TimeStep");
 /**
  * @export
@@ -34,21 +29,26 @@ function instanceOfOgrSourceDurationSpecValue(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrSourceDurationSpecValue = instanceOfOgrSourceDurationSpecValue;
 function OgrSourceDurationSpecValueFromJSON(json) {
     return OgrSourceDurationSpecValueFromJSONTyped(json, false);
 }
+exports.OgrSourceDurationSpecValueFromJSON = OgrSourceDurationSpecValueFromJSON;
 function OgrSourceDurationSpecValueFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
     return Object.assign(Object.assign({}, (0, TimeStep_1.TimeStepFromJSONTyped)(json, true)), { 'type': json['type'] });
 }
+exports.OgrSourceDurationSpecValueFromJSONTyped = OgrSourceDurationSpecValueFromJSONTyped;
 function OgrSourceDurationSpecValueToJSON(json) {
     return OgrSourceDurationSpecValueToJSONTyped(json, false);
 }
+exports.OgrSourceDurationSpecValueToJSON = OgrSourceDurationSpecValueToJSON;
 function OgrSourceDurationSpecValueToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
     return Object.assign(Object.assign({}, (0, TimeStep_1.TimeStepToJSONTyped)(value, true)), { 'type': value['type'] });
 }
+exports.OgrSourceDurationSpecValueToJSONTyped = OgrSourceDurationSpecValueToJSONTyped;

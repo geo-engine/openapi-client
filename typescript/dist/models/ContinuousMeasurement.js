@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContinuousMeasurementTypeEnum = void 0;
-exports.instanceOfContinuousMeasurement = instanceOfContinuousMeasurement;
-exports.ContinuousMeasurementFromJSON = ContinuousMeasurementFromJSON;
-exports.ContinuousMeasurementFromJSONTyped = ContinuousMeasurementFromJSONTyped;
-exports.ContinuousMeasurementToJSON = ContinuousMeasurementToJSON;
-exports.ContinuousMeasurementToJSONTyped = ContinuousMeasurementToJSONTyped;
+exports.ContinuousMeasurementToJSONTyped = exports.ContinuousMeasurementToJSON = exports.ContinuousMeasurementFromJSONTyped = exports.ContinuousMeasurementFromJSON = exports.instanceOfContinuousMeasurement = exports.ContinuousMeasurementTypeEnum = void 0;
 /**
  * @export
  */
@@ -35,9 +30,11 @@ function instanceOfContinuousMeasurement(value) {
         return false;
     return true;
 }
+exports.instanceOfContinuousMeasurement = instanceOfContinuousMeasurement;
 function ContinuousMeasurementFromJSON(json) {
     return ContinuousMeasurementFromJSONTyped(json, false);
 }
+exports.ContinuousMeasurementFromJSON = ContinuousMeasurementFromJSON;
 function ContinuousMeasurementFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -48,9 +45,11 @@ function ContinuousMeasurementFromJSONTyped(json, ignoreDiscriminator) {
         'unit': json['unit'] == null ? undefined : json['unit'],
     };
 }
+exports.ContinuousMeasurementFromJSONTyped = ContinuousMeasurementFromJSONTyped;
 function ContinuousMeasurementToJSON(json) {
     return ContinuousMeasurementToJSONTyped(json, false);
 }
+exports.ContinuousMeasurementToJSON = ContinuousMeasurementToJSON;
 function ContinuousMeasurementToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -61,3 +60,4 @@ function ContinuousMeasurementToJSONTyped(value, ignoreDiscriminator = false) {
         'unit': value['unit'],
     };
 }
+exports.ContinuousMeasurementToJSONTyped = ContinuousMeasurementToJSONTyped;

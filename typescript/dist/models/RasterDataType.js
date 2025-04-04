@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterDataType = void 0;
-exports.instanceOfRasterDataType = instanceOfRasterDataType;
-exports.RasterDataTypeFromJSON = RasterDataTypeFromJSON;
-exports.RasterDataTypeFromJSONTyped = RasterDataTypeFromJSONTyped;
-exports.RasterDataTypeToJSON = RasterDataTypeToJSON;
-exports.RasterDataTypeToJSONTyped = RasterDataTypeToJSONTyped;
+exports.RasterDataTypeToJSONTyped = exports.RasterDataTypeToJSON = exports.RasterDataTypeFromJSONTyped = exports.RasterDataTypeFromJSON = exports.instanceOfRasterDataType = exports.RasterDataType = void 0;
 /**
  *
  * @export
@@ -45,15 +40,20 @@ function instanceOfRasterDataType(value) {
     }
     return false;
 }
+exports.instanceOfRasterDataType = instanceOfRasterDataType;
 function RasterDataTypeFromJSON(json) {
     return RasterDataTypeFromJSONTyped(json, false);
 }
+exports.RasterDataTypeFromJSON = RasterDataTypeFromJSON;
 function RasterDataTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.RasterDataTypeFromJSONTyped = RasterDataTypeFromJSONTyped;
 function RasterDataTypeToJSON(value) {
     return value;
 }
+exports.RasterDataTypeToJSON = RasterDataTypeToJSON;
 function RasterDataTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.RasterDataTypeToJSONTyped = RasterDataTypeToJSONTyped;

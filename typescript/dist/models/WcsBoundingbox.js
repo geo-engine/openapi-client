@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfWcsBoundingbox = instanceOfWcsBoundingbox;
-exports.WcsBoundingboxFromJSON = WcsBoundingboxFromJSON;
-exports.WcsBoundingboxFromJSONTyped = WcsBoundingboxFromJSONTyped;
-exports.WcsBoundingboxToJSON = WcsBoundingboxToJSON;
-exports.WcsBoundingboxToJSONTyped = WcsBoundingboxToJSONTyped;
+exports.WcsBoundingboxToJSONTyped = exports.WcsBoundingboxToJSON = exports.WcsBoundingboxFromJSONTyped = exports.WcsBoundingboxFromJSON = exports.instanceOfWcsBoundingbox = void 0;
 /**
  * Check if a given object implements the WcsBoundingbox interface.
  */
@@ -26,9 +22,11 @@ function instanceOfWcsBoundingbox(value) {
         return false;
     return true;
 }
+exports.instanceOfWcsBoundingbox = instanceOfWcsBoundingbox;
 function WcsBoundingboxFromJSON(json) {
     return WcsBoundingboxFromJSONTyped(json, false);
 }
+exports.WcsBoundingboxFromJSON = WcsBoundingboxFromJSON;
 function WcsBoundingboxFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function WcsBoundingboxFromJSONTyped(json, ignoreDiscriminator) {
         'spatialReference': json['spatial_reference'] == null ? undefined : json['spatial_reference'],
     };
 }
+exports.WcsBoundingboxFromJSONTyped = WcsBoundingboxFromJSONTyped;
 function WcsBoundingboxToJSON(json) {
     return WcsBoundingboxToJSONTyped(json, false);
 }
+exports.WcsBoundingboxToJSON = WcsBoundingboxToJSON;
 function WcsBoundingboxToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -50,3 +50,4 @@ function WcsBoundingboxToJSONTyped(value, ignoreDiscriminator = false) {
         'spatial_reference': value['spatialReference'],
     };
 }
+exports.WcsBoundingboxToJSONTyped = WcsBoundingboxToJSONTyped;

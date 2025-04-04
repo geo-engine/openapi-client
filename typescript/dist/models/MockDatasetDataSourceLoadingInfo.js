@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfMockDatasetDataSourceLoadingInfo = instanceOfMockDatasetDataSourceLoadingInfo;
-exports.MockDatasetDataSourceLoadingInfoFromJSON = MockDatasetDataSourceLoadingInfoFromJSON;
-exports.MockDatasetDataSourceLoadingInfoFromJSONTyped = MockDatasetDataSourceLoadingInfoFromJSONTyped;
-exports.MockDatasetDataSourceLoadingInfoToJSON = MockDatasetDataSourceLoadingInfoToJSON;
-exports.MockDatasetDataSourceLoadingInfoToJSONTyped = MockDatasetDataSourceLoadingInfoToJSONTyped;
+exports.MockDatasetDataSourceLoadingInfoToJSONTyped = exports.MockDatasetDataSourceLoadingInfoToJSON = exports.MockDatasetDataSourceLoadingInfoFromJSONTyped = exports.MockDatasetDataSourceLoadingInfoFromJSON = exports.instanceOfMockDatasetDataSourceLoadingInfo = void 0;
 const Coordinate2D_1 = require("./Coordinate2D");
 /**
  * Check if a given object implements the MockDatasetDataSourceLoadingInfo interface.
@@ -27,9 +23,11 @@ function instanceOfMockDatasetDataSourceLoadingInfo(value) {
         return false;
     return true;
 }
+exports.instanceOfMockDatasetDataSourceLoadingInfo = instanceOfMockDatasetDataSourceLoadingInfo;
 function MockDatasetDataSourceLoadingInfoFromJSON(json) {
     return MockDatasetDataSourceLoadingInfoFromJSONTyped(json, false);
 }
+exports.MockDatasetDataSourceLoadingInfoFromJSON = MockDatasetDataSourceLoadingInfoFromJSON;
 function MockDatasetDataSourceLoadingInfoFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function MockDatasetDataSourceLoadingInfoFromJSONTyped(json, ignoreDiscriminator
         'points': (json['points'].map(Coordinate2D_1.Coordinate2DFromJSON)),
     };
 }
+exports.MockDatasetDataSourceLoadingInfoFromJSONTyped = MockDatasetDataSourceLoadingInfoFromJSONTyped;
 function MockDatasetDataSourceLoadingInfoToJSON(json) {
     return MockDatasetDataSourceLoadingInfoToJSONTyped(json, false);
 }
+exports.MockDatasetDataSourceLoadingInfoToJSON = MockDatasetDataSourceLoadingInfoToJSON;
 function MockDatasetDataSourceLoadingInfoToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -49,3 +49,4 @@ function MockDatasetDataSourceLoadingInfoToJSONTyped(value, ignoreDiscriminator 
         'points': (value['points'].map(Coordinate2D_1.Coordinate2DToJSON)),
     };
 }
+exports.MockDatasetDataSourceLoadingInfoToJSONTyped = MockDatasetDataSourceLoadingInfoToJSONTyped;

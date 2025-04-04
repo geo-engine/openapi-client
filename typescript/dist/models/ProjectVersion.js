@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProjectVersion = instanceOfProjectVersion;
-exports.ProjectVersionFromJSON = ProjectVersionFromJSON;
-exports.ProjectVersionFromJSONTyped = ProjectVersionFromJSONTyped;
-exports.ProjectVersionToJSON = ProjectVersionToJSON;
-exports.ProjectVersionToJSONTyped = ProjectVersionToJSONTyped;
+exports.ProjectVersionToJSONTyped = exports.ProjectVersionToJSON = exports.ProjectVersionFromJSONTyped = exports.ProjectVersionFromJSON = exports.instanceOfProjectVersion = void 0;
 /**
  * Check if a given object implements the ProjectVersion interface.
  */
@@ -28,9 +24,11 @@ function instanceOfProjectVersion(value) {
         return false;
     return true;
 }
+exports.instanceOfProjectVersion = instanceOfProjectVersion;
 function ProjectVersionFromJSON(json) {
     return ProjectVersionFromJSONTyped(json, false);
 }
+exports.ProjectVersionFromJSON = ProjectVersionFromJSON;
 function ProjectVersionFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function ProjectVersionFromJSONTyped(json, ignoreDiscriminator) {
         'id': json['id'],
     };
 }
+exports.ProjectVersionFromJSONTyped = ProjectVersionFromJSONTyped;
 function ProjectVersionToJSON(json) {
     return ProjectVersionToJSONTyped(json, false);
 }
+exports.ProjectVersionToJSON = ProjectVersionToJSON;
 function ProjectVersionToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function ProjectVersionToJSONTyped(value, ignoreDiscriminator = false) {
         'id': value['id'],
     };
 }
+exports.ProjectVersionToJSONTyped = ProjectVersionToJSONTyped;

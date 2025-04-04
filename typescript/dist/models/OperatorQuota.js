@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfOperatorQuota = instanceOfOperatorQuota;
-exports.OperatorQuotaFromJSON = OperatorQuotaFromJSON;
-exports.OperatorQuotaFromJSONTyped = OperatorQuotaFromJSONTyped;
-exports.OperatorQuotaToJSON = OperatorQuotaToJSON;
-exports.OperatorQuotaToJSONTyped = OperatorQuotaToJSONTyped;
+exports.OperatorQuotaToJSONTyped = exports.OperatorQuotaToJSON = exports.OperatorQuotaFromJSONTyped = exports.OperatorQuotaFromJSON = exports.instanceOfOperatorQuota = void 0;
 /**
  * Check if a given object implements the OperatorQuota interface.
  */
@@ -30,9 +26,11 @@ function instanceOfOperatorQuota(value) {
         return false;
     return true;
 }
+exports.instanceOfOperatorQuota = instanceOfOperatorQuota;
 function OperatorQuotaFromJSON(json) {
     return OperatorQuotaFromJSONTyped(json, false);
 }
+exports.OperatorQuotaFromJSON = OperatorQuotaFromJSON;
 function OperatorQuotaFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -43,9 +41,11 @@ function OperatorQuotaFromJSONTyped(json, ignoreDiscriminator) {
         'operatorPath': json['operatorPath'],
     };
 }
+exports.OperatorQuotaFromJSONTyped = OperatorQuotaFromJSONTyped;
 function OperatorQuotaToJSON(json) {
     return OperatorQuotaToJSONTyped(json, false);
 }
+exports.OperatorQuotaToJSON = OperatorQuotaToJSON;
 function OperatorQuotaToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -56,3 +56,4 @@ function OperatorQuotaToJSONTyped(value, ignoreDiscriminator = false) {
         'operatorPath': value['operatorPath'],
     };
 }
+exports.OperatorQuotaToJSONTyped = OperatorQuotaToJSONTyped;

@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfOgrSourceColumnSpec = instanceOfOgrSourceColumnSpec;
-exports.OgrSourceColumnSpecFromJSON = OgrSourceColumnSpecFromJSON;
-exports.OgrSourceColumnSpecFromJSONTyped = OgrSourceColumnSpecFromJSONTyped;
-exports.OgrSourceColumnSpecToJSON = OgrSourceColumnSpecToJSON;
-exports.OgrSourceColumnSpecToJSONTyped = OgrSourceColumnSpecToJSONTyped;
+exports.OgrSourceColumnSpecToJSONTyped = exports.OgrSourceColumnSpecToJSON = exports.OgrSourceColumnSpecFromJSONTyped = exports.OgrSourceColumnSpecFromJSON = exports.instanceOfOgrSourceColumnSpec = void 0;
 const FormatSpecifics_1 = require("./FormatSpecifics");
 /**
  * Check if a given object implements the OgrSourceColumnSpec interface.
@@ -27,9 +23,11 @@ function instanceOfOgrSourceColumnSpec(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrSourceColumnSpec = instanceOfOgrSourceColumnSpec;
 function OgrSourceColumnSpecFromJSON(json) {
     return OgrSourceColumnSpecFromJSONTyped(json, false);
 }
+exports.OgrSourceColumnSpecFromJSON = OgrSourceColumnSpecFromJSON;
 function OgrSourceColumnSpecFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -46,9 +44,11 @@ function OgrSourceColumnSpecFromJSONTyped(json, ignoreDiscriminator) {
         'y': json['y'] == null ? undefined : json['y'],
     };
 }
+exports.OgrSourceColumnSpecFromJSONTyped = OgrSourceColumnSpecFromJSONTyped;
 function OgrSourceColumnSpecToJSON(json) {
     return OgrSourceColumnSpecToJSONTyped(json, false);
 }
+exports.OgrSourceColumnSpecToJSON = OgrSourceColumnSpecToJSON;
 function OgrSourceColumnSpecToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -65,3 +65,4 @@ function OgrSourceColumnSpecToJSONTyped(value, ignoreDiscriminator = false) {
         'y': value['y'],
     };
 }
+exports.OgrSourceColumnSpecToJSONTyped = OgrSourceColumnSpecToJSONTyped;

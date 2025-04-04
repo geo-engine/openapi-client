@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerCollectionResourceTypeEnum = void 0;
-exports.instanceOfLayerCollectionResource = instanceOfLayerCollectionResource;
-exports.LayerCollectionResourceFromJSON = LayerCollectionResourceFromJSON;
-exports.LayerCollectionResourceFromJSONTyped = LayerCollectionResourceFromJSONTyped;
-exports.LayerCollectionResourceToJSON = LayerCollectionResourceToJSON;
-exports.LayerCollectionResourceToJSONTyped = LayerCollectionResourceToJSONTyped;
+exports.LayerCollectionResourceToJSONTyped = exports.LayerCollectionResourceToJSON = exports.LayerCollectionResourceFromJSONTyped = exports.LayerCollectionResourceFromJSON = exports.instanceOfLayerCollectionResource = exports.LayerCollectionResourceTypeEnum = void 0;
 /**
  * @export
  */
@@ -35,9 +30,11 @@ function instanceOfLayerCollectionResource(value) {
         return false;
     return true;
 }
+exports.instanceOfLayerCollectionResource = instanceOfLayerCollectionResource;
 function LayerCollectionResourceFromJSON(json) {
     return LayerCollectionResourceFromJSONTyped(json, false);
 }
+exports.LayerCollectionResourceFromJSON = LayerCollectionResourceFromJSON;
 function LayerCollectionResourceFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +44,11 @@ function LayerCollectionResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.LayerCollectionResourceFromJSONTyped = LayerCollectionResourceFromJSONTyped;
 function LayerCollectionResourceToJSON(json) {
     return LayerCollectionResourceToJSONTyped(json, false);
 }
+exports.LayerCollectionResourceToJSON = LayerCollectionResourceToJSON;
 function LayerCollectionResourceToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +58,4 @@ function LayerCollectionResourceToJSONTyped(value, ignoreDiscriminator = false) 
         'type': value['type'],
     };
 }
+exports.LayerCollectionResourceToJSONTyped = LayerCollectionResourceToJSONTyped;

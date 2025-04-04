@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfDataUsage = instanceOfDataUsage;
-exports.DataUsageFromJSON = DataUsageFromJSON;
-exports.DataUsageFromJSONTyped = DataUsageFromJSONTyped;
-exports.DataUsageToJSON = DataUsageToJSON;
-exports.DataUsageToJSONTyped = DataUsageToJSONTyped;
+exports.DataUsageToJSONTyped = exports.DataUsageToJSON = exports.DataUsageFromJSONTyped = exports.DataUsageFromJSON = exports.instanceOfDataUsage = void 0;
 /**
  * Check if a given object implements the DataUsage interface.
  */
@@ -34,9 +30,11 @@ function instanceOfDataUsage(value) {
         return false;
     return true;
 }
+exports.instanceOfDataUsage = instanceOfDataUsage;
 function DataUsageFromJSON(json) {
     return DataUsageFromJSONTyped(json, false);
 }
+exports.DataUsageFromJSON = DataUsageFromJSON;
 function DataUsageFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -49,9 +47,11 @@ function DataUsageFromJSONTyped(json, ignoreDiscriminator) {
         'userId': json['userId'],
     };
 }
+exports.DataUsageFromJSONTyped = DataUsageFromJSONTyped;
 function DataUsageToJSON(json) {
     return DataUsageToJSONTyped(json, false);
 }
+exports.DataUsageToJSON = DataUsageToJSON;
 function DataUsageToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -64,3 +64,4 @@ function DataUsageToJSONTyped(value, ignoreDiscriminator = false) {
         'userId': value['userId'],
     };
 }
+exports.DataUsageToJSONTyped = DataUsageToJSONTyped;

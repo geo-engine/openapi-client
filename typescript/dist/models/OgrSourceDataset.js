@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfOgrSourceDataset = instanceOfOgrSourceDataset;
-exports.OgrSourceDatasetFromJSON = OgrSourceDatasetFromJSON;
-exports.OgrSourceDatasetFromJSONTyped = OgrSourceDatasetFromJSONTyped;
-exports.OgrSourceDatasetToJSON = OgrSourceDatasetToJSON;
-exports.OgrSourceDatasetToJSONTyped = OgrSourceDatasetToJSONTyped;
+exports.OgrSourceDatasetToJSONTyped = exports.OgrSourceDatasetToJSON = exports.OgrSourceDatasetFromJSONTyped = exports.OgrSourceDatasetFromJSON = exports.instanceOfOgrSourceDataset = void 0;
 const OgrSourceErrorSpec_1 = require("./OgrSourceErrorSpec");
 const VectorDataType_1 = require("./VectorDataType");
 const TypedGeometry_1 = require("./TypedGeometry");
@@ -35,9 +31,11 @@ function instanceOfOgrSourceDataset(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrSourceDataset = instanceOfOgrSourceDataset;
 function OgrSourceDatasetFromJSON(json) {
     return OgrSourceDatasetFromJSONTyped(json, false);
 }
+exports.OgrSourceDatasetFromJSON = OgrSourceDatasetFromJSON;
 function OgrSourceDatasetFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -57,9 +55,11 @@ function OgrSourceDatasetFromJSONTyped(json, ignoreDiscriminator) {
         'time': json['time'] == null ? undefined : (0, OgrSourceDatasetTimeType_1.OgrSourceDatasetTimeTypeFromJSON)(json['time']),
     };
 }
+exports.OgrSourceDatasetFromJSONTyped = OgrSourceDatasetFromJSONTyped;
 function OgrSourceDatasetToJSON(json) {
     return OgrSourceDatasetToJSONTyped(json, false);
 }
+exports.OgrSourceDatasetToJSON = OgrSourceDatasetToJSON;
 function OgrSourceDatasetToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -79,3 +79,4 @@ function OgrSourceDatasetToJSONTyped(value, ignoreDiscriminator = false) {
         'time': (0, OgrSourceDatasetTimeType_1.OgrSourceDatasetTimeTypeToJSON)(value['time']),
     };
 }
+exports.OgrSourceDatasetToJSONTyped = OgrSourceDatasetToJSONTyped;

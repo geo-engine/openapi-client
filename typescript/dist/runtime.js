@@ -22,11 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TextApiResponse = exports.BlobApiResponse = exports.VoidApiResponse = exports.JSONApiResponse = exports.COLLECTION_FORMATS = exports.RequiredError = exports.FetchError = exports.ResponseError = exports.BaseAPI = exports.DefaultConfig = exports.Configuration = exports.BASE_PATH = void 0;
-exports.querystring = querystring;
-exports.exists = exists;
-exports.mapValues = mapValues;
-exports.canConsumeForm = canConsumeForm;
+exports.TextApiResponse = exports.BlobApiResponse = exports.VoidApiResponse = exports.JSONApiResponse = exports.canConsumeForm = exports.mapValues = exports.exists = exports.querystring = exports.COLLECTION_FORMATS = exports.RequiredError = exports.FetchError = exports.ResponseError = exports.BaseAPI = exports.DefaultConfig = exports.Configuration = exports.BASE_PATH = void 0;
 exports.BASE_PATH = "https://geoengine.io/api".replace(/\/+$/, "");
 class Configuration {
     constructor(configuration = {}) {
@@ -267,6 +263,7 @@ function querystring(params, prefix = '') {
         .filter(part => part.length > 0)
         .join('&');
 }
+exports.querystring = querystring;
 function querystringSingleKey(key, value, keyPrefix = '') {
     const fullKey = keyPrefix + (keyPrefix.length ? `[${key}]` : key);
     if (value instanceof Array) {
@@ -290,9 +287,11 @@ function exists(json, key) {
     const value = json[key];
     return value !== null && value !== undefined;
 }
+exports.exists = exists;
 function mapValues(data, fn) {
     return Object.keys(data).reduce((acc, key) => (Object.assign(Object.assign({}, acc), { [key]: fn(data[key]) })), {});
 }
+exports.mapValues = mapValues;
 function canConsumeForm(consumes) {
     for (const consume of consumes) {
         if ('multipart/form-data' === consume.contentType) {
@@ -301,6 +300,7 @@ function canConsumeForm(consumes) {
     }
     return false;
 }
+exports.canConsumeForm = canConsumeForm;
 class JSONApiResponse {
     constructor(raw, transformer = (jsonValue) => jsonValue) {
         this.raw = raw;

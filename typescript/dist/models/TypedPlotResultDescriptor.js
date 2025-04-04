@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedPlotResultDescriptorTypeEnum = void 0;
-exports.instanceOfTypedPlotResultDescriptor = instanceOfTypedPlotResultDescriptor;
-exports.TypedPlotResultDescriptorFromJSON = TypedPlotResultDescriptorFromJSON;
-exports.TypedPlotResultDescriptorFromJSONTyped = TypedPlotResultDescriptorFromJSONTyped;
-exports.TypedPlotResultDescriptorToJSON = TypedPlotResultDescriptorToJSON;
-exports.TypedPlotResultDescriptorToJSONTyped = TypedPlotResultDescriptorToJSONTyped;
+exports.TypedPlotResultDescriptorToJSONTyped = exports.TypedPlotResultDescriptorToJSON = exports.TypedPlotResultDescriptorFromJSONTyped = exports.TypedPlotResultDescriptorFromJSON = exports.instanceOfTypedPlotResultDescriptor = exports.TypedPlotResultDescriptorTypeEnum = void 0;
 const PlotResultDescriptor_1 = require("./PlotResultDescriptor");
 /**
  * @export
@@ -34,21 +29,26 @@ function instanceOfTypedPlotResultDescriptor(value) {
         return false;
     return true;
 }
+exports.instanceOfTypedPlotResultDescriptor = instanceOfTypedPlotResultDescriptor;
 function TypedPlotResultDescriptorFromJSON(json) {
     return TypedPlotResultDescriptorFromJSONTyped(json, false);
 }
+exports.TypedPlotResultDescriptorFromJSON = TypedPlotResultDescriptorFromJSON;
 function TypedPlotResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
     return Object.assign(Object.assign({}, (0, PlotResultDescriptor_1.PlotResultDescriptorFromJSONTyped)(json, true)), { 'type': json['type'] });
 }
+exports.TypedPlotResultDescriptorFromJSONTyped = TypedPlotResultDescriptorFromJSONTyped;
 function TypedPlotResultDescriptorToJSON(json) {
     return TypedPlotResultDescriptorToJSONTyped(json, false);
 }
+exports.TypedPlotResultDescriptorToJSON = TypedPlotResultDescriptorToJSON;
 function TypedPlotResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
     return Object.assign(Object.assign({}, (0, PlotResultDescriptor_1.PlotResultDescriptorToJSONTyped)(value, true)), { 'type': value['type'] });
 }
+exports.TypedPlotResultDescriptorToJSONTyped = TypedPlotResultDescriptorToJSONTyped;

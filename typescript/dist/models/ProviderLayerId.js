@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProviderLayerId = instanceOfProviderLayerId;
-exports.ProviderLayerIdFromJSON = ProviderLayerIdFromJSON;
-exports.ProviderLayerIdFromJSONTyped = ProviderLayerIdFromJSONTyped;
-exports.ProviderLayerIdToJSON = ProviderLayerIdToJSON;
-exports.ProviderLayerIdToJSONTyped = ProviderLayerIdToJSONTyped;
+exports.ProviderLayerIdToJSONTyped = exports.ProviderLayerIdToJSON = exports.ProviderLayerIdFromJSONTyped = exports.ProviderLayerIdFromJSON = exports.instanceOfProviderLayerId = void 0;
 /**
  * Check if a given object implements the ProviderLayerId interface.
  */
@@ -28,9 +24,11 @@ function instanceOfProviderLayerId(value) {
         return false;
     return true;
 }
+exports.instanceOfProviderLayerId = instanceOfProviderLayerId;
 function ProviderLayerIdFromJSON(json) {
     return ProviderLayerIdFromJSONTyped(json, false);
 }
+exports.ProviderLayerIdFromJSON = ProviderLayerIdFromJSON;
 function ProviderLayerIdFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function ProviderLayerIdFromJSONTyped(json, ignoreDiscriminator) {
         'providerId': json['providerId'],
     };
 }
+exports.ProviderLayerIdFromJSONTyped = ProviderLayerIdFromJSONTyped;
 function ProviderLayerIdToJSON(json) {
     return ProviderLayerIdToJSONTyped(json, false);
 }
+exports.ProviderLayerIdToJSON = ProviderLayerIdToJSON;
 function ProviderLayerIdToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function ProviderLayerIdToJSONTyped(value, ignoreDiscriminator = false) {
         'providerId': value['providerId'],
     };
 }
+exports.ProviderLayerIdToJSONTyped = ProviderLayerIdToJSONTyped;

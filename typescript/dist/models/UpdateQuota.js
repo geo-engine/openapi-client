@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfUpdateQuota = instanceOfUpdateQuota;
-exports.UpdateQuotaFromJSON = UpdateQuotaFromJSON;
-exports.UpdateQuotaFromJSONTyped = UpdateQuotaFromJSONTyped;
-exports.UpdateQuotaToJSON = UpdateQuotaToJSON;
-exports.UpdateQuotaToJSONTyped = UpdateQuotaToJSONTyped;
+exports.UpdateQuotaToJSONTyped = exports.UpdateQuotaToJSON = exports.UpdateQuotaFromJSONTyped = exports.UpdateQuotaFromJSON = exports.instanceOfUpdateQuota = void 0;
 /**
  * Check if a given object implements the UpdateQuota interface.
  */
@@ -26,9 +22,11 @@ function instanceOfUpdateQuota(value) {
         return false;
     return true;
 }
+exports.instanceOfUpdateQuota = instanceOfUpdateQuota;
 function UpdateQuotaFromJSON(json) {
     return UpdateQuotaFromJSONTyped(json, false);
 }
+exports.UpdateQuotaFromJSON = UpdateQuotaFromJSON;
 function UpdateQuotaFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function UpdateQuotaFromJSONTyped(json, ignoreDiscriminator) {
         'available': json['available'],
     };
 }
+exports.UpdateQuotaFromJSONTyped = UpdateQuotaFromJSONTyped;
 function UpdateQuotaToJSON(json) {
     return UpdateQuotaToJSONTyped(json, false);
 }
+exports.UpdateQuotaToJSON = UpdateQuotaToJSON;
 function UpdateQuotaToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function UpdateQuotaToJSONTyped(value, ignoreDiscriminator = false) {
         'available': value['available'],
     };
 }
+exports.UpdateQuotaToJSONTyped = UpdateQuotaToJSONTyped;

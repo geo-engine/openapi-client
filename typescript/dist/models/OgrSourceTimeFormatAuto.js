@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceTimeFormatAutoFormatEnum = void 0;
-exports.instanceOfOgrSourceTimeFormatAuto = instanceOfOgrSourceTimeFormatAuto;
-exports.OgrSourceTimeFormatAutoFromJSON = OgrSourceTimeFormatAutoFromJSON;
-exports.OgrSourceTimeFormatAutoFromJSONTyped = OgrSourceTimeFormatAutoFromJSONTyped;
-exports.OgrSourceTimeFormatAutoToJSON = OgrSourceTimeFormatAutoToJSON;
-exports.OgrSourceTimeFormatAutoToJSONTyped = OgrSourceTimeFormatAutoToJSONTyped;
+exports.OgrSourceTimeFormatAutoToJSONTyped = exports.OgrSourceTimeFormatAutoToJSON = exports.OgrSourceTimeFormatAutoFromJSONTyped = exports.OgrSourceTimeFormatAutoFromJSON = exports.instanceOfOgrSourceTimeFormatAuto = exports.OgrSourceTimeFormatAutoFormatEnum = void 0;
 /**
  * @export
  */
@@ -33,9 +28,11 @@ function instanceOfOgrSourceTimeFormatAuto(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrSourceTimeFormatAuto = instanceOfOgrSourceTimeFormatAuto;
 function OgrSourceTimeFormatAutoFromJSON(json) {
     return OgrSourceTimeFormatAutoFromJSONTyped(json, false);
 }
+exports.OgrSourceTimeFormatAutoFromJSON = OgrSourceTimeFormatAutoFromJSON;
 function OgrSourceTimeFormatAutoFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -44,9 +41,11 @@ function OgrSourceTimeFormatAutoFromJSONTyped(json, ignoreDiscriminator) {
         'format': json['format'],
     };
 }
+exports.OgrSourceTimeFormatAutoFromJSONTyped = OgrSourceTimeFormatAutoFromJSONTyped;
 function OgrSourceTimeFormatAutoToJSON(json) {
     return OgrSourceTimeFormatAutoToJSONTyped(json, false);
 }
+exports.OgrSourceTimeFormatAutoToJSON = OgrSourceTimeFormatAutoToJSON;
 function OgrSourceTimeFormatAutoToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -55,3 +54,4 @@ function OgrSourceTimeFormatAutoToJSONTyped(value, ignoreDiscriminator = false) 
         'format': value['format'],
     };
 }
+exports.OgrSourceTimeFormatAutoToJSONTyped = OgrSourceTimeFormatAutoToJSONTyped;

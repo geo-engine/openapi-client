@@ -13,10 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDatasetTimeTypeFromJSON = OgrSourceDatasetTimeTypeFromJSON;
-exports.OgrSourceDatasetTimeTypeFromJSONTyped = OgrSourceDatasetTimeTypeFromJSONTyped;
-exports.OgrSourceDatasetTimeTypeToJSON = OgrSourceDatasetTimeTypeToJSON;
-exports.OgrSourceDatasetTimeTypeToJSONTyped = OgrSourceDatasetTimeTypeToJSONTyped;
+exports.OgrSourceDatasetTimeTypeToJSONTyped = exports.OgrSourceDatasetTimeTypeToJSON = exports.OgrSourceDatasetTimeTypeFromJSONTyped = exports.OgrSourceDatasetTimeTypeFromJSON = void 0;
 const OgrSourceDatasetTimeTypeNone_1 = require("./OgrSourceDatasetTimeTypeNone");
 const OgrSourceDatasetTimeTypeStart_1 = require("./OgrSourceDatasetTimeTypeStart");
 const OgrSourceDatasetTimeTypeStartDuration_1 = require("./OgrSourceDatasetTimeTypeStartDuration");
@@ -24,6 +21,7 @@ const OgrSourceDatasetTimeTypeStartEnd_1 = require("./OgrSourceDatasetTimeTypeSt
 function OgrSourceDatasetTimeTypeFromJSON(json) {
     return OgrSourceDatasetTimeTypeFromJSONTyped(json, false);
 }
+exports.OgrSourceDatasetTimeTypeFromJSON = OgrSourceDatasetTimeTypeFromJSON;
 function OgrSourceDatasetTimeTypeFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function OgrSourceDatasetTimeTypeFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${json['type']}'`);
     }
 }
+exports.OgrSourceDatasetTimeTypeFromJSONTyped = OgrSourceDatasetTimeTypeFromJSONTyped;
 function OgrSourceDatasetTimeTypeToJSON(json) {
     return OgrSourceDatasetTimeTypeToJSONTyped(json, false);
 }
+exports.OgrSourceDatasetTimeTypeToJSON = OgrSourceDatasetTimeTypeToJSON;
 function OgrSourceDatasetTimeTypeToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -61,3 +61,4 @@ function OgrSourceDatasetTimeTypeToJSONTyped(value, ignoreDiscriminator = false)
             throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${value['type']}'`);
     }
 }
+exports.OgrSourceDatasetTimeTypeToJSONTyped = OgrSourceDatasetTimeTypeToJSONTyped;

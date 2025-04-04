@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfErrorResponse = instanceOfErrorResponse;
-exports.ErrorResponseFromJSON = ErrorResponseFromJSON;
-exports.ErrorResponseFromJSONTyped = ErrorResponseFromJSONTyped;
-exports.ErrorResponseToJSON = ErrorResponseToJSON;
-exports.ErrorResponseToJSONTyped = ErrorResponseToJSONTyped;
+exports.ErrorResponseToJSONTyped = exports.ErrorResponseToJSON = exports.ErrorResponseFromJSONTyped = exports.ErrorResponseFromJSON = exports.instanceOfErrorResponse = void 0;
 /**
  * Check if a given object implements the ErrorResponse interface.
  */
@@ -28,9 +24,11 @@ function instanceOfErrorResponse(value) {
         return false;
     return true;
 }
+exports.instanceOfErrorResponse = instanceOfErrorResponse;
 function ErrorResponseFromJSON(json) {
     return ErrorResponseFromJSONTyped(json, false);
 }
+exports.ErrorResponseFromJSON = ErrorResponseFromJSON;
 function ErrorResponseFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function ErrorResponseFromJSONTyped(json, ignoreDiscriminator) {
         'message': json['message'],
     };
 }
+exports.ErrorResponseFromJSONTyped = ErrorResponseFromJSONTyped;
 function ErrorResponseToJSON(json) {
     return ErrorResponseToJSONTyped(json, false);
 }
+exports.ErrorResponseToJSON = ErrorResponseToJSON;
 function ErrorResponseToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function ErrorResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'message': value['message'],
     };
 }
+exports.ErrorResponseToJSONTyped = ErrorResponseToJSONTyped;

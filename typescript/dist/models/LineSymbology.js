@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LineSymbologyTypeEnum = void 0;
-exports.instanceOfLineSymbology = instanceOfLineSymbology;
-exports.LineSymbologyFromJSON = LineSymbologyFromJSON;
-exports.LineSymbologyFromJSONTyped = LineSymbologyFromJSONTyped;
-exports.LineSymbologyToJSON = LineSymbologyToJSON;
-exports.LineSymbologyToJSONTyped = LineSymbologyToJSONTyped;
+exports.LineSymbologyToJSONTyped = exports.LineSymbologyToJSON = exports.LineSymbologyFromJSONTyped = exports.LineSymbologyFromJSON = exports.instanceOfLineSymbology = exports.LineSymbologyTypeEnum = void 0;
 const TextSymbology_1 = require("./TextSymbology");
 const StrokeParam_1 = require("./StrokeParam");
 /**
@@ -39,9 +34,11 @@ function instanceOfLineSymbology(value) {
         return false;
     return true;
 }
+exports.instanceOfLineSymbology = instanceOfLineSymbology;
 function LineSymbologyFromJSON(json) {
     return LineSymbologyFromJSONTyped(json, false);
 }
+exports.LineSymbologyFromJSON = LineSymbologyFromJSON;
 function LineSymbologyFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -53,9 +50,11 @@ function LineSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.LineSymbologyFromJSONTyped = LineSymbologyFromJSONTyped;
 function LineSymbologyToJSON(json) {
     return LineSymbologyToJSONTyped(json, false);
 }
+exports.LineSymbologyToJSON = LineSymbologyToJSON;
 function LineSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -67,3 +66,4 @@ function LineSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.LineSymbologyToJSONTyped = LineSymbologyToJSONTyped;

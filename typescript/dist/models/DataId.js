@@ -13,15 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataIdFromJSON = DataIdFromJSON;
-exports.DataIdFromJSONTyped = DataIdFromJSONTyped;
-exports.DataIdToJSON = DataIdToJSON;
-exports.DataIdToJSONTyped = DataIdToJSONTyped;
+exports.DataIdToJSONTyped = exports.DataIdToJSON = exports.DataIdFromJSONTyped = exports.DataIdFromJSON = void 0;
 const ExternalDataId_1 = require("./ExternalDataId");
 const InternalDataId_1 = require("./InternalDataId");
 function DataIdFromJSON(json) {
     return DataIdFromJSONTyped(json, false);
 }
+exports.DataIdFromJSON = DataIdFromJSON;
 function DataIdFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -35,9 +33,11 @@ function DataIdFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of DataId exists with 'type=${json['type']}'`);
     }
 }
+exports.DataIdFromJSONTyped = DataIdFromJSONTyped;
 function DataIdToJSON(json) {
     return DataIdToJSONTyped(json, false);
 }
+exports.DataIdToJSON = DataIdToJSON;
 function DataIdToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -51,3 +51,4 @@ function DataIdToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of DataId exists with 'type=${value['type']}'`);
     }
 }
+exports.DataIdToJSONTyped = DataIdToJSONTyped;

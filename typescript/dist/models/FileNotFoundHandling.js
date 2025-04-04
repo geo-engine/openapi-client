@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FileNotFoundHandling = void 0;
-exports.instanceOfFileNotFoundHandling = instanceOfFileNotFoundHandling;
-exports.FileNotFoundHandlingFromJSON = FileNotFoundHandlingFromJSON;
-exports.FileNotFoundHandlingFromJSONTyped = FileNotFoundHandlingFromJSONTyped;
-exports.FileNotFoundHandlingToJSON = FileNotFoundHandlingToJSON;
-exports.FileNotFoundHandlingToJSONTyped = FileNotFoundHandlingToJSONTyped;
+exports.FileNotFoundHandlingToJSONTyped = exports.FileNotFoundHandlingToJSON = exports.FileNotFoundHandlingFromJSONTyped = exports.FileNotFoundHandlingFromJSON = exports.instanceOfFileNotFoundHandling = exports.FileNotFoundHandling = void 0;
 /**
  *
  * @export
@@ -37,15 +32,20 @@ function instanceOfFileNotFoundHandling(value) {
     }
     return false;
 }
+exports.instanceOfFileNotFoundHandling = instanceOfFileNotFoundHandling;
 function FileNotFoundHandlingFromJSON(json) {
     return FileNotFoundHandlingFromJSONTyped(json, false);
 }
+exports.FileNotFoundHandlingFromJSON = FileNotFoundHandlingFromJSON;
 function FileNotFoundHandlingFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.FileNotFoundHandlingFromJSONTyped = FileNotFoundHandlingFromJSONTyped;
 function FileNotFoundHandlingToJSON(value) {
     return value;
 }
+exports.FileNotFoundHandlingToJSON = FileNotFoundHandlingToJSON;
 function FileNotFoundHandlingToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.FileNotFoundHandlingToJSONTyped = FileNotFoundHandlingToJSONTyped;

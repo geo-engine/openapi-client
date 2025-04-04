@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDatasetTimeTypeStartDurationTypeEnum = void 0;
-exports.instanceOfOgrSourceDatasetTimeTypeStartDuration = instanceOfOgrSourceDatasetTimeTypeStartDuration;
-exports.OgrSourceDatasetTimeTypeStartDurationFromJSON = OgrSourceDatasetTimeTypeStartDurationFromJSON;
-exports.OgrSourceDatasetTimeTypeStartDurationFromJSONTyped = OgrSourceDatasetTimeTypeStartDurationFromJSONTyped;
-exports.OgrSourceDatasetTimeTypeStartDurationToJSON = OgrSourceDatasetTimeTypeStartDurationToJSON;
-exports.OgrSourceDatasetTimeTypeStartDurationToJSONTyped = OgrSourceDatasetTimeTypeStartDurationToJSONTyped;
+exports.OgrSourceDatasetTimeTypeStartDurationToJSONTyped = exports.OgrSourceDatasetTimeTypeStartDurationToJSON = exports.OgrSourceDatasetTimeTypeStartDurationFromJSONTyped = exports.OgrSourceDatasetTimeTypeStartDurationFromJSON = exports.instanceOfOgrSourceDatasetTimeTypeStartDuration = exports.OgrSourceDatasetTimeTypeStartDurationTypeEnum = void 0;
 const OgrSourceTimeFormat_1 = require("./OgrSourceTimeFormat");
 /**
  * @export
@@ -40,9 +35,11 @@ function instanceOfOgrSourceDatasetTimeTypeStartDuration(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrSourceDatasetTimeTypeStartDuration = instanceOfOgrSourceDatasetTimeTypeStartDuration;
 function OgrSourceDatasetTimeTypeStartDurationFromJSON(json) {
     return OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, false);
 }
+exports.OgrSourceDatasetTimeTypeStartDurationFromJSON = OgrSourceDatasetTimeTypeStartDurationFromJSON;
 function OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -54,9 +51,11 @@ function OgrSourceDatasetTimeTypeStartDurationFromJSONTyped(json, ignoreDiscrimi
         'type': json['type'],
     };
 }
+exports.OgrSourceDatasetTimeTypeStartDurationFromJSONTyped = OgrSourceDatasetTimeTypeStartDurationFromJSONTyped;
 function OgrSourceDatasetTimeTypeStartDurationToJSON(json) {
     return OgrSourceDatasetTimeTypeStartDurationToJSONTyped(json, false);
 }
+exports.OgrSourceDatasetTimeTypeStartDurationToJSON = OgrSourceDatasetTimeTypeStartDurationToJSON;
 function OgrSourceDatasetTimeTypeStartDurationToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -68,3 +67,4 @@ function OgrSourceDatasetTimeTypeStartDurationToJSONTyped(value, ignoreDiscrimin
         'type': value['type'],
     };
 }
+exports.OgrSourceDatasetTimeTypeStartDurationToJSONTyped = OgrSourceDatasetTimeTypeStartDurationToJSONTyped;

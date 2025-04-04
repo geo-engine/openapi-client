@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Permission = void 0;
-exports.instanceOfPermission = instanceOfPermission;
-exports.PermissionFromJSON = PermissionFromJSON;
-exports.PermissionFromJSONTyped = PermissionFromJSONTyped;
-exports.PermissionToJSON = PermissionToJSON;
-exports.PermissionToJSONTyped = PermissionToJSONTyped;
+exports.PermissionToJSONTyped = exports.PermissionToJSON = exports.PermissionFromJSONTyped = exports.PermissionFromJSON = exports.instanceOfPermission = exports.Permission = void 0;
 /**
  *
  * @export
@@ -37,15 +32,20 @@ function instanceOfPermission(value) {
     }
     return false;
 }
+exports.instanceOfPermission = instanceOfPermission;
 function PermissionFromJSON(json) {
     return PermissionFromJSONTyped(json, false);
 }
+exports.PermissionFromJSON = PermissionFromJSON;
 function PermissionFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.PermissionFromJSONTyped = PermissionFromJSONTyped;
 function PermissionToJSON(value) {
     return value;
 }
+exports.PermissionToJSON = PermissionToJSON;
 function PermissionToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.PermissionToJSONTyped = PermissionToJSONTyped;

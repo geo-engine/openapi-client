@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfAuthCodeResponse = instanceOfAuthCodeResponse;
-exports.AuthCodeResponseFromJSON = AuthCodeResponseFromJSON;
-exports.AuthCodeResponseFromJSONTyped = AuthCodeResponseFromJSONTyped;
-exports.AuthCodeResponseToJSON = AuthCodeResponseToJSON;
-exports.AuthCodeResponseToJSONTyped = AuthCodeResponseToJSONTyped;
+exports.AuthCodeResponseToJSONTyped = exports.AuthCodeResponseToJSON = exports.AuthCodeResponseFromJSONTyped = exports.AuthCodeResponseFromJSON = exports.instanceOfAuthCodeResponse = void 0;
 /**
  * Check if a given object implements the AuthCodeResponse interface.
  */
@@ -30,9 +26,11 @@ function instanceOfAuthCodeResponse(value) {
         return false;
     return true;
 }
+exports.instanceOfAuthCodeResponse = instanceOfAuthCodeResponse;
 function AuthCodeResponseFromJSON(json) {
     return AuthCodeResponseFromJSONTyped(json, false);
 }
+exports.AuthCodeResponseFromJSON = AuthCodeResponseFromJSON;
 function AuthCodeResponseFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -43,9 +41,11 @@ function AuthCodeResponseFromJSONTyped(json, ignoreDiscriminator) {
         'state': json['state'],
     };
 }
+exports.AuthCodeResponseFromJSONTyped = AuthCodeResponseFromJSONTyped;
 function AuthCodeResponseToJSON(json) {
     return AuthCodeResponseToJSONTyped(json, false);
 }
+exports.AuthCodeResponseToJSON = AuthCodeResponseToJSON;
 function AuthCodeResponseToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -56,3 +56,4 @@ function AuthCodeResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'state': value['state'],
     };
 }
+exports.AuthCodeResponseToJSONTyped = AuthCodeResponseToJSONTyped;

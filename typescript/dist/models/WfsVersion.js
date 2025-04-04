@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WfsVersion = void 0;
-exports.instanceOfWfsVersion = instanceOfWfsVersion;
-exports.WfsVersionFromJSON = WfsVersionFromJSON;
-exports.WfsVersionFromJSONTyped = WfsVersionFromJSONTyped;
-exports.WfsVersionToJSON = WfsVersionToJSON;
-exports.WfsVersionToJSONTyped = WfsVersionToJSONTyped;
+exports.WfsVersionToJSONTyped = exports.WfsVersionToJSON = exports.WfsVersionFromJSONTyped = exports.WfsVersionFromJSON = exports.instanceOfWfsVersion = exports.WfsVersion = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfWfsVersion(value) {
     }
     return false;
 }
+exports.instanceOfWfsVersion = instanceOfWfsVersion;
 function WfsVersionFromJSON(json) {
     return WfsVersionFromJSONTyped(json, false);
 }
+exports.WfsVersionFromJSON = WfsVersionFromJSON;
 function WfsVersionFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.WfsVersionFromJSONTyped = WfsVersionFromJSONTyped;
 function WfsVersionToJSON(value) {
     return value;
 }
+exports.WfsVersionToJSON = WfsVersionToJSON;
 function WfsVersionToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.WfsVersionToJSONTyped = WfsVersionToJSONTyped;

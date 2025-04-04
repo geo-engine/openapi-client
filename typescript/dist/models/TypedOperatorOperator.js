@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfTypedOperatorOperator = instanceOfTypedOperatorOperator;
-exports.TypedOperatorOperatorFromJSON = TypedOperatorOperatorFromJSON;
-exports.TypedOperatorOperatorFromJSONTyped = TypedOperatorOperatorFromJSONTyped;
-exports.TypedOperatorOperatorToJSON = TypedOperatorOperatorToJSON;
-exports.TypedOperatorOperatorToJSONTyped = TypedOperatorOperatorToJSONTyped;
+exports.TypedOperatorOperatorToJSONTyped = exports.TypedOperatorOperatorToJSON = exports.TypedOperatorOperatorFromJSONTyped = exports.TypedOperatorOperatorFromJSON = exports.instanceOfTypedOperatorOperator = void 0;
 /**
  * Check if a given object implements the TypedOperatorOperator interface.
  */
@@ -26,9 +22,11 @@ function instanceOfTypedOperatorOperator(value) {
         return false;
     return true;
 }
+exports.instanceOfTypedOperatorOperator = instanceOfTypedOperatorOperator;
 function TypedOperatorOperatorFromJSON(json) {
     return TypedOperatorOperatorFromJSONTyped(json, false);
 }
+exports.TypedOperatorOperatorFromJSON = TypedOperatorOperatorFromJSON;
 function TypedOperatorOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -39,9 +37,11 @@ function TypedOperatorOperatorFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.TypedOperatorOperatorFromJSONTyped = TypedOperatorOperatorFromJSONTyped;
 function TypedOperatorOperatorToJSON(json) {
     return TypedOperatorOperatorToJSONTyped(json, false);
 }
+exports.TypedOperatorOperatorToJSON = TypedOperatorOperatorToJSON;
 function TypedOperatorOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function TypedOperatorOperatorToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.TypedOperatorOperatorToJSONTyped = TypedOperatorOperatorToJSONTyped;

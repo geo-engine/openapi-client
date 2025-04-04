@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetMapRequest = void 0;
-exports.instanceOfGetMapRequest = instanceOfGetMapRequest;
-exports.GetMapRequestFromJSON = GetMapRequestFromJSON;
-exports.GetMapRequestFromJSONTyped = GetMapRequestFromJSONTyped;
-exports.GetMapRequestToJSON = GetMapRequestToJSON;
-exports.GetMapRequestToJSONTyped = GetMapRequestToJSONTyped;
+exports.GetMapRequestToJSONTyped = exports.GetMapRequestToJSON = exports.GetMapRequestFromJSONTyped = exports.GetMapRequestFromJSON = exports.instanceOfGetMapRequest = exports.GetMapRequest = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfGetMapRequest(value) {
     }
     return false;
 }
+exports.instanceOfGetMapRequest = instanceOfGetMapRequest;
 function GetMapRequestFromJSON(json) {
     return GetMapRequestFromJSONTyped(json, false);
 }
+exports.GetMapRequestFromJSON = GetMapRequestFromJSON;
 function GetMapRequestFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.GetMapRequestFromJSONTyped = GetMapRequestFromJSONTyped;
 function GetMapRequestToJSON(value) {
     return value;
 }
+exports.GetMapRequestToJSON = GetMapRequestToJSON;
 function GetMapRequestToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.GetMapRequestToJSONTyped = GetMapRequestToJSONTyped;

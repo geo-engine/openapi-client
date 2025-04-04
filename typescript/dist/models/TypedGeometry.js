@@ -13,10 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedGeometryFromJSON = TypedGeometryFromJSON;
-exports.TypedGeometryFromJSONTyped = TypedGeometryFromJSONTyped;
-exports.TypedGeometryToJSON = TypedGeometryToJSON;
-exports.TypedGeometryToJSONTyped = TypedGeometryToJSONTyped;
+exports.TypedGeometryToJSONTyped = exports.TypedGeometryToJSON = exports.TypedGeometryFromJSONTyped = exports.TypedGeometryFromJSON = void 0;
 const TypedGeometryOneOf_1 = require("./TypedGeometryOneOf");
 const TypedGeometryOneOf1_1 = require("./TypedGeometryOneOf1");
 const TypedGeometryOneOf2_1 = require("./TypedGeometryOneOf2");
@@ -24,6 +21,7 @@ const TypedGeometryOneOf3_1 = require("./TypedGeometryOneOf3");
 function TypedGeometryFromJSON(json) {
     return TypedGeometryFromJSONTyped(json, false);
 }
+exports.TypedGeometryFromJSON = TypedGeometryFromJSON;
 function TypedGeometryFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -42,9 +40,11 @@ function TypedGeometryFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {};
 }
+exports.TypedGeometryFromJSONTyped = TypedGeometryFromJSONTyped;
 function TypedGeometryToJSON(json) {
     return TypedGeometryToJSONTyped(json, false);
 }
+exports.TypedGeometryToJSON = TypedGeometryToJSON;
 function TypedGeometryToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -63,3 +63,4 @@ function TypedGeometryToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {};
 }
+exports.TypedGeometryToJSONTyped = TypedGeometryToJSONTyped;

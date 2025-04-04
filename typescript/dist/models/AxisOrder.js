@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AxisOrder = void 0;
-exports.instanceOfAxisOrder = instanceOfAxisOrder;
-exports.AxisOrderFromJSON = AxisOrderFromJSON;
-exports.AxisOrderFromJSONTyped = AxisOrderFromJSONTyped;
-exports.AxisOrderToJSON = AxisOrderToJSON;
-exports.AxisOrderToJSONTyped = AxisOrderToJSONTyped;
+exports.AxisOrderToJSONTyped = exports.AxisOrderToJSON = exports.AxisOrderFromJSONTyped = exports.AxisOrderFromJSON = exports.instanceOfAxisOrder = exports.AxisOrder = void 0;
 /**
  *
  * @export
@@ -37,15 +32,20 @@ function instanceOfAxisOrder(value) {
     }
     return false;
 }
+exports.instanceOfAxisOrder = instanceOfAxisOrder;
 function AxisOrderFromJSON(json) {
     return AxisOrderFromJSONTyped(json, false);
 }
+exports.AxisOrderFromJSON = AxisOrderFromJSON;
 function AxisOrderFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.AxisOrderFromJSONTyped = AxisOrderFromJSONTyped;
 function AxisOrderToJSON(value) {
     return value;
 }
+exports.AxisOrderToJSON = AxisOrderToJSON;
 function AxisOrderToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.AxisOrderToJSONTyped = AxisOrderToJSONTyped;

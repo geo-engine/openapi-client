@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfMlModel = instanceOfMlModel;
-exports.MlModelFromJSON = MlModelFromJSON;
-exports.MlModelFromJSONTyped = MlModelFromJSONTyped;
-exports.MlModelToJSON = MlModelToJSON;
-exports.MlModelToJSONTyped = MlModelToJSONTyped;
+exports.MlModelToJSONTyped = exports.MlModelToJSON = exports.MlModelFromJSONTyped = exports.MlModelFromJSON = exports.instanceOfMlModel = void 0;
 const MlModelMetadata_1 = require("./MlModelMetadata");
 /**
  * Check if a given object implements the MlModel interface.
@@ -35,9 +31,11 @@ function instanceOfMlModel(value) {
         return false;
     return true;
 }
+exports.instanceOfMlModel = instanceOfMlModel;
 function MlModelFromJSON(json) {
     return MlModelFromJSONTyped(json, false);
 }
+exports.MlModelFromJSON = MlModelFromJSON;
 function MlModelFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -50,9 +48,11 @@ function MlModelFromJSONTyped(json, ignoreDiscriminator) {
         'upload': json['upload'],
     };
 }
+exports.MlModelFromJSONTyped = MlModelFromJSONTyped;
 function MlModelToJSON(json) {
     return MlModelToJSONTyped(json, false);
 }
+exports.MlModelToJSON = MlModelToJSON;
 function MlModelToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -65,3 +65,4 @@ function MlModelToJSONTyped(value, ignoreDiscriminator = false) {
         'upload': value['upload'],
     };
 }
+exports.MlModelToJSONTyped = MlModelToJSONTyped;

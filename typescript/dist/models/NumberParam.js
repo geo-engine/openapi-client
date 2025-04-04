@@ -13,15 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NumberParamFromJSON = NumberParamFromJSON;
-exports.NumberParamFromJSONTyped = NumberParamFromJSONTyped;
-exports.NumberParamToJSON = NumberParamToJSON;
-exports.NumberParamToJSONTyped = NumberParamToJSONTyped;
+exports.NumberParamToJSONTyped = exports.NumberParamToJSON = exports.NumberParamFromJSONTyped = exports.NumberParamFromJSON = void 0;
 const DerivedNumber_1 = require("./DerivedNumber");
 const StaticNumber_1 = require("./StaticNumber");
 function NumberParamFromJSON(json) {
     return NumberParamFromJSONTyped(json, false);
 }
+exports.NumberParamFromJSON = NumberParamFromJSON;
 function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -35,9 +33,11 @@ function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
     }
 }
+exports.NumberParamFromJSONTyped = NumberParamFromJSONTyped;
 function NumberParamToJSON(json) {
     return NumberParamToJSONTyped(json, false);
 }
+exports.NumberParamToJSON = NumberParamToJSON;
 function NumberParamToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -51,3 +51,4 @@ function NumberParamToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
     }
 }
+exports.NumberParamToJSONTyped = NumberParamToJSONTyped;

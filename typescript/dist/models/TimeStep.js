@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfTimeStep = instanceOfTimeStep;
-exports.TimeStepFromJSON = TimeStepFromJSON;
-exports.TimeStepFromJSONTyped = TimeStepFromJSONTyped;
-exports.TimeStepToJSON = TimeStepToJSON;
-exports.TimeStepToJSONTyped = TimeStepToJSONTyped;
+exports.TimeStepToJSONTyped = exports.TimeStepToJSON = exports.TimeStepFromJSONTyped = exports.TimeStepFromJSON = exports.instanceOfTimeStep = void 0;
 const TimeGranularity_1 = require("./TimeGranularity");
 /**
  * Check if a given object implements the TimeStep interface.
@@ -29,9 +25,11 @@ function instanceOfTimeStep(value) {
         return false;
     return true;
 }
+exports.instanceOfTimeStep = instanceOfTimeStep;
 function TimeStepFromJSON(json) {
     return TimeStepFromJSONTyped(json, false);
 }
+exports.TimeStepFromJSON = TimeStepFromJSON;
 function TimeStepFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function TimeStepFromJSONTyped(json, ignoreDiscriminator) {
         'step': json['step'],
     };
 }
+exports.TimeStepFromJSONTyped = TimeStepFromJSONTyped;
 function TimeStepToJSON(json) {
     return TimeStepToJSONTyped(json, false);
 }
+exports.TimeStepToJSON = TimeStepToJSON;
 function TimeStepToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -53,3 +53,4 @@ function TimeStepToJSONTyped(value, ignoreDiscriminator = false) {
         'step': value['step'],
     };
 }
+exports.TimeStepToJSONTyped = TimeStepToJSONTyped;

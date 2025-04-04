@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LinearGradientTypeEnum = void 0;
-exports.instanceOfLinearGradient = instanceOfLinearGradient;
-exports.LinearGradientFromJSON = LinearGradientFromJSON;
-exports.LinearGradientFromJSONTyped = LinearGradientFromJSONTyped;
-exports.LinearGradientToJSON = LinearGradientToJSON;
-exports.LinearGradientToJSONTyped = LinearGradientToJSONTyped;
+exports.LinearGradientToJSONTyped = exports.LinearGradientToJSON = exports.LinearGradientFromJSONTyped = exports.LinearGradientFromJSON = exports.instanceOfLinearGradient = exports.LinearGradientTypeEnum = void 0;
 const Breakpoint_1 = require("./Breakpoint");
 /**
  * @export
@@ -42,9 +37,11 @@ function instanceOfLinearGradient(value) {
         return false;
     return true;
 }
+exports.instanceOfLinearGradient = instanceOfLinearGradient;
 function LinearGradientFromJSON(json) {
     return LinearGradientFromJSONTyped(json, false);
 }
+exports.LinearGradientFromJSON = LinearGradientFromJSON;
 function LinearGradientFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -57,9 +54,11 @@ function LinearGradientFromJSONTyped(json, ignoreDiscriminator) {
         'underColor': json['underColor'],
     };
 }
+exports.LinearGradientFromJSONTyped = LinearGradientFromJSONTyped;
 function LinearGradientToJSON(json) {
     return LinearGradientToJSONTyped(json, false);
 }
+exports.LinearGradientToJSON = LinearGradientToJSON;
 function LinearGradientToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -72,3 +71,4 @@ function LinearGradientToJSONTyped(value, ignoreDiscriminator = false) {
         'underColor': value['underColor'],
     };
 }
+exports.LinearGradientToJSONTyped = LinearGradientToJSONTyped;

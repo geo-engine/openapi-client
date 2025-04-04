@@ -13,16 +13,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ColorizerFromJSON = ColorizerFromJSON;
-exports.ColorizerFromJSONTyped = ColorizerFromJSONTyped;
-exports.ColorizerToJSON = ColorizerToJSON;
-exports.ColorizerToJSONTyped = ColorizerToJSONTyped;
+exports.ColorizerToJSONTyped = exports.ColorizerToJSON = exports.ColorizerFromJSONTyped = exports.ColorizerFromJSON = void 0;
 const LinearGradient_1 = require("./LinearGradient");
 const LogarithmicGradient_1 = require("./LogarithmicGradient");
 const PaletteColorizer_1 = require("./PaletteColorizer");
 function ColorizerFromJSON(json) {
     return ColorizerFromJSONTyped(json, false);
 }
+exports.ColorizerFromJSON = ColorizerFromJSON;
 function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of Colorizer exists with 'type=${json['type']}'`);
     }
 }
+exports.ColorizerFromJSONTyped = ColorizerFromJSONTyped;
 function ColorizerToJSON(json) {
     return ColorizerToJSONTyped(json, false);
 }
+exports.ColorizerToJSON = ColorizerToJSON;
 function ColorizerToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -56,3 +56,4 @@ function ColorizerToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of Colorizer exists with 'type=${value['type']}'`);
     }
 }
+exports.ColorizerToJSONTyped = ColorizerToJSONTyped;

@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDurationSpecZeroTypeEnum = void 0;
-exports.instanceOfOgrSourceDurationSpecZero = instanceOfOgrSourceDurationSpecZero;
-exports.OgrSourceDurationSpecZeroFromJSON = OgrSourceDurationSpecZeroFromJSON;
-exports.OgrSourceDurationSpecZeroFromJSONTyped = OgrSourceDurationSpecZeroFromJSONTyped;
-exports.OgrSourceDurationSpecZeroToJSON = OgrSourceDurationSpecZeroToJSON;
-exports.OgrSourceDurationSpecZeroToJSONTyped = OgrSourceDurationSpecZeroToJSONTyped;
+exports.OgrSourceDurationSpecZeroToJSONTyped = exports.OgrSourceDurationSpecZeroToJSON = exports.OgrSourceDurationSpecZeroFromJSONTyped = exports.OgrSourceDurationSpecZeroFromJSON = exports.instanceOfOgrSourceDurationSpecZero = exports.OgrSourceDurationSpecZeroTypeEnum = void 0;
 /**
  * @export
  */
@@ -33,9 +28,11 @@ function instanceOfOgrSourceDurationSpecZero(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrSourceDurationSpecZero = instanceOfOgrSourceDurationSpecZero;
 function OgrSourceDurationSpecZeroFromJSON(json) {
     return OgrSourceDurationSpecZeroFromJSONTyped(json, false);
 }
+exports.OgrSourceDurationSpecZeroFromJSON = OgrSourceDurationSpecZeroFromJSON;
 function OgrSourceDurationSpecZeroFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -44,9 +41,11 @@ function OgrSourceDurationSpecZeroFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.OgrSourceDurationSpecZeroFromJSONTyped = OgrSourceDurationSpecZeroFromJSONTyped;
 function OgrSourceDurationSpecZeroToJSON(json) {
     return OgrSourceDurationSpecZeroToJSONTyped(json, false);
 }
+exports.OgrSourceDurationSpecZeroToJSON = OgrSourceDurationSpecZeroToJSON;
 function OgrSourceDurationSpecZeroToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -55,3 +54,4 @@ function OgrSourceDurationSpecZeroToJSONTyped(value, ignoreDiscriminator = false
         'type': value['type'],
     };
 }
+exports.OgrSourceDurationSpecZeroToJSONTyped = OgrSourceDurationSpecZeroToJSONTyped;

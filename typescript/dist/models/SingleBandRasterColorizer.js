@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SingleBandRasterColorizerTypeEnum = void 0;
-exports.instanceOfSingleBandRasterColorizer = instanceOfSingleBandRasterColorizer;
-exports.SingleBandRasterColorizerFromJSON = SingleBandRasterColorizerFromJSON;
-exports.SingleBandRasterColorizerFromJSONTyped = SingleBandRasterColorizerFromJSONTyped;
-exports.SingleBandRasterColorizerToJSON = SingleBandRasterColorizerToJSON;
-exports.SingleBandRasterColorizerToJSONTyped = SingleBandRasterColorizerToJSONTyped;
+exports.SingleBandRasterColorizerToJSONTyped = exports.SingleBandRasterColorizerToJSON = exports.SingleBandRasterColorizerFromJSONTyped = exports.SingleBandRasterColorizerFromJSON = exports.instanceOfSingleBandRasterColorizer = exports.SingleBandRasterColorizerTypeEnum = void 0;
 const Colorizer_1 = require("./Colorizer");
 /**
  * @export
@@ -38,9 +33,11 @@ function instanceOfSingleBandRasterColorizer(value) {
         return false;
     return true;
 }
+exports.instanceOfSingleBandRasterColorizer = instanceOfSingleBandRasterColorizer;
 function SingleBandRasterColorizerFromJSON(json) {
     return SingleBandRasterColorizerFromJSONTyped(json, false);
 }
+exports.SingleBandRasterColorizerFromJSON = SingleBandRasterColorizerFromJSON;
 function SingleBandRasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -51,9 +48,11 @@ function SingleBandRasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.SingleBandRasterColorizerFromJSONTyped = SingleBandRasterColorizerFromJSONTyped;
 function SingleBandRasterColorizerToJSON(json) {
     return SingleBandRasterColorizerToJSONTyped(json, false);
 }
+exports.SingleBandRasterColorizerToJSON = SingleBandRasterColorizerToJSON;
 function SingleBandRasterColorizerToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -64,3 +63,4 @@ function SingleBandRasterColorizerToJSONTyped(value, ignoreDiscriminator = false
         'type': value['type'],
     };
 }
+exports.SingleBandRasterColorizerToJSONTyped = SingleBandRasterColorizerToJSONTyped;

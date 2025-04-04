@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CollectionType = void 0;
-exports.instanceOfCollectionType = instanceOfCollectionType;
-exports.CollectionTypeFromJSON = CollectionTypeFromJSON;
-exports.CollectionTypeFromJSONTyped = CollectionTypeFromJSONTyped;
-exports.CollectionTypeToJSON = CollectionTypeToJSON;
-exports.CollectionTypeToJSONTyped = CollectionTypeToJSONTyped;
+exports.CollectionTypeToJSONTyped = exports.CollectionTypeToJSON = exports.CollectionTypeFromJSONTyped = exports.CollectionTypeFromJSON = exports.instanceOfCollectionType = exports.CollectionType = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfCollectionType(value) {
     }
     return false;
 }
+exports.instanceOfCollectionType = instanceOfCollectionType;
 function CollectionTypeFromJSON(json) {
     return CollectionTypeFromJSONTyped(json, false);
 }
+exports.CollectionTypeFromJSON = CollectionTypeFromJSON;
 function CollectionTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.CollectionTypeFromJSONTyped = CollectionTypeFromJSONTyped;
 function CollectionTypeToJSON(value) {
     return value;
 }
+exports.CollectionTypeToJSON = CollectionTypeToJSON;
 function CollectionTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.CollectionTypeToJSONTyped = CollectionTypeToJSONTyped;

@@ -13,15 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataPathFromJSON = DataPathFromJSON;
-exports.DataPathFromJSONTyped = DataPathFromJSONTyped;
-exports.DataPathToJSON = DataPathToJSON;
-exports.DataPathToJSONTyped = DataPathToJSONTyped;
+exports.DataPathToJSONTyped = exports.DataPathToJSON = exports.DataPathFromJSONTyped = exports.DataPathFromJSON = void 0;
 const DataPathOneOf_1 = require("./DataPathOneOf");
 const DataPathOneOf1_1 = require("./DataPathOneOf1");
 function DataPathFromJSON(json) {
     return DataPathFromJSONTyped(json, false);
 }
+exports.DataPathFromJSON = DataPathFromJSON;
 function DataPathFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -34,9 +32,11 @@ function DataPathFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {};
 }
+exports.DataPathFromJSONTyped = DataPathFromJSONTyped;
 function DataPathToJSON(json) {
     return DataPathToJSONTyped(json, false);
 }
+exports.DataPathToJSON = DataPathToJSON;
 function DataPathToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -49,3 +49,4 @@ function DataPathToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {};
 }
+exports.DataPathToJSONTyped = DataPathToJSONTyped;

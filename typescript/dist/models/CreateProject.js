@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfCreateProject = instanceOfCreateProject;
-exports.CreateProjectFromJSON = CreateProjectFromJSON;
-exports.CreateProjectFromJSONTyped = CreateProjectFromJSONTyped;
-exports.CreateProjectToJSON = CreateProjectToJSON;
-exports.CreateProjectToJSONTyped = CreateProjectToJSONTyped;
+exports.CreateProjectToJSONTyped = exports.CreateProjectToJSON = exports.CreateProjectFromJSONTyped = exports.CreateProjectFromJSON = exports.instanceOfCreateProject = void 0;
 const TimeStep_1 = require("./TimeStep");
 const STRectangle_1 = require("./STRectangle");
 /**
@@ -32,9 +28,11 @@ function instanceOfCreateProject(value) {
         return false;
     return true;
 }
+exports.instanceOfCreateProject = instanceOfCreateProject;
 function CreateProjectFromJSON(json) {
     return CreateProjectFromJSONTyped(json, false);
 }
+exports.CreateProjectFromJSON = CreateProjectFromJSON;
 function CreateProjectFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -46,9 +44,11 @@ function CreateProjectFromJSONTyped(json, ignoreDiscriminator) {
         'timeStep': json['timeStep'] == null ? undefined : (0, TimeStep_1.TimeStepFromJSON)(json['timeStep']),
     };
 }
+exports.CreateProjectFromJSONTyped = CreateProjectFromJSONTyped;
 function CreateProjectToJSON(json) {
     return CreateProjectToJSONTyped(json, false);
 }
+exports.CreateProjectToJSON = CreateProjectToJSON;
 function CreateProjectToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -60,3 +60,4 @@ function CreateProjectToJSONTyped(value, ignoreDiscriminator = false) {
         'timeStep': (0, TimeStep_1.TimeStepToJSON)(value['timeStep']),
     };
 }
+exports.CreateProjectToJSONTyped = CreateProjectToJSONTyped;

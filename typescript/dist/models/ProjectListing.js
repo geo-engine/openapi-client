@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProjectListing = instanceOfProjectListing;
-exports.ProjectListingFromJSON = ProjectListingFromJSON;
-exports.ProjectListingFromJSONTyped = ProjectListingFromJSONTyped;
-exports.ProjectListingToJSON = ProjectListingToJSON;
-exports.ProjectListingToJSONTyped = ProjectListingToJSONTyped;
+exports.ProjectListingToJSONTyped = exports.ProjectListingToJSON = exports.ProjectListingFromJSONTyped = exports.ProjectListingFromJSON = exports.instanceOfProjectListing = void 0;
 /**
  * Check if a given object implements the ProjectListing interface.
  */
@@ -36,9 +32,11 @@ function instanceOfProjectListing(value) {
         return false;
     return true;
 }
+exports.instanceOfProjectListing = instanceOfProjectListing;
 function ProjectListingFromJSON(json) {
     return ProjectListingFromJSONTyped(json, false);
 }
+exports.ProjectListingFromJSON = ProjectListingFromJSON;
 function ProjectListingFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -52,9 +50,11 @@ function ProjectListingFromJSONTyped(json, ignoreDiscriminator) {
         'plotNames': json['plotNames'],
     };
 }
+exports.ProjectListingFromJSONTyped = ProjectListingFromJSONTyped;
 function ProjectListingToJSON(json) {
     return ProjectListingToJSONTyped(json, false);
 }
+exports.ProjectListingToJSON = ProjectListingToJSON;
 function ProjectListingToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -68,3 +68,4 @@ function ProjectListingToJSONTyped(value, ignoreDiscriminator = false) {
         'plotNames': value['plotNames'],
     };
 }
+exports.ProjectListingToJSONTyped = ProjectListingToJSONTyped;

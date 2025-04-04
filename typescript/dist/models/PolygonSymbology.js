@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PolygonSymbologyTypeEnum = void 0;
-exports.instanceOfPolygonSymbology = instanceOfPolygonSymbology;
-exports.PolygonSymbologyFromJSON = PolygonSymbologyFromJSON;
-exports.PolygonSymbologyFromJSONTyped = PolygonSymbologyFromJSONTyped;
-exports.PolygonSymbologyToJSON = PolygonSymbologyToJSON;
-exports.PolygonSymbologyToJSONTyped = PolygonSymbologyToJSONTyped;
+exports.PolygonSymbologyToJSONTyped = exports.PolygonSymbologyToJSON = exports.PolygonSymbologyFromJSONTyped = exports.PolygonSymbologyFromJSON = exports.instanceOfPolygonSymbology = exports.PolygonSymbologyTypeEnum = void 0;
 const TextSymbology_1 = require("./TextSymbology");
 const StrokeParam_1 = require("./StrokeParam");
 const ColorParam_1 = require("./ColorParam");
@@ -42,9 +37,11 @@ function instanceOfPolygonSymbology(value) {
         return false;
     return true;
 }
+exports.instanceOfPolygonSymbology = instanceOfPolygonSymbology;
 function PolygonSymbologyFromJSON(json) {
     return PolygonSymbologyFromJSONTyped(json, false);
 }
+exports.PolygonSymbologyFromJSON = PolygonSymbologyFromJSON;
 function PolygonSymbologyFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -57,9 +54,11 @@ function PolygonSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.PolygonSymbologyFromJSONTyped = PolygonSymbologyFromJSONTyped;
 function PolygonSymbologyToJSON(json) {
     return PolygonSymbologyToJSONTyped(json, false);
 }
+exports.PolygonSymbologyToJSON = PolygonSymbologyToJSON;
 function PolygonSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -72,3 +71,4 @@ function PolygonSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.PolygonSymbologyToJSONTyped = PolygonSymbologyToJSONTyped;

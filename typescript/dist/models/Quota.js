@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfQuota = instanceOfQuota;
-exports.QuotaFromJSON = QuotaFromJSON;
-exports.QuotaFromJSONTyped = QuotaFromJSONTyped;
-exports.QuotaToJSON = QuotaToJSON;
-exports.QuotaToJSONTyped = QuotaToJSONTyped;
+exports.QuotaToJSONTyped = exports.QuotaToJSON = exports.QuotaFromJSONTyped = exports.QuotaFromJSON = exports.instanceOfQuota = void 0;
 /**
  * Check if a given object implements the Quota interface.
  */
@@ -28,9 +24,11 @@ function instanceOfQuota(value) {
         return false;
     return true;
 }
+exports.instanceOfQuota = instanceOfQuota;
 function QuotaFromJSON(json) {
     return QuotaFromJSONTyped(json, false);
 }
+exports.QuotaFromJSON = QuotaFromJSON;
 function QuotaFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function QuotaFromJSONTyped(json, ignoreDiscriminator) {
         'used': json['used'],
     };
 }
+exports.QuotaFromJSONTyped = QuotaFromJSONTyped;
 function QuotaToJSON(json) {
     return QuotaToJSONTyped(json, false);
 }
+exports.QuotaToJSON = QuotaToJSON;
 function QuotaToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function QuotaToJSONTyped(value, ignoreDiscriminator = false) {
         'used': value['used'],
     };
 }
+exports.QuotaToJSONTyped = QuotaToJSONTyped;

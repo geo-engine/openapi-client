@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfPermissionListOptions = instanceOfPermissionListOptions;
-exports.PermissionListOptionsFromJSON = PermissionListOptionsFromJSON;
-exports.PermissionListOptionsFromJSONTyped = PermissionListOptionsFromJSONTyped;
-exports.PermissionListOptionsToJSON = PermissionListOptionsToJSON;
-exports.PermissionListOptionsToJSONTyped = PermissionListOptionsToJSONTyped;
+exports.PermissionListOptionsToJSONTyped = exports.PermissionListOptionsToJSON = exports.PermissionListOptionsFromJSONTyped = exports.PermissionListOptionsFromJSON = exports.instanceOfPermissionListOptions = void 0;
 /**
  * Check if a given object implements the PermissionListOptions interface.
  */
@@ -28,9 +24,11 @@ function instanceOfPermissionListOptions(value) {
         return false;
     return true;
 }
+exports.instanceOfPermissionListOptions = instanceOfPermissionListOptions;
 function PermissionListOptionsFromJSON(json) {
     return PermissionListOptionsFromJSONTyped(json, false);
 }
+exports.PermissionListOptionsFromJSON = PermissionListOptionsFromJSON;
 function PermissionListOptionsFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function PermissionListOptionsFromJSONTyped(json, ignoreDiscriminator) {
         'offset': json['offset'],
     };
 }
+exports.PermissionListOptionsFromJSONTyped = PermissionListOptionsFromJSONTyped;
 function PermissionListOptionsToJSON(json) {
     return PermissionListOptionsToJSONTyped(json, false);
 }
+exports.PermissionListOptionsToJSON = PermissionListOptionsToJSON;
 function PermissionListOptionsToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function PermissionListOptionsToJSONTyped(value, ignoreDiscriminator = false) {
         'offset': value['offset'],
     };
 }
+exports.PermissionListOptionsToJSONTyped = PermissionListOptionsToJSONTyped;

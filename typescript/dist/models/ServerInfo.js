@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfServerInfo = instanceOfServerInfo;
-exports.ServerInfoFromJSON = ServerInfoFromJSON;
-exports.ServerInfoFromJSONTyped = ServerInfoFromJSONTyped;
-exports.ServerInfoToJSON = ServerInfoToJSON;
-exports.ServerInfoToJSONTyped = ServerInfoToJSONTyped;
+exports.ServerInfoToJSONTyped = exports.ServerInfoToJSON = exports.ServerInfoFromJSONTyped = exports.ServerInfoFromJSON = exports.instanceOfServerInfo = void 0;
 /**
  * Check if a given object implements the ServerInfo interface.
  */
@@ -32,9 +28,11 @@ function instanceOfServerInfo(value) {
         return false;
     return true;
 }
+exports.instanceOfServerInfo = instanceOfServerInfo;
 function ServerInfoFromJSON(json) {
     return ServerInfoFromJSONTyped(json, false);
 }
+exports.ServerInfoFromJSON = ServerInfoFromJSON;
 function ServerInfoFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -46,9 +44,11 @@ function ServerInfoFromJSONTyped(json, ignoreDiscriminator) {
         'version': json['version'],
     };
 }
+exports.ServerInfoFromJSONTyped = ServerInfoFromJSONTyped;
 function ServerInfoToJSON(json) {
     return ServerInfoToJSONTyped(json, false);
 }
+exports.ServerInfoToJSON = ServerInfoToJSON;
 function ServerInfoToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -60,3 +60,4 @@ function ServerInfoToJSONTyped(value, ignoreDiscriminator = false) {
         'version': value['version'],
     };
 }
+exports.ServerInfoToJSONTyped = ServerInfoToJSONTyped;

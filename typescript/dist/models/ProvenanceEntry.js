@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProvenanceEntry = instanceOfProvenanceEntry;
-exports.ProvenanceEntryFromJSON = ProvenanceEntryFromJSON;
-exports.ProvenanceEntryFromJSONTyped = ProvenanceEntryFromJSONTyped;
-exports.ProvenanceEntryToJSON = ProvenanceEntryToJSON;
-exports.ProvenanceEntryToJSONTyped = ProvenanceEntryToJSONTyped;
+exports.ProvenanceEntryToJSONTyped = exports.ProvenanceEntryToJSON = exports.ProvenanceEntryFromJSONTyped = exports.ProvenanceEntryFromJSON = exports.instanceOfProvenanceEntry = void 0;
 const Provenance_1 = require("./Provenance");
 const DataId_1 = require("./DataId");
 /**
@@ -30,9 +26,11 @@ function instanceOfProvenanceEntry(value) {
         return false;
     return true;
 }
+exports.instanceOfProvenanceEntry = instanceOfProvenanceEntry;
 function ProvenanceEntryFromJSON(json) {
     return ProvenanceEntryFromJSONTyped(json, false);
 }
+exports.ProvenanceEntryFromJSON = ProvenanceEntryFromJSON;
 function ProvenanceEntryFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -42,9 +40,11 @@ function ProvenanceEntryFromJSONTyped(json, ignoreDiscriminator) {
         'provenance': (0, Provenance_1.ProvenanceFromJSON)(json['provenance']),
     };
 }
+exports.ProvenanceEntryFromJSONTyped = ProvenanceEntryFromJSONTyped;
 function ProvenanceEntryToJSON(json) {
     return ProvenanceEntryToJSONTyped(json, false);
 }
+exports.ProvenanceEntryToJSON = ProvenanceEntryToJSON;
 function ProvenanceEntryToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -54,3 +54,4 @@ function ProvenanceEntryToJSONTyped(value, ignoreDiscriminator = false) {
         'provenance': (0, Provenance_1.ProvenanceToJSON)(value['provenance']),
     };
 }
+exports.ProvenanceEntryToJSONTyped = ProvenanceEntryToJSONTyped;

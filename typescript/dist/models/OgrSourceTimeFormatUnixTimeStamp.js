@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceTimeFormatUnixTimeStampFormatEnum = void 0;
-exports.instanceOfOgrSourceTimeFormatUnixTimeStamp = instanceOfOgrSourceTimeFormatUnixTimeStamp;
-exports.OgrSourceTimeFormatUnixTimeStampFromJSON = OgrSourceTimeFormatUnixTimeStampFromJSON;
-exports.OgrSourceTimeFormatUnixTimeStampFromJSONTyped = OgrSourceTimeFormatUnixTimeStampFromJSONTyped;
-exports.OgrSourceTimeFormatUnixTimeStampToJSON = OgrSourceTimeFormatUnixTimeStampToJSON;
-exports.OgrSourceTimeFormatUnixTimeStampToJSONTyped = OgrSourceTimeFormatUnixTimeStampToJSONTyped;
+exports.OgrSourceTimeFormatUnixTimeStampToJSONTyped = exports.OgrSourceTimeFormatUnixTimeStampToJSON = exports.OgrSourceTimeFormatUnixTimeStampFromJSONTyped = exports.OgrSourceTimeFormatUnixTimeStampFromJSON = exports.instanceOfOgrSourceTimeFormatUnixTimeStamp = exports.OgrSourceTimeFormatUnixTimeStampFormatEnum = void 0;
 const UnixTimeStampType_1 = require("./UnixTimeStampType");
 /**
  * @export
@@ -36,9 +31,11 @@ function instanceOfOgrSourceTimeFormatUnixTimeStamp(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrSourceTimeFormatUnixTimeStamp = instanceOfOgrSourceTimeFormatUnixTimeStamp;
 function OgrSourceTimeFormatUnixTimeStampFromJSON(json) {
     return OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, false);
 }
+exports.OgrSourceTimeFormatUnixTimeStampFromJSON = OgrSourceTimeFormatUnixTimeStampFromJSON;
 function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -48,9 +45,11 @@ function OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, ignoreDiscriminator
         'timestampType': (0, UnixTimeStampType_1.UnixTimeStampTypeFromJSON)(json['timestampType']),
     };
 }
+exports.OgrSourceTimeFormatUnixTimeStampFromJSONTyped = OgrSourceTimeFormatUnixTimeStampFromJSONTyped;
 function OgrSourceTimeFormatUnixTimeStampToJSON(json) {
     return OgrSourceTimeFormatUnixTimeStampToJSONTyped(json, false);
 }
+exports.OgrSourceTimeFormatUnixTimeStampToJSON = OgrSourceTimeFormatUnixTimeStampToJSON;
 function OgrSourceTimeFormatUnixTimeStampToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -60,3 +59,4 @@ function OgrSourceTimeFormatUnixTimeStampToJSONTyped(value, ignoreDiscriminator 
         'timestampType': (0, UnixTimeStampType_1.UnixTimeStampTypeToJSON)(value['timestampType']),
     };
 }
+exports.OgrSourceTimeFormatUnixTimeStampToJSONTyped = OgrSourceTimeFormatUnixTimeStampToJSONTyped;

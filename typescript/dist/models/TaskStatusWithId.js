@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfTaskStatusWithId = instanceOfTaskStatusWithId;
-exports.TaskStatusWithIdFromJSON = TaskStatusWithIdFromJSON;
-exports.TaskStatusWithIdFromJSONTyped = TaskStatusWithIdFromJSONTyped;
-exports.TaskStatusWithIdToJSON = TaskStatusWithIdToJSON;
-exports.TaskStatusWithIdToJSONTyped = TaskStatusWithIdToJSONTyped;
+exports.TaskStatusWithIdToJSONTyped = exports.TaskStatusWithIdToJSON = exports.TaskStatusWithIdFromJSONTyped = exports.TaskStatusWithIdFromJSON = exports.instanceOfTaskStatusWithId = void 0;
 const TaskStatus_1 = require("./TaskStatus");
 /**
  * Check if a given object implements the TaskStatusWithId interface.
@@ -27,21 +23,26 @@ function instanceOfTaskStatusWithId(value) {
         return false;
     return true;
 }
+exports.instanceOfTaskStatusWithId = instanceOfTaskStatusWithId;
 function TaskStatusWithIdFromJSON(json) {
     return TaskStatusWithIdFromJSONTyped(json, false);
 }
+exports.TaskStatusWithIdFromJSON = TaskStatusWithIdFromJSON;
 function TaskStatusWithIdFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
     return Object.assign(Object.assign({}, (0, TaskStatus_1.TaskStatusFromJSONTyped)(json, true)), { 'taskId': json['taskId'] });
 }
+exports.TaskStatusWithIdFromJSONTyped = TaskStatusWithIdFromJSONTyped;
 function TaskStatusWithIdToJSON(json) {
     return TaskStatusWithIdToJSONTyped(json, false);
 }
+exports.TaskStatusWithIdToJSON = TaskStatusWithIdToJSON;
 function TaskStatusWithIdToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
     return Object.assign(Object.assign({}, (0, TaskStatus_1.TaskStatusToJSONTyped)(value, true)), { 'taskId': value['taskId'] });
 }
+exports.TaskStatusWithIdToJSONTyped = TaskStatusWithIdToJSONTyped;

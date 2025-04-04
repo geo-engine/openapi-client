@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MlModelResourceTypeEnum = void 0;
-exports.instanceOfMlModelResource = instanceOfMlModelResource;
-exports.MlModelResourceFromJSON = MlModelResourceFromJSON;
-exports.MlModelResourceFromJSONTyped = MlModelResourceFromJSONTyped;
-exports.MlModelResourceToJSON = MlModelResourceToJSON;
-exports.MlModelResourceToJSONTyped = MlModelResourceToJSONTyped;
+exports.MlModelResourceToJSONTyped = exports.MlModelResourceToJSON = exports.MlModelResourceFromJSONTyped = exports.MlModelResourceFromJSON = exports.instanceOfMlModelResource = exports.MlModelResourceTypeEnum = void 0;
 /**
  * @export
  */
@@ -35,9 +30,11 @@ function instanceOfMlModelResource(value) {
         return false;
     return true;
 }
+exports.instanceOfMlModelResource = instanceOfMlModelResource;
 function MlModelResourceFromJSON(json) {
     return MlModelResourceFromJSONTyped(json, false);
 }
+exports.MlModelResourceFromJSON = MlModelResourceFromJSON;
 function MlModelResourceFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +44,11 @@ function MlModelResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.MlModelResourceFromJSONTyped = MlModelResourceFromJSONTyped;
 function MlModelResourceToJSON(json) {
     return MlModelResourceToJSONTyped(json, false);
 }
+exports.MlModelResourceToJSON = MlModelResourceToJSON;
 function MlModelResourceToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +58,4 @@ function MlModelResourceToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.MlModelResourceToJSONTyped = MlModelResourceToJSONTyped;

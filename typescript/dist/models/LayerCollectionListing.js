@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerCollectionListingTypeEnum = void 0;
-exports.instanceOfLayerCollectionListing = instanceOfLayerCollectionListing;
-exports.LayerCollectionListingFromJSON = LayerCollectionListingFromJSON;
-exports.LayerCollectionListingFromJSONTyped = LayerCollectionListingFromJSONTyped;
-exports.LayerCollectionListingToJSON = LayerCollectionListingToJSON;
-exports.LayerCollectionListingToJSONTyped = LayerCollectionListingToJSONTyped;
+exports.LayerCollectionListingToJSONTyped = exports.LayerCollectionListingToJSON = exports.LayerCollectionListingFromJSONTyped = exports.LayerCollectionListingFromJSON = exports.instanceOfLayerCollectionListing = exports.LayerCollectionListingTypeEnum = void 0;
 const ProviderLayerCollectionId_1 = require("./ProviderLayerCollectionId");
 /**
  * @export
@@ -40,9 +35,11 @@ function instanceOfLayerCollectionListing(value) {
         return false;
     return true;
 }
+exports.instanceOfLayerCollectionListing = instanceOfLayerCollectionListing;
 function LayerCollectionListingFromJSON(json) {
     return LayerCollectionListingFromJSONTyped(json, false);
 }
+exports.LayerCollectionListingFromJSON = LayerCollectionListingFromJSON;
 function LayerCollectionListingFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -55,9 +52,11 @@ function LayerCollectionListingFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.LayerCollectionListingFromJSONTyped = LayerCollectionListingFromJSONTyped;
 function LayerCollectionListingToJSON(json) {
     return LayerCollectionListingToJSONTyped(json, false);
 }
+exports.LayerCollectionListingToJSON = LayerCollectionListingToJSON;
 function LayerCollectionListingToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -70,3 +69,4 @@ function LayerCollectionListingToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.LayerCollectionListingToJSONTyped = LayerCollectionListingToJSONTyped;

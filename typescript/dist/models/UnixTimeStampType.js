@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UnixTimeStampType = void 0;
-exports.instanceOfUnixTimeStampType = instanceOfUnixTimeStampType;
-exports.UnixTimeStampTypeFromJSON = UnixTimeStampTypeFromJSON;
-exports.UnixTimeStampTypeFromJSONTyped = UnixTimeStampTypeFromJSONTyped;
-exports.UnixTimeStampTypeToJSON = UnixTimeStampTypeToJSON;
-exports.UnixTimeStampTypeToJSONTyped = UnixTimeStampTypeToJSONTyped;
+exports.UnixTimeStampTypeToJSONTyped = exports.UnixTimeStampTypeToJSON = exports.UnixTimeStampTypeFromJSONTyped = exports.UnixTimeStampTypeFromJSON = exports.instanceOfUnixTimeStampType = exports.UnixTimeStampType = void 0;
 /**
  *
  * @export
@@ -37,15 +32,20 @@ function instanceOfUnixTimeStampType(value) {
     }
     return false;
 }
+exports.instanceOfUnixTimeStampType = instanceOfUnixTimeStampType;
 function UnixTimeStampTypeFromJSON(json) {
     return UnixTimeStampTypeFromJSONTyped(json, false);
 }
+exports.UnixTimeStampTypeFromJSON = UnixTimeStampTypeFromJSON;
 function UnixTimeStampTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.UnixTimeStampTypeFromJSONTyped = UnixTimeStampTypeFromJSONTyped;
 function UnixTimeStampTypeToJSON(value) {
     return value;
 }
+exports.UnixTimeStampTypeToJSON = UnixTimeStampTypeToJSON;
 function UnixTimeStampTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.UnixTimeStampTypeToJSONTyped = UnixTimeStampTypeToJSONTyped;

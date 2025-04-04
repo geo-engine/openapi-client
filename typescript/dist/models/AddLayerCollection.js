@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfAddLayerCollection = instanceOfAddLayerCollection;
-exports.AddLayerCollectionFromJSON = AddLayerCollectionFromJSON;
-exports.AddLayerCollectionFromJSONTyped = AddLayerCollectionFromJSONTyped;
-exports.AddLayerCollectionToJSON = AddLayerCollectionToJSON;
-exports.AddLayerCollectionToJSONTyped = AddLayerCollectionToJSONTyped;
+exports.AddLayerCollectionToJSONTyped = exports.AddLayerCollectionToJSON = exports.AddLayerCollectionFromJSONTyped = exports.AddLayerCollectionFromJSON = exports.instanceOfAddLayerCollection = void 0;
 /**
  * Check if a given object implements the AddLayerCollection interface.
  */
@@ -28,9 +24,11 @@ function instanceOfAddLayerCollection(value) {
         return false;
     return true;
 }
+exports.instanceOfAddLayerCollection = instanceOfAddLayerCollection;
 function AddLayerCollectionFromJSON(json) {
     return AddLayerCollectionFromJSONTyped(json, false);
 }
+exports.AddLayerCollectionFromJSON = AddLayerCollectionFromJSON;
 function AddLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function AddLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
         'properties': json['properties'] == null ? undefined : json['properties'],
     };
 }
+exports.AddLayerCollectionFromJSONTyped = AddLayerCollectionFromJSONTyped;
 function AddLayerCollectionToJSON(json) {
     return AddLayerCollectionToJSONTyped(json, false);
 }
+exports.AddLayerCollectionToJSON = AddLayerCollectionToJSON;
 function AddLayerCollectionToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -54,3 +54,4 @@ function AddLayerCollectionToJSONTyped(value, ignoreDiscriminator = false) {
         'properties': value['properties'],
     };
 }
+exports.AddLayerCollectionToJSONTyped = AddLayerCollectionToJSONTyped;

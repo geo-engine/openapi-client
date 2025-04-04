@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfBoundingBox2D = instanceOfBoundingBox2D;
-exports.BoundingBox2DFromJSON = BoundingBox2DFromJSON;
-exports.BoundingBox2DFromJSONTyped = BoundingBox2DFromJSONTyped;
-exports.BoundingBox2DToJSON = BoundingBox2DToJSON;
-exports.BoundingBox2DToJSONTyped = BoundingBox2DToJSONTyped;
+exports.BoundingBox2DToJSONTyped = exports.BoundingBox2DToJSON = exports.BoundingBox2DFromJSONTyped = exports.BoundingBox2DFromJSON = exports.instanceOfBoundingBox2D = void 0;
 const Coordinate2D_1 = require("./Coordinate2D");
 /**
  * Check if a given object implements the BoundingBox2D interface.
@@ -29,9 +25,11 @@ function instanceOfBoundingBox2D(value) {
         return false;
     return true;
 }
+exports.instanceOfBoundingBox2D = instanceOfBoundingBox2D;
 function BoundingBox2DFromJSON(json) {
     return BoundingBox2DFromJSONTyped(json, false);
 }
+exports.BoundingBox2DFromJSON = BoundingBox2DFromJSON;
 function BoundingBox2DFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function BoundingBox2DFromJSONTyped(json, ignoreDiscriminator) {
         'upperRightCoordinate': (0, Coordinate2D_1.Coordinate2DFromJSON)(json['upperRightCoordinate']),
     };
 }
+exports.BoundingBox2DFromJSONTyped = BoundingBox2DFromJSONTyped;
 function BoundingBox2DToJSON(json) {
     return BoundingBox2DToJSONTyped(json, false);
 }
+exports.BoundingBox2DToJSON = BoundingBox2DToJSON;
 function BoundingBox2DToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -53,3 +53,4 @@ function BoundingBox2DToJSONTyped(value, ignoreDiscriminator = false) {
         'upperRightCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value['upperRightCoordinate']),
     };
 }
+exports.BoundingBox2DToJSONTyped = BoundingBox2DToJSONTyped;

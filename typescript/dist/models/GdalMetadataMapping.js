@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfGdalMetadataMapping = instanceOfGdalMetadataMapping;
-exports.GdalMetadataMappingFromJSON = GdalMetadataMappingFromJSON;
-exports.GdalMetadataMappingFromJSONTyped = GdalMetadataMappingFromJSONTyped;
-exports.GdalMetadataMappingToJSON = GdalMetadataMappingToJSON;
-exports.GdalMetadataMappingToJSONTyped = GdalMetadataMappingToJSONTyped;
+exports.GdalMetadataMappingToJSONTyped = exports.GdalMetadataMappingToJSON = exports.GdalMetadataMappingFromJSONTyped = exports.GdalMetadataMappingFromJSON = exports.instanceOfGdalMetadataMapping = void 0;
 const RasterPropertiesKey_1 = require("./RasterPropertiesKey");
 const RasterPropertiesEntryType_1 = require("./RasterPropertiesEntryType");
 /**
@@ -32,9 +28,11 @@ function instanceOfGdalMetadataMapping(value) {
         return false;
     return true;
 }
+exports.instanceOfGdalMetadataMapping = instanceOfGdalMetadataMapping;
 function GdalMetadataMappingFromJSON(json) {
     return GdalMetadataMappingFromJSONTyped(json, false);
 }
+exports.GdalMetadataMappingFromJSON = GdalMetadataMappingFromJSON;
 function GdalMetadataMappingFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -45,9 +43,11 @@ function GdalMetadataMappingFromJSONTyped(json, ignoreDiscriminator) {
         'targetType': (0, RasterPropertiesEntryType_1.RasterPropertiesEntryTypeFromJSON)(json['target_type']),
     };
 }
+exports.GdalMetadataMappingFromJSONTyped = GdalMetadataMappingFromJSONTyped;
 function GdalMetadataMappingToJSON(json) {
     return GdalMetadataMappingToJSONTyped(json, false);
 }
+exports.GdalMetadataMappingToJSON = GdalMetadataMappingToJSON;
 function GdalMetadataMappingToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -58,3 +58,4 @@ function GdalMetadataMappingToJSONTyped(value, ignoreDiscriminator = false) {
         'target_type': (0, RasterPropertiesEntryType_1.RasterPropertiesEntryTypeToJSON)(value['targetType']),
     };
 }
+exports.GdalMetadataMappingToJSONTyped = GdalMetadataMappingToJSONTyped;

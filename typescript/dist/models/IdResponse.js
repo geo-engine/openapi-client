@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfIdResponse = instanceOfIdResponse;
-exports.IdResponseFromJSON = IdResponseFromJSON;
-exports.IdResponseFromJSONTyped = IdResponseFromJSONTyped;
-exports.IdResponseToJSON = IdResponseToJSON;
-exports.IdResponseToJSONTyped = IdResponseToJSONTyped;
+exports.IdResponseToJSONTyped = exports.IdResponseToJSON = exports.IdResponseFromJSONTyped = exports.IdResponseFromJSON = exports.instanceOfIdResponse = void 0;
 /**
  * Check if a given object implements the IdResponse interface.
  */
@@ -26,9 +22,11 @@ function instanceOfIdResponse(value) {
         return false;
     return true;
 }
+exports.instanceOfIdResponse = instanceOfIdResponse;
 function IdResponseFromJSON(json) {
     return IdResponseFromJSONTyped(json, false);
 }
+exports.IdResponseFromJSON = IdResponseFromJSON;
 function IdResponseFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function IdResponseFromJSONTyped(json, ignoreDiscriminator) {
         'id': json['id'],
     };
 }
+exports.IdResponseFromJSONTyped = IdResponseFromJSONTyped;
 function IdResponseToJSON(json) {
     return IdResponseToJSONTyped(json, false);
 }
+exports.IdResponseToJSON = IdResponseToJSON;
 function IdResponseToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function IdResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'id': value['id'],
     };
 }
+exports.IdResponseToJSONTyped = IdResponseToJSONTyped;

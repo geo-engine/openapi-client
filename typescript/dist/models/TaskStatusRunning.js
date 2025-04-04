@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskStatusRunningStatusEnum = void 0;
-exports.instanceOfTaskStatusRunning = instanceOfTaskStatusRunning;
-exports.TaskStatusRunningFromJSON = TaskStatusRunningFromJSON;
-exports.TaskStatusRunningFromJSONTyped = TaskStatusRunningFromJSONTyped;
-exports.TaskStatusRunningToJSON = TaskStatusRunningToJSON;
-exports.TaskStatusRunningToJSONTyped = TaskStatusRunningToJSONTyped;
+exports.TaskStatusRunningToJSONTyped = exports.TaskStatusRunningToJSON = exports.TaskStatusRunningFromJSONTyped = exports.TaskStatusRunningFromJSON = exports.instanceOfTaskStatusRunning = exports.TaskStatusRunningStatusEnum = void 0;
 /**
  * @export
  */
@@ -41,9 +36,11 @@ function instanceOfTaskStatusRunning(value) {
         return false;
     return true;
 }
+exports.instanceOfTaskStatusRunning = instanceOfTaskStatusRunning;
 function TaskStatusRunningFromJSON(json) {
     return TaskStatusRunningFromJSONTyped(json, false);
 }
+exports.TaskStatusRunningFromJSON = TaskStatusRunningFromJSON;
 function TaskStatusRunningFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -58,9 +55,11 @@ function TaskStatusRunningFromJSONTyped(json, ignoreDiscriminator) {
         'timeStarted': json['timeStarted'],
     };
 }
+exports.TaskStatusRunningFromJSONTyped = TaskStatusRunningFromJSONTyped;
 function TaskStatusRunningToJSON(json) {
     return TaskStatusRunningToJSONTyped(json, false);
 }
+exports.TaskStatusRunningToJSON = TaskStatusRunningToJSON;
 function TaskStatusRunningToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -75,3 +74,4 @@ function TaskStatusRunningToJSONTyped(value, ignoreDiscriminator = false) {
         'timeStarted': value['timeStarted'],
     };
 }
+exports.TaskStatusRunningToJSONTyped = TaskStatusRunningToJSONTyped;

@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfBreakpoint = instanceOfBreakpoint;
-exports.BreakpointFromJSON = BreakpointFromJSON;
-exports.BreakpointFromJSONTyped = BreakpointFromJSONTyped;
-exports.BreakpointToJSON = BreakpointToJSON;
-exports.BreakpointToJSONTyped = BreakpointToJSONTyped;
+exports.BreakpointToJSONTyped = exports.BreakpointToJSON = exports.BreakpointFromJSONTyped = exports.BreakpointFromJSON = exports.instanceOfBreakpoint = void 0;
 /**
  * Check if a given object implements the Breakpoint interface.
  */
@@ -28,9 +24,11 @@ function instanceOfBreakpoint(value) {
         return false;
     return true;
 }
+exports.instanceOfBreakpoint = instanceOfBreakpoint;
 function BreakpointFromJSON(json) {
     return BreakpointFromJSONTyped(json, false);
 }
+exports.BreakpointFromJSON = BreakpointFromJSON;
 function BreakpointFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function BreakpointFromJSONTyped(json, ignoreDiscriminator) {
         'value': json['value'],
     };
 }
+exports.BreakpointFromJSONTyped = BreakpointFromJSONTyped;
 function BreakpointToJSON(json) {
     return BreakpointToJSONTyped(json, false);
 }
+exports.BreakpointToJSON = BreakpointToJSON;
 function BreakpointToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function BreakpointToJSONTyped(value, ignoreDiscriminator = false) {
         'value': value['value'],
     };
 }
+exports.BreakpointToJSONTyped = BreakpointToJSONTyped;

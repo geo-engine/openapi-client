@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfUpdateDataset = instanceOfUpdateDataset;
-exports.UpdateDatasetFromJSON = UpdateDatasetFromJSON;
-exports.UpdateDatasetFromJSONTyped = UpdateDatasetFromJSONTyped;
-exports.UpdateDatasetToJSON = UpdateDatasetToJSON;
-exports.UpdateDatasetToJSONTyped = UpdateDatasetToJSONTyped;
+exports.UpdateDatasetToJSONTyped = exports.UpdateDatasetToJSON = exports.UpdateDatasetFromJSONTyped = exports.UpdateDatasetFromJSON = exports.instanceOfUpdateDataset = void 0;
 /**
  * Check if a given object implements the UpdateDataset interface.
  */
@@ -32,9 +28,11 @@ function instanceOfUpdateDataset(value) {
         return false;
     return true;
 }
+exports.instanceOfUpdateDataset = instanceOfUpdateDataset;
 function UpdateDatasetFromJSON(json) {
     return UpdateDatasetFromJSONTyped(json, false);
 }
+exports.UpdateDatasetFromJSON = UpdateDatasetFromJSON;
 function UpdateDatasetFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -46,9 +44,11 @@ function UpdateDatasetFromJSONTyped(json, ignoreDiscriminator) {
         'tags': json['tags'],
     };
 }
+exports.UpdateDatasetFromJSONTyped = UpdateDatasetFromJSONTyped;
 function UpdateDatasetToJSON(json) {
     return UpdateDatasetToJSONTyped(json, false);
 }
+exports.UpdateDatasetToJSON = UpdateDatasetToJSON;
 function UpdateDatasetToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -60,3 +60,4 @@ function UpdateDatasetToJSONTyped(value, ignoreDiscriminator = false) {
         'tags': value['tags'],
     };
 }
+exports.UpdateDatasetToJSONTyped = UpdateDatasetToJSONTyped;

@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfDataset = instanceOfDataset;
-exports.DatasetFromJSON = DatasetFromJSON;
-exports.DatasetFromJSONTyped = DatasetFromJSONTyped;
-exports.DatasetToJSON = DatasetToJSON;
-exports.DatasetToJSONTyped = DatasetToJSONTyped;
+exports.DatasetToJSONTyped = exports.DatasetToJSON = exports.DatasetFromJSONTyped = exports.DatasetFromJSON = exports.instanceOfDataset = void 0;
 const Provenance_1 = require("./Provenance");
 const Symbology_1 = require("./Symbology");
 const TypedResultDescriptor_1 = require("./TypedResultDescriptor");
@@ -39,9 +35,11 @@ function instanceOfDataset(value) {
         return false;
     return true;
 }
+exports.instanceOfDataset = instanceOfDataset;
 function DatasetFromJSON(json) {
     return DatasetFromJSONTyped(json, false);
 }
+exports.DatasetFromJSON = DatasetFromJSON;
 function DatasetFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -58,9 +56,11 @@ function DatasetFromJSONTyped(json, ignoreDiscriminator) {
         'tags': json['tags'] == null ? undefined : json['tags'],
     };
 }
+exports.DatasetFromJSONTyped = DatasetFromJSONTyped;
 function DatasetToJSON(json) {
     return DatasetToJSONTyped(json, false);
 }
+exports.DatasetToJSON = DatasetToJSON;
 function DatasetToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -77,3 +77,4 @@ function DatasetToJSONTyped(value, ignoreDiscriminator = false) {
         'tags': value['tags'],
     };
 }
+exports.DatasetToJSONTyped = DatasetToJSONTyped;

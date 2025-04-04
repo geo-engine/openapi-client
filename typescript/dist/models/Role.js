@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfRole = instanceOfRole;
-exports.RoleFromJSON = RoleFromJSON;
-exports.RoleFromJSONTyped = RoleFromJSONTyped;
-exports.RoleToJSON = RoleToJSON;
-exports.RoleToJSONTyped = RoleToJSONTyped;
+exports.RoleToJSONTyped = exports.RoleToJSON = exports.RoleFromJSONTyped = exports.RoleFromJSON = exports.instanceOfRole = void 0;
 /**
  * Check if a given object implements the Role interface.
  */
@@ -28,9 +24,11 @@ function instanceOfRole(value) {
         return false;
     return true;
 }
+exports.instanceOfRole = instanceOfRole;
 function RoleFromJSON(json) {
     return RoleFromJSONTyped(json, false);
 }
+exports.RoleFromJSON = RoleFromJSON;
 function RoleFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function RoleFromJSONTyped(json, ignoreDiscriminator) {
         'name': json['name'],
     };
 }
+exports.RoleFromJSONTyped = RoleFromJSONTyped;
 function RoleToJSON(json) {
     return RoleToJSONTyped(json, false);
 }
+exports.RoleToJSON = RoleToJSON;
 function RoleToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function RoleToJSONTyped(value, ignoreDiscriminator = false) {
         'name': value['name'],
     };
 }
+exports.RoleToJSONTyped = RoleToJSONTyped;

@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StaticColorTypeEnum = void 0;
-exports.instanceOfStaticColor = instanceOfStaticColor;
-exports.StaticColorFromJSON = StaticColorFromJSON;
-exports.StaticColorFromJSONTyped = StaticColorFromJSONTyped;
-exports.StaticColorToJSON = StaticColorToJSON;
-exports.StaticColorToJSONTyped = StaticColorToJSONTyped;
+exports.StaticColorToJSONTyped = exports.StaticColorToJSON = exports.StaticColorFromJSONTyped = exports.StaticColorFromJSON = exports.instanceOfStaticColor = exports.StaticColorTypeEnum = void 0;
 /**
  * @export
  */
@@ -35,9 +30,11 @@ function instanceOfStaticColor(value) {
         return false;
     return true;
 }
+exports.instanceOfStaticColor = instanceOfStaticColor;
 function StaticColorFromJSON(json) {
     return StaticColorFromJSONTyped(json, false);
 }
+exports.StaticColorFromJSON = StaticColorFromJSON;
 function StaticColorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +44,11 @@ function StaticColorFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.StaticColorFromJSONTyped = StaticColorFromJSONTyped;
 function StaticColorToJSON(json) {
     return StaticColorToJSONTyped(json, false);
 }
+exports.StaticColorToJSON = StaticColorToJSON;
 function StaticColorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +58,4 @@ function StaticColorToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.StaticColorToJSONTyped = StaticColorToJSONTyped;

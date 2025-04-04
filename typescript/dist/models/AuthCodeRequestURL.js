@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfAuthCodeRequestURL = instanceOfAuthCodeRequestURL;
-exports.AuthCodeRequestURLFromJSON = AuthCodeRequestURLFromJSON;
-exports.AuthCodeRequestURLFromJSONTyped = AuthCodeRequestURLFromJSONTyped;
-exports.AuthCodeRequestURLToJSON = AuthCodeRequestURLToJSON;
-exports.AuthCodeRequestURLToJSONTyped = AuthCodeRequestURLToJSONTyped;
+exports.AuthCodeRequestURLToJSONTyped = exports.AuthCodeRequestURLToJSON = exports.AuthCodeRequestURLFromJSONTyped = exports.AuthCodeRequestURLFromJSON = exports.instanceOfAuthCodeRequestURL = void 0;
 /**
  * Check if a given object implements the AuthCodeRequestURL interface.
  */
@@ -26,9 +22,11 @@ function instanceOfAuthCodeRequestURL(value) {
         return false;
     return true;
 }
+exports.instanceOfAuthCodeRequestURL = instanceOfAuthCodeRequestURL;
 function AuthCodeRequestURLFromJSON(json) {
     return AuthCodeRequestURLFromJSONTyped(json, false);
 }
+exports.AuthCodeRequestURLFromJSON = AuthCodeRequestURLFromJSON;
 function AuthCodeRequestURLFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function AuthCodeRequestURLFromJSONTyped(json, ignoreDiscriminator) {
         'url': json['url'],
     };
 }
+exports.AuthCodeRequestURLFromJSONTyped = AuthCodeRequestURLFromJSONTyped;
 function AuthCodeRequestURLToJSON(json) {
     return AuthCodeRequestURLToJSONTyped(json, false);
 }
+exports.AuthCodeRequestURLToJSON = AuthCodeRequestURLToJSON;
 function AuthCodeRequestURLToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function AuthCodeRequestURLToJSONTyped(value, ignoreDiscriminator = false) {
         'url': value['url'],
     };
 }
+exports.AuthCodeRequestURLToJSONTyped = AuthCodeRequestURLToJSONTyped;

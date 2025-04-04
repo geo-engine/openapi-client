@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetLegendGraphicRequest = void 0;
-exports.instanceOfGetLegendGraphicRequest = instanceOfGetLegendGraphicRequest;
-exports.GetLegendGraphicRequestFromJSON = GetLegendGraphicRequestFromJSON;
-exports.GetLegendGraphicRequestFromJSONTyped = GetLegendGraphicRequestFromJSONTyped;
-exports.GetLegendGraphicRequestToJSON = GetLegendGraphicRequestToJSON;
-exports.GetLegendGraphicRequestToJSONTyped = GetLegendGraphicRequestToJSONTyped;
+exports.GetLegendGraphicRequestToJSONTyped = exports.GetLegendGraphicRequestToJSON = exports.GetLegendGraphicRequestFromJSONTyped = exports.GetLegendGraphicRequestFromJSON = exports.instanceOfGetLegendGraphicRequest = exports.GetLegendGraphicRequest = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfGetLegendGraphicRequest(value) {
     }
     return false;
 }
+exports.instanceOfGetLegendGraphicRequest = instanceOfGetLegendGraphicRequest;
 function GetLegendGraphicRequestFromJSON(json) {
     return GetLegendGraphicRequestFromJSONTyped(json, false);
 }
+exports.GetLegendGraphicRequestFromJSON = GetLegendGraphicRequestFromJSON;
 function GetLegendGraphicRequestFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.GetLegendGraphicRequestFromJSONTyped = GetLegendGraphicRequestFromJSONTyped;
 function GetLegendGraphicRequestToJSON(value) {
     return value;
 }
+exports.GetLegendGraphicRequestToJSON = GetLegendGraphicRequestToJSON;
 function GetLegendGraphicRequestToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.GetLegendGraphicRequestToJSONTyped = GetLegendGraphicRequestToJSONTyped;

@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfSpatialPartition2D = instanceOfSpatialPartition2D;
-exports.SpatialPartition2DFromJSON = SpatialPartition2DFromJSON;
-exports.SpatialPartition2DFromJSONTyped = SpatialPartition2DFromJSONTyped;
-exports.SpatialPartition2DToJSON = SpatialPartition2DToJSON;
-exports.SpatialPartition2DToJSONTyped = SpatialPartition2DToJSONTyped;
+exports.SpatialPartition2DToJSONTyped = exports.SpatialPartition2DToJSON = exports.SpatialPartition2DFromJSONTyped = exports.SpatialPartition2DFromJSON = exports.instanceOfSpatialPartition2D = void 0;
 const Coordinate2D_1 = require("./Coordinate2D");
 /**
  * Check if a given object implements the SpatialPartition2D interface.
@@ -29,9 +25,11 @@ function instanceOfSpatialPartition2D(value) {
         return false;
     return true;
 }
+exports.instanceOfSpatialPartition2D = instanceOfSpatialPartition2D;
 function SpatialPartition2DFromJSON(json) {
     return SpatialPartition2DFromJSONTyped(json, false);
 }
+exports.SpatialPartition2DFromJSON = SpatialPartition2DFromJSON;
 function SpatialPartition2DFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function SpatialPartition2DFromJSONTyped(json, ignoreDiscriminator) {
         'upperLeftCoordinate': (0, Coordinate2D_1.Coordinate2DFromJSON)(json['upperLeftCoordinate']),
     };
 }
+exports.SpatialPartition2DFromJSONTyped = SpatialPartition2DFromJSONTyped;
 function SpatialPartition2DToJSON(json) {
     return SpatialPartition2DToJSONTyped(json, false);
 }
+exports.SpatialPartition2DToJSON = SpatialPartition2DToJSON;
 function SpatialPartition2DToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -53,3 +53,4 @@ function SpatialPartition2DToJSONTyped(value, ignoreDiscriminator = false) {
         'upperLeftCoordinate': (0, Coordinate2D_1.Coordinate2DToJSON)(value['upperLeftCoordinate']),
     };
 }
+exports.SpatialPartition2DToJSONTyped = SpatialPartition2DToJSONTyped;

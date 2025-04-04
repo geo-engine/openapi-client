@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkflowTypeEnum = void 0;
-exports.instanceOfWorkflow = instanceOfWorkflow;
-exports.WorkflowFromJSON = WorkflowFromJSON;
-exports.WorkflowFromJSONTyped = WorkflowFromJSONTyped;
-exports.WorkflowToJSON = WorkflowToJSON;
-exports.WorkflowToJSONTyped = WorkflowToJSONTyped;
+exports.WorkflowToJSONTyped = exports.WorkflowToJSON = exports.WorkflowFromJSONTyped = exports.WorkflowFromJSON = exports.instanceOfWorkflow = exports.WorkflowTypeEnum = void 0;
 const TypedOperatorOperator_1 = require("./TypedOperatorOperator");
 /**
  * @export
@@ -38,9 +33,11 @@ function instanceOfWorkflow(value) {
         return false;
     return true;
 }
+exports.instanceOfWorkflow = instanceOfWorkflow;
 function WorkflowFromJSON(json) {
     return WorkflowFromJSONTyped(json, false);
 }
+exports.WorkflowFromJSON = WorkflowFromJSON;
 function WorkflowFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -50,9 +47,11 @@ function WorkflowFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.WorkflowFromJSONTyped = WorkflowFromJSONTyped;
 function WorkflowToJSON(json) {
     return WorkflowToJSONTyped(json, false);
 }
+exports.WorkflowToJSON = WorkflowToJSON;
 function WorkflowToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -62,3 +61,4 @@ function WorkflowToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.WorkflowToJSONTyped = WorkflowToJSONTyped;

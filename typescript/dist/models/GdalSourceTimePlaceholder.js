@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfGdalSourceTimePlaceholder = instanceOfGdalSourceTimePlaceholder;
-exports.GdalSourceTimePlaceholderFromJSON = GdalSourceTimePlaceholderFromJSON;
-exports.GdalSourceTimePlaceholderFromJSONTyped = GdalSourceTimePlaceholderFromJSONTyped;
-exports.GdalSourceTimePlaceholderToJSON = GdalSourceTimePlaceholderToJSON;
-exports.GdalSourceTimePlaceholderToJSONTyped = GdalSourceTimePlaceholderToJSONTyped;
+exports.GdalSourceTimePlaceholderToJSONTyped = exports.GdalSourceTimePlaceholderToJSON = exports.GdalSourceTimePlaceholderFromJSONTyped = exports.GdalSourceTimePlaceholderFromJSON = exports.instanceOfGdalSourceTimePlaceholder = void 0;
 const TimeReference_1 = require("./TimeReference");
 /**
  * Check if a given object implements the GdalSourceTimePlaceholder interface.
@@ -29,9 +25,11 @@ function instanceOfGdalSourceTimePlaceholder(value) {
         return false;
     return true;
 }
+exports.instanceOfGdalSourceTimePlaceholder = instanceOfGdalSourceTimePlaceholder;
 function GdalSourceTimePlaceholderFromJSON(json) {
     return GdalSourceTimePlaceholderFromJSONTyped(json, false);
 }
+exports.GdalSourceTimePlaceholderFromJSON = GdalSourceTimePlaceholderFromJSON;
 function GdalSourceTimePlaceholderFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function GdalSourceTimePlaceholderFromJSONTyped(json, ignoreDiscriminator) {
         'reference': (0, TimeReference_1.TimeReferenceFromJSON)(json['reference']),
     };
 }
+exports.GdalSourceTimePlaceholderFromJSONTyped = GdalSourceTimePlaceholderFromJSONTyped;
 function GdalSourceTimePlaceholderToJSON(json) {
     return GdalSourceTimePlaceholderToJSONTyped(json, false);
 }
+exports.GdalSourceTimePlaceholderToJSON = GdalSourceTimePlaceholderToJSON;
 function GdalSourceTimePlaceholderToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -53,3 +53,4 @@ function GdalSourceTimePlaceholderToJSONTyped(value, ignoreDiscriminator = false
         'reference': (0, TimeReference_1.TimeReferenceToJSON)(value['reference']),
     };
 }
+exports.GdalSourceTimePlaceholderToJSONTyped = GdalSourceTimePlaceholderToJSONTyped;

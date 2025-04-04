@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterSymbologyTypeEnum = void 0;
-exports.instanceOfRasterSymbology = instanceOfRasterSymbology;
-exports.RasterSymbologyFromJSON = RasterSymbologyFromJSON;
-exports.RasterSymbologyFromJSONTyped = RasterSymbologyFromJSONTyped;
-exports.RasterSymbologyToJSON = RasterSymbologyToJSON;
-exports.RasterSymbologyToJSONTyped = RasterSymbologyToJSONTyped;
+exports.RasterSymbologyToJSONTyped = exports.RasterSymbologyToJSON = exports.RasterSymbologyFromJSONTyped = exports.RasterSymbologyFromJSON = exports.instanceOfRasterSymbology = exports.RasterSymbologyTypeEnum = void 0;
 const RasterColorizer_1 = require("./RasterColorizer");
 /**
  * @export
@@ -38,9 +33,11 @@ function instanceOfRasterSymbology(value) {
         return false;
     return true;
 }
+exports.instanceOfRasterSymbology = instanceOfRasterSymbology;
 function RasterSymbologyFromJSON(json) {
     return RasterSymbologyFromJSONTyped(json, false);
 }
+exports.RasterSymbologyFromJSON = RasterSymbologyFromJSON;
 function RasterSymbologyFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -51,9 +48,11 @@ function RasterSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.RasterSymbologyFromJSONTyped = RasterSymbologyFromJSONTyped;
 function RasterSymbologyToJSON(json) {
     return RasterSymbologyToJSONTyped(json, false);
 }
+exports.RasterSymbologyToJSON = RasterSymbologyToJSON;
 function RasterSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -64,3 +63,4 @@ function RasterSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.RasterSymbologyToJSONTyped = RasterSymbologyToJSONTyped;

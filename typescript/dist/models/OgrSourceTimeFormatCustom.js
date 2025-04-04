@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceTimeFormatCustomFormatEnum = void 0;
-exports.instanceOfOgrSourceTimeFormatCustom = instanceOfOgrSourceTimeFormatCustom;
-exports.OgrSourceTimeFormatCustomFromJSON = OgrSourceTimeFormatCustomFromJSON;
-exports.OgrSourceTimeFormatCustomFromJSONTyped = OgrSourceTimeFormatCustomFromJSONTyped;
-exports.OgrSourceTimeFormatCustomToJSON = OgrSourceTimeFormatCustomToJSON;
-exports.OgrSourceTimeFormatCustomToJSONTyped = OgrSourceTimeFormatCustomToJSONTyped;
+exports.OgrSourceTimeFormatCustomToJSONTyped = exports.OgrSourceTimeFormatCustomToJSON = exports.OgrSourceTimeFormatCustomFromJSONTyped = exports.OgrSourceTimeFormatCustomFromJSON = exports.instanceOfOgrSourceTimeFormatCustom = exports.OgrSourceTimeFormatCustomFormatEnum = void 0;
 /**
  * @export
  */
@@ -35,9 +30,11 @@ function instanceOfOgrSourceTimeFormatCustom(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrSourceTimeFormatCustom = instanceOfOgrSourceTimeFormatCustom;
 function OgrSourceTimeFormatCustomFromJSON(json) {
     return OgrSourceTimeFormatCustomFromJSONTyped(json, false);
 }
+exports.OgrSourceTimeFormatCustomFromJSON = OgrSourceTimeFormatCustomFromJSON;
 function OgrSourceTimeFormatCustomFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +44,11 @@ function OgrSourceTimeFormatCustomFromJSONTyped(json, ignoreDiscriminator) {
         'format': json['format'],
     };
 }
+exports.OgrSourceTimeFormatCustomFromJSONTyped = OgrSourceTimeFormatCustomFromJSONTyped;
 function OgrSourceTimeFormatCustomToJSON(json) {
     return OgrSourceTimeFormatCustomToJSONTyped(json, false);
 }
+exports.OgrSourceTimeFormatCustomToJSON = OgrSourceTimeFormatCustomToJSON;
 function OgrSourceTimeFormatCustomToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +58,4 @@ function OgrSourceTimeFormatCustomToJSONTyped(value, ignoreDiscriminator = false
         'format': value['format'],
     };
 }
+exports.OgrSourceTimeFormatCustomToJSONTyped = OgrSourceTimeFormatCustomToJSONTyped;

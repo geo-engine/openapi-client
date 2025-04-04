@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfSearchTypes = instanceOfSearchTypes;
-exports.SearchTypesFromJSON = SearchTypesFromJSON;
-exports.SearchTypesFromJSONTyped = SearchTypesFromJSONTyped;
-exports.SearchTypesToJSON = SearchTypesToJSON;
-exports.SearchTypesToJSONTyped = SearchTypesToJSONTyped;
+exports.SearchTypesToJSONTyped = exports.SearchTypesToJSON = exports.SearchTypesFromJSONTyped = exports.SearchTypesFromJSON = exports.instanceOfSearchTypes = void 0;
 /**
  * Check if a given object implements the SearchTypes interface.
  */
@@ -28,9 +24,11 @@ function instanceOfSearchTypes(value) {
         return false;
     return true;
 }
+exports.instanceOfSearchTypes = instanceOfSearchTypes;
 function SearchTypesFromJSON(json) {
     return SearchTypesFromJSONTyped(json, false);
 }
+exports.SearchTypesFromJSON = SearchTypesFromJSON;
 function SearchTypesFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function SearchTypesFromJSONTyped(json, ignoreDiscriminator) {
         'prefix': json['prefix'],
     };
 }
+exports.SearchTypesFromJSONTyped = SearchTypesFromJSONTyped;
 function SearchTypesToJSON(json) {
     return SearchTypesToJSONTyped(json, false);
 }
+exports.SearchTypesToJSON = SearchTypesToJSON;
 function SearchTypesToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function SearchTypesToJSONTyped(value, ignoreDiscriminator = false) {
         'prefix': value['prefix'],
     };
 }
+exports.SearchTypesToJSONTyped = SearchTypesToJSONTyped;

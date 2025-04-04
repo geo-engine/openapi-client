@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfSTRectangle = instanceOfSTRectangle;
-exports.STRectangleFromJSON = STRectangleFromJSON;
-exports.STRectangleFromJSONTyped = STRectangleFromJSONTyped;
-exports.STRectangleToJSON = STRectangleToJSON;
-exports.STRectangleToJSONTyped = STRectangleToJSONTyped;
+exports.STRectangleToJSONTyped = exports.STRectangleToJSON = exports.STRectangleFromJSONTyped = exports.STRectangleFromJSON = exports.instanceOfSTRectangle = void 0;
 const TimeInterval_1 = require("./TimeInterval");
 const BoundingBox2D_1 = require("./BoundingBox2D");
 /**
@@ -32,9 +28,11 @@ function instanceOfSTRectangle(value) {
         return false;
     return true;
 }
+exports.instanceOfSTRectangle = instanceOfSTRectangle;
 function STRectangleFromJSON(json) {
     return STRectangleFromJSONTyped(json, false);
 }
+exports.STRectangleFromJSON = STRectangleFromJSON;
 function STRectangleFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -45,9 +43,11 @@ function STRectangleFromJSONTyped(json, ignoreDiscriminator) {
         'timeInterval': (0, TimeInterval_1.TimeIntervalFromJSON)(json['timeInterval']),
     };
 }
+exports.STRectangleFromJSONTyped = STRectangleFromJSONTyped;
 function STRectangleToJSON(json) {
     return STRectangleToJSONTyped(json, false);
 }
+exports.STRectangleToJSON = STRectangleToJSON;
 function STRectangleToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -58,3 +58,4 @@ function STRectangleToJSONTyped(value, ignoreDiscriminator = false) {
         'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
     };
 }
+exports.STRectangleToJSONTyped = STRectangleToJSONTyped;

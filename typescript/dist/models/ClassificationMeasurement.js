@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClassificationMeasurementTypeEnum = void 0;
-exports.instanceOfClassificationMeasurement = instanceOfClassificationMeasurement;
-exports.ClassificationMeasurementFromJSON = ClassificationMeasurementFromJSON;
-exports.ClassificationMeasurementFromJSONTyped = ClassificationMeasurementFromJSONTyped;
-exports.ClassificationMeasurementToJSON = ClassificationMeasurementToJSON;
-exports.ClassificationMeasurementToJSONTyped = ClassificationMeasurementToJSONTyped;
+exports.ClassificationMeasurementToJSONTyped = exports.ClassificationMeasurementToJSON = exports.ClassificationMeasurementFromJSONTyped = exports.ClassificationMeasurementFromJSON = exports.instanceOfClassificationMeasurement = exports.ClassificationMeasurementTypeEnum = void 0;
 /**
  * @export
  */
@@ -37,9 +32,11 @@ function instanceOfClassificationMeasurement(value) {
         return false;
     return true;
 }
+exports.instanceOfClassificationMeasurement = instanceOfClassificationMeasurement;
 function ClassificationMeasurementFromJSON(json) {
     return ClassificationMeasurementFromJSONTyped(json, false);
 }
+exports.ClassificationMeasurementFromJSON = ClassificationMeasurementFromJSON;
 function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -50,9 +47,11 @@ function ClassificationMeasurementFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.ClassificationMeasurementFromJSONTyped = ClassificationMeasurementFromJSONTyped;
 function ClassificationMeasurementToJSON(json) {
     return ClassificationMeasurementToJSONTyped(json, false);
 }
+exports.ClassificationMeasurementToJSON = ClassificationMeasurementToJSON;
 function ClassificationMeasurementToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -63,3 +62,4 @@ function ClassificationMeasurementToJSONTyped(value, ignoreDiscriminator = false
         'type': value['type'],
     };
 }
+exports.ClassificationMeasurementToJSONTyped = ClassificationMeasurementToJSONTyped;

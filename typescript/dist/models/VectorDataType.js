@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VectorDataType = void 0;
-exports.instanceOfVectorDataType = instanceOfVectorDataType;
-exports.VectorDataTypeFromJSON = VectorDataTypeFromJSON;
-exports.VectorDataTypeFromJSONTyped = VectorDataTypeFromJSONTyped;
-exports.VectorDataTypeToJSON = VectorDataTypeToJSON;
-exports.VectorDataTypeToJSONTyped = VectorDataTypeToJSONTyped;
+exports.VectorDataTypeToJSONTyped = exports.VectorDataTypeToJSON = exports.VectorDataTypeFromJSONTyped = exports.VectorDataTypeFromJSON = exports.instanceOfVectorDataType = exports.VectorDataType = void 0;
 /**
  * An enum that contains all possible vector data types
  * @export
@@ -39,15 +34,20 @@ function instanceOfVectorDataType(value) {
     }
     return false;
 }
+exports.instanceOfVectorDataType = instanceOfVectorDataType;
 function VectorDataTypeFromJSON(json) {
     return VectorDataTypeFromJSONTyped(json, false);
 }
+exports.VectorDataTypeFromJSON = VectorDataTypeFromJSON;
 function VectorDataTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.VectorDataTypeFromJSONTyped = VectorDataTypeFromJSONTyped;
 function VectorDataTypeToJSON(value) {
     return value;
 }
+exports.VectorDataTypeToJSON = VectorDataTypeToJSON;
 function VectorDataTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.VectorDataTypeToJSONTyped = VectorDataTypeToJSONTyped;

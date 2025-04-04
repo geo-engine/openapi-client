@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfFormatSpecificsOneOf = instanceOfFormatSpecificsOneOf;
-exports.FormatSpecificsOneOfFromJSON = FormatSpecificsOneOfFromJSON;
-exports.FormatSpecificsOneOfFromJSONTyped = FormatSpecificsOneOfFromJSONTyped;
-exports.FormatSpecificsOneOfToJSON = FormatSpecificsOneOfToJSON;
-exports.FormatSpecificsOneOfToJSONTyped = FormatSpecificsOneOfToJSONTyped;
+exports.FormatSpecificsOneOfToJSONTyped = exports.FormatSpecificsOneOfToJSON = exports.FormatSpecificsOneOfFromJSONTyped = exports.FormatSpecificsOneOfFromJSON = exports.instanceOfFormatSpecificsOneOf = void 0;
 const FormatSpecificsOneOfCsv_1 = require("./FormatSpecificsOneOfCsv");
 /**
  * Check if a given object implements the FormatSpecificsOneOf interface.
@@ -27,9 +23,11 @@ function instanceOfFormatSpecificsOneOf(value) {
         return false;
     return true;
 }
+exports.instanceOfFormatSpecificsOneOf = instanceOfFormatSpecificsOneOf;
 function FormatSpecificsOneOfFromJSON(json) {
     return FormatSpecificsOneOfFromJSONTyped(json, false);
 }
+exports.FormatSpecificsOneOfFromJSON = FormatSpecificsOneOfFromJSON;
 function FormatSpecificsOneOfFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function FormatSpecificsOneOfFromJSONTyped(json, ignoreDiscriminator) {
         'csv': (0, FormatSpecificsOneOfCsv_1.FormatSpecificsOneOfCsvFromJSON)(json['csv']),
     };
 }
+exports.FormatSpecificsOneOfFromJSONTyped = FormatSpecificsOneOfFromJSONTyped;
 function FormatSpecificsOneOfToJSON(json) {
     return FormatSpecificsOneOfToJSONTyped(json, false);
 }
+exports.FormatSpecificsOneOfToJSON = FormatSpecificsOneOfToJSON;
 function FormatSpecificsOneOfToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -49,3 +49,4 @@ function FormatSpecificsOneOfToJSONTyped(value, ignoreDiscriminator = false) {
         'csv': (0, FormatSpecificsOneOfCsv_1.FormatSpecificsOneOfCsvToJSON)(value['csv']),
     };
 }
+exports.FormatSpecificsOneOfToJSONTyped = FormatSpecificsOneOfToJSONTyped;

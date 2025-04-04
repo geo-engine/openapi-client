@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDurationSpecInfiniteTypeEnum = void 0;
-exports.instanceOfOgrSourceDurationSpecInfinite = instanceOfOgrSourceDurationSpecInfinite;
-exports.OgrSourceDurationSpecInfiniteFromJSON = OgrSourceDurationSpecInfiniteFromJSON;
-exports.OgrSourceDurationSpecInfiniteFromJSONTyped = OgrSourceDurationSpecInfiniteFromJSONTyped;
-exports.OgrSourceDurationSpecInfiniteToJSON = OgrSourceDurationSpecInfiniteToJSON;
-exports.OgrSourceDurationSpecInfiniteToJSONTyped = OgrSourceDurationSpecInfiniteToJSONTyped;
+exports.OgrSourceDurationSpecInfiniteToJSONTyped = exports.OgrSourceDurationSpecInfiniteToJSON = exports.OgrSourceDurationSpecInfiniteFromJSONTyped = exports.OgrSourceDurationSpecInfiniteFromJSON = exports.instanceOfOgrSourceDurationSpecInfinite = exports.OgrSourceDurationSpecInfiniteTypeEnum = void 0;
 /**
  * @export
  */
@@ -33,9 +28,11 @@ function instanceOfOgrSourceDurationSpecInfinite(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrSourceDurationSpecInfinite = instanceOfOgrSourceDurationSpecInfinite;
 function OgrSourceDurationSpecInfiniteFromJSON(json) {
     return OgrSourceDurationSpecInfiniteFromJSONTyped(json, false);
 }
+exports.OgrSourceDurationSpecInfiniteFromJSON = OgrSourceDurationSpecInfiniteFromJSON;
 function OgrSourceDurationSpecInfiniteFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -44,9 +41,11 @@ function OgrSourceDurationSpecInfiniteFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.OgrSourceDurationSpecInfiniteFromJSONTyped = OgrSourceDurationSpecInfiniteFromJSONTyped;
 function OgrSourceDurationSpecInfiniteToJSON(json) {
     return OgrSourceDurationSpecInfiniteToJSONTyped(json, false);
 }
+exports.OgrSourceDurationSpecInfiniteToJSON = OgrSourceDurationSpecInfiniteToJSON;
 function OgrSourceDurationSpecInfiniteToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -55,3 +54,4 @@ function OgrSourceDurationSpecInfiniteToJSONTyped(value, ignoreDiscriminator = f
         'type': value['type'],
     };
 }
+exports.OgrSourceDurationSpecInfiniteToJSONTyped = OgrSourceDurationSpecInfiniteToJSONTyped;

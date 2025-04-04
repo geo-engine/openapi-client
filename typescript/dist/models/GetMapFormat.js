@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetMapFormat = void 0;
-exports.instanceOfGetMapFormat = instanceOfGetMapFormat;
-exports.GetMapFormatFromJSON = GetMapFormatFromJSON;
-exports.GetMapFormatFromJSONTyped = GetMapFormatFromJSONTyped;
-exports.GetMapFormatToJSON = GetMapFormatToJSON;
-exports.GetMapFormatToJSONTyped = GetMapFormatToJSONTyped;
+exports.GetMapFormatToJSONTyped = exports.GetMapFormatToJSON = exports.GetMapFormatFromJSONTyped = exports.GetMapFormatFromJSON = exports.instanceOfGetMapFormat = exports.GetMapFormat = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfGetMapFormat(value) {
     }
     return false;
 }
+exports.instanceOfGetMapFormat = instanceOfGetMapFormat;
 function GetMapFormatFromJSON(json) {
     return GetMapFormatFromJSONTyped(json, false);
 }
+exports.GetMapFormatFromJSON = GetMapFormatFromJSON;
 function GetMapFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.GetMapFormatFromJSONTyped = GetMapFormatFromJSONTyped;
 function GetMapFormatToJSON(value) {
     return value;
 }
+exports.GetMapFormatToJSON = GetMapFormatToJSON;
 function GetMapFormatToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.GetMapFormatToJSONTyped = GetMapFormatToJSONTyped;

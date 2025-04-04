@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DerivedNumberTypeEnum = void 0;
-exports.instanceOfDerivedNumber = instanceOfDerivedNumber;
-exports.DerivedNumberFromJSON = DerivedNumberFromJSON;
-exports.DerivedNumberFromJSONTyped = DerivedNumberFromJSONTyped;
-exports.DerivedNumberToJSON = DerivedNumberToJSON;
-exports.DerivedNumberToJSONTyped = DerivedNumberToJSONTyped;
+exports.DerivedNumberToJSONTyped = exports.DerivedNumberToJSON = exports.DerivedNumberFromJSONTyped = exports.DerivedNumberFromJSON = exports.instanceOfDerivedNumber = exports.DerivedNumberTypeEnum = void 0;
 /**
  * @export
  */
@@ -39,9 +34,11 @@ function instanceOfDerivedNumber(value) {
         return false;
     return true;
 }
+exports.instanceOfDerivedNumber = instanceOfDerivedNumber;
 function DerivedNumberFromJSON(json) {
     return DerivedNumberFromJSONTyped(json, false);
 }
+exports.DerivedNumberFromJSON = DerivedNumberFromJSON;
 function DerivedNumberFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -53,9 +50,11 @@ function DerivedNumberFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.DerivedNumberFromJSONTyped = DerivedNumberFromJSONTyped;
 function DerivedNumberToJSON(json) {
     return DerivedNumberToJSONTyped(json, false);
 }
+exports.DerivedNumberToJSON = DerivedNumberToJSON;
 function DerivedNumberToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -67,3 +66,4 @@ function DerivedNumberToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.DerivedNumberToJSONTyped = DerivedNumberToJSONTyped;

@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfUpdateLayerCollection = instanceOfUpdateLayerCollection;
-exports.UpdateLayerCollectionFromJSON = UpdateLayerCollectionFromJSON;
-exports.UpdateLayerCollectionFromJSONTyped = UpdateLayerCollectionFromJSONTyped;
-exports.UpdateLayerCollectionToJSON = UpdateLayerCollectionToJSON;
-exports.UpdateLayerCollectionToJSONTyped = UpdateLayerCollectionToJSONTyped;
+exports.UpdateLayerCollectionToJSONTyped = exports.UpdateLayerCollectionToJSON = exports.UpdateLayerCollectionFromJSONTyped = exports.UpdateLayerCollectionFromJSON = exports.instanceOfUpdateLayerCollection = void 0;
 /**
  * Check if a given object implements the UpdateLayerCollection interface.
  */
@@ -28,9 +24,11 @@ function instanceOfUpdateLayerCollection(value) {
         return false;
     return true;
 }
+exports.instanceOfUpdateLayerCollection = instanceOfUpdateLayerCollection;
 function UpdateLayerCollectionFromJSON(json) {
     return UpdateLayerCollectionFromJSONTyped(json, false);
 }
+exports.UpdateLayerCollectionFromJSON = UpdateLayerCollectionFromJSON;
 function UpdateLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function UpdateLayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
         'properties': json['properties'] == null ? undefined : json['properties'],
     };
 }
+exports.UpdateLayerCollectionFromJSONTyped = UpdateLayerCollectionFromJSONTyped;
 function UpdateLayerCollectionToJSON(json) {
     return UpdateLayerCollectionToJSONTyped(json, false);
 }
+exports.UpdateLayerCollectionToJSON = UpdateLayerCollectionToJSON;
 function UpdateLayerCollectionToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -54,3 +54,4 @@ function UpdateLayerCollectionToJSONTyped(value, ignoreDiscriminator = false) {
         'properties': value['properties'],
     };
 }
+exports.UpdateLayerCollectionToJSONTyped = UpdateLayerCollectionToJSONTyped;

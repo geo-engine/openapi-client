@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfUploadFileLayersResponse = instanceOfUploadFileLayersResponse;
-exports.UploadFileLayersResponseFromJSON = UploadFileLayersResponseFromJSON;
-exports.UploadFileLayersResponseFromJSONTyped = UploadFileLayersResponseFromJSONTyped;
-exports.UploadFileLayersResponseToJSON = UploadFileLayersResponseToJSON;
-exports.UploadFileLayersResponseToJSONTyped = UploadFileLayersResponseToJSONTyped;
+exports.UploadFileLayersResponseToJSONTyped = exports.UploadFileLayersResponseToJSON = exports.UploadFileLayersResponseFromJSONTyped = exports.UploadFileLayersResponseFromJSON = exports.instanceOfUploadFileLayersResponse = void 0;
 /**
  * Check if a given object implements the UploadFileLayersResponse interface.
  */
@@ -26,9 +22,11 @@ function instanceOfUploadFileLayersResponse(value) {
         return false;
     return true;
 }
+exports.instanceOfUploadFileLayersResponse = instanceOfUploadFileLayersResponse;
 function UploadFileLayersResponseFromJSON(json) {
     return UploadFileLayersResponseFromJSONTyped(json, false);
 }
+exports.UploadFileLayersResponseFromJSON = UploadFileLayersResponseFromJSON;
 function UploadFileLayersResponseFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function UploadFileLayersResponseFromJSONTyped(json, ignoreDiscriminator) {
         'layers': json['layers'],
     };
 }
+exports.UploadFileLayersResponseFromJSONTyped = UploadFileLayersResponseFromJSONTyped;
 function UploadFileLayersResponseToJSON(json) {
     return UploadFileLayersResponseToJSONTyped(json, false);
 }
+exports.UploadFileLayersResponseToJSON = UploadFileLayersResponseToJSON;
 function UploadFileLayersResponseToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function UploadFileLayersResponseToJSONTyped(value, ignoreDiscriminator = false)
         'layers': value['layers'],
     };
 }
+exports.UploadFileLayersResponseToJSONTyped = UploadFileLayersResponseToJSONTyped;

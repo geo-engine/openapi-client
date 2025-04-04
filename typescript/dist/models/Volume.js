@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfVolume = instanceOfVolume;
-exports.VolumeFromJSON = VolumeFromJSON;
-exports.VolumeFromJSONTyped = VolumeFromJSONTyped;
-exports.VolumeToJSON = VolumeToJSON;
-exports.VolumeToJSONTyped = VolumeToJSONTyped;
+exports.VolumeToJSONTyped = exports.VolumeToJSON = exports.VolumeFromJSONTyped = exports.VolumeFromJSON = exports.instanceOfVolume = void 0;
 /**
  * Check if a given object implements the Volume interface.
  */
@@ -26,9 +22,11 @@ function instanceOfVolume(value) {
         return false;
     return true;
 }
+exports.instanceOfVolume = instanceOfVolume;
 function VolumeFromJSON(json) {
     return VolumeFromJSONTyped(json, false);
 }
+exports.VolumeFromJSON = VolumeFromJSON;
 function VolumeFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function VolumeFromJSONTyped(json, ignoreDiscriminator) {
         'path': json['path'] == null ? undefined : json['path'],
     };
 }
+exports.VolumeFromJSONTyped = VolumeFromJSONTyped;
 function VolumeToJSON(json) {
     return VolumeToJSONTyped(json, false);
 }
+exports.VolumeToJSON = VolumeToJSON;
 function VolumeToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -50,3 +50,4 @@ function VolumeToJSONTyped(value, ignoreDiscriminator = false) {
         'path': value['path'],
     };
 }
+exports.VolumeToJSONTyped = VolumeToJSONTyped;

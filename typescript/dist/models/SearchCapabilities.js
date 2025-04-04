@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfSearchCapabilities = instanceOfSearchCapabilities;
-exports.SearchCapabilitiesFromJSON = SearchCapabilitiesFromJSON;
-exports.SearchCapabilitiesFromJSONTyped = SearchCapabilitiesFromJSONTyped;
-exports.SearchCapabilitiesToJSON = SearchCapabilitiesToJSON;
-exports.SearchCapabilitiesToJSONTyped = SearchCapabilitiesToJSONTyped;
+exports.SearchCapabilitiesToJSONTyped = exports.SearchCapabilitiesToJSON = exports.SearchCapabilitiesFromJSONTyped = exports.SearchCapabilitiesFromJSON = exports.instanceOfSearchCapabilities = void 0;
 const SearchTypes_1 = require("./SearchTypes");
 /**
  * Check if a given object implements the SearchCapabilities interface.
@@ -29,9 +25,11 @@ function instanceOfSearchCapabilities(value) {
         return false;
     return true;
 }
+exports.instanceOfSearchCapabilities = instanceOfSearchCapabilities;
 function SearchCapabilitiesFromJSON(json) {
     return SearchCapabilitiesFromJSONTyped(json, false);
 }
+exports.SearchCapabilitiesFromJSON = SearchCapabilitiesFromJSON;
 function SearchCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -42,9 +40,11 @@ function SearchCapabilitiesFromJSONTyped(json, ignoreDiscriminator) {
         'searchTypes': (0, SearchTypes_1.SearchTypesFromJSON)(json['searchTypes']),
     };
 }
+exports.SearchCapabilitiesFromJSONTyped = SearchCapabilitiesFromJSONTyped;
 function SearchCapabilitiesToJSON(json) {
     return SearchCapabilitiesToJSONTyped(json, false);
 }
+exports.SearchCapabilitiesToJSON = SearchCapabilitiesToJSON;
 function SearchCapabilitiesToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -55,3 +55,4 @@ function SearchCapabilitiesToJSONTyped(value, ignoreDiscriminator = false) {
         'searchTypes': (0, SearchTypes_1.SearchTypesToJSON)(value['searchTypes']),
     };
 }
+exports.SearchCapabilitiesToJSONTyped = SearchCapabilitiesToJSONTyped;

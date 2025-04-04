@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfTaskListOptions = instanceOfTaskListOptions;
-exports.TaskListOptionsFromJSON = TaskListOptionsFromJSON;
-exports.TaskListOptionsFromJSONTyped = TaskListOptionsFromJSONTyped;
-exports.TaskListOptionsToJSON = TaskListOptionsToJSON;
-exports.TaskListOptionsToJSONTyped = TaskListOptionsToJSONTyped;
+exports.TaskListOptionsToJSONTyped = exports.TaskListOptionsToJSON = exports.TaskListOptionsFromJSONTyped = exports.TaskListOptionsFromJSON = exports.instanceOfTaskListOptions = void 0;
 const TaskFilter_1 = require("./TaskFilter");
 /**
  * Check if a given object implements the TaskListOptions interface.
@@ -25,9 +21,11 @@ const TaskFilter_1 = require("./TaskFilter");
 function instanceOfTaskListOptions(value) {
     return true;
 }
+exports.instanceOfTaskListOptions = instanceOfTaskListOptions;
 function TaskListOptionsFromJSON(json) {
     return TaskListOptionsFromJSONTyped(json, false);
 }
+exports.TaskListOptionsFromJSON = TaskListOptionsFromJSON;
 function TaskListOptionsFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function TaskListOptionsFromJSONTyped(json, ignoreDiscriminator) {
         'offset': json['offset'] == null ? undefined : json['offset'],
     };
 }
+exports.TaskListOptionsFromJSONTyped = TaskListOptionsFromJSONTyped;
 function TaskListOptionsToJSON(json) {
     return TaskListOptionsToJSONTyped(json, false);
 }
+exports.TaskListOptionsToJSON = TaskListOptionsToJSON;
 function TaskListOptionsToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -51,3 +51,4 @@ function TaskListOptionsToJSONTyped(value, ignoreDiscriminator = false) {
         'offset': value['offset'],
     };
 }
+exports.TaskListOptionsToJSONTyped = TaskListOptionsToJSONTyped;

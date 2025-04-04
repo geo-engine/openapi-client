@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceErrorSpec = void 0;
-exports.instanceOfOgrSourceErrorSpec = instanceOfOgrSourceErrorSpec;
-exports.OgrSourceErrorSpecFromJSON = OgrSourceErrorSpecFromJSON;
-exports.OgrSourceErrorSpecFromJSONTyped = OgrSourceErrorSpecFromJSONTyped;
-exports.OgrSourceErrorSpecToJSON = OgrSourceErrorSpecToJSON;
-exports.OgrSourceErrorSpecToJSONTyped = OgrSourceErrorSpecToJSONTyped;
+exports.OgrSourceErrorSpecToJSONTyped = exports.OgrSourceErrorSpecToJSON = exports.OgrSourceErrorSpecFromJSONTyped = exports.OgrSourceErrorSpecFromJSON = exports.instanceOfOgrSourceErrorSpec = exports.OgrSourceErrorSpec = void 0;
 /**
  *
  * @export
@@ -37,15 +32,20 @@ function instanceOfOgrSourceErrorSpec(value) {
     }
     return false;
 }
+exports.instanceOfOgrSourceErrorSpec = instanceOfOgrSourceErrorSpec;
 function OgrSourceErrorSpecFromJSON(json) {
     return OgrSourceErrorSpecFromJSONTyped(json, false);
 }
+exports.OgrSourceErrorSpecFromJSON = OgrSourceErrorSpecFromJSON;
 function OgrSourceErrorSpecFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.OgrSourceErrorSpecFromJSONTyped = OgrSourceErrorSpecFromJSONTyped;
 function OgrSourceErrorSpecToJSON(value) {
     return value;
 }
+exports.OgrSourceErrorSpecToJSON = OgrSourceErrorSpecToJSON;
 function OgrSourceErrorSpecToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.OgrSourceErrorSpecToJSONTyped = OgrSourceErrorSpecToJSONTyped;

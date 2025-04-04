@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfVectorResultDescriptor = instanceOfVectorResultDescriptor;
-exports.VectorResultDescriptorFromJSON = VectorResultDescriptorFromJSON;
-exports.VectorResultDescriptorFromJSONTyped = VectorResultDescriptorFromJSONTyped;
-exports.VectorResultDescriptorToJSON = VectorResultDescriptorToJSON;
-exports.VectorResultDescriptorToJSONTyped = VectorResultDescriptorToJSONTyped;
+exports.VectorResultDescriptorToJSONTyped = exports.VectorResultDescriptorToJSON = exports.VectorResultDescriptorFromJSONTyped = exports.VectorResultDescriptorFromJSON = exports.instanceOfVectorResultDescriptor = void 0;
 const runtime_1 = require("../runtime");
 const VectorDataType_1 = require("./VectorDataType");
 const TimeInterval_1 = require("./TimeInterval");
@@ -35,9 +31,11 @@ function instanceOfVectorResultDescriptor(value) {
         return false;
     return true;
 }
+exports.instanceOfVectorResultDescriptor = instanceOfVectorResultDescriptor;
 function VectorResultDescriptorFromJSON(json) {
     return VectorResultDescriptorFromJSONTyped(json, false);
 }
+exports.VectorResultDescriptorFromJSON = VectorResultDescriptorFromJSON;
 function VectorResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -50,9 +48,11 @@ function VectorResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
         'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
     };
 }
+exports.VectorResultDescriptorFromJSONTyped = VectorResultDescriptorFromJSONTyped;
 function VectorResultDescriptorToJSON(json) {
     return VectorResultDescriptorToJSONTyped(json, false);
 }
+exports.VectorResultDescriptorToJSON = VectorResultDescriptorToJSON;
 function VectorResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -65,3 +65,4 @@ function VectorResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
         'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
     };
 }
+exports.VectorResultDescriptorToJSONTyped = VectorResultDescriptorToJSONTyped;

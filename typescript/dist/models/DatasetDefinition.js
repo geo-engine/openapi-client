@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfDatasetDefinition = instanceOfDatasetDefinition;
-exports.DatasetDefinitionFromJSON = DatasetDefinitionFromJSON;
-exports.DatasetDefinitionFromJSONTyped = DatasetDefinitionFromJSONTyped;
-exports.DatasetDefinitionToJSON = DatasetDefinitionToJSON;
-exports.DatasetDefinitionToJSONTyped = DatasetDefinitionToJSONTyped;
+exports.DatasetDefinitionToJSONTyped = exports.DatasetDefinitionToJSON = exports.DatasetDefinitionFromJSONTyped = exports.DatasetDefinitionFromJSON = exports.instanceOfDatasetDefinition = void 0;
 const MetaDataDefinition_1 = require("./MetaDataDefinition");
 const AddDataset_1 = require("./AddDataset");
 /**
@@ -30,9 +26,11 @@ function instanceOfDatasetDefinition(value) {
         return false;
     return true;
 }
+exports.instanceOfDatasetDefinition = instanceOfDatasetDefinition;
 function DatasetDefinitionFromJSON(json) {
     return DatasetDefinitionFromJSONTyped(json, false);
 }
+exports.DatasetDefinitionFromJSON = DatasetDefinitionFromJSON;
 function DatasetDefinitionFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -42,9 +40,11 @@ function DatasetDefinitionFromJSONTyped(json, ignoreDiscriminator) {
         'properties': (0, AddDataset_1.AddDatasetFromJSON)(json['properties']),
     };
 }
+exports.DatasetDefinitionFromJSONTyped = DatasetDefinitionFromJSONTyped;
 function DatasetDefinitionToJSON(json) {
     return DatasetDefinitionToJSONTyped(json, false);
 }
+exports.DatasetDefinitionToJSON = DatasetDefinitionToJSON;
 function DatasetDefinitionToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -54,3 +54,4 @@ function DatasetDefinitionToJSONTyped(value, ignoreDiscriminator = false) {
         'properties': (0, AddDataset_1.AddDatasetToJSON)(value['properties']),
     };
 }
+exports.DatasetDefinitionToJSONTyped = DatasetDefinitionToJSONTyped;

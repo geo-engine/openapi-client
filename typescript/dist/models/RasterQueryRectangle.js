@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfRasterQueryRectangle = instanceOfRasterQueryRectangle;
-exports.RasterQueryRectangleFromJSON = RasterQueryRectangleFromJSON;
-exports.RasterQueryRectangleFromJSONTyped = RasterQueryRectangleFromJSONTyped;
-exports.RasterQueryRectangleToJSON = RasterQueryRectangleToJSON;
-exports.RasterQueryRectangleToJSONTyped = RasterQueryRectangleToJSONTyped;
+exports.RasterQueryRectangleToJSONTyped = exports.RasterQueryRectangleToJSON = exports.RasterQueryRectangleFromJSONTyped = exports.RasterQueryRectangleFromJSON = exports.instanceOfRasterQueryRectangle = void 0;
 const SpatialResolution_1 = require("./SpatialResolution");
 const TimeInterval_1 = require("./TimeInterval");
 const SpatialPartition2D_1 = require("./SpatialPartition2D");
@@ -33,9 +29,11 @@ function instanceOfRasterQueryRectangle(value) {
         return false;
     return true;
 }
+exports.instanceOfRasterQueryRectangle = instanceOfRasterQueryRectangle;
 function RasterQueryRectangleFromJSON(json) {
     return RasterQueryRectangleFromJSONTyped(json, false);
 }
+exports.RasterQueryRectangleFromJSON = RasterQueryRectangleFromJSON;
 function RasterQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -46,9 +44,11 @@ function RasterQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
         'timeInterval': (0, TimeInterval_1.TimeIntervalFromJSON)(json['timeInterval']),
     };
 }
+exports.RasterQueryRectangleFromJSONTyped = RasterQueryRectangleFromJSONTyped;
 function RasterQueryRectangleToJSON(json) {
     return RasterQueryRectangleToJSONTyped(json, false);
 }
+exports.RasterQueryRectangleToJSON = RasterQueryRectangleToJSON;
 function RasterQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +59,4 @@ function RasterQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
         'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
     };
 }
+exports.RasterQueryRectangleToJSONTyped = RasterQueryRectangleToJSONTyped;

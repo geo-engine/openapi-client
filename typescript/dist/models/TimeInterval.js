@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfTimeInterval = instanceOfTimeInterval;
-exports.TimeIntervalFromJSON = TimeIntervalFromJSON;
-exports.TimeIntervalFromJSONTyped = TimeIntervalFromJSONTyped;
-exports.TimeIntervalToJSON = TimeIntervalToJSON;
-exports.TimeIntervalToJSONTyped = TimeIntervalToJSONTyped;
+exports.TimeIntervalToJSONTyped = exports.TimeIntervalToJSON = exports.TimeIntervalFromJSONTyped = exports.TimeIntervalFromJSON = exports.instanceOfTimeInterval = void 0;
 /**
  * Check if a given object implements the TimeInterval interface.
  */
@@ -28,9 +24,11 @@ function instanceOfTimeInterval(value) {
         return false;
     return true;
 }
+exports.instanceOfTimeInterval = instanceOfTimeInterval;
 function TimeIntervalFromJSON(json) {
     return TimeIntervalFromJSONTyped(json, false);
 }
+exports.TimeIntervalFromJSON = TimeIntervalFromJSON;
 function TimeIntervalFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function TimeIntervalFromJSONTyped(json, ignoreDiscriminator) {
         'start': json['start'],
     };
 }
+exports.TimeIntervalFromJSONTyped = TimeIntervalFromJSONTyped;
 function TimeIntervalToJSON(json) {
     return TimeIntervalToJSONTyped(json, false);
 }
+exports.TimeIntervalToJSON = TimeIntervalToJSON;
 function TimeIntervalToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function TimeIntervalToJSONTyped(value, ignoreDiscriminator = false) {
         'start': value['start'],
     };
 }
+exports.TimeIntervalToJSONTyped = TimeIntervalToJSONTyped;

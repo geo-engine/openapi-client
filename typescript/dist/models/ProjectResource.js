@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectResourceTypeEnum = void 0;
-exports.instanceOfProjectResource = instanceOfProjectResource;
-exports.ProjectResourceFromJSON = ProjectResourceFromJSON;
-exports.ProjectResourceFromJSONTyped = ProjectResourceFromJSONTyped;
-exports.ProjectResourceToJSON = ProjectResourceToJSON;
-exports.ProjectResourceToJSONTyped = ProjectResourceToJSONTyped;
+exports.ProjectResourceToJSONTyped = exports.ProjectResourceToJSON = exports.ProjectResourceFromJSONTyped = exports.ProjectResourceFromJSON = exports.instanceOfProjectResource = exports.ProjectResourceTypeEnum = void 0;
 /**
  * @export
  */
@@ -35,9 +30,11 @@ function instanceOfProjectResource(value) {
         return false;
     return true;
 }
+exports.instanceOfProjectResource = instanceOfProjectResource;
 function ProjectResourceFromJSON(json) {
     return ProjectResourceFromJSONTyped(json, false);
 }
+exports.ProjectResourceFromJSON = ProjectResourceFromJSON;
 function ProjectResourceFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +44,11 @@ function ProjectResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.ProjectResourceFromJSONTyped = ProjectResourceFromJSONTyped;
 function ProjectResourceToJSON(json) {
     return ProjectResourceToJSONTyped(json, false);
 }
+exports.ProjectResourceToJSON = ProjectResourceToJSON;
 function ProjectResourceToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +58,4 @@ function ProjectResourceToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.ProjectResourceToJSONTyped = ProjectResourceToJSONTyped;

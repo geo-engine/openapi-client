@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfSpatialResolution = instanceOfSpatialResolution;
-exports.SpatialResolutionFromJSON = SpatialResolutionFromJSON;
-exports.SpatialResolutionFromJSONTyped = SpatialResolutionFromJSONTyped;
-exports.SpatialResolutionToJSON = SpatialResolutionToJSON;
-exports.SpatialResolutionToJSONTyped = SpatialResolutionToJSONTyped;
+exports.SpatialResolutionToJSONTyped = exports.SpatialResolutionToJSON = exports.SpatialResolutionFromJSONTyped = exports.SpatialResolutionFromJSON = exports.instanceOfSpatialResolution = void 0;
 /**
  * Check if a given object implements the SpatialResolution interface.
  */
@@ -28,9 +24,11 @@ function instanceOfSpatialResolution(value) {
         return false;
     return true;
 }
+exports.instanceOfSpatialResolution = instanceOfSpatialResolution;
 function SpatialResolutionFromJSON(json) {
     return SpatialResolutionFromJSONTyped(json, false);
 }
+exports.SpatialResolutionFromJSON = SpatialResolutionFromJSON;
 function SpatialResolutionFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function SpatialResolutionFromJSONTyped(json, ignoreDiscriminator) {
         'y': json['y'],
     };
 }
+exports.SpatialResolutionFromJSONTyped = SpatialResolutionFromJSONTyped;
 function SpatialResolutionToJSON(json) {
     return SpatialResolutionToJSONTyped(json, false);
 }
+exports.SpatialResolutionToJSON = SpatialResolutionToJSON;
 function SpatialResolutionToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function SpatialResolutionToJSONTyped(value, ignoreDiscriminator = false) {
         'y': value['y'],
     };
 }
+exports.SpatialResolutionToJSONTyped = SpatialResolutionToJSONTyped;

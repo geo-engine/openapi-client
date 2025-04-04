@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfMlModelNameResponse = instanceOfMlModelNameResponse;
-exports.MlModelNameResponseFromJSON = MlModelNameResponseFromJSON;
-exports.MlModelNameResponseFromJSONTyped = MlModelNameResponseFromJSONTyped;
-exports.MlModelNameResponseToJSON = MlModelNameResponseToJSON;
-exports.MlModelNameResponseToJSONTyped = MlModelNameResponseToJSONTyped;
+exports.MlModelNameResponseToJSONTyped = exports.MlModelNameResponseToJSON = exports.MlModelNameResponseFromJSONTyped = exports.MlModelNameResponseFromJSON = exports.instanceOfMlModelNameResponse = void 0;
 /**
  * Check if a given object implements the MlModelNameResponse interface.
  */
@@ -26,9 +22,11 @@ function instanceOfMlModelNameResponse(value) {
         return false;
     return true;
 }
+exports.instanceOfMlModelNameResponse = instanceOfMlModelNameResponse;
 function MlModelNameResponseFromJSON(json) {
     return MlModelNameResponseFromJSONTyped(json, false);
 }
+exports.MlModelNameResponseFromJSON = MlModelNameResponseFromJSON;
 function MlModelNameResponseFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function MlModelNameResponseFromJSONTyped(json, ignoreDiscriminator) {
         'mlModelName': json['mlModelName'],
     };
 }
+exports.MlModelNameResponseFromJSONTyped = MlModelNameResponseFromJSONTyped;
 function MlModelNameResponseToJSON(json) {
     return MlModelNameResponseToJSONTyped(json, false);
 }
+exports.MlModelNameResponseToJSON = MlModelNameResponseToJSON;
 function MlModelNameResponseToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function MlModelNameResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'mlModelName': value['mlModelName'],
     };
 }
+exports.MlModelNameResponseToJSONTyped = MlModelNameResponseToJSONTyped;

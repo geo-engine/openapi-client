@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProviderLayerCollectionId = instanceOfProviderLayerCollectionId;
-exports.ProviderLayerCollectionIdFromJSON = ProviderLayerCollectionIdFromJSON;
-exports.ProviderLayerCollectionIdFromJSONTyped = ProviderLayerCollectionIdFromJSONTyped;
-exports.ProviderLayerCollectionIdToJSON = ProviderLayerCollectionIdToJSON;
-exports.ProviderLayerCollectionIdToJSONTyped = ProviderLayerCollectionIdToJSONTyped;
+exports.ProviderLayerCollectionIdToJSONTyped = exports.ProviderLayerCollectionIdToJSON = exports.ProviderLayerCollectionIdFromJSONTyped = exports.ProviderLayerCollectionIdFromJSON = exports.instanceOfProviderLayerCollectionId = void 0;
 /**
  * Check if a given object implements the ProviderLayerCollectionId interface.
  */
@@ -28,9 +24,11 @@ function instanceOfProviderLayerCollectionId(value) {
         return false;
     return true;
 }
+exports.instanceOfProviderLayerCollectionId = instanceOfProviderLayerCollectionId;
 function ProviderLayerCollectionIdFromJSON(json) {
     return ProviderLayerCollectionIdFromJSONTyped(json, false);
 }
+exports.ProviderLayerCollectionIdFromJSON = ProviderLayerCollectionIdFromJSON;
 function ProviderLayerCollectionIdFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function ProviderLayerCollectionIdFromJSONTyped(json, ignoreDiscriminator) {
         'providerId': json['providerId'],
     };
 }
+exports.ProviderLayerCollectionIdFromJSONTyped = ProviderLayerCollectionIdFromJSONTyped;
 function ProviderLayerCollectionIdToJSON(json) {
     return ProviderLayerCollectionIdToJSONTyped(json, false);
 }
+exports.ProviderLayerCollectionIdToJSON = ProviderLayerCollectionIdToJSON;
 function ProviderLayerCollectionIdToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function ProviderLayerCollectionIdToJSONTyped(value, ignoreDiscriminator = false
         'providerId': value['providerId'],
     };
 }
+exports.ProviderLayerCollectionIdToJSONTyped = ProviderLayerCollectionIdToJSONTyped;

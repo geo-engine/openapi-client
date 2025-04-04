@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrMetaDataTypeEnum = void 0;
-exports.instanceOfOgrMetaData = instanceOfOgrMetaData;
-exports.OgrMetaDataFromJSON = OgrMetaDataFromJSON;
-exports.OgrMetaDataFromJSONTyped = OgrMetaDataFromJSONTyped;
-exports.OgrMetaDataToJSON = OgrMetaDataToJSON;
-exports.OgrMetaDataToJSONTyped = OgrMetaDataToJSONTyped;
+exports.OgrMetaDataToJSONTyped = exports.OgrMetaDataToJSON = exports.OgrMetaDataFromJSONTyped = exports.OgrMetaDataFromJSON = exports.instanceOfOgrMetaData = exports.OgrMetaDataTypeEnum = void 0;
 const VectorResultDescriptor_1 = require("./VectorResultDescriptor");
 const OgrSourceDataset_1 = require("./OgrSourceDataset");
 /**
@@ -39,9 +34,11 @@ function instanceOfOgrMetaData(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrMetaData = instanceOfOgrMetaData;
 function OgrMetaDataFromJSON(json) {
     return OgrMetaDataFromJSONTyped(json, false);
 }
+exports.OgrMetaDataFromJSON = OgrMetaDataFromJSON;
 function OgrMetaDataFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -52,9 +49,11 @@ function OgrMetaDataFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.OgrMetaDataFromJSONTyped = OgrMetaDataFromJSONTyped;
 function OgrMetaDataToJSON(json) {
     return OgrMetaDataToJSONTyped(json, false);
 }
+exports.OgrMetaDataToJSON = OgrMetaDataToJSON;
 function OgrMetaDataToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -65,3 +64,4 @@ function OgrMetaDataToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.OgrMetaDataToJSONTyped = OgrMetaDataToJSONTyped;

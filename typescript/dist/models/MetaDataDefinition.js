@@ -13,10 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MetaDataDefinitionFromJSON = MetaDataDefinitionFromJSON;
-exports.MetaDataDefinitionFromJSONTyped = MetaDataDefinitionFromJSONTyped;
-exports.MetaDataDefinitionToJSON = MetaDataDefinitionToJSON;
-exports.MetaDataDefinitionToJSONTyped = MetaDataDefinitionToJSONTyped;
+exports.MetaDataDefinitionToJSONTyped = exports.MetaDataDefinitionToJSON = exports.MetaDataDefinitionFromJSONTyped = exports.MetaDataDefinitionFromJSON = void 0;
 const GdalMetaDataList_1 = require("./GdalMetaDataList");
 const GdalMetaDataRegular_1 = require("./GdalMetaDataRegular");
 const GdalMetaDataStatic_1 = require("./GdalMetaDataStatic");
@@ -26,6 +23,7 @@ const OgrMetaData_1 = require("./OgrMetaData");
 function MetaDataDefinitionFromJSON(json) {
     return MetaDataDefinitionFromJSONTyped(json, false);
 }
+exports.MetaDataDefinitionFromJSON = MetaDataDefinitionFromJSON;
 function MetaDataDefinitionFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +45,11 @@ function MetaDataDefinitionFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of MetaDataDefinition exists with 'type=${json['type']}'`);
     }
 }
+exports.MetaDataDefinitionFromJSONTyped = MetaDataDefinitionFromJSONTyped;
 function MetaDataDefinitionToJSON(json) {
     return MetaDataDefinitionToJSONTyped(json, false);
 }
+exports.MetaDataDefinitionToJSON = MetaDataDefinitionToJSON;
 function MetaDataDefinitionToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -71,3 +71,4 @@ function MetaDataDefinitionToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of MetaDataDefinition exists with 'type=${value['type']}'`);
     }
 }
+exports.MetaDataDefinitionToJSONTyped = MetaDataDefinitionToJSONTyped;

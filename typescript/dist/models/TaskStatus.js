@@ -13,10 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskStatusFromJSON = TaskStatusFromJSON;
-exports.TaskStatusFromJSONTyped = TaskStatusFromJSONTyped;
-exports.TaskStatusToJSON = TaskStatusToJSON;
-exports.TaskStatusToJSONTyped = TaskStatusToJSONTyped;
+exports.TaskStatusToJSONTyped = exports.TaskStatusToJSON = exports.TaskStatusFromJSONTyped = exports.TaskStatusFromJSON = void 0;
 const TaskStatusAborted_1 = require("./TaskStatusAborted");
 const TaskStatusCompleted_1 = require("./TaskStatusCompleted");
 const TaskStatusFailed_1 = require("./TaskStatusFailed");
@@ -24,6 +21,7 @@ const TaskStatusRunning_1 = require("./TaskStatusRunning");
 function TaskStatusFromJSON(json) {
     return TaskStatusFromJSONTyped(json, false);
 }
+exports.TaskStatusFromJSON = TaskStatusFromJSON;
 function TaskStatusFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function TaskStatusFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of TaskStatus exists with 'status=${json['status']}'`);
     }
 }
+exports.TaskStatusFromJSONTyped = TaskStatusFromJSONTyped;
 function TaskStatusToJSON(json) {
     return TaskStatusToJSONTyped(json, false);
 }
+exports.TaskStatusToJSON = TaskStatusToJSON;
 function TaskStatusToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -61,3 +61,4 @@ function TaskStatusToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of TaskStatus exists with 'status=${value['status']}'`);
     }
 }
+exports.TaskStatusToJSONTyped = TaskStatusToJSONTyped;

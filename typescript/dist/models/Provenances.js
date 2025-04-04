@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProvenances = instanceOfProvenances;
-exports.ProvenancesFromJSON = ProvenancesFromJSON;
-exports.ProvenancesFromJSONTyped = ProvenancesFromJSONTyped;
-exports.ProvenancesToJSON = ProvenancesToJSON;
-exports.ProvenancesToJSONTyped = ProvenancesToJSONTyped;
+exports.ProvenancesToJSONTyped = exports.ProvenancesToJSON = exports.ProvenancesFromJSONTyped = exports.ProvenancesFromJSON = exports.instanceOfProvenances = void 0;
 const Provenance_1 = require("./Provenance");
 /**
  * Check if a given object implements the Provenances interface.
@@ -27,9 +23,11 @@ function instanceOfProvenances(value) {
         return false;
     return true;
 }
+exports.instanceOfProvenances = instanceOfProvenances;
 function ProvenancesFromJSON(json) {
     return ProvenancesFromJSONTyped(json, false);
 }
+exports.ProvenancesFromJSON = ProvenancesFromJSON;
 function ProvenancesFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function ProvenancesFromJSONTyped(json, ignoreDiscriminator) {
         'provenances': (json['provenances'].map(Provenance_1.ProvenanceFromJSON)),
     };
 }
+exports.ProvenancesFromJSONTyped = ProvenancesFromJSONTyped;
 function ProvenancesToJSON(json) {
     return ProvenancesToJSONTyped(json, false);
 }
+exports.ProvenancesToJSON = ProvenancesToJSON;
 function ProvenancesToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -49,3 +49,4 @@ function ProvenancesToJSONTyped(value, ignoreDiscriminator = false) {
         'provenances': (value['provenances'].map(Provenance_1.ProvenanceToJSON)),
     };
 }
+exports.ProvenancesToJSONTyped = ProvenancesToJSONTyped;

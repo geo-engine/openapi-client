@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDatasetTimeTypeNoneTypeEnum = void 0;
-exports.instanceOfOgrSourceDatasetTimeTypeNone = instanceOfOgrSourceDatasetTimeTypeNone;
-exports.OgrSourceDatasetTimeTypeNoneFromJSON = OgrSourceDatasetTimeTypeNoneFromJSON;
-exports.OgrSourceDatasetTimeTypeNoneFromJSONTyped = OgrSourceDatasetTimeTypeNoneFromJSONTyped;
-exports.OgrSourceDatasetTimeTypeNoneToJSON = OgrSourceDatasetTimeTypeNoneToJSON;
-exports.OgrSourceDatasetTimeTypeNoneToJSONTyped = OgrSourceDatasetTimeTypeNoneToJSONTyped;
+exports.OgrSourceDatasetTimeTypeNoneToJSONTyped = exports.OgrSourceDatasetTimeTypeNoneToJSON = exports.OgrSourceDatasetTimeTypeNoneFromJSONTyped = exports.OgrSourceDatasetTimeTypeNoneFromJSON = exports.instanceOfOgrSourceDatasetTimeTypeNone = exports.OgrSourceDatasetTimeTypeNoneTypeEnum = void 0;
 /**
  * @export
  */
@@ -33,9 +28,11 @@ function instanceOfOgrSourceDatasetTimeTypeNone(value) {
         return false;
     return true;
 }
+exports.instanceOfOgrSourceDatasetTimeTypeNone = instanceOfOgrSourceDatasetTimeTypeNone;
 function OgrSourceDatasetTimeTypeNoneFromJSON(json) {
     return OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, false);
 }
+exports.OgrSourceDatasetTimeTypeNoneFromJSON = OgrSourceDatasetTimeTypeNoneFromJSON;
 function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -44,9 +41,11 @@ function OgrSourceDatasetTimeTypeNoneFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.OgrSourceDatasetTimeTypeNoneFromJSONTyped = OgrSourceDatasetTimeTypeNoneFromJSONTyped;
 function OgrSourceDatasetTimeTypeNoneToJSON(json) {
     return OgrSourceDatasetTimeTypeNoneToJSONTyped(json, false);
 }
+exports.OgrSourceDatasetTimeTypeNoneToJSON = OgrSourceDatasetTimeTypeNoneToJSON;
 function OgrSourceDatasetTimeTypeNoneToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -55,3 +54,4 @@ function OgrSourceDatasetTimeTypeNoneToJSONTyped(value, ignoreDiscriminator = fa
         'type': value['type'],
     };
 }
+exports.OgrSourceDatasetTimeTypeNoneToJSONTyped = OgrSourceDatasetTimeTypeNoneToJSONTyped;

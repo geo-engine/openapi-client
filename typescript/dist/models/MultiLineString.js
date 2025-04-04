@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfMultiLineString = instanceOfMultiLineString;
-exports.MultiLineStringFromJSON = MultiLineStringFromJSON;
-exports.MultiLineStringFromJSONTyped = MultiLineStringFromJSONTyped;
-exports.MultiLineStringToJSON = MultiLineStringToJSON;
-exports.MultiLineStringToJSONTyped = MultiLineStringToJSONTyped;
+exports.MultiLineStringToJSONTyped = exports.MultiLineStringToJSON = exports.MultiLineStringFromJSONTyped = exports.MultiLineStringFromJSON = exports.instanceOfMultiLineString = void 0;
 /**
  * Check if a given object implements the MultiLineString interface.
  */
@@ -26,9 +22,11 @@ function instanceOfMultiLineString(value) {
         return false;
     return true;
 }
+exports.instanceOfMultiLineString = instanceOfMultiLineString;
 function MultiLineStringFromJSON(json) {
     return MultiLineStringFromJSONTyped(json, false);
 }
+exports.MultiLineStringFromJSON = MultiLineStringFromJSON;
 function MultiLineStringFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function MultiLineStringFromJSONTyped(json, ignoreDiscriminator) {
         'coordinates': json['coordinates'],
     };
 }
+exports.MultiLineStringFromJSONTyped = MultiLineStringFromJSONTyped;
 function MultiLineStringToJSON(json) {
     return MultiLineStringToJSONTyped(json, false);
 }
+exports.MultiLineStringToJSON = MultiLineStringToJSON;
 function MultiLineStringToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function MultiLineStringToJSONTyped(value, ignoreDiscriminator = false) {
         'coordinates': value['coordinates'],
     };
 }
+exports.MultiLineStringToJSONTyped = MultiLineStringToJSONTyped;

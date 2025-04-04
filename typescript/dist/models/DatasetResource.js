@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DatasetResourceTypeEnum = void 0;
-exports.instanceOfDatasetResource = instanceOfDatasetResource;
-exports.DatasetResourceFromJSON = DatasetResourceFromJSON;
-exports.DatasetResourceFromJSONTyped = DatasetResourceFromJSONTyped;
-exports.DatasetResourceToJSON = DatasetResourceToJSON;
-exports.DatasetResourceToJSONTyped = DatasetResourceToJSONTyped;
+exports.DatasetResourceToJSONTyped = exports.DatasetResourceToJSON = exports.DatasetResourceFromJSONTyped = exports.DatasetResourceFromJSON = exports.instanceOfDatasetResource = exports.DatasetResourceTypeEnum = void 0;
 /**
  * @export
  */
@@ -35,9 +30,11 @@ function instanceOfDatasetResource(value) {
         return false;
     return true;
 }
+exports.instanceOfDatasetResource = instanceOfDatasetResource;
 function DatasetResourceFromJSON(json) {
     return DatasetResourceFromJSONTyped(json, false);
 }
+exports.DatasetResourceFromJSON = DatasetResourceFromJSON;
 function DatasetResourceFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +44,11 @@ function DatasetResourceFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.DatasetResourceFromJSONTyped = DatasetResourceFromJSONTyped;
 function DatasetResourceToJSON(json) {
     return DatasetResourceToJSONTyped(json, false);
 }
+exports.DatasetResourceToJSON = DatasetResourceToJSON;
 function DatasetResourceToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +58,4 @@ function DatasetResourceToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.DatasetResourceToJSONTyped = DatasetResourceToJSONTyped;

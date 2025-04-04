@@ -13,16 +13,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OgrSourceDurationSpecFromJSON = OgrSourceDurationSpecFromJSON;
-exports.OgrSourceDurationSpecFromJSONTyped = OgrSourceDurationSpecFromJSONTyped;
-exports.OgrSourceDurationSpecToJSON = OgrSourceDurationSpecToJSON;
-exports.OgrSourceDurationSpecToJSONTyped = OgrSourceDurationSpecToJSONTyped;
+exports.OgrSourceDurationSpecToJSONTyped = exports.OgrSourceDurationSpecToJSON = exports.OgrSourceDurationSpecFromJSONTyped = exports.OgrSourceDurationSpecFromJSON = void 0;
 const OgrSourceDurationSpecInfinite_1 = require("./OgrSourceDurationSpecInfinite");
 const OgrSourceDurationSpecValue_1 = require("./OgrSourceDurationSpecValue");
 const OgrSourceDurationSpecZero_1 = require("./OgrSourceDurationSpecZero");
 function OgrSourceDurationSpecFromJSON(json) {
     return OgrSourceDurationSpecFromJSONTyped(json, false);
 }
+exports.OgrSourceDurationSpecFromJSON = OgrSourceDurationSpecFromJSON;
 function OgrSourceDurationSpecFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -38,9 +36,11 @@ function OgrSourceDurationSpecFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${json['type']}'`);
     }
 }
+exports.OgrSourceDurationSpecFromJSONTyped = OgrSourceDurationSpecFromJSONTyped;
 function OgrSourceDurationSpecToJSON(json) {
     return OgrSourceDurationSpecToJSONTyped(json, false);
 }
+exports.OgrSourceDurationSpecToJSON = OgrSourceDurationSpecToJSON;
 function OgrSourceDurationSpecToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -56,3 +56,4 @@ function OgrSourceDurationSpecToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${value['type']}'`);
     }
 }
+exports.OgrSourceDurationSpecToJSONTyped = OgrSourceDurationSpecToJSONTyped;

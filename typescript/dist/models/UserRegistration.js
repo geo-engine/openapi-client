@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfUserRegistration = instanceOfUserRegistration;
-exports.UserRegistrationFromJSON = UserRegistrationFromJSON;
-exports.UserRegistrationFromJSONTyped = UserRegistrationFromJSONTyped;
-exports.UserRegistrationToJSON = UserRegistrationToJSON;
-exports.UserRegistrationToJSONTyped = UserRegistrationToJSONTyped;
+exports.UserRegistrationToJSONTyped = exports.UserRegistrationToJSON = exports.UserRegistrationFromJSONTyped = exports.UserRegistrationFromJSON = exports.instanceOfUserRegistration = void 0;
 /**
  * Check if a given object implements the UserRegistration interface.
  */
@@ -30,9 +26,11 @@ function instanceOfUserRegistration(value) {
         return false;
     return true;
 }
+exports.instanceOfUserRegistration = instanceOfUserRegistration;
 function UserRegistrationFromJSON(json) {
     return UserRegistrationFromJSONTyped(json, false);
 }
+exports.UserRegistrationFromJSON = UserRegistrationFromJSON;
 function UserRegistrationFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -43,9 +41,11 @@ function UserRegistrationFromJSONTyped(json, ignoreDiscriminator) {
         'realName': json['realName'],
     };
 }
+exports.UserRegistrationFromJSONTyped = UserRegistrationFromJSONTyped;
 function UserRegistrationToJSON(json) {
     return UserRegistrationToJSONTyped(json, false);
 }
+exports.UserRegistrationToJSON = UserRegistrationToJSON;
 function UserRegistrationToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -56,3 +56,4 @@ function UserRegistrationToJSONTyped(value, ignoreDiscriminator = false) {
         'realName': value['realName'],
     };
 }
+exports.UserRegistrationToJSONTyped = UserRegistrationToJSONTyped;

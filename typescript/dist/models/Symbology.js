@@ -13,10 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SymbologyFromJSON = SymbologyFromJSON;
-exports.SymbologyFromJSONTyped = SymbologyFromJSONTyped;
-exports.SymbologyToJSON = SymbologyToJSON;
-exports.SymbologyToJSONTyped = SymbologyToJSONTyped;
+exports.SymbologyToJSONTyped = exports.SymbologyToJSON = exports.SymbologyFromJSONTyped = exports.SymbologyFromJSON = void 0;
 const LineSymbology_1 = require("./LineSymbology");
 const PointSymbology_1 = require("./PointSymbology");
 const PolygonSymbology_1 = require("./PolygonSymbology");
@@ -24,6 +21,7 @@ const RasterSymbology_1 = require("./RasterSymbology");
 function SymbologyFromJSON(json) {
     return SymbologyFromJSONTyped(json, false);
 }
+exports.SymbologyFromJSON = SymbologyFromJSON;
 function SymbologyFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function SymbologyFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of Symbology exists with 'type=${json['type']}'`);
     }
 }
+exports.SymbologyFromJSONTyped = SymbologyFromJSONTyped;
 function SymbologyToJSON(json) {
     return SymbologyToJSONTyped(json, false);
 }
+exports.SymbologyToJSON = SymbologyToJSON;
 function SymbologyToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -61,3 +61,4 @@ function SymbologyToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of Symbology exists with 'type=${value['type']}'`);
     }
 }
+exports.SymbologyToJSONTyped = SymbologyToJSONTyped;

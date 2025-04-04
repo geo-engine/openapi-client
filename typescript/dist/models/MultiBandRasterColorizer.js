@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MultiBandRasterColorizerTypeEnum = void 0;
-exports.instanceOfMultiBandRasterColorizer = instanceOfMultiBandRasterColorizer;
-exports.MultiBandRasterColorizerFromJSON = MultiBandRasterColorizerFromJSON;
-exports.MultiBandRasterColorizerFromJSONTyped = MultiBandRasterColorizerFromJSONTyped;
-exports.MultiBandRasterColorizerToJSON = MultiBandRasterColorizerToJSON;
-exports.MultiBandRasterColorizerToJSONTyped = MultiBandRasterColorizerToJSONTyped;
+exports.MultiBandRasterColorizerToJSONTyped = exports.MultiBandRasterColorizerToJSON = exports.MultiBandRasterColorizerFromJSONTyped = exports.MultiBandRasterColorizerFromJSON = exports.instanceOfMultiBandRasterColorizer = exports.MultiBandRasterColorizerTypeEnum = void 0;
 /**
  * @export
  */
@@ -51,9 +46,11 @@ function instanceOfMultiBandRasterColorizer(value) {
         return false;
     return true;
 }
+exports.instanceOfMultiBandRasterColorizer = instanceOfMultiBandRasterColorizer;
 function MultiBandRasterColorizerFromJSON(json) {
     return MultiBandRasterColorizerFromJSONTyped(json, false);
 }
+exports.MultiBandRasterColorizerFromJSON = MultiBandRasterColorizerFromJSON;
 function MultiBandRasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -75,9 +72,11 @@ function MultiBandRasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.MultiBandRasterColorizerFromJSONTyped = MultiBandRasterColorizerFromJSONTyped;
 function MultiBandRasterColorizerToJSON(json) {
     return MultiBandRasterColorizerToJSONTyped(json, false);
 }
+exports.MultiBandRasterColorizerToJSON = MultiBandRasterColorizerToJSON;
 function MultiBandRasterColorizerToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -99,3 +98,4 @@ function MultiBandRasterColorizerToJSONTyped(value, ignoreDiscriminator = false)
         'type': value['type'],
     };
 }
+exports.MultiBandRasterColorizerToJSONTyped = MultiBandRasterColorizerToJSONTyped;

@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfDatasetListing = instanceOfDatasetListing;
-exports.DatasetListingFromJSON = DatasetListingFromJSON;
-exports.DatasetListingFromJSONTyped = DatasetListingFromJSONTyped;
-exports.DatasetListingToJSON = DatasetListingToJSON;
-exports.DatasetListingToJSONTyped = DatasetListingToJSONTyped;
+exports.DatasetListingToJSONTyped = exports.DatasetListingToJSON = exports.DatasetListingFromJSONTyped = exports.DatasetListingFromJSON = exports.instanceOfDatasetListing = void 0;
 const Symbology_1 = require("./Symbology");
 const TypedResultDescriptor_1 = require("./TypedResultDescriptor");
 /**
@@ -40,9 +36,11 @@ function instanceOfDatasetListing(value) {
         return false;
     return true;
 }
+exports.instanceOfDatasetListing = instanceOfDatasetListing;
 function DatasetListingFromJSON(json) {
     return DatasetListingFromJSONTyped(json, false);
 }
+exports.DatasetListingFromJSON = DatasetListingFromJSON;
 function DatasetListingFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -58,9 +56,11 @@ function DatasetListingFromJSONTyped(json, ignoreDiscriminator) {
         'tags': json['tags'],
     };
 }
+exports.DatasetListingFromJSONTyped = DatasetListingFromJSONTyped;
 function DatasetListingToJSON(json) {
     return DatasetListingToJSONTyped(json, false);
 }
+exports.DatasetListingToJSON = DatasetListingToJSON;
 function DatasetListingToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -76,3 +76,4 @@ function DatasetListingToJSONTyped(value, ignoreDiscriminator = false) {
         'tags': value['tags'],
     };
 }
+exports.DatasetListingToJSONTyped = DatasetListingToJSONTyped;

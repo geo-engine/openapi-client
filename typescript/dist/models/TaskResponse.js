@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfTaskResponse = instanceOfTaskResponse;
-exports.TaskResponseFromJSON = TaskResponseFromJSON;
-exports.TaskResponseFromJSONTyped = TaskResponseFromJSONTyped;
-exports.TaskResponseToJSON = TaskResponseToJSON;
-exports.TaskResponseToJSONTyped = TaskResponseToJSONTyped;
+exports.TaskResponseToJSONTyped = exports.TaskResponseToJSON = exports.TaskResponseFromJSONTyped = exports.TaskResponseFromJSON = exports.instanceOfTaskResponse = void 0;
 /**
  * Check if a given object implements the TaskResponse interface.
  */
@@ -26,9 +22,11 @@ function instanceOfTaskResponse(value) {
         return false;
     return true;
 }
+exports.instanceOfTaskResponse = instanceOfTaskResponse;
 function TaskResponseFromJSON(json) {
     return TaskResponseFromJSONTyped(json, false);
 }
+exports.TaskResponseFromJSON = TaskResponseFromJSON;
 function TaskResponseFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -37,9 +35,11 @@ function TaskResponseFromJSONTyped(json, ignoreDiscriminator) {
         'taskId': json['taskId'],
     };
 }
+exports.TaskResponseFromJSONTyped = TaskResponseFromJSONTyped;
 function TaskResponseToJSON(json) {
     return TaskResponseToJSONTyped(json, false);
 }
+exports.TaskResponseToJSON = TaskResponseToJSON;
 function TaskResponseToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -48,3 +48,4 @@ function TaskResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'taskId': value['taskId'],
     };
 }
+exports.TaskResponseToJSONTyped = TaskResponseToJSONTyped;

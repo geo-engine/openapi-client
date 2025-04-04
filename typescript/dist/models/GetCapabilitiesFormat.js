@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetCapabilitiesFormat = void 0;
-exports.instanceOfGetCapabilitiesFormat = instanceOfGetCapabilitiesFormat;
-exports.GetCapabilitiesFormatFromJSON = GetCapabilitiesFormatFromJSON;
-exports.GetCapabilitiesFormatFromJSONTyped = GetCapabilitiesFormatFromJSONTyped;
-exports.GetCapabilitiesFormatToJSON = GetCapabilitiesFormatToJSON;
-exports.GetCapabilitiesFormatToJSONTyped = GetCapabilitiesFormatToJSONTyped;
+exports.GetCapabilitiesFormatToJSONTyped = exports.GetCapabilitiesFormatToJSON = exports.GetCapabilitiesFormatFromJSONTyped = exports.GetCapabilitiesFormatFromJSON = exports.instanceOfGetCapabilitiesFormat = exports.GetCapabilitiesFormat = void 0;
 /**
  *
  * @export
@@ -36,15 +31,20 @@ function instanceOfGetCapabilitiesFormat(value) {
     }
     return false;
 }
+exports.instanceOfGetCapabilitiesFormat = instanceOfGetCapabilitiesFormat;
 function GetCapabilitiesFormatFromJSON(json) {
     return GetCapabilitiesFormatFromJSONTyped(json, false);
 }
+exports.GetCapabilitiesFormatFromJSON = GetCapabilitiesFormatFromJSON;
 function GetCapabilitiesFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.GetCapabilitiesFormatFromJSONTyped = GetCapabilitiesFormatFromJSONTyped;
 function GetCapabilitiesFormatToJSON(value) {
     return value;
 }
+exports.GetCapabilitiesFormatToJSON = GetCapabilitiesFormatToJSON;
 function GetCapabilitiesFormatToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.GetCapabilitiesFormatToJSONTyped = GetCapabilitiesFormatToJSONTyped;

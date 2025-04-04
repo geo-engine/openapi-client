@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfPlotQueryRectangle = instanceOfPlotQueryRectangle;
-exports.PlotQueryRectangleFromJSON = PlotQueryRectangleFromJSON;
-exports.PlotQueryRectangleFromJSONTyped = PlotQueryRectangleFromJSONTyped;
-exports.PlotQueryRectangleToJSON = PlotQueryRectangleToJSON;
-exports.PlotQueryRectangleToJSONTyped = PlotQueryRectangleToJSONTyped;
+exports.PlotQueryRectangleToJSONTyped = exports.PlotQueryRectangleToJSON = exports.PlotQueryRectangleFromJSONTyped = exports.PlotQueryRectangleFromJSON = exports.instanceOfPlotQueryRectangle = void 0;
 const SpatialResolution_1 = require("./SpatialResolution");
 const TimeInterval_1 = require("./TimeInterval");
 const BoundingBox2D_1 = require("./BoundingBox2D");
@@ -33,9 +29,11 @@ function instanceOfPlotQueryRectangle(value) {
         return false;
     return true;
 }
+exports.instanceOfPlotQueryRectangle = instanceOfPlotQueryRectangle;
 function PlotQueryRectangleFromJSON(json) {
     return PlotQueryRectangleFromJSONTyped(json, false);
 }
+exports.PlotQueryRectangleFromJSON = PlotQueryRectangleFromJSON;
 function PlotQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -46,9 +44,11 @@ function PlotQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
         'timeInterval': (0, TimeInterval_1.TimeIntervalFromJSON)(json['timeInterval']),
     };
 }
+exports.PlotQueryRectangleFromJSONTyped = PlotQueryRectangleFromJSONTyped;
 function PlotQueryRectangleToJSON(json) {
     return PlotQueryRectangleToJSONTyped(json, false);
 }
+exports.PlotQueryRectangleToJSON = PlotQueryRectangleToJSON;
 function PlotQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +59,4 @@ function PlotQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
         'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
     };
 }
+exports.PlotQueryRectangleToJSONTyped = PlotQueryRectangleToJSONTyped;

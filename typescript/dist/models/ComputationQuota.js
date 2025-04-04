@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfComputationQuota = instanceOfComputationQuota;
-exports.ComputationQuotaFromJSON = ComputationQuotaFromJSON;
-exports.ComputationQuotaFromJSONTyped = ComputationQuotaFromJSONTyped;
-exports.ComputationQuotaToJSON = ComputationQuotaToJSON;
-exports.ComputationQuotaToJSONTyped = ComputationQuotaToJSONTyped;
+exports.ComputationQuotaToJSONTyped = exports.ComputationQuotaToJSON = exports.ComputationQuotaFromJSONTyped = exports.ComputationQuotaFromJSON = exports.instanceOfComputationQuota = void 0;
 /**
  * Check if a given object implements the ComputationQuota interface.
  */
@@ -32,9 +28,11 @@ function instanceOfComputationQuota(value) {
         return false;
     return true;
 }
+exports.instanceOfComputationQuota = instanceOfComputationQuota;
 function ComputationQuotaFromJSON(json) {
     return ComputationQuotaFromJSONTyped(json, false);
 }
+exports.ComputationQuotaFromJSON = ComputationQuotaFromJSON;
 function ComputationQuotaFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -46,9 +44,11 @@ function ComputationQuotaFromJSONTyped(json, ignoreDiscriminator) {
         'workflowId': json['workflowId'],
     };
 }
+exports.ComputationQuotaFromJSONTyped = ComputationQuotaFromJSONTyped;
 function ComputationQuotaToJSON(json) {
     return ComputationQuotaToJSONTyped(json, false);
 }
+exports.ComputationQuotaToJSON = ComputationQuotaToJSON;
 function ComputationQuotaToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -60,3 +60,4 @@ function ComputationQuotaToJSONTyped(value, ignoreDiscriminator = false) {
         'workflowId': value['workflowId'],
     };
 }
+exports.ComputationQuotaToJSONTyped = ComputationQuotaToJSONTyped;

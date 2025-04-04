@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.InternalDataIdTypeEnum = void 0;
-exports.instanceOfInternalDataId = instanceOfInternalDataId;
-exports.InternalDataIdFromJSON = InternalDataIdFromJSON;
-exports.InternalDataIdFromJSONTyped = InternalDataIdFromJSONTyped;
-exports.InternalDataIdToJSON = InternalDataIdToJSON;
-exports.InternalDataIdToJSONTyped = InternalDataIdToJSONTyped;
+exports.InternalDataIdToJSONTyped = exports.InternalDataIdToJSON = exports.InternalDataIdFromJSONTyped = exports.InternalDataIdFromJSON = exports.instanceOfInternalDataId = exports.InternalDataIdTypeEnum = void 0;
 /**
  * @export
  */
@@ -35,9 +30,11 @@ function instanceOfInternalDataId(value) {
         return false;
     return true;
 }
+exports.instanceOfInternalDataId = instanceOfInternalDataId;
 function InternalDataIdFromJSON(json) {
     return InternalDataIdFromJSONTyped(json, false);
 }
+exports.InternalDataIdFromJSON = InternalDataIdFromJSON;
 function InternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -47,9 +44,11 @@ function InternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.InternalDataIdFromJSONTyped = InternalDataIdFromJSONTyped;
 function InternalDataIdToJSON(json) {
     return InternalDataIdToJSONTyped(json, false);
 }
+exports.InternalDataIdToJSON = InternalDataIdToJSON;
 function InternalDataIdToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -59,3 +58,4 @@ function InternalDataIdToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.InternalDataIdToJSONTyped = InternalDataIdToJSONTyped;

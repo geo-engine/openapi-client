@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfRasterBandDescriptor = instanceOfRasterBandDescriptor;
-exports.RasterBandDescriptorFromJSON = RasterBandDescriptorFromJSON;
-exports.RasterBandDescriptorFromJSONTyped = RasterBandDescriptorFromJSONTyped;
-exports.RasterBandDescriptorToJSON = RasterBandDescriptorToJSON;
-exports.RasterBandDescriptorToJSONTyped = RasterBandDescriptorToJSONTyped;
+exports.RasterBandDescriptorToJSONTyped = exports.RasterBandDescriptorToJSON = exports.RasterBandDescriptorFromJSONTyped = exports.RasterBandDescriptorFromJSON = exports.instanceOfRasterBandDescriptor = void 0;
 const Measurement_1 = require("./Measurement");
 /**
  * Check if a given object implements the RasterBandDescriptor interface.
@@ -29,9 +25,11 @@ function instanceOfRasterBandDescriptor(value) {
         return false;
     return true;
 }
+exports.instanceOfRasterBandDescriptor = instanceOfRasterBandDescriptor;
 function RasterBandDescriptorFromJSON(json) {
     return RasterBandDescriptorFromJSONTyped(json, false);
 }
+exports.RasterBandDescriptorFromJSON = RasterBandDescriptorFromJSON;
 function RasterBandDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -41,9 +39,11 @@ function RasterBandDescriptorFromJSONTyped(json, ignoreDiscriminator) {
         'name': json['name'],
     };
 }
+exports.RasterBandDescriptorFromJSONTyped = RasterBandDescriptorFromJSONTyped;
 function RasterBandDescriptorToJSON(json) {
     return RasterBandDescriptorToJSONTyped(json, false);
 }
+exports.RasterBandDescriptorToJSON = RasterBandDescriptorToJSON;
 function RasterBandDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -53,3 +53,4 @@ function RasterBandDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
         'name': value['name'],
     };
 }
+exports.RasterBandDescriptorToJSONTyped = RasterBandDescriptorToJSONTyped;

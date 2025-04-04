@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfRasterDatasetFromWorkflowResult = instanceOfRasterDatasetFromWorkflowResult;
-exports.RasterDatasetFromWorkflowResultFromJSON = RasterDatasetFromWorkflowResultFromJSON;
-exports.RasterDatasetFromWorkflowResultFromJSONTyped = RasterDatasetFromWorkflowResultFromJSONTyped;
-exports.RasterDatasetFromWorkflowResultToJSON = RasterDatasetFromWorkflowResultToJSON;
-exports.RasterDatasetFromWorkflowResultToJSONTyped = RasterDatasetFromWorkflowResultToJSONTyped;
+exports.RasterDatasetFromWorkflowResultToJSONTyped = exports.RasterDatasetFromWorkflowResultToJSON = exports.RasterDatasetFromWorkflowResultFromJSONTyped = exports.RasterDatasetFromWorkflowResultFromJSON = exports.instanceOfRasterDatasetFromWorkflowResult = void 0;
 /**
  * Check if a given object implements the RasterDatasetFromWorkflowResult interface.
  */
@@ -28,9 +24,11 @@ function instanceOfRasterDatasetFromWorkflowResult(value) {
         return false;
     return true;
 }
+exports.instanceOfRasterDatasetFromWorkflowResult = instanceOfRasterDatasetFromWorkflowResult;
 function RasterDatasetFromWorkflowResultFromJSON(json) {
     return RasterDatasetFromWorkflowResultFromJSONTyped(json, false);
 }
+exports.RasterDatasetFromWorkflowResultFromJSON = RasterDatasetFromWorkflowResultFromJSON;
 function RasterDatasetFromWorkflowResultFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function RasterDatasetFromWorkflowResultFromJSONTyped(json, ignoreDiscriminator)
         'upload': json['upload'],
     };
 }
+exports.RasterDatasetFromWorkflowResultFromJSONTyped = RasterDatasetFromWorkflowResultFromJSONTyped;
 function RasterDatasetFromWorkflowResultToJSON(json) {
     return RasterDatasetFromWorkflowResultToJSONTyped(json, false);
 }
+exports.RasterDatasetFromWorkflowResultToJSON = RasterDatasetFromWorkflowResultToJSON;
 function RasterDatasetFromWorkflowResultToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function RasterDatasetFromWorkflowResultToJSONTyped(value, ignoreDiscriminator =
         'upload': value['upload'],
     };
 }
+exports.RasterDatasetFromWorkflowResultToJSONTyped = RasterDatasetFromWorkflowResultToJSONTyped;

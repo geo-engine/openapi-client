@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterPropertiesEntryType = void 0;
-exports.instanceOfRasterPropertiesEntryType = instanceOfRasterPropertiesEntryType;
-exports.RasterPropertiesEntryTypeFromJSON = RasterPropertiesEntryTypeFromJSON;
-exports.RasterPropertiesEntryTypeFromJSONTyped = RasterPropertiesEntryTypeFromJSONTyped;
-exports.RasterPropertiesEntryTypeToJSON = RasterPropertiesEntryTypeToJSON;
-exports.RasterPropertiesEntryTypeToJSONTyped = RasterPropertiesEntryTypeToJSONTyped;
+exports.RasterPropertiesEntryTypeToJSONTyped = exports.RasterPropertiesEntryTypeToJSON = exports.RasterPropertiesEntryTypeFromJSONTyped = exports.RasterPropertiesEntryTypeFromJSON = exports.instanceOfRasterPropertiesEntryType = exports.RasterPropertiesEntryType = void 0;
 /**
  *
  * @export
@@ -37,15 +32,20 @@ function instanceOfRasterPropertiesEntryType(value) {
     }
     return false;
 }
+exports.instanceOfRasterPropertiesEntryType = instanceOfRasterPropertiesEntryType;
 function RasterPropertiesEntryTypeFromJSON(json) {
     return RasterPropertiesEntryTypeFromJSONTyped(json, false);
 }
+exports.RasterPropertiesEntryTypeFromJSON = RasterPropertiesEntryTypeFromJSON;
 function RasterPropertiesEntryTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.RasterPropertiesEntryTypeFromJSONTyped = RasterPropertiesEntryTypeFromJSONTyped;
 function RasterPropertiesEntryTypeToJSON(value) {
     return value;
 }
+exports.RasterPropertiesEntryTypeToJSON = RasterPropertiesEntryTypeToJSON;
 function RasterPropertiesEntryTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.RasterPropertiesEntryTypeToJSONTyped = RasterPropertiesEntryTypeToJSONTyped;

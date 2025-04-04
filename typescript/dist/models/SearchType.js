@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SearchType = void 0;
-exports.instanceOfSearchType = instanceOfSearchType;
-exports.SearchTypeFromJSON = SearchTypeFromJSON;
-exports.SearchTypeFromJSONTyped = SearchTypeFromJSONTyped;
-exports.SearchTypeToJSON = SearchTypeToJSON;
-exports.SearchTypeToJSONTyped = SearchTypeToJSONTyped;
+exports.SearchTypeToJSONTyped = exports.SearchTypeToJSON = exports.SearchTypeFromJSONTyped = exports.SearchTypeFromJSON = exports.instanceOfSearchType = exports.SearchType = void 0;
 /**
  *
  * @export
@@ -37,15 +32,20 @@ function instanceOfSearchType(value) {
     }
     return false;
 }
+exports.instanceOfSearchType = instanceOfSearchType;
 function SearchTypeFromJSON(json) {
     return SearchTypeFromJSONTyped(json, false);
 }
+exports.SearchTypeFromJSON = SearchTypeFromJSON;
 function SearchTypeFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.SearchTypeFromJSONTyped = SearchTypeFromJSONTyped;
 function SearchTypeToJSON(value) {
     return value;
 }
+exports.SearchTypeToJSON = SearchTypeToJSON;
 function SearchTypeToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.SearchTypeToJSONTyped = SearchTypeToJSONTyped;

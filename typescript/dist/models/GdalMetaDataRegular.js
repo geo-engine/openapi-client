@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GdalMetaDataRegularTypeEnum = void 0;
-exports.instanceOfGdalMetaDataRegular = instanceOfGdalMetaDataRegular;
-exports.GdalMetaDataRegularFromJSON = GdalMetaDataRegularFromJSON;
-exports.GdalMetaDataRegularFromJSONTyped = GdalMetaDataRegularFromJSONTyped;
-exports.GdalMetaDataRegularToJSON = GdalMetaDataRegularToJSON;
-exports.GdalMetaDataRegularToJSONTyped = GdalMetaDataRegularToJSONTyped;
+exports.GdalMetaDataRegularToJSONTyped = exports.GdalMetaDataRegularToJSON = exports.GdalMetaDataRegularFromJSONTyped = exports.GdalMetaDataRegularFromJSON = exports.instanceOfGdalMetaDataRegular = exports.GdalMetaDataRegularTypeEnum = void 0;
 const runtime_1 = require("../runtime");
 const TimeStep_1 = require("./TimeStep");
 const TimeInterval_1 = require("./TimeInterval");
@@ -49,9 +44,11 @@ function instanceOfGdalMetaDataRegular(value) {
         return false;
     return true;
 }
+exports.instanceOfGdalMetaDataRegular = instanceOfGdalMetaDataRegular;
 function GdalMetaDataRegularFromJSON(json) {
     return GdalMetaDataRegularFromJSONTyped(json, false);
 }
+exports.GdalMetaDataRegularFromJSON = GdalMetaDataRegularFromJSON;
 function GdalMetaDataRegularFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -66,9 +63,11 @@ function GdalMetaDataRegularFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.GdalMetaDataRegularFromJSONTyped = GdalMetaDataRegularFromJSONTyped;
 function GdalMetaDataRegularToJSON(json) {
     return GdalMetaDataRegularToJSONTyped(json, false);
 }
+exports.GdalMetaDataRegularToJSON = GdalMetaDataRegularToJSON;
 function GdalMetaDataRegularToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -83,3 +82,4 @@ function GdalMetaDataRegularToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.GdalMetaDataRegularToJSONTyped = GdalMetaDataRegularToJSONTyped;

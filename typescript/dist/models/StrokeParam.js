@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfStrokeParam = instanceOfStrokeParam;
-exports.StrokeParamFromJSON = StrokeParamFromJSON;
-exports.StrokeParamFromJSONTyped = StrokeParamFromJSONTyped;
-exports.StrokeParamToJSON = StrokeParamToJSON;
-exports.StrokeParamToJSONTyped = StrokeParamToJSONTyped;
+exports.StrokeParamToJSONTyped = exports.StrokeParamToJSON = exports.StrokeParamFromJSONTyped = exports.StrokeParamFromJSON = exports.instanceOfStrokeParam = void 0;
 const NumberParam_1 = require("./NumberParam");
 const ColorParam_1 = require("./ColorParam");
 /**
@@ -30,9 +26,11 @@ function instanceOfStrokeParam(value) {
         return false;
     return true;
 }
+exports.instanceOfStrokeParam = instanceOfStrokeParam;
 function StrokeParamFromJSON(json) {
     return StrokeParamFromJSONTyped(json, false);
 }
+exports.StrokeParamFromJSON = StrokeParamFromJSON;
 function StrokeParamFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -42,9 +40,11 @@ function StrokeParamFromJSONTyped(json, ignoreDiscriminator) {
         'width': (0, NumberParam_1.NumberParamFromJSON)(json['width']),
     };
 }
+exports.StrokeParamFromJSONTyped = StrokeParamFromJSONTyped;
 function StrokeParamToJSON(json) {
     return StrokeParamToJSONTyped(json, false);
 }
+exports.StrokeParamToJSON = StrokeParamToJSON;
 function StrokeParamToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -54,3 +54,4 @@ function StrokeParamToJSONTyped(value, ignoreDiscriminator = false) {
         'width': (0, NumberParam_1.NumberParamToJSON)(value['width']),
     };
 }
+exports.StrokeParamToJSONTyped = StrokeParamToJSONTyped;

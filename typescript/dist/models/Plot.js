@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfPlot = instanceOfPlot;
-exports.PlotFromJSON = PlotFromJSON;
-exports.PlotFromJSONTyped = PlotFromJSONTyped;
-exports.PlotToJSON = PlotToJSON;
-exports.PlotToJSONTyped = PlotToJSONTyped;
+exports.PlotToJSONTyped = exports.PlotToJSON = exports.PlotFromJSONTyped = exports.PlotFromJSON = exports.instanceOfPlot = void 0;
 /**
  * Check if a given object implements the Plot interface.
  */
@@ -28,9 +24,11 @@ function instanceOfPlot(value) {
         return false;
     return true;
 }
+exports.instanceOfPlot = instanceOfPlot;
 function PlotFromJSON(json) {
     return PlotFromJSONTyped(json, false);
 }
+exports.PlotFromJSON = PlotFromJSON;
 function PlotFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -40,9 +38,11 @@ function PlotFromJSONTyped(json, ignoreDiscriminator) {
         'workflow': json['workflow'],
     };
 }
+exports.PlotFromJSONTyped = PlotFromJSONTyped;
 function PlotToJSON(json) {
     return PlotToJSONTyped(json, false);
 }
+exports.PlotToJSON = PlotToJSON;
 function PlotToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -52,3 +52,4 @@ function PlotToJSONTyped(value, ignoreDiscriminator = false) {
         'workflow': value['workflow'],
     };
 }
+exports.PlotToJSONTyped = PlotToJSONTyped;

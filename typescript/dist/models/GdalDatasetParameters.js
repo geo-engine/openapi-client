@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfGdalDatasetParameters = instanceOfGdalDatasetParameters;
-exports.GdalDatasetParametersFromJSON = GdalDatasetParametersFromJSON;
-exports.GdalDatasetParametersFromJSONTyped = GdalDatasetParametersFromJSONTyped;
-exports.GdalDatasetParametersToJSON = GdalDatasetParametersToJSON;
-exports.GdalDatasetParametersToJSONTyped = GdalDatasetParametersToJSONTyped;
+exports.GdalDatasetParametersToJSONTyped = exports.GdalDatasetParametersToJSON = exports.GdalDatasetParametersFromJSONTyped = exports.GdalDatasetParametersFromJSON = exports.instanceOfGdalDatasetParameters = void 0;
 const GdalDatasetGeoTransform_1 = require("./GdalDatasetGeoTransform");
 const GdalMetadataMapping_1 = require("./GdalMetadataMapping");
 const FileNotFoundHandling_1 = require("./FileNotFoundHandling");
@@ -39,9 +35,11 @@ function instanceOfGdalDatasetParameters(value) {
         return false;
     return true;
 }
+exports.instanceOfGdalDatasetParameters = instanceOfGdalDatasetParameters;
 function GdalDatasetParametersFromJSON(json) {
     return GdalDatasetParametersFromJSONTyped(json, false);
 }
+exports.GdalDatasetParametersFromJSON = GdalDatasetParametersFromJSON;
 function GdalDatasetParametersFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -60,9 +58,11 @@ function GdalDatasetParametersFromJSONTyped(json, ignoreDiscriminator) {
         'width': json['width'],
     };
 }
+exports.GdalDatasetParametersFromJSONTyped = GdalDatasetParametersFromJSONTyped;
 function GdalDatasetParametersToJSON(json) {
     return GdalDatasetParametersToJSONTyped(json, false);
 }
+exports.GdalDatasetParametersToJSON = GdalDatasetParametersToJSON;
 function GdalDatasetParametersToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -81,3 +81,4 @@ function GdalDatasetParametersToJSONTyped(value, ignoreDiscriminator = false) {
         'width': value['width'],
     };
 }
+exports.GdalDatasetParametersToJSONTyped = GdalDatasetParametersToJSONTyped;

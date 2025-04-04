@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfLayerCollection = instanceOfLayerCollection;
-exports.LayerCollectionFromJSON = LayerCollectionFromJSON;
-exports.LayerCollectionFromJSONTyped = LayerCollectionFromJSONTyped;
-exports.LayerCollectionToJSON = LayerCollectionToJSON;
-exports.LayerCollectionToJSONTyped = LayerCollectionToJSONTyped;
+exports.LayerCollectionToJSONTyped = exports.LayerCollectionToJSON = exports.LayerCollectionFromJSONTyped = exports.LayerCollectionFromJSON = exports.instanceOfLayerCollection = void 0;
 const CollectionItem_1 = require("./CollectionItem");
 const ProviderLayerCollectionId_1 = require("./ProviderLayerCollectionId");
 /**
@@ -36,9 +32,11 @@ function instanceOfLayerCollection(value) {
         return false;
     return true;
 }
+exports.instanceOfLayerCollection = instanceOfLayerCollection;
 function LayerCollectionFromJSON(json) {
     return LayerCollectionFromJSONTyped(json, false);
 }
+exports.LayerCollectionFromJSON = LayerCollectionFromJSON;
 function LayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -52,9 +50,11 @@ function LayerCollectionFromJSONTyped(json, ignoreDiscriminator) {
         'properties': json['properties'],
     };
 }
+exports.LayerCollectionFromJSONTyped = LayerCollectionFromJSONTyped;
 function LayerCollectionToJSON(json) {
     return LayerCollectionToJSONTyped(json, false);
 }
+exports.LayerCollectionToJSON = LayerCollectionToJSON;
 function LayerCollectionToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -68,3 +68,4 @@ function LayerCollectionToJSONTyped(value, ignoreDiscriminator = false) {
         'properties': value['properties'],
     };
 }
+exports.LayerCollectionToJSONTyped = LayerCollectionToJSONTyped;

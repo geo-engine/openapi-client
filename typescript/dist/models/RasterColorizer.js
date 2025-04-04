@@ -13,15 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RasterColorizerFromJSON = RasterColorizerFromJSON;
-exports.RasterColorizerFromJSONTyped = RasterColorizerFromJSONTyped;
-exports.RasterColorizerToJSON = RasterColorizerToJSON;
-exports.RasterColorizerToJSONTyped = RasterColorizerToJSONTyped;
+exports.RasterColorizerToJSONTyped = exports.RasterColorizerToJSON = exports.RasterColorizerFromJSONTyped = exports.RasterColorizerFromJSON = void 0;
 const MultiBandRasterColorizer_1 = require("./MultiBandRasterColorizer");
 const SingleBandRasterColorizer_1 = require("./SingleBandRasterColorizer");
 function RasterColorizerFromJSON(json) {
     return RasterColorizerFromJSONTyped(json, false);
 }
+exports.RasterColorizerFromJSON = RasterColorizerFromJSON;
 function RasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -35,9 +33,11 @@ function RasterColorizerFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of RasterColorizer exists with 'type=${json['type']}'`);
     }
 }
+exports.RasterColorizerFromJSONTyped = RasterColorizerFromJSONTyped;
 function RasterColorizerToJSON(json) {
     return RasterColorizerToJSONTyped(json, false);
 }
+exports.RasterColorizerToJSON = RasterColorizerToJSON;
 function RasterColorizerToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -51,3 +51,4 @@ function RasterColorizerToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of RasterColorizer exists with 'type=${value['type']}'`);
     }
 }
+exports.RasterColorizerToJSONTyped = RasterColorizerToJSONTyped;

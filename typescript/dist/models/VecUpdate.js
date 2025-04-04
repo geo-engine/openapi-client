@@ -13,15 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VecUpdateFromJSON = VecUpdateFromJSON;
-exports.VecUpdateFromJSONTyped = VecUpdateFromJSONTyped;
-exports.VecUpdateToJSON = VecUpdateToJSON;
-exports.VecUpdateToJSONTyped = VecUpdateToJSONTyped;
+exports.VecUpdateToJSONTyped = exports.VecUpdateToJSON = exports.VecUpdateFromJSONTyped = exports.VecUpdateFromJSON = void 0;
 const Plot_1 = require("./Plot");
 const ProjectUpdateToken_1 = require("./ProjectUpdateToken");
 function VecUpdateFromJSON(json) {
     return VecUpdateFromJSONTyped(json, false);
 }
+exports.VecUpdateFromJSON = VecUpdateFromJSON;
 function VecUpdateFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -34,9 +32,11 @@ function VecUpdateFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {};
 }
+exports.VecUpdateFromJSONTyped = VecUpdateFromJSONTyped;
 function VecUpdateToJSON(json) {
     return VecUpdateToJSONTyped(json, false);
 }
+exports.VecUpdateToJSON = VecUpdateToJSON;
 function VecUpdateToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -49,3 +49,4 @@ function VecUpdateToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {};
 }
+exports.VecUpdateToJSONTyped = VecUpdateToJSONTyped;

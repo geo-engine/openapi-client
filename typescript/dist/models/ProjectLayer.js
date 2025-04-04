@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfProjectLayer = instanceOfProjectLayer;
-exports.ProjectLayerFromJSON = ProjectLayerFromJSON;
-exports.ProjectLayerFromJSONTyped = ProjectLayerFromJSONTyped;
-exports.ProjectLayerToJSON = ProjectLayerToJSON;
-exports.ProjectLayerToJSONTyped = ProjectLayerToJSONTyped;
+exports.ProjectLayerToJSONTyped = exports.ProjectLayerToJSON = exports.ProjectLayerFromJSONTyped = exports.ProjectLayerFromJSON = exports.instanceOfProjectLayer = void 0;
 const LayerVisibility_1 = require("./LayerVisibility");
 const Symbology_1 = require("./Symbology");
 /**
@@ -34,9 +30,11 @@ function instanceOfProjectLayer(value) {
         return false;
     return true;
 }
+exports.instanceOfProjectLayer = instanceOfProjectLayer;
 function ProjectLayerFromJSON(json) {
     return ProjectLayerFromJSONTyped(json, false);
 }
+exports.ProjectLayerFromJSON = ProjectLayerFromJSON;
 function ProjectLayerFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -48,9 +46,11 @@ function ProjectLayerFromJSONTyped(json, ignoreDiscriminator) {
         'workflow': json['workflow'],
     };
 }
+exports.ProjectLayerFromJSONTyped = ProjectLayerFromJSONTyped;
 function ProjectLayerToJSON(json) {
     return ProjectLayerToJSONTyped(json, false);
 }
+exports.ProjectLayerToJSON = ProjectLayerToJSON;
 function ProjectLayerToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -62,3 +62,4 @@ function ProjectLayerToJSONTyped(value, ignoreDiscriminator = false) {
         'workflow': value['workflow'],
     };
 }
+exports.ProjectLayerToJSONTyped = ProjectLayerToJSONTyped;

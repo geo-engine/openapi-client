@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LayerListingTypeEnum = void 0;
-exports.instanceOfLayerListing = instanceOfLayerListing;
-exports.LayerListingFromJSON = LayerListingFromJSON;
-exports.LayerListingFromJSONTyped = LayerListingFromJSONTyped;
-exports.LayerListingToJSON = LayerListingToJSON;
-exports.LayerListingToJSONTyped = LayerListingToJSONTyped;
+exports.LayerListingToJSONTyped = exports.LayerListingToJSON = exports.LayerListingFromJSONTyped = exports.LayerListingFromJSON = exports.instanceOfLayerListing = exports.LayerListingTypeEnum = void 0;
 const ProviderLayerId_1 = require("./ProviderLayerId");
 /**
  * @export
@@ -40,9 +35,11 @@ function instanceOfLayerListing(value) {
         return false;
     return true;
 }
+exports.instanceOfLayerListing = instanceOfLayerListing;
 function LayerListingFromJSON(json) {
     return LayerListingFromJSONTyped(json, false);
 }
+exports.LayerListingFromJSON = LayerListingFromJSON;
 function LayerListingFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -55,9 +52,11 @@ function LayerListingFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.LayerListingFromJSONTyped = LayerListingFromJSONTyped;
 function LayerListingToJSON(json) {
     return LayerListingToJSONTyped(json, false);
 }
+exports.LayerListingToJSON = LayerListingToJSON;
 function LayerListingToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -70,3 +69,4 @@ function LayerListingToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.LayerListingToJSONTyped = LayerListingToJSONTyped;

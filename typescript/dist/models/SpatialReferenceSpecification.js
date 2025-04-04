@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfSpatialReferenceSpecification = instanceOfSpatialReferenceSpecification;
-exports.SpatialReferenceSpecificationFromJSON = SpatialReferenceSpecificationFromJSON;
-exports.SpatialReferenceSpecificationFromJSONTyped = SpatialReferenceSpecificationFromJSONTyped;
-exports.SpatialReferenceSpecificationToJSON = SpatialReferenceSpecificationToJSON;
-exports.SpatialReferenceSpecificationToJSONTyped = SpatialReferenceSpecificationToJSONTyped;
+exports.SpatialReferenceSpecificationToJSONTyped = exports.SpatialReferenceSpecificationToJSON = exports.SpatialReferenceSpecificationFromJSONTyped = exports.SpatialReferenceSpecificationFromJSON = exports.instanceOfSpatialReferenceSpecification = void 0;
 const BoundingBox2D_1 = require("./BoundingBox2D");
 const AxisOrder_1 = require("./AxisOrder");
 /**
@@ -34,9 +30,11 @@ function instanceOfSpatialReferenceSpecification(value) {
         return false;
     return true;
 }
+exports.instanceOfSpatialReferenceSpecification = instanceOfSpatialReferenceSpecification;
 function SpatialReferenceSpecificationFromJSON(json) {
     return SpatialReferenceSpecificationFromJSONTyped(json, false);
 }
+exports.SpatialReferenceSpecificationFromJSON = SpatialReferenceSpecificationFromJSON;
 function SpatialReferenceSpecificationFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -50,9 +48,11 @@ function SpatialReferenceSpecificationFromJSONTyped(json, ignoreDiscriminator) {
         'spatialReference': json['spatialReference'],
     };
 }
+exports.SpatialReferenceSpecificationFromJSONTyped = SpatialReferenceSpecificationFromJSONTyped;
 function SpatialReferenceSpecificationToJSON(json) {
     return SpatialReferenceSpecificationToJSONTyped(json, false);
 }
+exports.SpatialReferenceSpecificationToJSON = SpatialReferenceSpecificationToJSON;
 function SpatialReferenceSpecificationToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -66,3 +66,4 @@ function SpatialReferenceSpecificationToJSONTyped(value, ignoreDiscriminator = f
         'spatialReference': value['spatialReference'],
     };
 }
+exports.SpatialReferenceSpecificationToJSONTyped = SpatialReferenceSpecificationToJSONTyped;

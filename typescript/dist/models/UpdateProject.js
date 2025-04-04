@@ -13,11 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfUpdateProject = instanceOfUpdateProject;
-exports.UpdateProjectFromJSON = UpdateProjectFromJSON;
-exports.UpdateProjectFromJSONTyped = UpdateProjectFromJSONTyped;
-exports.UpdateProjectToJSON = UpdateProjectToJSON;
-exports.UpdateProjectToJSONTyped = UpdateProjectToJSONTyped;
+exports.UpdateProjectToJSONTyped = exports.UpdateProjectToJSON = exports.UpdateProjectFromJSONTyped = exports.UpdateProjectFromJSON = exports.instanceOfUpdateProject = void 0;
 const TimeStep_1 = require("./TimeStep");
 const STRectangle_1 = require("./STRectangle");
 const VecUpdate_1 = require("./VecUpdate");
@@ -29,9 +25,11 @@ function instanceOfUpdateProject(value) {
         return false;
     return true;
 }
+exports.instanceOfUpdateProject = instanceOfUpdateProject;
 function UpdateProjectFromJSON(json) {
     return UpdateProjectFromJSONTyped(json, false);
 }
+exports.UpdateProjectFromJSON = UpdateProjectFromJSON;
 function UpdateProjectFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -46,9 +44,11 @@ function UpdateProjectFromJSONTyped(json, ignoreDiscriminator) {
         'timeStep': json['timeStep'] == null ? undefined : (0, TimeStep_1.TimeStepFromJSON)(json['timeStep']),
     };
 }
+exports.UpdateProjectFromJSONTyped = UpdateProjectFromJSONTyped;
 function UpdateProjectToJSON(json) {
     return UpdateProjectToJSONTyped(json, false);
 }
+exports.UpdateProjectToJSON = UpdateProjectToJSON;
 function UpdateProjectToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -63,3 +63,4 @@ function UpdateProjectToJSONTyped(value, ignoreDiscriminator = false) {
         'timeStep': (0, TimeStep_1.TimeStepToJSON)(value['timeStep']),
     };
 }
+exports.UpdateProjectToJSONTyped = UpdateProjectToJSONTyped;

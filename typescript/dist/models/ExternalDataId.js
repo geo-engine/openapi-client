@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ExternalDataIdTypeEnum = void 0;
-exports.instanceOfExternalDataId = instanceOfExternalDataId;
-exports.ExternalDataIdFromJSON = ExternalDataIdFromJSON;
-exports.ExternalDataIdFromJSONTyped = ExternalDataIdFromJSONTyped;
-exports.ExternalDataIdToJSON = ExternalDataIdToJSON;
-exports.ExternalDataIdToJSONTyped = ExternalDataIdToJSONTyped;
+exports.ExternalDataIdToJSONTyped = exports.ExternalDataIdToJSON = exports.ExternalDataIdFromJSONTyped = exports.ExternalDataIdFromJSON = exports.instanceOfExternalDataId = exports.ExternalDataIdTypeEnum = void 0;
 /**
  * @export
  */
@@ -37,9 +32,11 @@ function instanceOfExternalDataId(value) {
         return false;
     return true;
 }
+exports.instanceOfExternalDataId = instanceOfExternalDataId;
 function ExternalDataIdFromJSON(json) {
     return ExternalDataIdFromJSONTyped(json, false);
 }
+exports.ExternalDataIdFromJSON = ExternalDataIdFromJSON;
 function ExternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -50,9 +47,11 @@ function ExternalDataIdFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.ExternalDataIdFromJSONTyped = ExternalDataIdFromJSONTyped;
 function ExternalDataIdToJSON(json) {
     return ExternalDataIdToJSONTyped(json, false);
 }
+exports.ExternalDataIdToJSON = ExternalDataIdToJSON;
 function ExternalDataIdToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -63,3 +62,4 @@ function ExternalDataIdToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.ExternalDataIdToJSONTyped = ExternalDataIdToJSONTyped;

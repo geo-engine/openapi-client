@@ -13,15 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CollectionItemFromJSON = CollectionItemFromJSON;
-exports.CollectionItemFromJSONTyped = CollectionItemFromJSONTyped;
-exports.CollectionItemToJSON = CollectionItemToJSON;
-exports.CollectionItemToJSONTyped = CollectionItemToJSONTyped;
+exports.CollectionItemToJSONTyped = exports.CollectionItemToJSON = exports.CollectionItemFromJSONTyped = exports.CollectionItemFromJSON = void 0;
 const LayerCollectionListing_1 = require("./LayerCollectionListing");
 const LayerListing_1 = require("./LayerListing");
 function CollectionItemFromJSON(json) {
     return CollectionItemFromJSONTyped(json, false);
 }
+exports.CollectionItemFromJSON = CollectionItemFromJSON;
 function CollectionItemFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -35,9 +33,11 @@ function CollectionItemFromJSONTyped(json, ignoreDiscriminator) {
             throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
     }
 }
+exports.CollectionItemFromJSONTyped = CollectionItemFromJSONTyped;
 function CollectionItemToJSON(json) {
     return CollectionItemToJSONTyped(json, false);
 }
+exports.CollectionItemToJSON = CollectionItemToJSON;
 function CollectionItemToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -51,3 +51,4 @@ function CollectionItemToJSONTyped(value, ignoreDiscriminator = false) {
             throw new Error(`No variant of CollectionItem exists with 'type=${value['type']}'`);
     }
 }
+exports.CollectionItemToJSONTyped = CollectionItemToJSONTyped;

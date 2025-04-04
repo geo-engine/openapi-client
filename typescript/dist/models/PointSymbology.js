@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PointSymbologyTypeEnum = void 0;
-exports.instanceOfPointSymbology = instanceOfPointSymbology;
-exports.PointSymbologyFromJSON = PointSymbologyFromJSON;
-exports.PointSymbologyFromJSONTyped = PointSymbologyFromJSONTyped;
-exports.PointSymbologyToJSON = PointSymbologyToJSON;
-exports.PointSymbologyToJSONTyped = PointSymbologyToJSONTyped;
+exports.PointSymbologyToJSONTyped = exports.PointSymbologyToJSON = exports.PointSymbologyFromJSONTyped = exports.PointSymbologyFromJSON = exports.instanceOfPointSymbology = exports.PointSymbologyTypeEnum = void 0;
 const TextSymbology_1 = require("./TextSymbology");
 const StrokeParam_1 = require("./StrokeParam");
 const NumberParam_1 = require("./NumberParam");
@@ -43,9 +38,11 @@ function instanceOfPointSymbology(value) {
         return false;
     return true;
 }
+exports.instanceOfPointSymbology = instanceOfPointSymbology;
 function PointSymbologyFromJSON(json) {
     return PointSymbologyFromJSONTyped(json, false);
 }
+exports.PointSymbologyFromJSON = PointSymbologyFromJSON;
 function PointSymbologyFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -58,9 +55,11 @@ function PointSymbologyFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.PointSymbologyFromJSONTyped = PointSymbologyFromJSONTyped;
 function PointSymbologyToJSON(json) {
     return PointSymbologyToJSONTyped(json, false);
 }
+exports.PointSymbologyToJSON = PointSymbologyToJSON;
 function PointSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -73,3 +72,4 @@ function PointSymbologyToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.PointSymbologyToJSONTyped = PointSymbologyToJSONTyped;

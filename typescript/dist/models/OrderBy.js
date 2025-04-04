@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderBy = void 0;
-exports.instanceOfOrderBy = instanceOfOrderBy;
-exports.OrderByFromJSON = OrderByFromJSON;
-exports.OrderByFromJSONTyped = OrderByFromJSONTyped;
-exports.OrderByToJSON = OrderByToJSON;
-exports.OrderByToJSONTyped = OrderByToJSONTyped;
+exports.OrderByToJSONTyped = exports.OrderByToJSON = exports.OrderByFromJSONTyped = exports.OrderByFromJSON = exports.instanceOfOrderBy = exports.OrderBy = void 0;
 /**
  *
  * @export
@@ -37,15 +32,20 @@ function instanceOfOrderBy(value) {
     }
     return false;
 }
+exports.instanceOfOrderBy = instanceOfOrderBy;
 function OrderByFromJSON(json) {
     return OrderByFromJSONTyped(json, false);
 }
+exports.OrderByFromJSON = OrderByFromJSON;
 function OrderByFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
+exports.OrderByFromJSONTyped = OrderByFromJSONTyped;
 function OrderByToJSON(value) {
     return value;
 }
+exports.OrderByToJSON = OrderByToJSON;
 function OrderByToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }
+exports.OrderByToJSONTyped = OrderByToJSONTyped;

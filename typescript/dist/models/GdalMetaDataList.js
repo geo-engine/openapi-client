@@ -13,12 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GdalMetaDataListTypeEnum = void 0;
-exports.instanceOfGdalMetaDataList = instanceOfGdalMetaDataList;
-exports.GdalMetaDataListFromJSON = GdalMetaDataListFromJSON;
-exports.GdalMetaDataListFromJSONTyped = GdalMetaDataListFromJSONTyped;
-exports.GdalMetaDataListToJSON = GdalMetaDataListToJSON;
-exports.GdalMetaDataListToJSONTyped = GdalMetaDataListToJSONTyped;
+exports.GdalMetaDataListToJSONTyped = exports.GdalMetaDataListToJSON = exports.GdalMetaDataListFromJSONTyped = exports.GdalMetaDataListFromJSON = exports.instanceOfGdalMetaDataList = exports.GdalMetaDataListTypeEnum = void 0;
 const RasterResultDescriptor_1 = require("./RasterResultDescriptor");
 const GdalLoadingInfoTemporalSlice_1 = require("./GdalLoadingInfoTemporalSlice");
 /**
@@ -39,9 +34,11 @@ function instanceOfGdalMetaDataList(value) {
         return false;
     return true;
 }
+exports.instanceOfGdalMetaDataList = instanceOfGdalMetaDataList;
 function GdalMetaDataListFromJSON(json) {
     return GdalMetaDataListFromJSONTyped(json, false);
 }
+exports.GdalMetaDataListFromJSON = GdalMetaDataListFromJSON;
 function GdalMetaDataListFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
@@ -52,9 +49,11 @@ function GdalMetaDataListFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
+exports.GdalMetaDataListFromJSONTyped = GdalMetaDataListFromJSONTyped;
 function GdalMetaDataListToJSON(json) {
     return GdalMetaDataListToJSONTyped(json, false);
 }
+exports.GdalMetaDataListToJSON = GdalMetaDataListToJSON;
 function GdalMetaDataListToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
@@ -65,3 +64,4 @@ function GdalMetaDataListToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
     };
 }
+exports.GdalMetaDataListToJSONTyped = GdalMetaDataListToJSONTyped;

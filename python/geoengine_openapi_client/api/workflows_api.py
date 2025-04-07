@@ -25,7 +25,6 @@ from geoengine_openapi_client.models.provenance_entry import ProvenanceEntry
 from geoengine_openapi_client.models.raster_dataset_from_workflow import RasterDatasetFromWorkflow
 from geoengine_openapi_client.models.raster_stream_websocket_result_type import RasterStreamWebsocketResultType
 from geoengine_openapi_client.models.spatial_partition2_d import SpatialPartition2D
-from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
 from geoengine_openapi_client.models.task_response import TaskResponse
 from geoengine_openapi_client.models.typed_result_descriptor import TypedResultDescriptor
 from geoengine_openapi_client.models.workflow import Workflow
@@ -1372,7 +1371,6 @@ class WorkflowsApi:
         id: Annotated[StrictStr, Field(description="Workflow id")],
         spatial_bounds: SpatialPartition2D,
         time_interval: StrictStr,
-        spatial_resolution: SpatialResolution,
         attributes: StrictStr,
         result_type: RasterStreamWebsocketResultType,
         _request_timeout: Union[
@@ -1397,8 +1395,6 @@ class WorkflowsApi:
         :type spatial_bounds: SpatialPartition2D
         :param time_interval: (required)
         :type time_interval: str
-        :param spatial_resolution: (required)
-        :type spatial_resolution: SpatialResolution
         :param attributes: (required)
         :type attributes: str
         :param result_type: (required)
@@ -1429,7 +1425,6 @@ class WorkflowsApi:
             id=id,
             spatial_bounds=spatial_bounds,
             time_interval=time_interval,
-            spatial_resolution=spatial_resolution,
             attributes=attributes,
             result_type=result_type,
             _request_auth=_request_auth,
@@ -1458,7 +1453,6 @@ class WorkflowsApi:
         id: Annotated[StrictStr, Field(description="Workflow id")],
         spatial_bounds: SpatialPartition2D,
         time_interval: StrictStr,
-        spatial_resolution: SpatialResolution,
         attributes: StrictStr,
         result_type: RasterStreamWebsocketResultType,
         _request_timeout: Union[
@@ -1483,8 +1477,6 @@ class WorkflowsApi:
         :type spatial_bounds: SpatialPartition2D
         :param time_interval: (required)
         :type time_interval: str
-        :param spatial_resolution: (required)
-        :type spatial_resolution: SpatialResolution
         :param attributes: (required)
         :type attributes: str
         :param result_type: (required)
@@ -1515,7 +1507,6 @@ class WorkflowsApi:
             id=id,
             spatial_bounds=spatial_bounds,
             time_interval=time_interval,
-            spatial_resolution=spatial_resolution,
             attributes=attributes,
             result_type=result_type,
             _request_auth=_request_auth,
@@ -1544,7 +1535,6 @@ class WorkflowsApi:
         id: Annotated[StrictStr, Field(description="Workflow id")],
         spatial_bounds: SpatialPartition2D,
         time_interval: StrictStr,
-        spatial_resolution: SpatialResolution,
         attributes: StrictStr,
         result_type: RasterStreamWebsocketResultType,
         _request_timeout: Union[
@@ -1569,8 +1559,6 @@ class WorkflowsApi:
         :type spatial_bounds: SpatialPartition2D
         :param time_interval: (required)
         :type time_interval: str
-        :param spatial_resolution: (required)
-        :type spatial_resolution: SpatialResolution
         :param attributes: (required)
         :type attributes: str
         :param result_type: (required)
@@ -1601,7 +1589,6 @@ class WorkflowsApi:
             id=id,
             spatial_bounds=spatial_bounds,
             time_interval=time_interval,
-            spatial_resolution=spatial_resolution,
             attributes=attributes,
             result_type=result_type,
             _request_auth=_request_auth,
@@ -1625,7 +1612,6 @@ class WorkflowsApi:
         id,
         spatial_bounds,
         time_interval,
-        spatial_resolution,
         attributes,
         result_type,
         _request_auth,
@@ -1659,10 +1645,6 @@ class WorkflowsApi:
         if time_interval is not None:
             
             _query_params.append(('timeInterval', time_interval))
-            
-        if spatial_resolution is not None:
-            
-            _query_params.append(('spatialResolution', spatial_resolution))
             
         if attributes is not None:
             

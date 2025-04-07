@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { IdResponse, ProvenanceEntry, RasterDatasetFromWorkflow, RasterStreamWebsocketResultType, SpatialPartition2D, SpatialResolution, TaskResponse, TypedResultDescriptor, Workflow } from '../models/index';
+import type { IdResponse, ProvenanceEntry, RasterDatasetFromWorkflow, RasterStreamWebsocketResultType, SpatialPartition2D, TaskResponse, TypedResultDescriptor, Workflow } from '../models/index';
 export interface DatasetFromWorkflowHandlerRequest {
     id: string;
     rasterDatasetFromWorkflow: RasterDatasetFromWorkflow;
@@ -31,7 +31,6 @@ export interface RasterStreamWebsocketRequest {
     id: string;
     spatialBounds: SpatialPartition2D;
     timeInterval: string;
-    spatialResolution: SpatialResolution;
     attributes: string;
     resultType: RasterStreamWebsocketResultType;
 }

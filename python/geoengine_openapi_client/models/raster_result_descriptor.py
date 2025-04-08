@@ -27,24 +27,23 @@ from geoengine_openapi_client.models.time_interval import TimeInterval
 from typing import Optional, Set
 from typing_extensions import Self
 
-
 class RasterResultDescriptor(BaseModel):
     """
     A `ResultDescriptor` for raster queries
-    """  # noqa: E501
+    """ # noqa: E501
     bands: List[RasterBandDescriptor]
     data_type: RasterDataType = Field(alias="dataType")
     spatial_grid: SpatialGridDescriptor = Field(alias="spatialGrid")
     spatial_reference: StrictStr = Field(alias="spatialReference")
     time: Optional[TimeInterval] = None
-    __properties: ClassVar[List[str]] = [
-        "bands", "dataType", "spatialGrid", "spatialReference", "time"]
+    __properties: ClassVar[List[str]] = ["bands", "dataType", "spatialGrid", "spatialReference", "time"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -111,9 +110,11 @@ class RasterResultDescriptor(BaseModel):
 
         _obj = cls.model_validate({
             "bands": [RasterBandDescriptor.from_dict(_item) for _item in obj["bands"]] if obj.get("bands") is not None else None,
-            "dataType": obj.get("dataType"),
             "spatialGrid": SpatialGridDescriptor.from_dict(obj["spatialGrid"]) if obj.get("spatialGrid") is not None else None,
+            "dataType": obj.get("dataType"),
             "spatialReference": obj.get("spatialReference"),
             "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
         })
         return _obj
+
+

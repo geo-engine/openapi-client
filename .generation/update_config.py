@@ -13,7 +13,7 @@ CWD = Path('.generation/')
 INI_FILE = CWD / 'config.ini'
 
 parser = argparse.ArgumentParser(description='Update the config.ini file.')
-parser.add_argument('--backendTag', dest='backend_tag',
+parser.add_argument('--backendCommit', dest='backend_commit',
                     required=True, type=str)
 
 args = parser.parse_args()
@@ -22,17 +22,16 @@ config = configparser.ConfigParser()
 config.optionxform = str  # do not convert keys to lowercase
 config.read(INI_FILE)
 
-config['input']['backendTag'] = args.backend_tag
+config['input']['backendCommit'] = args.backend_commit
 
-for language in ['python', 'typescript']:
-    # retrieve version
-    version_digits: list[int] = [
-        int(digit) for digit in config[language]['version'].split('.')]
-    # increment last version digit
-    version_digits[-1] += 1
-    # write back
-    config[language]['version'] = '.'.join(
-        str(digit) for digit in version_digits)
+# retrieve version
+version_digits: list[int] = [
+    int(digit) for digit in config['general']['version'].split('.')]
+# increment last version digit
+version_digits[-1] += 1
+# write back
+config['general']['version'] = '.'.join(
+    str(digit) for digit in version_digits)
 
 with open(INI_FILE, 'w', encoding='utf-8') as f:
     config.write(f)

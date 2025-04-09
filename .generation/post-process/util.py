@@ -29,13 +29,9 @@ def modify_file(input_path: Path,
         for line in modify_fn(file_contents):
             f.write(line)
 
-def version(language: str) -> str:
-    '''Get the version number for a given language from the `config.ini`.'''
-
-    # Use `Literal['python', 'typescript']` in Python version >= 3.8
-    if language not in ['python', 'typescript']:
-        raise ValueError(f'Language {language} not supported.')
+def version() -> str:
+    '''Get the version number for the packages from the `config.ini`.'''
 
     config = configparser.ConfigParser()
     config.read(INI_FILE)
-    return config[language]['version']
+    return config['general']['version']

@@ -9,24 +9,17 @@ import argparse
 from dataclasses import dataclass
 from pathlib import Path
 from urllib import request
-from urllib.error import URLError
 from urllib.parse import urlsplit
 import configparser
-import json
 import os
 import shutil
 import subprocess
 import sys
-import time
 from typing import Literal
+import logging
 
 
 CWD = Path('.generation/')
-
-
-def eprint(*args, **kwargs):
-    '''Print to stderr.'''
-    print(*args, file=sys.stderr, **kwargs)
 
 
 class ProgramArgs(argparse.Namespace):
@@ -55,18 +48,17 @@ class ProgramArgs(argparse.Namespace):
 class ConfigArgs():
     '''Typed config.ini arguments.'''
     # Backend version
-    ge_backend_tag: str
+    ge_backend_commit: str
 
     # General
     github_url: str
+    package_version: str
 
     # Python package name
     python_package_name: str
-    python_package_version: str
 
     # TypeScript package name
     typescript_package_name: str
-    typescript_package_version: str
 
     @staticmethod
     def parse_config() -> ConfigArgs:
@@ -76,66 +68,32 @@ class ConfigArgs():
         parsed.read(CWD / 'config.ini')
 
         return ConfigArgs(
-            ge_backend_tag=parsed['input']['backendTag'],
+            ge_backend_commit=parsed['input']['backendCommit'],
             github_url=parsed['general']['githubUrl'],
+            package_version=parsed['general']['version'],
             python_package_name=parsed['python']['name'],
-            python_package_version=parsed['python']['version'],
             typescript_package_name=parsed['typescript']['name'],
-            typescript_package_version=parsed['typescript']['version'],
         )
 
 
-def fetch_spec(*, ge_backend_tag: str) -> None:
+def fetch_spec(*, ge_backend_commit: str) -> None:
     '''
-    Generate the openapi.json file.
-
-    Imitating manually fetching it, e.g.
-
-    ```bash
-    wget http://localhost:3030/api/api-docs/openapi.json -O - \
-      | python -m json.tool --indent 2 > .generation/input/openapi.json
-    ```
+    Copy the openapi.json file from the backend repo.
     '''
-    eprint("Starting Geo Engine backend.")
 
-    ge_process = subprocess.Popen(
-        [
-            "podman", "run",
-            "--rm",  # remove the container after running
-            "--network=host",  # port 8080 by default
-            # "-p", "3030:8080",
-            f"quay.io/geoengine/geoengine:{ge_backend_tag}",
-        ],
-        env={
-            'GEOENGINE__POSTGRES__CLEAR_DATABASE_ON_START': 'true',
-            'PATH': os.environ['PATH'],
-        },
-    )
+    request_url = f"https://raw.githubusercontent.com/geo-engine/geoengine/{ge_backend_commit}/openapi.json"
 
-    for _ in range(180):  # <3 minutes
-        eprint("Requesting `openapi.json`….")
-        try:
-            with request.urlopen(
-                "http://localhost:8080/api/api-docs/openapi.json",
-                timeout=10,
-            ) as w:
-                api_json = json.load(w)
+    logging.info(f"Requesting `openapi.json` at `{request_url}`….")
+    with request.urlopen(request_url, timeout=10) as w, \
+            open(CWD / "input/openapi.json", "w", encoding='utf-8') as f:
+        f.write(w.read().decode('utf-8'))
 
-            with open(CWD / "input/openapi.json", "w", encoding='utf-8') as f:
-                json.dump(api_json, f, indent=2)
-
-            eprint("Stored `openapi.json`.")
-            break
-        except URLError as _e:
-            pass  # try again
-        time.sleep(1)  # 1 second
-
-    eprint("Stopping Geo Engine backend.")
-    ge_process.kill()
+    logging.info("Stored `openapi.json`.")
 
 
 def build_container():
     '''Build the patched generator image'''
+    logging.info("Building patched generator image…")
     subprocess.run(
         [
             "podman", "build",
@@ -144,12 +102,15 @@ def build_container():
         ],
         check=True,
     )
+    logging.info("Patched generator image built.")
 
 
 def clean_dirs(*, language: Literal['python', 'typescript']):
     '''Remove some directories because they are not be overwritten by the generator.'''
 
     dirs_to_remove = [
+        'node_modules',
+        '.mypy_cache',
         Path(language) / 'test'
     ]
 
@@ -158,20 +119,25 @@ def clean_dirs(*, language: Literal['python', 'typescript']):
             dirs_to_remove.extend([
                 Path(language) / 'src',
                 Path(language) / 'dist',
+                Path(language) / 'node_modules',
             ])
         case 'python':
             dirs_to_remove.extend([
                 Path(language) / 'geoengine_openapi_client',
             ])
 
+    logging.info(f"Removing directories:")
+
     for the_dir in dirs_to_remove:
         if not os.path.isdir(the_dir):
             continue
+        logging.info(f"  - {the_dir}")
         shutil.rmtree(the_dir)
 
 
 def generate_python_code(*, package_name: str, package_version: str, package_url: str):
     '''Run the generator.'''
+
     subprocess.run(
         [
             "podman", "run",
@@ -242,11 +208,18 @@ typings
 
 def main():
     '''The entry point of the program'''
+
+    # Set up logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='[%(levelname)s] %(message)s'
+    )
+
     args = ProgramArgs.parse_arguments()
     config = ConfigArgs.parse_config()
 
     if args.fetch_spec:
-        fetch_spec(ge_backend_tag=config.ge_backend_tag)
+        fetch_spec(ge_backend_commit=config.ge_backend_commit)
 
     if args.build_container:
         build_container()
@@ -254,31 +227,34 @@ def main():
     clean_dirs(language=args.language)
 
     if args.language == 'python':
+        logging.info("Generating Python client…")
         generate_python_code(
             package_name=config.python_package_name,
-            package_version=config.python_package_version,
+            package_version=config.package_version,
             package_url=config.github_url,
         )
     elif args.language == 'typescript':
+        logging.info("Generating TypeScript client…")
         generate_typescript_code(
             npm_name=config.typescript_package_name,
-            npm_version=config.typescript_package_version,
+            npm_version=config.package_version,
             repository_url=config.github_url,
         )
 
         # Create dist files.
         # This is necessary for using the package directly from the git repo for development.
+        logging.info("Creating dist files…")
         subprocess.run(
-        [
-            "podman", "run",
-            "--rm",  # remove the container after running
-            "-v", f"{os.getcwd()}:/local",
-            "--workdir=/local/typescript", # set working directory
-            "docker.io/node:lts-alpine3.19",
-            "npm", "install",
-        ],
-        check=True,
-    )
+            [
+                "podman", "run",
+                "--rm",  # remove the container after running
+                "-v", f"{os.getcwd()}/typescript:/local/typescript",
+                "--workdir=/local/typescript",  # set working directory
+                "docker.io/node:lts-alpine3.20",
+                "npm", "install",
+            ],
+            check=True,
+        )
     else:
         raise RuntimeError(f'Unknown language {args.language}.')
 

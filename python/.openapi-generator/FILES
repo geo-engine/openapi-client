@@ -127,7 +127,6 @@ docs/PermissionRequest.md
 docs/PermissionsApi.md
 docs/Plot.md
 docs/PlotOutputFormat.md
-docs/PlotQueryRectangle.md
 docs/PlotResultDescriptor.md
 docs/PlotsApi.md
 docs/PointSymbology.md
@@ -154,10 +153,10 @@ docs/RasterDatasetFromWorkflow.md
 docs/RasterDatasetFromWorkflowResult.md
 docs/RasterPropertiesEntryType.md
 docs/RasterPropertiesKey.md
-docs/RasterQueryRectangle.md
 docs/RasterResultDescriptor.md
 docs/RasterStreamWebsocketResultType.md
 docs/RasterSymbology.md
+docs/RasterToDatasetQueryRectangle.md
 docs/Resource.md
 docs/Role.md
 docs/RoleDescription.md
@@ -227,7 +226,6 @@ docs/UserSession.md
 docs/VecUpdate.md
 docs/VectorColumnInfo.md
 docs/VectorDataType.md
-docs/VectorQueryRectangle.md
 docs/VectorResultDescriptor.md
 docs/Volume.md
 docs/VolumeFileLayersResponse.md
@@ -380,7 +378,6 @@ geoengine_openapi_client/models/permission_listing.py
 geoengine_openapi_client/models/permission_request.py
 geoengine_openapi_client/models/plot.py
 geoengine_openapi_client/models/plot_output_format.py
-geoengine_openapi_client/models/plot_query_rectangle.py
 geoengine_openapi_client/models/plot_result_descriptor.py
 geoengine_openapi_client/models/point_symbology.py
 geoengine_openapi_client/models/polygon_symbology.py
@@ -405,10 +402,10 @@ geoengine_openapi_client/models/raster_dataset_from_workflow.py
 geoengine_openapi_client/models/raster_dataset_from_workflow_result.py
 geoengine_openapi_client/models/raster_properties_entry_type.py
 geoengine_openapi_client/models/raster_properties_key.py
-geoengine_openapi_client/models/raster_query_rectangle.py
 geoengine_openapi_client/models/raster_result_descriptor.py
 geoengine_openapi_client/models/raster_stream_websocket_result_type.py
 geoengine_openapi_client/models/raster_symbology.py
+geoengine_openapi_client/models/raster_to_dataset_query_rectangle.py
 geoengine_openapi_client/models/resource.py
 geoengine_openapi_client/models/role.py
 geoengine_openapi_client/models/role_description.py
@@ -473,7 +470,6 @@ geoengine_openapi_client/models/user_session.py
 geoengine_openapi_client/models/vec_update.py
 geoengine_openapi_client/models/vector_column_info.py
 geoengine_openapi_client/models/vector_data_type.py
-geoengine_openapi_client/models/vector_query_rectangle.py
 geoengine_openapi_client/models/vector_result_descriptor.py
 geoengine_openapi_client/models/volume.py
 geoengine_openapi_client/models/volume_file_layers_response.py
@@ -619,7 +615,6 @@ test/test_permission_request.py
 test/test_permissions_api.py
 test/test_plot.py
 test/test_plot_output_format.py
-test/test_plot_query_rectangle.py
 test/test_plot_result_descriptor.py
 test/test_plots_api.py
 test/test_point_symbology.py
@@ -646,10 +641,10 @@ test/test_raster_dataset_from_workflow.py
 test/test_raster_dataset_from_workflow_result.py
 test/test_raster_properties_entry_type.py
 test/test_raster_properties_key.py
-test/test_raster_query_rectangle.py
 test/test_raster_result_descriptor.py
 test/test_raster_stream_websocket_result_type.py
 test/test_raster_symbology.py
+test/test_raster_to_dataset_query_rectangle.py
 test/test_resource.py
 test/test_role.py
 test/test_role_description.py
@@ -719,7 +714,6 @@ test/test_user_session.py
 test/test_vec_update.py
 test/test_vector_column_info.py
 test/test_vector_data_type.py
-test/test_vector_query_rectangle.py
 test/test_vector_result_descriptor.py
 test/test_volume.py
 test/test_volume_file_layers_response.py

@@ -5452,6 +5452,15 @@
           "eastNorth"
         ]
       },
+      "BTreeMap": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "propertyNames": {
+          "type": "string"
+        }
+      },
       "BandSelection": {
         "type": "array",
         "items": {
@@ -5504,15 +5513,7 @@
         ],
         "properties": {
           "classes": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "propertyNames": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 0
-            }
+            "$ref": "#/components/schemas/BTreeMap"
           },
           "measurement": {
             "type": "string"
@@ -7837,26 +7838,6 @@
           "ImagePng"
         ]
       },
-      "PlotQueryRectangle": {
-        "type": "object",
-        "description": "A spatio-temporal rectangle with a specified resolution",
-        "required": [
-          "spatialBounds",
-          "timeInterval",
-          "spatialResolution"
-        ],
-        "properties": {
-          "spatialBounds": {
-            "$ref": "#/components/schemas/BoundingBox2D"
-          },
-          "spatialResolution": {
-            "$ref": "#/components/schemas/SpatialResolution"
-          },
-          "timeInterval": {
-            "$ref": "#/components/schemas/TimeInterval"
-          }
-        }
-      },
       "PlotResultDescriptor": {
         "type": "object",
         "description": "A `ResultDescriptor` for plot queries",
@@ -8343,7 +8324,7 @@
             ]
           },
           "query": {
-            "$ref": "#/components/schemas/RasterQueryRectangle"
+            "$ref": "#/components/schemas/RasterToDatasetQueryRectangle"
           }
         },
         "example": {
@@ -8412,26 +8393,6 @@
           }
         }
       },
-      "RasterQueryRectangle": {
-        "type": "object",
-        "description": "A spatio-temporal rectangle with a specified resolution",
-        "required": [
-          "spatialBounds",
-          "timeInterval",
-          "spatialResolution"
-        ],
-        "properties": {
-          "spatialBounds": {
-            "$ref": "#/components/schemas/SpatialPartition2D"
-          },
-          "spatialResolution": {
-            "$ref": "#/components/schemas/SpatialResolution"
-          },
-          "timeInterval": {
-            "$ref": "#/components/schemas/TimeInterval"
-          }
-        }
-      },
       "RasterResultDescriptor": {
         "type": "object",
         "description": "A `ResultDescriptor` for raster queries",
@@ -8493,6 +8454,22 @@
             "enum": [
               "raster"
             ]
+          }
+        }
+      },
+      "RasterToDatasetQueryRectangle": {
+        "type": "object",
+        "description": "A spatio-temporal rectangle with a specified resolution",
+        "required": [
+          "spatialBounds",
+          "timeInterval"
+        ],
+        "properties": {
+          "spatialBounds": {
+            "$ref": "#/components/schemas/SpatialPartition2D"
+          },
+          "timeInterval": {
+            "$ref": "#/components/schemas/TimeInterval"
           }
         }
       },
@@ -9819,26 +9796,6 @@
           "MultiLineString",
           "MultiPolygon"
         ]
-      },
-      "VectorQueryRectangle": {
-        "type": "object",
-        "description": "A spatio-temporal rectangle with a specified resolution",
-        "required": [
-          "spatialBounds",
-          "timeInterval",
-          "spatialResolution"
-        ],
-        "properties": {
-          "spatialBounds": {
-            "$ref": "#/components/schemas/BoundingBox2D"
-          },
-          "spatialResolution": {
-            "$ref": "#/components/schemas/SpatialResolution"
-          },
-          "timeInterval": {
-            "$ref": "#/components/schemas/TimeInterval"
-          }
-        }
       },
       "VectorResultDescriptor": {
         "type": "object",

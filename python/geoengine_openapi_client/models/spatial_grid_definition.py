@@ -20,20 +20,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from geoengine_openapi_client.models.spatial_partition2_d import SpatialPartition2D
-from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
-from geoengine_openapi_client.models.time_interval import TimeInterval
+from geoengine_openapi_client.models.geo_transform import GeoTransform
+from geoengine_openapi_client.models.grid_bounding_box2_d import GridBoundingBox2D
 from typing import Optional, Set
 from typing_extensions import Self
 
-class RasterQueryRectangle(BaseModel):
+class SpatialGridDefinition(BaseModel):
     """
-    A spatio-temporal rectangle with a specified resolution
+    SpatialGridDefinition
     """ # noqa: E501
-    spatial_bounds: SpatialPartition2D = Field(alias="spatialBounds")
-    spatial_resolution: SpatialResolution = Field(alias="spatialResolution")
-    time_interval: TimeInterval = Field(alias="timeInterval")
-    __properties: ClassVar[List[str]] = ["spatialBounds", "spatialResolution", "timeInterval"]
+    geo_transform: GeoTransform = Field(alias="geoTransform")
+    grid_bounds: GridBoundingBox2D = Field(alias="gridBounds")
+    __properties: ClassVar[List[str]] = ["geoTransform", "gridBounds"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +51,7 @@ class RasterQueryRectangle(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RasterQueryRectangle from a JSON string"""
+        """Create an instance of SpatialGridDefinition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,20 +72,17 @@ class RasterQueryRectangle(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of spatial_bounds
-        if self.spatial_bounds:
-            _dict['spatialBounds'] = self.spatial_bounds.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of spatial_resolution
-        if self.spatial_resolution:
-            _dict['spatialResolution'] = self.spatial_resolution.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of time_interval
-        if self.time_interval:
-            _dict['timeInterval'] = self.time_interval.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of geo_transform
+        if self.geo_transform:
+            _dict['geoTransform'] = self.geo_transform.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of grid_bounds
+        if self.grid_bounds:
+            _dict['gridBounds'] = self.grid_bounds.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RasterQueryRectangle from a dict"""
+        """Create an instance of SpatialGridDefinition from a dict"""
         if obj is None:
             return None
 
@@ -95,9 +90,8 @@ class RasterQueryRectangle(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "spatialBounds": SpatialPartition2D.from_dict(obj["spatialBounds"]) if obj.get("spatialBounds") is not None else None,
-            "spatialResolution": SpatialResolution.from_dict(obj["spatialResolution"]) if obj.get("spatialResolution") is not None else None,
-            "timeInterval": TimeInterval.from_dict(obj["timeInterval"]) if obj.get("timeInterval") is not None else None
+            "geoTransform": GeoTransform.from_dict(obj["geoTransform"]) if obj.get("geoTransform") is not None else None,
+            "gridBounds": GridBoundingBox2D.from_dict(obj["gridBounds"]) if obj.get("gridBounds") is not None else None
         })
         return _obj
 

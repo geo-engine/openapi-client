@@ -11,11 +11,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SpatialResolutionFromJSON, SpatialResolutionToJSON, } from './SpatialResolution';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 import { RasterBandDescriptorFromJSON, RasterBandDescriptorToJSON, } from './RasterBandDescriptor';
+import { SpatialGridDescriptorFromJSON, SpatialGridDescriptorToJSON, } from './SpatialGridDescriptor';
 import { RasterDataTypeFromJSON, RasterDataTypeToJSON, } from './RasterDataType';
-import { SpatialPartition2DFromJSON, SpatialPartition2DToJSON, } from './SpatialPartition2D';
 /**
  * Check if a given object implements the RasterResultDescriptor interface.
  */
@@ -23,6 +22,8 @@ export function instanceOfRasterResultDescriptor(value) {
     if (!('bands' in value) || value['bands'] === undefined)
         return false;
     if (!('dataType' in value) || value['dataType'] === undefined)
+        return false;
+    if (!('spatialGrid' in value) || value['spatialGrid'] === undefined)
         return false;
     if (!('spatialReference' in value) || value['spatialReference'] === undefined)
         return false;
@@ -37,9 +38,8 @@ export function RasterResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'bands': (json['bands'].map(RasterBandDescriptorFromJSON)),
-        'bbox': json['bbox'] == null ? undefined : SpatialPartition2DFromJSON(json['bbox']),
         'dataType': RasterDataTypeFromJSON(json['dataType']),
-        'resolution': json['resolution'] == null ? undefined : SpatialResolutionFromJSON(json['resolution']),
+        'spatialGrid': SpatialGridDescriptorFromJSON(json['spatialGrid']),
         'spatialReference': json['spatialReference'],
         'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
     };
@@ -53,9 +53,8 @@ export function RasterResultDescriptorToJSONTyped(value, ignoreDiscriminator = f
     }
     return {
         'bands': (value['bands'].map(RasterBandDescriptorToJSON)),
-        'bbox': SpatialPartition2DToJSON(value['bbox']),
         'dataType': RasterDataTypeToJSON(value['dataType']),
-        'resolution': SpatialResolutionToJSON(value['resolution']),
+        'spatialGrid': SpatialGridDescriptorToJSON(value['spatialGrid']),
         'spatialReference': value['spatialReference'],
         'time': TimeIntervalToJSON(value['time']),
     };

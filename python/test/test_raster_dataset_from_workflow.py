@@ -40,7 +40,7 @@ class TestRasterDatasetFromWorkflow(unittest.TestCase):
                 description = '',
                 display_name = '',
                 name = '',
-                query = geoengine_openapi_client.models.raster_query_rectangle.RasterQueryRectangle(
+                query = geoengine_openapi_client.models.raster_to_dataset_query_rectangle.RasterToDatasetQueryRectangle(
                     spatial_bounds = geoengine_openapi_client.models.spatial_partition2_d.SpatialPartition2D(
                         lower_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                             x = 1.337, 
@@ -48,9 +48,6 @@ class TestRasterDatasetFromWorkflow(unittest.TestCase):
                         upper_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                             x = 1.337, 
                             y = 1.337, ), ), 
-                    spatial_resolution = geoengine_openapi_client.models.spatial_resolution.SpatialResolution(
-                        x = 1.337, 
-                        y = 1.337, ), 
                     time_interval = geoengine_openapi_client.models.time_interval.TimeInterval(
                         end = 56, 
                         start = 56, ), )
@@ -58,7 +55,7 @@ class TestRasterDatasetFromWorkflow(unittest.TestCase):
         else:
             return RasterDatasetFromWorkflow(
                 display_name = '',
-                query = geoengine_openapi_client.models.raster_query_rectangle.RasterQueryRectangle(
+                query = geoengine_openapi_client.models.raster_to_dataset_query_rectangle.RasterToDatasetQueryRectangle(
                     spatial_bounds = geoengine_openapi_client.models.spatial_partition2_d.SpatialPartition2D(
                         lower_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                             x = 1.337, 
@@ -66,9 +63,6 @@ class TestRasterDatasetFromWorkflow(unittest.TestCase):
                         upper_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                             x = 1.337, 
                             y = 1.337, ), ), 
-                    spatial_resolution = geoengine_openapi_client.models.spatial_resolution.SpatialResolution(
-                        x = 1.337, 
-                        y = 1.337, ), 
                     time_interval = geoengine_openapi_client.models.time_interval.TimeInterval(
                         end = 56, 
                         start = 56, ), ),

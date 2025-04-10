@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SpatialResolution } from './SpatialResolution';
-import {
-    SpatialResolutionFromJSON,
-    SpatialResolutionFromJSONTyped,
-    SpatialResolutionToJSON,
-    SpatialResolutionToJSONTyped,
-} from './SpatialResolution';
 import type { TimeInterval } from './TimeInterval';
 import {
     TimeIntervalFromJSON,
@@ -34,6 +27,13 @@ import {
     RasterBandDescriptorToJSON,
     RasterBandDescriptorToJSONTyped,
 } from './RasterBandDescriptor';
+import type { SpatialGridDescriptor } from './SpatialGridDescriptor';
+import {
+    SpatialGridDescriptorFromJSON,
+    SpatialGridDescriptorFromJSONTyped,
+    SpatialGridDescriptorToJSON,
+    SpatialGridDescriptorToJSONTyped,
+} from './SpatialGridDescriptor';
 import type { RasterDataType } from './RasterDataType';
 import {
     RasterDataTypeFromJSON,
@@ -41,13 +41,6 @@ import {
     RasterDataTypeToJSON,
     RasterDataTypeToJSONTyped,
 } from './RasterDataType';
-import type { SpatialPartition2D } from './SpatialPartition2D';
-import {
-    SpatialPartition2DFromJSON,
-    SpatialPartition2DFromJSONTyped,
-    SpatialPartition2DToJSON,
-    SpatialPartition2DToJSONTyped,
-} from './SpatialPartition2D';
 
 /**
  * A `ResultDescriptor` for raster queries
@@ -63,22 +56,16 @@ export interface RasterResultDescriptor {
     bands: Array<RasterBandDescriptor>;
     /**
      * 
-     * @type {SpatialPartition2D}
-     * @memberof RasterResultDescriptor
-     */
-    bbox?: SpatialPartition2D | null;
-    /**
-     * 
      * @type {RasterDataType}
      * @memberof RasterResultDescriptor
      */
     dataType: RasterDataType;
     /**
      * 
-     * @type {SpatialResolution}
+     * @type {SpatialGridDescriptor}
      * @memberof RasterResultDescriptor
      */
-    resolution?: SpatialResolution | null;
+    spatialGrid: SpatialGridDescriptor;
     /**
      * 
      * @type {string}
@@ -101,6 +88,7 @@ export interface RasterResultDescriptor {
 export function instanceOfRasterResultDescriptor(value: object): value is RasterResultDescriptor {
     if (!('bands' in value) || value['bands'] === undefined) return false;
     if (!('dataType' in value) || value['dataType'] === undefined) return false;
+    if (!('spatialGrid' in value) || value['spatialGrid'] === undefined) return false;
     if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
     return true;
 }
@@ -116,9 +104,8 @@ export function RasterResultDescriptorFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'bands': ((json['bands'] as Array<any>).map(RasterBandDescriptorFromJSON)),
-        'bbox': json['bbox'] == null ? undefined : SpatialPartition2DFromJSON(json['bbox']),
         'dataType': RasterDataTypeFromJSON(json['dataType']),
-        'resolution': json['resolution'] == null ? undefined : SpatialResolutionFromJSON(json['resolution']),
+        'spatialGrid': SpatialGridDescriptorFromJSON(json['spatialGrid']),
         'spatialReference': json['spatialReference'],
         'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
     };
@@ -136,9 +123,8 @@ export function RasterResultDescriptorToJSONTyped(value?: RasterResultDescriptor
     return {
         
         'bands': ((value['bands'] as Array<any>).map(RasterBandDescriptorToJSON)),
-        'bbox': SpatialPartition2DToJSON(value['bbox']),
         'dataType': RasterDataTypeToJSON(value['dataType']),
-        'resolution': SpatialResolutionToJSON(value['resolution']),
+        'spatialGrid': SpatialGridDescriptorToJSON(value['spatialGrid']),
         'spatialReference': value['spatialReference'],
         'time': TimeIntervalToJSON(value['time']),
     };

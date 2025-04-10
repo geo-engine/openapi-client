@@ -20,20 +20,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from geoengine_openapi_client.models.bounding_box2_d import BoundingBox2D
-from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
-from geoengine_openapi_client.models.time_interval import TimeInterval
+from geoengine_openapi_client.models.grid_idx2_d import GridIdx2D
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PlotQueryRectangle(BaseModel):
+class GridBoundingBox2D(BaseModel):
     """
-    A spatio-temporal rectangle with a specified resolution
+    GridBoundingBox2D
     """ # noqa: E501
-    spatial_bounds: BoundingBox2D = Field(alias="spatialBounds")
-    spatial_resolution: SpatialResolution = Field(alias="spatialResolution")
-    time_interval: TimeInterval = Field(alias="timeInterval")
-    __properties: ClassVar[List[str]] = ["spatialBounds", "spatialResolution", "timeInterval"]
+    bottom_right_idx: GridIdx2D = Field(alias="bottomRightIdx")
+    top_left_idx: GridIdx2D = Field(alias="topLeftIdx")
+    __properties: ClassVar[List[str]] = ["bottomRightIdx", "topLeftIdx"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +50,7 @@ class PlotQueryRectangle(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PlotQueryRectangle from a JSON string"""
+        """Create an instance of GridBoundingBox2D from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,20 +71,17 @@ class PlotQueryRectangle(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of spatial_bounds
-        if self.spatial_bounds:
-            _dict['spatialBounds'] = self.spatial_bounds.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of spatial_resolution
-        if self.spatial_resolution:
-            _dict['spatialResolution'] = self.spatial_resolution.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of time_interval
-        if self.time_interval:
-            _dict['timeInterval'] = self.time_interval.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of bottom_right_idx
+        if self.bottom_right_idx:
+            _dict['bottomRightIdx'] = self.bottom_right_idx.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of top_left_idx
+        if self.top_left_idx:
+            _dict['topLeftIdx'] = self.top_left_idx.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PlotQueryRectangle from a dict"""
+        """Create an instance of GridBoundingBox2D from a dict"""
         if obj is None:
             return None
 
@@ -95,9 +89,8 @@ class PlotQueryRectangle(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "spatialBounds": BoundingBox2D.from_dict(obj["spatialBounds"]) if obj.get("spatialBounds") is not None else None,
-            "spatialResolution": SpatialResolution.from_dict(obj["spatialResolution"]) if obj.get("spatialResolution") is not None else None,
-            "timeInterval": TimeInterval.from_dict(obj["timeInterval"]) if obj.get("timeInterval") is not None else None
+            "bottomRightIdx": GridIdx2D.from_dict(obj["bottomRightIdx"]) if obj.get("bottomRightIdx") is not None else None,
+            "topLeftIdx": GridIdx2D.from_dict(obj["topLeftIdx"]) if obj.get("topLeftIdx") is not None else None
         })
         return _obj
 

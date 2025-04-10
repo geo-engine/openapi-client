@@ -18,22 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
-from geoengine_openapi_client.models.bounding_box2_d import BoundingBox2D
-from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
-from geoengine_openapi_client.models.time_interval import TimeInterval
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Union
+from geoengine_openapi_client.models.coordinate2_d import Coordinate2D
 from typing import Optional, Set
 from typing_extensions import Self
 
-class VectorQueryRectangle(BaseModel):
+class GeoTransform(BaseModel):
     """
-    A spatio-temporal rectangle with a specified resolution
+    GeoTransform
     """ # noqa: E501
-    spatial_bounds: BoundingBox2D = Field(alias="spatialBounds")
-    spatial_resolution: SpatialResolution = Field(alias="spatialResolution")
-    time_interval: TimeInterval = Field(alias="timeInterval")
-    __properties: ClassVar[List[str]] = ["spatialBounds", "spatialResolution", "timeInterval"]
+    origin_coordinate: Coordinate2D = Field(alias="originCoordinate")
+    x_pixel_size: Union[StrictFloat, StrictInt] = Field(alias="xPixelSize")
+    y_pixel_size: Union[StrictFloat, StrictInt] = Field(alias="yPixelSize")
+    __properties: ClassVar[List[str]] = ["originCoordinate", "xPixelSize", "yPixelSize"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +51,7 @@ class VectorQueryRectangle(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of VectorQueryRectangle from a JSON string"""
+        """Create an instance of GeoTransform from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,20 +72,14 @@ class VectorQueryRectangle(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of spatial_bounds
-        if self.spatial_bounds:
-            _dict['spatialBounds'] = self.spatial_bounds.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of spatial_resolution
-        if self.spatial_resolution:
-            _dict['spatialResolution'] = self.spatial_resolution.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of time_interval
-        if self.time_interval:
-            _dict['timeInterval'] = self.time_interval.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of origin_coordinate
+        if self.origin_coordinate:
+            _dict['originCoordinate'] = self.origin_coordinate.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of VectorQueryRectangle from a dict"""
+        """Create an instance of GeoTransform from a dict"""
         if obj is None:
             return None
 
@@ -95,9 +87,9 @@ class VectorQueryRectangle(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "spatialBounds": BoundingBox2D.from_dict(obj["spatialBounds"]) if obj.get("spatialBounds") is not None else None,
-            "spatialResolution": SpatialResolution.from_dict(obj["spatialResolution"]) if obj.get("spatialResolution") is not None else None,
-            "timeInterval": TimeInterval.from_dict(obj["timeInterval"]) if obj.get("timeInterval") is not None else None
+            "originCoordinate": Coordinate2D.from_dict(obj["originCoordinate"]) if obj.get("originCoordinate") is not None else None,
+            "xPixelSize": obj.get("xPixelSize"),
+            "yPixelSize": obj.get("yPixelSize")
         })
         return _obj
 

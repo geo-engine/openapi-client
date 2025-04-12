@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RasterQueryRectangle } from './RasterQueryRectangle';
+import type { RasterToDatasetQueryRectangle } from './RasterToDatasetQueryRectangle';
 import {
-    RasterQueryRectangleFromJSON,
-    RasterQueryRectangleFromJSONTyped,
-    RasterQueryRectangleToJSON,
-    RasterQueryRectangleToJSONTyped,
-} from './RasterQueryRectangle';
+    RasterToDatasetQueryRectangleFromJSON,
+    RasterToDatasetQueryRectangleFromJSONTyped,
+    RasterToDatasetQueryRectangleToJSON,
+    RasterToDatasetQueryRectangleToJSONTyped,
+} from './RasterToDatasetQueryRectangle';
 
 /**
  * parameter for the dataset from workflow handler (body)
@@ -53,10 +53,10 @@ export interface RasterDatasetFromWorkflow {
     name?: string;
     /**
      * 
-     * @type {RasterQueryRectangle}
+     * @type {RasterToDatasetQueryRectangle}
      * @memberof RasterDatasetFromWorkflow
      */
-    query: RasterQueryRectangle;
+    query: RasterToDatasetQueryRectangle;
 }
 
 /**
@@ -82,7 +82,7 @@ export function RasterDatasetFromWorkflowFromJSONTyped(json: any, ignoreDiscrimi
         'description': json['description'] == null ? undefined : json['description'],
         'displayName': json['displayName'],
         'name': json['name'] == null ? undefined : json['name'],
-        'query': RasterQueryRectangleFromJSON(json['query']),
+        'query': RasterToDatasetQueryRectangleFromJSON(json['query']),
     };
 }
 
@@ -101,7 +101,7 @@ export function RasterDatasetFromWorkflowToJSONTyped(value?: RasterDatasetFromWo
         'description': value['description'],
         'displayName': value['displayName'],
         'name': value['name'],
-        'query': RasterQueryRectangleToJSON(value['query']),
+        'query': RasterToDatasetQueryRectangleToJSON(value['query']),
     };
 }
 

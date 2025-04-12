@@ -11,7 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RasterQueryRectangleFromJSON, RasterQueryRectangleToJSON, } from './RasterQueryRectangle';
+import { RasterToDatasetQueryRectangleFromJSON, RasterToDatasetQueryRectangleToJSON, } from './RasterToDatasetQueryRectangle';
 /**
  * Check if a given object implements the RasterDatasetFromWorkflow interface.
  */
@@ -34,7 +34,7 @@ export function RasterDatasetFromWorkflowFromJSONTyped(json, ignoreDiscriminator
         'description': json['description'] == null ? undefined : json['description'],
         'displayName': json['displayName'],
         'name': json['name'] == null ? undefined : json['name'],
-        'query': RasterQueryRectangleFromJSON(json['query']),
+        'query': RasterToDatasetQueryRectangleFromJSON(json['query']),
     };
 }
 export function RasterDatasetFromWorkflowToJSON(json) {
@@ -49,6 +49,6 @@ export function RasterDatasetFromWorkflowToJSONTyped(value, ignoreDiscriminator 
         'description': value['description'],
         'displayName': value['displayName'],
         'name': value['name'],
-        'query': RasterQueryRectangleToJSON(value['query']),
+        'query': RasterToDatasetQueryRectangleToJSON(value['query']),
     };
 }

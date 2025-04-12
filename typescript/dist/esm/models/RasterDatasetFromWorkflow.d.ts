@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { RasterQueryRectangle } from './RasterQueryRectangle';
+import type { RasterToDatasetQueryRectangle } from './RasterToDatasetQueryRectangle';
 /**
  * parameter for the dataset from workflow handler (body)
  * @export
@@ -42,10 +42,10 @@ export interface RasterDatasetFromWorkflow {
     name?: string;
     /**
      *
-     * @type {RasterQueryRectangle}
+     * @type {RasterToDatasetQueryRectangle}
      * @memberof RasterDatasetFromWorkflow
      */
-    query: RasterQueryRectangle;
+    query: RasterToDatasetQueryRectangle;
 }
 /**
  * Check if a given object implements the RasterDatasetFromWorkflow interface.

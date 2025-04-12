@@ -41,6 +41,28 @@ class TestTypedResultDescriptor(unittest.TestCase):
                         measurement = null, 
                         name = '', )
                     ],
+                data_type = 'Data',
+                spatial_grid = geoengine_openapi_client.models.spatial_grid_descriptor.SpatialGridDescriptor(
+                    descriptor = 'source', 
+                    spatial_grid = geoengine_openapi_client.models.spatial_grid_definition.SpatialGridDefinition(
+                        geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                            origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                                x = 1.337, 
+                                y = 1.337, ), 
+                            x_pixel_size = 1.337, 
+                            y_pixel_size = 1.337, ), 
+                        grid_bounds = geoengine_openapi_client.models.grid_bounding_box2_d.GridBoundingBox2D(
+                            bottom_right_idx = geoengine_openapi_client.models.grid_idx2_d.GridIdx2D(
+                                x_idx = 56, 
+                                y_idx = 56, ), 
+                            top_left_idx = geoengine_openapi_client.models.grid_idx2_d.GridIdx2D(
+                                x_idx = 56, 
+                                y_idx = 56, ), ), ), ),
+                spatial_reference = '',
+                time = geoengine_openapi_client.models.time_interval.TimeInterval(
+                    end = 56, 
+                    start = 56, ),
+                type = 'raster',
                 bbox = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(
                     lower_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                         x = 1.337, 
@@ -48,15 +70,6 @@ class TestTypedResultDescriptor(unittest.TestCase):
                     upper_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                         x = 1.337, 
                         y = 1.337, ), ),
-                data_type = 'Data',
-                resolution = geoengine_openapi_client.models.spatial_resolution.SpatialResolution(
-                    x = 1.337, 
-                    y = 1.337, ),
-                spatial_reference = '',
-                time = geoengine_openapi_client.models.time_interval.TimeInterval(
-                    end = 56, 
-                    start = 56, ),
-                type = 'raster',
                 columns = {
                     'key' : geoengine_openapi_client.models.vector_column_info.VectorColumnInfo(
                         data_type = 'category', 
@@ -71,6 +84,22 @@ class TestTypedResultDescriptor(unittest.TestCase):
                         name = '', )
                     ],
                 data_type = 'Data',
+                spatial_grid = geoengine_openapi_client.models.spatial_grid_descriptor.SpatialGridDescriptor(
+                    descriptor = 'source', 
+                    spatial_grid = geoengine_openapi_client.models.spatial_grid_definition.SpatialGridDefinition(
+                        geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                            origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
+                                x = 1.337, 
+                                y = 1.337, ), 
+                            x_pixel_size = 1.337, 
+                            y_pixel_size = 1.337, ), 
+                        grid_bounds = geoengine_openapi_client.models.grid_bounding_box2_d.GridBoundingBox2D(
+                            bottom_right_idx = geoengine_openapi_client.models.grid_idx2_d.GridIdx2D(
+                                x_idx = 56, 
+                                y_idx = 56, ), 
+                            top_left_idx = geoengine_openapi_client.models.grid_idx2_d.GridIdx2D(
+                                x_idx = 56, 
+                                y_idx = 56, ), ), ), ),
                 spatial_reference = '',
                 type = 'raster',
                 columns = {

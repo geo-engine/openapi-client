@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from geoengine_openapi_client.models.raster_query_rectangle import RasterQueryRectangle
+from geoengine_openapi_client.models.raster_to_dataset_query_rectangle import RasterToDatasetQueryRectangle
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +32,7 @@ class RasterDatasetFromWorkflow(BaseModel):
     description: Optional[StrictStr] = None
     display_name: StrictStr = Field(alias="displayName")
     name: Optional[StrictStr] = None
-    query: RasterQueryRectangle
+    query: RasterToDatasetQueryRectangle
     __properties: ClassVar[List[str]] = ["asCog", "description", "displayName", "name", "query"]
 
     model_config = ConfigDict(
@@ -98,7 +98,7 @@ class RasterDatasetFromWorkflow(BaseModel):
             "description": obj.get("description"),
             "displayName": obj.get("displayName"),
             "name": obj.get("name"),
-            "query": RasterQueryRectangle.from_dict(obj["query"]) if obj.get("query") is not None else None
+            "query": RasterToDatasetQueryRectangle.from_dict(obj["query"]) if obj.get("query") is not None else None
         })
         return _obj
 

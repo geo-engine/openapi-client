@@ -13,49 +13,44 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.instanceOfRasterQueryRectangle = instanceOfRasterQueryRectangle;
-exports.RasterQueryRectangleFromJSON = RasterQueryRectangleFromJSON;
-exports.RasterQueryRectangleFromJSONTyped = RasterQueryRectangleFromJSONTyped;
-exports.RasterQueryRectangleToJSON = RasterQueryRectangleToJSON;
-exports.RasterQueryRectangleToJSONTyped = RasterQueryRectangleToJSONTyped;
-const SpatialResolution_1 = require("./SpatialResolution");
+exports.instanceOfRasterToDatasetQueryRectangle = instanceOfRasterToDatasetQueryRectangle;
+exports.RasterToDatasetQueryRectangleFromJSON = RasterToDatasetQueryRectangleFromJSON;
+exports.RasterToDatasetQueryRectangleFromJSONTyped = RasterToDatasetQueryRectangleFromJSONTyped;
+exports.RasterToDatasetQueryRectangleToJSON = RasterToDatasetQueryRectangleToJSON;
+exports.RasterToDatasetQueryRectangleToJSONTyped = RasterToDatasetQueryRectangleToJSONTyped;
 const TimeInterval_1 = require("./TimeInterval");
 const SpatialPartition2D_1 = require("./SpatialPartition2D");
 /**
- * Check if a given object implements the RasterQueryRectangle interface.
+ * Check if a given object implements the RasterToDatasetQueryRectangle interface.
  */
-function instanceOfRasterQueryRectangle(value) {
+function instanceOfRasterToDatasetQueryRectangle(value) {
     if (!('spatialBounds' in value) || value['spatialBounds'] === undefined)
-        return false;
-    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined)
         return false;
     if (!('timeInterval' in value) || value['timeInterval'] === undefined)
         return false;
     return true;
 }
-function RasterQueryRectangleFromJSON(json) {
-    return RasterQueryRectangleFromJSONTyped(json, false);
+function RasterToDatasetQueryRectangleFromJSON(json) {
+    return RasterToDatasetQueryRectangleFromJSONTyped(json, false);
 }
-function RasterQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
+function RasterToDatasetQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
     return {
         'spatialBounds': (0, SpatialPartition2D_1.SpatialPartition2DFromJSON)(json['spatialBounds']),
-        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionFromJSON)(json['spatialResolution']),
         'timeInterval': (0, TimeInterval_1.TimeIntervalFromJSON)(json['timeInterval']),
     };
 }
-function RasterQueryRectangleToJSON(json) {
-    return RasterQueryRectangleToJSONTyped(json, false);
+function RasterToDatasetQueryRectangleToJSON(json) {
+    return RasterToDatasetQueryRectangleToJSONTyped(json, false);
 }
-function RasterQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
+function RasterToDatasetQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
     return {
         'spatialBounds': (0, SpatialPartition2D_1.SpatialPartition2DToJSON)(value['spatialBounds']),
-        'spatialResolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value['spatialResolution']),
         'timeInterval': (0, TimeInterval_1.TimeIntervalToJSON)(value['timeInterval']),
     };
 }

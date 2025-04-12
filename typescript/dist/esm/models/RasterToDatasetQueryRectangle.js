@@ -11,44 +11,39 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SpatialResolutionFromJSON, SpatialResolutionToJSON, } from './SpatialResolution';
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
 import { SpatialPartition2DFromJSON, SpatialPartition2DToJSON, } from './SpatialPartition2D';
 /**
- * Check if a given object implements the RasterQueryRectangle interface.
+ * Check if a given object implements the RasterToDatasetQueryRectangle interface.
  */
-export function instanceOfRasterQueryRectangle(value) {
+export function instanceOfRasterToDatasetQueryRectangle(value) {
     if (!('spatialBounds' in value) || value['spatialBounds'] === undefined)
-        return false;
-    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined)
         return false;
     if (!('timeInterval' in value) || value['timeInterval'] === undefined)
         return false;
     return true;
 }
-export function RasterQueryRectangleFromJSON(json) {
-    return RasterQueryRectangleFromJSONTyped(json, false);
+export function RasterToDatasetQueryRectangleFromJSON(json) {
+    return RasterToDatasetQueryRectangleFromJSONTyped(json, false);
 }
-export function RasterQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
+export function RasterToDatasetQueryRectangleFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
     return {
         'spatialBounds': SpatialPartition2DFromJSON(json['spatialBounds']),
-        'spatialResolution': SpatialResolutionFromJSON(json['spatialResolution']),
         'timeInterval': TimeIntervalFromJSON(json['timeInterval']),
     };
 }
-export function RasterQueryRectangleToJSON(json) {
-    return RasterQueryRectangleToJSONTyped(json, false);
+export function RasterToDatasetQueryRectangleToJSON(json) {
+    return RasterToDatasetQueryRectangleToJSONTyped(json, false);
 }
-export function RasterQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
+export function RasterToDatasetQueryRectangleToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
     return {
         'spatialBounds': SpatialPartition2DToJSON(value['spatialBounds']),
-        'spatialResolution': SpatialResolutionToJSON(value['spatialResolution']),
         'timeInterval': TimeIntervalToJSON(value['timeInterval']),
     };
 }

@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SpatialResolution } from './SpatialResolution';
-import {
-    SpatialResolutionFromJSON,
-    SpatialResolutionFromJSONTyped,
-    SpatialResolutionToJSON,
-    SpatialResolutionToJSONTyped,
-} from './SpatialResolution';
 import type { TimeInterval } from './TimeInterval';
 import {
     TimeIntervalFromJSON,
@@ -38,60 +31,52 @@ import {
 /**
  * A spatio-temporal rectangle with a specified resolution
  * @export
- * @interface RasterQueryRectangle
+ * @interface RasterToDatasetQueryRectangle
  */
-export interface RasterQueryRectangle {
+export interface RasterToDatasetQueryRectangle {
     /**
      * 
      * @type {SpatialPartition2D}
-     * @memberof RasterQueryRectangle
+     * @memberof RasterToDatasetQueryRectangle
      */
     spatialBounds: SpatialPartition2D;
     /**
      * 
-     * @type {SpatialResolution}
-     * @memberof RasterQueryRectangle
-     */
-    spatialResolution: SpatialResolution;
-    /**
-     * 
      * @type {TimeInterval}
-     * @memberof RasterQueryRectangle
+     * @memberof RasterToDatasetQueryRectangle
      */
     timeInterval: TimeInterval;
 }
 
 /**
- * Check if a given object implements the RasterQueryRectangle interface.
+ * Check if a given object implements the RasterToDatasetQueryRectangle interface.
  */
-export function instanceOfRasterQueryRectangle(value: object): value is RasterQueryRectangle {
+export function instanceOfRasterToDatasetQueryRectangle(value: object): value is RasterToDatasetQueryRectangle {
     if (!('spatialBounds' in value) || value['spatialBounds'] === undefined) return false;
-    if (!('spatialResolution' in value) || value['spatialResolution'] === undefined) return false;
     if (!('timeInterval' in value) || value['timeInterval'] === undefined) return false;
     return true;
 }
 
-export function RasterQueryRectangleFromJSON(json: any): RasterQueryRectangle {
-    return RasterQueryRectangleFromJSONTyped(json, false);
+export function RasterToDatasetQueryRectangleFromJSON(json: any): RasterToDatasetQueryRectangle {
+    return RasterToDatasetQueryRectangleFromJSONTyped(json, false);
 }
 
-export function RasterQueryRectangleFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterQueryRectangle {
+export function RasterToDatasetQueryRectangleFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterToDatasetQueryRectangle {
     if (json == null) {
         return json;
     }
     return {
         
         'spatialBounds': SpatialPartition2DFromJSON(json['spatialBounds']),
-        'spatialResolution': SpatialResolutionFromJSON(json['spatialResolution']),
         'timeInterval': TimeIntervalFromJSON(json['timeInterval']),
     };
 }
 
-export function RasterQueryRectangleToJSON(json: any): RasterQueryRectangle {
-    return RasterQueryRectangleToJSONTyped(json, false);
+export function RasterToDatasetQueryRectangleToJSON(json: any): RasterToDatasetQueryRectangle {
+    return RasterToDatasetQueryRectangleToJSONTyped(json, false);
 }
 
-export function RasterQueryRectangleToJSONTyped(value?: RasterQueryRectangle | null, ignoreDiscriminator: boolean = false): any {
+export function RasterToDatasetQueryRectangleToJSONTyped(value?: RasterToDatasetQueryRectangle | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -99,7 +84,6 @@ export function RasterQueryRectangleToJSONTyped(value?: RasterQueryRectangle | n
     return {
         
         'spatialBounds': SpatialPartition2DToJSON(value['spatialBounds']),
-        'spatialResolution': SpatialResolutionToJSON(value['spatialResolution']),
         'timeInterval': TimeIntervalToJSON(value['timeInterval']),
     };
 }

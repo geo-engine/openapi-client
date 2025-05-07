@@ -87,6 +87,7 @@ docs/MlModel.md
 docs/MlModelMetadata.md
 docs/MlModelNameResponse.md
 docs/MlModelResource.md
+docs/MlTensorShape3D.md
 docs/MockDatasetDataSourceLoadingInfo.md
 docs/MockMetaData.md
 docs/MultiBandRasterColorizer.md
@@ -338,6 +339,7 @@ geoengine_openapi_client/models/ml_model.py
 geoengine_openapi_client/models/ml_model_metadata.py
 geoengine_openapi_client/models/ml_model_name_response.py
 geoengine_openapi_client/models/ml_model_resource.py
+geoengine_openapi_client/models/ml_tensor_shape3_d.py
 geoengine_openapi_client/models/mock_dataset_data_source_loading_info.py
 geoengine_openapi_client/models/mock_meta_data.py
 geoengine_openapi_client/models/multi_band_raster_colorizer.py
@@ -567,6 +569,7 @@ test/test_ml_model.py
 test/test_ml_model_metadata.py
 test/test_ml_model_name_response.py
 test/test_ml_model_resource.py
+test/test_ml_tensor_shape3_d.py
 test/test_mock_dataset_data_source_loading_info.py
 test/test_mock_meta_data.py
 test/test_multi_band_raster_colorizer.py

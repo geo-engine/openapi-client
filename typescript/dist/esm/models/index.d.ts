@@ -78,6 +78,7 @@ export * from './MlModel';
 export * from './MlModelMetadata';
 export * from './MlModelNameResponse';
 export * from './MlModelResource';
+export * from './MlTensorShape3D';
 export * from './MockDatasetDataSourceLoadingInfo';
 export * from './MockMetaData';
 export * from './MultiBandRasterColorizer';

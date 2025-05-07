@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { MlTensorShape3DFromJSON, MlTensorShape3DToJSON, } from './MlTensorShape3D';
 import { RasterDataTypeFromJSON, RasterDataTypeToJSON, } from './RasterDataType';
 /**
  * Check if a given object implements the MlModelMetadata interface.
@@ -18,9 +19,11 @@ import { RasterDataTypeFromJSON, RasterDataTypeToJSON, } from './RasterDataType'
 export function instanceOfMlModelMetadata(value) {
     if (!('fileName' in value) || value['fileName'] === undefined)
         return false;
+    if (!('inputShape' in value) || value['inputShape'] === undefined)
+        return false;
     if (!('inputType' in value) || value['inputType'] === undefined)
         return false;
-    if (!('numInputBands' in value) || value['numInputBands'] === undefined)
+    if (!('outputShape' in value) || value['outputShape'] === undefined)
         return false;
     if (!('outputType' in value) || value['outputType'] === undefined)
         return false;
@@ -35,8 +38,9 @@ export function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'fileName': json['fileName'],
+        'inputShape': MlTensorShape3DFromJSON(json['inputShape']),
         'inputType': RasterDataTypeFromJSON(json['inputType']),
-        'numInputBands': json['numInputBands'],
+        'outputShape': MlTensorShape3DFromJSON(json['outputShape']),
         'outputType': RasterDataTypeFromJSON(json['outputType']),
     };
 }
@@ -49,8 +53,9 @@ export function MlModelMetadataToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'fileName': value['fileName'],
+        'inputShape': MlTensorShape3DToJSON(value['inputShape']),
         'inputType': RasterDataTypeToJSON(value['inputType']),
-        'numInputBands': value['numInputBands'],
+        'outputShape': MlTensorShape3DToJSON(value['outputShape']),
         'outputType': RasterDataTypeToJSON(value['outputType']),
     };
 }

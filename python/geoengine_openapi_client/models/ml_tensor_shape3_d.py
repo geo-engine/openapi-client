@@ -18,23 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from geoengine_openapi_client.models.ml_tensor_shape3_d import MlTensorShape3D
-from geoengine_openapi_client.models.raster_data_type import RasterDataType
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MlModelMetadata(BaseModel):
+class MlTensorShape3D(BaseModel):
     """
-    MlModelMetadata
+    A struct describing tensor shape for `MlModelMetadata`
     """ # noqa: E501
-    file_name: StrictStr = Field(alias="fileName")
-    input_shape: MlTensorShape3D = Field(alias="inputShape")
-    input_type: RasterDataType = Field(alias="inputType")
-    output_shape: MlTensorShape3D = Field(alias="outputShape")
-    output_type: RasterDataType = Field(alias="outputType")
-    __properties: ClassVar[List[str]] = ["fileName", "inputShape", "inputType", "outputShape", "outputType"]
+    bands: Annotated[int, Field(strict=True, ge=0)]
+    x: Annotated[int, Field(strict=True, ge=0)]
+    y: Annotated[int, Field(strict=True, ge=0)]
+    __properties: ClassVar[List[str]] = ["bands", "x", "y"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +51,7 @@ class MlModelMetadata(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MlModelMetadata from a JSON string"""
+        """Create an instance of MlTensorShape3D from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,17 +72,11 @@ class MlModelMetadata(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of input_shape
-        if self.input_shape:
-            _dict['inputShape'] = self.input_shape.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of output_shape
-        if self.output_shape:
-            _dict['outputShape'] = self.output_shape.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MlModelMetadata from a dict"""
+        """Create an instance of MlTensorShape3D from a dict"""
         if obj is None:
             return None
 
@@ -93,11 +84,9 @@ class MlModelMetadata(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "fileName": obj.get("fileName"),
-            "inputShape": MlTensorShape3D.from_dict(obj["inputShape"]) if obj.get("inputShape") is not None else None,
-            "inputType": obj.get("inputType"),
-            "outputShape": MlTensorShape3D.from_dict(obj["outputShape"]) if obj.get("outputShape") is not None else None,
-            "outputType": obj.get("outputType")
+            "bands": obj.get("bands"),
+            "x": obj.get("x"),
+            "y": obj.get("y")
         })
         return _obj
 

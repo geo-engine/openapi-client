@@ -267,6 +267,7 @@ Class | Method | HTTP request | Description
  - [MlModelMetadata](docs/MlModelMetadata.md)
  - [MlModelNameResponse](docs/MlModelNameResponse.md)
  - [MlModelResource](docs/MlModelResource.md)
+ - [MlTensorShape3D](docs/MlTensorShape3D.md)
  - [MockDatasetDataSourceLoadingInfo](docs/MockDatasetDataSourceLoadingInfo.md)
  - [MockMetaData](docs/MockMetaData.md)
  - [MultiBandRasterColorizer](docs/MultiBandRasterColorizer.md)

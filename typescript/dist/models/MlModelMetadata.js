@@ -18,6 +18,7 @@ exports.MlModelMetadataFromJSON = MlModelMetadataFromJSON;
 exports.MlModelMetadataFromJSONTyped = MlModelMetadataFromJSONTyped;
 exports.MlModelMetadataToJSON = MlModelMetadataToJSON;
 exports.MlModelMetadataToJSONTyped = MlModelMetadataToJSONTyped;
+const MlTensorShape3D_1 = require("./MlTensorShape3D");
 const RasterDataType_1 = require("./RasterDataType");
 /**
  * Check if a given object implements the MlModelMetadata interface.
@@ -25,9 +26,11 @@ const RasterDataType_1 = require("./RasterDataType");
 function instanceOfMlModelMetadata(value) {
     if (!('fileName' in value) || value['fileName'] === undefined)
         return false;
+    if (!('inputShape' in value) || value['inputShape'] === undefined)
+        return false;
     if (!('inputType' in value) || value['inputType'] === undefined)
         return false;
-    if (!('numInputBands' in value) || value['numInputBands'] === undefined)
+    if (!('outputShape' in value) || value['outputShape'] === undefined)
         return false;
     if (!('outputType' in value) || value['outputType'] === undefined)
         return false;
@@ -42,8 +45,9 @@ function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'fileName': json['fileName'],
+        'inputShape': (0, MlTensorShape3D_1.MlTensorShape3DFromJSON)(json['inputShape']),
         'inputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['inputType']),
-        'numInputBands': json['numInputBands'],
+        'outputShape': (0, MlTensorShape3D_1.MlTensorShape3DFromJSON)(json['outputShape']),
         'outputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['outputType']),
     };
 }
@@ -56,8 +60,9 @@ function MlModelMetadataToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'fileName': value['fileName'],
+        'inputShape': (0, MlTensorShape3D_1.MlTensorShape3DToJSON)(value['inputShape']),
         'inputType': (0, RasterDataType_1.RasterDataTypeToJSON)(value['inputType']),
-        'numInputBands': value['numInputBands'],
+        'outputShape': (0, MlTensorShape3D_1.MlTensorShape3DToJSON)(value['outputShape']),
         'outputType': (0, RasterDataType_1.RasterDataTypeToJSON)(value['outputType']),
     };
 }

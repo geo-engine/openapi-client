@@ -96,6 +96,7 @@ __exportStar(require("./MlModel"), exports);
 __exportStar(require("./MlModelMetadata"), exports);
 __exportStar(require("./MlModelNameResponse"), exports);
 __exportStar(require("./MlModelResource"), exports);
+__exportStar(require("./MlTensorShape3D"), exports);
 __exportStar(require("./MockDatasetDataSourceLoadingInfo"), exports);
 __exportStar(require("./MockMetaData"), exports);
 __exportStar(require("./MultiBandRasterColorizer"), exports);

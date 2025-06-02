@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { MlTensorShape3D } from './MlTensorShape3D';
 import type { RasterDataType } from './RasterDataType';
 /**
  *
@@ -24,16 +25,22 @@ export interface MlModelMetadata {
     fileName: string;
     /**
      *
+     * @type {MlTensorShape3D}
+     * @memberof MlModelMetadata
+     */
+    inputShape: MlTensorShape3D;
+    /**
+     *
      * @type {RasterDataType}
      * @memberof MlModelMetadata
      */
     inputType: RasterDataType;
     /**
      *
-     * @type {number}
+     * @type {MlTensorShape3D}
      * @memberof MlModelMetadata
      */
-    numInputBands: number;
+    outputShape: MlTensorShape3D;
     /**
      *
      * @type {RasterDataType}

@@ -48,12 +48,12 @@ function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'inputNoDataHandling': (0, MlModelInputNoDataHandling_1.MlModelInputNoDataHandlingFromJSON)(json['input_no_data_handling']),
-        'inputShape': (0, MlTensorShape3D_1.MlTensorShape3DFromJSON)(json['input_shape']),
-        'inputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['input_type']),
-        'outputNoDataHandling': (0, MlModelOutputNoDataHandling_1.MlModelOutputNoDataHandlingFromJSON)(json['output_no_data_handling']),
-        'outputShape': (0, MlTensorShape3D_1.MlTensorShape3DFromJSON)(json['output_shape']),
-        'outputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['output_type']),
+        'inputNoDataHandling': (0, MlModelInputNoDataHandling_1.MlModelInputNoDataHandlingFromJSON)(json['inputNoDataHandling']),
+        'inputShape': (0, MlTensorShape3D_1.MlTensorShape3DFromJSON)(json['inputShape']),
+        'inputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['inputType']),
+        'outputNoDataHandling': (0, MlModelOutputNoDataHandling_1.MlModelOutputNoDataHandlingFromJSON)(json['outputNoDataHandling']),
+        'outputShape': (0, MlTensorShape3D_1.MlTensorShape3DFromJSON)(json['outputShape']),
+        'outputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['outputType']),
     };
 }
 function MlModelMetadataToJSON(json) {
@@ -64,11 +64,11 @@ function MlModelMetadataToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'input_no_data_handling': (0, MlModelInputNoDataHandling_1.MlModelInputNoDataHandlingToJSON)(value['inputNoDataHandling']),
-        'input_shape': (0, MlTensorShape3D_1.MlTensorShape3DToJSON)(value['inputShape']),
-        'input_type': (0, RasterDataType_1.RasterDataTypeToJSON)(value['inputType']),
-        'output_no_data_handling': (0, MlModelOutputNoDataHandling_1.MlModelOutputNoDataHandlingToJSON)(value['outputNoDataHandling']),
-        'output_shape': (0, MlTensorShape3D_1.MlTensorShape3DToJSON)(value['outputShape']),
-        'output_type': (0, RasterDataType_1.RasterDataTypeToJSON)(value['outputType']),
+        'inputNoDataHandling': (0, MlModelInputNoDataHandling_1.MlModelInputNoDataHandlingToJSON)(value['inputNoDataHandling']),
+        'inputShape': (0, MlTensorShape3D_1.MlTensorShape3DToJSON)(value['inputShape']),
+        'inputType': (0, RasterDataType_1.RasterDataTypeToJSON)(value['inputType']),
+        'outputNoDataHandling': (0, MlModelOutputNoDataHandling_1.MlModelOutputNoDataHandlingToJSON)(value['outputNoDataHandling']),
+        'outputShape': (0, MlTensorShape3D_1.MlTensorShape3DToJSON)(value['outputShape']),
+        'outputType': (0, RasterDataType_1.RasterDataTypeToJSON)(value['outputType']),
     };
 }

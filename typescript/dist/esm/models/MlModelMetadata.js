@@ -41,12 +41,12 @@ export function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'inputNoDataHandling': MlModelInputNoDataHandlingFromJSON(json['input_no_data_handling']),
-        'inputShape': MlTensorShape3DFromJSON(json['input_shape']),
-        'inputType': RasterDataTypeFromJSON(json['input_type']),
-        'outputNoDataHandling': MlModelOutputNoDataHandlingFromJSON(json['output_no_data_handling']),
-        'outputShape': MlTensorShape3DFromJSON(json['output_shape']),
-        'outputType': RasterDataTypeFromJSON(json['output_type']),
+        'inputNoDataHandling': MlModelInputNoDataHandlingFromJSON(json['inputNoDataHandling']),
+        'inputShape': MlTensorShape3DFromJSON(json['inputShape']),
+        'inputType': RasterDataTypeFromJSON(json['inputType']),
+        'outputNoDataHandling': MlModelOutputNoDataHandlingFromJSON(json['outputNoDataHandling']),
+        'outputShape': MlTensorShape3DFromJSON(json['outputShape']),
+        'outputType': RasterDataTypeFromJSON(json['outputType']),
     };
 }
 export function MlModelMetadataToJSON(json) {
@@ -57,11 +57,11 @@ export function MlModelMetadataToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'input_no_data_handling': MlModelInputNoDataHandlingToJSON(value['inputNoDataHandling']),
-        'input_shape': MlTensorShape3DToJSON(value['inputShape']),
-        'input_type': RasterDataTypeToJSON(value['inputType']),
-        'output_no_data_handling': MlModelOutputNoDataHandlingToJSON(value['outputNoDataHandling']),
-        'output_shape': MlTensorShape3DToJSON(value['outputShape']),
-        'output_type': RasterDataTypeToJSON(value['outputType']),
+        'inputNoDataHandling': MlModelInputNoDataHandlingToJSON(value['inputNoDataHandling']),
+        'inputShape': MlTensorShape3DToJSON(value['inputShape']),
+        'inputType': RasterDataTypeToJSON(value['inputType']),
+        'outputNoDataHandling': MlModelOutputNoDataHandlingToJSON(value['outputNoDataHandling']),
+        'outputShape': MlTensorShape3DToJSON(value['outputShape']),
+        'outputType': RasterDataTypeToJSON(value['outputType']),
     };
 }

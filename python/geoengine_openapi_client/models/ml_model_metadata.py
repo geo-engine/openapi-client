@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from geoengine_openapi_client.models.ml_model_input_no_data_handling import MlModelInputNoDataHandling
 from geoengine_openapi_client.models.ml_model_output_no_data_handling import MlModelOutputNoDataHandling
@@ -31,13 +31,13 @@ class MlModelMetadata(BaseModel):
     """
     MlModelMetadata
     """ # noqa: E501
-    input_no_data_handling: MlModelInputNoDataHandling
-    input_shape: MlTensorShape3D
-    input_type: RasterDataType
-    output_no_data_handling: MlModelOutputNoDataHandling
-    output_shape: MlTensorShape3D
-    output_type: RasterDataType
-    __properties: ClassVar[List[str]] = ["input_no_data_handling", "input_shape", "input_type", "output_no_data_handling", "output_shape", "output_type"]
+    input_no_data_handling: MlModelInputNoDataHandling = Field(alias="inputNoDataHandling")
+    input_shape: MlTensorShape3D = Field(alias="inputShape")
+    input_type: RasterDataType = Field(alias="inputType")
+    output_no_data_handling: MlModelOutputNoDataHandling = Field(alias="outputNoDataHandling")
+    output_shape: MlTensorShape3D = Field(alias="outputShape")
+    output_type: RasterDataType = Field(alias="outputType")
+    __properties: ClassVar[List[str]] = ["inputNoDataHandling", "inputShape", "inputType", "outputNoDataHandling", "outputShape", "outputType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,16 +80,16 @@ class MlModelMetadata(BaseModel):
         )
         # override the default output from pydantic by calling `to_dict()` of input_no_data_handling
         if self.input_no_data_handling:
-            _dict['input_no_data_handling'] = self.input_no_data_handling.to_dict()
+            _dict['inputNoDataHandling'] = self.input_no_data_handling.to_dict()
         # override the default output from pydantic by calling `to_dict()` of input_shape
         if self.input_shape:
-            _dict['input_shape'] = self.input_shape.to_dict()
+            _dict['inputShape'] = self.input_shape.to_dict()
         # override the default output from pydantic by calling `to_dict()` of output_no_data_handling
         if self.output_no_data_handling:
-            _dict['output_no_data_handling'] = self.output_no_data_handling.to_dict()
+            _dict['outputNoDataHandling'] = self.output_no_data_handling.to_dict()
         # override the default output from pydantic by calling `to_dict()` of output_shape
         if self.output_shape:
-            _dict['output_shape'] = self.output_shape.to_dict()
+            _dict['outputShape'] = self.output_shape.to_dict()
         return _dict
 
     @classmethod
@@ -102,12 +102,12 @@ class MlModelMetadata(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "input_no_data_handling": MlModelInputNoDataHandling.from_dict(obj["input_no_data_handling"]) if obj.get("input_no_data_handling") is not None else None,
-            "input_shape": MlTensorShape3D.from_dict(obj["input_shape"]) if obj.get("input_shape") is not None else None,
-            "input_type": obj.get("input_type"),
-            "output_no_data_handling": MlModelOutputNoDataHandling.from_dict(obj["output_no_data_handling"]) if obj.get("output_no_data_handling") is not None else None,
-            "output_shape": MlTensorShape3D.from_dict(obj["output_shape"]) if obj.get("output_shape") is not None else None,
-            "output_type": obj.get("output_type")
+            "inputNoDataHandling": MlModelInputNoDataHandling.from_dict(obj["inputNoDataHandling"]) if obj.get("inputNoDataHandling") is not None else None,
+            "inputShape": MlTensorShape3D.from_dict(obj["inputShape"]) if obj.get("inputShape") is not None else None,
+            "inputType": obj.get("inputType"),
+            "outputNoDataHandling": MlModelOutputNoDataHandling.from_dict(obj["outputNoDataHandling"]) if obj.get("outputNoDataHandling") is not None else None,
+            "outputShape": MlTensorShape3D.from_dict(obj["outputShape"]) if obj.get("outputShape") is not None else None,
+            "outputType": obj.get("outputType")
         })
         return _obj
 

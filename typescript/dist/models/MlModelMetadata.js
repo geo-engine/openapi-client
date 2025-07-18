@@ -18,17 +18,21 @@ exports.MlModelMetadataFromJSON = MlModelMetadataFromJSON;
 exports.MlModelMetadataFromJSONTyped = MlModelMetadataFromJSONTyped;
 exports.MlModelMetadataToJSON = MlModelMetadataToJSON;
 exports.MlModelMetadataToJSONTyped = MlModelMetadataToJSONTyped;
+const MlModelOutputNoDataHandling_1 = require("./MlModelOutputNoDataHandling");
+const MlModelInputNoDataHandling_1 = require("./MlModelInputNoDataHandling");
 const MlTensorShape3D_1 = require("./MlTensorShape3D");
 const RasterDataType_1 = require("./RasterDataType");
 /**
  * Check if a given object implements the MlModelMetadata interface.
  */
 function instanceOfMlModelMetadata(value) {
-    if (!('fileName' in value) || value['fileName'] === undefined)
+    if (!('inputNoDataHandling' in value) || value['inputNoDataHandling'] === undefined)
         return false;
     if (!('inputShape' in value) || value['inputShape'] === undefined)
         return false;
     if (!('inputType' in value) || value['inputType'] === undefined)
+        return false;
+    if (!('outputNoDataHandling' in value) || value['outputNoDataHandling'] === undefined)
         return false;
     if (!('outputShape' in value) || value['outputShape'] === undefined)
         return false;
@@ -44,11 +48,12 @@ function MlModelMetadataFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'fileName': json['fileName'],
-        'inputShape': (0, MlTensorShape3D_1.MlTensorShape3DFromJSON)(json['inputShape']),
-        'inputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['inputType']),
-        'outputShape': (0, MlTensorShape3D_1.MlTensorShape3DFromJSON)(json['outputShape']),
-        'outputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['outputType']),
+        'inputNoDataHandling': (0, MlModelInputNoDataHandling_1.MlModelInputNoDataHandlingFromJSON)(json['input_no_data_handling']),
+        'inputShape': (0, MlTensorShape3D_1.MlTensorShape3DFromJSON)(json['input_shape']),
+        'inputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['input_type']),
+        'outputNoDataHandling': (0, MlModelOutputNoDataHandling_1.MlModelOutputNoDataHandlingFromJSON)(json['output_no_data_handling']),
+        'outputShape': (0, MlTensorShape3D_1.MlTensorShape3DFromJSON)(json['output_shape']),
+        'outputType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['output_type']),
     };
 }
 function MlModelMetadataToJSON(json) {
@@ -59,10 +64,11 @@ function MlModelMetadataToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'fileName': value['fileName'],
-        'inputShape': (0, MlTensorShape3D_1.MlTensorShape3DToJSON)(value['inputShape']),
-        'inputType': (0, RasterDataType_1.RasterDataTypeToJSON)(value['inputType']),
-        'outputShape': (0, MlTensorShape3D_1.MlTensorShape3DToJSON)(value['outputShape']),
-        'outputType': (0, RasterDataType_1.RasterDataTypeToJSON)(value['outputType']),
+        'input_no_data_handling': (0, MlModelInputNoDataHandling_1.MlModelInputNoDataHandlingToJSON)(value['inputNoDataHandling']),
+        'input_shape': (0, MlTensorShape3D_1.MlTensorShape3DToJSON)(value['inputShape']),
+        'input_type': (0, RasterDataType_1.RasterDataTypeToJSON)(value['inputType']),
+        'output_no_data_handling': (0, MlModelOutputNoDataHandling_1.MlModelOutputNoDataHandlingToJSON)(value['outputNoDataHandling']),
+        'output_shape': (0, MlTensorShape3D_1.MlTensorShape3DToJSON)(value['outputShape']),
+        'output_type': (0, RasterDataType_1.RasterDataTypeToJSON)(value['outputType']),
     };
 }

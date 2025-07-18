@@ -30,6 +30,12 @@ export interface MlModel {
     displayName: string;
     /**
      *
+     * @type {string}
+     * @memberof MlModel
+     */
+    fileName: string;
+    /**
+     *
      * @type {MlModelMetadata}
      * @memberof MlModel
      */

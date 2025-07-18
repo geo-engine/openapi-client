@@ -38,13 +38,19 @@ class TestMlModel(unittest.TestCase):
             return MlModel(
                 description = '',
                 display_name = '',
+                file_name = '',
                 metadata = geoengine_openapi_client.models.ml_model_metadata.MlModelMetadata(
-                    file_name = '', 
+                    input_no_data_handling = geoengine_openapi_client.models.ml_model_input_no_data_handling.MlModelInputNoDataHandling(
+                        no_data_value = 1.337, 
+                        variant = 'encodedNoData', ), 
                     input_shape = geoengine_openapi_client.models.ml_tensor_shape3_d.MlTensorShape3D(
                         bands = 0, 
                         x = 0, 
                         y = 0, ), 
                     input_type = 'U8', 
+                    output_no_data_handling = geoengine_openapi_client.models.ml_model_output_no_data_handling.MlModelOutputNoDataHandling(
+                        no_data_value = 1.337, 
+                        variant = 'encodedNoData', ), 
                     output_shape = geoengine_openapi_client.models.ml_tensor_shape3_d.MlTensorShape3D(
                         bands = 0, 
                         x = 0, 
@@ -57,13 +63,19 @@ class TestMlModel(unittest.TestCase):
             return MlModel(
                 description = '',
                 display_name = '',
+                file_name = '',
                 metadata = geoengine_openapi_client.models.ml_model_metadata.MlModelMetadata(
-                    file_name = '', 
+                    input_no_data_handling = geoengine_openapi_client.models.ml_model_input_no_data_handling.MlModelInputNoDataHandling(
+                        no_data_value = 1.337, 
+                        variant = 'encodedNoData', ), 
                     input_shape = geoengine_openapi_client.models.ml_tensor_shape3_d.MlTensorShape3D(
                         bands = 0, 
                         x = 0, 
                         y = 0, ), 
                     input_type = 'U8', 
+                    output_no_data_handling = geoengine_openapi_client.models.ml_model_output_no_data_handling.MlModelOutputNoDataHandling(
+                        no_data_value = 1.337, 
+                        variant = 'encodedNoData', ), 
                     output_shape = geoengine_openapi_client.models.ml_tensor_shape3_d.MlTensorShape3D(
                         bands = 0, 
                         x = 0, 

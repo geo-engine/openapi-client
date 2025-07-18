@@ -18,8 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
+from geoengine_openapi_client.models.ml_model_input_no_data_handling import MlModelInputNoDataHandling
+from geoengine_openapi_client.models.ml_model_output_no_data_handling import MlModelOutputNoDataHandling
 from geoengine_openapi_client.models.ml_tensor_shape3_d import MlTensorShape3D
 from geoengine_openapi_client.models.raster_data_type import RasterDataType
 from typing import Optional, Set
@@ -29,12 +31,13 @@ class MlModelMetadata(BaseModel):
     """
     MlModelMetadata
     """ # noqa: E501
-    file_name: StrictStr = Field(alias="fileName")
-    input_shape: MlTensorShape3D = Field(alias="inputShape")
-    input_type: RasterDataType = Field(alias="inputType")
-    output_shape: MlTensorShape3D = Field(alias="outputShape")
-    output_type: RasterDataType = Field(alias="outputType")
-    __properties: ClassVar[List[str]] = ["fileName", "inputShape", "inputType", "outputShape", "outputType"]
+    input_no_data_handling: MlModelInputNoDataHandling
+    input_shape: MlTensorShape3D
+    input_type: RasterDataType
+    output_no_data_handling: MlModelOutputNoDataHandling
+    output_shape: MlTensorShape3D
+    output_type: RasterDataType
+    __properties: ClassVar[List[str]] = ["input_no_data_handling", "input_shape", "input_type", "output_no_data_handling", "output_shape", "output_type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,12 +78,18 @@ class MlModelMetadata(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of input_no_data_handling
+        if self.input_no_data_handling:
+            _dict['input_no_data_handling'] = self.input_no_data_handling.to_dict()
         # override the default output from pydantic by calling `to_dict()` of input_shape
         if self.input_shape:
-            _dict['inputShape'] = self.input_shape.to_dict()
+            _dict['input_shape'] = self.input_shape.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of output_no_data_handling
+        if self.output_no_data_handling:
+            _dict['output_no_data_handling'] = self.output_no_data_handling.to_dict()
         # override the default output from pydantic by calling `to_dict()` of output_shape
         if self.output_shape:
-            _dict['outputShape'] = self.output_shape.to_dict()
+            _dict['output_shape'] = self.output_shape.to_dict()
         return _dict
 
     @classmethod
@@ -93,11 +102,12 @@ class MlModelMetadata(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "fileName": obj.get("fileName"),
-            "inputShape": MlTensorShape3D.from_dict(obj["inputShape"]) if obj.get("inputShape") is not None else None,
-            "inputType": obj.get("inputType"),
-            "outputShape": MlTensorShape3D.from_dict(obj["outputShape"]) if obj.get("outputShape") is not None else None,
-            "outputType": obj.get("outputType")
+            "input_no_data_handling": MlModelInputNoDataHandling.from_dict(obj["input_no_data_handling"]) if obj.get("input_no_data_handling") is not None else None,
+            "input_shape": MlTensorShape3D.from_dict(obj["input_shape"]) if obj.get("input_shape") is not None else None,
+            "input_type": obj.get("input_type"),
+            "output_no_data_handling": MlModelOutputNoDataHandling.from_dict(obj["output_no_data_handling"]) if obj.get("output_no_data_handling") is not None else None,
+            "output_shape": MlTensorShape3D.from_dict(obj["output_shape"]) if obj.get("output_shape") is not None else None,
+            "output_type": obj.get("output_type")
         })
         return _obj
 

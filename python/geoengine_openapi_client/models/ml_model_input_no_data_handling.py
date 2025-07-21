@@ -18,23 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
-from geoengine_openapi_client.models.ml_model_metadata import MlModelMetadata
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from geoengine_openapi_client.models.ml_model_input_no_data_handling_variant import MlModelInputNoDataHandlingVariant
 from typing import Optional, Set
 from typing_extensions import Self
 
-class MlModel(BaseModel):
+class MlModelInputNoDataHandling(BaseModel):
     """
-    MlModel
+    MlModelInputNoDataHandling
     """ # noqa: E501
-    description: StrictStr
-    display_name: StrictStr = Field(alias="displayName")
-    file_name: StrictStr = Field(alias="fileName")
-    metadata: MlModelMetadata
-    name: StrictStr
-    upload: StrictStr
-    __properties: ClassVar[List[str]] = ["description", "displayName", "fileName", "metadata", "name", "upload"]
+    no_data_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="noDataValue")
+    variant: MlModelInputNoDataHandlingVariant
+    __properties: ClassVar[List[str]] = ["noDataValue", "variant"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +50,7 @@ class MlModel(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of MlModel from a JSON string"""
+        """Create an instance of MlModelInputNoDataHandling from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,14 +71,16 @@ class MlModel(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of metadata
-        if self.metadata:
-            _dict['metadata'] = self.metadata.to_dict()
+        # set to None if no_data_value (nullable) is None
+        # and model_fields_set contains the field
+        if self.no_data_value is None and "no_data_value" in self.model_fields_set:
+            _dict['noDataValue'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of MlModel from a dict"""
+        """Create an instance of MlModelInputNoDataHandling from a dict"""
         if obj is None:
             return None
 
@@ -90,12 +88,8 @@ class MlModel(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "description": obj.get("description"),
-            "displayName": obj.get("displayName"),
-            "fileName": obj.get("fileName"),
-            "metadata": MlModelMetadata.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None,
-            "name": obj.get("name"),
-            "upload": obj.get("upload")
+            "noDataValue": obj.get("noDataValue"),
+            "variant": obj.get("variant")
         })
         return _obj
 

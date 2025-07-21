@@ -27,6 +27,8 @@ function instanceOfMlModel(value) {
         return false;
     if (!('displayName' in value) || value['displayName'] === undefined)
         return false;
+    if (!('fileName' in value) || value['fileName'] === undefined)
+        return false;
     if (!('metadata' in value) || value['metadata'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
@@ -45,6 +47,7 @@ function MlModelFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'description': json['description'],
         'displayName': json['displayName'],
+        'fileName': json['fileName'],
         'metadata': (0, MlModelMetadata_1.MlModelMetadataFromJSON)(json['metadata']),
         'name': json['name'],
         'upload': json['upload'],
@@ -60,6 +63,7 @@ function MlModelToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'description': value['description'],
         'displayName': value['displayName'],
+        'fileName': value['fileName'],
         'metadata': (0, MlModelMetadata_1.MlModelMetadataToJSON)(value['metadata']),
         'name': value['name'],
         'upload': value['upload'],

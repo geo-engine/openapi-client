@@ -13,6 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
+import type { MlModelOutputNoDataHandling } from './MlModelOutputNoDataHandling';
+import {
+    MlModelOutputNoDataHandlingFromJSON,
+    MlModelOutputNoDataHandlingFromJSONTyped,
+    MlModelOutputNoDataHandlingToJSON,
+    MlModelOutputNoDataHandlingToJSONTyped,
+} from './MlModelOutputNoDataHandling';
+import type { MlModelInputNoDataHandling } from './MlModelInputNoDataHandling';
+import {
+    MlModelInputNoDataHandlingFromJSON,
+    MlModelInputNoDataHandlingFromJSONTyped,
+    MlModelInputNoDataHandlingToJSON,
+    MlModelInputNoDataHandlingToJSONTyped,
+} from './MlModelInputNoDataHandling';
 import type { MlTensorShape3D } from './MlTensorShape3D';
 import {
     MlTensorShape3DFromJSON,
@@ -36,10 +50,10 @@ import {
 export interface MlModelMetadata {
     /**
      * 
-     * @type {string}
+     * @type {MlModelInputNoDataHandling}
      * @memberof MlModelMetadata
      */
-    fileName: string;
+    inputNoDataHandling: MlModelInputNoDataHandling;
     /**
      * 
      * @type {MlTensorShape3D}
@@ -52,6 +66,12 @@ export interface MlModelMetadata {
      * @memberof MlModelMetadata
      */
     inputType: RasterDataType;
+    /**
+     * 
+     * @type {MlModelOutputNoDataHandling}
+     * @memberof MlModelMetadata
+     */
+    outputNoDataHandling: MlModelOutputNoDataHandling;
     /**
      * 
      * @type {MlTensorShape3D}
@@ -72,9 +92,10 @@ export interface MlModelMetadata {
  * Check if a given object implements the MlModelMetadata interface.
  */
 export function instanceOfMlModelMetadata(value: object): value is MlModelMetadata {
-    if (!('fileName' in value) || value['fileName'] === undefined) return false;
+    if (!('inputNoDataHandling' in value) || value['inputNoDataHandling'] === undefined) return false;
     if (!('inputShape' in value) || value['inputShape'] === undefined) return false;
     if (!('inputType' in value) || value['inputType'] === undefined) return false;
+    if (!('outputNoDataHandling' in value) || value['outputNoDataHandling'] === undefined) return false;
     if (!('outputShape' in value) || value['outputShape'] === undefined) return false;
     if (!('outputType' in value) || value['outputType'] === undefined) return false;
     return true;
@@ -90,9 +111,10 @@ export function MlModelMetadataFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'fileName': json['fileName'],
+        'inputNoDataHandling': MlModelInputNoDataHandlingFromJSON(json['inputNoDataHandling']),
         'inputShape': MlTensorShape3DFromJSON(json['inputShape']),
         'inputType': RasterDataTypeFromJSON(json['inputType']),
+        'outputNoDataHandling': MlModelOutputNoDataHandlingFromJSON(json['outputNoDataHandling']),
         'outputShape': MlTensorShape3DFromJSON(json['outputShape']),
         'outputType': RasterDataTypeFromJSON(json['outputType']),
     };
@@ -109,9 +131,10 @@ export function MlModelMetadataToJSONTyped(value?: MlModelMetadata | null, ignor
 
     return {
         
-        'fileName': value['fileName'],
+        'inputNoDataHandling': MlModelInputNoDataHandlingToJSON(value['inputNoDataHandling']),
         'inputShape': MlTensorShape3DToJSON(value['inputShape']),
         'inputType': RasterDataTypeToJSON(value['inputType']),
+        'outputNoDataHandling': MlModelOutputNoDataHandlingToJSON(value['outputNoDataHandling']),
         'outputShape': MlTensorShape3DToJSON(value['outputShape']),
         'outputType': RasterDataTypeToJSON(value['outputType']),
     };

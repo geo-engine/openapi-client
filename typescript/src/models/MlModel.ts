@@ -41,6 +41,12 @@ export interface MlModel {
     displayName: string;
     /**
      * 
+     * @type {string}
+     * @memberof MlModel
+     */
+    fileName: string;
+    /**
+     * 
      * @type {MlModelMetadata}
      * @memberof MlModel
      */
@@ -65,6 +71,7 @@ export interface MlModel {
 export function instanceOfMlModel(value: object): value is MlModel {
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('displayName' in value) || value['displayName'] === undefined) return false;
+    if (!('fileName' in value) || value['fileName'] === undefined) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('upload' in value) || value['upload'] === undefined) return false;
@@ -83,6 +90,7 @@ export function MlModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
         
         'description': json['description'],
         'displayName': json['displayName'],
+        'fileName': json['fileName'],
         'metadata': MlModelMetadataFromJSON(json['metadata']),
         'name': json['name'],
         'upload': json['upload'],
@@ -102,6 +110,7 @@ export function MlModelToJSONTyped(value?: MlModel | null, ignoreDiscriminator: 
         
         'description': value['description'],
         'displayName': value['displayName'],
+        'fileName': value['fileName'],
         'metadata': MlModelMetadataToJSON(value['metadata']),
         'name': value['name'],
         'upload': value['upload'],

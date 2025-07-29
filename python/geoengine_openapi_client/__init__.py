@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.26"
+__version__ = "0.0.27"
 
 # import apis into sdk package
 from geoengine_openapi_client.api.datasets_api import DatasetsApi
@@ -51,6 +51,7 @@ from geoengine_openapi_client.models.add_dataset import AddDataset
 from geoengine_openapi_client.models.add_layer import AddLayer
 from geoengine_openapi_client.models.add_layer_collection import AddLayerCollection
 from geoengine_openapi_client.models.add_role import AddRole
+from geoengine_openapi_client.models.aruna_data_provider_definition import ArunaDataProviderDefinition
 from geoengine_openapi_client.models.auth_code_request_url import AuthCodeRequestURL
 from geoengine_openapi_client.models.auth_code_response import AuthCodeResponse
 from geoengine_openapi_client.models.auto_create_dataset import AutoCreateDataset
@@ -65,6 +66,7 @@ from geoengine_openapi_client.models.colorizer import Colorizer
 from geoengine_openapi_client.models.computation_quota import ComputationQuota
 from geoengine_openapi_client.models.continuous_measurement import ContinuousMeasurement
 from geoengine_openapi_client.models.coordinate2_d import Coordinate2D
+from geoengine_openapi_client.models.copernicus_dataspace_data_provider_definition import CopernicusDataspaceDataProviderDefinition
 from geoengine_openapi_client.models.create_dataset import CreateDataset
 from geoengine_openapi_client.models.create_project import CreateProject
 from geoengine_openapi_client.models.csv_header import CsvHeader
@@ -72,16 +74,23 @@ from geoengine_openapi_client.models.data_id import DataId
 from geoengine_openapi_client.models.data_path import DataPath
 from geoengine_openapi_client.models.data_path_one_of import DataPathOneOf
 from geoengine_openapi_client.models.data_path_one_of1 import DataPathOneOf1
+from geoengine_openapi_client.models.data_provider_resource import DataProviderResource
 from geoengine_openapi_client.models.data_usage import DataUsage
 from geoengine_openapi_client.models.data_usage_summary import DataUsageSummary
+from geoengine_openapi_client.models.database_connection_config import DatabaseConnectionConfig
 from geoengine_openapi_client.models.dataset import Dataset
 from geoengine_openapi_client.models.dataset_definition import DatasetDefinition
+from geoengine_openapi_client.models.dataset_layer_listing_collection import DatasetLayerListingCollection
+from geoengine_openapi_client.models.dataset_layer_listing_provider_definition import DatasetLayerListingProviderDefinition
 from geoengine_openapi_client.models.dataset_listing import DatasetListing
 from geoengine_openapi_client.models.dataset_name_response import DatasetNameResponse
 from geoengine_openapi_client.models.dataset_resource import DatasetResource
 from geoengine_openapi_client.models.derived_color import DerivedColor
 from geoengine_openapi_client.models.derived_number import DerivedNumber
 from geoengine_openapi_client.models.describe_coverage_request import DescribeCoverageRequest
+from geoengine_openapi_client.models.ebv_portal_data_provider_definition import EbvPortalDataProviderDefinition
+from geoengine_openapi_client.models.edr_data_provider_definition import EdrDataProviderDefinition
+from geoengine_openapi_client.models.edr_vector_spec import EdrVectorSpec
 from geoengine_openapi_client.models.error_response import ErrorResponse
 from geoengine_openapi_client.models.external_data_id import ExternalDataId
 from geoengine_openapi_client.models.feature_data_type import FeatureDataType
@@ -89,6 +98,7 @@ from geoengine_openapi_client.models.file_not_found_handling import FileNotFound
 from geoengine_openapi_client.models.format_specifics import FormatSpecifics
 from geoengine_openapi_client.models.format_specifics_one_of import FormatSpecificsOneOf
 from geoengine_openapi_client.models.format_specifics_one_of_csv import FormatSpecificsOneOfCsv
+from geoengine_openapi_client.models.gbif_data_provider_definition import GbifDataProviderDefinition
 from geoengine_openapi_client.models.gdal_dataset_geo_transform import GdalDatasetGeoTransform
 from geoengine_openapi_client.models.gdal_dataset_parameters import GdalDatasetParameters
 from geoengine_openapi_client.models.gdal_loading_info_temporal_slice import GdalLoadingInfoTemporalSlice
@@ -108,6 +118,8 @@ from geoengine_openapi_client.models.get_legend_graphic_request import GetLegend
 from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat
 from geoengine_openapi_client.models.get_map_format import GetMapFormat
 from geoengine_openapi_client.models.get_map_request import GetMapRequest
+from geoengine_openapi_client.models.gfbio_abcd_data_provider_definition import GfbioAbcdDataProviderDefinition
+from geoengine_openapi_client.models.gfbio_collections_data_provider_definition import GfbioCollectionsDataProviderDefinition
 from geoengine_openapi_client.models.id_response import IdResponse
 from geoengine_openapi_client.models.internal_data_id import InternalDataId
 from geoengine_openapi_client.models.layer import Layer
@@ -115,6 +127,7 @@ from geoengine_openapi_client.models.layer_collection import LayerCollection
 from geoengine_openapi_client.models.layer_collection_listing import LayerCollectionListing
 from geoengine_openapi_client.models.layer_collection_resource import LayerCollectionResource
 from geoengine_openapi_client.models.layer_listing import LayerListing
+from geoengine_openapi_client.models.layer_provider_listing import LayerProviderListing
 from geoengine_openapi_client.models.layer_resource import LayerResource
 from geoengine_openapi_client.models.layer_visibility import LayerVisibility
 from geoengine_openapi_client.models.line_symbology import LineSymbology
@@ -138,6 +151,7 @@ from geoengine_openapi_client.models.multi_band_raster_colorizer import MultiBan
 from geoengine_openapi_client.models.multi_line_string import MultiLineString
 from geoengine_openapi_client.models.multi_point import MultiPoint
 from geoengine_openapi_client.models.multi_polygon import MultiPolygon
+from geoengine_openapi_client.models.net_cdf_cf_data_provider_definition import NetCdfCfDataProviderDefinition
 from geoengine_openapi_client.models.number_param import NumberParam
 from geoengine_openapi_client.models.ogr_meta_data import OgrMetaData
 from geoengine_openapi_client.models.ogr_source_column_spec import OgrSourceColumnSpec
@@ -159,6 +173,7 @@ from geoengine_openapi_client.models.ogr_source_time_format_unix_time_stamp impo
 from geoengine_openapi_client.models.operator_quota import OperatorQuota
 from geoengine_openapi_client.models.order_by import OrderBy
 from geoengine_openapi_client.models.palette_colorizer import PaletteColorizer
+from geoengine_openapi_client.models.pangaea_data_provider_definition import PangaeaDataProviderDefinition
 from geoengine_openapi_client.models.permission import Permission
 from geoengine_openapi_client.models.permission_list_options import PermissionListOptions
 from geoengine_openapi_client.models.permission_listing import PermissionListing
@@ -201,12 +216,17 @@ from geoengine_openapi_client.models.st_rectangle import STRectangle
 from geoengine_openapi_client.models.search_capabilities import SearchCapabilities
 from geoengine_openapi_client.models.search_type import SearchType
 from geoengine_openapi_client.models.search_types import SearchTypes
+from geoengine_openapi_client.models.sentinel_s2_l2_a_cogs_provider_definition import SentinelS2L2ACogsProviderDefinition
 from geoengine_openapi_client.models.server_info import ServerInfo
 from geoengine_openapi_client.models.single_band_raster_colorizer import SingleBandRasterColorizer
 from geoengine_openapi_client.models.spatial_partition2_d import SpatialPartition2D
 from geoengine_openapi_client.models.spatial_reference_authority import SpatialReferenceAuthority
 from geoengine_openapi_client.models.spatial_reference_specification import SpatialReferenceSpecification
 from geoengine_openapi_client.models.spatial_resolution import SpatialResolution
+from geoengine_openapi_client.models.stac_api_retries import StacApiRetries
+from geoengine_openapi_client.models.stac_band import StacBand
+from geoengine_openapi_client.models.stac_query_buffer import StacQueryBuffer
+from geoengine_openapi_client.models.stac_zone import StacZone
 from geoengine_openapi_client.models.static_color import StaticColor
 from geoengine_openapi_client.models.static_number import StaticNumber
 from geoengine_openapi_client.models.stroke_param import StrokeParam
@@ -227,6 +247,7 @@ from geoengine_openapi_client.models.time_granularity import TimeGranularity
 from geoengine_openapi_client.models.time_interval import TimeInterval
 from geoengine_openapi_client.models.time_reference import TimeReference
 from geoengine_openapi_client.models.time_step import TimeStep
+from geoengine_openapi_client.models.typed_data_provider_definition import TypedDataProviderDefinition
 from geoengine_openapi_client.models.typed_geometry import TypedGeometry
 from geoengine_openapi_client.models.typed_geometry_one_of import TypedGeometryOneOf
 from geoengine_openapi_client.models.typed_geometry_one_of1 import TypedGeometryOneOf1
@@ -264,6 +285,7 @@ from geoengine_openapi_client.models.wcs_service import WcsService
 from geoengine_openapi_client.models.wcs_version import WcsVersion
 from geoengine_openapi_client.models.wfs_service import WfsService
 from geoengine_openapi_client.models.wfs_version import WfsVersion
+from geoengine_openapi_client.models.wildlive_data_connector_definition import WildliveDataConnectorDefinition
 from geoengine_openapi_client.models.wms_service import WmsService
 from geoengine_openapi_client.models.wms_version import WmsVersion
 from geoengine_openapi_client.models.workflow import Workflow

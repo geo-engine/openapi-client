@@ -253,5 +253,73 @@ class SessionApi extends runtime.BaseAPI {
             return yield response.value();
         });
     }
+    /**
+     * Sets the active project of the session.
+     */
+    sessionProjectHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['project'] == null) {
+                throw new runtime.RequiredError('project', 'Required parameter "project" was null or undefined when calling sessionProjectHandler().');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/session/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Sets the active project of the session.
+     */
+    sessionProjectHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.sessionProjectHandlerRaw(requestParameters, initOverrides);
+        });
+    }
+    /**
+     */
+    sessionViewHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['sTRectangle'] == null) {
+                throw new runtime.RequiredError('sTRectangle', 'Required parameter "sTRectangle" was null or undefined when calling sessionViewHandler().');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/session/view`,
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: (0, index_1.STRectangleToJSON)(requestParameters['sTRectangle']),
+            }, initOverrides);
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     */
+    sessionViewHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.sessionViewHandlerRaw(requestParameters, initOverrides);
+        });
+    }
 }
 exports.SessionApi = SessionApi;

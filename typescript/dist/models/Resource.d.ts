@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { DataProviderResource } from './DataProviderResource';
 import type { DatasetResource } from './DatasetResource';
 import type { LayerCollectionResource } from './LayerCollectionResource';
 import type { LayerResource } from './LayerResource';
@@ -29,7 +30,9 @@ export type Resource = {
     type: 'mlModel';
 } & MlModelResource | {
     type: 'project';
-} & ProjectResource;
+} & ProjectResource | {
+    type: 'provider';
+} & DataProviderResource;
 export declare function ResourceFromJSON(json: any): Resource;
 export declare function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Resource;
 export declare function ResourceToJSON(json: any): any;

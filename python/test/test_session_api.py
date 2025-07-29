@@ -76,6 +76,19 @@ class TestSessionApi(unittest.TestCase):
         """
         pass
 
+    def test_session_project_handler(self) -> None:
+        """Test case for session_project_handler
+
+        Sets the active project of the session.
+        """
+        pass
+
+    def test_session_view_handler(self) -> None:
+        """Test case for session_view_handler
+
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

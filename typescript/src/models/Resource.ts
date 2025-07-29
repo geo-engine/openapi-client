@@ -12,6 +12,13 @@
  * Do not edit the class manually.
  */
 
+import type { DataProviderResource } from './DataProviderResource';
+import {
+    instanceOfDataProviderResource,
+    DataProviderResourceFromJSON,
+    DataProviderResourceFromJSONTyped,
+    DataProviderResourceToJSON,
+} from './DataProviderResource';
 import type { DatasetResource } from './DatasetResource';
 import {
     instanceOfDatasetResource,
@@ -53,7 +60,7 @@ import {
  * A resource that is affected by a permission.
  * @export
  */
-export type Resource = { type: 'dataset' } & DatasetResource | { type: 'layer' } & LayerResource | { type: 'layerCollection' } & LayerCollectionResource | { type: 'mlModel' } & MlModelResource | { type: 'project' } & ProjectResource;
+export type Resource = { type: 'dataset' } & DatasetResource | { type: 'layer' } & LayerResource | { type: 'layerCollection' } & LayerCollectionResource | { type: 'mlModel' } & MlModelResource | { type: 'project' } & ProjectResource | { type: 'provider' } & DataProviderResource;
 
 export function ResourceFromJSON(json: any): Resource {
     return ResourceFromJSONTyped(json, false);
@@ -74,6 +81,8 @@ export function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
             return Object.assign({}, MlModelResourceFromJSONTyped(json, true), { type: 'mlModel' } as const);
         case 'project':
             return Object.assign({}, ProjectResourceFromJSONTyped(json, true), { type: 'project' } as const);
+        case 'provider':
+            return Object.assign({}, DataProviderResourceFromJSONTyped(json, true), { type: 'provider' } as const);
         default:
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }
@@ -98,6 +107,8 @@ export function ResourceToJSONTyped(value?: Resource | null, ignoreDiscriminator
             return Object.assign({}, MlModelResourceToJSON(value), { type: 'mlModel' } as const);
         case 'project':
             return Object.assign({}, ProjectResourceToJSON(value), { type: 'project' } as const);
+        case 'provider':
+            return Object.assign({}, DataProviderResourceToJSON(value), { type: 'provider' } as const);
         default:
             throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
     }

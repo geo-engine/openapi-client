@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AuthCodeRequestURL, AuthCodeResponse, UserCredentials, UserRegistration, UserSession } from '../models/index';
+import type { AuthCodeRequestURL, AuthCodeResponse, STRectangle, UserCredentials, UserRegistration, UserSession } from '../models/index';
 export interface LoginHandlerRequest {
     userCredentials: UserCredentials;
 }
@@ -23,6 +23,12 @@ export interface OidcLoginRequest {
 }
 export interface RegisterUserHandlerRequest {
     userRegistration: UserRegistration;
+}
+export interface SessionProjectHandlerRequest {
+    project: string;
+}
+export interface SessionViewHandlerRequest {
+    sTRectangle: STRectangle;
 }
 /**
  *
@@ -88,4 +94,18 @@ export declare class SessionApi extends runtime.BaseAPI {
      * Retrieves details about the current session.
      */
     sessionHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession>;
+    /**
+     * Sets the active project of the session.
+     */
+    sessionProjectHandlerRaw(requestParameters: SessionProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Sets the active project of the session.
+     */
+    sessionProjectHandler(requestParameters: SessionProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     */
+    sessionViewHandlerRaw(requestParameters: SessionViewHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     */
+    sessionViewHandler(requestParameters: SessionViewHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 }

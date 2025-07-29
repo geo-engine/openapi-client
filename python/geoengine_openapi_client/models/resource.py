@@ -18,6 +18,7 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
+from geoengine_openapi_client.models.data_provider_resource import DataProviderResource
 from geoengine_openapi_client.models.dataset_resource import DatasetResource
 from geoengine_openapi_client.models.layer_collection_resource import LayerCollectionResource
 from geoengine_openapi_client.models.layer_resource import LayerResource
@@ -27,7 +28,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-RESOURCE_ONE_OF_SCHEMAS = ["DatasetResource", "LayerCollectionResource", "LayerResource", "MlModelResource", "ProjectResource"]
+RESOURCE_ONE_OF_SCHEMAS = ["DataProviderResource", "DatasetResource", "LayerCollectionResource", "LayerResource", "MlModelResource", "ProjectResource"]
 
 class Resource(BaseModel):
     """
@@ -43,8 +44,10 @@ class Resource(BaseModel):
     oneof_schema_4_validator: Optional[DatasetResource] = None
     # data type: MlModelResource
     oneof_schema_5_validator: Optional[MlModelResource] = None
-    actual_instance: Optional[Union[DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource]] = None
-    one_of_schemas: Set[str] = { "DatasetResource", "LayerCollectionResource", "LayerResource", "MlModelResource", "ProjectResource" }
+    # data type: DataProviderResource
+    oneof_schema_6_validator: Optional[DataProviderResource] = None
+    actual_instance: Optional[Union[DataProviderResource, DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource]] = None
+    one_of_schemas: Set[str] = { "DataProviderResource", "DatasetResource", "LayerCollectionResource", "LayerResource", "MlModelResource", "ProjectResource" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -95,12 +98,17 @@ class Resource(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `MlModelResource`")
         else:
             match += 1
+        # validate data type: DataProviderResource
+        if not isinstance(v, DataProviderResource):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `DataProviderResource`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Resource with oneOf schemas: DataProviderResource, DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Resource with oneOf schemas: DataProviderResource, DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -143,6 +151,16 @@ class Resource(BaseModel):
         # check if data type is `ProjectResource`
         if _data_type == "project":
             instance.actual_instance = ProjectResource.from_json(json_str)
+            return instance
+
+        # check if data type is `DataProviderResource`
+        if _data_type == "provider":
+            instance.actual_instance = DataProviderResource.from_json(json_str)
+            return instance
+
+        # check if data type is `DataProviderResource`
+        if _data_type == "DataProviderResource":
+            instance.actual_instance = DataProviderResource.from_json(json_str)
             return instance
 
         # check if data type is `DatasetResource`
@@ -200,13 +218,19 @@ class Resource(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into DataProviderResource
+        try:
+            instance.actual_instance = DataProviderResource.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Resource with oneOf schemas: DataProviderResource, DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Resource with oneOf schemas: DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Resource with oneOf schemas: DataProviderResource, DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -220,7 +244,7 @@ class Resource(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], DataProviderResource, DatasetResource, LayerCollectionResource, LayerResource, MlModelResource, ProjectResource]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

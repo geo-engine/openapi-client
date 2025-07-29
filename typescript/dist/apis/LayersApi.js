@@ -184,6 +184,43 @@ class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Add a new provider
+     */
+    addProviderRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['typedDataProviderDefinition'] == null) {
+                throw new runtime.RequiredError('typedDataProviderDefinition', 'Required parameter "typedDataProviderDefinition" was null or undefined when calling addProvider().');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/layerDb/providers`,
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: (0, index_1.TypedDataProviderDefinitionToJSON)(requestParameters['typedDataProviderDefinition']),
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.IdResponseFromJSON)(jsonValue));
+        });
+    }
+    /**
+     * Add a new provider
+     */
+    addProvider(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.addProviderRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
      * Autocompletes the search on the contents of the collection of the given provider
      */
     autocompleteHandlerRaw(requestParameters, initOverrides) {
@@ -242,6 +279,75 @@ class LayersApi extends runtime.BaseAPI {
     autocompleteHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.autocompleteHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
+     * Delete an existing provider
+     */
+    deleteProviderRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['provider'] == null) {
+                throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling deleteProvider().');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/layerDb/providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+                method: 'DELETE',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Delete an existing provider
+     */
+    deleteProvider(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.deleteProviderRaw(requestParameters, initOverrides);
+        });
+    }
+    /**
+     * Get an existing provider\'s definition
+     */
+    getProviderDefinitionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['provider'] == null) {
+                throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling getProviderDefinition().');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/layerDb/providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TypedDataProviderDefinitionFromJSON)(jsonValue));
+        });
+    }
+    /**
+     * Get an existing provider\'s definition
+     */
+    getProviderDefinition(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getProviderDefinitionRaw(requestParameters, initOverrides);
             return yield response.value();
         });
     }
@@ -406,6 +512,50 @@ class LayersApi extends runtime.BaseAPI {
     listCollectionHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.listCollectionHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
+     * List all providers
+     */
+    listProvidersRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['offset'] == null) {
+                throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling listProviders().');
+            }
+            if (requestParameters['limit'] == null) {
+                throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling listProviders().');
+            }
+            const queryParameters = {};
+            if (requestParameters['offset'] != null) {
+                queryParameters['offset'] = requestParameters['offset'];
+            }
+            if (requestParameters['limit'] != null) {
+                queryParameters['limit'] = requestParameters['limit'];
+            }
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/layerDb/providers`,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(index_1.LayerProviderListingFromJSON));
+        });
+    }
+    /**
+     * List all providers
+     */
+    listProviders(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.listProvidersRaw(requestParameters, initOverrides);
             return yield response.value();
         });
     }
@@ -766,6 +916,45 @@ class LayersApi extends runtime.BaseAPI {
     updateLayer(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.updateLayerRaw(requestParameters, initOverrides);
+        });
+    }
+    /**
+     * Update an existing provider\'s definition
+     */
+    updateProviderDefinitionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['provider'] == null) {
+                throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling updateProviderDefinition().');
+            }
+            if (requestParameters['typedDataProviderDefinition'] == null) {
+                throw new runtime.RequiredError('typedDataProviderDefinition', 'Required parameter "typedDataProviderDefinition" was null or undefined when calling updateProviderDefinition().');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            const response = yield this.request({
+                path: `/layerDb/providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+                method: 'PUT',
+                headers: headerParameters,
+                query: queryParameters,
+                body: (0, index_1.TypedDataProviderDefinitionToJSON)(requestParameters['typedDataProviderDefinition']),
+            }, initOverrides);
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Update an existing provider\'s definition
+     */
+    updateProviderDefinition(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.updateProviderDefinitionRaw(requestParameters, initOverrides);
         });
     }
 }

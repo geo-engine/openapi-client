@@ -20,9 +20,11 @@ import type {
   IdResponse,
   Layer,
   LayerCollection,
+  LayerProviderListing,
   ProviderCapabilities,
   SearchType,
   TaskResponse,
+  TypedDataProviderDefinition,
   UpdateLayer,
   UpdateLayerCollection,
 } from '../models/index';
@@ -37,12 +39,16 @@ import {
     LayerToJSON,
     LayerCollectionFromJSON,
     LayerCollectionToJSON,
+    LayerProviderListingFromJSON,
+    LayerProviderListingToJSON,
     ProviderCapabilitiesFromJSON,
     ProviderCapabilitiesToJSON,
     SearchTypeFromJSON,
     SearchTypeToJSON,
     TaskResponseFromJSON,
     TaskResponseToJSON,
+    TypedDataProviderDefinitionFromJSON,
+    TypedDataProviderDefinitionToJSON,
     UpdateLayerFromJSON,
     UpdateLayerToJSON,
     UpdateLayerCollectionFromJSON,
@@ -69,6 +75,10 @@ export interface AddLayerRequest {
     addLayer: AddLayer;
 }
 
+export interface AddProviderRequest {
+    typedDataProviderDefinition: TypedDataProviderDefinition;
+}
+
 export interface AutocompleteHandlerRequest {
     provider: string;
     collection: string;
@@ -76,6 +86,14 @@ export interface AutocompleteHandlerRequest {
     searchString: string;
     limit: number;
     offset: number;
+}
+
+export interface DeleteProviderRequest {
+    provider: string;
+}
+
+export interface GetProviderDefinitionRequest {
+    provider: string;
 }
 
 export interface LayerHandlerRequest {
@@ -96,6 +114,11 @@ export interface LayerToWorkflowIdHandlerRequest {
 export interface ListCollectionHandlerRequest {
     provider: string;
     collection: string;
+    offset: number;
+    limit: number;
+}
+
+export interface ListProvidersRequest {
     offset: number;
     limit: number;
 }
@@ -144,6 +167,11 @@ export interface UpdateCollectionRequest {
 export interface UpdateLayerRequest {
     layer: string;
     updateLayer: UpdateLayer;
+}
+
+export interface UpdateProviderDefinitionRequest {
+    provider: string;
+    typedDataProviderDefinition: TypedDataProviderDefinition;
 }
 
 /**
@@ -348,6 +376,50 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
+     * Add a new provider
+     */
+    async addProviderRaw(requestParameters: AddProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+        if (requestParameters['typedDataProviderDefinition'] == null) {
+            throw new runtime.RequiredError(
+                'typedDataProviderDefinition',
+                'Required parameter "typedDataProviderDefinition" was null or undefined when calling addProvider().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/providers`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TypedDataProviderDefinitionToJSON(requestParameters['typedDataProviderDefinition']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Add a new provider
+     */
+    async addProvider(requestParameters: AddProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse> {
+        const response = await this.addProviderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Autocompletes the search on the contents of the collection of the given provider
      */
     async autocompleteHandlerRaw(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
@@ -436,6 +508,87 @@ export class LayersApi extends runtime.BaseAPI {
      */
     async autocompleteHandler(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
         const response = await this.autocompleteHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete an existing provider
+     */
+    async deleteProviderRaw(requestParameters: DeleteProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['provider'] == null) {
+            throw new runtime.RequiredError(
+                'provider',
+                'Required parameter "provider" was null or undefined when calling deleteProvider().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete an existing provider
+     */
+    async deleteProvider(requestParameters: DeleteProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteProviderRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Get an existing provider\'s definition
+     */
+    async getProviderDefinitionRaw(requestParameters: GetProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TypedDataProviderDefinition>> {
+        if (requestParameters['provider'] == null) {
+            throw new runtime.RequiredError(
+                'provider',
+                'Required parameter "provider" was null or undefined when calling getProviderDefinition().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TypedDataProviderDefinitionFromJSON(jsonValue));
+    }
+
+    /**
+     * Get an existing provider\'s definition
+     */
+    async getProviderDefinition(requestParameters: GetProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TypedDataProviderDefinition> {
+        const response = await this.getProviderDefinitionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -650,6 +803,62 @@ export class LayersApi extends runtime.BaseAPI {
      */
     async listCollectionHandler(requestParameters: ListCollectionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection> {
         const response = await this.listCollectionHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List all providers
+     */
+    async listProvidersRaw(requestParameters: ListProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LayerProviderListing>>> {
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError(
+                'offset',
+                'Required parameter "offset" was null or undefined when calling listProviders().'
+            );
+        }
+
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError(
+                'limit',
+                'Required parameter "limit" was null or undefined when calling listProviders().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/providers`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(LayerProviderListingFromJSON));
+    }
+
+    /**
+     * List all providers
+     */
+    async listProviders(requestParameters: ListProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LayerProviderListing>> {
+        const response = await this.listProvidersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1112,6 +1321,56 @@ export class LayersApi extends runtime.BaseAPI {
      */
     async updateLayer(requestParameters: UpdateLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.updateLayerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Update an existing provider\'s definition
+     */
+    async updateProviderDefinitionRaw(requestParameters: UpdateProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['provider'] == null) {
+            throw new runtime.RequiredError(
+                'provider',
+                'Required parameter "provider" was null or undefined when calling updateProviderDefinition().'
+            );
+        }
+
+        if (requestParameters['typedDataProviderDefinition'] == null) {
+            throw new runtime.RequiredError(
+                'typedDataProviderDefinition',
+                'Required parameter "typedDataProviderDefinition" was null or undefined when calling updateProviderDefinition().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/layerDb/providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TypedDataProviderDefinitionToJSON(requestParameters['typedDataProviderDefinition']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Update an existing provider\'s definition
+     */
+    async updateProviderDefinition(requestParameters: UpdateProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.updateProviderDefinitionRaw(requestParameters, initOverrides);
     }
 
 }

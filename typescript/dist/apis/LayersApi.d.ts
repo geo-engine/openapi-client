@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AddLayer, AddLayerCollection, IdResponse, Layer, LayerCollection, ProviderCapabilities, SearchType, TaskResponse, UpdateLayer, UpdateLayerCollection } from '../models/index';
+import type { AddLayer, AddLayerCollection, IdResponse, Layer, LayerCollection, LayerProviderListing, ProviderCapabilities, SearchType, TaskResponse, TypedDataProviderDefinition, UpdateLayer, UpdateLayerCollection } from '../models/index';
 export interface AddCollectionRequest {
     collection: string;
     addLayerCollection: AddLayerCollection;
@@ -27,6 +27,9 @@ export interface AddLayerRequest {
     collection: string;
     addLayer: AddLayer;
 }
+export interface AddProviderRequest {
+    typedDataProviderDefinition: TypedDataProviderDefinition;
+}
 export interface AutocompleteHandlerRequest {
     provider: string;
     collection: string;
@@ -34,6 +37,12 @@ export interface AutocompleteHandlerRequest {
     searchString: string;
     limit: number;
     offset: number;
+}
+export interface DeleteProviderRequest {
+    provider: string;
+}
+export interface GetProviderDefinitionRequest {
+    provider: string;
 }
 export interface LayerHandlerRequest {
     provider: string;
@@ -50,6 +59,10 @@ export interface LayerToWorkflowIdHandlerRequest {
 export interface ListCollectionHandlerRequest {
     provider: string;
     collection: string;
+    offset: number;
+    limit: number;
+}
+export interface ListProvidersRequest {
     offset: number;
     limit: number;
 }
@@ -90,6 +103,10 @@ export interface UpdateLayerRequest {
     layer: string;
     updateLayer: UpdateLayer;
 }
+export interface UpdateProviderDefinitionRequest {
+    provider: string;
+    typedDataProviderDefinition: TypedDataProviderDefinition;
+}
 /**
  *
  */
@@ -127,6 +144,14 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     addLayer(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
     /**
+     * Add a new provider
+     */
+    addProviderRaw(requestParameters: AddProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
+    /**
+     * Add a new provider
+     */
+    addProvider(requestParameters: AddProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
+    /**
      * Autocompletes the search on the contents of the collection of the given provider
      */
     autocompleteHandlerRaw(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
@@ -134,6 +159,22 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Autocompletes the search on the contents of the collection of the given provider
      */
     autocompleteHandler(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+    /**
+     * Delete an existing provider
+     */
+    deleteProviderRaw(requestParameters: DeleteProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Delete an existing provider
+     */
+    deleteProvider(requestParameters: DeleteProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Get an existing provider\'s definition
+     */
+    getProviderDefinitionRaw(requestParameters: GetProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TypedDataProviderDefinition>>;
+    /**
+     * Get an existing provider\'s definition
+     */
+    getProviderDefinition(requestParameters: GetProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TypedDataProviderDefinition>;
     /**
      * Retrieves the layer of the given provider
      */
@@ -166,6 +207,14 @@ export declare class LayersApi extends runtime.BaseAPI {
      * List the contents of the collection of the given provider
      */
     listCollectionHandler(requestParameters: ListCollectionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection>;
+    /**
+     * List all providers
+     */
+    listProvidersRaw(requestParameters: ListProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LayerProviderListing>>>;
+    /**
+     * List all providers
+     */
+    listProviders(requestParameters: ListProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LayerProviderListing>>;
     /**
      * List all layer collections
      */
@@ -236,4 +285,12 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Update a layer
      */
     updateLayer(requestParameters: UpdateLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Update an existing provider\'s definition
+     */
+    updateProviderDefinitionRaw(requestParameters: UpdateProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Update an existing provider\'s definition
+     */
+    updateProviderDefinition(requestParameters: UpdateProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 }

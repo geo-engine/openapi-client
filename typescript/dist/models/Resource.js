@@ -17,6 +17,7 @@ exports.ResourceFromJSON = ResourceFromJSON;
 exports.ResourceFromJSONTyped = ResourceFromJSONTyped;
 exports.ResourceToJSON = ResourceToJSON;
 exports.ResourceToJSONTyped = ResourceToJSONTyped;
+const DataProviderResource_1 = require("./DataProviderResource");
 const DatasetResource_1 = require("./DatasetResource");
 const LayerCollectionResource_1 = require("./LayerCollectionResource");
 const LayerResource_1 = require("./LayerResource");
@@ -40,6 +41,8 @@ function ResourceFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign({}, (0, MlModelResource_1.MlModelResourceFromJSONTyped)(json, true), { type: 'mlModel' });
         case 'project':
             return Object.assign({}, (0, ProjectResource_1.ProjectResourceFromJSONTyped)(json, true), { type: 'project' });
+        case 'provider':
+            return Object.assign({}, (0, DataProviderResource_1.DataProviderResourceFromJSONTyped)(json, true), { type: 'provider' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }
@@ -62,6 +65,8 @@ function ResourceToJSONTyped(value, ignoreDiscriminator = false) {
             return Object.assign({}, (0, MlModelResource_1.MlModelResourceToJSON)(value), { type: 'mlModel' });
         case 'project':
             return Object.assign({}, (0, ProjectResource_1.ProjectResourceToJSON)(value), { type: 'project' });
+        case 'provider':
+            return Object.assign({}, (0, DataProviderResource_1.DataProviderResourceToJSON)(value), { type: 'provider' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
     }

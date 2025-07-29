@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   AuthCodeRequestURL,
   AuthCodeResponse,
+  STRectangle,
   UserCredentials,
   UserRegistration,
   UserSession,
@@ -26,6 +27,8 @@ import {
     AuthCodeRequestURLToJSON,
     AuthCodeResponseFromJSON,
     AuthCodeResponseToJSON,
+    STRectangleFromJSON,
+    STRectangleToJSON,
     UserCredentialsFromJSON,
     UserCredentialsToJSON,
     UserRegistrationFromJSON,
@@ -49,6 +52,14 @@ export interface OidcLoginRequest {
 
 export interface RegisterUserHandlerRequest {
     userRegistration: UserRegistration;
+}
+
+export interface SessionProjectHandlerRequest {
+    project: string;
+}
+
+export interface SessionViewHandlerRequest {
+    sTRectangle: STRectangle;
 }
 
 /**
@@ -311,6 +322,87 @@ export class SessionApi extends runtime.BaseAPI {
     async sessionHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession> {
         const response = await this.sessionHandlerRaw(initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Sets the active project of the session.
+     */
+    async sessionProjectHandlerRaw(requestParameters: SessionProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['project'] == null) {
+            throw new runtime.RequiredError(
+                'project',
+                'Required parameter "project" was null or undefined when calling sessionProjectHandler().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/session/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Sets the active project of the session.
+     */
+    async sessionProjectHandler(requestParameters: SessionProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sessionProjectHandlerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     */
+    async sessionViewHandlerRaw(requestParameters: SessionViewHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['sTRectangle'] == null) {
+            throw new runtime.RequiredError(
+                'sTRectangle',
+                'Required parameter "sTRectangle" was null or undefined when calling sessionViewHandler().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/session/view`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: STRectangleToJSON(requestParameters['sTRectangle']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async sessionViewHandler(requestParameters: SessionViewHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sessionViewHandlerRaw(requestParameters, initOverrides);
     }
 
 }

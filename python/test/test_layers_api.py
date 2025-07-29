@@ -55,10 +55,31 @@ class TestLayersApi(unittest.TestCase):
         """
         pass
 
+    def test_add_provider(self) -> None:
+        """Test case for add_provider
+
+        Add a new provider
+        """
+        pass
+
     def test_autocomplete_handler(self) -> None:
         """Test case for autocomplete_handler
 
         Autocompletes the search on the contents of the collection of the given provider
+        """
+        pass
+
+    def test_delete_provider(self) -> None:
+        """Test case for delete_provider
+
+        Delete an existing provider
+        """
+        pass
+
+    def test_get_provider_definition(self) -> None:
+        """Test case for get_provider_definition
+
+        Get an existing provider's definition
         """
         pass
 
@@ -87,6 +108,13 @@ class TestLayersApi(unittest.TestCase):
         """Test case for list_collection_handler
 
         List the contents of the collection of the given provider
+        """
+        pass
+
+    def test_list_providers(self) -> None:
+        """Test case for list_providers
+
+        List all providers
         """
         pass
 
@@ -149,6 +177,13 @@ class TestLayersApi(unittest.TestCase):
         """Test case for update_layer
 
         Update a layer
+        """
+        pass
+
+    def test_update_provider_definition(self) -> None:
+        """Test case for update_provider_definition
+
+        Update an existing provider's definition
         """
         pass
 

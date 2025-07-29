@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { DataProviderResourceFromJSONTyped, DataProviderResourceToJSON, } from './DataProviderResource';
 import { DatasetResourceFromJSONTyped, DatasetResourceToJSON, } from './DatasetResource';
 import { LayerCollectionResourceFromJSONTyped, LayerCollectionResourceToJSON, } from './LayerCollectionResource';
 import { LayerResourceFromJSONTyped, LayerResourceToJSON, } from './LayerResource';
@@ -34,6 +35,8 @@ export function ResourceFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign({}, MlModelResourceFromJSONTyped(json, true), { type: 'mlModel' });
         case 'project':
             return Object.assign({}, ProjectResourceFromJSONTyped(json, true), { type: 'project' });
+        case 'provider':
+            return Object.assign({}, DataProviderResourceFromJSONTyped(json, true), { type: 'provider' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
     }
@@ -56,6 +59,8 @@ export function ResourceToJSONTyped(value, ignoreDiscriminator = false) {
             return Object.assign({}, MlModelResourceToJSON(value), { type: 'mlModel' });
         case 'project':
             return Object.assign({}, ProjectResourceToJSON(value), { type: 'project' });
+        case 'provider':
+            return Object.assign({}, DataProviderResourceToJSON(value), { type: 'provider' });
         default:
             throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
     }

@@ -18,11 +18,10 @@ exports.RasterResultDescriptorFromJSON = RasterResultDescriptorFromJSON;
 exports.RasterResultDescriptorFromJSONTyped = RasterResultDescriptorFromJSONTyped;
 exports.RasterResultDescriptorToJSON = RasterResultDescriptorToJSON;
 exports.RasterResultDescriptorToJSONTyped = RasterResultDescriptorToJSONTyped;
-const SpatialResolution_1 = require("./SpatialResolution");
 const TimeInterval_1 = require("./TimeInterval");
 const RasterBandDescriptor_1 = require("./RasterBandDescriptor");
+const SpatialGridDescriptor_1 = require("./SpatialGridDescriptor");
 const RasterDataType_1 = require("./RasterDataType");
-const SpatialPartition2D_1 = require("./SpatialPartition2D");
 /**
  * Check if a given object implements the RasterResultDescriptor interface.
  */
@@ -30,6 +29,8 @@ function instanceOfRasterResultDescriptor(value) {
     if (!('bands' in value) || value['bands'] === undefined)
         return false;
     if (!('dataType' in value) || value['dataType'] === undefined)
+        return false;
+    if (!('spatialGrid' in value) || value['spatialGrid'] === undefined)
         return false;
     if (!('spatialReference' in value) || value['spatialReference'] === undefined)
         return false;
@@ -44,9 +45,8 @@ function RasterResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'bands': (json['bands'].map(RasterBandDescriptor_1.RasterBandDescriptorFromJSON)),
-        'bbox': json['bbox'] == null ? undefined : (0, SpatialPartition2D_1.SpatialPartition2DFromJSON)(json['bbox']),
         'dataType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['dataType']),
-        'resolution': json['resolution'] == null ? undefined : (0, SpatialResolution_1.SpatialResolutionFromJSON)(json['resolution']),
+        'spatialGrid': (0, SpatialGridDescriptor_1.SpatialGridDescriptorFromJSON)(json['spatialGrid']),
         'spatialReference': json['spatialReference'],
         'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
     };
@@ -60,9 +60,8 @@ function RasterResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'bands': (value['bands'].map(RasterBandDescriptor_1.RasterBandDescriptorToJSON)),
-        'bbox': (0, SpatialPartition2D_1.SpatialPartition2DToJSON)(value['bbox']),
         'dataType': (0, RasterDataType_1.RasterDataTypeToJSON)(value['dataType']),
-        'resolution': (0, SpatialResolution_1.SpatialResolutionToJSON)(value['resolution']),
+        'spatialGrid': (0, SpatialGridDescriptor_1.SpatialGridDescriptorToJSON)(value['spatialGrid']),
         'spatialReference': value['spatialReference'],
         'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
     };

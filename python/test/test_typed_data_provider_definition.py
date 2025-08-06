@@ -100,12 +100,6 @@ class TestTypedDataProviderDefinition(unittest.TestCase):
                 collection_api_auth_token = '',
                 collection_api_url = '',
                 pangaea_url = '',
-                bands = [
-                    geoengine_openapi_client.models.stac_band.StacBand(
-                        data_type = 'U8', 
-                        name = '', 
-                        no_data_value = 1.337, )
-                    ],
                 gdal_retries = 0,
                 query_buffer = geoengine_openapi_client.models.stac_query_buffer.StacQueryBuffer(
                     end_seconds = 56, 
@@ -114,11 +108,6 @@ class TestTypedDataProviderDefinition(unittest.TestCase):
                     exponential_backoff_factor = 1.337, 
                     initial_delay_ms = 0, 
                     number_of_retries = 0, ),
-                zones = [
-                    geoengine_openapi_client.models.stac_zone.StacZone(
-                        epsg = 0, 
-                        name = '', )
-                    ],
                 api_key = ''
             )
         else:
@@ -173,17 +162,6 @@ class TestTypedDataProviderDefinition(unittest.TestCase):
                 collection_api_auth_token = '',
                 collection_api_url = '',
                 pangaea_url = '',
-                bands = [
-                    geoengine_openapi_client.models.stac_band.StacBand(
-                        data_type = 'U8', 
-                        name = '', 
-                        no_data_value = 1.337, )
-                    ],
-                zones = [
-                    geoengine_openapi_client.models.stac_zone.StacZone(
-                        epsg = 0, 
-                        name = '', )
-                    ],
         )
         """
 

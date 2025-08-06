@@ -37,12 +37,6 @@ class TestSentinelS2L2ACogsProviderDefinition(unittest.TestCase):
         if include_optional:
             return SentinelS2L2ACogsProviderDefinition(
                 api_url = '',
-                bands = [
-                    geoengine_openapi_client.models.stac_band.StacBand(
-                        data_type = 'U8', 
-                        name = '', 
-                        no_data_value = 1.337, )
-                    ],
                 cache_ttl = 0,
                 description = '',
                 gdal_retries = 0,
@@ -56,31 +50,15 @@ class TestSentinelS2L2ACogsProviderDefinition(unittest.TestCase):
                     exponential_backoff_factor = 1.337, 
                     initial_delay_ms = 0, 
                     number_of_retries = 0, ),
-                type = 'SentinelS2L2ACogs',
-                zones = [
-                    geoengine_openapi_client.models.stac_zone.StacZone(
-                        epsg = 0, 
-                        name = '', )
-                    ]
+                type = 'SentinelS2L2ACogs'
             )
         else:
             return SentinelS2L2ACogsProviderDefinition(
                 api_url = '',
-                bands = [
-                    geoengine_openapi_client.models.stac_band.StacBand(
-                        data_type = 'U8', 
-                        name = '', 
-                        no_data_value = 1.337, )
-                    ],
                 description = '',
                 id = '',
                 name = '',
                 type = 'SentinelS2L2ACogs',
-                zones = [
-                    geoengine_openapi_client.models.stac_zone.StacZone(
-                        epsg = 0, 
-                        name = '', )
-                    ],
         )
         """
 

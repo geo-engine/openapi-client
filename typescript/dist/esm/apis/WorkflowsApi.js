@@ -220,9 +220,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
             if (requestParameters['timeInterval'] == null) {
                 throw new runtime.RequiredError('timeInterval', 'Required parameter "timeInterval" was null or undefined when calling rasterStreamWebsocket().');
             }
-            if (requestParameters['spatialResolution'] == null) {
-                throw new runtime.RequiredError('spatialResolution', 'Required parameter "spatialResolution" was null or undefined when calling rasterStreamWebsocket().');
-            }
             if (requestParameters['attributes'] == null) {
                 throw new runtime.RequiredError('attributes', 'Required parameter "attributes" was null or undefined when calling rasterStreamWebsocket().');
             }
@@ -235,9 +232,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
             }
             if (requestParameters['timeInterval'] != null) {
                 queryParameters['timeInterval'] = requestParameters['timeInterval'];
-            }
-            if (requestParameters['spatialResolution'] != null) {
-                queryParameters['spatialResolution'] = requestParameters['spatialResolution'];
             }
             if (requestParameters['attributes'] != null) {
                 queryParameters['attributes'] = requestParameters['attributes'];

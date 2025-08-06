@@ -20,7 +20,6 @@ import type {
   RasterDatasetFromWorkflow,
   RasterStreamWebsocketResultType,
   SpatialPartition2D,
-  SpatialResolution,
   TaskResponse,
   TypedResultDescriptor,
   Workflow,
@@ -36,8 +35,6 @@ import {
     RasterStreamWebsocketResultTypeToJSON,
     SpatialPartition2DFromJSON,
     SpatialPartition2DToJSON,
-    SpatialResolutionFromJSON,
-    SpatialResolutionToJSON,
     TaskResponseFromJSON,
     TaskResponseToJSON,
     TypedResultDescriptorFromJSON,
@@ -71,7 +68,6 @@ export interface RasterStreamWebsocketRequest {
     id: string;
     spatialBounds: SpatialPartition2D;
     timeInterval: string;
-    spatialResolution: SpatialResolution;
     attributes: string;
     resultType: RasterStreamWebsocketResultType;
 }
@@ -325,13 +321,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['spatialResolution'] == null) {
-            throw new runtime.RequiredError(
-                'spatialResolution',
-                'Required parameter "spatialResolution" was null or undefined when calling rasterStreamWebsocket().'
-            );
-        }
-
         if (requestParameters['attributes'] == null) {
             throw new runtime.RequiredError(
                 'attributes',
@@ -354,10 +343,6 @@ export class WorkflowsApi extends runtime.BaseAPI {
 
         if (requestParameters['timeInterval'] != null) {
             queryParameters['timeInterval'] = requestParameters['timeInterval'];
-        }
-
-        if (requestParameters['spatialResolution'] != null) {
-            queryParameters['spatialResolution'] = requestParameters['spatialResolution'];
         }
 
         if (requestParameters['attributes'] != null) {

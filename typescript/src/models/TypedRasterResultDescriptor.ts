@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SpatialResolution } from './SpatialResolution';
-import {
-    SpatialResolutionFromJSON,
-    SpatialResolutionFromJSONTyped,
-    SpatialResolutionToJSON,
-    SpatialResolutionToJSONTyped,
-} from './SpatialResolution';
 import type { TimeInterval } from './TimeInterval';
 import {
     TimeIntervalFromJSON,
@@ -41,6 +34,13 @@ import {
     RasterBandDescriptorToJSON,
     RasterBandDescriptorToJSONTyped,
 } from './RasterBandDescriptor';
+import type { SpatialGridDescriptor } from './SpatialGridDescriptor';
+import {
+    SpatialGridDescriptorFromJSON,
+    SpatialGridDescriptorFromJSONTyped,
+    SpatialGridDescriptorToJSON,
+    SpatialGridDescriptorToJSONTyped,
+} from './SpatialGridDescriptor';
 import type { RasterDataType } from './RasterDataType';
 import {
     RasterDataTypeFromJSON,
@@ -48,13 +48,6 @@ import {
     RasterDataTypeToJSON,
     RasterDataTypeToJSONTyped,
 } from './RasterDataType';
-import type { SpatialPartition2D } from './SpatialPartition2D';
-import {
-    SpatialPartition2DFromJSON,
-    SpatialPartition2DFromJSONTyped,
-    SpatialPartition2DToJSON,
-    SpatialPartition2DToJSONTyped,
-} from './SpatialPartition2D';
 
 /**
  * 

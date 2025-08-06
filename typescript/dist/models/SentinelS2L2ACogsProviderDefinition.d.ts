@@ -10,9 +10,7 @@
  * Do not edit the class manually.
  */
 import type { StacApiRetries } from './StacApiRetries';
-import type { StacBand } from './StacBand';
 import type { StacQueryBuffer } from './StacQueryBuffer';
-import type { StacZone } from './StacZone';
 /**
  *
  * @export
@@ -25,12 +23,6 @@ export interface SentinelS2L2ACogsProviderDefinition {
      * @memberof SentinelS2L2ACogsProviderDefinition
      */
     apiUrl: string;
-    /**
-     *
-     * @type {Array<StacBand>}
-     * @memberof SentinelS2L2ACogsProviderDefinition
-     */
-    bands: Array<StacBand>;
     /**
      *
      * @type {number}
@@ -85,12 +77,6 @@ export interface SentinelS2L2ACogsProviderDefinition {
      * @memberof SentinelS2L2ACogsProviderDefinition
      */
     type: SentinelS2L2ACogsProviderDefinitionTypeEnum;
-    /**
-     *
-     * @type {Array<StacZone>}
-     * @memberof SentinelS2L2ACogsProviderDefinition
-     */
-    zones: Array<StacZone>;
 }
 /**
  * @export

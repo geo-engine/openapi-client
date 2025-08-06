@@ -20,9 +20,7 @@ exports.SentinelS2L2ACogsProviderDefinitionFromJSONTyped = SentinelS2L2ACogsProv
 exports.SentinelS2L2ACogsProviderDefinitionToJSON = SentinelS2L2ACogsProviderDefinitionToJSON;
 exports.SentinelS2L2ACogsProviderDefinitionToJSONTyped = SentinelS2L2ACogsProviderDefinitionToJSONTyped;
 const StacApiRetries_1 = require("./StacApiRetries");
-const StacBand_1 = require("./StacBand");
 const StacQueryBuffer_1 = require("./StacQueryBuffer");
-const StacZone_1 = require("./StacZone");
 /**
  * @export
  */
@@ -35,8 +33,6 @@ exports.SentinelS2L2ACogsProviderDefinitionTypeEnum = {
 function instanceOfSentinelS2L2ACogsProviderDefinition(value) {
     if (!('apiUrl' in value) || value['apiUrl'] === undefined)
         return false;
-    if (!('bands' in value) || value['bands'] === undefined)
-        return false;
     if (!('description' in value) || value['description'] === undefined)
         return false;
     if (!('id' in value) || value['id'] === undefined)
@@ -44,8 +40,6 @@ function instanceOfSentinelS2L2ACogsProviderDefinition(value) {
     if (!('name' in value) || value['name'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
-        return false;
-    if (!('zones' in value) || value['zones'] === undefined)
         return false;
     return true;
 }
@@ -58,7 +52,6 @@ function SentinelS2L2ACogsProviderDefinitionFromJSONTyped(json, ignoreDiscrimina
     }
     return {
         'apiUrl': json['apiUrl'],
-        'bands': (json['bands'].map(StacBand_1.StacBandFromJSON)),
         'cacheTtl': json['cacheTtl'] == null ? undefined : json['cacheTtl'],
         'description': json['description'],
         'gdalRetries': json['gdalRetries'] == null ? undefined : json['gdalRetries'],
@@ -68,7 +61,6 @@ function SentinelS2L2ACogsProviderDefinitionFromJSONTyped(json, ignoreDiscrimina
         'queryBuffer': json['queryBuffer'] == null ? undefined : (0, StacQueryBuffer_1.StacQueryBufferFromJSON)(json['queryBuffer']),
         'stacApiRetries': json['stacApiRetries'] == null ? undefined : (0, StacApiRetries_1.StacApiRetriesFromJSON)(json['stacApiRetries']),
         'type': json['type'],
-        'zones': (json['zones'].map(StacZone_1.StacZoneFromJSON)),
     };
 }
 function SentinelS2L2ACogsProviderDefinitionToJSON(json) {
@@ -80,7 +72,6 @@ function SentinelS2L2ACogsProviderDefinitionToJSONTyped(value, ignoreDiscriminat
     }
     return {
         'apiUrl': value['apiUrl'],
-        'bands': (value['bands'].map(StacBand_1.StacBandToJSON)),
         'cacheTtl': value['cacheTtl'],
         'description': value['description'],
         'gdalRetries': value['gdalRetries'],
@@ -90,6 +81,5 @@ function SentinelS2L2ACogsProviderDefinitionToJSONTyped(value, ignoreDiscriminat
         'queryBuffer': (0, StacQueryBuffer_1.StacQueryBufferToJSON)(value['queryBuffer']),
         'stacApiRetries': (0, StacApiRetries_1.StacApiRetriesToJSON)(value['stacApiRetries']),
         'type': value['type'],
-        'zones': (value['zones'].map(StacZone_1.StacZoneToJSON)),
     };
 }

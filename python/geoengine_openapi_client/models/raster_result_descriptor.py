@@ -110,9 +110,8 @@ class RasterResultDescriptor(BaseModel):
 
         _obj = cls.model_validate({
             "bands": [RasterBandDescriptor.from_dict(_item) for _item in obj["bands"]] if obj.get("bands") is not None else None,
-            "bbox": SpatialPartition2D.from_dict(obj["bbox"]) if obj.get("bbox") is not None else None,
+            "spatialGrid": SpatialGridDescriptor.from_dict(obj["spatialGrid"]) if obj.get("spatialGrid") is not None else None,
             "dataType": obj.get("dataType"),
-            "resolution": SpatialResolution.from_dict(obj["resolution"]) if obj.get("resolution") is not None else None,
             "spatialReference": obj.get("spatialReference"),
             "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
         })

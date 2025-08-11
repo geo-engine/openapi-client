@@ -13,6 +13,7 @@ from util import modify_file, version
 INDENT = '    '
 HALF_INDENT = '  '
 
+
 def api_client_py(file_contents: List[str]) -> Generator[str, None, None]:
     '''Modify the api_client.py file.'''
     for line in file_contents:
@@ -24,6 +25,7 @@ def api_client_py(file_contents: List[str]) -> Generator[str, None, None]:
             '''), 2 * INDENT)
 
         yield line
+
 
 def exceptions_py(file_contents: List[str]) -> Generator[str, None, None]:
     '''Modify the exceptions.py file.'''
@@ -38,6 +40,7 @@ def exceptions_py(file_contents: List[str]) -> Generator[str, None, None]:
             '''), 2 * INDENT)
 
         yield line
+
 
 def task_status_with_id_py(file_contents: List[str]) -> Generator[str, None, None]:
     '''Modify the task_status_with_id.py file.'''
@@ -73,11 +76,13 @@ def task_status_with_id_py(file_contents: List[str]) -> Generator[str, None, Non
 
         yield line
 
+
 EARLY_RETURN_EMPTY_HTTP_RESPONSE = indent(dedent('''\
     # Note: fixed handling of empty responses
     if response_data.data is None:
         return None
     '''), 2 * INDENT)
+
 
 def tasks_api_py(file_contents: List[str]) -> Generator[str, None, None]:
     '''Modify the tasks_api.py file.'''
@@ -88,11 +93,12 @@ def tasks_api_py(file_contents: List[str]) -> Generator[str, None, None]:
             state = 'abort_handler'
 
         elif state == 'abort_handler' and \
-            dedented_line.startswith('return self.api_client.response_deserialize('):
+                dedented_line.startswith('return self.api_client.response_deserialize('):
             line = EARLY_RETURN_EMPTY_HTTP_RESPONSE + '\n' + line
             state = None
 
         yield line
+
 
 def layers_api_py(file_contents: List[str]) -> Generator[str, None, None]:
     '''Modify the tasks_api.py file.'''
@@ -105,7 +111,8 @@ def layers_api_py(file_contents: List[str]) -> Generator[str, None, None]:
         if state is None and (
             dedented_line.startswith('def add_existing_layer_to_collection(')
             or
-            dedented_line.startswith('def add_existing_collection_to_collection(')
+            dedented_line.startswith(
+                'def add_existing_collection_to_collection(')
             or
             dedented_line.startswith('def remove_collection_from_collection(')
             or
@@ -116,11 +123,12 @@ def layers_api_py(file_contents: List[str]) -> Generator[str, None, None]:
             state = 'add_early_return_empty_http_response'
 
         elif state == 'add_early_return_empty_http_response' and \
-            dedented_line.startswith('return self.api_client.response_deserialize('):
+                dedented_line.startswith('return self.api_client.response_deserialize('):
             line = EARLY_RETURN_EMPTY_HTTP_RESPONSE + '\n' + line
             state = None
 
         yield line
+
 
 def ogc_xyz_api_py(ogc_api: Literal['wfs', 'wms']) -> Callable[[List[str]], Generator[str, None, None]]:
     '''Modify the ogc_xyz_api.py file.'''
@@ -141,7 +149,7 @@ def ogc_xyz_api_py(ogc_api: Literal['wfs', 'wms']) -> Callable[[List[str]], Gene
 def raster_result_descriptor_py(file_contents: List[str]) -> Generator[str, None, None]:
     '''
     Modify the raster_result_descriptor.py file.
-    
+
     TODO: remove when bug is fixed:
     https://github.com/OpenAPITools/openapi-generator/issues/19926
     '''
@@ -171,10 +179,11 @@ def raster_result_descriptor_py(file_contents: List[str]) -> Generator[str, None
 
         yield line
 
+
 def vector_result_descriptor_py(file_contents: List[str]) -> Generator[str, None, None]:
     '''
     Modify the vector_result_descriptor.py file.
-    
+
     TODO: remove when bug is fixed:
     https://github.com/OpenAPITools/openapi-generator/issues/19926
     '''
@@ -213,7 +222,7 @@ def vector_result_descriptor_py(file_contents: List[str]) -> Generator[str, None
 def plot_result_descriptor_py(file_contents: List[str]) -> Generator[str, None, None]:
     '''
     Modify the plot_result_descriptor.py file.
-    
+
     TODO: remove when bug is fixed:
     https://github.com/OpenAPITools/openapi-generator/issues/19926
     '''
@@ -285,6 +294,6 @@ file_modifications = {
 if modifier_function := file_modifications.get(input_file.name):
     modify_file(input_file, modifier_function)
 else:
-    pass # leave file untouched
+    pass  # leave file untouched
 
 exit(0)

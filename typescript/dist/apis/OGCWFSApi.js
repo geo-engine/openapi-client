@@ -56,7 +56,7 @@ class OGCWFSApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/wfs/{workflow}?request=GetCapabilities`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow']))).replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version']))).replace(`{${"service"}}`, encodeURIComponent(String(requestParameters['service']))).replace(`{${"request"}}`, encodeURIComponent(String(requestParameters['request']))),
+                path: `/wfs/{workflow}`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow']))).replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version']))).replace(`{${"service"}}`, encodeURIComponent(String(requestParameters['service']))).replace(`{${"request"}}`, encodeURIComponent(String(requestParameters['request']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -150,7 +150,7 @@ class OGCWFSApi extends runtime.BaseAPI {
                 }
             }
             const response = yield this.request({
-                path: `/wfs/{workflow}?request=GetFeature`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow']))),
+                path: `/wfs/{workflow}`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow']))),
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,

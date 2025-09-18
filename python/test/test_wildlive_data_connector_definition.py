@@ -36,11 +36,12 @@ class TestWildliveDataConnectorDefinition(unittest.TestCase):
         model = WildliveDataConnectorDefinition()
         if include_optional:
             return WildliveDataConnectorDefinition(
-                api_key = '',
                 description = '',
+                expiry_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 id = '',
                 name = '',
                 priority = 56,
+                refresh_token = '',
                 type = 'WildLIVE!'
             )
         else:

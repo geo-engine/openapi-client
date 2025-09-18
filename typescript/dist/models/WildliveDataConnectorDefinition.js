@@ -47,11 +47,12 @@ function WildliveDataConnectorDefinitionFromJSONTyped(json, ignoreDiscriminator)
         return json;
     }
     return {
-        'apiKey': json['apiKey'] == null ? undefined : json['apiKey'],
         'description': json['description'],
+        'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
         'id': json['id'],
         'name': json['name'],
         'priority': json['priority'] == null ? undefined : json['priority'],
+        'refreshToken': json['refreshToken'] == null ? undefined : json['refreshToken'],
         'type': json['type'],
     };
 }
@@ -63,11 +64,12 @@ function WildliveDataConnectorDefinitionToJSONTyped(value, ignoreDiscriminator =
         return value;
     }
     return {
-        'apiKey': value['apiKey'],
         'description': value['description'],
+        'expiryDate': value['expiryDate'] == null ? undefined : (value['expiryDate'].toISOString()),
         'id': value['id'],
         'name': value['name'],
         'priority': value['priority'],
+        'refreshToken': value['refreshToken'],
         'type': value['type'],
     };
 }

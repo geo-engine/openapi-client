@@ -43,9 +43,11 @@ export function WildliveDataConnectorDefinitionFromJSONTyped(json, ignoreDiscrim
         'expiryDate': json['expiryDate'] == null ? undefined : (new Date(json['expiryDate'])),
         'id': json['id'],
         'name': json['name'],
+        'nonce': json['nonce'] == null ? undefined : json['nonce'],
         'priority': json['priority'] == null ? undefined : json['priority'],
         'refreshToken': json['refreshToken'] == null ? undefined : json['refreshToken'],
         'type': json['type'],
+        'user': json['user'] == null ? undefined : json['user'],
     };
 }
 export function WildliveDataConnectorDefinitionToJSON(json) {
@@ -60,8 +62,10 @@ export function WildliveDataConnectorDefinitionToJSONTyped(value, ignoreDiscrimi
         'expiryDate': value['expiryDate'] == null ? undefined : (value['expiryDate'].toISOString()),
         'id': value['id'],
         'name': value['name'],
+        'nonce': value['nonce'],
         'priority': value['priority'],
         'refreshToken': value['refreshToken'],
         'type': value['type'],
+        'user': value['user'],
     };
 }

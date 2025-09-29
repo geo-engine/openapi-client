@@ -11056,16 +11056,6 @@
           "name": {
             "type": "string"
           },
-          "nonce": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "$ref": "#/components/schemas/Secret_String"
-              }
-            ]
-          },
           "priority": {
             "type": [
               "integer",

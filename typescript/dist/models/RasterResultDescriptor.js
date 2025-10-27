@@ -18,7 +18,7 @@ exports.RasterResultDescriptorFromJSON = RasterResultDescriptorFromJSON;
 exports.RasterResultDescriptorFromJSONTyped = RasterResultDescriptorFromJSONTyped;
 exports.RasterResultDescriptorToJSON = RasterResultDescriptorToJSON;
 exports.RasterResultDescriptorToJSONTyped = RasterResultDescriptorToJSONTyped;
-const TimeInterval_1 = require("./TimeInterval");
+const TimeDescriptor_1 = require("./TimeDescriptor");
 const RasterBandDescriptor_1 = require("./RasterBandDescriptor");
 const SpatialGridDescriptor_1 = require("./SpatialGridDescriptor");
 const RasterDataType_1 = require("./RasterDataType");
@@ -34,6 +34,8 @@ function instanceOfRasterResultDescriptor(value) {
         return false;
     if (!('spatialReference' in value) || value['spatialReference'] === undefined)
         return false;
+    if (!('time' in value) || value['time'] === undefined)
+        return false;
     return true;
 }
 function RasterResultDescriptorFromJSON(json) {
@@ -48,7 +50,7 @@ function RasterResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
         'dataType': (0, RasterDataType_1.RasterDataTypeFromJSON)(json['dataType']),
         'spatialGrid': (0, SpatialGridDescriptor_1.SpatialGridDescriptorFromJSON)(json['spatialGrid']),
         'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['time']),
+        'time': (0, TimeDescriptor_1.TimeDescriptorFromJSON)(json['time']),
     };
 }
 function RasterResultDescriptorToJSON(json) {
@@ -63,6 +65,6 @@ function RasterResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
         'dataType': (0, RasterDataType_1.RasterDataTypeToJSON)(value['dataType']),
         'spatialGrid': (0, SpatialGridDescriptor_1.SpatialGridDescriptorToJSON)(value['spatialGrid']),
         'spatialReference': value['spatialReference'],
-        'time': (0, TimeInterval_1.TimeIntervalToJSON)(value['time']),
+        'time': (0, TimeDescriptor_1.TimeDescriptorToJSON)(value['time']),
     };
 }

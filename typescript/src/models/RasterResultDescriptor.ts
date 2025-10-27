@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeInterval } from './TimeInterval';
+import type { TimeDescriptor } from './TimeDescriptor';
 import {
-    TimeIntervalFromJSON,
-    TimeIntervalFromJSONTyped,
-    TimeIntervalToJSON,
-    TimeIntervalToJSONTyped,
-} from './TimeInterval';
+    TimeDescriptorFromJSON,
+    TimeDescriptorFromJSONTyped,
+    TimeDescriptorToJSON,
+    TimeDescriptorToJSONTyped,
+} from './TimeDescriptor';
 import type { RasterBandDescriptor } from './RasterBandDescriptor';
 import {
     RasterBandDescriptorFromJSON,
@@ -74,10 +74,10 @@ export interface RasterResultDescriptor {
     spatialReference: string;
     /**
      * 
-     * @type {TimeInterval}
+     * @type {TimeDescriptor}
      * @memberof RasterResultDescriptor
      */
-    time?: TimeInterval | null;
+    time: TimeDescriptor;
 }
 
 
@@ -90,6 +90,7 @@ export function instanceOfRasterResultDescriptor(value: object): value is Raster
     if (!('dataType' in value) || value['dataType'] === undefined) return false;
     if (!('spatialGrid' in value) || value['spatialGrid'] === undefined) return false;
     if (!('spatialReference' in value) || value['spatialReference'] === undefined) return false;
+    if (!('time' in value) || value['time'] === undefined) return false;
     return true;
 }
 
@@ -107,7 +108,7 @@ export function RasterResultDescriptorFromJSONTyped(json: any, ignoreDiscriminat
         'dataType': RasterDataTypeFromJSON(json['dataType']),
         'spatialGrid': SpatialGridDescriptorFromJSON(json['spatialGrid']),
         'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': TimeDescriptorFromJSON(json['time']),
     };
 }
 
@@ -126,7 +127,7 @@ export function RasterResultDescriptorToJSONTyped(value?: RasterResultDescriptor
         'dataType': RasterDataTypeToJSON(value['dataType']),
         'spatialGrid': SpatialGridDescriptorToJSON(value['spatialGrid']),
         'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
+        'time': TimeDescriptorToJSON(value['time']),
     };
 }
 

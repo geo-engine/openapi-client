@@ -19,11 +19,11 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from geoengine_openapi_client.models.raster_band_descriptor import RasterBandDescriptor
 from geoengine_openapi_client.models.raster_data_type import RasterDataType
 from geoengine_openapi_client.models.spatial_grid_descriptor import SpatialGridDescriptor
-from geoengine_openapi_client.models.time_interval import TimeInterval
+from geoengine_openapi_client.models.time_descriptor import TimeDescriptor
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -35,7 +35,7 @@ class RasterResultDescriptor(BaseModel):
     data_type: RasterDataType = Field(alias="dataType")
     spatial_grid: SpatialGridDescriptor = Field(alias="spatialGrid")
     spatial_reference: StrictStr = Field(alias="spatialReference")
-    time: Optional[TimeInterval] = None
+    time: TimeDescriptor
     __properties: ClassVar[List[str]] = ["bands", "dataType", "spatialGrid", "spatialReference", "time"]
 
     model_config = ConfigDict(
@@ -90,11 +90,6 @@ class RasterResultDescriptor(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of time
         if self.time:
             _dict['time'] = self.time.to_dict()
-        # set to None if time (nullable) is None
-        # and model_fields_set contains the field
-        if self.time is None and "time" in self.model_fields_set:
-            _dict['time'] = None
-
         return _dict
 
     @classmethod

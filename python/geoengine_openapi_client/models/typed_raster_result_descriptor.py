@@ -24,7 +24,7 @@ from geoengine_openapi_client.models.raster_band_descriptor import RasterBandDes
 from geoengine_openapi_client.models.raster_data_type import RasterDataType
 from geoengine_openapi_client.models.raster_result_descriptor import RasterResultDescriptor
 from geoengine_openapi_client.models.spatial_grid_descriptor import SpatialGridDescriptor
-from geoengine_openapi_client.models.time_interval import TimeInterval
+from geoengine_openapi_client.models.time_descriptor import TimeDescriptor
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -94,11 +94,6 @@ class TypedRasterResultDescriptor(RasterResultDescriptor):
         # override the default output from pydantic by calling `to_dict()` of time
         if self.time:
             _dict['time'] = self.time.to_dict()
-        # set to None if time (nullable) is None
-        # and model_fields_set contains the field
-        if self.time is None and "time" in self.model_fields_set:
-            _dict['time'] = None
-
         return _dict
 
     @classmethod
@@ -115,7 +110,7 @@ class TypedRasterResultDescriptor(RasterResultDescriptor):
             "dataType": obj.get("dataType"),
             "spatialGrid": SpatialGridDescriptor.from_dict(obj["spatialGrid"]) if obj.get("spatialGrid") is not None else None,
             "spatialReference": obj.get("spatialReference"),
-            "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
+            "time": TimeDescriptor.from_dict(obj["time"]) if obj.get("time") is not None else None,
             "type": obj.get("type")
         })
         return _obj

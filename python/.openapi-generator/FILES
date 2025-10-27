@@ -177,6 +177,7 @@ docs/RasterResultDescriptor.md
 docs/RasterStreamWebsocketResultType.md
 docs/RasterSymbology.md
 docs/RasterToDatasetQueryRectangle.md
+docs/RegularTimeDimension.md
 docs/Resource.md
 docs/Role.md
 docs/RoleDescription.md
@@ -215,6 +216,7 @@ docs/TaskStatusRunning.md
 docs/TaskStatusWithId.md
 docs/TasksApi.md
 docs/TextSymbology.md
+docs/TimeDescriptor.md
 docs/TimeGranularity.md
 docs/TimeInterval.md
 docs/TimeReference.md
@@ -451,6 +453,7 @@ geoengine_openapi_client/models/raster_result_descriptor.py
 geoengine_openapi_client/models/raster_stream_websocket_result_type.py
 geoengine_openapi_client/models/raster_symbology.py
 geoengine_openapi_client/models/raster_to_dataset_query_rectangle.py
+geoengine_openapi_client/models/regular_time_dimension.py
 geoengine_openapi_client/models/resource.py
 geoengine_openapi_client/models/role.py
 geoengine_openapi_client/models/role_description.py
@@ -486,6 +489,7 @@ geoengine_openapi_client/models/task_status_failed.py
 geoengine_openapi_client/models/task_status_running.py
 geoengine_openapi_client/models/task_status_with_id.py
 geoengine_openapi_client/models/text_symbology.py
+geoengine_openapi_client/models/time_descriptor.py
 geoengine_openapi_client/models/time_granularity.py
 geoengine_openapi_client/models/time_interval.py
 geoengine_openapi_client/models/time_reference.py
@@ -715,6 +719,7 @@ test/test_raster_result_descriptor.py
 test/test_raster_stream_websocket_result_type.py
 test/test_raster_symbology.py
 test/test_raster_to_dataset_query_rectangle.py
+test/test_regular_time_dimension.py
 test/test_resource.py
 test/test_role.py
 test/test_role_description.py
@@ -753,6 +758,7 @@ test/test_task_status_running.py
 test/test_task_status_with_id.py
 test/test_tasks_api.py
 test/test_text_symbology.py
+test/test_time_descriptor.py
 test/test_time_granularity.py
 test/test_time_interval.py
 test/test_time_reference.py

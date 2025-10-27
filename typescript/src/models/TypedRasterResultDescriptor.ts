@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { TimeInterval } from './TimeInterval';
+import type { TimeDescriptor } from './TimeDescriptor';
 import {
-    TimeIntervalFromJSON,
-    TimeIntervalFromJSONTyped,
-    TimeIntervalToJSON,
-    TimeIntervalToJSONTyped,
-} from './TimeInterval';
+    TimeDescriptorFromJSON,
+    TimeDescriptorFromJSONTyped,
+    TimeDescriptorToJSON,
+    TimeDescriptorToJSONTyped,
+} from './TimeDescriptor';
 import type { RasterResultDescriptor } from './RasterResultDescriptor';
 import {
     RasterResultDescriptorFromJSON,

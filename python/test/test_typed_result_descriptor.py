@@ -101,6 +101,9 @@ class TestTypedResultDescriptor(unittest.TestCase):
                                 x_idx = 56, 
                                 y_idx = 56, ), ), ), ),
                 spatial_reference = '',
+                time = geoengine_openapi_client.models.time_interval.TimeInterval(
+                    end = 56, 
+                    start = 56, ),
                 type = 'raster',
                 columns = {
                     'key' : geoengine_openapi_client.models.vector_column_info.VectorColumnInfo(

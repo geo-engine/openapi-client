@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TimeInterval } from './TimeInterval';
+import type { TimeDescriptor } from './TimeDescriptor';
 import type { RasterBandDescriptor } from './RasterBandDescriptor';
 import type { SpatialGridDescriptor } from './SpatialGridDescriptor';
 import type { RasterDataType } from './RasterDataType';
@@ -45,10 +45,10 @@ export interface RasterResultDescriptor {
     spatialReference: string;
     /**
      *
-     * @type {TimeInterval}
+     * @type {TimeDescriptor}
      * @memberof RasterResultDescriptor
      */
-    time?: TimeInterval | null;
+    time: TimeDescriptor;
 }
 /**
  * Check if a given object implements the RasterResultDescriptor interface.

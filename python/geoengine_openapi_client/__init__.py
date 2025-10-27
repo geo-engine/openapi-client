@@ -211,6 +211,7 @@ from geoengine_openapi_client.models.raster_result_descriptor import RasterResul
 from geoengine_openapi_client.models.raster_stream_websocket_result_type import RasterStreamWebsocketResultType
 from geoengine_openapi_client.models.raster_symbology import RasterSymbology
 from geoengine_openapi_client.models.raster_to_dataset_query_rectangle import RasterToDatasetQueryRectangle
+from geoengine_openapi_client.models.regular_time_dimension import RegularTimeDimension
 from geoengine_openapi_client.models.resource import Resource
 from geoengine_openapi_client.models.role import Role
 from geoengine_openapi_client.models.role_description import RoleDescription
@@ -246,6 +247,7 @@ from geoengine_openapi_client.models.task_status_failed import TaskStatusFailed
 from geoengine_openapi_client.models.task_status_running import TaskStatusRunning
 from geoengine_openapi_client.models.task_status_with_id import TaskStatusWithId
 from geoengine_openapi_client.models.text_symbology import TextSymbology
+from geoengine_openapi_client.models.time_descriptor import TimeDescriptor
 from geoengine_openapi_client.models.time_granularity import TimeGranularity
 from geoengine_openapi_client.models.time_interval import TimeInterval
 from geoengine_openapi_client.models.time_reference import TimeReference

@@ -11,7 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
+import { TimeDescriptorFromJSON, TimeDescriptorToJSON, } from './TimeDescriptor';
 import { RasterBandDescriptorFromJSON, RasterBandDescriptorToJSON, } from './RasterBandDescriptor';
 import { SpatialGridDescriptorFromJSON, SpatialGridDescriptorToJSON, } from './SpatialGridDescriptor';
 import { RasterDataTypeFromJSON, RasterDataTypeToJSON, } from './RasterDataType';
@@ -27,6 +27,8 @@ export function instanceOfRasterResultDescriptor(value) {
         return false;
     if (!('spatialReference' in value) || value['spatialReference'] === undefined)
         return false;
+    if (!('time' in value) || value['time'] === undefined)
+        return false;
     return true;
 }
 export function RasterResultDescriptorFromJSON(json) {
@@ -41,7 +43,7 @@ export function RasterResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
         'dataType': RasterDataTypeFromJSON(json['dataType']),
         'spatialGrid': SpatialGridDescriptorFromJSON(json['spatialGrid']),
         'spatialReference': json['spatialReference'],
-        'time': json['time'] == null ? undefined : TimeIntervalFromJSON(json['time']),
+        'time': TimeDescriptorFromJSON(json['time']),
     };
 }
 export function RasterResultDescriptorToJSON(json) {
@@ -56,6 +58,6 @@ export function RasterResultDescriptorToJSONTyped(value, ignoreDiscriminator = f
         'dataType': RasterDataTypeToJSON(value['dataType']),
         'spatialGrid': SpatialGridDescriptorToJSON(value['spatialGrid']),
         'spatialReference': value['spatialReference'],
-        'time': TimeIntervalToJSON(value['time']),
+        'time': TimeDescriptorToJSON(value['time']),
     };
 }

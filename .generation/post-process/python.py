@@ -172,7 +172,7 @@ def raster_result_descriptor_py(file_contents: List[str]) -> Generator[str, None
                 "spatialGrid": SpatialGridDescriptor.from_dict(obj["spatialGrid"]) if obj.get("spatialGrid") is not None else None,
                 "dataType": obj.get("dataType"),
                 "spatialReference": obj.get("spatialReference"),
-                "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
+                "time": TimeDescriptor.from_dict(obj["time"]) if obj.get("time") is not None else None,
             })
             return _obj
             '''), 2 * INDENT)

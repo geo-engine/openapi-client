@@ -108,7 +108,7 @@ class RasterResultDescriptor(BaseModel):
             "spatialGrid": SpatialGridDescriptor.from_dict(obj["spatialGrid"]) if obj.get("spatialGrid") is not None else None,
             "dataType": obj.get("dataType"),
             "spatialReference": obj.get("spatialReference"),
-            "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
+            "time": TimeDescriptor.from_dict(obj["time"]) if obj.get("time") is not None else None,
         })
         return _obj
 

@@ -66,7 +66,7 @@ export function SymbologyFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         case 'raster':
             return Object.assign({}, RasterSymbologyFromJSONTyped(json, true), { type: 'raster' } as const);
         default:
-            throw new Error(`No variant of Symbology exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -88,8 +88,7 @@ export function SymbologyToJSONTyped(value?: Symbology | null, ignoreDiscriminat
         case 'raster':
             return Object.assign({}, RasterSymbologyToJSON(value), { type: 'raster' } as const);
         default:
-            throw new Error(`No variant of Symbology exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

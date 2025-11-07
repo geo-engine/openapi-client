@@ -32,7 +32,7 @@ function NumberParamFromJSONTyped(json, ignoreDiscriminator) {
         case 'static':
             return Object.assign({}, (0, StaticNumber_1.StaticNumberFromJSONTyped)(json, true), { type: 'static' });
         default:
-            throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 function NumberParamToJSON(json) {
@@ -48,6 +48,6 @@ function NumberParamToJSONTyped(value, ignoreDiscriminator = false) {
         case 'static':
             return Object.assign({}, (0, StaticNumber_1.StaticNumberToJSON)(value), { type: 'static' });
         default:
-            throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
+            return value;
     }
 }

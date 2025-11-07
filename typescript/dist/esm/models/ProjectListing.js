@@ -53,7 +53,7 @@ export function ProjectListingToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'changed': ((value['changed']).toISOString()),
+        'changed': value['changed'].toISOString(),
         'description': value['description'],
         'id': value['id'],
         'layerNames': value['layerNames'],

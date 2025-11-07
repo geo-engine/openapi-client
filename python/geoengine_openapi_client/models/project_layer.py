@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from geoengine_openapi_client.models.layer_visibility import LayerVisibility
 from geoengine_openapi_client.models.symbology import Symbology
 from typing import Optional, Set
@@ -32,7 +33,7 @@ class ProjectLayer(BaseModel):
     name: StrictStr
     symbology: Symbology
     visibility: LayerVisibility
-    workflow: StrictStr
+    workflow: UUID
     __properties: ClassVar[List[str]] = ["name", "symbology", "visibility", "workflow"]
 
     model_config = ConfigDict(

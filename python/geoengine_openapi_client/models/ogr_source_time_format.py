@@ -119,21 +119,6 @@ class OgrSourceTimeFormat(BaseModel):
             instance.actual_instance = OgrSourceTimeFormatUnixTimeStamp.from_json(json_str)
             return instance
 
-        # check if data type is `OgrSourceTimeFormatAuto`
-        if _data_type == "OgrSourceTimeFormatAuto":
-            instance.actual_instance = OgrSourceTimeFormatAuto.from_json(json_str)
-            return instance
-
-        # check if data type is `OgrSourceTimeFormatCustom`
-        if _data_type == "OgrSourceTimeFormatCustom":
-            instance.actual_instance = OgrSourceTimeFormatCustom.from_json(json_str)
-            return instance
-
-        # check if data type is `OgrSourceTimeFormatUnixTimeStamp`
-        if _data_type == "OgrSourceTimeFormatUnixTimeStamp":
-            instance.actual_instance = OgrSourceTimeFormatUnixTimeStamp.from_json(json_str)
-            return instance
-
         # deserialize data into OgrSourceTimeFormatCustom
         try:
             instance.actual_instance = OgrSourceTimeFormatCustom.from_json(json_str)

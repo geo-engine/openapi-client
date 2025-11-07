@@ -119,21 +119,6 @@ class TypedResultDescriptor(BaseModel):
             instance.actual_instance = TypedVectorResultDescriptor.from_json(json_str)
             return instance
 
-        # check if data type is `TypedPlotResultDescriptor`
-        if _data_type == "TypedPlotResultDescriptor":
-            instance.actual_instance = TypedPlotResultDescriptor.from_json(json_str)
-            return instance
-
-        # check if data type is `TypedRasterResultDescriptor`
-        if _data_type == "TypedRasterResultDescriptor":
-            instance.actual_instance = TypedRasterResultDescriptor.from_json(json_str)
-            return instance
-
-        # check if data type is `TypedVectorResultDescriptor`
-        if _data_type == "TypedVectorResultDescriptor":
-            instance.actual_instance = TypedVectorResultDescriptor.from_json(json_str)
-            return instance
-
         # deserialize data into TypedPlotResultDescriptor
         try:
             instance.actual_instance = TypedPlotResultDescriptor.from_json(json_str)

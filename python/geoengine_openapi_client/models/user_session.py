@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from geoengine_openapi_client.models.st_rectangle import STRectangle
 from geoengine_openapi_client.models.user_info import UserInfo
 from typing import Optional, Set
@@ -31,9 +32,9 @@ class UserSession(BaseModel):
     UserSession
     """ # noqa: E501
     created: datetime
-    id: StrictStr
-    project: Optional[StrictStr] = None
-    roles: List[StrictStr]
+    id: UUID
+    project: Optional[UUID] = None
+    roles: List[UUID]
     user: UserInfo
     valid_until: datetime = Field(alias="validUntil")
     view: Optional[STRectangle] = None

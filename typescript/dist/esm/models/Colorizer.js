@@ -29,7 +29,7 @@ export function ColorizerFromJSONTyped(json, ignoreDiscriminator) {
         case 'palette':
             return Object.assign({}, PaletteColorizerFromJSONTyped(json, true), { type: 'palette' });
         default:
-            throw new Error(`No variant of Colorizer exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 export function ColorizerToJSON(json) {
@@ -47,6 +47,6 @@ export function ColorizerToJSONTyped(value, ignoreDiscriminator = false) {
         case 'palette':
             return Object.assign({}, PaletteColorizerToJSON(value), { type: 'palette' });
         default:
-            throw new Error(`No variant of Colorizer exists with 'type=${value['type']}'`);
+            return value;
     }
 }

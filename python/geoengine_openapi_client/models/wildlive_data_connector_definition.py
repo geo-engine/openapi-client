@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +30,7 @@ class WildliveDataConnectorDefinition(BaseModel):
     """ # noqa: E501
     api_key: Optional[StrictStr] = Field(default=None, alias="apiKey")
     description: StrictStr
-    id: StrictStr
+    id: UUID
     name: StrictStr
     priority: Optional[StrictInt] = None
     type: StrictStr

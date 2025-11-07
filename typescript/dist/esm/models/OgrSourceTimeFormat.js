@@ -29,7 +29,7 @@ export function OgrSourceTimeFormatFromJSONTyped(json, ignoreDiscriminator) {
         case 'unixTimeStamp':
             return Object.assign({}, OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, true), { format: 'unixTimeStamp' });
         default:
-            throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${json['format']}'`);
+            return json;
     }
 }
 export function OgrSourceTimeFormatToJSON(json) {
@@ -47,6 +47,6 @@ export function OgrSourceTimeFormatToJSONTyped(value, ignoreDiscriminator = fals
         case 'unixTimeStamp':
             return Object.assign({}, OgrSourceTimeFormatUnixTimeStampToJSON(value), { format: 'unixTimeStamp' });
         default:
-            throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${value['format']}'`);
+            return value;
     }
 }

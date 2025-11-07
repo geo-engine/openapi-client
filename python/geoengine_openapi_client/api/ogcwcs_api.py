@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBytes, StrictFloat, StrictInt, StrictStr
 from typing import Optional, Tuple, Union
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.describe_coverage_request import DescribeCoverageRequest
 from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest
 from geoengine_openapi_client.models.get_coverage_format import GetCoverageFormat
@@ -48,7 +49,7 @@ class OGCWCSApi:
     @validate_call
     def wcs_capabilities_handler(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         service: WcsService,
         request: GetCapabilitiesRequest,
         version: Optional[WcsVersion] = None,
@@ -126,7 +127,7 @@ class OGCWCSApi:
     @validate_call
     def wcs_capabilities_handler_with_http_info(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         service: WcsService,
         request: GetCapabilitiesRequest,
         version: Optional[WcsVersion] = None,
@@ -204,7 +205,7 @@ class OGCWCSApi:
     @validate_call
     def wcs_capabilities_handler_without_preload_content(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         service: WcsService,
         request: GetCapabilitiesRequest,
         version: Optional[WcsVersion] = None,
@@ -357,7 +358,7 @@ class OGCWCSApi:
     @validate_call
     def wcs_describe_coverage_handler(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WcsVersion,
         service: WcsService,
         request: DescribeCoverageRequest,
@@ -439,7 +440,7 @@ class OGCWCSApi:
     @validate_call
     def wcs_describe_coverage_handler_with_http_info(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WcsVersion,
         service: WcsService,
         request: DescribeCoverageRequest,
@@ -521,7 +522,7 @@ class OGCWCSApi:
     @validate_call
     def wcs_describe_coverage_handler_without_preload_content(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WcsVersion,
         service: WcsService,
         request: DescribeCoverageRequest,
@@ -683,7 +684,7 @@ class OGCWCSApi:
     @validate_call
     def wcs_get_coverage_handler(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WcsVersion,
         service: WcsService,
         request: GetCoverageRequest,
@@ -801,7 +802,7 @@ class OGCWCSApi:
     @validate_call
     def wcs_get_coverage_handler_with_http_info(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WcsVersion,
         service: WcsService,
         request: GetCoverageRequest,
@@ -919,7 +920,7 @@ class OGCWCSApi:
     @validate_call
     def wcs_get_coverage_handler_without_preload_content(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WcsVersion,
         service: WcsService,
         request: GetCoverageRequest,

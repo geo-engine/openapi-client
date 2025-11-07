@@ -62,7 +62,7 @@ function TypedDataProviderDefinitionFromJSONTyped(json, ignoreDiscriminator) {
         case 'WildLIVE!':
             return Object.assign({}, (0, WildliveDataConnectorDefinition_1.WildliveDataConnectorDefinitionFromJSONTyped)(json, true), { type: 'WildLIVE!' });
         default:
-            throw new Error(`No variant of TypedDataProviderDefinition exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 function TypedDataProviderDefinitionToJSON(json) {
@@ -98,6 +98,6 @@ function TypedDataProviderDefinitionToJSONTyped(value, ignoreDiscriminator = fal
         case 'WildLIVE!':
             return Object.assign({}, (0, WildliveDataConnectorDefinition_1.WildliveDataConnectorDefinitionToJSON)(value), { type: 'WildLIVE!' });
         default:
-            throw new Error(`No variant of TypedDataProviderDefinition exists with 'type=${value['type']}'`);
+            return value;
     }
 }

@@ -211,8 +211,12 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/collections/{collection}/collections`;
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+
         const response = await this.request({
-            path: `/layerDb/collections/{collection}/collections`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -260,8 +264,13 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/collections/{parent}/collections/{collection}`;
+        urlPath = urlPath.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters['parent'])));
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+
         const response = await this.request({
-            path: `/layerDb/collections/{parent}/collections/{collection}`.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters['parent']))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -307,8 +316,13 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/collections/{collection}/layers/{layer}`;
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+        urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
+
         const response = await this.request({
-            path: `/layerDb/collections/{collection}/layers/{layer}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -356,8 +370,12 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/collections/{collection}/layers`;
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+
         const response = await this.request({
-            path: `/layerDb/collections/{collection}/layers`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -400,8 +418,11 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/providers`;
+
         const response = await this.request({
-            path: `/layerDb/providers`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -493,8 +514,13 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layers/collections/search/autocomplete/{provider}/{collection}`;
+        urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+
         const response = await this.request({
-            path: `/layers/collections/search/autocomplete/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -534,8 +560,12 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/providers/{provider}`;
+        urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
+
         const response = await this.request({
-            path: `/layerDb/providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -574,8 +604,12 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/providers/{provider}`;
+        urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
+
         const response = await this.request({
-            path: `/layerDb/providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -622,8 +656,13 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layers/{provider}/{layer}`;
+        urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
+        urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
+
         const response = await this.request({
-            path: `/layers/{provider}/{layer}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -670,8 +709,13 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layers/{provider}/{layer}/dataset`;
+        urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
+        urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
+
         const response = await this.request({
-            path: `/layers/{provider}/{layer}/dataset`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -718,8 +762,13 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layers/{provider}/{layer}/workflowId`;
+        urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
+        urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
+
         const response = await this.request({
-            path: `/layers/{provider}/{layer}/workflowId`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -788,8 +837,13 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layers/collections/{provider}/{collection}`;
+        urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+
         const response = await this.request({
-            path: `/layers/collections/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -844,8 +898,11 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/providers`;
+
         const response = await this.request({
-            path: `/layerDb/providers`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -900,8 +957,11 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layers/collections`;
+
         const response = await this.request({
-            path: `/layers/collections`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -940,8 +1000,12 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layers/{provider}/capabilities`;
+        urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
+
         const response = await this.request({
-            path: `/layers/{provider}/capabilities`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -980,8 +1044,12 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/collections/{collection}`;
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+
         const response = await this.request({
-            path: `/layerDb/collections/{collection}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1027,8 +1095,13 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/collections/{parent}/collections/{collection}`;
+        urlPath = urlPath.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters['parent'])));
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+
         const response = await this.request({
-            path: `/layerDb/collections/{parent}/collections/{collection}`.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters['parent']))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1067,8 +1140,12 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/layers/{layer}`;
+        urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
+
         const response = await this.request({
-            path: `/layerDb/layers/{layer}`.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1114,8 +1191,13 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/collections/{collection}/layers/{layer}`;
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+        urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
+
         const response = await this.request({
-            path: `/layerDb/collections/{collection}/layers/{layer}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))).replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1205,8 +1287,13 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layers/collections/search/{provider}/{collection}`;
+        urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+
         const response = await this.request({
-            path: `/layers/collections/search/{provider}/{collection}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))).replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1255,8 +1342,12 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/collections/{collection}`;
+        urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
+
         const response = await this.request({
-            path: `/layerDb/collections/{collection}`.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection']))),
+            path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -1305,8 +1396,12 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/layers/{layer}`;
+        urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
+
         const response = await this.request({
-            path: `/layerDb/layers/{layer}`.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer']))),
+            path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -1355,8 +1450,12 @@ export class LayersApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/layerDb/providers/{provider}`;
+        urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
+
         const response = await this.request({
-            path: `/layerDb/providers/{provider}`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+            path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

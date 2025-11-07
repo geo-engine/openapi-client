@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBytes, StrictStr
 from typing import List, Tuple, Union
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.id_response import IdResponse
 from geoengine_openapi_client.models.provenance_entry import ProvenanceEntry
 from geoengine_openapi_client.models.raster_dataset_from_workflow import RasterDatasetFromWorkflow
@@ -51,7 +52,7 @@ class WorkflowsApi:
     @validate_call
     def dataset_from_workflow_handler(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         raster_dataset_from_workflow: RasterDatasetFromWorkflow,
         _request_timeout: Union[
             None,
@@ -121,7 +122,7 @@ class WorkflowsApi:
     @validate_call
     def dataset_from_workflow_handler_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         raster_dataset_from_workflow: RasterDatasetFromWorkflow,
         _request_timeout: Union[
             None,
@@ -191,7 +192,7 @@ class WorkflowsApi:
     @validate_call
     def dataset_from_workflow_handler_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         raster_dataset_from_workflow: RasterDatasetFromWorkflow,
         _request_timeout: Union[
             None,
@@ -337,7 +338,7 @@ class WorkflowsApi:
     @validate_call
     def get_workflow_all_metadata_zip_handler(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -403,7 +404,7 @@ class WorkflowsApi:
     @validate_call
     def get_workflow_all_metadata_zip_handler_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -469,7 +470,7 @@ class WorkflowsApi:
     @validate_call
     def get_workflow_all_metadata_zip_handler_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -595,7 +596,7 @@ class WorkflowsApi:
     @validate_call
     def get_workflow_metadata_handler(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -661,7 +662,7 @@ class WorkflowsApi:
     @validate_call
     def get_workflow_metadata_handler_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -727,7 +728,7 @@ class WorkflowsApi:
     @validate_call
     def get_workflow_metadata_handler_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -853,7 +854,7 @@ class WorkflowsApi:
     @validate_call
     def get_workflow_provenance_handler(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -919,7 +920,7 @@ class WorkflowsApi:
     @validate_call
     def get_workflow_provenance_handler_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -985,7 +986,7 @@ class WorkflowsApi:
     @validate_call
     def get_workflow_provenance_handler_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1111,7 +1112,7 @@ class WorkflowsApi:
     @validate_call
     def load_workflow_handler(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1177,7 +1178,7 @@ class WorkflowsApi:
     @validate_call
     def load_workflow_handler_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1243,7 +1244,7 @@ class WorkflowsApi:
     @validate_call
     def load_workflow_handler_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1369,7 +1370,7 @@ class WorkflowsApi:
     @validate_call
     def raster_stream_websocket(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         spatial_bounds: SpatialPartition2D,
         time_interval: StrictStr,
         spatial_resolution: SpatialResolution,
@@ -1455,7 +1456,7 @@ class WorkflowsApi:
     @validate_call
     def raster_stream_websocket_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         spatial_bounds: SpatialPartition2D,
         time_interval: StrictStr,
         spatial_resolution: SpatialResolution,
@@ -1541,7 +1542,7 @@ class WorkflowsApi:
     @validate_call
     def raster_stream_websocket_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         spatial_bounds: SpatialPartition2D,
         time_interval: StrictStr,
         spatial_resolution: SpatialResolution,

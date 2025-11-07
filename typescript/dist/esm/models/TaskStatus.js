@@ -32,7 +32,7 @@ export function TaskStatusFromJSONTyped(json, ignoreDiscriminator) {
         case 'running':
             return Object.assign({}, TaskStatusRunningFromJSONTyped(json, true), { status: 'running' });
         default:
-            throw new Error(`No variant of TaskStatus exists with 'status=${json['status']}'`);
+            return json;
     }
 }
 export function TaskStatusToJSON(json) {
@@ -52,6 +52,6 @@ export function TaskStatusToJSONTyped(value, ignoreDiscriminator = false) {
         case 'running':
             return Object.assign({}, TaskStatusRunningToJSON(value), { status: 'running' });
         default:
-            throw new Error(`No variant of TaskStatus exists with 'status=${value['status']}'`);
+            return value;
     }
 }

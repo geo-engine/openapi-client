@@ -19,6 +19,7 @@ from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.auth_code_request_url import AuthCodeRequestURL
 from geoengine_openapi_client.models.auth_code_response import AuthCodeResponse
 from geoengine_openapi_client.models.st_rectangle import STRectangle
@@ -1860,7 +1861,7 @@ class SessionApi:
     @validate_call
     def session_project_handler(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1926,7 +1927,7 @@ class SessionApi:
     @validate_call
     def session_project_handler_with_http_info(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1992,7 +1993,7 @@ class SessionApi:
     @validate_call
     def session_project_handler_without_preload_content(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

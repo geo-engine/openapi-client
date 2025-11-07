@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from geoengine_openapi_client.models.provenance import Provenance
 from geoengine_openapi_client.models.symbology import Symbology
 from geoengine_openapi_client.models.typed_result_descriptor import TypedResultDescriptor
@@ -32,7 +33,7 @@ class Dataset(BaseModel):
     """ # noqa: E501
     description: StrictStr
     display_name: StrictStr = Field(alias="displayName")
-    id: StrictStr
+    id: UUID
     name: StrictStr
     provenance: Optional[List[Provenance]] = None
     result_descriptor: TypedResultDescriptor = Field(alias="resultDescriptor")

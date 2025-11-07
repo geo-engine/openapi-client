@@ -46,6 +46,6 @@ export function DataUsageSummaryToJSONTyped(value, ignoreDiscriminator = false) 
     return {
         'count': value['count'],
         'data': value['data'],
-        'timestamp': ((value['timestamp']).toISOString()),
+        'timestamp': value['timestamp'].toISOString(),
     };
 }

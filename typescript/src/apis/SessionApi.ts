@@ -75,8 +75,11 @@ export class SessionApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/anonymous`;
+
         const response = await this.request({
-            path: `/anonymous`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -110,8 +113,11 @@ export class SessionApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/login`;
+
         const response = await this.request({
-            path: `/login`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -145,8 +151,11 @@ export class SessionApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/logout`;
+
         const response = await this.request({
-            path: `/logout`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -182,8 +191,11 @@ export class SessionApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/oidcInit`;
+
         const response = await this.request({
-            path: `/oidcInit`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -230,8 +242,11 @@ export class SessionApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/oidcLogin`;
+
         const response = await this.request({
-            path: `/oidcLogin`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -267,8 +282,11 @@ export class SessionApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+
+        let urlPath = `/user`;
+
         const response = await this.request({
-            path: `/user`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -306,8 +324,11 @@ export class SessionApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/session`;
+
         const response = await this.request({
-            path: `/session`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -347,8 +368,12 @@ export class SessionApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/session/project/{project}`;
+        urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
+
         const response = await this.request({
-            path: `/session/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -388,8 +413,11 @@ export class SessionApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/session/view`;
+
         const response = await this.request({
-            path: `/session/view`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

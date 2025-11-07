@@ -57,7 +57,7 @@ export function TypedResultDescriptorFromJSONTyped(json: any, ignoreDiscriminato
         case 'vector':
             return Object.assign({}, TypedVectorResultDescriptorFromJSONTyped(json, true), { type: 'vector' } as const);
         default:
-            throw new Error(`No variant of TypedResultDescriptor exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -77,8 +77,7 @@ export function TypedResultDescriptorToJSONTyped(value?: TypedResultDescriptor |
         case 'vector':
             return Object.assign({}, TypedVectorResultDescriptorToJSON(value), { type: 'vector' } as const);
         default:
-            throw new Error(`No variant of TypedResultDescriptor exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

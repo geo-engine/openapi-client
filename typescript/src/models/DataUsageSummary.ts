@@ -78,7 +78,7 @@ export function DataUsageSummaryToJSONTyped(value?: DataUsageSummary | null, ign
         
         'count': value['count'],
         'data': value['data'],
-        'timestamp': ((value['timestamp']).toISOString()),
+        'timestamp': value['timestamp'].toISOString(),
     };
 }
 

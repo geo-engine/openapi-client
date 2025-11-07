@@ -38,7 +38,7 @@ function SymbologyFromJSONTyped(json, ignoreDiscriminator) {
         case 'raster':
             return Object.assign({}, (0, RasterSymbology_1.RasterSymbologyFromJSONTyped)(json, true), { type: 'raster' });
         default:
-            throw new Error(`No variant of Symbology exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 function SymbologyToJSON(json) {
@@ -58,6 +58,6 @@ function SymbologyToJSONTyped(value, ignoreDiscriminator = false) {
         case 'raster':
             return Object.assign({}, (0, RasterSymbology_1.RasterSymbologyToJSON)(value), { type: 'raster' });
         default:
-            throw new Error(`No variant of Symbology exists with 'type=${value['type']}'`);
+            return value;
     }
 }

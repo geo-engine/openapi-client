@@ -138,7 +138,7 @@ export function TypedDataProviderDefinitionFromJSONTyped(json: any, ignoreDiscri
         case 'WildLIVE!':
             return Object.assign({}, WildliveDataConnectorDefinitionFromJSONTyped(json, true), { type: 'WildLIVE!' } as const);
         default:
-            throw new Error(`No variant of TypedDataProviderDefinition exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -176,8 +176,7 @@ export function TypedDataProviderDefinitionToJSONTyped(value?: TypedDataProvider
         case 'WildLIVE!':
             return Object.assign({}, WildliveDataConnectorDefinitionToJSON(value), { type: 'WildLIVE!' } as const);
         default:
-            throw new Error(`No variant of TypedDataProviderDefinition exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

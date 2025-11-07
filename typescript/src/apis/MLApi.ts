@@ -63,8 +63,11 @@ export class MLApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/ml/models`;
+
         const response = await this.request({
-            path: `/ml/models`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -105,8 +108,12 @@ export class MLApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/ml/models/{model_name}`;
+        urlPath = urlPath.replace(`{${"model_name"}}`, encodeURIComponent(String(requestParameters['modelName'])));
+
         const response = await this.request({
-            path: `/ml/models/{model_name}`.replace(`{${"model_name"}}`, encodeURIComponent(String(requestParameters['modelName']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -139,8 +146,11 @@ export class MLApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/ml/models`;
+
         const response = await this.request({
-            path: `/ml/models`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

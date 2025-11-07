@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from geoengine_openapi_client.models.plot import Plot
 from geoengine_openapi_client.models.project_layer import ProjectLayer
 from geoengine_openapi_client.models.project_version import ProjectVersion
@@ -34,7 +35,7 @@ class Project(BaseModel):
     """ # noqa: E501
     bounds: STRectangle
     description: StrictStr
-    id: StrictStr
+    id: UUID
     layers: List[ProjectLayer]
     name: StrictStr
     plots: List[Plot]

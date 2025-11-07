@@ -35,7 +35,7 @@ function MeasurementFromJSONTyped(json, ignoreDiscriminator) {
         case 'unitless':
             return Object.assign({}, (0, UnitlessMeasurement_1.UnitlessMeasurementFromJSONTyped)(json, true), { type: 'unitless' });
         default:
-            throw new Error(`No variant of Measurement exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 function MeasurementToJSON(json) {
@@ -53,6 +53,6 @@ function MeasurementToJSONTyped(value, ignoreDiscriminator = false) {
         case 'unitless':
             return Object.assign({}, (0, UnitlessMeasurement_1.UnitlessMeasurementToJSON)(value), { type: 'unitless' });
         default:
-            throw new Error(`No variant of Measurement exists with 'type=${value['type']}'`);
+            return value;
     }
 }

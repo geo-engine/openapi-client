@@ -106,16 +106,6 @@ class RasterColorizer(BaseModel):
             instance.actual_instance = SingleBandRasterColorizer.from_json(json_str)
             return instance
 
-        # check if data type is `MultiBandRasterColorizer`
-        if _data_type == "MultiBandRasterColorizer":
-            instance.actual_instance = MultiBandRasterColorizer.from_json(json_str)
-            return instance
-
-        # check if data type is `SingleBandRasterColorizer`
-        if _data_type == "SingleBandRasterColorizer":
-            instance.actual_instance = SingleBandRasterColorizer.from_json(json_str)
-            return instance
-
         # deserialize data into SingleBandRasterColorizer
         try:
             instance.actual_instance = SingleBandRasterColorizer.from_json(json_str)

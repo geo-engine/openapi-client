@@ -132,26 +132,6 @@ class Symbology(BaseModel):
             instance.actual_instance = RasterSymbology.from_json(json_str)
             return instance
 
-        # check if data type is `LineSymbology`
-        if _data_type == "LineSymbology":
-            instance.actual_instance = LineSymbology.from_json(json_str)
-            return instance
-
-        # check if data type is `PointSymbology`
-        if _data_type == "PointSymbology":
-            instance.actual_instance = PointSymbology.from_json(json_str)
-            return instance
-
-        # check if data type is `PolygonSymbology`
-        if _data_type == "PolygonSymbology":
-            instance.actual_instance = PolygonSymbology.from_json(json_str)
-            return instance
-
-        # check if data type is `RasterSymbology`
-        if _data_type == "RasterSymbology":
-            instance.actual_instance = RasterSymbology.from_json(json_str)
-            return instance
-
         # deserialize data into RasterSymbology
         try:
             instance.actual_instance = RasterSymbology.from_json(json_str)

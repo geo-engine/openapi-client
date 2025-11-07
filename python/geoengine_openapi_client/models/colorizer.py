@@ -119,21 +119,6 @@ class Colorizer(BaseModel):
             instance.actual_instance = PaletteColorizer.from_json(json_str)
             return instance
 
-        # check if data type is `LinearGradient`
-        if _data_type == "LinearGradient":
-            instance.actual_instance = LinearGradient.from_json(json_str)
-            return instance
-
-        # check if data type is `LogarithmicGradient`
-        if _data_type == "LogarithmicGradient":
-            instance.actual_instance = LogarithmicGradient.from_json(json_str)
-            return instance
-
-        # check if data type is `PaletteColorizer`
-        if _data_type == "PaletteColorizer":
-            instance.actual_instance = PaletteColorizer.from_json(json_str)
-            return instance
-
         # deserialize data into LinearGradient
         try:
             instance.actual_instance = LinearGradient.from_json(json_str)

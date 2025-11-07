@@ -33,8 +33,9 @@ export class GeneralApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
+            let urlPath = `/available`;
             const response = yield this.request({
-                path: `/available`,
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -57,8 +58,9 @@ export class GeneralApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
+            let urlPath = `/info`;
             const response = yield this.request({
-                path: `/info`,
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,

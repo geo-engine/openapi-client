@@ -20,6 +20,9 @@ export function VecUpdateFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
+    if (typeof json !== 'object') {
+        return json;
+    }
     if (instanceOfPlot(json)) {
         return PlotFromJSONTyped(json, true);
     }
@@ -33,6 +36,9 @@ export function VecUpdateToJSON(json) {
 }
 export function VecUpdateToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
+        return value;
+    }
+    if (typeof value !== 'object') {
         return value;
     }
     if (typeof value === 'object' && instanceOfPlot(value)) {

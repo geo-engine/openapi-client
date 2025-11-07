@@ -49,7 +49,7 @@ export function ComputationQuotaToJSONTyped(value, ignoreDiscriminator = false) 
     return {
         'computationId': value['computationId'],
         'count': value['count'],
-        'timestamp': ((value['timestamp']).toISOString()),
+        'timestamp': value['timestamp'].toISOString(),
         'workflowId': value['workflowId'],
     };
 }

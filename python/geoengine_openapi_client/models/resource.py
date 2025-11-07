@@ -158,36 +158,6 @@ class Resource(BaseModel):
             instance.actual_instance = DataProviderResource.from_json(json_str)
             return instance
 
-        # check if data type is `DataProviderResource`
-        if _data_type == "DataProviderResource":
-            instance.actual_instance = DataProviderResource.from_json(json_str)
-            return instance
-
-        # check if data type is `DatasetResource`
-        if _data_type == "DatasetResource":
-            instance.actual_instance = DatasetResource.from_json(json_str)
-            return instance
-
-        # check if data type is `LayerCollectionResource`
-        if _data_type == "LayerCollectionResource":
-            instance.actual_instance = LayerCollectionResource.from_json(json_str)
-            return instance
-
-        # check if data type is `LayerResource`
-        if _data_type == "LayerResource":
-            instance.actual_instance = LayerResource.from_json(json_str)
-            return instance
-
-        # check if data type is `MlModelResource`
-        if _data_type == "MlModelResource":
-            instance.actual_instance = MlModelResource.from_json(json_str)
-            return instance
-
-        # check if data type is `ProjectResource`
-        if _data_type == "ProjectResource":
-            instance.actual_instance = ProjectResource.from_json(json_str)
-            return instance
-
         # deserialize data into LayerResource
         try:
             instance.actual_instance = LayerResource.from_json(json_str)

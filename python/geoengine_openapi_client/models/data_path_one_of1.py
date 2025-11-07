@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class DataPathOneOf1(BaseModel):
     """
     DataPathOneOf1
     """ # noqa: E501
-    upload: StrictStr
+    upload: UUID
     __properties: ClassVar[List[str]] = ["upload"]
 
     model_config = ConfigDict(

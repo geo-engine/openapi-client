@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,7 @@ class UserInfo(BaseModel):
     UserInfo
     """ # noqa: E501
     email: Optional[StrictStr] = None
-    id: StrictStr
+    id: UUID
     real_name: Optional[StrictStr] = Field(default=None, alias="realName")
     __properties: ClassVar[List[str]] = ["email", "id", "realName"]
 

@@ -17,9 +17,10 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr
+from pydantic import Field, StrictBool
 from typing import List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.task_filter import TaskFilter
 from geoengine_openapi_client.models.task_status import TaskStatus
 from geoengine_openapi_client.models.task_status_with_id import TaskStatusWithId
@@ -45,7 +46,7 @@ class TasksApi:
     @validate_call
     def abort_handler(
         self,
-        id: Annotated[StrictStr, Field(description="Task id")],
+        id: Annotated[UUID, Field(description="Task id")],
         force: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
@@ -120,7 +121,7 @@ class TasksApi:
     @validate_call
     def abort_handler_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Task id")],
+        id: Annotated[UUID, Field(description="Task id")],
         force: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
@@ -191,7 +192,7 @@ class TasksApi:
     @validate_call
     def abort_handler_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Task id")],
+        id: Annotated[UUID, Field(description="Task id")],
         force: Optional[StrictBool] = None,
         _request_timeout: Union[
             None,
@@ -608,7 +609,7 @@ class TasksApi:
     @validate_call
     def status_handler(
         self,
-        id: Annotated[StrictStr, Field(description="Task id")],
+        id: Annotated[UUID, Field(description="Task id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -674,7 +675,7 @@ class TasksApi:
     @validate_call
     def status_handler_with_http_info(
         self,
-        id: Annotated[StrictStr, Field(description="Task id")],
+        id: Annotated[UUID, Field(description="Task id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -740,7 +741,7 @@ class TasksApi:
     @validate_call
     def status_handler_without_preload_content(
         self,
-        id: Annotated[StrictStr, Field(description="Task id")],
+        id: Annotated[UUID, Field(description="Task id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

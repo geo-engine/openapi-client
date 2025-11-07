@@ -11,7 +11,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfFormatSpecificsOneOf, FormatSpecificsOneOfFromJSONTyped, FormatSpecificsOneOfToJSON, } from './FormatSpecificsOneOf';
+import { FormatSpecificsCsvFromJSON, FormatSpecificsCsvToJSON, } from './FormatSpecificsCsv';
+/**
+ * Check if a given object implements the FormatSpecifics interface.
+ */
+export function instanceOfFormatSpecifics(value) {
+    if (!('csv' in value) || value['csv'] === undefined)
+        return false;
+    return true;
+}
 export function FormatSpecificsFromJSON(json) {
     return FormatSpecificsFromJSONTyped(json, false);
 }
@@ -19,10 +27,9 @@ export function FormatSpecificsFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    if (instanceOfFormatSpecificsOneOf(json)) {
-        return FormatSpecificsOneOfFromJSONTyped(json, true);
-    }
-    return {};
+    return {
+        'csv': FormatSpecificsCsvFromJSON(json['csv']),
+    };
 }
 export function FormatSpecificsToJSON(json) {
     return FormatSpecificsToJSONTyped(json, false);
@@ -31,8 +38,7 @@ export function FormatSpecificsToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
-    if (instanceOfFormatSpecificsOneOf(value)) {
-        return FormatSpecificsOneOfToJSON(value);
-    }
-    return {};
+    return {
+        'csv': FormatSpecificsCsvToJSON(value['csv']),
+    };
 }

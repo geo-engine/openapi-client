@@ -47,8 +47,9 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/auto`;
             const response = yield this.request({
-                path: `/dataset/auto`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -84,8 +85,9 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset`;
             const response = yield this.request({
-                path: `/dataset`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -120,8 +122,10 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/{dataset}`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
             const response = yield this.request({
-                path: `/dataset/{dataset}`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+                path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
@@ -154,8 +158,10 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/{dataset}`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
             const response = yield this.request({
-                path: `/dataset/{dataset}`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -189,8 +195,10 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/{dataset}/loadingInfo`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
             const response = yield this.request({
-                path: `/dataset/{dataset}/loadingInfo`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -245,8 +253,9 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/datasets`;
             const response = yield this.request({
-                path: `/datasets`,
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -283,8 +292,11 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/volumes/{volume_name}/files/{file_name}/layers`;
+            urlPath = urlPath.replace(`{${"volume_name"}}`, encodeURIComponent(String(requestParameters['volumeName'])));
+            urlPath = urlPath.replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters['fileName'])));
             const response = yield this.request({
-                path: `/dataset/volumes/{volume_name}/files/{file_name}/layers`.replace(`{${"volume_name"}}`, encodeURIComponent(String(requestParameters['volumeName']))).replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters['fileName']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -315,8 +327,9 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/volumes`;
             const response = yield this.request({
-                path: `/dataset/volumes`,
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -351,8 +364,9 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/suggest`;
             const response = yield this.request({
-                path: `/dataset/suggest`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -391,8 +405,10 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/{dataset}`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
             const response = yield this.request({
-                path: `/dataset/{dataset}`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -429,8 +445,10 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/{dataset}/provenance`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
             const response = yield this.request({
-                path: `/dataset/{dataset}/provenance`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+                path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
@@ -467,8 +485,10 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/{dataset}/symbology`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
             const response = yield this.request({
-                path: `/dataset/{dataset}/symbology`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+                path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
@@ -506,8 +526,10 @@ class DatasetsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/dataset/{dataset}/loadingInfo`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
             const response = yield this.request({
-                path: `/dataset/{dataset}/loadingInfo`.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset']))),
+                path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,

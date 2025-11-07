@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.stac_api_retries import StacApiRetries
 from geoengine_openapi_client.models.stac_band import StacBand
 from geoengine_openapi_client.models.stac_query_buffer import StacQueryBuffer
@@ -37,7 +38,7 @@ class SentinelS2L2ACogsProviderDefinition(BaseModel):
     cache_ttl: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, alias="cacheTtl")
     description: StrictStr
     gdal_retries: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, alias="gdalRetries")
-    id: StrictStr
+    id: UUID
     name: StrictStr
     priority: Optional[StrictInt] = None
     query_buffer: Optional[StacQueryBuffer] = Field(default=None, alias="queryBuffer")

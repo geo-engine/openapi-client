@@ -36,12 +36,12 @@ class TestFormatSpecifics(unittest.TestCase):
         model = FormatSpecifics()
         if include_optional:
             return FormatSpecifics(
-                csv = geoengine_openapi_client.models.format_specifics_one_of_csv.FormatSpecifics_oneOf_csv(
+                csv = geoengine_openapi_client.models.format_specifics_csv.FormatSpecifics_csv(
                     header = 'yes', )
             )
         else:
             return FormatSpecifics(
-                csv = geoengine_openapi_client.models.format_specifics_one_of_csv.FormatSpecifics_oneOf_csv(
+                csv = geoengine_openapi_client.models.format_specifics_csv.FormatSpecifics_csv(
                     header = 'yes', ),
         )
         """

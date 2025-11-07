@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.add_role import AddRole
 from geoengine_openapi_client.models.computation_quota import ComputationQuota
 from geoengine_openapi_client.models.data_usage import DataUsage
@@ -323,8 +324,8 @@ class UserApi:
     @validate_call
     def assign_role_handler(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
-        role: Annotated[StrictStr, Field(description="Role id")],
+        user: Annotated[UUID, Field(description="User id")],
+        role: Annotated[UUID, Field(description="Role id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -393,8 +394,8 @@ class UserApi:
     @validate_call
     def assign_role_handler_with_http_info(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
-        role: Annotated[StrictStr, Field(description="Role id")],
+        user: Annotated[UUID, Field(description="User id")],
+        role: Annotated[UUID, Field(description="Role id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -463,8 +464,8 @@ class UserApi:
     @validate_call
     def assign_role_handler_without_preload_content(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
-        role: Annotated[StrictStr, Field(description="Role id")],
+        user: Annotated[UUID, Field(description="User id")],
+        role: Annotated[UUID, Field(description="Role id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -589,7 +590,7 @@ class UserApi:
     @validate_call
     def computation_quota_handler(
         self,
-        computation: Annotated[StrictStr, Field(description="Computation id")],
+        computation: Annotated[UUID, Field(description="Computation id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -655,7 +656,7 @@ class UserApi:
     @validate_call
     def computation_quota_handler_with_http_info(
         self,
-        computation: Annotated[StrictStr, Field(description="Computation id")],
+        computation: Annotated[UUID, Field(description="Computation id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -721,7 +722,7 @@ class UserApi:
     @validate_call
     def computation_quota_handler_without_preload_content(
         self,
-        computation: Annotated[StrictStr, Field(description="Computation id")],
+        computation: Annotated[UUID, Field(description="Computation id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2213,7 +2214,7 @@ class UserApi:
     @validate_call
     def get_user_quota_handler(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
+        user: Annotated[UUID, Field(description="User id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2279,7 +2280,7 @@ class UserApi:
     @validate_call
     def get_user_quota_handler_with_http_info(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
+        user: Annotated[UUID, Field(description="User id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2345,7 +2346,7 @@ class UserApi:
     @validate_call
     def get_user_quota_handler_without_preload_content(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
+        user: Annotated[UUID, Field(description="User id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2714,7 +2715,7 @@ class UserApi:
     @validate_call
     def remove_role_handler(
         self,
-        role: Annotated[StrictStr, Field(description="Role id")],
+        role: Annotated[UUID, Field(description="Role id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2780,7 +2781,7 @@ class UserApi:
     @validate_call
     def remove_role_handler_with_http_info(
         self,
-        role: Annotated[StrictStr, Field(description="Role id")],
+        role: Annotated[UUID, Field(description="Role id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2846,7 +2847,7 @@ class UserApi:
     @validate_call
     def remove_role_handler_without_preload_content(
         self,
-        role: Annotated[StrictStr, Field(description="Role id")],
+        role: Annotated[UUID, Field(description="Role id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2965,8 +2966,8 @@ class UserApi:
     @validate_call
     def revoke_role_handler(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
-        role: Annotated[StrictStr, Field(description="Role id")],
+        user: Annotated[UUID, Field(description="User id")],
+        role: Annotated[UUID, Field(description="Role id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3035,8 +3036,8 @@ class UserApi:
     @validate_call
     def revoke_role_handler_with_http_info(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
-        role: Annotated[StrictStr, Field(description="Role id")],
+        user: Annotated[UUID, Field(description="User id")],
+        role: Annotated[UUID, Field(description="Role id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3105,8 +3106,8 @@ class UserApi:
     @validate_call
     def revoke_role_handler_without_preload_content(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
-        role: Annotated[StrictStr, Field(description="Role id")],
+        user: Annotated[UUID, Field(description="User id")],
+        role: Annotated[UUID, Field(description="Role id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3231,7 +3232,7 @@ class UserApi:
     @validate_call
     def update_user_quota_handler(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
+        user: Annotated[UUID, Field(description="User id")],
         update_quota: UpdateQuota,
         _request_timeout: Union[
             None,
@@ -3301,7 +3302,7 @@ class UserApi:
     @validate_call
     def update_user_quota_handler_with_http_info(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
+        user: Annotated[UUID, Field(description="User id")],
         update_quota: UpdateQuota,
         _request_timeout: Union[
             None,
@@ -3371,7 +3372,7 @@ class UserApi:
     @validate_call
     def update_user_quota_handler_without_preload_content(
         self,
-        user: Annotated[StrictStr, Field(description="User id")],
+        user: Annotated[UUID, Field(description="User id")],
         update_quota: UpdateQuota,
         _request_timeout: Union[
             None,

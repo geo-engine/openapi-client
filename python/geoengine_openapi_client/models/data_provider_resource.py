@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class DataProviderResource(BaseModel):
     """
     DataProviderResource
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     type: StrictStr
     __properties: ClassVar[List[str]] = ["id", "type"]
 

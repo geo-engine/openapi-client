@@ -57,7 +57,7 @@ export function OgrSourceDurationSpecFromJSONTyped(json: any, ignoreDiscriminato
         case 'zero':
             return Object.assign({}, OgrSourceDurationSpecZeroFromJSONTyped(json, true), { type: 'zero' } as const);
         default:
-            throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -77,8 +77,7 @@ export function OgrSourceDurationSpecToJSONTyped(value?: OgrSourceDurationSpec |
         case 'zero':
             return Object.assign({}, OgrSourceDurationSpecZeroToJSON(value), { type: 'zero' } as const);
         default:
-            throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

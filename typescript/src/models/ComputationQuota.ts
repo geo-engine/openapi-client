@@ -86,7 +86,7 @@ export function ComputationQuotaToJSONTyped(value?: ComputationQuota | null, ign
         
         'computationId': value['computationId'],
         'count': value['count'],
-        'timestamp': ((value['timestamp']).toISOString()),
+        'timestamp': value['timestamp'].toISOString(),
         'workflowId': value['workflowId'],
     };
 }

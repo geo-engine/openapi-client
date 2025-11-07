@@ -53,8 +53,7 @@ docs/ExternalDataId.md
 docs/FeatureDataType.md
 docs/FileNotFoundHandling.md
 docs/FormatSpecifics.md
-docs/FormatSpecificsOneOf.md
-docs/FormatSpecificsOneOfCsv.md
+docs/FormatSpecificsCsv.md
 docs/GbifDataProviderDefinition.md
 docs/GdalDatasetGeoTransform.md
 docs/GdalDatasetParameters.md
@@ -334,8 +333,7 @@ geoengine_openapi_client/models/external_data_id.py
 geoengine_openapi_client/models/feature_data_type.py
 geoengine_openapi_client/models/file_not_found_handling.py
 geoengine_openapi_client/models/format_specifics.py
-geoengine_openapi_client/models/format_specifics_one_of.py
-geoengine_openapi_client/models/format_specifics_one_of_csv.py
+geoengine_openapi_client/models/format_specifics_csv.py
 geoengine_openapi_client/models/gbif_data_provider_definition.py
 geoengine_openapi_client/models/gdal_dataset_geo_transform.py
 geoengine_openapi_client/models/gdal_dataset_parameters.py
@@ -587,8 +585,7 @@ test/test_external_data_id.py
 test/test_feature_data_type.py
 test/test_file_not_found_handling.py
 test/test_format_specifics.py
-test/test_format_specifics_one_of.py
-test/test_format_specifics_one_of_csv.py
+test/test_format_specifics_csv.py
 test/test_gbif_data_provider_definition.py
 test/test_gdal_dataset_geo_transform.py
 test/test_gdal_dataset_parameters.py

@@ -65,8 +65,10 @@ export class PlotsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/plot/{id}`;
+            urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
             const response = yield this.request({
-                path: `/plot/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,

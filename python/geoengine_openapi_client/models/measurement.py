@@ -119,21 +119,6 @@ class Measurement(BaseModel):
             instance.actual_instance = UnitlessMeasurement.from_json(json_str)
             return instance
 
-        # check if data type is `ClassificationMeasurement`
-        if _data_type == "ClassificationMeasurement":
-            instance.actual_instance = ClassificationMeasurement.from_json(json_str)
-            return instance
-
-        # check if data type is `ContinuousMeasurement`
-        if _data_type == "ContinuousMeasurement":
-            instance.actual_instance = ContinuousMeasurement.from_json(json_str)
-            return instance
-
-        # check if data type is `UnitlessMeasurement`
-        if _data_type == "UnitlessMeasurement":
-            instance.actual_instance = UnitlessMeasurement.from_json(json_str)
-            return instance
-
         # deserialize data into UnitlessMeasurement
         try:
             instance.actual_instance = UnitlessMeasurement.from_json(json_str)

@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from geoengine_openapi_client.models.permission import Permission
 from geoengine_openapi_client.models.resource import Resource
 from typing import Optional, Set
@@ -31,7 +32,7 @@ class PermissionRequest(BaseModel):
     """ # noqa: E501
     permission: Permission
     resource: Resource
-    role_id: StrictStr = Field(alias="roleId")
+    role_id: UUID = Field(alias="roleId")
     __properties: ClassVar[List[str]] = ["permission", "resource", "roleId"]
 
     model_config = ConfigDict(

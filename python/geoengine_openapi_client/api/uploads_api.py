@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBytes, StrictStr
 from typing import List, Tuple, Union
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.id_response import IdResponse
 from geoengine_openapi_client.models.upload_file_layers_response import UploadFileLayersResponse
 from geoengine_openapi_client.models.upload_files_response import UploadFilesResponse
@@ -45,7 +46,7 @@ class UploadsApi:
     @validate_call
     def list_upload_file_layers_handler(
         self,
-        upload_id: Annotated[StrictStr, Field(description="Upload id")],
+        upload_id: Annotated[UUID, Field(description="Upload id")],
         file_name: Annotated[StrictStr, Field(description="File name")],
         _request_timeout: Union[
             None,
@@ -115,7 +116,7 @@ class UploadsApi:
     @validate_call
     def list_upload_file_layers_handler_with_http_info(
         self,
-        upload_id: Annotated[StrictStr, Field(description="Upload id")],
+        upload_id: Annotated[UUID, Field(description="Upload id")],
         file_name: Annotated[StrictStr, Field(description="File name")],
         _request_timeout: Union[
             None,
@@ -185,7 +186,7 @@ class UploadsApi:
     @validate_call
     def list_upload_file_layers_handler_without_preload_content(
         self,
-        upload_id: Annotated[StrictStr, Field(description="Upload id")],
+        upload_id: Annotated[UUID, Field(description="Upload id")],
         file_name: Annotated[StrictStr, Field(description="File name")],
         _request_timeout: Union[
             None,
@@ -318,7 +319,7 @@ class UploadsApi:
     @validate_call
     def list_upload_files_handler(
         self,
-        upload_id: Annotated[StrictStr, Field(description="Upload id")],
+        upload_id: Annotated[UUID, Field(description="Upload id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -384,7 +385,7 @@ class UploadsApi:
     @validate_call
     def list_upload_files_handler_with_http_info(
         self,
-        upload_id: Annotated[StrictStr, Field(description="Upload id")],
+        upload_id: Annotated[UUID, Field(description="Upload id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -450,7 +451,7 @@ class UploadsApi:
     @validate_call
     def list_upload_files_handler_without_preload_content(
         self,
-        upload_id: Annotated[StrictStr, Field(description="Upload id")],
+        upload_id: Annotated[UUID, Field(description="Upload id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

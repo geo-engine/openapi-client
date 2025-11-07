@@ -131,8 +131,11 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/roles`;
+
         const response = await this.request({
-            path: `/roles`,
+            path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
@@ -184,8 +187,13 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/users/{user}/roles/{role}`;
+        urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
+        urlPath = urlPath.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role'])));
+
         const response = await this.request({
-            path: `/users/{user}/roles/{role}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))).replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -224,8 +232,12 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/quota/computations/{computation}`;
+        urlPath = urlPath.replace(`{${"computation"}}`, encodeURIComponent(String(requestParameters['computation'])));
+
         const response = await this.request({
-            path: `/quota/computations/{computation}`.replace(`{${"computation"}}`, encodeURIComponent(String(requestParameters['computation']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -280,8 +292,11 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/quota/computations`;
+
         const response = await this.request({
-            path: `/quota/computations`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -336,8 +351,11 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/quota/dataUsage`;
+
         const response = await this.request({
-            path: `/quota/dataUsage`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -407,8 +425,11 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/quota/dataUsage/summary`;
+
         const response = await this.request({
-            path: `/quota/dataUsage/summary`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -448,8 +469,12 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/roles/byName/{name}`;
+        urlPath = urlPath.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters['name'])));
+
         const response = await this.request({
-            path: `/roles/byName/{name}`.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters['name']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -482,8 +507,11 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/user/roles/descriptions`;
+
         const response = await this.request({
-            path: `/user/roles/descriptions`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -523,8 +551,12 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/quotas/{user}`;
+        urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
+
         const response = await this.request({
-            path: `/quotas/{user}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -557,8 +589,11 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/quota`;
+
         const response = await this.request({
-            path: `/quota`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -598,8 +633,12 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/roles/{role}`;
+        urlPath = urlPath.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role'])));
+
         const response = await this.request({
-            path: `/roles/{role}`.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -645,8 +684,13 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/users/{user}/roles/{role}`;
+        urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
+        urlPath = urlPath.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role'])));
+
         const response = await this.request({
-            path: `/users/{user}/roles/{role}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))).replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -694,8 +738,12 @@ export class UserApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/quotas/{user}`;
+        urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
+
         const response = await this.request({
-            path: `/quotas/{user}`.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

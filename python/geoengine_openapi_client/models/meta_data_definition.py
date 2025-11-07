@@ -158,16 +158,6 @@ class MetaDataDefinition(BaseModel):
             instance.actual_instance = OgrMetaData.from_json(json_str)
             return instance
 
-        # check if data type is `GdalMetaDataStatic`
-        if _data_type == "GdalMetaDataStatic":
-            instance.actual_instance = GdalMetaDataStatic.from_json(json_str)
-            return instance
-
-        # check if data type is `GdalMetadataNetCdfCf`
-        if _data_type == "GdalMetadataNetCdfCf":
-            instance.actual_instance = GdalMetadataNetCdfCf.from_json(json_str)
-            return instance
-
         # deserialize data into MockMetaData
         try:
             instance.actual_instance = MockMetaData.from_json(json_str)

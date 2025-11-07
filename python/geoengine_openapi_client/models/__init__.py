@@ -13,7 +13,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from geoengine_openapi_client.models.add_dataset import AddDataset
 from geoengine_openapi_client.models.add_layer import AddLayer
@@ -64,8 +63,7 @@ from geoengine_openapi_client.models.external_data_id import ExternalDataId
 from geoengine_openapi_client.models.feature_data_type import FeatureDataType
 from geoengine_openapi_client.models.file_not_found_handling import FileNotFoundHandling
 from geoengine_openapi_client.models.format_specifics import FormatSpecifics
-from geoengine_openapi_client.models.format_specifics_one_of import FormatSpecificsOneOf
-from geoengine_openapi_client.models.format_specifics_one_of_csv import FormatSpecificsOneOfCsv
+from geoengine_openapi_client.models.format_specifics_csv import FormatSpecificsCsv
 from geoengine_openapi_client.models.gbif_data_provider_definition import GbifDataProviderDefinition
 from geoengine_openapi_client.models.gdal_dataset_geo_transform import GdalDatasetGeoTransform
 from geoengine_openapi_client.models.gdal_dataset_parameters import GdalDatasetParameters
@@ -258,3 +256,4 @@ from geoengine_openapi_client.models.wms_service import WmsService
 from geoengine_openapi_client.models.wms_version import WmsVersion
 from geoengine_openapi_client.models.workflow import Workflow
 from geoengine_openapi_client.models.wrapped_plot_output import WrappedPlotOutput
+

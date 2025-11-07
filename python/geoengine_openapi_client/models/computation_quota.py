@@ -19,9 +19,10 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,10 +30,10 @@ class ComputationQuota(BaseModel):
     """
     ComputationQuota
     """ # noqa: E501
-    computation_id: StrictStr = Field(alias="computationId")
+    computation_id: UUID = Field(alias="computationId")
     count: Annotated[int, Field(strict=True, ge=0)]
     timestamp: datetime
-    workflow_id: StrictStr = Field(alias="workflowId")
+    workflow_id: UUID = Field(alias="workflowId")
     __properties: ClassVar[List[str]] = ["computationId", "count", "timestamp", "workflowId"]
 
     model_config = ConfigDict(

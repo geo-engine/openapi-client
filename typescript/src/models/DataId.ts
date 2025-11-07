@@ -49,7 +49,7 @@ export function DataIdFromJSONTyped(json: any, ignoreDiscriminator: boolean): Da
         case 'internal':
             return Object.assign({}, InternalDataIdFromJSONTyped(json, true), { type: 'internal' } as const);
         default:
-            throw new Error(`No variant of DataId exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -67,8 +67,7 @@ export function DataIdToJSONTyped(value?: DataId | null, ignoreDiscriminator: bo
         case 'internal':
             return Object.assign({}, InternalDataIdToJSON(value), { type: 'internal' } as const);
         default:
-            throw new Error(`No variant of DataId exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

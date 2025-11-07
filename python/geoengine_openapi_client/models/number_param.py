@@ -106,16 +106,6 @@ class NumberParam(BaseModel):
             instance.actual_instance = StaticNumber.from_json(json_str)
             return instance
 
-        # check if data type is `DerivedNumber`
-        if _data_type == "DerivedNumber":
-            instance.actual_instance = DerivedNumber.from_json(json_str)
-            return instance
-
-        # check if data type is `StaticNumber`
-        if _data_type == "StaticNumber":
-            instance.actual_instance = StaticNumber.from_json(json_str)
-            return instance
-
         # deserialize data into StaticNumber
         try:
             instance.actual_instance = StaticNumber.from_json(json_str)

@@ -41,7 +41,7 @@ export function ProjectVersionToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'changed': ((value['changed']).toISOString()),
+        'changed': value['changed'].toISOString(),
         'id': value['id'],
     };
 }

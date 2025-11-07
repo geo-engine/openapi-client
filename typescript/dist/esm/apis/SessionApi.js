@@ -33,8 +33,9 @@ export class SessionApi extends runtime.BaseAPI {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
+            let urlPath = `/anonymous`;
             const response = yield this.request({
-                path: `/anonymous`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -62,8 +63,9 @@ export class SessionApi extends runtime.BaseAPI {
             const queryParameters = {};
             const headerParameters = {};
             headerParameters['Content-Type'] = 'application/json';
+            let urlPath = `/login`;
             const response = yield this.request({
-                path: `/login`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -95,8 +97,9 @@ export class SessionApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/logout`;
             const response = yield this.request({
-                path: `/logout`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -126,8 +129,9 @@ export class SessionApi extends runtime.BaseAPI {
                 queryParameters['redirectUri'] = requestParameters['redirectUri'];
             }
             const headerParameters = {};
+            let urlPath = `/oidcInit`;
             const response = yield this.request({
-                path: `/oidcInit`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -163,8 +167,9 @@ export class SessionApi extends runtime.BaseAPI {
             }
             const headerParameters = {};
             headerParameters['Content-Type'] = 'application/json';
+            let urlPath = `/oidcLogin`;
             const response = yield this.request({
-                path: `/oidcLogin`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -194,8 +199,9 @@ export class SessionApi extends runtime.BaseAPI {
             const queryParameters = {};
             const headerParameters = {};
             headerParameters['Content-Type'] = 'application/json';
+            let urlPath = `/user`;
             const response = yield this.request({
-                path: `/user`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -232,8 +238,9 @@ export class SessionApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/session`;
             const response = yield this.request({
-                path: `/session`,
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -267,8 +274,10 @@ export class SessionApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/session/project/{project}`;
+            urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
             const response = yield this.request({
-                path: `/session/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -301,8 +310,9 @@ export class SessionApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/session/view`;
             const response = yield this.request({
-                path: `/session/view`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,

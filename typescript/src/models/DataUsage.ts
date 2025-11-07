@@ -95,7 +95,7 @@ export function DataUsageToJSONTyped(value?: DataUsage | null, ignoreDiscriminat
         'computationId': value['computationId'],
         'count': value['count'],
         'data': value['data'],
-        'timestamp': ((value['timestamp']).toISOString()),
+        'timestamp': value['timestamp'].toISOString(),
         'userId': value['userId'],
     };
 }

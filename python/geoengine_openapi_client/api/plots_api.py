@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.wrapped_plot_output import WrappedPlotOutput
 
 from geoengine_openapi_client.api_client import ApiClient, RequestSerialized
@@ -46,7 +47,7 @@ class PlotsApi:
         bbox: StrictStr,
         time: StrictStr,
         spatial_resolution: StrictStr,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         crs: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -129,7 +130,7 @@ class PlotsApi:
         bbox: StrictStr,
         time: StrictStr,
         spatial_resolution: StrictStr,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         crs: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -212,7 +213,7 @@ class PlotsApi:
         bbox: StrictStr,
         time: StrictStr,
         spatial_resolution: StrictStr,
-        id: Annotated[StrictStr, Field(description="Workflow id")],
+        id: Annotated[UUID, Field(description="Workflow id")],
         crs: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,

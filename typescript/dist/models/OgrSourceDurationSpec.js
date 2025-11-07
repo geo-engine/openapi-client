@@ -35,7 +35,7 @@ function OgrSourceDurationSpecFromJSONTyped(json, ignoreDiscriminator) {
         case 'zero':
             return Object.assign({}, (0, OgrSourceDurationSpecZero_1.OgrSourceDurationSpecZeroFromJSONTyped)(json, true), { type: 'zero' });
         default:
-            throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 function OgrSourceDurationSpecToJSON(json) {
@@ -53,6 +53,6 @@ function OgrSourceDurationSpecToJSONTyped(value, ignoreDiscriminator = false) {
         case 'zero':
             return Object.assign({}, (0, OgrSourceDurationSpecZero_1.OgrSourceDurationSpecZeroToJSON)(value), { type: 'zero' });
         default:
-            throw new Error(`No variant of OgrSourceDurationSpec exists with 'type=${value['type']}'`);
+            return value;
     }
 }

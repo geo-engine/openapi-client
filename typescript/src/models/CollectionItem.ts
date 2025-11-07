@@ -48,7 +48,7 @@ export function CollectionItemFromJSONTyped(json: any, ignoreDiscriminator: bool
         case 'layer':
             return Object.assign({}, LayerListingFromJSONTyped(json, true), { type: 'layer' } as const);
         default:
-            throw new Error(`No variant of CollectionItem exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -66,8 +66,7 @@ export function CollectionItemToJSONTyped(value?: CollectionItem | null, ignoreD
         case 'layer':
             return Object.assign({}, LayerListingToJSON(value), { type: 'layer' } as const);
         default:
-            throw new Error(`No variant of CollectionItem exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

@@ -14,7 +14,6 @@ import configparser
 import os
 import shutil
 import subprocess
-import sys
 from typing import Literal
 import logging
 
@@ -24,7 +23,7 @@ CWD = Path('.generation/')
 
 class ProgramArgs(argparse.Namespace):
     '''Typed command line arguments.'''
-    language: Literal['python', 'typescript']
+    language: Literal['python', 'rust', 'typescript']
     fetch_spec: bool
     build_container: bool
 
@@ -37,10 +36,10 @@ class ProgramArgs(argparse.Namespace):
                             required=False, default=True)
         parser.add_argument('--no-container-build', dest='build_container', action='store_false',
                             required=False, default=True)
-        parser.add_argument('language', choices=['python', 'typescript'],
+        parser.add_argument('language', choices=['python', 'rust', 'typescript'],
                             type=str)
 
-        parsed_args: ProgramArgs = parser.parse_args()
+        parsed_args: ProgramArgs = parser.parse_args()  # type: ignore[assignment]
         return parsed_args
 
 
@@ -51,7 +50,7 @@ class ConfigArgs():
     ge_backend_commit: str
 
     # General
-    github_url: str
+    github_repository: GitHubRepository
     package_version: str
 
     # Python package name
@@ -64,12 +63,13 @@ class ConfigArgs():
     def parse_config() -> ConfigArgs:
         '''Parse config.ini arguments.'''
         parsed = configparser.ConfigParser()
-        parsed.optionxform = str  # do not convert keys to lowercase
+        # do not convert keys to lowercase
+        parsed.optionxform = lambda optionstr: optionstr  # type: ignore[method-assign]
         parsed.read(CWD / 'config.ini')
 
         return ConfigArgs(
             ge_backend_commit=parsed['input']['backendCommit'],
-            github_url=parsed['general']['githubUrl'],
+            github_repository=GitHubRepository(parsed['general']['githubUrl']),
             package_version=parsed['general']['version'],
             python_package_name=parsed['python']['name'],
             typescript_package_name=parsed['typescript']['name'],
@@ -83,7 +83,7 @@ def fetch_spec(*, ge_backend_commit: str) -> None:
 
     request_url = f"https://raw.githubusercontent.com/geo-engine/geoengine/{ge_backend_commit}/openapi.json"
 
-    logging.info(f"Requesting `openapi.json` at `{request_url}`….")
+    logging.info("Requesting `openapi.json` at `%s`….", request_url)
     with request.urlopen(request_url, timeout=10) as w, \
             open(CWD / "input/openapi.json", "w", encoding='utf-8') as f:
         f.write(w.read().decode('utf-8'))
@@ -108,9 +108,9 @@ def build_container():
 def clean_dirs(*, language: Literal['python', 'typescript']):
     '''Remove some directories because they are not be overwritten by the generator.'''
 
-    dirs_to_remove = [
-        'node_modules',
-        '.mypy_cache',
+    dirs_to_remove: list[Path] = [
+        Path('node_modules'),
+        Path('.mypy_cache'),
         Path(language) / 'test'
     ]
 
@@ -126,12 +126,12 @@ def clean_dirs(*, language: Literal['python', 'typescript']):
                 Path(language) / 'geoengine_openapi_client',
             ])
 
-    logging.info(f"Removing directories:")
+    logging.info("Removing directories:")
 
     for the_dir in dirs_to_remove:
         if not os.path.isdir(the_dir):
             continue
-        logging.info(f"  - {the_dir}")
+        logging.info("  - %s", the_dir)
         shutil.rmtree(the_dir)
 
 
@@ -165,13 +165,11 @@ def generate_python_code(*, package_name: str, package_version: str, package_url
     shutil.rmtree(Path("python") / "docs")
 
 
-def generate_typescript_code(*, npm_name: str, npm_version: str, repository_url: str):
+def generate_typescript_code(*,
+                             npm_name: str,
+                             npm_version: str,
+                             github_repository: GitHubRepository):
     '''Run the generator.'''
-
-    parsed_url = urlsplit(repository_url)
-    (url_path, _url_ext) = os.path.splitext(parsed_url.path)
-    (url_path, git_repo_id) = os.path.split(url_path)
-    (url_path, git_user_id) = os.path.split(url_path)
 
     subprocess.run(
         [
@@ -189,9 +187,9 @@ def generate_typescript_code(*, npm_name: str, npm_version: str, repository_url:
                 f"npmName={npm_name}",
                 f"npmVersion={npm_version}",
             ]),
-            "--git-host", parsed_url.netloc,
-            "--git-user-id", git_user_id,
-            "--git-repo-id", git_repo_id,
+            "--git-host", github_repository.host,
+            "--git-user-id", github_repository.user,
+            "--git-repo-id", github_repository.repo,
             "--enable-post-process-file",
             "-o", "/local/typescript/",
             "--openapi-normalizer", "REF_AS_PARENT_IN_ALLOF=true",
@@ -205,6 +203,55 @@ typings
 ''')
     shutil.rmtree(Path("typescript") / ".openapi-generator")
 
+def generate_rust_code(*, package_name: str, package_version: str, git_repo: GitHubRepository):
+    '''Run the generator.'''
+
+    subprocess.run(
+        [
+            "podman", "run",
+            "--rm",  # remove the container after running
+            "-v", f"{os.getcwd()}:/local",
+            f"--env-file={CWD / 'override.env'}",
+            # "docker.io/openapitools/openapi-generator-cli:v7.0.1",
+            "openapi-generator-cli:patched",
+            "generate",
+            "-i", f"{'/local' / CWD / 'input/openapi.json'}",
+            "-g", "rust",
+            "--additional-properties=" + ",".join([
+                f"packageName={package_name}",
+                f"packageVersion={package_version}",
+            ]),
+            "--git-host", git_repo.host,
+            "--git-user-id", git_repo.user,
+            "--git-repo-id", git_repo.repo,
+            "--enable-post-process-file",
+            "-o", "/local/rust/",
+            "--openapi-normalizer", "REF_AS_PARENT_IN_ALLOF=true",
+        ],
+        check=True,
+    )
+
+@dataclass
+class GitHubRepository:
+    '''Git repository triplet.'''
+    host: str
+    user: str
+    repo: str
+
+    def __init__(self, url: str) -> None:
+        '''Create a GitHubRepository from a URL.'''
+        parsed_url = urlsplit(url)
+        (url_path, _url_ext) = os.path.splitext(parsed_url.path)
+        (url_path, git_repo_id) = os.path.split(url_path)
+        (url_path, git_user_id) = os.path.split(url_path)
+
+        self.host = parsed_url.netloc
+        self.user=git_user_id
+        self.repo=git_repo_id
+
+    def url(self) -> str:
+        '''Get the URL of the repository.'''
+        return f"https://{self.host}/{self.user}/{self.repo}"
 
 def main():
     '''The entry point of the program'''
@@ -231,14 +278,14 @@ def main():
         generate_python_code(
             package_name=config.python_package_name,
             package_version=config.package_version,
-            package_url=config.github_url,
+            package_url=config.github_repository.url(),
         )
     elif args.language == 'typescript':
         logging.info("Generating TypeScript client…")
         generate_typescript_code(
             npm_name=config.typescript_package_name,
             npm_version=config.package_version,
-            repository_url=config.github_url,
+            github_repository=config.github_repository,
         )
 
         # Create dist files.
@@ -254,6 +301,13 @@ def main():
                 "npm", "install",
             ],
             check=True,
+        )
+    elif args.language == 'rust':
+        logging.info("Generating Rust client…")
+        generate_rust_code(
+            package_name=config.python_package_name,
+            package_version=config.package_version,
+            git_repo=config.github_repository,
         )
     else:
         raise RuntimeError(f'Unknown language {args.language}.')

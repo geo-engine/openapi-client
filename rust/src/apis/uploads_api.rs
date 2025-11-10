@@ -118,8 +118,7 @@ pub async fn list_upload_files_handler(configuration: &configuration::Configurat
 
 pub async fn upload_handler(configuration: &configuration::Configuration, files_left_square_bracket_right_square_bracket: Vec<std::path::PathBuf>) -> Result<models::IdResponse, Error<UploadHandlerError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_form_files_left_square_bracket_right_square_bracket = files_left_square_bracket_right_square_bracket;
-
+    let _p_form_files_left_square_bracket_right_square_bracket =                           files_left_square_bracket_right_square_bracket;
     let uri_str = format!("{}/upload", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
@@ -129,8 +128,7 @@ pub async fn upload_handler(configuration: &configuration::Configuration, files_
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    let mut multipart_form = reqwest::multipart::Form::new();
-    // TODO: support file upload for 'files[]' parameter
+    let multipart_form = reqwest::multipart::Form::new();    // TODO: support file upload for 'files[]' parameter
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;

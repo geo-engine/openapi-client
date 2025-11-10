@@ -139,8 +139,14 @@ pub async fn list_projects_handler(configuration: &configuration::Configuration,
     let p_path_offset = offset;
     let p_path_limit = limit;
 
-    let uri_str = format!("{}/projects", configuration.base_path, order=p_path_order.to_string(), offset=p_path_offset, limit=p_path_limit);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+                    let uri_str = format!(
+                        "{}/projects?order={}&offset={}&limit={}",
+                        configuration.base_path,
+                        p_path_order.to_string(),
+                        p_path_offset,
+                        p_path_limit
+                    );
+                let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

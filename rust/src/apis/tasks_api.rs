@@ -76,8 +76,14 @@ pub async fn list_handler(configuration: &configuration::Configuration, filter: 
     let p_path_offset = offset;
     let p_path_limit = limit;
 
-    let uri_str = format!("{}/tasks/list", configuration.base_path, filter=p_path_filter.unwrap().to_string(), offset=p_path_offset, limit=p_path_limit);
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+                    let uri_str = format!(
+                        "{}/tasks/list?filter={}&offset={}&limit={}",
+                        configuration.base_path,
+                        p_path_filter.unwrap().to_string(),
+                        p_path_offset,
+                        p_path_limit
+                    );
+                let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

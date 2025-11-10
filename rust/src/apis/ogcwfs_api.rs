@@ -37,8 +37,15 @@ pub async fn wfs_capabilities_handler(configuration: &configuration::Configurati
     let p_path_service = service;
     let p_path_request = request;
 
-    let uri_str = format!("{}/wfs/{workflow}?request=GetCapabilities", configuration.base_path, workflow=crate::apis::urlencode(p_path_workflow), version=p_path_version.unwrap().to_string(), service=p_path_service.to_string(), request=p_path_request.to_string());
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+                    let uri_str = format!(
+                    "{}/wfs/{workflow}?request={request}&service={service}&version={version}",
+                    configuration.base_path,
+                    workflow = crate::apis::urlencode(p_path_workflow),
+                    version = p_path_version.unwrap().to_string(),
+                    service = p_path_service.to_string(),
+                    request = p_path_request.to_string()
+                );
+                let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

@@ -46,8 +46,16 @@ pub async fn wms_capabilities_handler(configuration: &configuration::Configurati
     let p_path_request = request;
     let p_path_format = format;
 
-    let uri_str = format!("{}/wms/{workflow}?request=GetCapabilities", configuration.base_path, workflow=crate::apis::urlencode(p_path_workflow), version=p_path_version.unwrap().to_string(), service=p_path_service.to_string(), request=p_path_request.to_string(), format=p_path_format.unwrap().to_string());
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+                    let uri_str = format!(
+                        "{}/wms/{workflow}?request={request}&service={service}&version={version}&format={format}",
+                        configuration.base_path,
+                        workflow = crate::apis::urlencode(p_path_workflow),
+                        version = p_path_version.unwrap().to_string(),
+                        service = p_path_service.to_string(),
+                        request = p_path_request.to_string(),
+                        format = p_path_format.unwrap().to_string()
+                    );
+                let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -89,8 +97,16 @@ pub async fn wms_legend_graphic_handler(configuration: &configuration::Configura
     let p_path_request = request;
     let p_path_layer = layer;
 
-    let uri_str = format!("{}/wms/{workflow}?request=GetLegendGraphic", configuration.base_path, workflow=crate::apis::urlencode(p_path_workflow), version=p_path_version.to_string(), service=p_path_service.to_string(), request=p_path_request.to_string(), layer=crate::apis::urlencode(p_path_layer));
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+                    let uri_str = format!(
+                        "{}/wms/{workflow}?request={request}&version={version}&service={service}&layer={layer}",
+                        configuration.base_path,
+                        workflow = crate::apis::urlencode(p_path_workflow),
+                        version = p_path_version.to_string(),
+                        service = p_path_service.to_string(),
+                        request = p_path_request.to_string(),
+                        layer = crate::apis::urlencode(p_path_layer)
+                    );
+                let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

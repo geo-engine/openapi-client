@@ -231,6 +231,31 @@ def generate_rust_code(*, package_name: str, package_version: str, git_repo: Git
         check=True,
     )
 
+    # Temporary solution because `RUST_POST_PROCESS_FILE` is not used by the generator
+    for rust_file in [
+        "apis/ogcwfs_api.rs",
+        "apis/ogcwms_api.rs",
+        "apis/projects_api.rs",
+        "apis/tasks_api.rs",
+        "apis/uploads_api.rs",
+        "models/spatial_partition2_d.rs",
+        "models/spatial_resolution.rs",
+    ]:
+        subprocess.run(
+            [
+                "podman", "run",
+                "--rm",  # remove the container after running
+                "-v", f"{os.getcwd()}:/local",
+                f"--env-file={CWD / 'override.env'}",
+                # "docker.io/openapitools/openapi-generator-cli:v7.0.1",
+                "openapi-generator-cli:patched",
+                "python3",
+                "/local/.generation/post-process/rust.py",
+                "/local/rust/src/" + rust_file,
+            ],
+            check=True,
+        )
+
 @dataclass
 class GitHubRepository:
     '''Git repository triplet.'''

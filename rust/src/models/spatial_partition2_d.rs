@@ -30,3 +30,15 @@ impl SpatialPartition2D {
     }
 }
 
+impl std::fmt::Display for SpatialPartition2D {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "{xmin},{ymin},{xmax},{ymax}",
+            xmin = self.upper_left_coordinate.x,
+            ymin = self.lower_right_coordinate.y,
+            xmax = self.lower_right_coordinate.x,
+            ymax = self.upper_left_coordinate.y
+        )
+    }
+}

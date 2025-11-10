@@ -26,6 +26,7 @@ jobs:
       - name: Generate Code
         run: |
           .generation/generate.py python
+          .generation/generate.py rust
           .generation/generate.py typescript
 
       - name: Create Pull Request

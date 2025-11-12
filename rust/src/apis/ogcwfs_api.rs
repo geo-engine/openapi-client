@@ -97,7 +97,7 @@ pub async fn wfs_feature_handler(configuration: &configuration::Configuration, w
     let p_query_property_name = property_name;
     let p_query_query_resolution = query_resolution;
 
-    let uri_str = format!("{}/wfs/{workflow}?request=GetFeature", configuration.base_path, workflow=crate::apis::urlencode(p_path_workflow));
+    let uri_str = format!("{}/wfs/{workflow}", configuration.base_path, workflow=crate::apis::urlencode(p_path_workflow));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = p_query_version {

@@ -146,6 +146,14 @@ def ogcwfs_api_rs(file_contents: List[str]) -> Generator[str, None, None]:
                 request = p_path_request.to_string()
             );
             ''', INDENT)
+        elif dedented_line.startswith(
+            'let uri_str = format!("{}/wfs/{workflow}?request=GetFeature"'):
+            line = indent(
+                'let uri_str = format!("{}/wfs/{workflow}", '
+                'configuration.base_path, workflow=crate::apis::urlencode(p_path_workflow));'
+                '\n',
+                INDENT
+            )
 
         yield line
 

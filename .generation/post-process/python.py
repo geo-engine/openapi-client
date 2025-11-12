@@ -122,7 +122,8 @@ def layers_api_py(file_contents: List[str]) -> Generator[str, None, None]:
 
         yield line
 
-def ogc_xyz_api_py(ogc_api: Literal['wfs', 'wms']) -> Callable[[List[str]], Generator[str, None, None]]:
+def ogc_xyz_api_py(
+        ogc_api: Literal['wfs', 'wms']) -> Callable[[List[str]], Generator[str, None, None]]:
     '''Modify the ogc_xyz_api.py file.'''
     def _ogc_xyz_api_py(file_contents: List[str]) -> Generator[str, None, None]:
         '''Modify the ogc_wfs_api.py file.'''

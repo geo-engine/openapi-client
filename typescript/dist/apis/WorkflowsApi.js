@@ -50,8 +50,10 @@ class WorkflowsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/datasetFromWorkflow/{id}`;
+            urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
             const response = yield this.request({
-                path: `/datasetFromWorkflow/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
@@ -86,8 +88,10 @@ class WorkflowsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/workflow/{id}/allMetadata/zip`;
+            urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
             const response = yield this.request({
-                path: `/workflow/{id}/allMetadata/zip`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -121,8 +125,10 @@ class WorkflowsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/workflow/{id}/metadata`;
+            urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
             const response = yield this.request({
-                path: `/workflow/{id}/metadata`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -156,8 +162,10 @@ class WorkflowsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/workflow/{id}/provenance`;
+            urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
             const response = yield this.request({
-                path: `/workflow/{id}/provenance`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -191,8 +199,10 @@ class WorkflowsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/workflow/{id}`;
+            urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
             const response = yield this.request({
-                path: `/workflow/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -256,8 +266,10 @@ class WorkflowsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/workflow/{id}/rasterStream`;
+            urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
             const response = yield this.request({
-                path: `/workflow/{id}/rasterStream`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -291,8 +303,9 @@ class WorkflowsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/workflow`;
             const response = yield this.request({
-                path: `/workflow`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,

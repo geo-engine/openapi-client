@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,7 @@ class RasterDatasetFromWorkflowResult(BaseModel):
     response of the dataset from workflow handler
     """ # noqa: E501
     dataset: StrictStr
-    upload: StrictStr
+    upload: UUID
     __properties: ClassVar[List[str]] = ["dataset", "upload"]
 
     model_config = ConfigDict(

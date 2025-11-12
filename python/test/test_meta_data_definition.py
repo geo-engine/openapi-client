@@ -49,7 +49,9 @@ class TestMetaDataDefinition(unittest.TestCase):
                         float = [
                             ''
                             ], 
-                        format_specifics = null, 
+                        format_specifics = geoengine_openapi_client.models.format_specifics.FormatSpecifics(
+                            csv = geoengine_openapi_client.models.format_specifics_csv.FormatSpecifics_csv(
+                                header = 'yes', ), ), 
                         int = [
                             ''
                             ], 
@@ -133,7 +135,9 @@ class TestMetaDataDefinition(unittest.TestCase):
                         float = [
                             ''
                             ], 
-                        format_specifics = null, 
+                        format_specifics = geoengine_openapi_client.models.format_specifics.FormatSpecifics(
+                            csv = geoengine_openapi_client.models.format_specifics_csv.FormatSpecifics_csv(
+                                header = 'yes', ), ), 
                         int = [
                             ''
                             ], 

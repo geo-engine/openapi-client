@@ -22,6 +22,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,11 +30,11 @@ class DataUsage(BaseModel):
     """
     DataUsage
     """ # noqa: E501
-    computation_id: StrictStr = Field(alias="computationId")
+    computation_id: UUID = Field(alias="computationId")
     count: Annotated[int, Field(strict=True, ge=0)]
     data: StrictStr
     timestamp: datetime
-    user_id: StrictStr = Field(alias="userId")
+    user_id: UUID = Field(alias="userId")
     __properties: ClassVar[List[str]] = ["computationId", "count", "data", "timestamp", "userId"]
 
     model_config = ConfigDict(

@@ -106,16 +106,6 @@ class CollectionItem(BaseModel):
             instance.actual_instance = LayerListing.from_json(json_str)
             return instance
 
-        # check if data type is `LayerCollectionListing`
-        if _data_type == "LayerCollectionListing":
-            instance.actual_instance = LayerCollectionListing.from_json(json_str)
-            return instance
-
-        # check if data type is `LayerListing`
-        if _data_type == "LayerListing":
-            instance.actual_instance = LayerListing.from_json(json_str)
-            return instance
-
         # deserialize data into LayerCollectionListing
         try:
             instance.actual_instance = LayerCollectionListing.from_json(json_str)

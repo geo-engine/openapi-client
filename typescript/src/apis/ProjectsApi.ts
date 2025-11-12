@@ -102,8 +102,11 @@ export class ProjectsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/project`;
+
         const response = await this.request({
-            path: `/project`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -144,8 +147,12 @@ export class ProjectsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/project/{project}`;
+        urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
+
         const response = await this.request({
-            path: `/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -198,8 +205,14 @@ export class ProjectsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/projects`;
+        urlPath = urlPath.replace(`{${"order"}}`, encodeURIComponent(String(requestParameters['order'])));
+        urlPath = urlPath.replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset'])));
+        urlPath = urlPath.replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit'])));
+
         const response = await this.request({
-            path: `/projects`.replace(`{${"order"}}`, encodeURIComponent(String(requestParameters['order']))).replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset']))).replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -239,8 +252,12 @@ export class ProjectsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/project/{project}`;
+        urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
+
         const response = await this.request({
-            path: `/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -287,8 +304,13 @@ export class ProjectsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/project/{project}/{version}`;
+        urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
+        urlPath = urlPath.replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version'])));
+
         const response = await this.request({
-            path: `/project/{project}/{version}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))).replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -328,8 +350,12 @@ export class ProjectsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/project/{project}/versions`;
+        urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
+
         const response = await this.request({
-            path: `/project/{project}/versions`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -378,8 +404,12 @@ export class ProjectsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/project/{project}`;
+        urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
+
         const response = await this.request({
-            path: `/project/{project}`.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project']))),
+            path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,

@@ -46,8 +46,11 @@ export class UploadsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/uploads/{upload_id}/files/{file_name}/layers`;
+            urlPath = urlPath.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters['uploadId'])));
+            urlPath = urlPath.replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters['fileName'])));
             const response = yield this.request({
-                path: `/uploads/{upload_id}/files/{file_name}/layers`.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters['uploadId']))).replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters['fileName']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -81,8 +84,10 @@ export class UploadsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/uploads/{upload_id}/files`;
+            urlPath = urlPath.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters['uploadId'])));
             const response = yield this.request({
-                path: `/uploads/{upload_id}/files`.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters['uploadId']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -136,8 +141,9 @@ export class UploadsApi extends runtime.BaseAPI {
                     formParams.append('files[]', element);
                 });
             }
+            let urlPath = `/upload`;
             const response = yield this.request({
-                path: `/upload`,
+                path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,

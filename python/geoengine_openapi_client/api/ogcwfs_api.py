@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.geo_json import GeoJson
 from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest
 from geoengine_openapi_client.models.get_feature_request import GetFeatureRequest
@@ -47,7 +48,7 @@ class OGCWFSApi:
     @validate_call
     def wfs_capabilities_handler(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: Optional[WfsVersion],
         service: WfsService,
         request: GetCapabilitiesRequest,
@@ -125,7 +126,7 @@ class OGCWFSApi:
     @validate_call
     def wfs_capabilities_handler_with_http_info(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: Optional[WfsVersion],
         service: WfsService,
         request: GetCapabilitiesRequest,
@@ -203,7 +204,7 @@ class OGCWFSApi:
     @validate_call
     def wfs_capabilities_handler_without_preload_content(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: Optional[WfsVersion],
         service: WfsService,
         request: GetCapabilitiesRequest,
@@ -351,7 +352,7 @@ class OGCWFSApi:
     @validate_call
     def wfs_feature_handler(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         service: WfsService,
         request: GetFeatureRequest,
         type_names: StrictStr,
@@ -473,7 +474,7 @@ class OGCWFSApi:
     @validate_call
     def wfs_feature_handler_with_http_info(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         service: WfsService,
         request: GetFeatureRequest,
         type_names: StrictStr,
@@ -595,7 +596,7 @@ class OGCWFSApi:
     @validate_call
     def wfs_feature_handler_without_preload_content(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         service: WfsService,
         request: GetFeatureRequest,
         type_names: StrictStr,

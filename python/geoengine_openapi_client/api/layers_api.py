@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import List
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.add_layer import AddLayer
 from geoengine_openapi_client.models.add_layer_collection import AddLayerCollection
 from geoengine_openapi_client.models.id_response import IdResponse
@@ -1437,7 +1438,7 @@ class LayersApi:
     @validate_call
     def autocomplete_handler(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         collection: Annotated[StrictStr, Field(description="Layer collection id")],
         search_type: SearchType,
         search_string: StrictStr,
@@ -1523,7 +1524,7 @@ class LayersApi:
     @validate_call
     def autocomplete_handler_with_http_info(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         collection: Annotated[StrictStr, Field(description="Layer collection id")],
         search_type: SearchType,
         search_string: StrictStr,
@@ -1609,7 +1610,7 @@ class LayersApi:
     @validate_call
     def autocomplete_handler_without_preload_content(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         collection: Annotated[StrictStr, Field(description="Layer collection id")],
         search_type: SearchType,
         search_string: StrictStr,
@@ -1778,7 +1779,7 @@ class LayersApi:
     @validate_call
     def delete_provider(
         self,
-        provider: Annotated[StrictStr, Field(description="Layer provider id")],
+        provider: Annotated[UUID, Field(description="Layer provider id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1844,7 +1845,7 @@ class LayersApi:
     @validate_call
     def delete_provider_with_http_info(
         self,
-        provider: Annotated[StrictStr, Field(description="Layer provider id")],
+        provider: Annotated[UUID, Field(description="Layer provider id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1910,7 +1911,7 @@ class LayersApi:
     @validate_call
     def delete_provider_without_preload_content(
         self,
-        provider: Annotated[StrictStr, Field(description="Layer provider id")],
+        provider: Annotated[UUID, Field(description="Layer provider id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2029,7 +2030,7 @@ class LayersApi:
     @validate_call
     def get_provider_definition(
         self,
-        provider: Annotated[StrictStr, Field(description="Layer provider id")],
+        provider: Annotated[UUID, Field(description="Layer provider id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2095,7 +2096,7 @@ class LayersApi:
     @validate_call
     def get_provider_definition_with_http_info(
         self,
-        provider: Annotated[StrictStr, Field(description="Layer provider id")],
+        provider: Annotated[UUID, Field(description="Layer provider id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2161,7 +2162,7 @@ class LayersApi:
     @validate_call
     def get_provider_definition_without_preload_content(
         self,
-        provider: Annotated[StrictStr, Field(description="Layer provider id")],
+        provider: Annotated[UUID, Field(description="Layer provider id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2287,7 +2288,7 @@ class LayersApi:
     @validate_call
     def layer_handler(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         layer: Annotated[StrictStr, Field(description="Layer id")],
         _request_timeout: Union[
             None,
@@ -2357,7 +2358,7 @@ class LayersApi:
     @validate_call
     def layer_handler_with_http_info(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         layer: Annotated[StrictStr, Field(description="Layer id")],
         _request_timeout: Union[
             None,
@@ -2427,7 +2428,7 @@ class LayersApi:
     @validate_call
     def layer_handler_without_preload_content(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         layer: Annotated[StrictStr, Field(description="Layer id")],
         _request_timeout: Union[
             None,
@@ -2560,7 +2561,7 @@ class LayersApi:
     @validate_call
     def layer_to_dataset(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         layer: Annotated[StrictStr, Field(description="Layer id")],
         _request_timeout: Union[
             None,
@@ -2630,7 +2631,7 @@ class LayersApi:
     @validate_call
     def layer_to_dataset_with_http_info(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         layer: Annotated[StrictStr, Field(description="Layer id")],
         _request_timeout: Union[
             None,
@@ -2700,7 +2701,7 @@ class LayersApi:
     @validate_call
     def layer_to_dataset_without_preload_content(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         layer: Annotated[StrictStr, Field(description="Layer id")],
         _request_timeout: Union[
             None,
@@ -2833,7 +2834,7 @@ class LayersApi:
     @validate_call
     def layer_to_workflow_id_handler(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         layer: Annotated[StrictStr, Field(description="Layer id")],
         _request_timeout: Union[
             None,
@@ -2903,7 +2904,7 @@ class LayersApi:
     @validate_call
     def layer_to_workflow_id_handler_with_http_info(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         layer: Annotated[StrictStr, Field(description="Layer id")],
         _request_timeout: Union[
             None,
@@ -2973,7 +2974,7 @@ class LayersApi:
     @validate_call
     def layer_to_workflow_id_handler_without_preload_content(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         layer: Annotated[StrictStr, Field(description="Layer id")],
         _request_timeout: Union[
             None,
@@ -3106,7 +3107,7 @@ class LayersApi:
     @validate_call
     def list_collection_handler(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         collection: Annotated[StrictStr, Field(description="Layer collection id")],
         offset: Annotated[int, Field(strict=True, ge=0)],
         limit: Annotated[int, Field(strict=True, ge=0)],
@@ -3184,7 +3185,7 @@ class LayersApi:
     @validate_call
     def list_collection_handler_with_http_info(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         collection: Annotated[StrictStr, Field(description="Layer collection id")],
         offset: Annotated[int, Field(strict=True, ge=0)],
         limit: Annotated[int, Field(strict=True, ge=0)],
@@ -3262,7 +3263,7 @@ class LayersApi:
     @validate_call
     def list_collection_handler_without_preload_content(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         collection: Annotated[StrictStr, Field(description="Layer collection id")],
         offset: Annotated[int, Field(strict=True, ge=0)],
         limit: Annotated[int, Field(strict=True, ge=0)],
@@ -3967,7 +3968,7 @@ class LayersApi:
     @validate_call
     def provider_capabilities_handler(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4033,7 +4034,7 @@ class LayersApi:
     @validate_call
     def provider_capabilities_handler_with_http_info(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4099,7 +4100,7 @@ class LayersApi:
     @validate_call
     def provider_capabilities_handler_without_preload_content(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5271,7 +5272,7 @@ class LayersApi:
     @validate_call
     def search_handler(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         collection: Annotated[StrictStr, Field(description="Layer collection id")],
         search_type: SearchType,
         search_string: StrictStr,
@@ -5357,7 +5358,7 @@ class LayersApi:
     @validate_call
     def search_handler_with_http_info(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         collection: Annotated[StrictStr, Field(description="Layer collection id")],
         search_type: SearchType,
         search_string: StrictStr,
@@ -5443,7 +5444,7 @@ class LayersApi:
     @validate_call
     def search_handler_without_preload_content(
         self,
-        provider: Annotated[StrictStr, Field(description="Data provider id")],
+        provider: Annotated[UUID, Field(description="Data provider id")],
         collection: Annotated[StrictStr, Field(description="Layer collection id")],
         search_type: SearchType,
         search_string: StrictStr,
@@ -6170,7 +6171,7 @@ class LayersApi:
     @validate_call
     def update_provider_definition(
         self,
-        provider: Annotated[StrictStr, Field(description="Layer provider id")],
+        provider: Annotated[UUID, Field(description="Layer provider id")],
         typed_data_provider_definition: TypedDataProviderDefinition,
         _request_timeout: Union[
             None,
@@ -6240,7 +6241,7 @@ class LayersApi:
     @validate_call
     def update_provider_definition_with_http_info(
         self,
-        provider: Annotated[StrictStr, Field(description="Layer provider id")],
+        provider: Annotated[UUID, Field(description="Layer provider id")],
         typed_data_provider_definition: TypedDataProviderDefinition,
         _request_timeout: Union[
             None,
@@ -6310,7 +6311,7 @@ class LayersApi:
     @validate_call
     def update_provider_definition_without_preload_content(
         self,
-        provider: Annotated[StrictStr, Field(description="Layer provider id")],
+        provider: Annotated[UUID, Field(description="Layer provider id")],
         typed_data_provider_definition: TypedDataProviderDefinition,
         _request_timeout: Union[
             None,

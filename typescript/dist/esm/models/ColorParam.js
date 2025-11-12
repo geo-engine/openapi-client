@@ -26,7 +26,7 @@ export function ColorParamFromJSONTyped(json, ignoreDiscriminator) {
         case 'static':
             return Object.assign({}, StaticColorFromJSONTyped(json, true), { type: 'static' });
         default:
-            throw new Error(`No variant of ColorParam exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 export function ColorParamToJSON(json) {
@@ -42,6 +42,6 @@ export function ColorParamToJSONTyped(value, ignoreDiscriminator = false) {
         case 'static':
             return Object.assign({}, StaticColorToJSON(value), { type: 'static' });
         default:
-            throw new Error(`No variant of ColorParam exists with 'type=${value['type']}'`);
+            return value;
     }
 }

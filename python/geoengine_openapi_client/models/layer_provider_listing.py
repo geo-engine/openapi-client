@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class LayerProviderListing(BaseModel):
     """
     LayerProviderListing
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     name: StrictStr
     priority: StrictInt
     __properties: ClassVar[List[str]] = ["id", "name", "priority"]

@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.edr_vector_spec import EdrVectorSpec
 from geoengine_openapi_client.models.provenance import Provenance
 from typing import Optional, Set
@@ -34,7 +35,7 @@ class EdrDataProviderDefinition(BaseModel):
     cache_ttl: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, alias="cacheTtl")
     description: StrictStr
     discrete_vrs: Optional[List[StrictStr]] = Field(default=None, description="List of vertical reference systems with a discrete scale", alias="discreteVrs")
-    id: StrictStr
+    id: UUID
     name: StrictStr
     priority: Optional[StrictInt] = None
     provenance: Optional[List[Provenance]] = None

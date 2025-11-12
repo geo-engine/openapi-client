@@ -57,7 +57,7 @@ export function OgrSourceTimeFormatFromJSONTyped(json: any, ignoreDiscriminator:
         case 'unixTimeStamp':
             return Object.assign({}, OgrSourceTimeFormatUnixTimeStampFromJSONTyped(json, true), { format: 'unixTimeStamp' } as const);
         default:
-            throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${json['format']}'`);
+            return json;
     }
 }
 
@@ -77,8 +77,7 @@ export function OgrSourceTimeFormatToJSONTyped(value?: OgrSourceTimeFormat | nul
         case 'unixTimeStamp':
             return Object.assign({}, OgrSourceTimeFormatUnixTimeStampToJSON(value), { format: 'unixTimeStamp' } as const);
         default:
-            throw new Error(`No variant of OgrSourceTimeFormat exists with 'format=${value['format']}'`);
+            return value;
     }
-
 }
 

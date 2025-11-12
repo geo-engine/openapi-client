@@ -132,26 +132,6 @@ class OgrSourceDatasetTimeType(BaseModel):
             instance.actual_instance = OgrSourceDatasetTimeTypeStartEnd.from_json(json_str)
             return instance
 
-        # check if data type is `OgrSourceDatasetTimeTypeNone`
-        if _data_type == "OgrSourceDatasetTimeTypeNone":
-            instance.actual_instance = OgrSourceDatasetTimeTypeNone.from_json(json_str)
-            return instance
-
-        # check if data type is `OgrSourceDatasetTimeTypeStart`
-        if _data_type == "OgrSourceDatasetTimeTypeStart":
-            instance.actual_instance = OgrSourceDatasetTimeTypeStart.from_json(json_str)
-            return instance
-
-        # check if data type is `OgrSourceDatasetTimeTypeStartDuration`
-        if _data_type == "OgrSourceDatasetTimeTypeStartDuration":
-            instance.actual_instance = OgrSourceDatasetTimeTypeStartDuration.from_json(json_str)
-            return instance
-
-        # check if data type is `OgrSourceDatasetTimeTypeStartEnd`
-        if _data_type == "OgrSourceDatasetTimeTypeStartEnd":
-            instance.actual_instance = OgrSourceDatasetTimeTypeStartEnd.from_json(json_str)
-            return instance
-
         # deserialize data into OgrSourceDatasetTimeTypeNone
         try:
             instance.actual_instance = OgrSourceDatasetTimeTypeNone.from_json(json_str)

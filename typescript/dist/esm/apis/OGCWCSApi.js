@@ -57,8 +57,10 @@ export class OGCWCSApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/wcs/{workflow}?request=GetCapabilities`;
+            urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
             const response = yield this.request({
-                path: `/wcs/{workflow}?request=GetCapabilities`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -121,8 +123,10 @@ export class OGCWCSApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/wcs/{workflow}?request=DescribeCoverage`;
+            urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
             const response = yield this.request({
-                path: `/wcs/{workflow}?request=DescribeCoverage`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -221,8 +225,10 @@ export class OGCWCSApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/wcs/{workflow}?request=GetCoverage`;
+            urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
             const response = yield this.request({
-                path: `/wcs/{workflow}?request=GetCoverage`.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,

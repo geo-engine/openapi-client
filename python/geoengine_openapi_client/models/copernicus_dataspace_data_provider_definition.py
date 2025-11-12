@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +31,7 @@ class CopernicusDataspaceDataProviderDefinition(BaseModel):
     """ # noqa: E501
     description: StrictStr
     gdal_config: List[Annotated[List[StrictStr], Field(min_length=2, max_length=2)]] = Field(alias="gdalConfig")
-    id: StrictStr
+    id: UUID
     name: StrictStr
     priority: Optional[StrictInt] = None
     s3_access_key: StrictStr = Field(alias="s3AccessKey")

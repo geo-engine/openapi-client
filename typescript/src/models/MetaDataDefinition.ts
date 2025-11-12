@@ -84,7 +84,7 @@ export function MetaDataDefinitionFromJSONTyped(json: any, ignoreDiscriminator: 
         case 'OgrMetaData':
             return Object.assign({}, OgrMetaDataFromJSONTyped(json, true), { type: 'OgrMetaData' } as const);
         default:
-            throw new Error(`No variant of MetaDataDefinition exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -110,8 +110,7 @@ export function MetaDataDefinitionToJSONTyped(value?: MetaDataDefinition | null,
         case 'OgrMetaData':
             return Object.assign({}, OgrMetaDataToJSON(value), { type: 'OgrMetaData' } as const);
         default:
-            throw new Error(`No variant of MetaDataDefinition exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

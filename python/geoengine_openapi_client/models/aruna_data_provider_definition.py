@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,7 +34,7 @@ class ArunaDataProviderDefinition(BaseModel):
     cache_ttl: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, alias="cacheTtl")
     description: StrictStr
     filter_label: StrictStr = Field(alias="filterLabel")
-    id: StrictStr
+    id: UUID
     name: StrictStr
     priority: Optional[StrictInt] = None
     project_id: StrictStr = Field(alias="projectId")

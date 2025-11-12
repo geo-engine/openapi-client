@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +31,7 @@ class ProjectListing(BaseModel):
     """ # noqa: E501
     changed: datetime
     description: StrictStr
-    id: StrictStr
+    id: UUID
     layer_names: List[StrictStr] = Field(alias="layerNames")
     name: StrictStr
     plot_names: List[StrictStr] = Field(alias="plotNames")

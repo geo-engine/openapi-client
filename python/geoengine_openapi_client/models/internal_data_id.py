@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class InternalDataId(BaseModel):
     """
     InternalDataId
     """ # noqa: E501
-    dataset_id: StrictStr = Field(alias="datasetId")
+    dataset_id: UUID = Field(alias="datasetId")
     type: StrictStr
     __properties: ClassVar[List[str]] = ["datasetId", "type"]
 

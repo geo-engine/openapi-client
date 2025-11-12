@@ -119,21 +119,6 @@ class OgrSourceDurationSpec(BaseModel):
             instance.actual_instance = OgrSourceDurationSpecZero.from_json(json_str)
             return instance
 
-        # check if data type is `OgrSourceDurationSpecInfinite`
-        if _data_type == "OgrSourceDurationSpecInfinite":
-            instance.actual_instance = OgrSourceDurationSpecInfinite.from_json(json_str)
-            return instance
-
-        # check if data type is `OgrSourceDurationSpecValue`
-        if _data_type == "OgrSourceDurationSpecValue":
-            instance.actual_instance = OgrSourceDurationSpecValue.from_json(json_str)
-            return instance
-
-        # check if data type is `OgrSourceDurationSpecZero`
-        if _data_type == "OgrSourceDurationSpecZero":
-            instance.actual_instance = OgrSourceDurationSpecZero.from_json(json_str)
-            return instance
-
         # deserialize data into OgrSourceDurationSpecInfinite
         try:
             instance.actual_instance = OgrSourceDurationSpecInfinite.from_json(json_str)

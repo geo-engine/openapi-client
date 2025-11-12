@@ -106,16 +106,6 @@ class ColorParam(BaseModel):
             instance.actual_instance = StaticColor.from_json(json_str)
             return instance
 
-        # check if data type is `DerivedColor`
-        if _data_type == "DerivedColor":
-            instance.actual_instance = DerivedColor.from_json(json_str)
-            return instance
-
-        # check if data type is `StaticColor`
-        if _data_type == "StaticColor":
-            instance.actual_instance = StaticColor.from_json(json_str)
-            return instance
-
         # deserialize data into StaticColor
         try:
             instance.actual_instance = StaticColor.from_json(json_str)

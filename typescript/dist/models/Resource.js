@@ -44,7 +44,7 @@ function ResourceFromJSONTyped(json, ignoreDiscriminator) {
         case 'provider':
             return Object.assign({}, (0, DataProviderResource_1.DataProviderResourceFromJSONTyped)(json, true), { type: 'provider' });
         default:
-            throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 function ResourceToJSON(json) {
@@ -68,6 +68,6 @@ function ResourceToJSONTyped(value, ignoreDiscriminator = false) {
         case 'provider':
             return Object.assign({}, (0, DataProviderResource_1.DataProviderResourceToJSON)(value), { type: 'provider' });
         default:
-            throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
+            return value;
     }
 }

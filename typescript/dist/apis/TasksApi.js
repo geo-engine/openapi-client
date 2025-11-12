@@ -50,8 +50,10 @@ class TasksApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/tasks/{id}`;
+            urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
             const response = yield this.request({
-                path: `/tasks/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+                path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
@@ -91,8 +93,12 @@ class TasksApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/tasks/list`;
+            urlPath = urlPath.replace(`{${"filter"}}`, encodeURIComponent(String(requestParameters['filter'])));
+            urlPath = urlPath.replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset'])));
+            urlPath = urlPath.replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit'])));
             const response = yield this.request({
-                path: `/tasks/list`.replace(`{${"filter"}}`, encodeURIComponent(String(requestParameters['filter']))).replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset']))).replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -126,8 +132,10 @@ class TasksApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/tasks/{id}/status`;
+            urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
             const response = yield this.request({
-                path: `/tasks/{id}/status`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,

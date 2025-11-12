@@ -106,16 +106,6 @@ class DataId(BaseModel):
             instance.actual_instance = InternalDataId.from_json(json_str)
             return instance
 
-        # check if data type is `ExternalDataId`
-        if _data_type == "ExternalDataId":
-            instance.actual_instance = ExternalDataId.from_json(json_str)
-            return instance
-
-        # check if data type is `InternalDataId`
-        if _data_type == "InternalDataId":
-            instance.actual_instance = InternalDataId.from_json(json_str)
-            return instance
-
         # deserialize data into InternalDataId
         try:
             instance.actual_instance = InternalDataId.from_json(json_str)

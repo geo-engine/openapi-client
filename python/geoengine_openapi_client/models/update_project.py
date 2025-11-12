@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from geoengine_openapi_client.models.st_rectangle import STRectangle
 from geoengine_openapi_client.models.time_step import TimeStep
 from geoengine_openapi_client.models.vec_update import VecUpdate
@@ -32,7 +33,7 @@ class UpdateProject(BaseModel):
     """ # noqa: E501
     bounds: Optional[STRectangle] = None
     description: Optional[StrictStr] = None
-    id: StrictStr
+    id: UUID
     layers: Optional[List[VecUpdate]] = None
     name: Optional[StrictStr] = None
     plots: Optional[List[VecUpdate]] = None

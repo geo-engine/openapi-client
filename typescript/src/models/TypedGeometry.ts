@@ -56,6 +56,9 @@ export function TypedGeometryFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (json == null) {
         return json;
     }
+    if (typeof json !== 'object') {
+        return json;
+    }
     if (instanceOfTypedGeometryOneOf(json)) {
         return TypedGeometryOneOfFromJSONTyped(json, true);
     }
@@ -68,7 +71,6 @@ export function TypedGeometryFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (instanceOfTypedGeometryOneOf3(json)) {
         return TypedGeometryOneOf3FromJSONTyped(json, true);
     }
-
     return {} as any;
 }
 
@@ -80,7 +82,9 @@ export function TypedGeometryToJSONTyped(value?: TypedGeometry | null, ignoreDis
     if (value == null) {
         return value;
     }
-
+    if (typeof value !== 'object') {
+        return value;
+    }
     if (instanceOfTypedGeometryOneOf(value)) {
         return TypedGeometryOneOfToJSON(value as TypedGeometryOneOf);
     }
@@ -93,7 +97,6 @@ export function TypedGeometryToJSONTyped(value?: TypedGeometry | null, ignoreDis
     if (instanceOfTypedGeometryOneOf3(value)) {
         return TypedGeometryOneOf3ToJSON(value as TypedGeometryOneOf3);
     }
-
     return {};
 }
 

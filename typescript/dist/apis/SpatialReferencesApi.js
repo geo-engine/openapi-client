@@ -45,8 +45,10 @@ class SpatialReferencesApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/spatialReferenceSpecification/{srsString}`;
+            urlPath = urlPath.replace(`{${"srsString"}}`, encodeURIComponent(String(requestParameters['srsString'])));
             const response = yield this.request({
-                path: `/spatialReferenceSpecification/{srsString}`.replace(`{${"srsString"}}`, encodeURIComponent(String(requestParameters['srsString']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,

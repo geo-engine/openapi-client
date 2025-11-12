@@ -35,7 +35,7 @@ function TypedResultDescriptorFromJSONTyped(json, ignoreDiscriminator) {
         case 'vector':
             return Object.assign({}, (0, TypedVectorResultDescriptor_1.TypedVectorResultDescriptorFromJSONTyped)(json, true), { type: 'vector' });
         default:
-            throw new Error(`No variant of TypedResultDescriptor exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 function TypedResultDescriptorToJSON(json) {
@@ -53,6 +53,6 @@ function TypedResultDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
         case 'vector':
             return Object.assign({}, (0, TypedVectorResultDescriptor_1.TypedVectorResultDescriptorToJSON)(value), { type: 'vector' });
         default:
-            throw new Error(`No variant of TypedResultDescriptor exists with 'type=${value['type']}'`);
+            return value;
     }
 }

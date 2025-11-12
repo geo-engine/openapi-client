@@ -86,7 +86,7 @@ export class Configuration {
 
 export const DefaultConfig = new Configuration({
     headers: {
-        'User-Agent': 'geoengine/openapi-client/typescript/0.0.27'
+        'User-Agent': 'geoengine/openapi-client/typescript/0.0.28'
     }
 });
 
@@ -347,10 +347,11 @@ export function exists(json: any, key: string) {
 }
 
 export function mapValues(data: any, fn: (item: any) => any) {
-  return Object.keys(data).reduce(
-    (acc, key) => ({ ...acc, [key]: fn(data[key]) }),
-    {}
-  );
+    const result: { [key: string]: any } = {};
+    for (const key of Object.keys(data)) {
+        result[key] = fn(data[key]);
+    }
+    return result;
 }
 
 export function canConsumeForm(consumes: Consume[]): boolean {

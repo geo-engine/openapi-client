@@ -42,13 +42,15 @@ export function DataPathFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     if (json == null) {
         return json;
     }
+    if (typeof json !== 'object') {
+        return json;
+    }
     if (instanceOfDataPathOneOf(json)) {
         return DataPathOneOfFromJSONTyped(json, true);
     }
     if (instanceOfDataPathOneOf1(json)) {
         return DataPathOneOf1FromJSONTyped(json, true);
     }
-
     return {} as any;
 }
 
@@ -60,14 +62,15 @@ export function DataPathToJSONTyped(value?: DataPath | null, ignoreDiscriminator
     if (value == null) {
         return value;
     }
-
+    if (typeof value !== 'object') {
+        return value;
+    }
     if (instanceOfDataPathOneOf(value)) {
         return DataPathOneOfToJSON(value as DataPathOneOf);
     }
     if (instanceOfDataPathOneOf1(value)) {
         return DataPathOneOf1ToJSON(value as DataPathOneOf1);
     }
-
     return {};
 }
 

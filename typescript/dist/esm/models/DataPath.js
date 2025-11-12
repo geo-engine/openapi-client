@@ -20,6 +20,9 @@ export function DataPathFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
+    if (typeof json !== 'object') {
+        return json;
+    }
     if (instanceOfDataPathOneOf(json)) {
         return DataPathOneOfFromJSONTyped(json, true);
     }
@@ -33,6 +36,9 @@ export function DataPathToJSON(json) {
 }
 export function DataPathToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
+        return value;
+    }
+    if (typeof value !== 'object') {
         return value;
     }
     if (instanceOfDataPathOneOf(value)) {

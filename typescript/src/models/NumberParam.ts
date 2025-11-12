@@ -48,7 +48,7 @@ export function NumberParamFromJSONTyped(json: any, ignoreDiscriminator: boolean
         case 'static':
             return Object.assign({}, StaticNumberFromJSONTyped(json, true), { type: 'static' } as const);
         default:
-            throw new Error(`No variant of NumberParam exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -66,8 +66,7 @@ export function NumberParamToJSONTyped(value?: NumberParam | null, ignoreDiscrim
         case 'static':
             return Object.assign({}, StaticNumberToJSON(value), { type: 'static' } as const);
         default:
-            throw new Error(`No variant of NumberParam exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

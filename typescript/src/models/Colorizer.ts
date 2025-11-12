@@ -58,7 +58,7 @@ export function ColorizerFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         case 'palette':
             return Object.assign({}, PaletteColorizerFromJSONTyped(json, true), { type: 'palette' } as const);
         default:
-            throw new Error(`No variant of Colorizer exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -78,8 +78,7 @@ export function ColorizerToJSONTyped(value?: Colorizer | null, ignoreDiscriminat
         case 'palette':
             return Object.assign({}, PaletteColorizerToJSON(value), { type: 'palette' } as const);
         default:
-            throw new Error(`No variant of Colorizer exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

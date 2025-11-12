@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from geoengine_openapi_client.models.ml_model_metadata import MlModelMetadata
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,7 +34,7 @@ class MlModel(BaseModel):
     file_name: StrictStr = Field(alias="fileName")
     metadata: MlModelMetadata
     name: StrictStr
-    upload: StrictStr
+    upload: UUID
     __properties: ClassVar[List[str]] = ["description", "displayName", "fileName", "metadata", "name", "upload"]
 
     model_config = ConfigDict(

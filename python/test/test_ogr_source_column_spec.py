@@ -45,7 +45,9 @@ class TestOgrSourceColumnSpec(unittest.TestCase):
                 var_float = [
                     ''
                     ],
-                format_specifics = None,
+                format_specifics = geoengine_openapi_client.models.format_specifics.FormatSpecifics(
+                    csv = geoengine_openapi_client.models.format_specifics_csv.FormatSpecifics_csv(
+                        header = 'yes', ), ),
                 int = [
                     ''
                     ],

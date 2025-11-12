@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +30,7 @@ class ProjectVersion(BaseModel):
     ProjectVersion
     """ # noqa: E501
     changed: datetime
-    id: StrictStr
+    id: UUID
     __properties: ClassVar[List[str]] = ["changed", "id"]
 
     model_config = ConfigDict(

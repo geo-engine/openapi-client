@@ -42,13 +42,15 @@ export function VecUpdateFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     if (json == null) {
         return json;
     }
+    if (typeof json !== 'object') {
+        return json;
+    }
     if (instanceOfPlot(json)) {
         return PlotFromJSONTyped(json, true);
     }
     if (instanceOfProjectUpdateToken(json)) {
         return ProjectUpdateTokenFromJSONTyped(json, true);
     }
-
     return {} as any;
 }
 
@@ -60,14 +62,15 @@ export function VecUpdateToJSONTyped(value?: VecUpdate | null, ignoreDiscriminat
     if (value == null) {
         return value;
     }
-
+    if (typeof value !== 'object') {
+        return value;
+    }
     if (typeof value === 'object' && instanceOfPlot(value)) {
         return PlotToJSON(value as Plot);
     }
     if (instanceOfProjectUpdateToken(value)) {
         return ProjectUpdateTokenToJSON(value as ProjectUpdateToken);
     }
-
     return {};
 }
 

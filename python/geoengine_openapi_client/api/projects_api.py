@@ -17,9 +17,10 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr
+from pydantic import Field
 from typing import List
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.create_project import CreateProject
 from geoengine_openapi_client.models.id_response import IdResponse
 from geoengine_openapi_client.models.order_by import OrderBy
@@ -320,7 +321,7 @@ class ProjectsApi:
     @validate_call
     def delete_project_handler(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -386,7 +387,7 @@ class ProjectsApi:
     @validate_call
     def delete_project_handler_with_http_info(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -452,7 +453,7 @@ class ProjectsApi:
     @validate_call
     def delete_project_handler_without_preload_content(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -859,7 +860,7 @@ class ProjectsApi:
     @validate_call
     def load_project_latest_handler(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -925,7 +926,7 @@ class ProjectsApi:
     @validate_call
     def load_project_latest_handler_with_http_info(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -991,7 +992,7 @@ class ProjectsApi:
     @validate_call
     def load_project_latest_handler_without_preload_content(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1117,8 +1118,8 @@ class ProjectsApi:
     @validate_call
     def load_project_version_handler(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
-        version: Annotated[StrictStr, Field(description="Version id")],
+        project: Annotated[UUID, Field(description="Project id")],
+        version: Annotated[UUID, Field(description="Version id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1187,8 +1188,8 @@ class ProjectsApi:
     @validate_call
     def load_project_version_handler_with_http_info(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
-        version: Annotated[StrictStr, Field(description="Version id")],
+        project: Annotated[UUID, Field(description="Project id")],
+        version: Annotated[UUID, Field(description="Version id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1257,8 +1258,8 @@ class ProjectsApi:
     @validate_call
     def load_project_version_handler_without_preload_content(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
-        version: Annotated[StrictStr, Field(description="Version id")],
+        project: Annotated[UUID, Field(description="Project id")],
+        version: Annotated[UUID, Field(description="Version id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1390,7 +1391,7 @@ class ProjectsApi:
     @validate_call
     def project_versions_handler(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1456,7 +1457,7 @@ class ProjectsApi:
     @validate_call
     def project_versions_handler_with_http_info(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1522,7 +1523,7 @@ class ProjectsApi:
     @validate_call
     def project_versions_handler_without_preload_content(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1648,7 +1649,7 @@ class ProjectsApi:
     @validate_call
     def update_project_handler(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         update_project: UpdateProject,
         _request_timeout: Union[
             None,
@@ -1718,7 +1719,7 @@ class ProjectsApi:
     @validate_call
     def update_project_handler_with_http_info(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         update_project: UpdateProject,
         _request_timeout: Union[
             None,
@@ -1788,7 +1789,7 @@ class ProjectsApi:
     @validate_call
     def update_project_handler_without_preload_content(
         self,
-        project: Annotated[StrictStr, Field(description="Project id")],
+        project: Annotated[UUID, Field(description="Project id")],
         update_project: UpdateProject,
         _request_timeout: Union[
             None,

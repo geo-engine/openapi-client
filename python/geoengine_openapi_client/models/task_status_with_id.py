@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import ConfigDict, Field, StrictStr
+from pydantic import ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from geoengine_openapi_client.models.task_status import TaskStatus
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +29,7 @@ class TaskStatusWithId(TaskStatus):
     """
     TaskStatusWithId
     """ # noqa: E501
-    task_id: StrictStr = Field(alias="taskId")
+    task_id: UUID = Field(alias="taskId")
     __properties: ClassVar[List[str]] = ["description", "estimatedTimeRemaining", "info", "pctComplete", "status", "taskType", "timeStarted", "timeTotal", "cleanUp", "error", "taskId"]
 
     model_config = ConfigDict(

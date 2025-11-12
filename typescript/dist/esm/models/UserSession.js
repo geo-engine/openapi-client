@@ -54,12 +54,12 @@ export function UserSessionToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'created': ((value['created']).toISOString()),
+        'created': value['created'].toISOString(),
         'id': value['id'],
         'project': value['project'],
         'roles': value['roles'],
         'user': UserInfoToJSON(value['user']),
-        'validUntil': ((value['validUntil']).toISOString()),
+        'validUntil': value['validUntil'].toISOString(),
         'view': STRectangleToJSON(value['view']),
     };
 }

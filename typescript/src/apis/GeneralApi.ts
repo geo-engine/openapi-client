@@ -35,8 +35,11 @@ export class GeneralApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/available`;
+
         const response = await this.request({
-            path: `/available`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -60,8 +63,11 @@ export class GeneralApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+
+        let urlPath = `/info`;
+
         const response = await this.request({
-            path: `/info`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

@@ -20,6 +20,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictBytes, StrictStr
 from typing import Optional, Tuple, Union
 from typing_extensions import Annotated
+from uuid import UUID
 from geoengine_openapi_client.models.get_capabilities_format import GetCapabilitiesFormat
 from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest
 from geoengine_openapi_client.models.get_legend_graphic_request import GetLegendGraphicRequest
@@ -50,7 +51,7 @@ class OGCWMSApi:
     @validate_call
     def wms_capabilities_handler(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: Optional[WmsVersion],
         service: WmsService,
         request: GetCapabilitiesRequest,
@@ -132,7 +133,7 @@ class OGCWMSApi:
     @validate_call
     def wms_capabilities_handler_with_http_info(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: Optional[WmsVersion],
         service: WmsService,
         request: GetCapabilitiesRequest,
@@ -214,7 +215,7 @@ class OGCWMSApi:
     @validate_call
     def wms_capabilities_handler_without_preload_content(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: Optional[WmsVersion],
         service: WmsService,
         request: GetCapabilitiesRequest,
@@ -369,7 +370,7 @@ class OGCWMSApi:
     @validate_call
     def wms_legend_graphic_handler(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WmsVersion,
         service: WmsService,
         request: GetLegendGraphicRequest,
@@ -451,7 +452,7 @@ class OGCWMSApi:
     @validate_call
     def wms_legend_graphic_handler_with_http_info(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WmsVersion,
         service: WmsService,
         request: GetLegendGraphicRequest,
@@ -533,7 +534,7 @@ class OGCWMSApi:
     @validate_call
     def wms_legend_graphic_handler_without_preload_content(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WmsVersion,
         service: WmsService,
         request: GetLegendGraphicRequest,
@@ -681,7 +682,7 @@ class OGCWMSApi:
     @validate_call
     def wms_map_handler(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WmsVersion,
         service: WmsService,
         request: GetMapRequest,
@@ -815,7 +816,7 @@ class OGCWMSApi:
     @validate_call
     def wms_map_handler_with_http_info(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WmsVersion,
         service: WmsService,
         request: GetMapRequest,
@@ -949,7 +950,7 @@ class OGCWMSApi:
     @validate_call
     def wms_map_handler_without_preload_content(
         self,
-        workflow: Annotated[StrictStr, Field(description="Workflow id")],
+        workflow: Annotated[UUID, Field(description="Workflow id")],
         version: WmsVersion,
         service: WmsService,
         request: GetMapRequest,

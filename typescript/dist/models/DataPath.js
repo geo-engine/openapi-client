@@ -26,6 +26,9 @@ function DataPathFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
+    if (typeof json !== 'object') {
+        return json;
+    }
     if ((0, DataPathOneOf_1.instanceOfDataPathOneOf)(json)) {
         return (0, DataPathOneOf_1.DataPathOneOfFromJSONTyped)(json, true);
     }
@@ -39,6 +42,9 @@ function DataPathToJSON(json) {
 }
 function DataPathToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
+        return value;
+    }
+    if (typeof value !== 'object') {
         return value;
     }
     if ((0, DataPathOneOf_1.instanceOfDataPathOneOf)(value)) {

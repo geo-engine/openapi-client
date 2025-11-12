@@ -84,7 +84,7 @@ export function ResourceFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         case 'provider':
             return Object.assign({}, DataProviderResourceFromJSONTyped(json, true), { type: 'provider' } as const);
         default:
-            throw new Error(`No variant of Resource exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -110,8 +110,7 @@ export function ResourceToJSONTyped(value?: Resource | null, ignoreDiscriminator
         case 'provider':
             return Object.assign({}, DataProviderResourceToJSON(value), { type: 'provider' } as const);
         default:
-            throw new Error(`No variant of Resource exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

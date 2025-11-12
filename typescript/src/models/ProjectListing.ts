@@ -100,7 +100,7 @@ export function ProjectListingToJSONTyped(value?: ProjectListing | null, ignoreD
 
     return {
         
-        'changed': ((value['changed']).toISOString()),
+        'changed': value['changed'].toISOString(),
         'description': value['description'],
         'id': value['id'],
         'layerNames': value['layerNames'],

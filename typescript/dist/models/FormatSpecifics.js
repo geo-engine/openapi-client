@@ -13,11 +13,20 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.instanceOfFormatSpecifics = instanceOfFormatSpecifics;
 exports.FormatSpecificsFromJSON = FormatSpecificsFromJSON;
 exports.FormatSpecificsFromJSONTyped = FormatSpecificsFromJSONTyped;
 exports.FormatSpecificsToJSON = FormatSpecificsToJSON;
 exports.FormatSpecificsToJSONTyped = FormatSpecificsToJSONTyped;
-const FormatSpecificsOneOf_1 = require("./FormatSpecificsOneOf");
+const FormatSpecificsCsv_1 = require("./FormatSpecificsCsv");
+/**
+ * Check if a given object implements the FormatSpecifics interface.
+ */
+function instanceOfFormatSpecifics(value) {
+    if (!('csv' in value) || value['csv'] === undefined)
+        return false;
+    return true;
+}
 function FormatSpecificsFromJSON(json) {
     return FormatSpecificsFromJSONTyped(json, false);
 }
@@ -25,10 +34,9 @@ function FormatSpecificsFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    if ((0, FormatSpecificsOneOf_1.instanceOfFormatSpecificsOneOf)(json)) {
-        return (0, FormatSpecificsOneOf_1.FormatSpecificsOneOfFromJSONTyped)(json, true);
-    }
-    return {};
+    return {
+        'csv': (0, FormatSpecificsCsv_1.FormatSpecificsCsvFromJSON)(json['csv']),
+    };
 }
 function FormatSpecificsToJSON(json) {
     return FormatSpecificsToJSONTyped(json, false);
@@ -37,8 +45,7 @@ function FormatSpecificsToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
-    if ((0, FormatSpecificsOneOf_1.instanceOfFormatSpecificsOneOf)(value)) {
-        return (0, FormatSpecificsOneOf_1.FormatSpecificsOneOfToJSON)(value);
-    }
-    return {};
+    return {
+        'csv': (0, FormatSpecificsCsv_1.FormatSpecificsCsvToJSON)(value['csv']),
+    };
 }

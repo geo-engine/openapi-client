@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,7 @@ class ExternalDataId(BaseModel):
     ExternalDataId
     """ # noqa: E501
     layer_id: StrictStr = Field(alias="layerId")
-    provider_id: StrictStr = Field(alias="providerId")
+    provider_id: UUID = Field(alias="providerId")
     type: StrictStr
     __properties: ClassVar[List[str]] = ["layerId", "providerId", "type"]
 

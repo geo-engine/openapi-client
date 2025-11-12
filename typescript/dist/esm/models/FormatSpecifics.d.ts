@@ -9,14 +9,25 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { FormatSpecificsOneOf } from './FormatSpecificsOneOf';
+import type { FormatSpecificsCsv } from './FormatSpecificsCsv';
 /**
- * @type FormatSpecifics
  *
  * @export
+ * @interface FormatSpecifics
  */
-export type FormatSpecifics = FormatSpecificsOneOf;
+export interface FormatSpecifics {
+    /**
+     *
+     * @type {FormatSpecificsCsv}
+     * @memberof FormatSpecifics
+     */
+    csv: FormatSpecificsCsv;
+}
+/**
+ * Check if a given object implements the FormatSpecifics interface.
+ */
+export declare function instanceOfFormatSpecifics(value: object): value is FormatSpecifics;
 export declare function FormatSpecificsFromJSON(json: any): FormatSpecifics;
 export declare function FormatSpecificsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FormatSpecifics;
-export declare function FormatSpecificsToJSON(json: any): any;
+export declare function FormatSpecificsToJSON(json: any): FormatSpecifics;
 export declare function FormatSpecificsToJSONTyped(value?: FormatSpecifics | null, ignoreDiscriminator?: boolean): any;

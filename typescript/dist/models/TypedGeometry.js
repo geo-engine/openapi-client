@@ -28,6 +28,9 @@ function TypedGeometryFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
+    if (typeof json !== 'object') {
+        return json;
+    }
     if ((0, TypedGeometryOneOf_1.instanceOfTypedGeometryOneOf)(json)) {
         return (0, TypedGeometryOneOf_1.TypedGeometryOneOfFromJSONTyped)(json, true);
     }
@@ -47,6 +50,9 @@ function TypedGeometryToJSON(json) {
 }
 function TypedGeometryToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
+        return value;
+    }
+    if (typeof value !== 'object') {
         return value;
     }
     if ((0, TypedGeometryOneOf_1.instanceOfTypedGeometryOneOf)(value)) {

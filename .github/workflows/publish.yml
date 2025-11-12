@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ["3.8"] # use lowest supported Python version
+        python-version: ["3.10"] # use lowest supported Python version
 
     defaults:
       run:
@@ -56,7 +56,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.20.x] # use lowest supported Node version
+        node-version: [20.19.x] # use lowest supported Node version
 
     defaults:
       run:

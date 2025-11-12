@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from geoengine_openapi_client.models.dataset_layer_listing_collection import DatasetLayerListingCollection
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,7 +31,7 @@ class DatasetLayerListingProviderDefinition(BaseModel):
     """ # noqa: E501
     collections: List[DatasetLayerListingCollection]
     description: StrictStr
-    id: StrictStr
+    id: UUID
     name: StrictStr
     priority: Optional[StrictInt] = None
     type: StrictStr

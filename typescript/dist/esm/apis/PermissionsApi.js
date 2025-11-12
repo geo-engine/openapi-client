@@ -44,8 +44,9 @@ export class PermissionsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/permissions`;
             const response = yield this.request({
-                path: `/permissions`,
+                path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
@@ -94,8 +95,11 @@ export class PermissionsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/permissions/resources/{resource_type}/{resource_id}`;
+            urlPath = urlPath.replace(`{${"resource_type"}}`, encodeURIComponent(String(requestParameters['resourceType'])));
+            urlPath = urlPath.replace(`{${"resource_id"}}`, encodeURIComponent(String(requestParameters['resourceId'])));
             const response = yield this.request({
-                path: `/permissions/resources/{resource_type}/{resource_id}`.replace(`{${"resource_type"}}`, encodeURIComponent(String(requestParameters['resourceType']))).replace(`{${"resource_id"}}`, encodeURIComponent(String(requestParameters['resourceId']))),
+                path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
@@ -130,8 +134,9 @@ export class PermissionsApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
+            let urlPath = `/permissions`;
             const response = yield this.request({
-                path: `/permissions`,
+                path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,

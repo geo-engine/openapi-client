@@ -66,7 +66,7 @@ export function OgrSourceDatasetTimeTypeFromJSONTyped(json: any, ignoreDiscrimin
         case 'start+end':
             return Object.assign({}, OgrSourceDatasetTimeTypeStartEndFromJSONTyped(json, true), { type: 'start+end' } as const);
         default:
-            throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${json['type']}'`);
+            return json;
     }
 }
 
@@ -88,8 +88,7 @@ export function OgrSourceDatasetTimeTypeToJSONTyped(value?: OgrSourceDatasetTime
         case 'start+end':
             return Object.assign({}, OgrSourceDatasetTimeTypeStartEndToJSON(value), { type: 'start+end' } as const);
         default:
-            throw new Error(`No variant of OgrSourceDatasetTimeType exists with 'type=${value['type']}'`);
+            return value;
     }
-
 }
 

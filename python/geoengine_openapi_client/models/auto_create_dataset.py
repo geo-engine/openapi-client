@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +33,7 @@ class AutoCreateDataset(BaseModel):
     layer_name: Optional[StrictStr] = Field(default=None, alias="layerName")
     main_file: StrictStr = Field(alias="mainFile")
     tags: Optional[List[StrictStr]] = None
-    upload: StrictStr
+    upload: UUID
     __properties: ClassVar[List[str]] = ["datasetDescription", "datasetName", "layerName", "mainFile", "tags", "upload"]
 
     model_config = ConfigDict(

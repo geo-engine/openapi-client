@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class TaskResponse(BaseModel):
     """
     Create a task somewhere and respond with a task id to query the task status.
     """ # noqa: E501
-    task_id: StrictStr = Field(alias="taskId")
+    task_id: UUID = Field(alias="taskId")
     __properties: ClassVar[List[str]] = ["taskId"]
 
     model_config = ConfigDict(

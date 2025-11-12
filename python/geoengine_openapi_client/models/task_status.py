@@ -133,26 +133,6 @@ class TaskStatus(BaseModel):
             instance.actual_instance = TaskStatusRunning.from_json(json_str)
             return instance
 
-        # check if data type is `TaskStatusAborted`
-        if _data_type == "TaskStatusAborted":
-            instance.actual_instance = TaskStatusAborted.from_json(json_str)
-            return instance
-
-        # check if data type is `TaskStatusCompleted`
-        if _data_type == "TaskStatusCompleted":
-            instance.actual_instance = TaskStatusCompleted.from_json(json_str)
-            return instance
-
-        # check if data type is `TaskStatusFailed`
-        if _data_type == "TaskStatusFailed":
-            instance.actual_instance = TaskStatusFailed.from_json(json_str)
-            return instance
-
-        # check if data type is `TaskStatusRunning`
-        if _data_type == "TaskStatusRunning":
-            instance.actual_instance = TaskStatusRunning.from_json(json_str)
-            return instance
-
         # check if data type is `TaskStatusWithId`
         if _data_type == "TaskStatusWithId":
             instance.actual_instance = TaskStatusWithId.from_json(json_str)

@@ -60,7 +60,7 @@ function DataUsageToJSONTyped(value, ignoreDiscriminator = false) {
         'computationId': value['computationId'],
         'count': value['count'],
         'data': value['data'],
-        'timestamp': ((value['timestamp']).toISOString()),
+        'timestamp': value['timestamp'].toISOString(),
         'userId': value['userId'],
     };
 }

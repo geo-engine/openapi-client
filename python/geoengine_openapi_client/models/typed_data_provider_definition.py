@@ -236,66 +236,6 @@ class TypedDataProviderDefinition(BaseModel):
             instance.actual_instance = WildliveDataConnectorDefinition.from_json(json_str)
             return instance
 
-        # check if data type is `ArunaDataProviderDefinition`
-        if _data_type == "ArunaDataProviderDefinition":
-            instance.actual_instance = ArunaDataProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `CopernicusDataspaceDataProviderDefinition`
-        if _data_type == "CopernicusDataspaceDataProviderDefinition":
-            instance.actual_instance = CopernicusDataspaceDataProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `DatasetLayerListingProviderDefinition`
-        if _data_type == "DatasetLayerListingProviderDefinition":
-            instance.actual_instance = DatasetLayerListingProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `EbvPortalDataProviderDefinition`
-        if _data_type == "EbvPortalDataProviderDefinition":
-            instance.actual_instance = EbvPortalDataProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `EdrDataProviderDefinition`
-        if _data_type == "EdrDataProviderDefinition":
-            instance.actual_instance = EdrDataProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `GbifDataProviderDefinition`
-        if _data_type == "GbifDataProviderDefinition":
-            instance.actual_instance = GbifDataProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `GfbioAbcdDataProviderDefinition`
-        if _data_type == "GfbioAbcdDataProviderDefinition":
-            instance.actual_instance = GfbioAbcdDataProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `GfbioCollectionsDataProviderDefinition`
-        if _data_type == "GfbioCollectionsDataProviderDefinition":
-            instance.actual_instance = GfbioCollectionsDataProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `NetCdfCfDataProviderDefinition`
-        if _data_type == "NetCdfCfDataProviderDefinition":
-            instance.actual_instance = NetCdfCfDataProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `PangaeaDataProviderDefinition`
-        if _data_type == "PangaeaDataProviderDefinition":
-            instance.actual_instance = PangaeaDataProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `SentinelS2L2ACogsProviderDefinition`
-        if _data_type == "SentinelS2L2ACogsProviderDefinition":
-            instance.actual_instance = SentinelS2L2ACogsProviderDefinition.from_json(json_str)
-            return instance
-
-        # check if data type is `WildliveDataConnectorDefinition`
-        if _data_type == "WildliveDataConnectorDefinition":
-            instance.actual_instance = WildliveDataConnectorDefinition.from_json(json_str)
-            return instance
-
         # deserialize data into ArunaDataProviderDefinition
         try:
             instance.actual_instance = ArunaDataProviderDefinition.from_json(json_str)

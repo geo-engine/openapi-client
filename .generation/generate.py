@@ -218,7 +218,7 @@ def generate_rust_code(*, package_name: str, package_version: str, git_repo: Git
             "-i", f"{'/local' / CWD / 'input/openapi.json'}",
             "-g", "rust",
             "--additional-properties=" + ",".join([
-                f"packageName={package_name}",
+                f"packageName={package_name.replace('_', '-')}",
                 f"packageVersion={package_version}",
             ]),
             "--git-host", git_repo.host,

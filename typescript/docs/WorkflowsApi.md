@@ -1,6 +1,6 @@
 # WorkflowsApi
 
-All URIs are relative to *https://geoengine.io/api*
+All URIs are relative to *http://127.0.0.1:3030/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -364,7 +364,7 @@ example().catch(console.error);
 
 ## rasterStreamWebsocket
 
-> rasterStreamWebsocket(id, spatialBounds, timeInterval, spatialResolution, attributes, resultType)
+> rasterStreamWebsocket(id, spatialBounds, timeInterval, attributes, resultType)
 
 Query a workflow raster result as a stream of tiles via a websocket connection.
 
@@ -392,8 +392,6 @@ async function example() {
     spatialBounds: ...,
     // string
     timeInterval: timeInterval_example,
-    // SpatialResolution
-    spatialResolution: ...,
     // string
     attributes: attributes_example,
     // RasterStreamWebsocketResultType
@@ -420,7 +418,6 @@ example().catch(console.error);
 | **id** | `string` | Workflow id | [Defaults to `undefined`] |
 | **spatialBounds** | [](.md) |  | [Defaults to `undefined`] |
 | **timeInterval** | `string` |  | [Defaults to `undefined`] |
-| **spatialResolution** | [](.md) |  | [Defaults to `undefined`] |
 | **attributes** | `string` |  | [Defaults to `undefined`] |
 | **resultType** | `RasterStreamWebsocketResultType` |  | [Defaults to `undefined`] [Enum: arrow] |
 

@@ -35,11 +35,9 @@ Name | Type
 `collectionApiAuthToken` | string
 `collectionApiUrl` | string
 `pangaeaUrl` | string
-`bands` | [Array&lt;StacBand&gt;](StacBand.md)
 `gdalRetries` | number
 `queryBuffer` | [StacQueryBuffer](StacQueryBuffer.md)
 `stacApiRetries` | [StacApiRetries](StacApiRetries.md)
-`zones` | [Array&lt;StacZone&gt;](StacZone.md)
 `apiKey` | string
 
 ## Example
@@ -78,11 +76,9 @@ const example = {
   "collectionApiAuthToken": null,
   "collectionApiUrl": null,
   "pangaeaUrl": null,
-  "bands": null,
   "gdalRetries": null,
   "queryBuffer": null,
   "stacApiRetries": null,
-  "zones": null,
   "apiKey": null,
 } satisfies TypedDataProviderDefinition
 

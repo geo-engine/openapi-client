@@ -1,9 +1,10 @@
 # DatasetsApi
 
-All URIs are relative to *https://geoengine.io/api*
+All URIs are relative to *http://127.0.0.1:3030/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**addDatasetTilesHandler**](DatasetsApi.md#adddatasettileshandler) | **POST** /dataset/{dataset}/tiles | Add a tile to a gdal dataset. |
 | [**autoCreateDatasetHandler**](DatasetsApi.md#autocreatedatasethandler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible. |
 | [**createDatasetHandler**](DatasetsApi.md#createdatasethandler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume. |
 | [**deleteDatasetHandler**](DatasetsApi.md#deletedatasethandler) | **DELETE** /dataset/{dataset} | Delete a dataset |
@@ -18,6 +19,78 @@ All URIs are relative to *https://geoengine.io/api*
 | [**updateDatasetSymbologyHandler**](DatasetsApi.md#updatedatasetsymbologyhandler) | **PUT** /dataset/{dataset}/symbology | Updates the dataset\&#39;s symbology |
 | [**updateLoadingInfoHandler**](DatasetsApi.md#updateloadinginfohandler) | **PUT** /dataset/{dataset}/loadingInfo | Updates the dataset\&#39;s loading info |
 
+
+
+## addDatasetTilesHandler
+
+> addDatasetTilesHandler(dataset, autoCreateDataset)
+
+Add a tile to a gdal dataset.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DatasetsApi,
+} from '@geoengine/openapi-client';
+import type { AddDatasetTilesHandlerRequest } from '@geoengine/openapi-client';
+
+async function example() {
+  console.log("🚀 Testing @geoengine/openapi-client SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: session_token
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DatasetsApi(config);
+
+  const body = {
+    // string | Dataset Name
+    dataset: dataset_example,
+    // AutoCreateDataset
+    autoCreateDataset: ...,
+  } satisfies AddDatasetTilesHandlerRequest;
+
+  try {
+    const data = await api.addDatasetTilesHandler(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **dataset** | `string` | Dataset Name | [Defaults to `undefined`] |
+| **autoCreateDataset** | [AutoCreateDataset](AutoCreateDataset.md) |  | |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+[session_token](../README.md#session_token)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## autoCreateDatasetHandler

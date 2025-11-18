@@ -12,7 +12,7 @@
 set -e
 
 wget -O .generation/input/openapi.json \
-  https://raw.githubusercontent.com/geo-engine/geoengine/refs/heads/main/openapi.json
+  http://localhost:4200/api/api-docs/openapi.json
 .generation/generate.py --no-spec-fetch --no-container-build python
 .generation/generate.py --no-spec-fetch --no-container-build typescript
 

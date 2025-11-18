@@ -1,6 +1,6 @@
 # @geoengine/openapi-client@0.0.28
 
-A TypeScript SDK client for the geoengine.io API.
+A TypeScript SDK client for the 127.0.0.1 API.
 
 ## Usage
 
@@ -18,7 +18,7 @@ import {
   Configuration,
   DatasetsApi,
 } from '@geoengine/openapi-client';
-import type { AutoCreateDatasetHandlerRequest } from '@geoengine/openapi-client';
+import type { AddDatasetTilesHandlerRequest } from '@geoengine/openapi-client';
 
 async function example() {
   console.log("🚀 Testing @geoengine/openapi-client SDK...");
@@ -29,12 +29,14 @@ async function example() {
   const api = new DatasetsApi(config);
 
   const body = {
+    // string | Dataset Name
+    dataset: dataset_example,
     // AutoCreateDataset
     autoCreateDataset: ...,
-  } satisfies AutoCreateDatasetHandlerRequest;
+  } satisfies AddDatasetTilesHandlerRequest;
 
   try {
-    const data = await api.autoCreateDatasetHandler(body);
+    const data = await api.addDatasetTilesHandler(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -50,10 +52,11 @@ example().catch(console.error);
 
 ### API Endpoints
 
-All URIs are relative to *https://geoengine.io/api*
+All URIs are relative to *http://127.0.0.1:3030/api*
 
 | Class | Method | HTTP request | Description
 | ----- | ------ | ------------ | -------------
+*DatasetsApi* | [**addDatasetTilesHandler**](docs/DatasetsApi.md#adddatasettileshandler) | **POST** /dataset/{dataset}/tiles | Add a tile to a gdal dataset.
 *DatasetsApi* | [**autoCreateDatasetHandler**](docs/DatasetsApi.md#autocreatedatasethandler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 *DatasetsApi* | [**createDatasetHandler**](docs/DatasetsApi.md#createdatasethandler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 *DatasetsApi* | [**deleteDatasetHandler**](docs/DatasetsApi.md#deletedatasethandler) | **DELETE** /dataset/{dataset} | Delete a dataset
@@ -155,6 +158,7 @@ All URIs are relative to *https://geoengine.io/api*
 ### Models
 
 - [AddDataset](docs/AddDataset.md)
+- [AddDatasetTile](docs/AddDatasetTile.md)
 - [AddLayer](docs/AddLayer.md)
 - [AddLayerCollection](docs/AddLayerCollection.md)
 - [AddRole](docs/AddRole.md)
@@ -213,8 +217,10 @@ All URIs are relative to *https://geoengine.io/api*
 - [GdalMetaDataStatic](docs/GdalMetaDataStatic.md)
 - [GdalMetadataMapping](docs/GdalMetadataMapping.md)
 - [GdalMetadataNetCdfCf](docs/GdalMetadataNetCdfCf.md)
+- [GdalMultiBand](docs/GdalMultiBand.md)
 - [GdalSourceTimePlaceholder](docs/GdalSourceTimePlaceholder.md)
 - [GeoJson](docs/GeoJson.md)
+- [GeoTransform](docs/GeoTransform.md)
 - [GetCapabilitiesFormat](docs/GetCapabilitiesFormat.md)
 - [GetCapabilitiesRequest](docs/GetCapabilitiesRequest.md)
 - [GetCoverageFormat](docs/GetCoverageFormat.md)
@@ -226,6 +232,8 @@ All URIs are relative to *https://geoengine.io/api*
 - [GetMapRequest](docs/GetMapRequest.md)
 - [GfbioAbcdDataProviderDefinition](docs/GfbioAbcdDataProviderDefinition.md)
 - [GfbioCollectionsDataProviderDefinition](docs/GfbioCollectionsDataProviderDefinition.md)
+- [GridBoundingBox2D](docs/GridBoundingBox2D.md)
+- [GridIdx2D](docs/GridIdx2D.md)
 - [IdResponse](docs/IdResponse.md)
 - [InternalDataId](docs/InternalDataId.md)
 - [Layer](docs/Layer.md)
@@ -286,7 +294,6 @@ All URIs are relative to *https://geoengine.io/api*
 - [PermissionRequest](docs/PermissionRequest.md)
 - [Plot](docs/Plot.md)
 - [PlotOutputFormat](docs/PlotOutputFormat.md)
-- [PlotQueryRectangle](docs/PlotQueryRectangle.md)
 - [PlotResultDescriptor](docs/PlotResultDescriptor.md)
 - [PointSymbology](docs/PointSymbology.md)
 - [PolygonSymbology](docs/PolygonSymbology.md)
@@ -311,10 +318,11 @@ All URIs are relative to *https://geoengine.io/api*
 - [RasterDatasetFromWorkflowResult](docs/RasterDatasetFromWorkflowResult.md)
 - [RasterPropertiesEntryType](docs/RasterPropertiesEntryType.md)
 - [RasterPropertiesKey](docs/RasterPropertiesKey.md)
-- [RasterQueryRectangle](docs/RasterQueryRectangle.md)
 - [RasterResultDescriptor](docs/RasterResultDescriptor.md)
 - [RasterStreamWebsocketResultType](docs/RasterStreamWebsocketResultType.md)
 - [RasterSymbology](docs/RasterSymbology.md)
+- [RasterToDatasetQueryRectangle](docs/RasterToDatasetQueryRectangle.md)
+- [RegularTimeDimension](docs/RegularTimeDimension.md)
 - [Resource](docs/Resource.md)
 - [Role](docs/Role.md)
 - [RoleDescription](docs/RoleDescription.md)
@@ -325,14 +333,15 @@ All URIs are relative to *https://geoengine.io/api*
 - [SentinelS2L2ACogsProviderDefinition](docs/SentinelS2L2ACogsProviderDefinition.md)
 - [ServerInfo](docs/ServerInfo.md)
 - [SingleBandRasterColorizer](docs/SingleBandRasterColorizer.md)
+- [SpatialGridDefinition](docs/SpatialGridDefinition.md)
+- [SpatialGridDescriptor](docs/SpatialGridDescriptor.md)
+- [SpatialGridDescriptorState](docs/SpatialGridDescriptorState.md)
 - [SpatialPartition2D](docs/SpatialPartition2D.md)
 - [SpatialReferenceAuthority](docs/SpatialReferenceAuthority.md)
 - [SpatialReferenceSpecification](docs/SpatialReferenceSpecification.md)
 - [SpatialResolution](docs/SpatialResolution.md)
 - [StacApiRetries](docs/StacApiRetries.md)
-- [StacBand](docs/StacBand.md)
 - [StacQueryBuffer](docs/StacQueryBuffer.md)
-- [StacZone](docs/StacZone.md)
 - [StaticColor](docs/StaticColor.md)
 - [StaticNumber](docs/StaticNumber.md)
 - [StrokeParam](docs/StrokeParam.md)
@@ -349,6 +358,10 @@ All URIs are relative to *https://geoengine.io/api*
 - [TaskStatusRunning](docs/TaskStatusRunning.md)
 - [TaskStatusWithId](docs/TaskStatusWithId.md)
 - [TextSymbology](docs/TextSymbology.md)
+- [TimeDescriptor](docs/TimeDescriptor.md)
+- [TimeDimension](docs/TimeDimension.md)
+- [TimeDimensionOneOf](docs/TimeDimensionOneOf.md)
+- [TimeDimensionOneOf1](docs/TimeDimensionOneOf1.md)
 - [TimeGranularity](docs/TimeGranularity.md)
 - [TimeInterval](docs/TimeInterval.md)
 - [TimeReference](docs/TimeReference.md)
@@ -382,7 +395,6 @@ All URIs are relative to *https://geoengine.io/api*
 - [VecUpdate](docs/VecUpdate.md)
 - [VectorColumnInfo](docs/VectorColumnInfo.md)
 - [VectorDataType](docs/VectorDataType.md)
-- [VectorQueryRectangle](docs/VectorQueryRectangle.md)
 - [VectorResultDescriptor](docs/VectorResultDescriptor.md)
 - [Volume](docs/Volume.md)
 - [VolumeFileLayersResponse](docs/VolumeFileLayersResponse.md)
@@ -413,7 +425,7 @@ This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.or
 and is automatically generated by the
 [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `0.8.0`
+- API version: `0.9.0`
 - Package version: `0.0.28`
 - Generator version: `7.17.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`

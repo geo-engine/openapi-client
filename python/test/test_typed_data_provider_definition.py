@@ -119,7 +119,9 @@ class TestTypedDataProviderDefinition(unittest.TestCase):
                         epsg = 0, 
                         name = '', )
                     ],
-                api_key = ''
+                expiry_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                refresh_token = '',
+                user = ''
             )
         else:
             return TypedDataProviderDefinition(

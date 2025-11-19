@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from uuid import UUID
@@ -28,13 +29,15 @@ class WildliveDataConnectorDefinition(BaseModel):
     """
     WildliveDataConnectorDefinition
     """ # noqa: E501
-    api_key: Optional[StrictStr] = Field(default=None, alias="apiKey")
     description: StrictStr
+    expiry_date: Optional[datetime] = Field(default=None, alias="expiryDate")
     id: UUID
     name: StrictStr
     priority: Optional[StrictInt] = None
+    refresh_token: Optional[StrictStr] = Field(default=None, description="A wrapper type that serializes to \"*****\" and can be deserialized from any string. If the inner value is \"*****\", it is considered unknown and `as_option` returns `None`. This is useful for secrets that should not be exposed in API responses, but can be set in API requests.", alias="refreshToken")
     type: StrictStr
-    __properties: ClassVar[List[str]] = ["apiKey", "description", "id", "name", "priority", "type"]
+    user: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["description", "expiryDate", "id", "name", "priority", "refreshToken", "type", "user"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -82,15 +85,20 @@ class WildliveDataConnectorDefinition(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if api_key (nullable) is None
+        # set to None if expiry_date (nullable) is None
         # and model_fields_set contains the field
-        if self.api_key is None and "api_key" in self.model_fields_set:
-            _dict['apiKey'] = None
+        if self.expiry_date is None and "expiry_date" in self.model_fields_set:
+            _dict['expiryDate'] = None
 
         # set to None if priority (nullable) is None
         # and model_fields_set contains the field
         if self.priority is None and "priority" in self.model_fields_set:
             _dict['priority'] = None
+
+        # set to None if user (nullable) is None
+        # and model_fields_set contains the field
+        if self.user is None and "user" in self.model_fields_set:
+            _dict['user'] = None
 
         return _dict
 
@@ -104,12 +112,14 @@ class WildliveDataConnectorDefinition(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "apiKey": obj.get("apiKey"),
             "description": obj.get("description"),
+            "expiryDate": obj.get("expiryDate"),
             "id": obj.get("id"),
             "name": obj.get("name"),
             "priority": obj.get("priority"),
-            "type": obj.get("type")
+            "refreshToken": obj.get("refreshToken"),
+            "type": obj.get("type"),
+            "user": obj.get("user")
         })
         return _obj
 

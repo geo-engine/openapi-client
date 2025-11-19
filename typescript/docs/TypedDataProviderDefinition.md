@@ -38,7 +38,9 @@ Name | Type
 `gdalRetries` | number
 `queryBuffer` | [StacQueryBuffer](StacQueryBuffer.md)
 `stacApiRetries` | [StacApiRetries](StacApiRetries.md)
-`apiKey` | string
+`expiryDate` | Date
+`refreshToken` | string
+`user` | string
 
 ## Example
 
@@ -79,7 +81,9 @@ const example = {
   "gdalRetries": null,
   "queryBuffer": null,
   "stacApiRetries": null,
-  "apiKey": null,
+  "expiryDate": null,
+  "refreshToken": null,
+  "user": null,
 } satisfies TypedDataProviderDefinition
 
 console.log(example)

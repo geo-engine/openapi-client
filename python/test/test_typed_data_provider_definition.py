@@ -108,7 +108,9 @@ class TestTypedDataProviderDefinition(unittest.TestCase):
                     exponential_backoff_factor = 1.337, 
                     initial_delay_ms = 0, 
                     number_of_retries = 0, ),
-                api_key = ''
+                expiry_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                refresh_token = '',
+                user = ''
             )
         else:
             return TypedDataProviderDefinition(

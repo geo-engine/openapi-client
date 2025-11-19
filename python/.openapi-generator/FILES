@@ -66,6 +66,7 @@ docs/GdalMetadataNetCdfCf.md
 docs/GdalSourceTimePlaceholder.md
 docs/GeneralApi.md
 docs/GeoJson.md
+docs/GeoTransform.md
 docs/GetCapabilitiesFormat.md
 docs/GetCapabilitiesRequest.md
 docs/GetCoverageFormat.md
@@ -77,6 +78,8 @@ docs/GetMapFormat.md
 docs/GetMapRequest.md
 docs/GfbioAbcdDataProviderDefinition.md
 docs/GfbioCollectionsDataProviderDefinition.md
+docs/GridBoundingBox2D.md
+docs/GridIdx2D.md
 docs/IdResponse.md
 docs/InternalDataId.md
 docs/Layer.md
@@ -143,7 +146,6 @@ docs/PermissionRequest.md
 docs/PermissionsApi.md
 docs/Plot.md
 docs/PlotOutputFormat.md
-docs/PlotQueryRectangle.md
 docs/PlotResultDescriptor.md
 docs/PlotsApi.md
 docs/PointSymbology.md
@@ -170,10 +172,11 @@ docs/RasterDatasetFromWorkflow.md
 docs/RasterDatasetFromWorkflowResult.md
 docs/RasterPropertiesEntryType.md
 docs/RasterPropertiesKey.md
-docs/RasterQueryRectangle.md
 docs/RasterResultDescriptor.md
 docs/RasterStreamWebsocketResultType.md
 docs/RasterSymbology.md
+docs/RasterToDatasetQueryRectangle.md
+docs/RegularTimeDimension.md
 docs/Resource.md
 docs/Role.md
 docs/RoleDescription.md
@@ -185,15 +188,16 @@ docs/SentinelS2L2ACogsProviderDefinition.md
 docs/ServerInfo.md
 docs/SessionApi.md
 docs/SingleBandRasterColorizer.md
+docs/SpatialGridDefinition.md
+docs/SpatialGridDescriptor.md
+docs/SpatialGridDescriptorState.md
 docs/SpatialPartition2D.md
 docs/SpatialReferenceAuthority.md
 docs/SpatialReferenceSpecification.md
 docs/SpatialReferencesApi.md
 docs/SpatialResolution.md
 docs/StacApiRetries.md
-docs/StacBand.md
 docs/StacQueryBuffer.md
-docs/StacZone.md
 docs/StaticColor.md
 docs/StaticNumber.md
 docs/StrokeParam.md
@@ -211,6 +215,7 @@ docs/TaskStatusRunning.md
 docs/TaskStatusWithId.md
 docs/TasksApi.md
 docs/TextSymbology.md
+docs/TimeDescriptor.md
 docs/TimeGranularity.md
 docs/TimeInterval.md
 docs/TimeReference.md
@@ -246,7 +251,6 @@ docs/UserSession.md
 docs/VecUpdate.md
 docs/VectorColumnInfo.md
 docs/VectorDataType.md
-docs/VectorQueryRectangle.md
 docs/VectorResultDescriptor.md
 docs/Volume.md
 docs/VolumeFileLayersResponse.md
@@ -345,6 +349,7 @@ geoengine_openapi_client/models/gdal_metadata_mapping.py
 geoengine_openapi_client/models/gdal_metadata_net_cdf_cf.py
 geoengine_openapi_client/models/gdal_source_time_placeholder.py
 geoengine_openapi_client/models/geo_json.py
+geoengine_openapi_client/models/geo_transform.py
 geoengine_openapi_client/models/get_capabilities_format.py
 geoengine_openapi_client/models/get_capabilities_request.py
 geoengine_openapi_client/models/get_coverage_format.py
@@ -356,6 +361,8 @@ geoengine_openapi_client/models/get_map_format.py
 geoengine_openapi_client/models/get_map_request.py
 geoengine_openapi_client/models/gfbio_abcd_data_provider_definition.py
 geoengine_openapi_client/models/gfbio_collections_data_provider_definition.py
+geoengine_openapi_client/models/grid_bounding_box2_d.py
+geoengine_openapi_client/models/grid_idx2_d.py
 geoengine_openapi_client/models/id_response.py
 geoengine_openapi_client/models/internal_data_id.py
 geoengine_openapi_client/models/layer.py
@@ -416,7 +423,6 @@ geoengine_openapi_client/models/permission_listing.py
 geoengine_openapi_client/models/permission_request.py
 geoengine_openapi_client/models/plot.py
 geoengine_openapi_client/models/plot_output_format.py
-geoengine_openapi_client/models/plot_query_rectangle.py
 geoengine_openapi_client/models/plot_result_descriptor.py
 geoengine_openapi_client/models/point_symbology.py
 geoengine_openapi_client/models/polygon_symbology.py
@@ -441,10 +447,11 @@ geoengine_openapi_client/models/raster_dataset_from_workflow.py
 geoengine_openapi_client/models/raster_dataset_from_workflow_result.py
 geoengine_openapi_client/models/raster_properties_entry_type.py
 geoengine_openapi_client/models/raster_properties_key.py
-geoengine_openapi_client/models/raster_query_rectangle.py
 geoengine_openapi_client/models/raster_result_descriptor.py
 geoengine_openapi_client/models/raster_stream_websocket_result_type.py
 geoengine_openapi_client/models/raster_symbology.py
+geoengine_openapi_client/models/raster_to_dataset_query_rectangle.py
+geoengine_openapi_client/models/regular_time_dimension.py
 geoengine_openapi_client/models/resource.py
 geoengine_openapi_client/models/role.py
 geoengine_openapi_client/models/role_description.py
@@ -454,15 +461,16 @@ geoengine_openapi_client/models/search_types.py
 geoengine_openapi_client/models/sentinel_s2_l2_a_cogs_provider_definition.py
 geoengine_openapi_client/models/server_info.py
 geoengine_openapi_client/models/single_band_raster_colorizer.py
+geoengine_openapi_client/models/spatial_grid_definition.py
+geoengine_openapi_client/models/spatial_grid_descriptor.py
+geoengine_openapi_client/models/spatial_grid_descriptor_state.py
 geoengine_openapi_client/models/spatial_partition2_d.py
 geoengine_openapi_client/models/spatial_reference_authority.py
 geoengine_openapi_client/models/spatial_reference_specification.py
 geoengine_openapi_client/models/spatial_resolution.py
 geoengine_openapi_client/models/st_rectangle.py
 geoengine_openapi_client/models/stac_api_retries.py
-geoengine_openapi_client/models/stac_band.py
 geoengine_openapi_client/models/stac_query_buffer.py
-geoengine_openapi_client/models/stac_zone.py
 geoengine_openapi_client/models/static_color.py
 geoengine_openapi_client/models/static_number.py
 geoengine_openapi_client/models/stroke_param.py
@@ -479,6 +487,7 @@ geoengine_openapi_client/models/task_status_failed.py
 geoengine_openapi_client/models/task_status_running.py
 geoengine_openapi_client/models/task_status_with_id.py
 geoengine_openapi_client/models/text_symbology.py
+geoengine_openapi_client/models/time_descriptor.py
 geoengine_openapi_client/models/time_granularity.py
 geoengine_openapi_client/models/time_interval.py
 geoengine_openapi_client/models/time_reference.py
@@ -512,7 +521,6 @@ geoengine_openapi_client/models/user_session.py
 geoengine_openapi_client/models/vec_update.py
 geoengine_openapi_client/models/vector_column_info.py
 geoengine_openapi_client/models/vector_data_type.py
-geoengine_openapi_client/models/vector_query_rectangle.py
 geoengine_openapi_client/models/vector_result_descriptor.py
 geoengine_openapi_client/models/volume.py
 geoengine_openapi_client/models/volume_file_layers_response.py
@@ -598,6 +606,7 @@ test/test_gdal_metadata_net_cdf_cf.py
 test/test_gdal_source_time_placeholder.py
 test/test_general_api.py
 test/test_geo_json.py
+test/test_geo_transform.py
 test/test_get_capabilities_format.py
 test/test_get_capabilities_request.py
 test/test_get_coverage_format.py
@@ -609,6 +618,8 @@ test/test_get_map_format.py
 test/test_get_map_request.py
 test/test_gfbio_abcd_data_provider_definition.py
 test/test_gfbio_collections_data_provider_definition.py
+test/test_grid_bounding_box2_d.py
+test/test_grid_idx2_d.py
 test/test_id_response.py
 test/test_internal_data_id.py
 test/test_layer.py
@@ -675,7 +686,6 @@ test/test_permission_request.py
 test/test_permissions_api.py
 test/test_plot.py
 test/test_plot_output_format.py
-test/test_plot_query_rectangle.py
 test/test_plot_result_descriptor.py
 test/test_plots_api.py
 test/test_point_symbology.py
@@ -702,10 +712,11 @@ test/test_raster_dataset_from_workflow.py
 test/test_raster_dataset_from_workflow_result.py
 test/test_raster_properties_entry_type.py
 test/test_raster_properties_key.py
-test/test_raster_query_rectangle.py
 test/test_raster_result_descriptor.py
 test/test_raster_stream_websocket_result_type.py
 test/test_raster_symbology.py
+test/test_raster_to_dataset_query_rectangle.py
+test/test_regular_time_dimension.py
 test/test_resource.py
 test/test_role.py
 test/test_role_description.py
@@ -716,6 +727,9 @@ test/test_sentinel_s2_l2_a_cogs_provider_definition.py
 test/test_server_info.py
 test/test_session_api.py
 test/test_single_band_raster_colorizer.py
+test/test_spatial_grid_definition.py
+test/test_spatial_grid_descriptor.py
+test/test_spatial_grid_descriptor_state.py
 test/test_spatial_partition2_d.py
 test/test_spatial_reference_authority.py
 test/test_spatial_reference_specification.py
@@ -723,9 +737,7 @@ test/test_spatial_references_api.py
 test/test_spatial_resolution.py
 test/test_st_rectangle.py
 test/test_stac_api_retries.py
-test/test_stac_band.py
 test/test_stac_query_buffer.py
-test/test_stac_zone.py
 test/test_static_color.py
 test/test_static_number.py
 test/test_stroke_param.py
@@ -743,6 +755,7 @@ test/test_task_status_running.py
 test/test_task_status_with_id.py
 test/test_tasks_api.py
 test/test_text_symbology.py
+test/test_time_descriptor.py
 test/test_time_granularity.py
 test/test_time_interval.py
 test/test_time_reference.py
@@ -778,7 +791,6 @@ test/test_user_session.py
 test/test_vec_update.py
 test/test_vector_column_info.py
 test/test_vector_data_type.py
-test/test_vector_query_rectangle.py
 test/test_vector_result_descriptor.py
 test/test_volume.py
 test/test_volume_file_layers_response.py

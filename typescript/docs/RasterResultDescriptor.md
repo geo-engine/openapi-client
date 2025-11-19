@@ -8,11 +8,10 @@ A `ResultDescriptor` for raster queries
 Name | Type
 ------------ | -------------
 `bands` | [Array&lt;RasterBandDescriptor&gt;](RasterBandDescriptor.md)
-`bbox` | [SpatialPartition2D](SpatialPartition2D.md)
 `dataType` | [RasterDataType](RasterDataType.md)
-`resolution` | [SpatialResolution](SpatialResolution.md)
+`spatialGrid` | [SpatialGridDescriptor](SpatialGridDescriptor.md)
 `spatialReference` | string
-`time` | [TimeInterval](TimeInterval.md)
+`time` | [TimeDescriptor](TimeDescriptor.md)
 
 ## Example
 
@@ -22,9 +21,8 @@ import type { RasterResultDescriptor } from '@geoengine/openapi-client'
 // TODO: Update the object below with actual values
 const example = {
   "bands": null,
-  "bbox": null,
   "dataType": null,
-  "resolution": null,
+  "spatialGrid": null,
   "spatialReference": null,
   "time": null,
 } satisfies RasterResultDescriptor

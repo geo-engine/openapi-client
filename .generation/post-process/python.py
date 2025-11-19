@@ -161,11 +161,10 @@ def raster_result_descriptor_py(file_contents: List[str]) -> Generator[str, None
 
             _obj = cls.model_validate({
                 "bands": [RasterBandDescriptor.from_dict(_item) for _item in obj["bands"]] if obj.get("bands") is not None else None,
-                "bbox": SpatialPartition2D.from_dict(obj["bbox"]) if obj.get("bbox") is not None else None,
+                "spatialGrid": SpatialGridDescriptor.from_dict(obj["spatialGrid"]) if obj.get("spatialGrid") is not None else None,
                 "dataType": obj.get("dataType"),
-                "resolution": SpatialResolution.from_dict(obj["resolution"]) if obj.get("resolution") is not None else None,
                 "spatialReference": obj.get("spatialReference"),
-                "time": TimeInterval.from_dict(obj["time"]) if obj.get("time") is not None else None,
+                "time": TimeDescriptor.from_dict(obj["time"]) if obj.get("time") is not None else None,
             })
             return _obj
             '''), 2 * INDENT)
@@ -242,6 +241,31 @@ def plot_result_descriptor_py(file_contents: List[str]) -> Generator[str, None, 
 
         yield line
 
+def time_step_py(file_contents: List[str]) -> Generator[str, None, None]:
+    '''
+    Modify the time_step.py file.
+    '''
+
+    for line in file_contents:
+        dedented_line = dedent(line)
+        if dedented_line.startswith('"""Create an instance of TimeStep from a dict"""'):
+            line = line + '\n' + indent(dedent('''\
+            # Note: fixed handling of TimeGranularity enum
+            if obj is None:
+                return None
+
+            if not isinstance(obj, dict):
+                return cls.model_validate(obj)
+
+            _obj = cls.model_validate({
+                "granularity": TimeGranularity(obj["granularity"]) if obj.get("granularity") is not None else None,
+                "step": obj.get("step"),
+            })
+            return _obj
+            '''), 2 * INDENT)
+
+        yield line
+
 input_file = Path(sys.argv[1])
 
 file_modifications = {
@@ -255,6 +279,7 @@ file_modifications = {
     'task_status_with_id.py': task_status_with_id_py,
     'tasks_api.py': tasks_api_py,
     'vector_result_descriptor.py': vector_result_descriptor_py,
+    'time_step.py': time_step_py,
 }
 
 if modifier_function := file_modifications.get(input_file.name):

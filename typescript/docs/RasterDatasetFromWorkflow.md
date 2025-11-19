@@ -11,7 +11,7 @@ Name | Type
 `description` | string
 `displayName` | string
 `name` | string
-`query` | [RasterQueryRectangle](RasterQueryRectangle.md)
+`query` | [RasterToDatasetQueryRectangle](RasterToDatasetQueryRectangle.md)
 
 ## Example
 

@@ -307,30 +307,6 @@ def plot_result_descriptor_py(file_contents: List[str]) -> Generator[str, None, 
 
         yield line
 
-def time_step_py(file_contents: List[str]) -> Generator[str, None, None]:
-    '''
-    Modify the time_step.py file.
-    '''
-
-    for line in file_contents:
-        dedented_line = dedent(line)
-        if dedented_line.startswith('"""Create an instance of TimeStep from a dict"""'):
-            line = line + '\n' + indent(dedent('''\
-            # Note: fixed handling of TimeGranularity enum
-            if obj is None:
-                return None
-
-            if not isinstance(obj, dict):
-                return cls.model_validate(obj)
-
-            _obj = cls.model_validate({
-                "granularity": TimeGranularity(obj["granularity"]) if obj.get("granularity") is not None else None,
-                "step": obj.get("step"),
-            })
-            return _obj
-            '''), 2 * INDENT)
-
-        yield line
 
 def time_step_py(file_contents: List[str]) -> Generator[str, None, None]:
     """
@@ -367,17 +343,17 @@ def time_step_py(file_contents: List[str]) -> Generator[str, None, None]:
 input_file = Path(sys.argv[1])
 
 file_modifications = {
-    'api_client.py': api_client_py,
-    'exceptions.py': exceptions_py,
-    'layers_api.py': layers_api_py,
-    'ogcwfs_api.py': ogc_xyz_api_py('wfs'),
-    'ogcwms_api.py': ogc_xyz_api_py('wms'),
-    'plot_result_descriptor.py': plot_result_descriptor_py,
-    'raster_result_descriptor.py': raster_result_descriptor_py,
-    'task_status_with_id.py': task_status_with_id_py,
-    'tasks_api.py': tasks_api_py,
-    'vector_result_descriptor.py': vector_result_descriptor_py,
-    'time_step.py': time_step_py,
+    "api_client.py": api_client_py,
+    "exceptions.py": exceptions_py,
+    "layers_api.py": layers_api_py,
+    "ogcwfs_api.py": ogc_xyz_api_py("wfs"),
+    "ogcwms_api.py": ogc_xyz_api_py("wms"),
+    "plot_result_descriptor.py": plot_result_descriptor_py,
+    "raster_result_descriptor.py": raster_result_descriptor_py,
+    "task_status_with_id.py": task_status_with_id_py,
+    "tasks_api.py": tasks_api_py,
+    "vector_result_descriptor.py": vector_result_descriptor_py,
+    "time_step.py": time_step_py,
 }
 
 if modifier_function := file_modifications.get(input_file.name):

@@ -216,6 +216,9 @@ docs/TaskStatusWithId.md
 docs/TasksApi.md
 docs/TextSymbology.md
 docs/TimeDescriptor.md
+docs/TimeDimension.md
+docs/TimeDimensionOneOf.md
+docs/TimeDimensionOneOf1.md
 docs/TimeGranularity.md
 docs/TimeInterval.md
 docs/TimeReference.md
@@ -488,6 +491,9 @@ geoengine_openapi_client/models/task_status_running.py
 geoengine_openapi_client/models/task_status_with_id.py
 geoengine_openapi_client/models/text_symbology.py
 geoengine_openapi_client/models/time_descriptor.py
+geoengine_openapi_client/models/time_dimension.py
+geoengine_openapi_client/models/time_dimension_one_of.py
+geoengine_openapi_client/models/time_dimension_one_of1.py
 geoengine_openapi_client/models/time_granularity.py
 geoengine_openapi_client/models/time_interval.py
 geoengine_openapi_client/models/time_reference.py
@@ -756,6 +762,9 @@ test/test_task_status_with_id.py
 test/test_tasks_api.py
 test/test_text_symbology.py
 test/test_time_descriptor.py
+test/test_time_dimension.py
+test/test_time_dimension_one_of.py
+test/test_time_dimension_one_of1.py
 test/test_time_granularity.py
 test/test_time_interval.py
 test/test_time_reference.py

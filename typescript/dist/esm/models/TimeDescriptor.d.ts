@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import type { TimeInterval } from './TimeInterval';
-import type { RegularTimeDimension } from './RegularTimeDimension';
+import type { TimeDimension } from './TimeDimension';
 /**
  *
  * @export
@@ -25,10 +25,10 @@ export interface TimeDescriptor {
     bounds?: TimeInterval | null;
     /**
      *
-     * @type {RegularTimeDimension}
+     * @type {TimeDimension}
      * @memberof TimeDescriptor
      */
-    dimension?: RegularTimeDimension | null;
+    dimension: TimeDimension;
 }
 /**
  * Check if a given object implements the TimeDescriptor interface.

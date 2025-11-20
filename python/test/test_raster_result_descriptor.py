@@ -63,11 +63,7 @@ class TestRasterResultDescriptor(unittest.TestCase):
                     bounds = geoengine_openapi_client.models.time_interval.TimeInterval(
                         end = 56, 
                         start = 56, ), 
-                    dimension = geoengine_openapi_client.models.regular_time_dimension.RegularTimeDimension(
-                        origin = 56, 
-                        step = geoengine_openapi_client.models.time_step.TimeStep(
-                            granularity = 'millis', 
-                            step = 0, ), ), )
+                    dimension = null, )
             )
         else:
             return RasterResultDescriptor(
@@ -98,11 +94,7 @@ class TestRasterResultDescriptor(unittest.TestCase):
                     bounds = geoengine_openapi_client.models.time_interval.TimeInterval(
                         end = 56, 
                         start = 56, ), 
-                    dimension = geoengine_openapi_client.models.regular_time_dimension.RegularTimeDimension(
-                        origin = 56, 
-                        step = geoengine_openapi_client.models.time_step.TimeStep(
-                            granularity = 'millis', 
-                            step = 0, ), ), ),
+                    dimension = null, ),
         )
         """
 

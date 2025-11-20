@@ -18,20 +18,26 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List, Optional
-from geoengine_openapi_client.models.time_dimension import TimeDimension
-from geoengine_openapi_client.models.time_interval import TimeInterval
+from pydantic import ConfigDict, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
+from geoengine_openapi_client.models.regular_time_dimension import RegularTimeDimension
+from geoengine_openapi_client.models.time_step import TimeStep
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TimeDescriptor(BaseModel):
+class TimeDimensionOneOf(RegularTimeDimension):
     """
-    TimeDescriptor
+    TimeDimensionOneOf
     """ # noqa: E501
-    bounds: Optional[TimeInterval] = None
-    dimension: TimeDimension
-    __properties: ClassVar[List[str]] = ["bounds", "dimension"]
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["origin", "step", "type"]
+
+    @field_validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['regular']):
+            raise ValueError("must be one of enum values ('regular')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +57,7 @@ class TimeDescriptor(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TimeDescriptor from a JSON string"""
+        """Create an instance of TimeDimensionOneOf from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,22 +78,14 @@ class TimeDescriptor(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of bounds
-        if self.bounds:
-            _dict['bounds'] = self.bounds.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of dimension
-        if self.dimension:
-            _dict['dimension'] = self.dimension.to_dict()
-        # set to None if bounds (nullable) is None
-        # and model_fields_set contains the field
-        if self.bounds is None and "bounds" in self.model_fields_set:
-            _dict['bounds'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of step
+        if self.step:
+            _dict['step'] = self.step.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TimeDescriptor from a dict"""
+        """Create an instance of TimeDimensionOneOf from a dict"""
         if obj is None:
             return None
 
@@ -95,8 +93,9 @@ class TimeDescriptor(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "bounds": TimeInterval.from_dict(obj["bounds"]) if obj.get("bounds") is not None else None,
-            "dimension": TimeDimension.from_dict(obj["dimension"]) if obj.get("dimension") is not None else None
+            "origin": obj.get("origin"),
+            "step": TimeStep.from_dict(obj["step"]) if obj.get("step") is not None else None,
+            "type": obj.get("type")
         })
         return _obj
 

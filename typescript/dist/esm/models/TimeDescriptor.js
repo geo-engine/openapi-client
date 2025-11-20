@@ -12,11 +12,13 @@
  * Do not edit the class manually.
  */
 import { TimeIntervalFromJSON, TimeIntervalToJSON, } from './TimeInterval';
-import { RegularTimeDimensionFromJSON, RegularTimeDimensionToJSON, } from './RegularTimeDimension';
+import { TimeDimensionFromJSON, TimeDimensionToJSON, } from './TimeDimension';
 /**
  * Check if a given object implements the TimeDescriptor interface.
  */
 export function instanceOfTimeDescriptor(value) {
+    if (!('dimension' in value) || value['dimension'] === undefined)
+        return false;
     return true;
 }
 export function TimeDescriptorFromJSON(json) {
@@ -28,7 +30,7 @@ export function TimeDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'bounds': json['bounds'] == null ? undefined : TimeIntervalFromJSON(json['bounds']),
-        'dimension': json['dimension'] == null ? undefined : RegularTimeDimensionFromJSON(json['dimension']),
+        'dimension': TimeDimensionFromJSON(json['dimension']),
     };
 }
 export function TimeDescriptorToJSON(json) {
@@ -40,6 +42,6 @@ export function TimeDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'bounds': TimeIntervalToJSON(value['bounds']),
-        'dimension': RegularTimeDimensionToJSON(value['dimension']),
+        'dimension': TimeDimensionToJSON(value['dimension']),
     };
 }

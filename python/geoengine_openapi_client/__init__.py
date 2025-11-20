@@ -244,6 +244,9 @@ __all__ = [
     "TaskStatusWithId",
     "TextSymbology",
     "TimeDescriptor",
+    "TimeDimension",
+    "TimeDimensionOneOf",
+    "TimeDimensionOneOf1",
     "TimeGranularity",
     "TimeInterval",
     "TimeReference",
@@ -522,6 +525,9 @@ from geoengine_openapi_client.models.task_status_running import TaskStatusRunnin
 from geoengine_openapi_client.models.task_status_with_id import TaskStatusWithId as TaskStatusWithId
 from geoengine_openapi_client.models.text_symbology import TextSymbology as TextSymbology
 from geoengine_openapi_client.models.time_descriptor import TimeDescriptor as TimeDescriptor
+from geoengine_openapi_client.models.time_dimension import TimeDimension as TimeDimension
+from geoengine_openapi_client.models.time_dimension_one_of import TimeDimensionOneOf as TimeDimensionOneOf
+from geoengine_openapi_client.models.time_dimension_one_of1 import TimeDimensionOneOf1 as TimeDimensionOneOf1
 from geoengine_openapi_client.models.time_granularity import TimeGranularity as TimeGranularity
 from geoengine_openapi_client.models.time_interval import TimeInterval as TimeInterval
 from geoengine_openapi_client.models.time_reference import TimeReference as TimeReference

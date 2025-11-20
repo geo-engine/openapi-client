@@ -1,24 +1,22 @@
 
-# TimeDescriptor
+# TimeDimension
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`bounds` | [TimeInterval](TimeInterval.md)
-`dimension` | [TimeDimension](TimeDimension.md)
+`type` | string
 
 ## Example
 
 ```typescript
-import type { TimeDescriptor } from '@geoengine/openapi-client'
+import type { TimeDimension } from '@geoengine/openapi-client'
 
 // TODO: Update the object below with actual values
 const example = {
-  "bounds": null,
-  "dimension": null,
-} satisfies TimeDescriptor
+  "type": null,
+} satisfies TimeDimension
 
 console.log(example)
 
@@ -27,7 +25,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as TimeDescriptor
+const exampleParsed = JSON.parse(exampleJSON) as TimeDimension
 console.log(exampleParsed)
 ```
 

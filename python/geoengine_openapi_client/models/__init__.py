@@ -214,6 +214,9 @@ from geoengine_openapi_client.models.task_status_running import TaskStatusRunnin
 from geoengine_openapi_client.models.task_status_with_id import TaskStatusWithId
 from geoengine_openapi_client.models.text_symbology import TextSymbology
 from geoengine_openapi_client.models.time_descriptor import TimeDescriptor
+from geoengine_openapi_client.models.time_dimension import TimeDimension
+from geoengine_openapi_client.models.time_dimension_one_of import TimeDimensionOneOf
+from geoengine_openapi_client.models.time_dimension_one_of1 import TimeDimensionOneOf1
 from geoengine_openapi_client.models.time_granularity import TimeGranularity
 from geoengine_openapi_client.models.time_interval import TimeInterval
 from geoengine_openapi_client.models.time_reference import TimeReference

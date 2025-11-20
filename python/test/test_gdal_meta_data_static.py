@@ -97,11 +97,7 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                         bounds = geoengine_openapi_client.models.time_interval.TimeInterval(
                             end = 56, 
                             start = 56, ), 
-                        dimension = geoengine_openapi_client.models.regular_time_dimension.RegularTimeDimension(
-                            origin = 56, 
-                            step = geoengine_openapi_client.models.time_step.TimeStep(
-                                granularity = 'millis', 
-                                step = 0, ), ), ), ),
+                        dimension = null, ), ),
                 time = geoengine_openapi_client.models.time_interval.TimeInterval(
                     end = 56, 
                     start = 56, ),
@@ -169,11 +165,7 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                         bounds = geoengine_openapi_client.models.time_interval.TimeInterval(
                             end = 56, 
                             start = 56, ), 
-                        dimension = geoengine_openapi_client.models.regular_time_dimension.RegularTimeDimension(
-                            origin = 56, 
-                            step = geoengine_openapi_client.models.time_step.TimeStep(
-                                granularity = 'millis', 
-                                step = 0, ), ), ), ),
+                        dimension = null, ), ),
                 type = 'GdalStatic',
         )
         """

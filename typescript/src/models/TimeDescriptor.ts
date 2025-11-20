@@ -20,13 +20,13 @@ import {
     TimeIntervalToJSON,
     TimeIntervalToJSONTyped,
 } from './TimeInterval';
-import type { RegularTimeDimension } from './RegularTimeDimension';
+import type { TimeDimension } from './TimeDimension';
 import {
-    RegularTimeDimensionFromJSON,
-    RegularTimeDimensionFromJSONTyped,
-    RegularTimeDimensionToJSON,
-    RegularTimeDimensionToJSONTyped,
-} from './RegularTimeDimension';
+    TimeDimensionFromJSON,
+    TimeDimensionFromJSONTyped,
+    TimeDimensionToJSON,
+    TimeDimensionToJSONTyped,
+} from './TimeDimension';
 
 /**
  * 
@@ -42,16 +42,17 @@ export interface TimeDescriptor {
     bounds?: TimeInterval | null;
     /**
      * 
-     * @type {RegularTimeDimension}
+     * @type {TimeDimension}
      * @memberof TimeDescriptor
      */
-    dimension?: RegularTimeDimension | null;
+    dimension: TimeDimension;
 }
 
 /**
  * Check if a given object implements the TimeDescriptor interface.
  */
 export function instanceOfTimeDescriptor(value: object): value is TimeDescriptor {
+    if (!('dimension' in value) || value['dimension'] === undefined) return false;
     return true;
 }
 
@@ -66,7 +67,7 @@ export function TimeDescriptorFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'bounds': json['bounds'] == null ? undefined : TimeIntervalFromJSON(json['bounds']),
-        'dimension': json['dimension'] == null ? undefined : RegularTimeDimensionFromJSON(json['dimension']),
+        'dimension': TimeDimensionFromJSON(json['dimension']),
     };
 }
 
@@ -82,7 +83,7 @@ export function TimeDescriptorToJSONTyped(value?: TimeDescriptor | null, ignoreD
     return {
         
         'bounds': TimeIntervalToJSON(value['bounds']),
-        'dimension': RegularTimeDimensionToJSON(value['dimension']),
+        'dimension': TimeDimensionToJSON(value['dimension']),
     };
 }
 

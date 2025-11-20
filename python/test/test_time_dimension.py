@@ -15,10 +15,10 @@
 
 import unittest
 
-from geoengine_openapi_client.models.time_descriptor import TimeDescriptor
+from geoengine_openapi_client.models.time_dimension import TimeDimension
 
-class TestTimeDescriptor(unittest.TestCase):
-    """TimeDescriptor unit test stubs"""
+class TestTimeDimension(unittest.TestCase):
+    """TimeDimension unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,29 +26,26 @@ class TestTimeDescriptor(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> TimeDescriptor:
-        """Test TimeDescriptor
+    def make_instance(self, include_optional) -> TimeDimension:
+        """Test TimeDimension
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `TimeDescriptor`
+        # uncomment below to create an instance of `TimeDimension`
         """
-        model = TimeDescriptor()
+        model = TimeDimension()
         if include_optional:
-            return TimeDescriptor(
-                bounds = geoengine_openapi_client.models.time_interval.TimeInterval(
-                    end = 56, 
-                    start = 56, ),
-                dimension = None
+            return TimeDimension(
+                type = 'irregular'
             )
         else:
-            return TimeDescriptor(
-                dimension = None,
+            return TimeDimension(
+                type = 'irregular',
         )
         """
 
-    def testTimeDescriptor(self):
-        """Test TimeDescriptor"""
+    def testTimeDimension(self):
+        """Test TimeDimension"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

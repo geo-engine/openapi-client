@@ -19,11 +19,13 @@ exports.TimeDescriptorFromJSONTyped = TimeDescriptorFromJSONTyped;
 exports.TimeDescriptorToJSON = TimeDescriptorToJSON;
 exports.TimeDescriptorToJSONTyped = TimeDescriptorToJSONTyped;
 const TimeInterval_1 = require("./TimeInterval");
-const RegularTimeDimension_1 = require("./RegularTimeDimension");
+const TimeDimension_1 = require("./TimeDimension");
 /**
  * Check if a given object implements the TimeDescriptor interface.
  */
 function instanceOfTimeDescriptor(value) {
+    if (!('dimension' in value) || value['dimension'] === undefined)
+        return false;
     return true;
 }
 function TimeDescriptorFromJSON(json) {
@@ -35,7 +37,7 @@ function TimeDescriptorFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'bounds': json['bounds'] == null ? undefined : (0, TimeInterval_1.TimeIntervalFromJSON)(json['bounds']),
-        'dimension': json['dimension'] == null ? undefined : (0, RegularTimeDimension_1.RegularTimeDimensionFromJSON)(json['dimension']),
+        'dimension': (0, TimeDimension_1.TimeDimensionFromJSON)(json['dimension']),
     };
 }
 function TimeDescriptorToJSON(json) {
@@ -47,6 +49,6 @@ function TimeDescriptorToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'bounds': (0, TimeInterval_1.TimeIntervalToJSON)(value['bounds']),
-        'dimension': (0, RegularTimeDimension_1.RegularTimeDimensionToJSON)(value['dimension']),
+        'dimension': (0, TimeDimension_1.TimeDimensionToJSON)(value['dimension']),
     };
 }

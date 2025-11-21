@@ -1,4 +1,5 @@
 export * from './AddDataset';
+export * from './AddDatasetTile';
 export * from './AddLayer';
 export * from './AddLayerCollection';
 export * from './AddRole';
@@ -57,6 +58,7 @@ export * from './GdalMetaDataRegular';
 export * from './GdalMetaDataStatic';
 export * from './GdalMetadataMapping';
 export * from './GdalMetadataNetCdfCf';
+export * from './GdalMultiBand';
 export * from './GdalSourceTimePlaceholder';
 export * from './GeoJson';
 export * from './GeoTransform';

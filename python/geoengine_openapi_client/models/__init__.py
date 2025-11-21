@@ -15,6 +15,7 @@
 
 # import models into model package
 from geoengine_openapi_client.models.add_dataset import AddDataset
+from geoengine_openapi_client.models.add_dataset_tile import AddDatasetTile
 from geoengine_openapi_client.models.add_layer import AddLayer
 from geoengine_openapi_client.models.add_layer_collection import AddLayerCollection
 from geoengine_openapi_client.models.add_role import AddRole
@@ -73,6 +74,7 @@ from geoengine_openapi_client.models.gdal_meta_data_regular import GdalMetaDataR
 from geoengine_openapi_client.models.gdal_meta_data_static import GdalMetaDataStatic
 from geoengine_openapi_client.models.gdal_metadata_mapping import GdalMetadataMapping
 from geoengine_openapi_client.models.gdal_metadata_net_cdf_cf import GdalMetadataNetCdfCf
+from geoengine_openapi_client.models.gdal_multi_band import GdalMultiBand
 from geoengine_openapi_client.models.gdal_source_time_placeholder import GdalSourceTimePlaceholder
 from geoengine_openapi_client.models.geo_json import GeoJson
 from geoengine_openapi_client.models.geo_transform import GeoTransform

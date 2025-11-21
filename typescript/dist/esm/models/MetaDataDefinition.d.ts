@@ -13,6 +13,7 @@ import type { GdalMetaDataList } from './GdalMetaDataList';
 import type { GdalMetaDataRegular } from './GdalMetaDataRegular';
 import type { GdalMetaDataStatic } from './GdalMetaDataStatic';
 import type { GdalMetadataNetCdfCf } from './GdalMetadataNetCdfCf';
+import type { GdalMultiBand } from './GdalMultiBand';
 import type { MockMetaData } from './MockMetaData';
 import type { OgrMetaData } from './OgrMetaData';
 /**
@@ -27,6 +28,8 @@ export type MetaDataDefinition = {
 } & GdalMetadataNetCdfCf | {
     type: 'GdalMetaDataRegular';
 } & GdalMetaDataRegular | {
+    type: 'GdalMultiBand';
+} & GdalMultiBand | {
     type: 'GdalStatic';
 } & GdalMetaDataStatic | {
     type: 'MockMetaData';

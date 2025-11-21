@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* tslint:disable */
 /* eslint-disable */
 __exportStar(require("./AddDataset"), exports);
+__exportStar(require("./AddDatasetTile"), exports);
 __exportStar(require("./AddLayer"), exports);
 __exportStar(require("./AddLayerCollection"), exports);
 __exportStar(require("./AddRole"), exports);
@@ -75,6 +76,7 @@ __exportStar(require("./GdalMetaDataRegular"), exports);
 __exportStar(require("./GdalMetaDataStatic"), exports);
 __exportStar(require("./GdalMetadataMapping"), exports);
 __exportStar(require("./GdalMetadataNetCdfCf"), exports);
+__exportStar(require("./GdalMultiBand"), exports);
 __exportStar(require("./GdalSourceTimePlaceholder"), exports);
 __exportStar(require("./GeoJson"), exports);
 __exportStar(require("./GeoTransform"), exports);

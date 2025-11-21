@@ -15,6 +15,7 @@ import { GdalMetaDataListFromJSONTyped, GdalMetaDataListToJSON, } from './GdalMe
 import { GdalMetaDataRegularFromJSONTyped, GdalMetaDataRegularToJSON, } from './GdalMetaDataRegular';
 import { GdalMetaDataStaticFromJSONTyped, GdalMetaDataStaticToJSON, } from './GdalMetaDataStatic';
 import { GdalMetadataNetCdfCfFromJSONTyped, GdalMetadataNetCdfCfToJSON, } from './GdalMetadataNetCdfCf';
+import { GdalMultiBandFromJSONTyped, GdalMultiBandToJSON, } from './GdalMultiBand';
 import { MockMetaDataFromJSONTyped, MockMetaDataToJSON, } from './MockMetaData';
 import { OgrMetaDataFromJSONTyped, OgrMetaDataToJSON, } from './OgrMetaData';
 export function MetaDataDefinitionFromJSON(json) {
@@ -31,6 +32,8 @@ export function MetaDataDefinitionFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign({}, GdalMetadataNetCdfCfFromJSONTyped(json, true), { type: 'GdalMetaDataNetCdfCf' });
         case 'GdalMetaDataRegular':
             return Object.assign({}, GdalMetaDataRegularFromJSONTyped(json, true), { type: 'GdalMetaDataRegular' });
+        case 'GdalMultiBand':
+            return Object.assign({}, GdalMultiBandFromJSONTyped(json, true), { type: 'GdalMultiBand' });
         case 'GdalStatic':
             return Object.assign({}, GdalMetaDataStaticFromJSONTyped(json, true), { type: 'GdalStatic' });
         case 'MockMetaData':
@@ -55,6 +58,8 @@ export function MetaDataDefinitionToJSONTyped(value, ignoreDiscriminator = false
             return Object.assign({}, GdalMetadataNetCdfCfToJSON(value), { type: 'GdalMetaDataNetCdfCf' });
         case 'GdalMetaDataRegular':
             return Object.assign({}, GdalMetaDataRegularToJSON(value), { type: 'GdalMetaDataRegular' });
+        case 'GdalMultiBand':
+            return Object.assign({}, GdalMultiBandToJSON(value), { type: 'GdalMultiBand' });
         case 'GdalStatic':
             return Object.assign({}, GdalMetaDataStaticToJSON(value), { type: 'GdalStatic' });
         case 'MockMetaData':

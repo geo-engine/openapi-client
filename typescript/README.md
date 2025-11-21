@@ -18,7 +18,7 @@ import {
   Configuration,
   DatasetsApi,
 } from '@geoengine/openapi-client';
-import type { AutoCreateDatasetHandlerRequest } from '@geoengine/openapi-client';
+import type { AddDatasetTilesHandlerRequest } from '@geoengine/openapi-client';
 
 async function example() {
   console.log("🚀 Testing @geoengine/openapi-client SDK...");
@@ -29,12 +29,14 @@ async function example() {
   const api = new DatasetsApi(config);
 
   const body = {
+    // string | Dataset Name
+    dataset: dataset_example,
     // AutoCreateDataset
     autoCreateDataset: ...,
-  } satisfies AutoCreateDatasetHandlerRequest;
+  } satisfies AddDatasetTilesHandlerRequest;
 
   try {
-    const data = await api.autoCreateDatasetHandler(body);
+    const data = await api.addDatasetTilesHandler(body);
     console.log(data);
   } catch (error) {
     console.error(error);
@@ -54,6 +56,7 @@ All URIs are relative to *https://geoengine.io/api*
 
 | Class | Method | HTTP request | Description
 | ----- | ------ | ------------ | -------------
+*DatasetsApi* | [**addDatasetTilesHandler**](docs/DatasetsApi.md#adddatasettileshandler) | **POST** /dataset/{dataset}/tiles | Add a tile to a gdal dataset.
 *DatasetsApi* | [**autoCreateDatasetHandler**](docs/DatasetsApi.md#autocreatedatasethandler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 *DatasetsApi* | [**createDatasetHandler**](docs/DatasetsApi.md#createdatasethandler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 *DatasetsApi* | [**deleteDatasetHandler**](docs/DatasetsApi.md#deletedatasethandler) | **DELETE** /dataset/{dataset} | Delete a dataset
@@ -155,6 +158,7 @@ All URIs are relative to *https://geoengine.io/api*
 ### Models
 
 - [AddDataset](docs/AddDataset.md)
+- [AddDatasetTile](docs/AddDatasetTile.md)
 - [AddLayer](docs/AddLayer.md)
 - [AddLayerCollection](docs/AddLayerCollection.md)
 - [AddRole](docs/AddRole.md)
@@ -213,6 +217,7 @@ All URIs are relative to *https://geoengine.io/api*
 - [GdalMetaDataStatic](docs/GdalMetaDataStatic.md)
 - [GdalMetadataMapping](docs/GdalMetadataMapping.md)
 - [GdalMetadataNetCdfCf](docs/GdalMetadataNetCdfCf.md)
+- [GdalMultiBand](docs/GdalMultiBand.md)
 - [GdalSourceTimePlaceholder](docs/GdalSourceTimePlaceholder.md)
 - [GeoJson](docs/GeoJson.md)
 - [GeoTransform](docs/GeoTransform.md)

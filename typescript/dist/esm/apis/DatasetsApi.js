@@ -27,6 +27,47 @@ import { AutoCreateDatasetToJSON, CreateDatasetToJSON, DatasetFromJSON, DatasetL
  */
 export class DatasetsApi extends runtime.BaseAPI {
     /**
+     * Add a tile to a gdal dataset.
+     */
+    addDatasetTilesHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['dataset'] == null) {
+                throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling addDatasetTilesHandler().');
+            }
+            if (requestParameters['autoCreateDataset'] == null) {
+                throw new runtime.RequiredError('autoCreateDataset', 'Required parameter "autoCreateDataset" was null or undefined when calling addDatasetTilesHandler().');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            let urlPath = `/dataset/{dataset}/tiles`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
+            const response = yield this.request({
+                path: urlPath,
+                method: 'POST',
+                headers: headerParameters,
+                query: queryParameters,
+                body: AutoCreateDatasetToJSON(requestParameters['autoCreateDataset']),
+            }, initOverrides);
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Add a tile to a gdal dataset.
+     */
+    addDatasetTilesHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.addDatasetTilesHandlerRaw(requestParameters, initOverrides);
+        });
+    }
+    /**
      * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
     autoCreateDatasetHandlerRaw(requestParameters, initOverrides) {

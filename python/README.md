@@ -76,15 +76,14 @@ configuration = geoengine_openapi_client.Configuration(
 with geoengine_openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = geoengine_openapi_client.DatasetsApi(api_client)
+    dataset = 'dataset_example' # str | Dataset Name
     auto_create_dataset = geoengine_openapi_client.AutoCreateDataset() # AutoCreateDataset | 
 
     try:
-        # Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
-        api_response = api_instance.auto_create_dataset_handler(auto_create_dataset)
-        print("The response of DatasetsApi->auto_create_dataset_handler:\n")
-        pprint(api_response)
+        # Add a tile to a gdal dataset.
+        api_instance.add_dataset_tiles_handler(dataset, auto_create_dataset)
     except ApiException as e:
-        print("Exception when calling DatasetsApi->auto_create_dataset_handler: %s\n" % e)
+        print("Exception when calling DatasetsApi->add_dataset_tiles_handler: %s\n" % e)
 
 ```
 
@@ -94,6 +93,7 @@ All URIs are relative to *https://geoengine.io/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DatasetsApi* | [**add_dataset_tiles_handler**](docs/DatasetsApi.md#add_dataset_tiles_handler) | **POST** /dataset/{dataset}/tiles | Add a tile to a gdal dataset.
 *DatasetsApi* | [**auto_create_dataset_handler**](docs/DatasetsApi.md#auto_create_dataset_handler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 *DatasetsApi* | [**create_dataset_handler**](docs/DatasetsApi.md#create_dataset_handler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 *DatasetsApi* | [**delete_dataset_handler**](docs/DatasetsApi.md#delete_dataset_handler) | **DELETE** /dataset/{dataset} | Delete a dataset
@@ -195,6 +195,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AddDataset](docs/AddDataset.md)
+ - [AddDatasetTile](docs/AddDatasetTile.md)
  - [AddLayer](docs/AddLayer.md)
  - [AddLayerCollection](docs/AddLayerCollection.md)
  - [AddRole](docs/AddRole.md)
@@ -253,6 +254,7 @@ Class | Method | HTTP request | Description
  - [GdalMetaDataStatic](docs/GdalMetaDataStatic.md)
  - [GdalMetadataMapping](docs/GdalMetadataMapping.md)
  - [GdalMetadataNetCdfCf](docs/GdalMetadataNetCdfCf.md)
+ - [GdalMultiBand](docs/GdalMultiBand.md)
  - [GdalSourceTimePlaceholder](docs/GdalSourceTimePlaceholder.md)
  - [GeoJson](docs/GeoJson.md)
  - [GeoTransform](docs/GeoTransform.md)

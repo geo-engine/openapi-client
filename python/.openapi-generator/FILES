@@ -4,6 +4,7 @@
 .travis.yml
 README.md
 docs/AddDataset.md
+docs/AddDatasetTile.md
 docs/AddLayer.md
 docs/AddLayerCollection.md
 docs/AddRole.md
@@ -63,6 +64,7 @@ docs/GdalMetaDataRegular.md
 docs/GdalMetaDataStatic.md
 docs/GdalMetadataMapping.md
 docs/GdalMetadataNetCdfCf.md
+docs/GdalMultiBand.md
 docs/GdalSourceTimePlaceholder.md
 docs/GeneralApi.md
 docs/GeoJson.md
@@ -292,6 +294,7 @@ geoengine_openapi_client/configuration.py
 geoengine_openapi_client/exceptions.py
 geoengine_openapi_client/models/__init__.py
 geoengine_openapi_client/models/add_dataset.py
+geoengine_openapi_client/models/add_dataset_tile.py
 geoengine_openapi_client/models/add_layer.py
 geoengine_openapi_client/models/add_layer_collection.py
 geoengine_openapi_client/models/add_role.py
@@ -350,6 +353,7 @@ geoengine_openapi_client/models/gdal_meta_data_regular.py
 geoengine_openapi_client/models/gdal_meta_data_static.py
 geoengine_openapi_client/models/gdal_metadata_mapping.py
 geoengine_openapi_client/models/gdal_metadata_net_cdf_cf.py
+geoengine_openapi_client/models/gdal_multi_band.py
 geoengine_openapi_client/models/gdal_source_time_placeholder.py
 geoengine_openapi_client/models/geo_json.py
 geoengine_openapi_client/models/geo_transform.py
@@ -550,6 +554,7 @@ setup.py
 test-requirements.txt
 test/__init__.py
 test/test_add_dataset.py
+test/test_add_dataset_tile.py
 test/test_add_layer.py
 test/test_add_layer_collection.py
 test/test_add_role.py
@@ -609,6 +614,7 @@ test/test_gdal_meta_data_regular.py
 test/test_gdal_meta_data_static.py
 test/test_gdal_metadata_mapping.py
 test/test_gdal_metadata_net_cdf_cf.py
+test/test_gdal_multi_band.py
 test/test_gdal_source_time_placeholder.py
 test/test_general_api.py
 test/test_geo_json.py

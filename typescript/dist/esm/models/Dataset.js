@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 import { ProvenanceFromJSON, ProvenanceToJSON, } from './Provenance';
+import { DataPathFromJSON, DataPathToJSON, } from './DataPath';
 import { SymbologyFromJSON, SymbologyToJSON, } from './Symbology';
 import { TypedResultDescriptorFromJSON, TypedResultDescriptorToJSON, } from './TypedResultDescriptor';
 /**
@@ -40,6 +41,7 @@ export function DatasetFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'dataPath': json['dataPath'] == null ? undefined : DataPathFromJSON(json['dataPath']),
         'description': json['description'],
         'displayName': json['displayName'],
         'id': json['id'],
@@ -59,6 +61,7 @@ export function DatasetToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
+        'dataPath': DataPathToJSON(value['dataPath']),
         'description': value['description'],
         'displayName': value['displayName'],
         'id': value['id'],

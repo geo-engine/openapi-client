@@ -45,6 +45,7 @@ __all__ = [
     "ApiAttributeError",
     "ApiException",
     "AddDataset",
+    "AddDatasetTile",
     "AddLayer",
     "AddLayerCollection",
     "AddRole",
@@ -103,6 +104,7 @@ __all__ = [
     "GdalMetaDataStatic",
     "GdalMetadataMapping",
     "GdalMetadataNetCdfCf",
+    "GdalMultiBand",
     "GdalSourceTimePlaceholder",
     "GeoJson",
     "GeoTransform",
@@ -326,6 +328,7 @@ from geoengine_openapi_client.exceptions import ApiException as ApiException
 
 # import models into sdk package
 from geoengine_openapi_client.models.add_dataset import AddDataset as AddDataset
+from geoengine_openapi_client.models.add_dataset_tile import AddDatasetTile as AddDatasetTile
 from geoengine_openapi_client.models.add_layer import AddLayer as AddLayer
 from geoengine_openapi_client.models.add_layer_collection import AddLayerCollection as AddLayerCollection
 from geoengine_openapi_client.models.add_role import AddRole as AddRole
@@ -384,6 +387,7 @@ from geoengine_openapi_client.models.gdal_meta_data_regular import GdalMetaDataR
 from geoengine_openapi_client.models.gdal_meta_data_static import GdalMetaDataStatic as GdalMetaDataStatic
 from geoengine_openapi_client.models.gdal_metadata_mapping import GdalMetadataMapping as GdalMetadataMapping
 from geoengine_openapi_client.models.gdal_metadata_net_cdf_cf import GdalMetadataNetCdfCf as GdalMetadataNetCdfCf
+from geoengine_openapi_client.models.gdal_multi_band import GdalMultiBand as GdalMultiBand
 from geoengine_openapi_client.models.gdal_source_time_placeholder import GdalSourceTimePlaceholder as GdalSourceTimePlaceholder
 from geoengine_openapi_client.models.geo_json import GeoJson as GeoJson
 from geoengine_openapi_client.models.geo_transform import GeoTransform as GeoTransform

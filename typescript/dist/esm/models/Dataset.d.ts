@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import type { Provenance } from './Provenance';
+import type { DataPath } from './DataPath';
 import type { Symbology } from './Symbology';
 import type { TypedResultDescriptor } from './TypedResultDescriptor';
 /**
@@ -18,6 +19,12 @@ import type { TypedResultDescriptor } from './TypedResultDescriptor';
  * @interface Dataset
  */
 export interface Dataset {
+    /**
+     *
+     * @type {DataPath}
+     * @memberof Dataset
+     */
+    dataPath?: DataPath | null;
     /**
      *
      * @type {string}

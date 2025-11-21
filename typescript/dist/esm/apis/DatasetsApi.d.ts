@@ -11,6 +11,10 @@
  */
 import * as runtime from '../runtime';
 import type { AutoCreateDataset, CreateDataset, Dataset, DatasetListing, DatasetNameResponse, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, Volume, VolumeFileLayersResponse } from '../models/index';
+export interface AddDatasetTilesHandlerRequest {
+    dataset: string;
+    autoCreateDataset: AutoCreateDataset;
+}
 export interface AutoCreateDatasetHandlerRequest {
     autoCreateDataset: AutoCreateDataset;
 }
@@ -60,6 +64,14 @@ export interface UpdateLoadingInfoHandlerRequest {
  *
  */
 export declare class DatasetsApi extends runtime.BaseAPI {
+    /**
+     * Add a tile to a gdal dataset.
+     */
+    addDatasetTilesHandlerRaw(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add a tile to a gdal dataset.
+     */
+    addDatasetTilesHandler(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */

@@ -36,6 +36,7 @@ class TestDataset(unittest.TestCase):
         model = Dataset()
         if include_optional:
             return Dataset(
+                data_path = None,
                 description = '',
                 display_name = '',
                 id = '',

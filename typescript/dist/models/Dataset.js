@@ -19,6 +19,7 @@ exports.DatasetFromJSONTyped = DatasetFromJSONTyped;
 exports.DatasetToJSON = DatasetToJSON;
 exports.DatasetToJSONTyped = DatasetToJSONTyped;
 const Provenance_1 = require("./Provenance");
+const DataPath_1 = require("./DataPath");
 const Symbology_1 = require("./Symbology");
 const TypedResultDescriptor_1 = require("./TypedResultDescriptor");
 /**
@@ -47,6 +48,7 @@ function DatasetFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'dataPath': json['dataPath'] == null ? undefined : (0, DataPath_1.DataPathFromJSON)(json['dataPath']),
         'description': json['description'],
         'displayName': json['displayName'],
         'id': json['id'],
@@ -66,6 +68,7 @@ function DatasetToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
+        'dataPath': (0, DataPath_1.DataPathToJSON)(value['dataPath']),
         'description': value['description'],
         'displayName': value['displayName'],
         'id': value['id'],

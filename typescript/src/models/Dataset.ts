@@ -20,6 +20,13 @@ import {
     ProvenanceToJSON,
     ProvenanceToJSONTyped,
 } from './Provenance';
+import type { DataPath } from './DataPath';
+import {
+    DataPathFromJSON,
+    DataPathFromJSONTyped,
+    DataPathToJSON,
+    DataPathToJSONTyped,
+} from './DataPath';
 import type { Symbology } from './Symbology';
 import {
     SymbologyFromJSON,
@@ -41,6 +48,12 @@ import {
  * @interface Dataset
  */
 export interface Dataset {
+    /**
+     * 
+     * @type {DataPath}
+     * @memberof Dataset
+     */
+    dataPath?: DataPath | null;
     /**
      * 
      * @type {string}
@@ -120,6 +133,7 @@ export function DatasetFromJSONTyped(json: any, ignoreDiscriminator: boolean): D
     }
     return {
         
+        'dataPath': json['dataPath'] == null ? undefined : DataPathFromJSON(json['dataPath']),
         'description': json['description'],
         'displayName': json['displayName'],
         'id': json['id'],
@@ -143,6 +157,7 @@ export function DatasetToJSONTyped(value?: Dataset | null, ignoreDiscriminator: 
 
     return {
         
+        'dataPath': DataPathToJSON(value['dataPath']),
         'description': value['description'],
         'displayName': value['displayName'],
         'id': value['id'],

@@ -27,6 +27,13 @@ class TestDatasetsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_add_dataset_tiles_handler(self) -> None:
+        """Test case for add_dataset_tiles_handler
+
+        Add a tile to a gdal dataset.
+        """
+        pass
+
     def test_auto_create_dataset_handler(self) -> None:
         """Test case for auto_create_dataset_handler
 

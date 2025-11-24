@@ -12,7 +12,7 @@
 set -e
 
 wget -O .generation/input/openapi.json \
-  https://raw.githubusercontent.com/geo-engine/geoengine/refs/heads/main/openapi.json
+  http://localhost:3030/api/api-docs/openapi.json
 .generation/generate.py --no-spec-fetch --no-container-build python
 .generation/generate.py --no-spec-fetch --no-container-build typescript
 
@@ -46,6 +46,6 @@ fi
 cd ../geoengine-ui
 
 npm uninstall @geoengine/openapi-client
-npm install @geoengine/openapi-client@https://gitpkg.now.sh/geo-engine/openapi-client/typescript?${current_branch}
+npm install "https://github.com/geo-engine/openapi-client.git#${current_branch}" --save
 
 cd -

@@ -55,10 +55,10 @@ import geoengine_openapi_client
 from geoengine_openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://geoengine.io/api
+# Defining the host is optional and defaults to http://127.0.0.1:3030/api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = geoengine_openapi_client.Configuration(
-    host = "https://geoengine.io/api"
+    host = "http://127.0.0.1:3030/api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -89,7 +89,7 @@ with geoengine_openapi_client.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://geoengine.io/api*
+All URIs are relative to *http://127.0.0.1:3030/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -138,8 +138,7 @@ Class | Method | HTTP request | Description
 *OGCWCSApi* | [**wcs_capabilities_handler**](docs/OGCWCSApi.md#wcs_capabilities_handler) | **GET** /wcs/{workflow}?request&#x3D;GetCapabilities | Get WCS Capabilities
 *OGCWCSApi* | [**wcs_describe_coverage_handler**](docs/OGCWCSApi.md#wcs_describe_coverage_handler) | **GET** /wcs/{workflow}?request&#x3D;DescribeCoverage | Get WCS Coverage Description
 *OGCWCSApi* | [**wcs_get_coverage_handler**](docs/OGCWCSApi.md#wcs_get_coverage_handler) | **GET** /wcs/{workflow}?request&#x3D;GetCoverage | Get WCS Coverage
-*OGCWFSApi* | [**wfs_capabilities_handler**](docs/OGCWFSApi.md#wfs_capabilities_handler) | **GET** /wfs/{workflow}?request&#x3D;GetCapabilities | Get WFS Capabilities
-*OGCWFSApi* | [**wfs_feature_handler**](docs/OGCWFSApi.md#wfs_feature_handler) | **GET** /wfs/{workflow}?request&#x3D;GetFeature | Get WCS Features
+*OGCWFSApi* | [**wfs_handler**](docs/OGCWFSApi.md#wfs_handler) | **GET** /wfs/{workflow} | OGC WFS endpoint
 *OGCWMSApi* | [**wms_capabilities_handler**](docs/OGCWMSApi.md#wms_capabilities_handler) | **GET** /wms/{workflow}?request&#x3D;GetCapabilities | Get WMS Capabilities
 *OGCWMSApi* | [**wms_legend_graphic_handler**](docs/OGCWMSApi.md#wms_legend_graphic_handler) | **GET** /wms/{workflow}?request&#x3D;GetLegendGraphic | Get WMS Legend Graphic
 *OGCWMSApi* | [**wms_map_handler**](docs/OGCWMSApi.md#wms_map_handler) | **GET** /wms/{workflow}?request&#x3D;GetMap | Get WMS Map

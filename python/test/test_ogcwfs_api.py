@@ -27,17 +27,10 @@ class TestOGCWFSApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_wfs_capabilities_handler(self) -> None:
-        """Test case for wfs_capabilities_handler
+    def test_wfs_handler(self) -> None:
+        """Test case for wfs_handler
 
-        Get WFS Capabilities
-        """
-        pass
-
-    def test_wfs_feature_handler(self) -> None:
-        """Test case for wfs_feature_handler
-
-        Get WCS Features
+        OGC WFS endpoint
         """
         pass
 

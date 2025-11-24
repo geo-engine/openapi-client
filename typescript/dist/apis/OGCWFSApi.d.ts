@@ -10,48 +10,42 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { GeoJson, GetCapabilitiesRequest, GetFeatureRequest, WfsService, WfsVersion } from '../models/index';
-export interface WfsCapabilitiesHandlerRequest {
+import type { GeoJson, WfsService, WfsVersion } from '../models/index';
+export interface WfsHandlerRequest {
     workflow: string;
-    version: WfsVersion | null;
-    service: WfsService;
-    request: GetCapabilitiesRequest;
-}
-export interface WfsFeatureHandlerRequest {
-    workflow: string;
-    service: WfsService;
-    request: GetFeatureRequest;
-    typeNames: string;
     bbox: string;
-    version?: WfsVersion | null;
-    time?: string;
-    srsName?: string | null;
-    namespaces?: string | null;
+    request: WfsHandlerRequestEnum;
+    service: WfsService;
+    typeNames: string;
     count?: number | null;
-    sortBy?: string | null;
-    resultType?: string | null;
     filter?: string | null;
+    namespaces?: string | null;
     propertyName?: string | null;
     queryResolution?: string;
+    resultType?: string | null;
+    sortBy?: string | null;
+    srsName?: string | null;
+    time?: string;
+    version?: WfsVersion | null;
 }
 /**
  *
  */
 export declare class OGCWFSApi extends runtime.BaseAPI {
     /**
-     * Get WFS Capabilities
+     * OGC WFS endpoint
      */
-    wfsCapabilitiesHandlerRaw(requestParameters: WfsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    wfsHandlerRaw(requestParameters: WfsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeoJson>>;
     /**
-     * Get WFS Capabilities
+     * OGC WFS endpoint
      */
-    wfsCapabilitiesHandler(requestParameters: WfsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
-    /**
-     * Get WCS Features
-     */
-    wfsFeatureHandlerRaw(requestParameters: WfsFeatureHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeoJson>>;
-    /**
-     * Get WCS Features
-     */
-    wfsFeatureHandler(requestParameters: WfsFeatureHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeoJson>;
+    wfsHandler(requestParameters: WfsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeoJson>;
 }
+/**
+ * @export
+ */
+export declare const WfsHandlerRequestEnum: {
+    readonly GetCapabilities: "GetCapabilities";
+    readonly GetFeature: "GetFeature";
+};
+export type WfsHandlerRequestEnum = typeof WfsHandlerRequestEnum[keyof typeof WfsHandlerRequestEnum];

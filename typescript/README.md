@@ -1,6 +1,6 @@
 # @geoengine/openapi-client@0.0.30
 
-A TypeScript SDK client for the geoengine.io API.
+A TypeScript SDK client for the 127.0.0.1 API.
 
 ## Usage
 
@@ -52,7 +52,7 @@ example().catch(console.error);
 
 ### API Endpoints
 
-All URIs are relative to *https://geoengine.io/api*
+All URIs are relative to *http://127.0.0.1:3030/api*
 
 | Class | Method | HTTP request | Description
 | ----- | ------ | ------------ | -------------
@@ -101,8 +101,7 @@ All URIs are relative to *https://geoengine.io/api*
 *OGCWCSApi* | [**wcsCapabilitiesHandler**](docs/OGCWCSApi.md#wcscapabilitieshandler) | **GET** /wcs/{workflow}?request&#x3D;GetCapabilities | Get WCS Capabilities
 *OGCWCSApi* | [**wcsDescribeCoverageHandler**](docs/OGCWCSApi.md#wcsdescribecoveragehandler) | **GET** /wcs/{workflow}?request&#x3D;DescribeCoverage | Get WCS Coverage Description
 *OGCWCSApi* | [**wcsGetCoverageHandler**](docs/OGCWCSApi.md#wcsgetcoveragehandler) | **GET** /wcs/{workflow}?request&#x3D;GetCoverage | Get WCS Coverage
-*OGCWFSApi* | [**wfsCapabilitiesHandler**](docs/OGCWFSApi.md#wfscapabilitieshandler) | **GET** /wfs/{workflow}?request&#x3D;GetCapabilities | Get WFS Capabilities
-*OGCWFSApi* | [**wfsFeatureHandler**](docs/OGCWFSApi.md#wfsfeaturehandler) | **GET** /wfs/{workflow}?request&#x3D;GetFeature | Get WCS Features
+*OGCWFSApi* | [**wfsHandler**](docs/OGCWFSApi.md#wfshandler) | **GET** /wfs/{workflow} | OGC WFS endpoint
 *OGCWMSApi* | [**wmsCapabilitiesHandler**](docs/OGCWMSApi.md#wmscapabilitieshandler) | **GET** /wms/{workflow}?request&#x3D;GetCapabilities | Get WMS Capabilities
 *OGCWMSApi* | [**wmsLegendGraphicHandler**](docs/OGCWMSApi.md#wmslegendgraphichandler) | **GET** /wms/{workflow}?request&#x3D;GetLegendGraphic | Get WMS Legend Graphic
 *OGCWMSApi* | [**wmsMapHandler**](docs/OGCWMSApi.md#wmsmaphandler) | **GET** /wms/{workflow}?request&#x3D;GetMap | Get WMS Map

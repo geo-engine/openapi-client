@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OGCWFSApi = void 0;
+exports.WfsHandlerRequestEnum = exports.OGCWFSApi = void 0;
 const runtime = require("../runtime");
 const index_1 = require("../models/index");
 /**
@@ -30,115 +30,37 @@ const index_1 = require("../models/index");
  */
 class OGCWFSApi extends runtime.BaseAPI {
     /**
-     * Get WFS Capabilities
+     * OGC WFS endpoint
      */
-    wfsCapabilitiesHandlerRaw(requestParameters, initOverrides) {
+    wfsHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['workflow'] == null) {
-                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wfsCapabilitiesHandler().');
-            }
-            if (requestParameters['version'] == null) {
-                throw new runtime.RequiredError('version', 'Required parameter "version" was null or undefined when calling wfsCapabilitiesHandler().');
-            }
-            if (requestParameters['service'] == null) {
-                throw new runtime.RequiredError('service', 'Required parameter "service" was null or undefined when calling wfsCapabilitiesHandler().');
-            }
-            if (requestParameters['request'] == null) {
-                throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wfsCapabilitiesHandler().');
-            }
-            const queryParameters = {};
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("session_token", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            let urlPath = `/wfs/{workflow}?request=GetCapabilities`;
-            urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
-            urlPath = urlPath.replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version'])));
-            urlPath = urlPath.replace(`{${"service"}}`, encodeURIComponent(String(requestParameters['service'])));
-            urlPath = urlPath.replace(`{${"request"}}`, encodeURIComponent(String(requestParameters['request'])));
-            const response = yield this.request({
-                path: urlPath,
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            }, initOverrides);
-            if (this.isJsonMime(response.headers.get('content-type'))) {
-                return new runtime.JSONApiResponse(response);
-            }
-            else {
-                return new runtime.TextApiResponse(response);
-            }
-        });
-    }
-    /**
-     * Get WFS Capabilities
-     */
-    wfsCapabilitiesHandler(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.wfsCapabilitiesHandlerRaw(requestParameters, initOverrides);
-            return yield response.value();
-        });
-    }
-    /**
-     * Get WCS Features
-     */
-    wfsFeatureHandlerRaw(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters['workflow'] == null) {
-                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wfsFeatureHandler().');
-            }
-            if (requestParameters['service'] == null) {
-                throw new runtime.RequiredError('service', 'Required parameter "service" was null or undefined when calling wfsFeatureHandler().');
-            }
-            if (requestParameters['request'] == null) {
-                throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wfsFeatureHandler().');
-            }
-            if (requestParameters['typeNames'] == null) {
-                throw new runtime.RequiredError('typeNames', 'Required parameter "typeNames" was null or undefined when calling wfsFeatureHandler().');
+                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wfsHandler().');
             }
             if (requestParameters['bbox'] == null) {
-                throw new runtime.RequiredError('bbox', 'Required parameter "bbox" was null or undefined when calling wfsFeatureHandler().');
+                throw new runtime.RequiredError('bbox', 'Required parameter "bbox" was null or undefined when calling wfsHandler().');
+            }
+            if (requestParameters['request'] == null) {
+                throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wfsHandler().');
+            }
+            if (requestParameters['service'] == null) {
+                throw new runtime.RequiredError('service', 'Required parameter "service" was null or undefined when calling wfsHandler().');
+            }
+            if (requestParameters['typeNames'] == null) {
+                throw new runtime.RequiredError('typeNames', 'Required parameter "typeNames" was null or undefined when calling wfsHandler().');
             }
             const queryParameters = {};
-            if (requestParameters['version'] != null) {
-                queryParameters['version'] = requestParameters['version'];
-            }
-            if (requestParameters['service'] != null) {
-                queryParameters['service'] = requestParameters['service'];
-            }
-            if (requestParameters['request'] != null) {
-                queryParameters['request'] = requestParameters['request'];
-            }
-            if (requestParameters['typeNames'] != null) {
-                queryParameters['typeNames'] = requestParameters['typeNames'];
-            }
             if (requestParameters['bbox'] != null) {
                 queryParameters['bbox'] = requestParameters['bbox'];
-            }
-            if (requestParameters['time'] != null) {
-                queryParameters['time'] = requestParameters['time'];
-            }
-            if (requestParameters['srsName'] != null) {
-                queryParameters['srsName'] = requestParameters['srsName'];
-            }
-            if (requestParameters['namespaces'] != null) {
-                queryParameters['namespaces'] = requestParameters['namespaces'];
             }
             if (requestParameters['count'] != null) {
                 queryParameters['count'] = requestParameters['count'];
             }
-            if (requestParameters['sortBy'] != null) {
-                queryParameters['sortBy'] = requestParameters['sortBy'];
-            }
-            if (requestParameters['resultType'] != null) {
-                queryParameters['resultType'] = requestParameters['resultType'];
-            }
             if (requestParameters['filter'] != null) {
                 queryParameters['filter'] = requestParameters['filter'];
+            }
+            if (requestParameters['namespaces'] != null) {
+                queryParameters['namespaces'] = requestParameters['namespaces'];
             }
             if (requestParameters['propertyName'] != null) {
                 queryParameters['propertyName'] = requestParameters['propertyName'];
@@ -146,6 +68,30 @@ class OGCWFSApi extends runtime.BaseAPI {
             if (requestParameters['queryResolution'] != null) {
                 queryParameters['queryResolution'] = requestParameters['queryResolution'];
             }
+            if (requestParameters['request'] != null) {
+                queryParameters['request'] = requestParameters['request'];
+            }
+            if (requestParameters['resultType'] != null) {
+                queryParameters['resultType'] = requestParameters['resultType'];
+            }
+            if (requestParameters['service'] != null) {
+                queryParameters['service'] = requestParameters['service'];
+            }
+            if (requestParameters['sortBy'] != null) {
+                queryParameters['sortBy'] = requestParameters['sortBy'];
+            }
+            if (requestParameters['srsName'] != null) {
+                queryParameters['srsName'] = requestParameters['srsName'];
+            }
+            if (requestParameters['time'] != null) {
+                queryParameters['time'] = requestParameters['time'];
+            }
+            if (requestParameters['typeNames'] != null) {
+                queryParameters['typeNames'] = requestParameters['typeNames'];
+            }
+            if (requestParameters['version'] != null) {
+                queryParameters['version'] = requestParameters['version'];
+            }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
                 const token = this.configuration.accessToken;
@@ -154,7 +100,7 @@ class OGCWFSApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
-            let urlPath = `/wfs/{workflow}?request=GetFeature`;
+            let urlPath = `/wfs/{workflow}`;
             urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
             const response = yield this.request({
                 path: urlPath,
@@ -166,13 +112,20 @@ class OGCWFSApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get WCS Features
+     * OGC WFS endpoint
      */
-    wfsFeatureHandler(requestParameters, initOverrides) {
+    wfsHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.wfsFeatureHandlerRaw(requestParameters, initOverrides);
+            const response = yield this.wfsHandlerRaw(requestParameters, initOverrides);
             return yield response.value();
         });
     }
 }
 exports.OGCWFSApi = OGCWFSApi;
+/**
+ * @export
+ */
+exports.WfsHandlerRequestEnum = {
+    GetCapabilities: 'GetCapabilities',
+    GetFeature: 'GetFeature'
+};

@@ -46,6 +46,5 @@ fi
 cd ../geoengine-ui
 
 npm uninstall @geoengine/openapi-client
-npm install "https://github.com/geo-engine/openapi-client.git#${current_branch}" --save
-
+npm install  @geoengine/openapi-client@"https://github.com/geo-engine/openapi-client.git#${current_branch}"
 cd -

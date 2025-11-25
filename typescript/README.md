@@ -102,9 +102,7 @@ All URIs are relative to *http://127.0.0.1:3030/api*
 *OGCWCSApi* | [**wcsDescribeCoverageHandler**](docs/OGCWCSApi.md#wcsdescribecoveragehandler) | **GET** /wcs/{workflow}?request&#x3D;DescribeCoverage | Get WCS Coverage Description
 *OGCWCSApi* | [**wcsGetCoverageHandler**](docs/OGCWCSApi.md#wcsgetcoveragehandler) | **GET** /wcs/{workflow}?request&#x3D;GetCoverage | Get WCS Coverage
 *OGCWFSApi* | [**wfsHandler**](docs/OGCWFSApi.md#wfshandler) | **GET** /wfs/{workflow} | OGC WFS endpoint
-*OGCWMSApi* | [**wmsCapabilitiesHandler**](docs/OGCWMSApi.md#wmscapabilitieshandler) | **GET** /wms/{workflow}?request&#x3D;GetCapabilities | Get WMS Capabilities
-*OGCWMSApi* | [**wmsLegendGraphicHandler**](docs/OGCWMSApi.md#wmslegendgraphichandler) | **GET** /wms/{workflow}?request&#x3D;GetLegendGraphic | Get WMS Legend Graphic
-*OGCWMSApi* | [**wmsMapHandler**](docs/OGCWMSApi.md#wmsmaphandler) | **GET** /wms/{workflow}?request&#x3D;GetMap | Get WMS Map
+*OGCWMSApi* | [**wmsHandler**](docs/OGCWMSApi.md#wmshandler) | **GET** /wms/{workflow} | Get WMS Capabilities
 *PermissionsApi* | [**addPermissionHandler**](docs/PermissionsApi.md#addpermissionhandler) | **PUT** /permissions | Adds a new permission.
 *PermissionsApi* | [**getResourcePermissionsHandler**](docs/PermissionsApi.md#getresourcepermissionshandler) | **GET** /permissions/resources/{resource_type}/{resource_id} | Lists permission for a given resource.
 *PermissionsApi* | [**removePermissionHandler**](docs/PermissionsApi.md#removepermissionhandler) | **DELETE** /permissions | Removes an existing permission.

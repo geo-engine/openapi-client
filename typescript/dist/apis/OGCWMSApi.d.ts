@@ -10,40 +10,29 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { GetCapabilitiesFormat, GetCapabilitiesRequest, GetLegendGraphicRequest, GetMapExceptionFormat, GetMapFormat, GetMapRequest, WmsService, WmsVersion } from '../models/index';
-export interface WmsCapabilitiesHandlerRequest {
+import type { GetCapabilitiesFormat, GetMapExceptionFormat, WmsService, WmsVersion } from '../models/index';
+export interface WmsHandlerRequest {
     workflow: string;
-    version: WmsVersion | null;
-    service: WmsService;
-    request: GetCapabilitiesRequest;
-    format: GetCapabilitiesFormat | null;
-}
-export interface WmsLegendGraphicHandlerRequest {
-    workflow: string;
-    version: WmsVersion;
-    service: WmsService;
-    request: GetLegendGraphicRequest;
-    layer: string;
-}
-export interface WmsMapHandlerRequest {
-    workflow: string;
-    version: WmsVersion;
-    service: WmsService;
-    request: GetMapRequest;
-    width: number;
-    height: number;
     bbox: string;
-    format: GetMapFormat;
+    height: number;
+    layer: string;
     layers: string;
+    queryLayers: string;
+    request: WmsHandlerRequestEnum;
+    service: WmsService;
     styles: string;
-    crs?: string | null;
-    time?: string;
-    transparent?: boolean | null;
+    width: number;
     bgcolor?: string | null;
-    sld?: string | null;
-    sldBody?: string | null;
+    crs?: string | null;
     elevation?: string | null;
     exceptions?: GetMapExceptionFormat | null;
+    format?: GetCapabilitiesFormat | null;
+    infoFormat?: string | null;
+    sld?: string | null;
+    sldBody?: string | null;
+    time?: string;
+    transparent?: boolean | null;
+    version?: WmsVersion | null;
 }
 /**
  *
@@ -52,25 +41,20 @@ export declare class OGCWMSApi extends runtime.BaseAPI {
     /**
      * Get WMS Capabilities
      */
-    wmsCapabilitiesHandlerRaw(requestParameters: WmsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    wmsHandlerRaw(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
      * Get WMS Capabilities
      */
-    wmsCapabilitiesHandler(requestParameters: WmsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
-    /**
-     * Get WMS Legend Graphic
-     */
-    wmsLegendGraphicHandlerRaw(requestParameters: WmsLegendGraphicHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * Get WMS Legend Graphic
-     */
-    wmsLegendGraphicHandler(requestParameters: WmsLegendGraphicHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Get WMS Map
-     */
-    wmsMapHandlerRaw(requestParameters: WmsMapHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>>;
-    /**
-     * Get WMS Map
-     */
-    wmsMapHandler(requestParameters: WmsMapHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob>;
+    wmsHandler(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 }
+/**
+ * @export
+ */
+export declare const WmsHandlerRequestEnum: {
+    readonly GetCapabilities: "GetCapabilities";
+    readonly GetMap: "GetMap";
+    readonly GetFeatureInfo: "GetFeatureInfo";
+    readonly GetStyles: "GetStyles";
+    readonly GetLegendGraphic: "GetLegendGraphic";
+};
+export type WmsHandlerRequestEnum = typeof WmsHandlerRequestEnum[keyof typeof WmsHandlerRequestEnum];

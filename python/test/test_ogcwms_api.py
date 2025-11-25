@@ -27,24 +27,10 @@ class TestOGCWMSApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_wms_capabilities_handler(self) -> None:
-        """Test case for wms_capabilities_handler
+    def test_wms_handler(self) -> None:
+        """Test case for wms_handler
 
         Get WMS Capabilities
-        """
-        pass
-
-    def test_wms_legend_graphic_handler(self) -> None:
-        """Test case for wms_legend_graphic_handler
-
-        Get WMS Legend Graphic
-        """
-        pass
-
-    def test_wms_map_handler(self) -> None:
-        """Test case for wms_map_handler
-
-        Get WMS Map
         """
         pass
 

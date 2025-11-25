@@ -16,17 +16,17 @@ export interface WcsHandlerRequest {
     boundingbox: string;
     format: GetCoverageFormat;
     gridbasecrs: string;
+    gridoffsets: string;
+    gridorigin: string;
     identifier: string;
     identifiers: string;
+    nodatavalue: number | null;
     request: WcsHandlerRequestEnum;
+    resx: number | null;
+    resy: number | null;
     service: WcsService;
-    gridoffsets?: string;
-    gridorigin?: string;
-    nodatavalue?: number | null;
-    resx?: number | null;
-    resy?: number | null;
-    time?: string;
-    version?: WcsVersion | null;
+    time: string;
+    version: WcsVersion | null;
 }
 /**
  *

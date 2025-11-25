@@ -10,7 +10,7 @@ All URIs are relative to *http://127.0.0.1:3030/api*
 
 ## wmsHandler
 
-> string wmsHandler(workflow, bbox, height, layer, layers, queryLayers, request, service, styles, width, bgcolor, crs, elevation, exceptions, format, infoFormat, sld, sldBody, time, transparent, version)
+> string wmsHandler(workflow, bbox, bgcolor, crs, elevation, exceptions, format, height, infoFormat, layer, layers, queryLayers, request, service, sld, sldBody, styles, time, transparent, version, width)
 
 OGC WMS endpoint
 
@@ -36,8 +36,20 @@ async function example() {
     workflow: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
     // string
     bbox: -90,-180,90,180,
+    // string
+    bgcolor: bgcolor_example,
+    // string
+    crs: EPSG:4326,
+    // string
+    elevation: elevation_example,
+    // GetMapExceptionFormat
+    exceptions: ...,
+    // GetCapabilitiesFormat
+    format: ...,
     // number
     height: 256,
+    // string
+    infoFormat: infoFormat_example,
     // string
     layer: layer_example,
     // string
@@ -49,31 +61,19 @@ async function example() {
     // WmsService
     service: ...,
     // string
+    sld: sld_example,
+    // string
+    sldBody: sldBody_example,
+    // string
     styles: custom:{"type":"linearGradient","breakpoints":[{"value":1,"color":[0,0,0,255]},{"value":255,"color":[255,255,255,255]}],"noDataColor":[0,0,0,0],"defaultColor":[0,0,0,0]},
+    // string
+    time: 2014-04-01T12:00:00.000Z,
+    // boolean
+    transparent: true,
+    // WmsVersion
+    version: ...,
     // number
     width: 512,
-    // string (optional)
-    bgcolor: bgcolor_example,
-    // string (optional)
-    crs: EPSG:4326,
-    // string (optional)
-    elevation: elevation_example,
-    // GetMapExceptionFormat (optional)
-    exceptions: ...,
-    // GetCapabilitiesFormat (optional)
-    format: ...,
-    // string (optional)
-    infoFormat: infoFormat_example,
-    // string (optional)
-    sld: sld_example,
-    // string (optional)
-    sldBody: sldBody_example,
-    // string (optional)
-    time: 2014-04-01T12:00:00.000Z,
-    // boolean (optional)
-    transparent: true,
-    // WmsVersion (optional)
-    version: ...,
   } satisfies WmsHandlerRequest;
 
   try {
@@ -95,25 +95,25 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **workflow** | `string` | Workflow id | [Defaults to `undefined`] |
 | **bbox** | `string` |  | [Defaults to `undefined`] |
+| **bgcolor** | `string` |  | [Defaults to `undefined`] |
+| **crs** | `string` |  | [Defaults to `undefined`] |
+| **elevation** | `string` |  | [Defaults to `undefined`] |
+| **exceptions** | `GetMapExceptionFormat` |  | [Defaults to `undefined`] [Enum: XML, JSON] |
+| **format** | `GetCapabilitiesFormat` |  | [Defaults to `undefined`] [Enum: text/xml] |
 | **height** | `number` |  | [Defaults to `undefined`] |
+| **infoFormat** | `string` |  | [Defaults to `undefined`] |
 | **layer** | `string` |  | [Defaults to `undefined`] |
 | **layers** | `string` |  | [Defaults to `undefined`] |
 | **queryLayers** | `string` |  | [Defaults to `undefined`] |
 | **request** | `GetCapabilities`, `GetMap`, `GetFeatureInfo`, `GetStyles`, `GetLegendGraphic` | type of WMS request | [Defaults to `undefined`] [Enum: GetCapabilities, GetMap, GetFeatureInfo, GetStyles, GetLegendGraphic] |
 | **service** | `WmsService` |  | [Defaults to `undefined`] [Enum: WMS] |
+| **sld** | `string` |  | [Defaults to `undefined`] |
+| **sldBody** | `string` |  | [Defaults to `undefined`] |
 | **styles** | `string` |  | [Defaults to `undefined`] |
+| **time** | `string` |  | [Defaults to `undefined`] |
+| **transparent** | `boolean` |  | [Defaults to `undefined`] |
+| **version** | `WmsVersion` |  | [Defaults to `undefined`] [Enum: 1.3.0] |
 | **width** | `number` |  | [Defaults to `undefined`] |
-| **bgcolor** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **crs** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **elevation** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **exceptions** | `GetMapExceptionFormat` |  | [Optional] [Defaults to `undefined`] [Enum: XML, JSON] |
-| **format** | `GetCapabilitiesFormat` |  | [Optional] [Defaults to `undefined`] [Enum: text/xml] |
-| **infoFormat** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **sld** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **sldBody** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **time** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **transparent** | `boolean` |  | [Optional] [Defaults to `undefined`] |
-| **version** | `WmsVersion` |  | [Optional] [Defaults to `undefined`] [Enum: 1.3.0] |
 
 ### Return type
 

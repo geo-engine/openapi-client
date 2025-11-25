@@ -10,7 +10,7 @@ All URIs are relative to *http://127.0.0.1:3030/api*
 
 ## wfsHandler
 
-> GeoJson wfsHandler(workflow, bbox, request, service, typeNames, count, filter, namespaces, propertyName, queryResolution, resultType, sortBy, srsName, time, version)
+> GeoJson wfsHandler(workflow, bbox, count, filter, namespaces, propertyName, queryResolution, request, resultType, service, sortBy, srsName, time, typeNames, version)
 
 OGC WFS endpoint
 
@@ -36,31 +36,31 @@ async function example() {
     workflow: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
     // string
     bbox: -90,-180,90,180,
+    // number
+    count: 789,
+    // string
+    filter: filter_example,
+    // string
+    namespaces: namespaces_example,
+    // string
+    propertyName: propertyName_example,
+    // string | Vendor parameter for specifying a spatial query resolution
+    queryResolution: queryResolution_example,
     // 'GetCapabilities' | 'GetFeature' | type of WFS request
     request: request_example,
+    // string
+    resultType: resultType_example,
     // WfsService
     service: ...,
     // string
-    typeNames: <Workflow Id>,
-    // number (optional)
-    count: 789,
-    // string (optional)
-    filter: filter_example,
-    // string (optional)
-    namespaces: namespaces_example,
-    // string (optional)
-    propertyName: propertyName_example,
-    // string | Vendor parameter for specifying a spatial query resolution (optional)
-    queryResolution: queryResolution_example,
-    // string (optional)
-    resultType: resultType_example,
-    // string (optional)
     sortBy: sortBy_example,
-    // string (optional)
+    // string
     srsName: EPSG:4326,
-    // string (optional)
+    // string
     time: 2014-04-01T12:00:00.000Z,
-    // WfsVersion (optional)
+    // string
+    typeNames: <Workflow Id>,
+    // WfsVersion
     version: ...,
   } satisfies WfsHandlerRequest;
 
@@ -83,19 +83,19 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **workflow** | `string` | Workflow id | [Defaults to `undefined`] |
 | **bbox** | `string` |  | [Defaults to `undefined`] |
+| **count** | `number` |  | [Defaults to `undefined`] |
+| **filter** | `string` |  | [Defaults to `undefined`] |
+| **namespaces** | `string` |  | [Defaults to `undefined`] |
+| **propertyName** | `string` |  | [Defaults to `undefined`] |
+| **queryResolution** | `string` | Vendor parameter for specifying a spatial query resolution | [Defaults to `undefined`] |
 | **request** | `GetCapabilities`, `GetFeature` | type of WFS request | [Defaults to `undefined`] [Enum: GetCapabilities, GetFeature] |
+| **resultType** | `string` |  | [Defaults to `undefined`] |
 | **service** | `WfsService` |  | [Defaults to `undefined`] [Enum: WFS] |
+| **sortBy** | `string` |  | [Defaults to `undefined`] |
+| **srsName** | `string` |  | [Defaults to `undefined`] |
+| **time** | `string` |  | [Defaults to `undefined`] |
 | **typeNames** | `string` |  | [Defaults to `undefined`] |
-| **count** | `number` |  | [Optional] [Defaults to `undefined`] |
-| **filter** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **namespaces** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **propertyName** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **queryResolution** | `string` | Vendor parameter for specifying a spatial query resolution | [Optional] [Defaults to `undefined`] |
-| **resultType** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **sortBy** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **srsName** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **time** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **version** | `WfsVersion` |  | [Optional] [Defaults to `undefined`] [Enum: 2.0.0] |
+| **version** | `WfsVersion` |  | [Defaults to `undefined`] [Enum: 2.0.0] |
 
 ### Return type
 

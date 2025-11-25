@@ -50,17 +50,17 @@ class OGCWCSApi:
         boundingbox: StrictStr,
         format: GetCoverageFormat,
         gridbasecrs: StrictStr,
+        gridoffsets: StrictStr,
+        gridorigin: StrictStr,
         identifier: StrictStr,
         identifiers: StrictStr,
+        nodatavalue: Optional[Union[StrictFloat, StrictInt]],
         request: Annotated[StrictStr, Field(description="type of WMS request")],
+        resx: Optional[Union[StrictFloat, StrictInt]],
+        resy: Optional[Union[StrictFloat, StrictInt]],
         service: WcsService,
-        gridoffsets: Optional[StrictStr] = None,
-        gridorigin: Optional[StrictStr] = None,
-        nodatavalue: Optional[Union[StrictFloat, StrictInt]] = None,
-        resx: Optional[Union[StrictFloat, StrictInt]] = None,
-        resy: Optional[Union[StrictFloat, StrictInt]] = None,
-        time: Optional[StrictStr] = None,
-        version: Optional[WcsVersion] = None,
+        time: StrictStr,
+        version: Optional[WcsVersion],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -85,27 +85,27 @@ class OGCWCSApi:
         :type format: GetCoverageFormat
         :param gridbasecrs: (required)
         :type gridbasecrs: str
+        :param gridoffsets: (required)
+        :type gridoffsets: str
+        :param gridorigin: (required)
+        :type gridorigin: str
         :param identifier: (required)
         :type identifier: str
         :param identifiers: (required)
         :type identifiers: str
+        :param nodatavalue: (required)
+        :type nodatavalue: float
         :param request: type of WMS request (required)
         :type request: str
+        :param resx: (required)
+        :type resx: float
+        :param resy: (required)
+        :type resy: float
         :param service: (required)
         :type service: WcsService
-        :param gridoffsets:
-        :type gridoffsets: str
-        :param gridorigin:
-        :type gridorigin: str
-        :param nodatavalue:
-        :type nodatavalue: float
-        :param resx:
-        :type resx: float
-        :param resy:
-        :type resy: float
-        :param time:
+        :param time: (required)
         :type time: str
-        :param version:
+        :param version: (required)
         :type version: WcsVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -134,15 +134,15 @@ class OGCWCSApi:
             boundingbox=boundingbox,
             format=format,
             gridbasecrs=gridbasecrs,
-            identifier=identifier,
-            identifiers=identifiers,
-            request=request,
-            service=service,
             gridoffsets=gridoffsets,
             gridorigin=gridorigin,
+            identifier=identifier,
+            identifiers=identifiers,
             nodatavalue=nodatavalue,
+            request=request,
             resx=resx,
             resy=resy,
+            service=service,
             time=time,
             version=version,
             _request_auth=_request_auth,
@@ -172,17 +172,17 @@ class OGCWCSApi:
         boundingbox: StrictStr,
         format: GetCoverageFormat,
         gridbasecrs: StrictStr,
+        gridoffsets: StrictStr,
+        gridorigin: StrictStr,
         identifier: StrictStr,
         identifiers: StrictStr,
+        nodatavalue: Optional[Union[StrictFloat, StrictInt]],
         request: Annotated[StrictStr, Field(description="type of WMS request")],
+        resx: Optional[Union[StrictFloat, StrictInt]],
+        resy: Optional[Union[StrictFloat, StrictInt]],
         service: WcsService,
-        gridoffsets: Optional[StrictStr] = None,
-        gridorigin: Optional[StrictStr] = None,
-        nodatavalue: Optional[Union[StrictFloat, StrictInt]] = None,
-        resx: Optional[Union[StrictFloat, StrictInt]] = None,
-        resy: Optional[Union[StrictFloat, StrictInt]] = None,
-        time: Optional[StrictStr] = None,
-        version: Optional[WcsVersion] = None,
+        time: StrictStr,
+        version: Optional[WcsVersion],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -207,27 +207,27 @@ class OGCWCSApi:
         :type format: GetCoverageFormat
         :param gridbasecrs: (required)
         :type gridbasecrs: str
+        :param gridoffsets: (required)
+        :type gridoffsets: str
+        :param gridorigin: (required)
+        :type gridorigin: str
         :param identifier: (required)
         :type identifier: str
         :param identifiers: (required)
         :type identifiers: str
+        :param nodatavalue: (required)
+        :type nodatavalue: float
         :param request: type of WMS request (required)
         :type request: str
+        :param resx: (required)
+        :type resx: float
+        :param resy: (required)
+        :type resy: float
         :param service: (required)
         :type service: WcsService
-        :param gridoffsets:
-        :type gridoffsets: str
-        :param gridorigin:
-        :type gridorigin: str
-        :param nodatavalue:
-        :type nodatavalue: float
-        :param resx:
-        :type resx: float
-        :param resy:
-        :type resy: float
-        :param time:
+        :param time: (required)
         :type time: str
-        :param version:
+        :param version: (required)
         :type version: WcsVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -256,15 +256,15 @@ class OGCWCSApi:
             boundingbox=boundingbox,
             format=format,
             gridbasecrs=gridbasecrs,
-            identifier=identifier,
-            identifiers=identifiers,
-            request=request,
-            service=service,
             gridoffsets=gridoffsets,
             gridorigin=gridorigin,
+            identifier=identifier,
+            identifiers=identifiers,
             nodatavalue=nodatavalue,
+            request=request,
             resx=resx,
             resy=resy,
+            service=service,
             time=time,
             version=version,
             _request_auth=_request_auth,
@@ -294,17 +294,17 @@ class OGCWCSApi:
         boundingbox: StrictStr,
         format: GetCoverageFormat,
         gridbasecrs: StrictStr,
+        gridoffsets: StrictStr,
+        gridorigin: StrictStr,
         identifier: StrictStr,
         identifiers: StrictStr,
+        nodatavalue: Optional[Union[StrictFloat, StrictInt]],
         request: Annotated[StrictStr, Field(description="type of WMS request")],
+        resx: Optional[Union[StrictFloat, StrictInt]],
+        resy: Optional[Union[StrictFloat, StrictInt]],
         service: WcsService,
-        gridoffsets: Optional[StrictStr] = None,
-        gridorigin: Optional[StrictStr] = None,
-        nodatavalue: Optional[Union[StrictFloat, StrictInt]] = None,
-        resx: Optional[Union[StrictFloat, StrictInt]] = None,
-        resy: Optional[Union[StrictFloat, StrictInt]] = None,
-        time: Optional[StrictStr] = None,
-        version: Optional[WcsVersion] = None,
+        time: StrictStr,
+        version: Optional[WcsVersion],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -329,27 +329,27 @@ class OGCWCSApi:
         :type format: GetCoverageFormat
         :param gridbasecrs: (required)
         :type gridbasecrs: str
+        :param gridoffsets: (required)
+        :type gridoffsets: str
+        :param gridorigin: (required)
+        :type gridorigin: str
         :param identifier: (required)
         :type identifier: str
         :param identifiers: (required)
         :type identifiers: str
+        :param nodatavalue: (required)
+        :type nodatavalue: float
         :param request: type of WMS request (required)
         :type request: str
+        :param resx: (required)
+        :type resx: float
+        :param resy: (required)
+        :type resy: float
         :param service: (required)
         :type service: WcsService
-        :param gridoffsets:
-        :type gridoffsets: str
-        :param gridorigin:
-        :type gridorigin: str
-        :param nodatavalue:
-        :type nodatavalue: float
-        :param resx:
-        :type resx: float
-        :param resy:
-        :type resy: float
-        :param time:
+        :param time: (required)
         :type time: str
-        :param version:
+        :param version: (required)
         :type version: WcsVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -378,15 +378,15 @@ class OGCWCSApi:
             boundingbox=boundingbox,
             format=format,
             gridbasecrs=gridbasecrs,
-            identifier=identifier,
-            identifiers=identifiers,
-            request=request,
-            service=service,
             gridoffsets=gridoffsets,
             gridorigin=gridorigin,
+            identifier=identifier,
+            identifiers=identifiers,
             nodatavalue=nodatavalue,
+            request=request,
             resx=resx,
             resy=resy,
+            service=service,
             time=time,
             version=version,
             _request_auth=_request_auth,
@@ -411,15 +411,15 @@ class OGCWCSApi:
         boundingbox,
         format,
         gridbasecrs,
-        identifier,
-        identifiers,
-        request,
-        service,
         gridoffsets,
         gridorigin,
+        identifier,
+        identifiers,
         nodatavalue,
+        request,
         resx,
         resy,
+        service,
         time,
         version,
         _request_auth,
@@ -445,63 +445,35 @@ class OGCWCSApi:
         # process the path parameters
         if workflow is not None:
             _path_params['workflow'] = workflow
-        # process the query parameters
         if boundingbox is not None:
-            
-            _query_params.append(('boundingbox', boundingbox))
-            
+            _path_params['boundingbox'] = boundingbox
         if format is not None:
-            
-            _query_params.append(('format', format.value))
-            
+            _path_params['format'] = format.value
         if gridbasecrs is not None:
-            
-            _query_params.append(('gridbasecrs', gridbasecrs))
-            
+            _path_params['gridbasecrs'] = gridbasecrs
         if gridoffsets is not None:
-            
-            _query_params.append(('gridoffsets', gridoffsets))
-            
+            _path_params['gridoffsets'] = gridoffsets
         if gridorigin is not None:
-            
-            _query_params.append(('gridorigin', gridorigin))
-            
+            _path_params['gridorigin'] = gridorigin
         if identifier is not None:
-            
-            _query_params.append(('identifier', identifier))
-            
+            _path_params['identifier'] = identifier
         if identifiers is not None:
-            
-            _query_params.append(('identifiers', identifiers))
-            
+            _path_params['identifiers'] = identifiers
         if nodatavalue is not None:
-            
-            _query_params.append(('nodatavalue', nodatavalue))
-            
+            _path_params['nodatavalue'] = nodatavalue
         if request is not None:
-            
-            _query_params.append(('request', request))
-            
+            _path_params['request'] = request
         if resx is not None:
-            
-            _query_params.append(('resx', resx))
-            
+            _path_params['resx'] = resx
         if resy is not None:
-            
-            _query_params.append(('resy', resy))
-            
+            _path_params['resy'] = resy
         if service is not None:
-            
-            _query_params.append(('service', service.value))
-            
+            _path_params['service'] = service.value
         if time is not None:
-            
-            _query_params.append(('time', time))
-            
+            _path_params['time'] = time
         if version is not None:
-            
-            _query_params.append(('version', version.value))
-            
+            _path_params['version'] = version.value
+        # process the query parameters
         # process the header parameters
         # process the form parameters
         # process the body parameter

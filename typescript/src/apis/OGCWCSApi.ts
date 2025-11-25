@@ -33,17 +33,17 @@ export interface WcsHandlerRequest {
     boundingbox: string;
     format: GetCoverageFormat;
     gridbasecrs: string;
+    gridoffsets: string;
+    gridorigin: string;
     identifier: string;
     identifiers: string;
+    nodatavalue: number | null;
     request: WcsHandlerRequestEnum;
+    resx: number | null;
+    resy: number | null;
     service: WcsService;
-    gridoffsets?: string;
-    gridorigin?: string;
-    nodatavalue?: number | null;
-    resx?: number | null;
-    resy?: number | null;
-    time?: string;
-    version?: WcsVersion | null;
+    time: string;
+    version: WcsVersion | null;
 }
 
 /**
@@ -83,6 +83,20 @@ export class OGCWCSApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['gridoffsets'] == null) {
+            throw new runtime.RequiredError(
+                'gridoffsets',
+                'Required parameter "gridoffsets" was null or undefined when calling wcsHandler().'
+            );
+        }
+
+        if (requestParameters['gridorigin'] == null) {
+            throw new runtime.RequiredError(
+                'gridorigin',
+                'Required parameter "gridorigin" was null or undefined when calling wcsHandler().'
+            );
+        }
+
         if (requestParameters['identifier'] == null) {
             throw new runtime.RequiredError(
                 'identifier',
@@ -97,10 +111,31 @@ export class OGCWCSApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['nodatavalue'] == null) {
+            throw new runtime.RequiredError(
+                'nodatavalue',
+                'Required parameter "nodatavalue" was null or undefined when calling wcsHandler().'
+            );
+        }
+
         if (requestParameters['request'] == null) {
             throw new runtime.RequiredError(
                 'request',
                 'Required parameter "request" was null or undefined when calling wcsHandler().'
+            );
+        }
+
+        if (requestParameters['resx'] == null) {
+            throw new runtime.RequiredError(
+                'resx',
+                'Required parameter "resx" was null or undefined when calling wcsHandler().'
+            );
+        }
+
+        if (requestParameters['resy'] == null) {
+            throw new runtime.RequiredError(
+                'resy',
+                'Required parameter "resy" was null or undefined when calling wcsHandler().'
             );
         }
 
@@ -111,63 +146,21 @@ export class OGCWCSApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['time'] == null) {
+            throw new runtime.RequiredError(
+                'time',
+                'Required parameter "time" was null or undefined when calling wcsHandler().'
+            );
+        }
+
+        if (requestParameters['version'] == null) {
+            throw new runtime.RequiredError(
+                'version',
+                'Required parameter "version" was null or undefined when calling wcsHandler().'
+            );
+        }
+
         const queryParameters: any = {};
-
-        if (requestParameters['boundingbox'] != null) {
-            queryParameters['boundingbox'] = requestParameters['boundingbox'];
-        }
-
-        if (requestParameters['format'] != null) {
-            queryParameters['format'] = requestParameters['format'];
-        }
-
-        if (requestParameters['gridbasecrs'] != null) {
-            queryParameters['gridbasecrs'] = requestParameters['gridbasecrs'];
-        }
-
-        if (requestParameters['gridoffsets'] != null) {
-            queryParameters['gridoffsets'] = requestParameters['gridoffsets'];
-        }
-
-        if (requestParameters['gridorigin'] != null) {
-            queryParameters['gridorigin'] = requestParameters['gridorigin'];
-        }
-
-        if (requestParameters['identifier'] != null) {
-            queryParameters['identifier'] = requestParameters['identifier'];
-        }
-
-        if (requestParameters['identifiers'] != null) {
-            queryParameters['identifiers'] = requestParameters['identifiers'];
-        }
-
-        if (requestParameters['nodatavalue'] != null) {
-            queryParameters['nodatavalue'] = requestParameters['nodatavalue'];
-        }
-
-        if (requestParameters['request'] != null) {
-            queryParameters['request'] = requestParameters['request'];
-        }
-
-        if (requestParameters['resx'] != null) {
-            queryParameters['resx'] = requestParameters['resx'];
-        }
-
-        if (requestParameters['resy'] != null) {
-            queryParameters['resy'] = requestParameters['resy'];
-        }
-
-        if (requestParameters['service'] != null) {
-            queryParameters['service'] = requestParameters['service'];
-        }
-
-        if (requestParameters['time'] != null) {
-            queryParameters['time'] = requestParameters['time'];
-        }
-
-        if (requestParameters['version'] != null) {
-            queryParameters['version'] = requestParameters['version'];
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -182,6 +175,20 @@ export class OGCWCSApi extends runtime.BaseAPI {
 
         let urlPath = `/wcs/{workflow}`;
         urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
+        urlPath = urlPath.replace(`{${"boundingbox"}}`, encodeURIComponent(String(requestParameters['boundingbox'])));
+        urlPath = urlPath.replace(`{${"format"}}`, encodeURIComponent(String(requestParameters['format'])));
+        urlPath = urlPath.replace(`{${"gridbasecrs"}}`, encodeURIComponent(String(requestParameters['gridbasecrs'])));
+        urlPath = urlPath.replace(`{${"gridoffsets"}}`, encodeURIComponent(String(requestParameters['gridoffsets'])));
+        urlPath = urlPath.replace(`{${"gridorigin"}}`, encodeURIComponent(String(requestParameters['gridorigin'])));
+        urlPath = urlPath.replace(`{${"identifier"}}`, encodeURIComponent(String(requestParameters['identifier'])));
+        urlPath = urlPath.replace(`{${"identifiers"}}`, encodeURIComponent(String(requestParameters['identifiers'])));
+        urlPath = urlPath.replace(`{${"nodatavalue"}}`, encodeURIComponent(String(requestParameters['nodatavalue'])));
+        urlPath = urlPath.replace(`{${"request"}}`, encodeURIComponent(String(requestParameters['request'])));
+        urlPath = urlPath.replace(`{${"resx"}}`, encodeURIComponent(String(requestParameters['resx'])));
+        urlPath = urlPath.replace(`{${"resy"}}`, encodeURIComponent(String(requestParameters['resy'])));
+        urlPath = urlPath.replace(`{${"service"}}`, encodeURIComponent(String(requestParameters['service'])));
+        urlPath = urlPath.replace(`{${"time"}}`, encodeURIComponent(String(requestParameters['time'])));
+        urlPath = urlPath.replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version'])));
 
         const response = await this.request({
             path: urlPath,

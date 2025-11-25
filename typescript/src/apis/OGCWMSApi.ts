@@ -34,25 +34,25 @@ import {
 export interface WmsHandlerRequest {
     workflow: string;
     bbox: string;
+    bgcolor: string | null;
+    crs: string | null;
+    elevation: string | null;
+    exceptions: GetMapExceptionFormat | null;
+    format: GetCapabilitiesFormat | null;
     height: number;
+    infoFormat: string | null;
     layer: string;
     layers: string;
     queryLayers: string;
     request: WmsHandlerRequestEnum;
     service: WmsService;
+    sld: string | null;
+    sldBody: string | null;
     styles: string;
+    time: string;
+    transparent: boolean | null;
+    version: WmsVersion | null;
     width: number;
-    bgcolor?: string | null;
-    crs?: string | null;
-    elevation?: string | null;
-    exceptions?: GetMapExceptionFormat | null;
-    format?: GetCapabilitiesFormat | null;
-    infoFormat?: string | null;
-    sld?: string | null;
-    sldBody?: string | null;
-    time?: string;
-    transparent?: boolean | null;
-    version?: WmsVersion | null;
 }
 
 /**
@@ -78,10 +78,52 @@ export class OGCWMSApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['bgcolor'] == null) {
+            throw new runtime.RequiredError(
+                'bgcolor',
+                'Required parameter "bgcolor" was null or undefined when calling wmsHandler().'
+            );
+        }
+
+        if (requestParameters['crs'] == null) {
+            throw new runtime.RequiredError(
+                'crs',
+                'Required parameter "crs" was null or undefined when calling wmsHandler().'
+            );
+        }
+
+        if (requestParameters['elevation'] == null) {
+            throw new runtime.RequiredError(
+                'elevation',
+                'Required parameter "elevation" was null or undefined when calling wmsHandler().'
+            );
+        }
+
+        if (requestParameters['exceptions'] == null) {
+            throw new runtime.RequiredError(
+                'exceptions',
+                'Required parameter "exceptions" was null or undefined when calling wmsHandler().'
+            );
+        }
+
+        if (requestParameters['format'] == null) {
+            throw new runtime.RequiredError(
+                'format',
+                'Required parameter "format" was null or undefined when calling wmsHandler().'
+            );
+        }
+
         if (requestParameters['height'] == null) {
             throw new runtime.RequiredError(
                 'height',
                 'Required parameter "height" was null or undefined when calling wmsHandler().'
+            );
+        }
+
+        if (requestParameters['infoFormat'] == null) {
+            throw new runtime.RequiredError(
+                'infoFormat',
+                'Required parameter "infoFormat" was null or undefined when calling wmsHandler().'
             );
         }
 
@@ -120,10 +162,45 @@ export class OGCWMSApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['sld'] == null) {
+            throw new runtime.RequiredError(
+                'sld',
+                'Required parameter "sld" was null or undefined when calling wmsHandler().'
+            );
+        }
+
+        if (requestParameters['sldBody'] == null) {
+            throw new runtime.RequiredError(
+                'sldBody',
+                'Required parameter "sldBody" was null or undefined when calling wmsHandler().'
+            );
+        }
+
         if (requestParameters['styles'] == null) {
             throw new runtime.RequiredError(
                 'styles',
                 'Required parameter "styles" was null or undefined when calling wmsHandler().'
+            );
+        }
+
+        if (requestParameters['time'] == null) {
+            throw new runtime.RequiredError(
+                'time',
+                'Required parameter "time" was null or undefined when calling wmsHandler().'
+            );
+        }
+
+        if (requestParameters['transparent'] == null) {
+            throw new runtime.RequiredError(
+                'transparent',
+                'Required parameter "transparent" was null or undefined when calling wmsHandler().'
+            );
+        }
+
+        if (requestParameters['version'] == null) {
+            throw new runtime.RequiredError(
+                'version',
+                'Required parameter "version" was null or undefined when calling wmsHandler().'
             );
         }
 
@@ -135,86 +212,6 @@ export class OGCWMSApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters['bbox'] != null) {
-            queryParameters['bbox'] = requestParameters['bbox'];
-        }
-
-        if (requestParameters['bgcolor'] != null) {
-            queryParameters['bgcolor'] = requestParameters['bgcolor'];
-        }
-
-        if (requestParameters['crs'] != null) {
-            queryParameters['crs'] = requestParameters['crs'];
-        }
-
-        if (requestParameters['elevation'] != null) {
-            queryParameters['elevation'] = requestParameters['elevation'];
-        }
-
-        if (requestParameters['exceptions'] != null) {
-            queryParameters['exceptions'] = requestParameters['exceptions'];
-        }
-
-        if (requestParameters['format'] != null) {
-            queryParameters['format'] = requestParameters['format'];
-        }
-
-        if (requestParameters['height'] != null) {
-            queryParameters['height'] = requestParameters['height'];
-        }
-
-        if (requestParameters['infoFormat'] != null) {
-            queryParameters['info_format'] = requestParameters['infoFormat'];
-        }
-
-        if (requestParameters['layer'] != null) {
-            queryParameters['layer'] = requestParameters['layer'];
-        }
-
-        if (requestParameters['layers'] != null) {
-            queryParameters['layers'] = requestParameters['layers'];
-        }
-
-        if (requestParameters['queryLayers'] != null) {
-            queryParameters['query_layers'] = requestParameters['queryLayers'];
-        }
-
-        if (requestParameters['request'] != null) {
-            queryParameters['request'] = requestParameters['request'];
-        }
-
-        if (requestParameters['service'] != null) {
-            queryParameters['service'] = requestParameters['service'];
-        }
-
-        if (requestParameters['sld'] != null) {
-            queryParameters['sld'] = requestParameters['sld'];
-        }
-
-        if (requestParameters['sldBody'] != null) {
-            queryParameters['sld_body'] = requestParameters['sldBody'];
-        }
-
-        if (requestParameters['styles'] != null) {
-            queryParameters['styles'] = requestParameters['styles'];
-        }
-
-        if (requestParameters['time'] != null) {
-            queryParameters['time'] = requestParameters['time'];
-        }
-
-        if (requestParameters['transparent'] != null) {
-            queryParameters['transparent'] = requestParameters['transparent'];
-        }
-
-        if (requestParameters['version'] != null) {
-            queryParameters['version'] = requestParameters['version'];
-        }
-
-        if (requestParameters['width'] != null) {
-            queryParameters['width'] = requestParameters['width'];
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -229,6 +226,26 @@ export class OGCWMSApi extends runtime.BaseAPI {
 
         let urlPath = `/wms/{workflow}`;
         urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
+        urlPath = urlPath.replace(`{${"bbox"}}`, encodeURIComponent(String(requestParameters['bbox'])));
+        urlPath = urlPath.replace(`{${"bgcolor"}}`, encodeURIComponent(String(requestParameters['bgcolor'])));
+        urlPath = urlPath.replace(`{${"crs"}}`, encodeURIComponent(String(requestParameters['crs'])));
+        urlPath = urlPath.replace(`{${"elevation"}}`, encodeURIComponent(String(requestParameters['elevation'])));
+        urlPath = urlPath.replace(`{${"exceptions"}}`, encodeURIComponent(String(requestParameters['exceptions'])));
+        urlPath = urlPath.replace(`{${"format"}}`, encodeURIComponent(String(requestParameters['format'])));
+        urlPath = urlPath.replace(`{${"height"}}`, encodeURIComponent(String(requestParameters['height'])));
+        urlPath = urlPath.replace(`{${"info_format"}}`, encodeURIComponent(String(requestParameters['infoFormat'])));
+        urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
+        urlPath = urlPath.replace(`{${"layers"}}`, encodeURIComponent(String(requestParameters['layers'])));
+        urlPath = urlPath.replace(`{${"query_layers"}}`, encodeURIComponent(String(requestParameters['queryLayers'])));
+        urlPath = urlPath.replace(`{${"request"}}`, encodeURIComponent(String(requestParameters['request'])));
+        urlPath = urlPath.replace(`{${"service"}}`, encodeURIComponent(String(requestParameters['service'])));
+        urlPath = urlPath.replace(`{${"sld"}}`, encodeURIComponent(String(requestParameters['sld'])));
+        urlPath = urlPath.replace(`{${"sld_body"}}`, encodeURIComponent(String(requestParameters['sldBody'])));
+        urlPath = urlPath.replace(`{${"styles"}}`, encodeURIComponent(String(requestParameters['styles'])));
+        urlPath = urlPath.replace(`{${"time"}}`, encodeURIComponent(String(requestParameters['time'])));
+        urlPath = urlPath.replace(`{${"transparent"}}`, encodeURIComponent(String(requestParameters['transparent'])));
+        urlPath = urlPath.replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version'])));
+        urlPath = urlPath.replace(`{${"width"}}`, encodeURIComponent(String(requestParameters['width'])));
 
         const response = await this.request({
             path: urlPath,

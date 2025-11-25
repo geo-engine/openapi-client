@@ -14,25 +14,25 @@ import type { GetCapabilitiesFormat, GetMapExceptionFormat, WmsService, WmsVersi
 export interface WmsHandlerRequest {
     workflow: string;
     bbox: string;
+    bgcolor: string | null;
+    crs: string | null;
+    elevation: string | null;
+    exceptions: GetMapExceptionFormat | null;
+    format: GetCapabilitiesFormat | null;
     height: number;
+    infoFormat: string | null;
     layer: string;
     layers: string;
     queryLayers: string;
     request: WmsHandlerRequestEnum;
     service: WmsService;
+    sld: string | null;
+    sldBody: string | null;
     styles: string;
+    time: string;
+    transparent: boolean | null;
+    version: WmsVersion | null;
     width: number;
-    bgcolor?: string | null;
-    crs?: string | null;
-    elevation?: string | null;
-    exceptions?: GetMapExceptionFormat | null;
-    format?: GetCapabilitiesFormat | null;
-    infoFormat?: string | null;
-    sld?: string | null;
-    sldBody?: string | null;
-    time?: string;
-    transparent?: boolean | null;
-    version?: WmsVersion | null;
 }
 /**
  *

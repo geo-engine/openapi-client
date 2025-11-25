@@ -48,18 +48,18 @@ class OGCWFSApi:
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
         bbox: StrictStr,
-        count: Optional[Annotated[int, Field(strict=True, ge=0)]],
-        filter: Optional[StrictStr],
-        namespaces: Optional[StrictStr],
-        property_name: Optional[StrictStr],
         request: Annotated[StrictStr, Field(description="type of WFS request")],
-        result_type: Optional[StrictStr],
         service: WfsService,
-        sort_by: Optional[StrictStr],
-        srs_name: Optional[StrictStr],
-        time: StrictStr,
         type_names: StrictStr,
-        version: Optional[WfsVersion],
+        count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        filter: Optional[StrictStr] = None,
+        namespaces: Optional[StrictStr] = None,
+        property_name: Optional[StrictStr] = None,
+        result_type: Optional[StrictStr] = None,
+        sort_by: Optional[StrictStr] = None,
+        srs_name: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        version: Optional[WfsVersion] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -80,29 +80,29 @@ class OGCWFSApi:
         :type workflow: str
         :param bbox: (required)
         :type bbox: str
-        :param count: (required)
-        :type count: int
-        :param filter: (required)
-        :type filter: str
-        :param namespaces: (required)
-        :type namespaces: str
-        :param property_name: (required)
-        :type property_name: str
         :param request: type of WFS request (required)
         :type request: str
-        :param result_type: (required)
-        :type result_type: str
         :param service: (required)
         :type service: WfsService
-        :param sort_by: (required)
-        :type sort_by: str
-        :param srs_name: (required)
-        :type srs_name: str
-        :param time: (required)
-        :type time: str
         :param type_names: (required)
         :type type_names: str
-        :param version: (required)
+        :param count:
+        :type count: int
+        :param filter:
+        :type filter: str
+        :param namespaces:
+        :type namespaces: str
+        :param property_name:
+        :type property_name: str
+        :param result_type:
+        :type result_type: str
+        :param sort_by:
+        :type sort_by: str
+        :param srs_name:
+        :type srs_name: str
+        :param time:
+        :type time: str
+        :param version:
         :type version: WfsVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -129,17 +129,17 @@ class OGCWFSApi:
         _param = self._wfs_handler_serialize(
             workflow=workflow,
             bbox=bbox,
+            request=request,
+            service=service,
+            type_names=type_names,
             count=count,
             filter=filter,
             namespaces=namespaces,
             property_name=property_name,
-            request=request,
             result_type=result_type,
-            service=service,
             sort_by=sort_by,
             srs_name=srs_name,
             time=time,
-            type_names=type_names,
             version=version,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -166,18 +166,18 @@ class OGCWFSApi:
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
         bbox: StrictStr,
-        count: Optional[Annotated[int, Field(strict=True, ge=0)]],
-        filter: Optional[StrictStr],
-        namespaces: Optional[StrictStr],
-        property_name: Optional[StrictStr],
         request: Annotated[StrictStr, Field(description="type of WFS request")],
-        result_type: Optional[StrictStr],
         service: WfsService,
-        sort_by: Optional[StrictStr],
-        srs_name: Optional[StrictStr],
-        time: StrictStr,
         type_names: StrictStr,
-        version: Optional[WfsVersion],
+        count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        filter: Optional[StrictStr] = None,
+        namespaces: Optional[StrictStr] = None,
+        property_name: Optional[StrictStr] = None,
+        result_type: Optional[StrictStr] = None,
+        sort_by: Optional[StrictStr] = None,
+        srs_name: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        version: Optional[WfsVersion] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -198,29 +198,29 @@ class OGCWFSApi:
         :type workflow: str
         :param bbox: (required)
         :type bbox: str
-        :param count: (required)
-        :type count: int
-        :param filter: (required)
-        :type filter: str
-        :param namespaces: (required)
-        :type namespaces: str
-        :param property_name: (required)
-        :type property_name: str
         :param request: type of WFS request (required)
         :type request: str
-        :param result_type: (required)
-        :type result_type: str
         :param service: (required)
         :type service: WfsService
-        :param sort_by: (required)
-        :type sort_by: str
-        :param srs_name: (required)
-        :type srs_name: str
-        :param time: (required)
-        :type time: str
         :param type_names: (required)
         :type type_names: str
-        :param version: (required)
+        :param count:
+        :type count: int
+        :param filter:
+        :type filter: str
+        :param namespaces:
+        :type namespaces: str
+        :param property_name:
+        :type property_name: str
+        :param result_type:
+        :type result_type: str
+        :param sort_by:
+        :type sort_by: str
+        :param srs_name:
+        :type srs_name: str
+        :param time:
+        :type time: str
+        :param version:
         :type version: WfsVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -247,17 +247,17 @@ class OGCWFSApi:
         _param = self._wfs_handler_serialize(
             workflow=workflow,
             bbox=bbox,
+            request=request,
+            service=service,
+            type_names=type_names,
             count=count,
             filter=filter,
             namespaces=namespaces,
             property_name=property_name,
-            request=request,
             result_type=result_type,
-            service=service,
             sort_by=sort_by,
             srs_name=srs_name,
             time=time,
-            type_names=type_names,
             version=version,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -284,18 +284,18 @@ class OGCWFSApi:
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
         bbox: StrictStr,
-        count: Optional[Annotated[int, Field(strict=True, ge=0)]],
-        filter: Optional[StrictStr],
-        namespaces: Optional[StrictStr],
-        property_name: Optional[StrictStr],
         request: Annotated[StrictStr, Field(description="type of WFS request")],
-        result_type: Optional[StrictStr],
         service: WfsService,
-        sort_by: Optional[StrictStr],
-        srs_name: Optional[StrictStr],
-        time: StrictStr,
         type_names: StrictStr,
-        version: Optional[WfsVersion],
+        count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        filter: Optional[StrictStr] = None,
+        namespaces: Optional[StrictStr] = None,
+        property_name: Optional[StrictStr] = None,
+        result_type: Optional[StrictStr] = None,
+        sort_by: Optional[StrictStr] = None,
+        srs_name: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        version: Optional[WfsVersion] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -316,29 +316,29 @@ class OGCWFSApi:
         :type workflow: str
         :param bbox: (required)
         :type bbox: str
-        :param count: (required)
-        :type count: int
-        :param filter: (required)
-        :type filter: str
-        :param namespaces: (required)
-        :type namespaces: str
-        :param property_name: (required)
-        :type property_name: str
         :param request: type of WFS request (required)
         :type request: str
-        :param result_type: (required)
-        :type result_type: str
         :param service: (required)
         :type service: WfsService
-        :param sort_by: (required)
-        :type sort_by: str
-        :param srs_name: (required)
-        :type srs_name: str
-        :param time: (required)
-        :type time: str
         :param type_names: (required)
         :type type_names: str
-        :param version: (required)
+        :param count:
+        :type count: int
+        :param filter:
+        :type filter: str
+        :param namespaces:
+        :type namespaces: str
+        :param property_name:
+        :type property_name: str
+        :param result_type:
+        :type result_type: str
+        :param sort_by:
+        :type sort_by: str
+        :param srs_name:
+        :type srs_name: str
+        :param time:
+        :type time: str
+        :param version:
         :type version: WfsVersion
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -365,17 +365,17 @@ class OGCWFSApi:
         _param = self._wfs_handler_serialize(
             workflow=workflow,
             bbox=bbox,
+            request=request,
+            service=service,
+            type_names=type_names,
             count=count,
             filter=filter,
             namespaces=namespaces,
             property_name=property_name,
-            request=request,
             result_type=result_type,
-            service=service,
             sort_by=sort_by,
             srs_name=srs_name,
             time=time,
-            type_names=type_names,
             version=version,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -397,17 +397,17 @@ class OGCWFSApi:
         self,
         workflow,
         bbox,
+        request,
+        service,
+        type_names,
         count,
         filter,
         namespaces,
         property_name,
-        request,
         result_type,
-        service,
         sort_by,
         srs_name,
         time,
-        type_names,
         version,
         _request_auth,
         _content_type,
@@ -432,33 +432,59 @@ class OGCWFSApi:
         # process the path parameters
         if workflow is not None:
             _path_params['workflow'] = workflow
-        if bbox is not None:
-            _path_params['bbox'] = bbox
-        if count is not None:
-            _path_params['count'] = count
-        if filter is not None:
-            _path_params['filter'] = filter
-        if namespaces is not None:
-            _path_params['namespaces'] = namespaces
-        if property_name is not None:
-            _path_params['propertyName'] = property_name
-        if request is not None:
-            _path_params['request'] = request
-        if result_type is not None:
-            _path_params['resultType'] = result_type
-        if service is not None:
-            _path_params['service'] = service.value
-        if sort_by is not None:
-            _path_params['sortBy'] = sort_by
-        if srs_name is not None:
-            _path_params['srsName'] = srs_name
-        if time is not None:
-            _path_params['time'] = time
-        if type_names is not None:
-            _path_params['typeNames'] = type_names
-        if version is not None:
-            _path_params['version'] = version.value
         # process the query parameters
+        if bbox is not None:
+            
+            _query_params.append(('bbox', bbox))
+            
+        if count is not None:
+            
+            _query_params.append(('count', count))
+            
+        if filter is not None:
+            
+            _query_params.append(('filter', filter))
+            
+        if namespaces is not None:
+            
+            _query_params.append(('namespaces', namespaces))
+            
+        if property_name is not None:
+            
+            _query_params.append(('propertyName', property_name))
+            
+        if request is not None:
+            
+            _query_params.append(('request', request))
+            
+        if result_type is not None:
+            
+            _query_params.append(('resultType', result_type))
+            
+        if service is not None:
+            
+            _query_params.append(('service', service.value))
+            
+        if sort_by is not None:
+            
+            _query_params.append(('sortBy', sort_by))
+            
+        if srs_name is not None:
+            
+            _query_params.append(('srsName', srs_name))
+            
+        if time is not None:
+            
+            _query_params.append(('time', time))
+            
+        if type_names is not None:
+            
+            _query_params.append(('typeNames', type_names))
+            
+        if version is not None:
+            
+            _query_params.append(('version', version.value))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

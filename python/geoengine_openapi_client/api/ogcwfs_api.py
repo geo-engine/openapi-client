@@ -52,7 +52,6 @@ class OGCWFSApi:
         filter: Optional[StrictStr],
         namespaces: Optional[StrictStr],
         property_name: Optional[StrictStr],
-        query_resolution: Annotated[StrictStr, Field(description="Vendor parameter for specifying a spatial query resolution")],
         request: Annotated[StrictStr, Field(description="type of WFS request")],
         result_type: Optional[StrictStr],
         service: WfsService,
@@ -89,8 +88,6 @@ class OGCWFSApi:
         :type namespaces: str
         :param property_name: (required)
         :type property_name: str
-        :param query_resolution: Vendor parameter for specifying a spatial query resolution (required)
-        :type query_resolution: str
         :param request: type of WFS request (required)
         :type request: str
         :param result_type: (required)
@@ -136,7 +133,6 @@ class OGCWFSApi:
             filter=filter,
             namespaces=namespaces,
             property_name=property_name,
-            query_resolution=query_resolution,
             request=request,
             result_type=result_type,
             service=service,
@@ -174,7 +170,6 @@ class OGCWFSApi:
         filter: Optional[StrictStr],
         namespaces: Optional[StrictStr],
         property_name: Optional[StrictStr],
-        query_resolution: Annotated[StrictStr, Field(description="Vendor parameter for specifying a spatial query resolution")],
         request: Annotated[StrictStr, Field(description="type of WFS request")],
         result_type: Optional[StrictStr],
         service: WfsService,
@@ -211,8 +206,6 @@ class OGCWFSApi:
         :type namespaces: str
         :param property_name: (required)
         :type property_name: str
-        :param query_resolution: Vendor parameter for specifying a spatial query resolution (required)
-        :type query_resolution: str
         :param request: type of WFS request (required)
         :type request: str
         :param result_type: (required)
@@ -258,7 +251,6 @@ class OGCWFSApi:
             filter=filter,
             namespaces=namespaces,
             property_name=property_name,
-            query_resolution=query_resolution,
             request=request,
             result_type=result_type,
             service=service,
@@ -296,7 +288,6 @@ class OGCWFSApi:
         filter: Optional[StrictStr],
         namespaces: Optional[StrictStr],
         property_name: Optional[StrictStr],
-        query_resolution: Annotated[StrictStr, Field(description="Vendor parameter for specifying a spatial query resolution")],
         request: Annotated[StrictStr, Field(description="type of WFS request")],
         result_type: Optional[StrictStr],
         service: WfsService,
@@ -333,8 +324,6 @@ class OGCWFSApi:
         :type namespaces: str
         :param property_name: (required)
         :type property_name: str
-        :param query_resolution: Vendor parameter for specifying a spatial query resolution (required)
-        :type query_resolution: str
         :param request: type of WFS request (required)
         :type request: str
         :param result_type: (required)
@@ -380,7 +369,6 @@ class OGCWFSApi:
             filter=filter,
             namespaces=namespaces,
             property_name=property_name,
-            query_resolution=query_resolution,
             request=request,
             result_type=result_type,
             service=service,
@@ -413,7 +401,6 @@ class OGCWFSApi:
         filter,
         namespaces,
         property_name,
-        query_resolution,
         request,
         result_type,
         service,
@@ -455,8 +442,6 @@ class OGCWFSApi:
             _path_params['namespaces'] = namespaces
         if property_name is not None:
             _path_params['propertyName'] = property_name
-        if query_resolution is not None:
-            _path_params['queryResolution'] = query_resolution
         if request is not None:
             _path_params['request'] = request
         if result_type is not None:

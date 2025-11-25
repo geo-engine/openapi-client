@@ -18,7 +18,6 @@ export interface WfsHandlerRequest {
     filter: string | null;
     namespaces: string | null;
     propertyName: string | null;
-    queryResolution: string;
     request: WfsHandlerRequestEnum;
     resultType: string | null;
     service: WfsService;

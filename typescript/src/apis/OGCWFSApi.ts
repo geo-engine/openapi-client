@@ -35,7 +35,6 @@ export interface WfsHandlerRequest {
     filter: string | null;
     namespaces: string | null;
     propertyName: string | null;
-    queryResolution: string;
     request: WfsHandlerRequestEnum;
     resultType: string | null;
     service: WfsService;
@@ -94,13 +93,6 @@ export class OGCWFSApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'propertyName',
                 'Required parameter "propertyName" was null or undefined when calling wfsHandler().'
-            );
-        }
-
-        if (requestParameters['queryResolution'] == null) {
-            throw new runtime.RequiredError(
-                'queryResolution',
-                'Required parameter "queryResolution" was null or undefined when calling wfsHandler().'
             );
         }
 
@@ -180,7 +172,6 @@ export class OGCWFSApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"filter"}}`, encodeURIComponent(String(requestParameters['filter'])));
         urlPath = urlPath.replace(`{${"namespaces"}}`, encodeURIComponent(String(requestParameters['namespaces'])));
         urlPath = urlPath.replace(`{${"propertyName"}}`, encodeURIComponent(String(requestParameters['propertyName'])));
-        urlPath = urlPath.replace(`{${"queryResolution"}}`, encodeURIComponent(String(requestParameters['queryResolution'])));
         urlPath = urlPath.replace(`{${"request"}}`, encodeURIComponent(String(requestParameters['request'])));
         urlPath = urlPath.replace(`{${"resultType"}}`, encodeURIComponent(String(requestParameters['resultType'])));
         urlPath = urlPath.replace(`{${"service"}}`, encodeURIComponent(String(requestParameters['service'])));

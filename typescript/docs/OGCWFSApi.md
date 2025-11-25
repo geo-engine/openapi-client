@@ -10,7 +10,7 @@ All URIs are relative to *http://127.0.0.1:3030/api*
 
 ## wfsHandler
 
-> GeoJson wfsHandler(workflow, bbox, count, filter, namespaces, propertyName, queryResolution, request, resultType, service, sortBy, srsName, time, typeNames, version)
+> GeoJson wfsHandler(workflow, bbox, count, filter, namespaces, propertyName, request, resultType, service, sortBy, srsName, time, typeNames, version)
 
 OGC WFS endpoint
 
@@ -44,8 +44,6 @@ async function example() {
     namespaces: namespaces_example,
     // string
     propertyName: propertyName_example,
-    // string | Vendor parameter for specifying a spatial query resolution
-    queryResolution: queryResolution_example,
     // 'GetCapabilities' | 'GetFeature' | type of WFS request
     request: request_example,
     // string
@@ -87,7 +85,6 @@ example().catch(console.error);
 | **filter** | `string` |  | [Defaults to `undefined`] |
 | **namespaces** | `string` |  | [Defaults to `undefined`] |
 | **propertyName** | `string` |  | [Defaults to `undefined`] |
-| **queryResolution** | `string` | Vendor parameter for specifying a spatial query resolution | [Defaults to `undefined`] |
 | **request** | `GetCapabilities`, `GetFeature` | type of WFS request | [Defaults to `undefined`] [Enum: GetCapabilities, GetFeature] |
 | **resultType** | `string` |  | [Defaults to `undefined`] |
 | **service** | `WfsService` |  | [Defaults to `undefined`] [Enum: WFS] |

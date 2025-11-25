@@ -48,26 +48,26 @@ class OGCWMSApi:
     def wms_handler(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        bbox: StrictStr,
-        bgcolor: Optional[StrictStr],
-        crs: Optional[StrictStr],
-        elevation: Optional[StrictStr],
-        exceptions: Optional[GetMapExceptionFormat],
-        format: Optional[GetCapabilitiesFormat],
-        height: Annotated[int, Field(strict=True, ge=0)],
-        info_format: Optional[StrictStr],
-        layer: StrictStr,
-        layers: StrictStr,
-        query_layers: StrictStr,
         request: Annotated[StrictStr, Field(description="type of WMS request")],
-        service: WmsService,
-        sld: Optional[StrictStr],
-        sld_body: Optional[StrictStr],
-        styles: StrictStr,
-        time: StrictStr,
-        transparent: Optional[StrictBool],
-        version: Optional[WmsVersion],
-        width: Annotated[int, Field(strict=True, ge=0)],
+        bbox: Optional[StrictStr] = None,
+        bgcolor: Optional[StrictStr] = None,
+        crs: Optional[StrictStr] = None,
+        elevation: Optional[StrictStr] = None,
+        exceptions: Optional[GetMapExceptionFormat] = None,
+        format: Optional[GetCapabilitiesFormat] = None,
+        height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        info_format: Optional[StrictStr] = None,
+        layer: Optional[StrictStr] = None,
+        layers: Optional[StrictStr] = None,
+        query_layers: Optional[StrictStr] = None,
+        service: Optional[WmsService] = None,
+        sld: Optional[StrictStr] = None,
+        sld_body: Optional[StrictStr] = None,
+        styles: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        transparent: Optional[StrictBool] = None,
+        version: Optional[WmsVersion] = None,
+        width: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -86,45 +86,45 @@ class OGCWMSApi:
 
         :param workflow: Workflow id (required)
         :type workflow: str
-        :param bbox: (required)
-        :type bbox: str
-        :param bgcolor: (required)
-        :type bgcolor: str
-        :param crs: (required)
-        :type crs: str
-        :param elevation: (required)
-        :type elevation: str
-        :param exceptions: (required)
-        :type exceptions: GetMapExceptionFormat
-        :param format: (required)
-        :type format: GetCapabilitiesFormat
-        :param height: (required)
-        :type height: int
-        :param info_format: (required)
-        :type info_format: str
-        :param layer: (required)
-        :type layer: str
-        :param layers: (required)
-        :type layers: str
-        :param query_layers: (required)
-        :type query_layers: str
         :param request: type of WMS request (required)
         :type request: str
-        :param service: (required)
+        :param bbox:
+        :type bbox: str
+        :param bgcolor:
+        :type bgcolor: str
+        :param crs:
+        :type crs: str
+        :param elevation:
+        :type elevation: str
+        :param exceptions:
+        :type exceptions: GetMapExceptionFormat
+        :param format:
+        :type format: GetCapabilitiesFormat
+        :param height:
+        :type height: int
+        :param info_format:
+        :type info_format: str
+        :param layer:
+        :type layer: str
+        :param layers:
+        :type layers: str
+        :param query_layers:
+        :type query_layers: str
+        :param service:
         :type service: WmsService
-        :param sld: (required)
+        :param sld:
         :type sld: str
-        :param sld_body: (required)
+        :param sld_body:
         :type sld_body: str
-        :param styles: (required)
+        :param styles:
         :type styles: str
-        :param time: (required)
+        :param time:
         :type time: str
-        :param transparent: (required)
+        :param transparent:
         :type transparent: bool
-        :param version: (required)
+        :param version:
         :type version: WmsVersion
-        :param width: (required)
+        :param width:
         :type width: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -150,6 +150,7 @@ class OGCWMSApi:
 
         _param = self._wms_handler_serialize(
             workflow=workflow,
+            request=request,
             bbox=bbox,
             bgcolor=bgcolor,
             crs=crs,
@@ -161,7 +162,6 @@ class OGCWMSApi:
             layer=layer,
             layers=layers,
             query_layers=query_layers,
-            request=request,
             service=service,
             sld=sld,
             sld_body=sld_body,
@@ -194,26 +194,26 @@ class OGCWMSApi:
     def wms_handler_with_http_info(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        bbox: StrictStr,
-        bgcolor: Optional[StrictStr],
-        crs: Optional[StrictStr],
-        elevation: Optional[StrictStr],
-        exceptions: Optional[GetMapExceptionFormat],
-        format: Optional[GetCapabilitiesFormat],
-        height: Annotated[int, Field(strict=True, ge=0)],
-        info_format: Optional[StrictStr],
-        layer: StrictStr,
-        layers: StrictStr,
-        query_layers: StrictStr,
         request: Annotated[StrictStr, Field(description="type of WMS request")],
-        service: WmsService,
-        sld: Optional[StrictStr],
-        sld_body: Optional[StrictStr],
-        styles: StrictStr,
-        time: StrictStr,
-        transparent: Optional[StrictBool],
-        version: Optional[WmsVersion],
-        width: Annotated[int, Field(strict=True, ge=0)],
+        bbox: Optional[StrictStr] = None,
+        bgcolor: Optional[StrictStr] = None,
+        crs: Optional[StrictStr] = None,
+        elevation: Optional[StrictStr] = None,
+        exceptions: Optional[GetMapExceptionFormat] = None,
+        format: Optional[GetCapabilitiesFormat] = None,
+        height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        info_format: Optional[StrictStr] = None,
+        layer: Optional[StrictStr] = None,
+        layers: Optional[StrictStr] = None,
+        query_layers: Optional[StrictStr] = None,
+        service: Optional[WmsService] = None,
+        sld: Optional[StrictStr] = None,
+        sld_body: Optional[StrictStr] = None,
+        styles: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        transparent: Optional[StrictBool] = None,
+        version: Optional[WmsVersion] = None,
+        width: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -232,45 +232,45 @@ class OGCWMSApi:
 
         :param workflow: Workflow id (required)
         :type workflow: str
-        :param bbox: (required)
-        :type bbox: str
-        :param bgcolor: (required)
-        :type bgcolor: str
-        :param crs: (required)
-        :type crs: str
-        :param elevation: (required)
-        :type elevation: str
-        :param exceptions: (required)
-        :type exceptions: GetMapExceptionFormat
-        :param format: (required)
-        :type format: GetCapabilitiesFormat
-        :param height: (required)
-        :type height: int
-        :param info_format: (required)
-        :type info_format: str
-        :param layer: (required)
-        :type layer: str
-        :param layers: (required)
-        :type layers: str
-        :param query_layers: (required)
-        :type query_layers: str
         :param request: type of WMS request (required)
         :type request: str
-        :param service: (required)
+        :param bbox:
+        :type bbox: str
+        :param bgcolor:
+        :type bgcolor: str
+        :param crs:
+        :type crs: str
+        :param elevation:
+        :type elevation: str
+        :param exceptions:
+        :type exceptions: GetMapExceptionFormat
+        :param format:
+        :type format: GetCapabilitiesFormat
+        :param height:
+        :type height: int
+        :param info_format:
+        :type info_format: str
+        :param layer:
+        :type layer: str
+        :param layers:
+        :type layers: str
+        :param query_layers:
+        :type query_layers: str
+        :param service:
         :type service: WmsService
-        :param sld: (required)
+        :param sld:
         :type sld: str
-        :param sld_body: (required)
+        :param sld_body:
         :type sld_body: str
-        :param styles: (required)
+        :param styles:
         :type styles: str
-        :param time: (required)
+        :param time:
         :type time: str
-        :param transparent: (required)
+        :param transparent:
         :type transparent: bool
-        :param version: (required)
+        :param version:
         :type version: WmsVersion
-        :param width: (required)
+        :param width:
         :type width: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -296,6 +296,7 @@ class OGCWMSApi:
 
         _param = self._wms_handler_serialize(
             workflow=workflow,
+            request=request,
             bbox=bbox,
             bgcolor=bgcolor,
             crs=crs,
@@ -307,7 +308,6 @@ class OGCWMSApi:
             layer=layer,
             layers=layers,
             query_layers=query_layers,
-            request=request,
             service=service,
             sld=sld,
             sld_body=sld_body,
@@ -340,26 +340,26 @@ class OGCWMSApi:
     def wms_handler_without_preload_content(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        bbox: StrictStr,
-        bgcolor: Optional[StrictStr],
-        crs: Optional[StrictStr],
-        elevation: Optional[StrictStr],
-        exceptions: Optional[GetMapExceptionFormat],
-        format: Optional[GetCapabilitiesFormat],
-        height: Annotated[int, Field(strict=True, ge=0)],
-        info_format: Optional[StrictStr],
-        layer: StrictStr,
-        layers: StrictStr,
-        query_layers: StrictStr,
         request: Annotated[StrictStr, Field(description="type of WMS request")],
-        service: WmsService,
-        sld: Optional[StrictStr],
-        sld_body: Optional[StrictStr],
-        styles: StrictStr,
-        time: StrictStr,
-        transparent: Optional[StrictBool],
-        version: Optional[WmsVersion],
-        width: Annotated[int, Field(strict=True, ge=0)],
+        bbox: Optional[StrictStr] = None,
+        bgcolor: Optional[StrictStr] = None,
+        crs: Optional[StrictStr] = None,
+        elevation: Optional[StrictStr] = None,
+        exceptions: Optional[GetMapExceptionFormat] = None,
+        format: Optional[GetCapabilitiesFormat] = None,
+        height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
+        info_format: Optional[StrictStr] = None,
+        layer: Optional[StrictStr] = None,
+        layers: Optional[StrictStr] = None,
+        query_layers: Optional[StrictStr] = None,
+        service: Optional[WmsService] = None,
+        sld: Optional[StrictStr] = None,
+        sld_body: Optional[StrictStr] = None,
+        styles: Optional[StrictStr] = None,
+        time: Optional[StrictStr] = None,
+        transparent: Optional[StrictBool] = None,
+        version: Optional[WmsVersion] = None,
+        width: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -378,45 +378,45 @@ class OGCWMSApi:
 
         :param workflow: Workflow id (required)
         :type workflow: str
-        :param bbox: (required)
-        :type bbox: str
-        :param bgcolor: (required)
-        :type bgcolor: str
-        :param crs: (required)
-        :type crs: str
-        :param elevation: (required)
-        :type elevation: str
-        :param exceptions: (required)
-        :type exceptions: GetMapExceptionFormat
-        :param format: (required)
-        :type format: GetCapabilitiesFormat
-        :param height: (required)
-        :type height: int
-        :param info_format: (required)
-        :type info_format: str
-        :param layer: (required)
-        :type layer: str
-        :param layers: (required)
-        :type layers: str
-        :param query_layers: (required)
-        :type query_layers: str
         :param request: type of WMS request (required)
         :type request: str
-        :param service: (required)
+        :param bbox:
+        :type bbox: str
+        :param bgcolor:
+        :type bgcolor: str
+        :param crs:
+        :type crs: str
+        :param elevation:
+        :type elevation: str
+        :param exceptions:
+        :type exceptions: GetMapExceptionFormat
+        :param format:
+        :type format: GetCapabilitiesFormat
+        :param height:
+        :type height: int
+        :param info_format:
+        :type info_format: str
+        :param layer:
+        :type layer: str
+        :param layers:
+        :type layers: str
+        :param query_layers:
+        :type query_layers: str
+        :param service:
         :type service: WmsService
-        :param sld: (required)
+        :param sld:
         :type sld: str
-        :param sld_body: (required)
+        :param sld_body:
         :type sld_body: str
-        :param styles: (required)
+        :param styles:
         :type styles: str
-        :param time: (required)
+        :param time:
         :type time: str
-        :param transparent: (required)
+        :param transparent:
         :type transparent: bool
-        :param version: (required)
+        :param version:
         :type version: WmsVersion
-        :param width: (required)
+        :param width:
         :type width: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -442,6 +442,7 @@ class OGCWMSApi:
 
         _param = self._wms_handler_serialize(
             workflow=workflow,
+            request=request,
             bbox=bbox,
             bgcolor=bgcolor,
             crs=crs,
@@ -453,7 +454,6 @@ class OGCWMSApi:
             layer=layer,
             layers=layers,
             query_layers=query_layers,
-            request=request,
             service=service,
             sld=sld,
             sld_body=sld_body,
@@ -481,6 +481,7 @@ class OGCWMSApi:
     def _wms_handler_serialize(
         self,
         workflow,
+        request,
         bbox,
         bgcolor,
         crs,
@@ -492,7 +493,6 @@ class OGCWMSApi:
         layer,
         layers,
         query_layers,
-        request,
         service,
         sld,
         sld_body,
@@ -524,47 +524,87 @@ class OGCWMSApi:
         # process the path parameters
         if workflow is not None:
             _path_params['workflow'] = workflow
-        if bbox is not None:
-            _path_params['bbox'] = bbox
-        if bgcolor is not None:
-            _path_params['bgcolor'] = bgcolor
-        if crs is not None:
-            _path_params['crs'] = crs
-        if elevation is not None:
-            _path_params['elevation'] = elevation
-        if exceptions is not None:
-            _path_params['exceptions'] = exceptions.value
-        if format is not None:
-            _path_params['format'] = format.value
-        if height is not None:
-            _path_params['height'] = height
-        if info_format is not None:
-            _path_params['info_format'] = info_format
-        if layer is not None:
-            _path_params['layer'] = layer
-        if layers is not None:
-            _path_params['layers'] = layers
-        if query_layers is not None:
-            _path_params['query_layers'] = query_layers
-        if request is not None:
-            _path_params['request'] = request
-        if service is not None:
-            _path_params['service'] = service.value
-        if sld is not None:
-            _path_params['sld'] = sld
-        if sld_body is not None:
-            _path_params['sld_body'] = sld_body
-        if styles is not None:
-            _path_params['styles'] = styles
-        if time is not None:
-            _path_params['time'] = time
-        if transparent is not None:
-            _path_params['transparent'] = transparent
-        if version is not None:
-            _path_params['version'] = version.value
-        if width is not None:
-            _path_params['width'] = width
         # process the query parameters
+        if bbox is not None:
+            
+            _query_params.append(('bbox', bbox))
+            
+        if bgcolor is not None:
+            
+            _query_params.append(('bgcolor', bgcolor))
+            
+        if crs is not None:
+            
+            _query_params.append(('crs', crs))
+            
+        if elevation is not None:
+            
+            _query_params.append(('elevation', elevation))
+            
+        if exceptions is not None:
+            
+            _query_params.append(('exceptions', exceptions.value))
+            
+        if format is not None:
+            
+            _query_params.append(('format', format.value))
+            
+        if height is not None:
+            
+            _query_params.append(('height', height))
+            
+        if info_format is not None:
+            
+            _query_params.append(('info_format', info_format))
+            
+        if layer is not None:
+            
+            _query_params.append(('layer', layer))
+            
+        if layers is not None:
+            
+            _query_params.append(('layers', layers))
+            
+        if query_layers is not None:
+            
+            _query_params.append(('query_layers', query_layers))
+            
+        if request is not None:
+            
+            _query_params.append(('request', request))
+            
+        if service is not None:
+            
+            _query_params.append(('service', service.value))
+            
+        if sld is not None:
+            
+            _query_params.append(('sld', sld))
+            
+        if sld_body is not None:
+            
+            _query_params.append(('sld_body', sld_body))
+            
+        if styles is not None:
+            
+            _query_params.append(('styles', styles))
+            
+        if time is not None:
+            
+            _query_params.append(('time', time))
+            
+        if transparent is not None:
+            
+            _query_params.append(('transparent', transparent))
+            
+        if version is not None:
+            
+            _query_params.append(('version', version.value))
+            
+        if width is not None:
+            
+            _query_params.append(('width', width))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

@@ -13,20 +13,20 @@ import * as runtime from '../runtime';
 import type { GetCoverageFormat, WcsService, WcsVersion } from '../models/index';
 export interface WcsHandlerRequest {
     workflow: string;
-    boundingbox: string;
-    format: GetCoverageFormat;
-    gridbasecrs: string;
-    gridoffsets: string;
-    gridorigin: string;
-    identifier: string;
-    identifiers: string;
-    nodatavalue: number | null;
     request: WcsHandlerRequestEnum;
-    resx: number | null;
-    resy: number | null;
-    service: WcsService;
-    time: string;
-    version: WcsVersion | null;
+    boundingbox?: string;
+    format?: GetCoverageFormat;
+    gridbasecrs?: string;
+    gridoffsets?: string;
+    gridorigin?: string;
+    identifier?: string;
+    identifiers?: string;
+    nodatavalue?: number | null;
+    resx?: number | null;
+    resy?: number | null;
+    service?: WcsService;
+    time?: string;
+    version?: WcsVersion | null;
 }
 /**
  *

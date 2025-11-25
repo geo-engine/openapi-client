@@ -30,18 +30,18 @@ import {
 
 export interface WfsHandlerRequest {
     workflow: string;
-    bbox: string;
     request: WfsHandlerRequestEnum;
-    service: WfsService;
-    typeNames: string;
+    bbox?: string;
     count?: number | null;
     filter?: string | null;
     namespaces?: string | null;
     propertyName?: string | null;
     resultType?: string | null;
+    service?: WfsService;
     sortBy?: string | null;
     srsName?: string | null;
     time?: string;
+    typeNames?: string;
     version?: WfsVersion | null;
 }
 
@@ -61,31 +61,10 @@ export class OGCWFSApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['bbox'] == null) {
-            throw new runtime.RequiredError(
-                'bbox',
-                'Required parameter "bbox" was null or undefined when calling wfsHandler().'
-            );
-        }
-
         if (requestParameters['request'] == null) {
             throw new runtime.RequiredError(
                 'request',
                 'Required parameter "request" was null or undefined when calling wfsHandler().'
-            );
-        }
-
-        if (requestParameters['service'] == null) {
-            throw new runtime.RequiredError(
-                'service',
-                'Required parameter "service" was null or undefined when calling wfsHandler().'
-            );
-        }
-
-        if (requestParameters['typeNames'] == null) {
-            throw new runtime.RequiredError(
-                'typeNames',
-                'Required parameter "typeNames" was null or undefined when calling wfsHandler().'
             );
         }
 

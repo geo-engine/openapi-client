@@ -10,7 +10,7 @@ All URIs are relative to *http://127.0.0.1:3030/api*
 
 ## wcsHandler
 
-> string wcsHandler(workflow, boundingbox, format, gridbasecrs, gridoffsets, gridorigin, identifier, identifiers, nodatavalue, request, resx, resy, service, time, version)
+> string wcsHandler(workflow, request, boundingbox, format, gridbasecrs, gridoffsets, gridorigin, identifier, identifiers, nodatavalue, resx, resy, service, time, version)
 
 OGC WCS endpoint
 
@@ -34,33 +34,33 @@ async function example() {
   const body = {
     // string | Workflow id
     workflow: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-    // string
-    boundingbox: -90,-180,90,180,urn:ogc:def:crs:EPSG::4326,
-    // GetCoverageFormat
-    format: ...,
-    // string
-    gridbasecrs: urn:ogc:def:crs:EPSG::4326,
-    // string
-    gridoffsets: -0.1,0.1,
-    // string
-    gridorigin: 90,-180,
-    // string
-    identifier: <Workflow Id>,
-    // string
-    identifiers: <Workflow Id>,
-    // number
-    nodatavalue: 1.2,
     // 'GetCapabilGetCapabilitiesities' | 'DescribeCoverage' | 'GetCoverage' | type of WMS request
     request: request_example,
-    // number
+    // string (optional)
+    boundingbox: -90,-180,90,180,urn:ogc:def:crs:EPSG::4326,
+    // GetCoverageFormat (optional)
+    format: ...,
+    // string (optional)
+    gridbasecrs: urn:ogc:def:crs:EPSG::4326,
+    // string (optional)
+    gridoffsets: -0.1,0.1,
+    // string (optional)
+    gridorigin: 90,-180,
+    // string (optional)
+    identifier: <Workflow Id>,
+    // string (optional)
+    identifiers: <Workflow Id>,
+    // number (optional)
+    nodatavalue: 1.2,
+    // number (optional)
     resx: 1.2,
-    // number
+    // number (optional)
     resy: 1.2,
-    // WcsService
+    // WcsService (optional)
     service: ...,
-    // string
+    // string (optional)
     time: time_example,
-    // WcsVersion
+    // WcsVersion (optional)
     version: ...,
   } satisfies WcsHandlerRequest;
 
@@ -82,20 +82,20 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **workflow** | `string` | Workflow id | [Defaults to `undefined`] |
-| **boundingbox** | `string` |  | [Defaults to `undefined`] |
-| **format** | `GetCoverageFormat` |  | [Defaults to `undefined`] [Enum: image/tiff] |
-| **gridbasecrs** | `string` |  | [Defaults to `undefined`] |
-| **gridoffsets** | `string` |  | [Defaults to `undefined`] |
-| **gridorigin** | `string` |  | [Defaults to `undefined`] |
-| **identifier** | `string` |  | [Defaults to `undefined`] |
-| **identifiers** | `string` |  | [Defaults to `undefined`] |
-| **nodatavalue** | `number` |  | [Defaults to `undefined`] |
 | **request** | `GetCapabilGetCapabilitiesities`, `DescribeCoverage`, `GetCoverage` | type of WMS request | [Defaults to `undefined`] [Enum: GetCapabilGetCapabilitiesities, DescribeCoverage, GetCoverage] |
-| **resx** | `number` |  | [Defaults to `undefined`] |
-| **resy** | `number` |  | [Defaults to `undefined`] |
-| **service** | `WcsService` |  | [Defaults to `undefined`] [Enum: WCS] |
-| **time** | `string` |  | [Defaults to `undefined`] |
-| **version** | `WcsVersion` |  | [Defaults to `undefined`] [Enum: 1.1.0, 1.1.1] |
+| **boundingbox** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **format** | `GetCoverageFormat` |  | [Optional] [Defaults to `undefined`] [Enum: image/tiff] |
+| **gridbasecrs** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **gridoffsets** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **gridorigin** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **identifier** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **identifiers** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **nodatavalue** | `number` |  | [Optional] [Defaults to `undefined`] |
+| **resx** | `number` |  | [Optional] [Defaults to `undefined`] |
+| **resy** | `number` |  | [Optional] [Defaults to `undefined`] |
+| **service** | `WcsService` |  | [Optional] [Defaults to `undefined`] [Enum: WCS] |
+| **time** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **version** | `WcsVersion` |  | [Optional] [Defaults to `undefined`] [Enum: 1.1.0, 1.1.1] |
 
 ### Return type
 

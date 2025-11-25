@@ -13,26 +13,26 @@ import * as runtime from '../runtime';
 import type { GetCapabilitiesFormat, GetMapExceptionFormat, WmsService, WmsVersion } from '../models/index';
 export interface WmsHandlerRequest {
     workflow: string;
-    bbox: string;
-    bgcolor: string | null;
-    crs: string | null;
-    elevation: string | null;
-    exceptions: GetMapExceptionFormat | null;
-    format: GetCapabilitiesFormat | null;
-    height: number;
-    infoFormat: string | null;
-    layer: string;
-    layers: string;
-    queryLayers: string;
     request: WmsHandlerRequestEnum;
-    service: WmsService;
-    sld: string | null;
-    sldBody: string | null;
-    styles: string;
-    time: string;
-    transparent: boolean | null;
-    version: WmsVersion | null;
-    width: number;
+    bbox?: string;
+    bgcolor?: string | null;
+    crs?: string | null;
+    elevation?: string | null;
+    exceptions?: GetMapExceptionFormat | null;
+    format?: GetCapabilitiesFormat | null;
+    height?: number;
+    infoFormat?: string | null;
+    layer?: string;
+    layers?: string;
+    queryLayers?: string;
+    service?: WmsService;
+    sld?: string | null;
+    sldBody?: string | null;
+    styles?: string;
+    time?: string;
+    transparent?: boolean | null;
+    version?: WmsVersion | null;
+    width?: number;
 }
 /**
  *

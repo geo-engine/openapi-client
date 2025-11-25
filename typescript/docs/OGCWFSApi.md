@@ -10,7 +10,7 @@ All URIs are relative to *http://127.0.0.1:3030/api*
 
 ## wfsHandler
 
-> GeoJson wfsHandler(workflow, bbox, request, service, typeNames, count, filter, namespaces, propertyName, resultType, sortBy, srsName, time, version)
+> GeoJson wfsHandler(workflow, request, bbox, count, filter, namespaces, propertyName, resultType, service, sortBy, srsName, time, typeNames, version)
 
 OGC WFS endpoint
 
@@ -34,14 +34,10 @@ async function example() {
   const body = {
     // string | Workflow id
     workflow: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-    // string
-    bbox: -90,-180,90,180,
     // 'GetCapabilities' | 'GetFeature' | type of WFS request
     request: request_example,
-    // WfsService
-    service: ...,
-    // string
-    typeNames: <Workflow Id>,
+    // string (optional)
+    bbox: -90,-180,90,180,
     // number (optional)
     count: 789,
     // string (optional)
@@ -52,12 +48,16 @@ async function example() {
     propertyName: propertyName_example,
     // string (optional)
     resultType: resultType_example,
+    // WfsService (optional)
+    service: ...,
     // string (optional)
     sortBy: sortBy_example,
     // string (optional)
     srsName: EPSG:4326,
     // string (optional)
     time: 2014-04-01T12:00:00.000Z,
+    // string (optional)
+    typeNames: <Workflow Id>,
     // WfsVersion (optional)
     version: ...,
   } satisfies WfsHandlerRequest;
@@ -80,18 +80,18 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **workflow** | `string` | Workflow id | [Defaults to `undefined`] |
-| **bbox** | `string` |  | [Defaults to `undefined`] |
 | **request** | `GetCapabilities`, `GetFeature` | type of WFS request | [Defaults to `undefined`] [Enum: GetCapabilities, GetFeature] |
-| **service** | `WfsService` |  | [Defaults to `undefined`] [Enum: WFS] |
-| **typeNames** | `string` |  | [Defaults to `undefined`] |
+| **bbox** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **count** | `number` |  | [Optional] [Defaults to `undefined`] |
 | **filter** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **namespaces** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **propertyName** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **resultType** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **service** | `WfsService` |  | [Optional] [Defaults to `undefined`] [Enum: WFS] |
 | **sortBy** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **srsName** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **time** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **typeNames** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **version** | `WfsVersion` |  | [Optional] [Defaults to `undefined`] [Enum: 2.0.0] |
 
 ### Return type

@@ -47,18 +47,18 @@ class OGCWFSApi:
     def wfs_handler(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        bbox: StrictStr,
         request: Annotated[StrictStr, Field(description="type of WFS request")],
-        service: WfsService,
-        type_names: StrictStr,
+        bbox: Optional[StrictStr] = None,
         count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         filter: Optional[StrictStr] = None,
         namespaces: Optional[StrictStr] = None,
         property_name: Optional[StrictStr] = None,
         result_type: Optional[StrictStr] = None,
+        service: Optional[WfsService] = None,
         sort_by: Optional[StrictStr] = None,
         srs_name: Optional[StrictStr] = None,
         time: Optional[StrictStr] = None,
+        type_names: Optional[StrictStr] = None,
         version: Optional[WfsVersion] = None,
         _request_timeout: Union[
             None,
@@ -78,14 +78,10 @@ class OGCWFSApi:
 
         :param workflow: Workflow id (required)
         :type workflow: str
-        :param bbox: (required)
-        :type bbox: str
         :param request: type of WFS request (required)
         :type request: str
-        :param service: (required)
-        :type service: WfsService
-        :param type_names: (required)
-        :type type_names: str
+        :param bbox:
+        :type bbox: str
         :param count:
         :type count: int
         :param filter:
@@ -96,12 +92,16 @@ class OGCWFSApi:
         :type property_name: str
         :param result_type:
         :type result_type: str
+        :param service:
+        :type service: WfsService
         :param sort_by:
         :type sort_by: str
         :param srs_name:
         :type srs_name: str
         :param time:
         :type time: str
+        :param type_names:
+        :type type_names: str
         :param version:
         :type version: WfsVersion
         :param _request_timeout: timeout setting for this request. If one
@@ -128,18 +128,18 @@ class OGCWFSApi:
 
         _param = self._wfs_handler_serialize(
             workflow=workflow,
-            bbox=bbox,
             request=request,
-            service=service,
-            type_names=type_names,
+            bbox=bbox,
             count=count,
             filter=filter,
             namespaces=namespaces,
             property_name=property_name,
             result_type=result_type,
+            service=service,
             sort_by=sort_by,
             srs_name=srs_name,
             time=time,
+            type_names=type_names,
             version=version,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -165,18 +165,18 @@ class OGCWFSApi:
     def wfs_handler_with_http_info(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        bbox: StrictStr,
         request: Annotated[StrictStr, Field(description="type of WFS request")],
-        service: WfsService,
-        type_names: StrictStr,
+        bbox: Optional[StrictStr] = None,
         count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         filter: Optional[StrictStr] = None,
         namespaces: Optional[StrictStr] = None,
         property_name: Optional[StrictStr] = None,
         result_type: Optional[StrictStr] = None,
+        service: Optional[WfsService] = None,
         sort_by: Optional[StrictStr] = None,
         srs_name: Optional[StrictStr] = None,
         time: Optional[StrictStr] = None,
+        type_names: Optional[StrictStr] = None,
         version: Optional[WfsVersion] = None,
         _request_timeout: Union[
             None,
@@ -196,14 +196,10 @@ class OGCWFSApi:
 
         :param workflow: Workflow id (required)
         :type workflow: str
-        :param bbox: (required)
-        :type bbox: str
         :param request: type of WFS request (required)
         :type request: str
-        :param service: (required)
-        :type service: WfsService
-        :param type_names: (required)
-        :type type_names: str
+        :param bbox:
+        :type bbox: str
         :param count:
         :type count: int
         :param filter:
@@ -214,12 +210,16 @@ class OGCWFSApi:
         :type property_name: str
         :param result_type:
         :type result_type: str
+        :param service:
+        :type service: WfsService
         :param sort_by:
         :type sort_by: str
         :param srs_name:
         :type srs_name: str
         :param time:
         :type time: str
+        :param type_names:
+        :type type_names: str
         :param version:
         :type version: WfsVersion
         :param _request_timeout: timeout setting for this request. If one
@@ -246,18 +246,18 @@ class OGCWFSApi:
 
         _param = self._wfs_handler_serialize(
             workflow=workflow,
-            bbox=bbox,
             request=request,
-            service=service,
-            type_names=type_names,
+            bbox=bbox,
             count=count,
             filter=filter,
             namespaces=namespaces,
             property_name=property_name,
             result_type=result_type,
+            service=service,
             sort_by=sort_by,
             srs_name=srs_name,
             time=time,
+            type_names=type_names,
             version=version,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -283,18 +283,18 @@ class OGCWFSApi:
     def wfs_handler_without_preload_content(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        bbox: StrictStr,
         request: Annotated[StrictStr, Field(description="type of WFS request")],
-        service: WfsService,
-        type_names: StrictStr,
+        bbox: Optional[StrictStr] = None,
         count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         filter: Optional[StrictStr] = None,
         namespaces: Optional[StrictStr] = None,
         property_name: Optional[StrictStr] = None,
         result_type: Optional[StrictStr] = None,
+        service: Optional[WfsService] = None,
         sort_by: Optional[StrictStr] = None,
         srs_name: Optional[StrictStr] = None,
         time: Optional[StrictStr] = None,
+        type_names: Optional[StrictStr] = None,
         version: Optional[WfsVersion] = None,
         _request_timeout: Union[
             None,
@@ -314,14 +314,10 @@ class OGCWFSApi:
 
         :param workflow: Workflow id (required)
         :type workflow: str
-        :param bbox: (required)
-        :type bbox: str
         :param request: type of WFS request (required)
         :type request: str
-        :param service: (required)
-        :type service: WfsService
-        :param type_names: (required)
-        :type type_names: str
+        :param bbox:
+        :type bbox: str
         :param count:
         :type count: int
         :param filter:
@@ -332,12 +328,16 @@ class OGCWFSApi:
         :type property_name: str
         :param result_type:
         :type result_type: str
+        :param service:
+        :type service: WfsService
         :param sort_by:
         :type sort_by: str
         :param srs_name:
         :type srs_name: str
         :param time:
         :type time: str
+        :param type_names:
+        :type type_names: str
         :param version:
         :type version: WfsVersion
         :param _request_timeout: timeout setting for this request. If one
@@ -364,18 +364,18 @@ class OGCWFSApi:
 
         _param = self._wfs_handler_serialize(
             workflow=workflow,
-            bbox=bbox,
             request=request,
-            service=service,
-            type_names=type_names,
+            bbox=bbox,
             count=count,
             filter=filter,
             namespaces=namespaces,
             property_name=property_name,
             result_type=result_type,
+            service=service,
             sort_by=sort_by,
             srs_name=srs_name,
             time=time,
+            type_names=type_names,
             version=version,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -396,18 +396,18 @@ class OGCWFSApi:
     def _wfs_handler_serialize(
         self,
         workflow,
-        bbox,
         request,
-        service,
-        type_names,
+        bbox,
         count,
         filter,
         namespaces,
         property_name,
         result_type,
+        service,
         sort_by,
         srs_name,
         time,
+        type_names,
         version,
         _request_auth,
         _content_type,

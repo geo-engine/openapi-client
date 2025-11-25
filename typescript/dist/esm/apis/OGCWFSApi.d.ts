@@ -13,18 +13,18 @@ import * as runtime from '../runtime';
 import type { GeoJson, WfsService, WfsVersion } from '../models/index';
 export interface WfsHandlerRequest {
     workflow: string;
-    bbox: string;
     request: WfsHandlerRequestEnum;
-    service: WfsService;
-    typeNames: string;
+    bbox?: string;
     count?: number | null;
     filter?: string | null;
     namespaces?: string | null;
     propertyName?: string | null;
     resultType?: string | null;
+    service?: WfsService;
     sortBy?: string | null;
     srsName?: string | null;
     time?: string;
+    typeNames?: string;
     version?: WfsVersion | null;
 }
 /**

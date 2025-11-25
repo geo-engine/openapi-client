@@ -37,17 +37,8 @@ class OGCWFSApi extends runtime.BaseAPI {
             if (requestParameters['workflow'] == null) {
                 throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wfsHandler().');
             }
-            if (requestParameters['bbox'] == null) {
-                throw new runtime.RequiredError('bbox', 'Required parameter "bbox" was null or undefined when calling wfsHandler().');
-            }
             if (requestParameters['request'] == null) {
                 throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wfsHandler().');
-            }
-            if (requestParameters['service'] == null) {
-                throw new runtime.RequiredError('service', 'Required parameter "service" was null or undefined when calling wfsHandler().');
-            }
-            if (requestParameters['typeNames'] == null) {
-                throw new runtime.RequiredError('typeNames', 'Required parameter "typeNames" was null or undefined when calling wfsHandler().');
             }
             const queryParameters = {};
             if (requestParameters['bbox'] != null) {

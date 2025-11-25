@@ -15,22 +15,36 @@
 
 import unittest
 
-from geoengine_openapi_client.api.ogcwfs_api import OGCWFSApi
+from geoengine_openapi_client.api.ogc_api import OGCApi
 
 
-class TestOGCWFSApi(unittest.TestCase):
-    """OGCWFSApi unit test stubs"""
+class TestOGCApi(unittest.TestCase):
+    """OGCApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = OGCWFSApi()
+        self.api = OGCApi()
 
     def tearDown(self) -> None:
+        pass
+
+    def test_wcs_handler(self) -> None:
+        """Test case for wcs_handler
+
+        OGC WCS endpoint
+        """
         pass
 
     def test_wfs_handler(self) -> None:
         """Test case for wfs_handler
 
         OGC WFS endpoint
+        """
+        pass
+
+    def test_wms_handler(self) -> None:
+        """Test case for wms_handler
+
+        OGC WMS endpoint
         """
         pass
 

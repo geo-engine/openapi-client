@@ -23,7 +23,9 @@ __all__ = [
     "GeneralApi",
     "LayersApi",
     "MLApi",
-    "OGCApi",
+    "OGCWCSApi",
+    "OGCWFSApi",
+    "OGCWMSApi",
     "PermissionsApi",
     "PlotsApi",
     "ProjectsApi",
@@ -300,7 +302,9 @@ from geoengine_openapi_client.api.datasets_api import DatasetsApi as DatasetsApi
 from geoengine_openapi_client.api.general_api import GeneralApi as GeneralApi
 from geoengine_openapi_client.api.layers_api import LayersApi as LayersApi
 from geoengine_openapi_client.api.ml_api import MLApi as MLApi
-from geoengine_openapi_client.api.ogc_api import OGCApi as OGCApi
+from geoengine_openapi_client.api.ogcwcs_api import OGCWCSApi as OGCWCSApi
+from geoengine_openapi_client.api.ogcwfs_api import OGCWFSApi as OGCWFSApi
+from geoengine_openapi_client.api.ogcwms_api import OGCWMSApi as OGCWMSApi
 from geoengine_openapi_client.api.permissions_api import PermissionsApi as PermissionsApi
 from geoengine_openapi_client.api.plots_api import PlotsApi as PlotsApi
 from geoengine_openapi_client.api.projects_api import ProjectsApi as ProjectsApi

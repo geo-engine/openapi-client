@@ -98,9 +98,9 @@ All URIs are relative to *http://127.0.0.1:3030/api*
 *MLApi* | [**addMlModel**](docs/MLApi.md#addmlmodel) | **POST** /ml/models | Create a new ml model.
 *MLApi* | [**getMlModel**](docs/MLApi.md#getmlmodel) | **GET** /ml/models/{model_name} | Get ml model by name.
 *MLApi* | [**listMlModels**](docs/MLApi.md#listmlmodels) | **GET** /ml/models | List ml models.
-*OGCApi* | [**wcsHandler**](docs/OGCApi.md#wcshandler) | **GET** /wcs/{workflow} | OGC WCS endpoint
-*OGCApi* | [**wfsHandler**](docs/OGCApi.md#wfshandler) | **GET** /wfs/{workflow} | OGC WFS endpoint
-*OGCApi* | [**wmsHandler**](docs/OGCApi.md#wmshandler) | **GET** /wms/{workflow} | OGC WMS endpoint
+*OGCWCSApi* | [**wcsHandler**](docs/OGCWCSApi.md#wcshandler) | **GET** /wcs/{workflow} | OGC WCS endpoint
+*OGCWFSApi* | [**wfsHandler**](docs/OGCWFSApi.md#wfshandler) | **GET** /wfs/{workflow} | OGC WFS endpoint
+*OGCWMSApi* | [**wmsHandler**](docs/OGCWMSApi.md#wmshandler) | **GET** /wms/{workflow} | OGC WMS endpoint
 *PermissionsApi* | [**addPermissionHandler**](docs/PermissionsApi.md#addpermissionhandler) | **PUT** /permissions | Adds a new permission.
 *PermissionsApi* | [**getResourcePermissionsHandler**](docs/PermissionsApi.md#getresourcepermissionshandler) | **GET** /permissions/resources/{resource_type}/{resource_id} | Lists permission for a given resource.
 *PermissionsApi* | [**removePermissionHandler**](docs/PermissionsApi.md#removepermissionhandler) | **DELETE** /permissions | Removes an existing permission.

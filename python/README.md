@@ -135,9 +135,9 @@ Class | Method | HTTP request | Description
 *MLApi* | [**add_ml_model**](docs/MLApi.md#add_ml_model) | **POST** /ml/models | Create a new ml model.
 *MLApi* | [**get_ml_model**](docs/MLApi.md#get_ml_model) | **GET** /ml/models/{model_name} | Get ml model by name.
 *MLApi* | [**list_ml_models**](docs/MLApi.md#list_ml_models) | **GET** /ml/models | List ml models.
-*OGCApi* | [**wcs_handler**](docs/OGCApi.md#wcs_handler) | **GET** /wcs/{workflow} | OGC WCS endpoint
-*OGCApi* | [**wfs_handler**](docs/OGCApi.md#wfs_handler) | **GET** /wfs/{workflow} | OGC WFS endpoint
-*OGCApi* | [**wms_handler**](docs/OGCApi.md#wms_handler) | **GET** /wms/{workflow} | OGC WMS endpoint
+*OGCWCSApi* | [**wcs_handler**](docs/OGCWCSApi.md#wcs_handler) | **GET** /wcs/{workflow} | OGC WCS endpoint
+*OGCWFSApi* | [**wfs_handler**](docs/OGCWFSApi.md#wfs_handler) | **GET** /wfs/{workflow} | OGC WFS endpoint
+*OGCWMSApi* | [**wms_handler**](docs/OGCWMSApi.md#wms_handler) | **GET** /wms/{workflow} | OGC WMS endpoint
 *PermissionsApi* | [**add_permission_handler**](docs/PermissionsApi.md#add_permission_handler) | **PUT** /permissions | Adds a new permission.
 *PermissionsApi* | [**get_resource_permissions_handler**](docs/PermissionsApi.md#get_resource_permissions_handler) | **GET** /permissions/resources/{resource_type}/{resource_id} | Lists permission for a given resource.
 *PermissionsApi* | [**remove_permission_handler**](docs/PermissionsApi.md#remove_permission_handler) | **DELETE** /permissions | Removes an existing permission.

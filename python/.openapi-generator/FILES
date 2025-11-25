@@ -117,7 +117,9 @@ docs/MultiPoint.md
 docs/MultiPolygon.md
 docs/NetCdfCfDataProviderDefinition.md
 docs/NumberParam.md
-docs/OGCApi.md
+docs/OGCWCSApi.md
+docs/OGCWFSApi.md
+docs/OGCWMSApi.md
 docs/OgrMetaData.md
 docs/OgrSourceColumnSpec.md
 docs/OgrSourceDataset.md
@@ -274,7 +276,9 @@ geoengine_openapi_client/api/datasets_api.py
 geoengine_openapi_client/api/general_api.py
 geoengine_openapi_client/api/layers_api.py
 geoengine_openapi_client/api/ml_api.py
-geoengine_openapi_client/api/ogc_api.py
+geoengine_openapi_client/api/ogcwcs_api.py
+geoengine_openapi_client/api/ogcwfs_api.py
+geoengine_openapi_client/api/ogcwms_api.py
 geoengine_openapi_client/api/permissions_api.py
 geoengine_openapi_client/api/plots_api.py
 geoengine_openapi_client/api/projects_api.py
@@ -663,7 +667,9 @@ test/test_multi_point.py
 test/test_multi_polygon.py
 test/test_net_cdf_cf_data_provider_definition.py
 test/test_number_param.py
-test/test_ogc_api.py
+test/test_ogcwcs_api.py
+test/test_ogcwfs_api.py
+test/test_ogcwms_api.py
 test/test_ogr_meta_data.py
 test/test_ogr_source_column_spec.py
 test/test_ogr_source_dataset.py

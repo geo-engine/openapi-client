@@ -4,7 +4,7 @@ All URIs are relative to *http://127.0.0.1:3030/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**wmsHandler**](OGCWMSApi.md#wmshandler) | **GET** /wms/{workflow} | Get WMS Capabilities |
+| [**wmsHandler**](OGCWMSApi.md#wmshandler) | **GET** /wms/{workflow} | OGC WMS endpoint |
 
 
 
@@ -12,7 +12,7 @@ All URIs are relative to *http://127.0.0.1:3030/api*
 
 > string wmsHandler(workflow, bbox, height, layer, layers, queryLayers, request, service, styles, width, bgcolor, crs, elevation, exceptions, format, infoFormat, sld, sldBody, time, transparent, version)
 
-Get WMS Capabilities
+OGC WMS endpoint
 
 ### Example
 

@@ -122,22 +122,6 @@ def layers_api_py(file_contents: List[str]) -> Generator[str, None, None]:
 
         yield line
 
-def ogc_xyz_api_py(ogc_api: Literal['wfs', 'wms']) -> Callable[[List[str]], Generator[str, None, None]]:
-    '''Modify the ogc_xyz_api.py file.'''
-    def _ogc_xyz_api_py(file_contents: List[str]) -> Generator[str, None, None]:
-        '''Modify the ogc_wfs_api.py file.'''
-        for line in file_contents:
-            dedented_line = dedent(line)
-            if dedented_line.startswith(f"resource_path='/{ogc_api}/{{workflow}}?request="):
-                line = indent(dedent(f'''\
-                # Note: remove query string in path part for ogc endpoints
-                resource_path='/{ogc_api}/{{workflow}}',
-                '''), 3 * INDENT)
-
-            yield line
-    return _ogc_xyz_api_py
-
-
 def raster_result_descriptor_py(file_contents: List[str]) -> Generator[str, None, None]:
     '''
     Modify the raster_result_descriptor.py file.
@@ -272,8 +256,6 @@ file_modifications = {
     'api_client.py': api_client_py,
     'exceptions.py': exceptions_py,
     'layers_api.py': layers_api_py,
-    'ogcwfs_api.py': ogc_xyz_api_py('wfs'),
-    'ogcwms_api.py': ogc_xyz_api_py('wms'),
     'plot_result_descriptor.py': plot_result_descriptor_py,
     'raster_result_descriptor.py': raster_result_descriptor_py,
     'task_status_with_id.py': task_status_with_id_py,

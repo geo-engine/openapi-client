@@ -216,7 +216,6 @@ All URIs are relative to *https://geoengine.io/api*
 - [GeoJson](docs/GeoJson.md)
 - [GeoTransform](docs/GeoTransform.md)
 - [GetCoverageFormat](docs/GetCoverageFormat.md)
-- [GetFeatureRequest](docs/GetFeatureRequest.md)
 - [GetMapExceptionFormat](docs/GetMapExceptionFormat.md)
 - [GfbioAbcdDataProviderDefinition](docs/GfbioAbcdDataProviderDefinition.md)
 - [GfbioCollectionsDataProviderDefinition](docs/GfbioCollectionsDataProviderDefinition.md)

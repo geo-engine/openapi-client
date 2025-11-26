@@ -69,7 +69,6 @@ docs/GeneralApi.md
 docs/GeoJson.md
 docs/GeoTransform.md
 docs/GetCoverageFormat.md
-docs/GetFeatureRequest.md
 docs/GetMapExceptionFormat.md
 docs/GfbioAbcdDataProviderDefinition.md
 docs/GfbioCollectionsDataProviderDefinition.md
@@ -354,7 +353,6 @@ geoengine_openapi_client/models/gdal_source_time_placeholder.py
 geoengine_openapi_client/models/geo_json.py
 geoengine_openapi_client/models/geo_transform.py
 geoengine_openapi_client/models/get_coverage_format.py
-geoengine_openapi_client/models/get_feature_request.py
 geoengine_openapi_client/models/get_map_exception_format.py
 geoengine_openapi_client/models/gfbio_abcd_data_provider_definition.py
 geoengine_openapi_client/models/gfbio_collections_data_provider_definition.py
@@ -613,7 +611,6 @@ test/test_general_api.py
 test/test_geo_json.py
 test/test_geo_transform.py
 test/test_get_coverage_format.py
-test/test_get_feature_request.py
 test/test_get_map_exception_format.py
 test/test_gfbio_abcd_data_provider_definition.py
 test/test_gfbio_collections_data_provider_definition.py

@@ -80,7 +80,6 @@ __exportStar(require("./GdalSourceTimePlaceholder"), exports);
 __exportStar(require("./GeoJson"), exports);
 __exportStar(require("./GeoTransform"), exports);
 __exportStar(require("./GetCoverageFormat"), exports);
-__exportStar(require("./GetFeatureRequest"), exports);
 __exportStar(require("./GetMapExceptionFormat"), exports);
 __exportStar(require("./GfbioAbcdDataProviderDefinition"), exports);
 __exportStar(require("./GfbioCollectionsDataProviderDefinition"), exports);

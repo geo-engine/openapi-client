@@ -64,7 +64,6 @@ export * from './GdalSourceTimePlaceholder';
 export * from './GeoJson';
 export * from './GeoTransform';
 export * from './GetCoverageFormat';
-export * from './GetFeatureRequest';
 export * from './GetMapExceptionFormat';
 export * from './GfbioAbcdDataProviderDefinition';
 export * from './GfbioCollectionsDataProviderDefinition';

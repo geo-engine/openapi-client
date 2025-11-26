@@ -108,7 +108,6 @@ __all__ = [
     "GeoJson",
     "GeoTransform",
     "GetCoverageFormat",
-    "GetFeatureRequest",
     "GetMapExceptionFormat",
     "GfbioAbcdDataProviderDefinition",
     "GfbioCollectionsDataProviderDefinition",
@@ -388,7 +387,6 @@ from geoengine_openapi_client.models.gdal_source_time_placeholder import GdalSou
 from geoengine_openapi_client.models.geo_json import GeoJson as GeoJson
 from geoengine_openapi_client.models.geo_transform import GeoTransform as GeoTransform
 from geoengine_openapi_client.models.get_coverage_format import GetCoverageFormat as GetCoverageFormat
-from geoengine_openapi_client.models.get_feature_request import GetFeatureRequest as GetFeatureRequest
 from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat as GetMapExceptionFormat
 from geoengine_openapi_client.models.gfbio_abcd_data_provider_definition import GfbioAbcdDataProviderDefinition as GfbioAbcdDataProviderDefinition
 from geoengine_openapi_client.models.gfbio_collections_data_provider_definition import GfbioCollectionsDataProviderDefinition as GfbioCollectionsDataProviderDefinition

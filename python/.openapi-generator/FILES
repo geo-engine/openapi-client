@@ -68,11 +68,9 @@ docs/GdalSourceTimePlaceholder.md
 docs/GeneralApi.md
 docs/GeoJson.md
 docs/GeoTransform.md
-docs/GetCapabilitiesFormat.md
 docs/GetCoverageFormat.md
 docs/GetFeatureRequest.md
 docs/GetMapExceptionFormat.md
-docs/GetMapFormat.md
 docs/GfbioAbcdDataProviderDefinition.md
 docs/GfbioCollectionsDataProviderDefinition.md
 docs/GridBoundingBox2D.md
@@ -263,6 +261,7 @@ docs/WfsService.md
 docs/WfsVersion.md
 docs/WildliveDataConnectorDefinition.md
 docs/WmsRequest.md
+docs/WmsResponseFormat.md
 docs/WmsService.md
 docs/WmsVersion.md
 docs/Workflow.md
@@ -354,11 +353,9 @@ geoengine_openapi_client/models/gdal_multi_band.py
 geoengine_openapi_client/models/gdal_source_time_placeholder.py
 geoengine_openapi_client/models/geo_json.py
 geoengine_openapi_client/models/geo_transform.py
-geoengine_openapi_client/models/get_capabilities_format.py
 geoengine_openapi_client/models/get_coverage_format.py
 geoengine_openapi_client/models/get_feature_request.py
 geoengine_openapi_client/models/get_map_exception_format.py
-geoengine_openapi_client/models/get_map_format.py
 geoengine_openapi_client/models/gfbio_abcd_data_provider_definition.py
 geoengine_openapi_client/models/gfbio_collections_data_provider_definition.py
 geoengine_openapi_client/models/grid_bounding_box2_d.py
@@ -536,6 +533,7 @@ geoengine_openapi_client/models/wfs_service.py
 geoengine_openapi_client/models/wfs_version.py
 geoengine_openapi_client/models/wildlive_data_connector_definition.py
 geoengine_openapi_client/models/wms_request.py
+geoengine_openapi_client/models/wms_response_format.py
 geoengine_openapi_client/models/wms_service.py
 geoengine_openapi_client/models/wms_version.py
 geoengine_openapi_client/models/workflow.py
@@ -614,11 +612,9 @@ test/test_gdal_source_time_placeholder.py
 test/test_general_api.py
 test/test_geo_json.py
 test/test_geo_transform.py
-test/test_get_capabilities_format.py
 test/test_get_coverage_format.py
 test/test_get_feature_request.py
 test/test_get_map_exception_format.py
-test/test_get_map_format.py
 test/test_gfbio_abcd_data_provider_definition.py
 test/test_gfbio_collections_data_provider_definition.py
 test/test_grid_bounding_box2_d.py
@@ -809,6 +805,7 @@ test/test_wfs_service.py
 test/test_wfs_version.py
 test/test_wildlive_data_connector_definition.py
 test/test_wms_request.py
+test/test_wms_response_format.py
 test/test_wms_service.py
 test/test_wms_version.py
 test/test_workflow.py

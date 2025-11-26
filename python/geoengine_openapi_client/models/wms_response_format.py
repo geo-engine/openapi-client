@@ -19,19 +19,20 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class GetMapFormat(str, Enum):
+class WmsResponseFormat(str, Enum):
     """
-    GetMapFormat
+    WmsResponseFormat
     """
 
     """
     allowed enum values
     """
+    TEXT_SLASH_XML = 'text/xml'
     IMAGE_SLASH_PNG = 'image/png'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of GetMapFormat from a JSON string"""
+        """Create an instance of WmsResponseFormat from a JSON string"""
         return cls(json.loads(json_str))
 
 

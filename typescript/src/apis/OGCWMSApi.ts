@@ -15,19 +15,19 @@
 
 import * as runtime from '../runtime';
 import type {
-  GetCapabilitiesFormat,
   GetMapExceptionFormat,
   WmsRequest,
+  WmsResponseFormat,
   WmsService,
   WmsVersion,
 } from '../models/index';
 import {
-    GetCapabilitiesFormatFromJSON,
-    GetCapabilitiesFormatToJSON,
     GetMapExceptionFormatFromJSON,
     GetMapExceptionFormatToJSON,
     WmsRequestFromJSON,
     WmsRequestToJSON,
+    WmsResponseFormatFromJSON,
+    WmsResponseFormatToJSON,
     WmsServiceFromJSON,
     WmsServiceToJSON,
     WmsVersionFromJSON,
@@ -42,7 +42,7 @@ export interface WmsHandlerRequest {
     crs?: string | null;
     elevation?: string | null;
     exceptions?: GetMapExceptionFormat | null;
-    format?: GetCapabilitiesFormat | null;
+    format?: WmsResponseFormat | null;
     height?: number;
     infoFormat?: string | null;
     layer?: string;

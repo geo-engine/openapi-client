@@ -46,7 +46,7 @@ async function example() {
     elevation: elevation_example,
     // GetMapExceptionFormat (optional)
     exceptions: ...,
-    // GetCapabilitiesFormat (optional)
+    // WmsResponseFormat (optional)
     format: ...,
     // number (optional)
     height: 256,
@@ -100,7 +100,7 @@ example().catch(console.error);
 | **crs** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **elevation** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **exceptions** | `GetMapExceptionFormat` |  | [Optional] [Defaults to `undefined`] [Enum: XML, JSON] |
-| **format** | `GetCapabilitiesFormat` |  | [Optional] [Defaults to `undefined`] [Enum: text/xml] |
+| **format** | `WmsResponseFormat` |  | [Optional] [Defaults to `undefined`] [Enum: text/xml, image/png] |
 | **height** | `number` |  | [Optional] [Defaults to `undefined`] |
 | **infoFormat** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **layer** | `string` |  | [Optional] [Defaults to `undefined`] |

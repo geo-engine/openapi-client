@@ -21,9 +21,9 @@ from pydantic import Field, StrictBool, StrictBytes, StrictStr
 from typing import Optional, Tuple, Union
 from typing_extensions import Annotated
 from uuid import UUID
-from geoengine_openapi_client.models.get_capabilities_format import GetCapabilitiesFormat
 from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat
 from geoengine_openapi_client.models.wms_request import WmsRequest
+from geoengine_openapi_client.models.wms_response_format import WmsResponseFormat
 from geoengine_openapi_client.models.wms_service import WmsService
 from geoengine_openapi_client.models.wms_version import WmsVersion
 
@@ -55,7 +55,7 @@ class OGCWMSApi:
         crs: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
         exceptions: Optional[GetMapExceptionFormat] = None,
-        format: Optional[GetCapabilitiesFormat] = None,
+        format: Optional[WmsResponseFormat] = None,
         height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         info_format: Optional[StrictStr] = None,
         layer: Optional[StrictStr] = None,
@@ -100,7 +100,7 @@ class OGCWMSApi:
         :param exceptions:
         :type exceptions: GetMapExceptionFormat
         :param format:
-        :type format: GetCapabilitiesFormat
+        :type format: WmsResponseFormat
         :param height:
         :type height: int
         :param info_format:
@@ -201,7 +201,7 @@ class OGCWMSApi:
         crs: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
         exceptions: Optional[GetMapExceptionFormat] = None,
-        format: Optional[GetCapabilitiesFormat] = None,
+        format: Optional[WmsResponseFormat] = None,
         height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         info_format: Optional[StrictStr] = None,
         layer: Optional[StrictStr] = None,
@@ -246,7 +246,7 @@ class OGCWMSApi:
         :param exceptions:
         :type exceptions: GetMapExceptionFormat
         :param format:
-        :type format: GetCapabilitiesFormat
+        :type format: WmsResponseFormat
         :param height:
         :type height: int
         :param info_format:
@@ -347,7 +347,7 @@ class OGCWMSApi:
         crs: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
         exceptions: Optional[GetMapExceptionFormat] = None,
-        format: Optional[GetCapabilitiesFormat] = None,
+        format: Optional[WmsResponseFormat] = None,
         height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         info_format: Optional[StrictStr] = None,
         layer: Optional[StrictStr] = None,
@@ -392,7 +392,7 @@ class OGCWMSApi:
         :param exceptions:
         :type exceptions: GetMapExceptionFormat
         :param format:
-        :type format: GetCapabilitiesFormat
+        :type format: WmsResponseFormat
         :param height:
         :type height: int
         :param info_format:

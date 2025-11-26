@@ -4723,7 +4723,7 @@
                   "type": "null"
                 },
                 {
-                  "$ref": "#/components/schemas/GetCapabilitiesFormat"
+                  "$ref": "#/components/schemas/WmsResponseFormat"
                 }
               ]
             }
@@ -6912,12 +6912,6 @@
           }
         }
       },
-      "GetCapabilitiesFormat": {
-        "type": "string",
-        "enum": [
-          "text/xml"
-        ]
-      },
       "GetCoverageFormat": {
         "type": "string",
         "enum": [
@@ -6935,12 +6929,6 @@
         "enum": [
           "XML",
           "JSON"
-        ]
-      },
-      "GetMapFormat": {
-        "type": "string",
-        "enum": [
-          "image/png"
         ]
       },
       "GfbioAbcdDataProviderDefinition": {
@@ -10911,6 +10899,13 @@
           "GetFeatureInfo",
           "GetStyles",
           "GetLegendGraphic"
+        ]
+      },
+      "WmsResponseFormat": {
+        "type": "string",
+        "enum": [
+          "text/xml",
+          "image/png"
         ]
       },
       "WmsService": {

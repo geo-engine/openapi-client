@@ -15,10 +15,10 @@
 
 import unittest
 
-from geoengine_openapi_client.models.get_map_format import GetMapFormat
+from geoengine_openapi_client.models.wms_response_format import WmsResponseFormat
 
-class TestGetMapFormat(unittest.TestCase):
-    """GetMapFormat unit test stubs"""
+class TestWmsResponseFormat(unittest.TestCase):
+    """WmsResponseFormat unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,9 +26,9 @@ class TestGetMapFormat(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testGetMapFormat(self):
-        """Test GetMapFormat"""
-        # inst = GetMapFormat()
+    def testWmsResponseFormat(self):
+        """Test WmsResponseFormat"""
+        # inst = WmsResponseFormat()
 
 if __name__ == '__main__':
     unittest.main()

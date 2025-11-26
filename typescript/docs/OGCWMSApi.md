@@ -10,7 +10,7 @@ All URIs are relative to *https://geoengine.io/api*
 
 ## wmsHandler
 
-> string wmsHandler(workflow, request, bbox, bgcolor, crs, elevation, exceptions, format, height, infoFormat, layer, layers, queryLayers, service, sld, sldBody, styles, time, transparent, version, width)
+> Blob wmsHandler(workflow, request, bbox, bgcolor, crs, elevation, exceptions, format, height, infoFormat, layer, layers, queryLayers, service, sld, sldBody, styles, time, transparent, version, width)
 
 OGC WMS endpoint
 
@@ -117,7 +117,7 @@ example().catch(console.error);
 
 ### Return type
 
-**string**
+**Blob**
 
 ### Authorization
 
@@ -126,13 +126,13 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `text/xml`
+- **Accept**: `image/png`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | PNG Image |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

@@ -17,8 +17,8 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr
-from typing import Optional
+from pydantic import Field, StrictBool, StrictBytes, StrictStr
+from typing import Optional, Tuple, Union
 from typing_extensions import Annotated
 from uuid import UUID
 from geoengine_openapi_client.models.get_capabilities_format import GetCapabilitiesFormat
@@ -81,7 +81,7 @@ class OGCWMSApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
+    ) -> bytearray:
         """OGC WMS endpoint
 
 
@@ -178,7 +178,7 @@ class OGCWMSApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "bytearray",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -227,7 +227,7 @@ class OGCWMSApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
+    ) -> ApiResponse[bytearray]:
         """OGC WMS endpoint
 
 
@@ -324,7 +324,7 @@ class OGCWMSApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "bytearray",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -470,7 +470,7 @@ class OGCWMSApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "bytearray",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -615,7 +615,7 @@ class OGCWMSApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'text/xml'
+                    'image/png'
                 ]
             )
 

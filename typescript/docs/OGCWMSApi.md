@@ -1,6 +1,6 @@
 # OGCWMSApi
 
-All URIs are relative to *http://127.0.0.1:3030/api*
+All URIs are relative to *https://geoengine.io/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -34,8 +34,8 @@ async function example() {
   const body = {
     // string | Workflow id
     workflow: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-    // 'GetCapabilities' | 'GetMap' | 'GetFeatureInfo' | 'GetStyles' | 'GetLegendGraphic' | type of WMS request
-    request: request_example,
+    // WmsRequest | type of WMS request
+    request: ...,
     // string (optional)
     bbox: -90,-180,90,180,
     // string (optional)
@@ -94,7 +94,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **workflow** | `string` | Workflow id | [Defaults to `undefined`] |
-| **request** | `GetCapabilities`, `GetMap`, `GetFeatureInfo`, `GetStyles`, `GetLegendGraphic` | type of WMS request | [Defaults to `undefined`] [Enum: GetCapabilities, GetMap, GetFeatureInfo, GetStyles, GetLegendGraphic] |
+| **request** | `WmsRequest` | type of WMS request | [Defaults to `undefined`] [Enum: GetCapabilities, GetMap, GetFeatureInfo, GetStyles, GetLegendGraphic] |
 | **bbox** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **bgcolor** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **crs** | `string` |  | [Optional] [Defaults to `undefined`] |

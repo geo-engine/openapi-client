@@ -17,11 +17,12 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, field_validator
+from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
 from uuid import UUID
 from geoengine_openapi_client.models.geo_json import GeoJson
+from geoengine_openapi_client.models.wfs_request import WfsRequest
 from geoengine_openapi_client.models.wfs_service import WfsService
 from geoengine_openapi_client.models.wfs_version import WfsVersion
 
@@ -47,7 +48,7 @@ class OGCWFSApi:
     def wfs_handler(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        request: Annotated[StrictStr, Field(description="type of WFS request")],
+        request: Annotated[WfsRequest, Field(description="type of WFS request")],
         bbox: Optional[StrictStr] = None,
         count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         filter: Optional[StrictStr] = None,
@@ -79,7 +80,7 @@ class OGCWFSApi:
         :param workflow: Workflow id (required)
         :type workflow: str
         :param request: type of WFS request (required)
-        :type request: str
+        :type request: WfsRequest
         :param bbox:
         :type bbox: str
         :param count:
@@ -165,7 +166,7 @@ class OGCWFSApi:
     def wfs_handler_with_http_info(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        request: Annotated[StrictStr, Field(description="type of WFS request")],
+        request: Annotated[WfsRequest, Field(description="type of WFS request")],
         bbox: Optional[StrictStr] = None,
         count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         filter: Optional[StrictStr] = None,
@@ -197,7 +198,7 @@ class OGCWFSApi:
         :param workflow: Workflow id (required)
         :type workflow: str
         :param request: type of WFS request (required)
-        :type request: str
+        :type request: WfsRequest
         :param bbox:
         :type bbox: str
         :param count:
@@ -283,7 +284,7 @@ class OGCWFSApi:
     def wfs_handler_without_preload_content(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        request: Annotated[StrictStr, Field(description="type of WFS request")],
+        request: Annotated[WfsRequest, Field(description="type of WFS request")],
         bbox: Optional[StrictStr] = None,
         count: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         filter: Optional[StrictStr] = None,
@@ -315,7 +316,7 @@ class OGCWFSApi:
         :param workflow: Workflow id (required)
         :type workflow: str
         :param request: type of WFS request (required)
-        :type request: str
+        :type request: WfsRequest
         :param bbox:
         :type bbox: str
         :param count:
@@ -455,7 +456,7 @@ class OGCWFSApi:
             
         if request is not None:
             
-            _query_params.append(('request', request))
+            _query_params.append(('request', request.value))
             
         if result_type is not None:
             

@@ -55,10 +55,10 @@ import geoengine_openapi_client
 from geoengine_openapi_client.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://127.0.0.1:3030/api
+# Defining the host is optional and defaults to https://geoengine.io/api
 # See configuration.py for a list of all supported configuration parameters.
 configuration = geoengine_openapi_client.Configuration(
-    host = "http://127.0.0.1:3030/api"
+    host = "https://geoengine.io/api"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -89,7 +89,7 @@ with geoengine_openapi_client.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://127.0.0.1:3030/api*
+All URIs are relative to *https://geoengine.io/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -426,11 +426,14 @@ Class | Method | HTTP request | Description
  - [Volume](docs/Volume.md)
  - [VolumeFileLayersResponse](docs/VolumeFileLayersResponse.md)
  - [WcsBoundingbox](docs/WcsBoundingbox.md)
+ - [WcsRequest](docs/WcsRequest.md)
  - [WcsService](docs/WcsService.md)
  - [WcsVersion](docs/WcsVersion.md)
+ - [WfsRequest](docs/WfsRequest.md)
  - [WfsService](docs/WfsService.md)
  - [WfsVersion](docs/WfsVersion.md)
  - [WildliveDataConnectorDefinition](docs/WildliveDataConnectorDefinition.md)
+ - [WmsRequest](docs/WmsRequest.md)
  - [WmsService](docs/WmsService.md)
  - [WmsVersion](docs/WmsVersion.md)
  - [Workflow](docs/Workflow.md)

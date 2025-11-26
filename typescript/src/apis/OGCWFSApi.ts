@@ -16,12 +16,15 @@
 import * as runtime from '../runtime';
 import type {
   GeoJson,
+  WfsRequest,
   WfsService,
   WfsVersion,
 } from '../models/index';
 import {
     GeoJsonFromJSON,
     GeoJsonToJSON,
+    WfsRequestFromJSON,
+    WfsRequestToJSON,
     WfsServiceFromJSON,
     WfsServiceToJSON,
     WfsVersionFromJSON,
@@ -30,7 +33,7 @@ import {
 
 export interface WfsHandlerRequest {
     workflow: string;
-    request: WfsHandlerRequestEnum;
+    request: WfsRequest;
     bbox?: string;
     count?: number | null;
     filter?: string | null;
@@ -155,12 +158,3 @@ export class OGCWFSApi extends runtime.BaseAPI {
     }
 
 }
-
-/**
- * @export
- */
-export const WfsHandlerRequestEnum = {
-    GetCapabilities: 'GetCapabilities',
-    GetFeature: 'GetFeature'
-} as const;
-export type WfsHandlerRequestEnum = typeof WfsHandlerRequestEnum[keyof typeof WfsHandlerRequestEnum];

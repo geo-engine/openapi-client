@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { GeoJson, WfsService, WfsVersion } from '../models/index';
+import type { GeoJson, WfsRequest, WfsService, WfsVersion } from '../models/index';
 export interface WfsHandlerRequest {
     workflow: string;
-    request: WfsHandlerRequestEnum;
+    request: WfsRequest;
     bbox?: string;
     count?: number | null;
     filter?: string | null;
@@ -40,11 +40,3 @@ export declare class OGCWFSApi extends runtime.BaseAPI {
      */
     wfsHandler(requestParameters: WfsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeoJson>;
 }
-/**
- * @export
- */
-export declare const WfsHandlerRequestEnum: {
-    readonly GetCapabilities: "GetCapabilities";
-    readonly GetFeature: "GetFeature";
-};
-export type WfsHandlerRequestEnum = typeof WfsHandlerRequestEnum[keyof typeof WfsHandlerRequestEnum];

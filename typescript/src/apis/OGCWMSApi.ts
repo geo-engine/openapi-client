@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   GetCapabilitiesFormat,
   GetMapExceptionFormat,
+  WmsRequest,
   WmsService,
   WmsVersion,
 } from '../models/index';
@@ -25,6 +26,8 @@ import {
     GetCapabilitiesFormatToJSON,
     GetMapExceptionFormatFromJSON,
     GetMapExceptionFormatToJSON,
+    WmsRequestFromJSON,
+    WmsRequestToJSON,
     WmsServiceFromJSON,
     WmsServiceToJSON,
     WmsVersionFromJSON,
@@ -33,7 +36,7 @@ import {
 
 export interface WmsHandlerRequest {
     workflow: string;
-    request: WmsHandlerRequestEnum;
+    request: WmsRequest;
     bbox?: string;
     bgcolor?: string | null;
     crs?: string | null;
@@ -197,15 +200,3 @@ export class OGCWMSApi extends runtime.BaseAPI {
     }
 
 }
-
-/**
- * @export
- */
-export const WmsHandlerRequestEnum = {
-    GetCapabilities: 'GetCapabilities',
-    GetMap: 'GetMap',
-    GetFeatureInfo: 'GetFeatureInfo',
-    GetStyles: 'GetStyles',
-    GetLegendGraphic: 'GetLegendGraphic'
-} as const;
-export type WmsHandlerRequestEnum = typeof WmsHandlerRequestEnum[keyof typeof WmsHandlerRequestEnum];

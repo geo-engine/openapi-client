@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WcsHandlerRequestEnum = exports.OGCWCSApi = void 0;
+exports.OGCWCSApi = void 0;
 const runtime = require("../runtime");
 /**
  *
@@ -117,11 +117,3 @@ class OGCWCSApi extends runtime.BaseAPI {
     }
 }
 exports.OGCWCSApi = OGCWCSApi;
-/**
- * @export
- */
-exports.WcsHandlerRequestEnum = {
-    GetCapabilGetCapabilitiesities: 'GetCapabilGetCapabilitiesities',
-    DescribeCoverage: 'DescribeCoverage',
-    GetCoverage: 'GetCoverage'
-};

@@ -17,11 +17,12 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, field_validator
+from pydantic import Field, StrictFloat, StrictInt, StrictStr
 from typing import Optional, Union
 from typing_extensions import Annotated
 from uuid import UUID
 from geoengine_openapi_client.models.get_coverage_format import GetCoverageFormat
+from geoengine_openapi_client.models.wcs_request import WcsRequest
 from geoengine_openapi_client.models.wcs_service import WcsService
 from geoengine_openapi_client.models.wcs_version import WcsVersion
 
@@ -47,7 +48,7 @@ class OGCWCSApi:
     def wcs_handler(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        request: Annotated[StrictStr, Field(description="type of WMS request")],
+        request: Annotated[WcsRequest, Field(description="type of WCS request")],
         boundingbox: Optional[StrictStr] = None,
         format: Optional[GetCoverageFormat] = None,
         gridbasecrs: Optional[StrictStr] = None,
@@ -79,8 +80,8 @@ class OGCWCSApi:
 
         :param workflow: Workflow id (required)
         :type workflow: str
-        :param request: type of WMS request (required)
-        :type request: str
+        :param request: type of WCS request (required)
+        :type request: WcsRequest
         :param boundingbox:
         :type boundingbox: str
         :param format:
@@ -169,7 +170,7 @@ class OGCWCSApi:
     def wcs_handler_with_http_info(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        request: Annotated[StrictStr, Field(description="type of WMS request")],
+        request: Annotated[WcsRequest, Field(description="type of WCS request")],
         boundingbox: Optional[StrictStr] = None,
         format: Optional[GetCoverageFormat] = None,
         gridbasecrs: Optional[StrictStr] = None,
@@ -201,8 +202,8 @@ class OGCWCSApi:
 
         :param workflow: Workflow id (required)
         :type workflow: str
-        :param request: type of WMS request (required)
-        :type request: str
+        :param request: type of WCS request (required)
+        :type request: WcsRequest
         :param boundingbox:
         :type boundingbox: str
         :param format:
@@ -291,7 +292,7 @@ class OGCWCSApi:
     def wcs_handler_without_preload_content(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        request: Annotated[StrictStr, Field(description="type of WMS request")],
+        request: Annotated[WcsRequest, Field(description="type of WCS request")],
         boundingbox: Optional[StrictStr] = None,
         format: Optional[GetCoverageFormat] = None,
         gridbasecrs: Optional[StrictStr] = None,
@@ -323,8 +324,8 @@ class OGCWCSApi:
 
         :param workflow: Workflow id (required)
         :type workflow: str
-        :param request: type of WMS request (required)
-        :type request: str
+        :param request: type of WCS request (required)
+        :type request: WcsRequest
         :param boundingbox:
         :type boundingbox: str
         :param format:
@@ -480,7 +481,7 @@ class OGCWCSApi:
             
         if request is not None:
             
-            _query_params.append(('request', request))
+            _query_params.append(('request', request.value))
             
         if resx is not None:
             

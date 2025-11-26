@@ -1,6 +1,6 @@
 # @geoengine/openapi-client@0.0.30
 
-A TypeScript SDK client for the 127.0.0.1 API.
+A TypeScript SDK client for the geoengine.io API.
 
 ## Usage
 
@@ -52,7 +52,7 @@ example().catch(console.error);
 
 ### API Endpoints
 
-All URIs are relative to *http://127.0.0.1:3030/api*
+All URIs are relative to *https://geoengine.io/api*
 
 | Class | Method | HTTP request | Description
 | ----- | ------ | ------------ | -------------
@@ -389,11 +389,14 @@ All URIs are relative to *http://127.0.0.1:3030/api*
 - [Volume](docs/Volume.md)
 - [VolumeFileLayersResponse](docs/VolumeFileLayersResponse.md)
 - [WcsBoundingbox](docs/WcsBoundingbox.md)
+- [WcsRequest](docs/WcsRequest.md)
 - [WcsService](docs/WcsService.md)
 - [WcsVersion](docs/WcsVersion.md)
+- [WfsRequest](docs/WfsRequest.md)
 - [WfsService](docs/WfsService.md)
 - [WfsVersion](docs/WfsVersion.md)
 - [WildliveDataConnectorDefinition](docs/WildliveDataConnectorDefinition.md)
+- [WmsRequest](docs/WmsRequest.md)
 - [WmsService](docs/WmsService.md)
 - [WmsVersion](docs/WmsVersion.md)
 - [Workflow](docs/Workflow.md)

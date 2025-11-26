@@ -251,11 +251,14 @@ from geoengine_openapi_client.models.vector_result_descriptor import VectorResul
 from geoengine_openapi_client.models.volume import Volume
 from geoengine_openapi_client.models.volume_file_layers_response import VolumeFileLayersResponse
 from geoengine_openapi_client.models.wcs_boundingbox import WcsBoundingbox
+from geoengine_openapi_client.models.wcs_request import WcsRequest
 from geoengine_openapi_client.models.wcs_service import WcsService
 from geoengine_openapi_client.models.wcs_version import WcsVersion
+from geoengine_openapi_client.models.wfs_request import WfsRequest
 from geoengine_openapi_client.models.wfs_service import WfsService
 from geoengine_openapi_client.models.wfs_version import WfsVersion
 from geoengine_openapi_client.models.wildlive_data_connector_definition import WildliveDataConnectorDefinition
+from geoengine_openapi_client.models.wms_request import WmsRequest
 from geoengine_openapi_client.models.wms_service import WmsService
 from geoengine_openapi_client.models.wms_version import WmsVersion
 from geoengine_openapi_client.models.workflow import Workflow

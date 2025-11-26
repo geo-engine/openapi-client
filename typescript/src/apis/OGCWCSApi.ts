@@ -16,12 +16,15 @@
 import * as runtime from '../runtime';
 import type {
   GetCoverageFormat,
+  WcsRequest,
   WcsService,
   WcsVersion,
 } from '../models/index';
 import {
     GetCoverageFormatFromJSON,
     GetCoverageFormatToJSON,
+    WcsRequestFromJSON,
+    WcsRequestToJSON,
     WcsServiceFromJSON,
     WcsServiceToJSON,
     WcsVersionFromJSON,
@@ -30,7 +33,7 @@ import {
 
 export interface WcsHandlerRequest {
     workflow: string;
-    request: WcsHandlerRequestEnum;
+    request: WcsRequest;
     boundingbox?: string;
     format?: GetCoverageFormat;
     gridbasecrs?: string;
@@ -164,13 +167,3 @@ export class OGCWCSApi extends runtime.BaseAPI {
     }
 
 }
-
-/**
- * @export
- */
-export const WcsHandlerRequestEnum = {
-    GetCapabilGetCapabilitiesities: 'GetCapabilGetCapabilitiesities',
-    DescribeCoverage: 'DescribeCoverage',
-    GetCoverage: 'GetCoverage'
-} as const;
-export type WcsHandlerRequestEnum = typeof WcsHandlerRequestEnum[keyof typeof WcsHandlerRequestEnum];

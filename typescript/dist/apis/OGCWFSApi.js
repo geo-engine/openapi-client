@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WfsHandlerRequestEnum = exports.OGCWFSApi = void 0;
+exports.OGCWFSApi = void 0;
 const runtime = require("../runtime");
 const index_1 = require("../models/index");
 /**
@@ -110,10 +110,3 @@ class OGCWFSApi extends runtime.BaseAPI {
     }
 }
 exports.OGCWFSApi = OGCWFSApi;
-/**
- * @export
- */
-exports.WfsHandlerRequestEnum = {
-    GetCapabilities: 'GetCapabilities',
-    GetFeature: 'GetFeature'
-};

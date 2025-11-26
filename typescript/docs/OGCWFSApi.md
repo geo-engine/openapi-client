@@ -1,6 +1,6 @@
 # OGCWFSApi
 
-All URIs are relative to *http://127.0.0.1:3030/api*
+All URIs are relative to *https://geoengine.io/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -34,8 +34,8 @@ async function example() {
   const body = {
     // string | Workflow id
     workflow: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-    // 'GetCapabilities' | 'GetFeature' | type of WFS request
-    request: request_example,
+    // WfsRequest | type of WFS request
+    request: ...,
     // string (optional)
     bbox: -90,-180,90,180,
     // number (optional)
@@ -80,7 +80,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **workflow** | `string` | Workflow id | [Defaults to `undefined`] |
-| **request** | `GetCapabilities`, `GetFeature` | type of WFS request | [Defaults to `undefined`] [Enum: GetCapabilities, GetFeature] |
+| **request** | `WfsRequest` | type of WFS request | [Defaults to `undefined`] [Enum: GetCapabilities, GetFeature] |
 | **bbox** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **count** | `number` |  | [Optional] [Defaults to `undefined`] |
 | **filter** | `string` |  | [Optional] [Defaults to `undefined`] |

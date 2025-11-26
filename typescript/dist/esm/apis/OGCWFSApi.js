@@ -106,10 +106,3 @@ export class OGCWFSApi extends runtime.BaseAPI {
         });
     }
 }
-/**
- * @export
- */
-export const WfsHandlerRequestEnum = {
-    GetCapabilities: 'GetCapabilities',
-    GetFeature: 'GetFeature'
-};

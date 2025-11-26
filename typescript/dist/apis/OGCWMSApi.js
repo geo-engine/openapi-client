@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WmsHandlerRequestEnum = exports.OGCWMSApi = void 0;
+exports.OGCWMSApi = void 0;
 const runtime = require("../runtime");
 /**
  *
@@ -135,13 +135,3 @@ class OGCWMSApi extends runtime.BaseAPI {
     }
 }
 exports.OGCWMSApi = OGCWMSApi;
-/**
- * @export
- */
-exports.WmsHandlerRequestEnum = {
-    GetCapabilities: 'GetCapabilities',
-    GetMap: 'GetMap',
-    GetFeatureInfo: 'GetFeatureInfo',
-    GetStyles: 'GetStyles',
-    GetLegendGraphic: 'GetLegendGraphic'
-};

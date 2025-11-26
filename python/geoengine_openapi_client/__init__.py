@@ -281,11 +281,14 @@ __all__ = [
     "Volume",
     "VolumeFileLayersResponse",
     "WcsBoundingbox",
+    "WcsRequest",
     "WcsService",
     "WcsVersion",
+    "WfsRequest",
     "WfsService",
     "WfsVersion",
     "WildliveDataConnectorDefinition",
+    "WmsRequest",
     "WmsService",
     "WmsVersion",
     "Workflow",
@@ -559,11 +562,14 @@ from geoengine_openapi_client.models.vector_result_descriptor import VectorResul
 from geoengine_openapi_client.models.volume import Volume as Volume
 from geoengine_openapi_client.models.volume_file_layers_response import VolumeFileLayersResponse as VolumeFileLayersResponse
 from geoengine_openapi_client.models.wcs_boundingbox import WcsBoundingbox as WcsBoundingbox
+from geoengine_openapi_client.models.wcs_request import WcsRequest as WcsRequest
 from geoengine_openapi_client.models.wcs_service import WcsService as WcsService
 from geoengine_openapi_client.models.wcs_version import WcsVersion as WcsVersion
+from geoengine_openapi_client.models.wfs_request import WfsRequest as WfsRequest
 from geoengine_openapi_client.models.wfs_service import WfsService as WfsService
 from geoengine_openapi_client.models.wfs_version import WfsVersion as WfsVersion
 from geoengine_openapi_client.models.wildlive_data_connector_definition import WildliveDataConnectorDefinition as WildliveDataConnectorDefinition
+from geoengine_openapi_client.models.wms_request import WmsRequest as WmsRequest
 from geoengine_openapi_client.models.wms_service import WmsService as WmsService
 from geoengine_openapi_client.models.wms_version import WmsVersion as WmsVersion
 from geoengine_openapi_client.models.workflow import Workflow as Workflow

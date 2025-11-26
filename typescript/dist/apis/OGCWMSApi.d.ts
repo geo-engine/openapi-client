@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { GetCapabilitiesFormat, GetMapExceptionFormat, WmsService, WmsVersion } from '../models/index';
+import type { GetCapabilitiesFormat, GetMapExceptionFormat, WmsRequest, WmsService, WmsVersion } from '../models/index';
 export interface WmsHandlerRequest {
     workflow: string;
-    request: WmsHandlerRequestEnum;
+    request: WmsRequest;
     bbox?: string;
     bgcolor?: string | null;
     crs?: string | null;
@@ -47,14 +47,3 @@ export declare class OGCWMSApi extends runtime.BaseAPI {
      */
     wmsHandler(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 }
-/**
- * @export
- */
-export declare const WmsHandlerRequestEnum: {
-    readonly GetCapabilities: "GetCapabilities";
-    readonly GetMap: "GetMap";
-    readonly GetFeatureInfo: "GetFeatureInfo";
-    readonly GetStyles: "GetStyles";
-    readonly GetLegendGraphic: "GetLegendGraphic";
-};
-export type WmsHandlerRequestEnum = typeof WmsHandlerRequestEnum[keyof typeof WmsHandlerRequestEnum];

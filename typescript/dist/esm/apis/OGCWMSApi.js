@@ -131,13 +131,3 @@ export class OGCWMSApi extends runtime.BaseAPI {
         });
     }
 }
-/**
- * @export
- */
-export const WmsHandlerRequestEnum = {
-    GetCapabilities: 'GetCapabilities',
-    GetMap: 'GetMap',
-    GetFeatureInfo: 'GetFeatureInfo',
-    GetStyles: 'GetStyles',
-    GetLegendGraphic: 'GetLegendGraphic'
-};

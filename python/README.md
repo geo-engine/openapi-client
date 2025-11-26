@@ -135,14 +135,9 @@ Class | Method | HTTP request | Description
 *MLApi* | [**add_ml_model**](docs/MLApi.md#add_ml_model) | **POST** /ml/models | Create a new ml model.
 *MLApi* | [**get_ml_model**](docs/MLApi.md#get_ml_model) | **GET** /ml/models/{model_name} | Get ml model by name.
 *MLApi* | [**list_ml_models**](docs/MLApi.md#list_ml_models) | **GET** /ml/models | List ml models.
-*OGCWCSApi* | [**wcs_capabilities_handler**](docs/OGCWCSApi.md#wcs_capabilities_handler) | **GET** /wcs/{workflow}?request&#x3D;GetCapabilities | Get WCS Capabilities
-*OGCWCSApi* | [**wcs_describe_coverage_handler**](docs/OGCWCSApi.md#wcs_describe_coverage_handler) | **GET** /wcs/{workflow}?request&#x3D;DescribeCoverage | Get WCS Coverage Description
-*OGCWCSApi* | [**wcs_get_coverage_handler**](docs/OGCWCSApi.md#wcs_get_coverage_handler) | **GET** /wcs/{workflow}?request&#x3D;GetCoverage | Get WCS Coverage
-*OGCWFSApi* | [**wfs_capabilities_handler**](docs/OGCWFSApi.md#wfs_capabilities_handler) | **GET** /wfs/{workflow}?request&#x3D;GetCapabilities | Get WFS Capabilities
-*OGCWFSApi* | [**wfs_feature_handler**](docs/OGCWFSApi.md#wfs_feature_handler) | **GET** /wfs/{workflow}?request&#x3D;GetFeature | Get WCS Features
-*OGCWMSApi* | [**wms_capabilities_handler**](docs/OGCWMSApi.md#wms_capabilities_handler) | **GET** /wms/{workflow}?request&#x3D;GetCapabilities | Get WMS Capabilities
-*OGCWMSApi* | [**wms_legend_graphic_handler**](docs/OGCWMSApi.md#wms_legend_graphic_handler) | **GET** /wms/{workflow}?request&#x3D;GetLegendGraphic | Get WMS Legend Graphic
-*OGCWMSApi* | [**wms_map_handler**](docs/OGCWMSApi.md#wms_map_handler) | **GET** /wms/{workflow}?request&#x3D;GetMap | Get WMS Map
+*OGCWCSApi* | [**wcs_handler**](docs/OGCWCSApi.md#wcs_handler) | **GET** /wcs/{workflow} | OGC WCS endpoint
+*OGCWFSApi* | [**wfs_handler**](docs/OGCWFSApi.md#wfs_handler) | **GET** /wfs/{workflow} | OGC WFS endpoint
+*OGCWMSApi* | [**wms_handler**](docs/OGCWMSApi.md#wms_handler) | **GET** /wms/{workflow} | OGC WMS endpoint
 *PermissionsApi* | [**add_permission_handler**](docs/PermissionsApi.md#add_permission_handler) | **PUT** /permissions | Adds a new permission.
 *PermissionsApi* | [**get_resource_permissions_handler**](docs/PermissionsApi.md#get_resource_permissions_handler) | **GET** /permissions/resources/{resource_type}/{resource_id} | Lists permission for a given resource.
 *PermissionsApi* | [**remove_permission_handler**](docs/PermissionsApi.md#remove_permission_handler) | **DELETE** /permissions | Removes an existing permission.
@@ -235,7 +230,6 @@ Class | Method | HTTP request | Description
  - [DatasetResource](docs/DatasetResource.md)
  - [DerivedColor](docs/DerivedColor.md)
  - [DerivedNumber](docs/DerivedNumber.md)
- - [DescribeCoverageRequest](docs/DescribeCoverageRequest.md)
  - [EbvPortalDataProviderDefinition](docs/EbvPortalDataProviderDefinition.md)
  - [EdrDataProviderDefinition](docs/EdrDataProviderDefinition.md)
  - [EdrVectorSpec](docs/EdrVectorSpec.md)
@@ -259,14 +253,10 @@ Class | Method | HTTP request | Description
  - [GeoJson](docs/GeoJson.md)
  - [GeoTransform](docs/GeoTransform.md)
  - [GetCapabilitiesFormat](docs/GetCapabilitiesFormat.md)
- - [GetCapabilitiesRequest](docs/GetCapabilitiesRequest.md)
  - [GetCoverageFormat](docs/GetCoverageFormat.md)
- - [GetCoverageRequest](docs/GetCoverageRequest.md)
  - [GetFeatureRequest](docs/GetFeatureRequest.md)
- - [GetLegendGraphicRequest](docs/GetLegendGraphicRequest.md)
  - [GetMapExceptionFormat](docs/GetMapExceptionFormat.md)
  - [GetMapFormat](docs/GetMapFormat.md)
- - [GetMapRequest](docs/GetMapRequest.md)
  - [GfbioAbcdDataProviderDefinition](docs/GfbioAbcdDataProviderDefinition.md)
  - [GfbioCollectionsDataProviderDefinition](docs/GfbioCollectionsDataProviderDefinition.md)
  - [GridBoundingBox2D](docs/GridBoundingBox2D.md)

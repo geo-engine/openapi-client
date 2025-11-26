@@ -98,14 +98,9 @@ All URIs are relative to *https://geoengine.io/api*
 *MLApi* | [**addMlModel**](docs/MLApi.md#addmlmodel) | **POST** /ml/models | Create a new ml model.
 *MLApi* | [**getMlModel**](docs/MLApi.md#getmlmodel) | **GET** /ml/models/{model_name} | Get ml model by name.
 *MLApi* | [**listMlModels**](docs/MLApi.md#listmlmodels) | **GET** /ml/models | List ml models.
-*OGCWCSApi* | [**wcsCapabilitiesHandler**](docs/OGCWCSApi.md#wcscapabilitieshandler) | **GET** /wcs/{workflow}?request&#x3D;GetCapabilities | Get WCS Capabilities
-*OGCWCSApi* | [**wcsDescribeCoverageHandler**](docs/OGCWCSApi.md#wcsdescribecoveragehandler) | **GET** /wcs/{workflow}?request&#x3D;DescribeCoverage | Get WCS Coverage Description
-*OGCWCSApi* | [**wcsGetCoverageHandler**](docs/OGCWCSApi.md#wcsgetcoveragehandler) | **GET** /wcs/{workflow}?request&#x3D;GetCoverage | Get WCS Coverage
-*OGCWFSApi* | [**wfsCapabilitiesHandler**](docs/OGCWFSApi.md#wfscapabilitieshandler) | **GET** /wfs/{workflow}?request&#x3D;GetCapabilities | Get WFS Capabilities
-*OGCWFSApi* | [**wfsFeatureHandler**](docs/OGCWFSApi.md#wfsfeaturehandler) | **GET** /wfs/{workflow}?request&#x3D;GetFeature | Get WCS Features
-*OGCWMSApi* | [**wmsCapabilitiesHandler**](docs/OGCWMSApi.md#wmscapabilitieshandler) | **GET** /wms/{workflow}?request&#x3D;GetCapabilities | Get WMS Capabilities
-*OGCWMSApi* | [**wmsLegendGraphicHandler**](docs/OGCWMSApi.md#wmslegendgraphichandler) | **GET** /wms/{workflow}?request&#x3D;GetLegendGraphic | Get WMS Legend Graphic
-*OGCWMSApi* | [**wmsMapHandler**](docs/OGCWMSApi.md#wmsmaphandler) | **GET** /wms/{workflow}?request&#x3D;GetMap | Get WMS Map
+*OGCWCSApi* | [**wcsHandler**](docs/OGCWCSApi.md#wcshandler) | **GET** /wcs/{workflow} | OGC WCS endpoint
+*OGCWFSApi* | [**wfsHandler**](docs/OGCWFSApi.md#wfshandler) | **GET** /wfs/{workflow} | OGC WFS endpoint
+*OGCWMSApi* | [**wmsHandler**](docs/OGCWMSApi.md#wmshandler) | **GET** /wms/{workflow} | OGC WMS endpoint
 *PermissionsApi* | [**addPermissionHandler**](docs/PermissionsApi.md#addpermissionhandler) | **PUT** /permissions | Adds a new permission.
 *PermissionsApi* | [**getResourcePermissionsHandler**](docs/PermissionsApi.md#getresourcepermissionshandler) | **GET** /permissions/resources/{resource_type}/{resource_id} | Lists permission for a given resource.
 *PermissionsApi* | [**removePermissionHandler**](docs/PermissionsApi.md#removepermissionhandler) | **DELETE** /permissions | Removes an existing permission.
@@ -198,7 +193,6 @@ All URIs are relative to *https://geoengine.io/api*
 - [DatasetResource](docs/DatasetResource.md)
 - [DerivedColor](docs/DerivedColor.md)
 - [DerivedNumber](docs/DerivedNumber.md)
-- [DescribeCoverageRequest](docs/DescribeCoverageRequest.md)
 - [EbvPortalDataProviderDefinition](docs/EbvPortalDataProviderDefinition.md)
 - [EdrDataProviderDefinition](docs/EdrDataProviderDefinition.md)
 - [EdrVectorSpec](docs/EdrVectorSpec.md)
@@ -222,14 +216,10 @@ All URIs are relative to *https://geoengine.io/api*
 - [GeoJson](docs/GeoJson.md)
 - [GeoTransform](docs/GeoTransform.md)
 - [GetCapabilitiesFormat](docs/GetCapabilitiesFormat.md)
-- [GetCapabilitiesRequest](docs/GetCapabilitiesRequest.md)
 - [GetCoverageFormat](docs/GetCoverageFormat.md)
-- [GetCoverageRequest](docs/GetCoverageRequest.md)
 - [GetFeatureRequest](docs/GetFeatureRequest.md)
-- [GetLegendGraphicRequest](docs/GetLegendGraphicRequest.md)
 - [GetMapExceptionFormat](docs/GetMapExceptionFormat.md)
 - [GetMapFormat](docs/GetMapFormat.md)
-- [GetMapRequest](docs/GetMapRequest.md)
 - [GfbioAbcdDataProviderDefinition](docs/GfbioAbcdDataProviderDefinition.md)
 - [GfbioCollectionsDataProviderDefinition](docs/GfbioCollectionsDataProviderDefinition.md)
 - [GridBoundingBox2D](docs/GridBoundingBox2D.md)

@@ -27,24 +27,10 @@ class TestOGCWCSApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_wcs_capabilities_handler(self) -> None:
-        """Test case for wcs_capabilities_handler
+    def test_wcs_handler(self) -> None:
+        """Test case for wcs_handler
 
-        Get WCS Capabilities
-        """
-        pass
-
-    def test_wcs_describe_coverage_handler(self) -> None:
-        """Test case for wcs_describe_coverage_handler
-
-        Get WCS Coverage Description
-        """
-        pass
-
-    def test_wcs_get_coverage_handler(self) -> None:
-        """Test case for wcs_get_coverage_handler
-
-        Get WCS Coverage
+        OGC WCS endpoint
         """
         pass
 

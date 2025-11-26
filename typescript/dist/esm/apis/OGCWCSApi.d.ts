@@ -10,62 +10,43 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { DescribeCoverageRequest, GetCapabilitiesRequest, GetCoverageFormat, GetCoverageRequest, WcsService, WcsVersion } from '../models/index';
-export interface WcsCapabilitiesHandlerRequest {
+import type { GetCoverageFormat, WcsService, WcsVersion } from '../models/index';
+export interface WcsHandlerRequest {
     workflow: string;
-    service: WcsService;
-    request: GetCapabilitiesRequest;
-    version?: WcsVersion | null;
-}
-export interface WcsDescribeCoverageHandlerRequest {
-    workflow: string;
-    version: WcsVersion;
-    service: WcsService;
-    request: DescribeCoverageRequest;
-    identifiers: string;
-}
-export interface WcsGetCoverageHandlerRequest {
-    workflow: string;
-    version: WcsVersion;
-    service: WcsService;
-    request: GetCoverageRequest;
-    format: GetCoverageFormat;
-    identifier: string;
-    boundingbox: string;
-    gridbasecrs: string;
-    gridorigin?: string;
+    request: WcsHandlerRequestEnum;
+    boundingbox?: string;
+    format?: GetCoverageFormat;
+    gridbasecrs?: string;
     gridoffsets?: string;
-    time?: string;
+    gridorigin?: string;
+    identifier?: string;
+    identifiers?: string;
+    nodatavalue?: number | null;
     resx?: number | null;
     resy?: number | null;
-    nodatavalue?: number | null;
+    service?: WcsService;
+    time?: string;
+    version?: WcsVersion | null;
 }
 /**
  *
  */
 export declare class OGCWCSApi extends runtime.BaseAPI {
     /**
-     * Get WCS Capabilities
+     * OGC WCS endpoint
      */
-    wcsCapabilitiesHandlerRaw(requestParameters: WcsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    wcsHandlerRaw(requestParameters: WcsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
-     * Get WCS Capabilities
+     * OGC WCS endpoint
      */
-    wcsCapabilitiesHandler(requestParameters: WcsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
-    /**
-     * Get WCS Coverage Description
-     */
-    wcsDescribeCoverageHandlerRaw(requestParameters: WcsDescribeCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
-    /**
-     * Get WCS Coverage Description
-     */
-    wcsDescribeCoverageHandler(requestParameters: WcsDescribeCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
-    /**
-     * Get WCS Coverage
-     */
-    wcsGetCoverageHandlerRaw(requestParameters: WcsGetCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>>;
-    /**
-     * Get WCS Coverage
-     */
-    wcsGetCoverageHandler(requestParameters: WcsGetCoverageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob>;
+    wcsHandler(requestParameters: WcsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 }
+/**
+ * @export
+ */
+export declare const WcsHandlerRequestEnum: {
+    readonly GetCapabilGetCapabilitiesities: "GetCapabilGetCapabilitiesities";
+    readonly DescribeCoverage: "DescribeCoverage";
+    readonly GetCoverage: "GetCoverage";
+};
+export type WcsHandlerRequestEnum = typeof WcsHandlerRequestEnum[keyof typeof WcsHandlerRequestEnum];

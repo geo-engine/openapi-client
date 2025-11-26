@@ -16,68 +16,43 @@
 import * as runtime from '../runtime';
 import type {
   GetCapabilitiesFormat,
-  GetCapabilitiesRequest,
-  GetLegendGraphicRequest,
   GetMapExceptionFormat,
-  GetMapFormat,
-  GetMapRequest,
   WmsService,
   WmsVersion,
 } from '../models/index';
 import {
     GetCapabilitiesFormatFromJSON,
     GetCapabilitiesFormatToJSON,
-    GetCapabilitiesRequestFromJSON,
-    GetCapabilitiesRequestToJSON,
-    GetLegendGraphicRequestFromJSON,
-    GetLegendGraphicRequestToJSON,
     GetMapExceptionFormatFromJSON,
     GetMapExceptionFormatToJSON,
-    GetMapFormatFromJSON,
-    GetMapFormatToJSON,
-    GetMapRequestFromJSON,
-    GetMapRequestToJSON,
     WmsServiceFromJSON,
     WmsServiceToJSON,
     WmsVersionFromJSON,
     WmsVersionToJSON,
 } from '../models/index';
 
-export interface WmsCapabilitiesHandlerRequest {
+export interface WmsHandlerRequest {
     workflow: string;
-    version: WmsVersion | null;
-    service: WmsService;
-    request: GetCapabilitiesRequest;
-    format: GetCapabilitiesFormat | null;
-}
-
-export interface WmsLegendGraphicHandlerRequest {
-    workflow: string;
-    version: WmsVersion;
-    service: WmsService;
-    request: GetLegendGraphicRequest;
-    layer: string;
-}
-
-export interface WmsMapHandlerRequest {
-    workflow: string;
-    version: WmsVersion;
-    service: WmsService;
-    request: GetMapRequest;
-    width: number;
-    height: number;
-    bbox: string;
-    format: GetMapFormat;
-    layers: string;
-    styles: string;
-    crs?: string | null;
-    time?: string;
-    transparent?: boolean | null;
+    request: WmsHandlerRequestEnum;
+    bbox?: string;
     bgcolor?: string | null;
-    sld?: string | null;
-    sldBody?: string | null;
+    crs?: string | null;
     elevation?: string | null;
     exceptions?: GetMapExceptionFormat | null;
+    format?: GetCapabilitiesFormat | null;
+    height?: number;
+    infoFormat?: string | null;
+    layer?: string;
+    layers?: string;
+    queryLayers?: string;
+    service?: WmsService;
+    sld?: string | null;
+    sldBody?: string | null;
+    styles?: string;
+    time?: string;
+    transparent?: boolean | null;
+    version?: WmsVersion | null;
+    width?: number;
 }
 
 /**
@@ -86,45 +61,104 @@ export interface WmsMapHandlerRequest {
 export class OGCWMSApi extends runtime.BaseAPI {
 
     /**
-     * Get WMS Capabilities
+     * OGC WMS endpoint
      */
-    async wmsCapabilitiesHandlerRaw(requestParameters: WmsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async wmsHandlerRaw(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
         if (requestParameters['workflow'] == null) {
             throw new runtime.RequiredError(
                 'workflow',
-                'Required parameter "workflow" was null or undefined when calling wmsCapabilitiesHandler().'
-            );
-        }
-
-        if (requestParameters['version'] == null) {
-            throw new runtime.RequiredError(
-                'version',
-                'Required parameter "version" was null or undefined when calling wmsCapabilitiesHandler().'
-            );
-        }
-
-        if (requestParameters['service'] == null) {
-            throw new runtime.RequiredError(
-                'service',
-                'Required parameter "service" was null or undefined when calling wmsCapabilitiesHandler().'
+                'Required parameter "workflow" was null or undefined when calling wmsHandler().'
             );
         }
 
         if (requestParameters['request'] == null) {
             throw new runtime.RequiredError(
                 'request',
-                'Required parameter "request" was null or undefined when calling wmsCapabilitiesHandler().'
-            );
-        }
-
-        if (requestParameters['format'] == null) {
-            throw new runtime.RequiredError(
-                'format',
-                'Required parameter "format" was null or undefined when calling wmsCapabilitiesHandler().'
+                'Required parameter "request" was null or undefined when calling wmsHandler().'
             );
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['bbox'] != null) {
+            queryParameters['bbox'] = requestParameters['bbox'];
+        }
+
+        if (requestParameters['bgcolor'] != null) {
+            queryParameters['bgcolor'] = requestParameters['bgcolor'];
+        }
+
+        if (requestParameters['crs'] != null) {
+            queryParameters['crs'] = requestParameters['crs'];
+        }
+
+        if (requestParameters['elevation'] != null) {
+            queryParameters['elevation'] = requestParameters['elevation'];
+        }
+
+        if (requestParameters['exceptions'] != null) {
+            queryParameters['exceptions'] = requestParameters['exceptions'];
+        }
+
+        if (requestParameters['format'] != null) {
+            queryParameters['format'] = requestParameters['format'];
+        }
+
+        if (requestParameters['height'] != null) {
+            queryParameters['height'] = requestParameters['height'];
+        }
+
+        if (requestParameters['infoFormat'] != null) {
+            queryParameters['info_format'] = requestParameters['infoFormat'];
+        }
+
+        if (requestParameters['layer'] != null) {
+            queryParameters['layer'] = requestParameters['layer'];
+        }
+
+        if (requestParameters['layers'] != null) {
+            queryParameters['layers'] = requestParameters['layers'];
+        }
+
+        if (requestParameters['queryLayers'] != null) {
+            queryParameters['query_layers'] = requestParameters['queryLayers'];
+        }
+
+        if (requestParameters['request'] != null) {
+            queryParameters['request'] = requestParameters['request'];
+        }
+
+        if (requestParameters['service'] != null) {
+            queryParameters['service'] = requestParameters['service'];
+        }
+
+        if (requestParameters['sld'] != null) {
+            queryParameters['sld'] = requestParameters['sld'];
+        }
+
+        if (requestParameters['sldBody'] != null) {
+            queryParameters['sld_body'] = requestParameters['sldBody'];
+        }
+
+        if (requestParameters['styles'] != null) {
+            queryParameters['styles'] = requestParameters['styles'];
+        }
+
+        if (requestParameters['time'] != null) {
+            queryParameters['time'] = requestParameters['time'];
+        }
+
+        if (requestParameters['transparent'] != null) {
+            queryParameters['transparent'] = requestParameters['transparent'];
+        }
+
+        if (requestParameters['version'] != null) {
+            queryParameters['version'] = requestParameters['version'];
+        }
+
+        if (requestParameters['width'] != null) {
+            queryParameters['width'] = requestParameters['width'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -137,12 +171,8 @@ export class OGCWMSApi extends runtime.BaseAPI {
             }
         }
 
-        let urlPath = `/wms/{workflow}?request=GetCapabilities`;
+        let urlPath = `/wms/{workflow}`;
         urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
-        urlPath = urlPath.replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version'])));
-        urlPath = urlPath.replace(`{${"service"}}`, encodeURIComponent(String(requestParameters['service'])));
-        urlPath = urlPath.replace(`{${"request"}}`, encodeURIComponent(String(requestParameters['request'])));
-        urlPath = urlPath.replace(`{${"format"}}`, encodeURIComponent(String(requestParameters['format'])));
 
         const response = await this.request({
             path: urlPath,
@@ -159,263 +189,23 @@ export class OGCWMSApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get WMS Capabilities
+     * OGC WMS endpoint
      */
-    async wmsCapabilitiesHandler(requestParameters: WmsCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
-        const response = await this.wmsCapabilitiesHandlerRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get WMS Legend Graphic
-     */
-    async wmsLegendGraphicHandlerRaw(requestParameters: WmsLegendGraphicHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['workflow'] == null) {
-            throw new runtime.RequiredError(
-                'workflow',
-                'Required parameter "workflow" was null or undefined when calling wmsLegendGraphicHandler().'
-            );
-        }
-
-        if (requestParameters['version'] == null) {
-            throw new runtime.RequiredError(
-                'version',
-                'Required parameter "version" was null or undefined when calling wmsLegendGraphicHandler().'
-            );
-        }
-
-        if (requestParameters['service'] == null) {
-            throw new runtime.RequiredError(
-                'service',
-                'Required parameter "service" was null or undefined when calling wmsLegendGraphicHandler().'
-            );
-        }
-
-        if (requestParameters['request'] == null) {
-            throw new runtime.RequiredError(
-                'request',
-                'Required parameter "request" was null or undefined when calling wmsLegendGraphicHandler().'
-            );
-        }
-
-        if (requestParameters['layer'] == null) {
-            throw new runtime.RequiredError(
-                'layer',
-                'Required parameter "layer" was null or undefined when calling wmsLegendGraphicHandler().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("session_token", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-
-        let urlPath = `/wms/{workflow}?request=GetLegendGraphic`;
-        urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
-        urlPath = urlPath.replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version'])));
-        urlPath = urlPath.replace(`{${"service"}}`, encodeURIComponent(String(requestParameters['service'])));
-        urlPath = urlPath.replace(`{${"request"}}`, encodeURIComponent(String(requestParameters['request'])));
-        urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Get WMS Legend Graphic
-     */
-    async wmsLegendGraphicHandler(requestParameters: WmsLegendGraphicHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.wmsLegendGraphicHandlerRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Get WMS Map
-     */
-    async wmsMapHandlerRaw(requestParameters: WmsMapHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
-        if (requestParameters['workflow'] == null) {
-            throw new runtime.RequiredError(
-                'workflow',
-                'Required parameter "workflow" was null or undefined when calling wmsMapHandler().'
-            );
-        }
-
-        if (requestParameters['version'] == null) {
-            throw new runtime.RequiredError(
-                'version',
-                'Required parameter "version" was null or undefined when calling wmsMapHandler().'
-            );
-        }
-
-        if (requestParameters['service'] == null) {
-            throw new runtime.RequiredError(
-                'service',
-                'Required parameter "service" was null or undefined when calling wmsMapHandler().'
-            );
-        }
-
-        if (requestParameters['request'] == null) {
-            throw new runtime.RequiredError(
-                'request',
-                'Required parameter "request" was null or undefined when calling wmsMapHandler().'
-            );
-        }
-
-        if (requestParameters['width'] == null) {
-            throw new runtime.RequiredError(
-                'width',
-                'Required parameter "width" was null or undefined when calling wmsMapHandler().'
-            );
-        }
-
-        if (requestParameters['height'] == null) {
-            throw new runtime.RequiredError(
-                'height',
-                'Required parameter "height" was null or undefined when calling wmsMapHandler().'
-            );
-        }
-
-        if (requestParameters['bbox'] == null) {
-            throw new runtime.RequiredError(
-                'bbox',
-                'Required parameter "bbox" was null or undefined when calling wmsMapHandler().'
-            );
-        }
-
-        if (requestParameters['format'] == null) {
-            throw new runtime.RequiredError(
-                'format',
-                'Required parameter "format" was null or undefined when calling wmsMapHandler().'
-            );
-        }
-
-        if (requestParameters['layers'] == null) {
-            throw new runtime.RequiredError(
-                'layers',
-                'Required parameter "layers" was null or undefined when calling wmsMapHandler().'
-            );
-        }
-
-        if (requestParameters['styles'] == null) {
-            throw new runtime.RequiredError(
-                'styles',
-                'Required parameter "styles" was null or undefined when calling wmsMapHandler().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['version'] != null) {
-            queryParameters['version'] = requestParameters['version'];
-        }
-
-        if (requestParameters['service'] != null) {
-            queryParameters['service'] = requestParameters['service'];
-        }
-
-        if (requestParameters['request'] != null) {
-            queryParameters['request'] = requestParameters['request'];
-        }
-
-        if (requestParameters['width'] != null) {
-            queryParameters['width'] = requestParameters['width'];
-        }
-
-        if (requestParameters['height'] != null) {
-            queryParameters['height'] = requestParameters['height'];
-        }
-
-        if (requestParameters['bbox'] != null) {
-            queryParameters['bbox'] = requestParameters['bbox'];
-        }
-
-        if (requestParameters['format'] != null) {
-            queryParameters['format'] = requestParameters['format'];
-        }
-
-        if (requestParameters['layers'] != null) {
-            queryParameters['layers'] = requestParameters['layers'];
-        }
-
-        if (requestParameters['crs'] != null) {
-            queryParameters['crs'] = requestParameters['crs'];
-        }
-
-        if (requestParameters['styles'] != null) {
-            queryParameters['styles'] = requestParameters['styles'];
-        }
-
-        if (requestParameters['time'] != null) {
-            queryParameters['time'] = requestParameters['time'];
-        }
-
-        if (requestParameters['transparent'] != null) {
-            queryParameters['transparent'] = requestParameters['transparent'];
-        }
-
-        if (requestParameters['bgcolor'] != null) {
-            queryParameters['bgcolor'] = requestParameters['bgcolor'];
-        }
-
-        if (requestParameters['sld'] != null) {
-            queryParameters['sld'] = requestParameters['sld'];
-        }
-
-        if (requestParameters['sldBody'] != null) {
-            queryParameters['sld_body'] = requestParameters['sldBody'];
-        }
-
-        if (requestParameters['elevation'] != null) {
-            queryParameters['elevation'] = requestParameters['elevation'];
-        }
-
-        if (requestParameters['exceptions'] != null) {
-            queryParameters['exceptions'] = requestParameters['exceptions'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("session_token", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-
-        let urlPath = `/wms/{workflow}?request=GetMap`;
-        urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
-
-        const response = await this.request({
-            path: urlPath,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.BlobApiResponse(response);
-    }
-
-    /**
-     * Get WMS Map
-     */
-    async wmsMapHandler(requestParameters: WmsMapHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
-        const response = await this.wmsMapHandlerRaw(requestParameters, initOverrides);
+    async wmsHandler(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.wmsHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
 }
+
+/**
+ * @export
+ */
+export const WmsHandlerRequestEnum = {
+    GetCapabilities: 'GetCapabilities',
+    GetMap: 'GetMap',
+    GetFeatureInfo: 'GetFeatureInfo',
+    GetStyles: 'GetStyles',
+    GetLegendGraphic: 'GetLegendGraphic'
+} as const;
+export type WmsHandlerRequestEnum = typeof WmsHandlerRequestEnum[keyof typeof WmsHandlerRequestEnum];

@@ -85,7 +85,6 @@ __all__ = [
     "DatasetResource",
     "DerivedColor",
     "DerivedNumber",
-    "DescribeCoverageRequest",
     "EbvPortalDataProviderDefinition",
     "EdrDataProviderDefinition",
     "EdrVectorSpec",
@@ -109,14 +108,10 @@ __all__ = [
     "GeoJson",
     "GeoTransform",
     "GetCapabilitiesFormat",
-    "GetCapabilitiesRequest",
     "GetCoverageFormat",
-    "GetCoverageRequest",
     "GetFeatureRequest",
-    "GetLegendGraphicRequest",
     "GetMapExceptionFormat",
     "GetMapFormat",
-    "GetMapRequest",
     "GfbioAbcdDataProviderDefinition",
     "GfbioCollectionsDataProviderDefinition",
     "GridBoundingBox2D",
@@ -368,7 +363,6 @@ from geoengine_openapi_client.models.dataset_name_response import DatasetNameRes
 from geoengine_openapi_client.models.dataset_resource import DatasetResource as DatasetResource
 from geoengine_openapi_client.models.derived_color import DerivedColor as DerivedColor
 from geoengine_openapi_client.models.derived_number import DerivedNumber as DerivedNumber
-from geoengine_openapi_client.models.describe_coverage_request import DescribeCoverageRequest as DescribeCoverageRequest
 from geoengine_openapi_client.models.ebv_portal_data_provider_definition import EbvPortalDataProviderDefinition as EbvPortalDataProviderDefinition
 from geoengine_openapi_client.models.edr_data_provider_definition import EdrDataProviderDefinition as EdrDataProviderDefinition
 from geoengine_openapi_client.models.edr_vector_spec import EdrVectorSpec as EdrVectorSpec
@@ -392,14 +386,10 @@ from geoengine_openapi_client.models.gdal_source_time_placeholder import GdalSou
 from geoengine_openapi_client.models.geo_json import GeoJson as GeoJson
 from geoengine_openapi_client.models.geo_transform import GeoTransform as GeoTransform
 from geoengine_openapi_client.models.get_capabilities_format import GetCapabilitiesFormat as GetCapabilitiesFormat
-from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest as GetCapabilitiesRequest
 from geoengine_openapi_client.models.get_coverage_format import GetCoverageFormat as GetCoverageFormat
-from geoengine_openapi_client.models.get_coverage_request import GetCoverageRequest as GetCoverageRequest
 from geoengine_openapi_client.models.get_feature_request import GetFeatureRequest as GetFeatureRequest
-from geoengine_openapi_client.models.get_legend_graphic_request import GetLegendGraphicRequest as GetLegendGraphicRequest
 from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat as GetMapExceptionFormat
 from geoengine_openapi_client.models.get_map_format import GetMapFormat as GetMapFormat
-from geoengine_openapi_client.models.get_map_request import GetMapRequest as GetMapRequest
 from geoengine_openapi_client.models.gfbio_abcd_data_provider_definition import GfbioAbcdDataProviderDefinition as GfbioAbcdDataProviderDefinition
 from geoengine_openapi_client.models.gfbio_collections_data_provider_definition import GfbioCollectionsDataProviderDefinition as GfbioCollectionsDataProviderDefinition
 from geoengine_openapi_client.models.grid_bounding_box2_d import GridBoundingBox2D as GridBoundingBox2D

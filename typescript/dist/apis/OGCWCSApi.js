@@ -22,194 +22,50 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OGCWCSApi = void 0;
+exports.WcsHandlerRequestEnum = exports.OGCWCSApi = void 0;
 const runtime = require("../runtime");
 /**
  *
  */
 class OGCWCSApi extends runtime.BaseAPI {
     /**
-     * Get WCS Capabilities
+     * OGC WCS endpoint
      */
-    wcsCapabilitiesHandlerRaw(requestParameters, initOverrides) {
+    wcsHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['workflow'] == null) {
-                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wcsCapabilitiesHandler().');
-            }
-            if (requestParameters['service'] == null) {
-                throw new runtime.RequiredError('service', 'Required parameter "service" was null or undefined when calling wcsCapabilitiesHandler().');
+                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wcsHandler().');
             }
             if (requestParameters['request'] == null) {
-                throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wcsCapabilitiesHandler().');
+                throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wcsHandler().');
             }
             const queryParameters = {};
-            if (requestParameters['version'] != null) {
-                queryParameters['version'] = requestParameters['version'];
-            }
-            if (requestParameters['service'] != null) {
-                queryParameters['service'] = requestParameters['service'];
-            }
-            if (requestParameters['request'] != null) {
-                queryParameters['request'] = requestParameters['request'];
-            }
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("session_token", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            let urlPath = `/wcs/{workflow}?request=GetCapabilities`;
-            urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
-            const response = yield this.request({
-                path: urlPath,
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            }, initOverrides);
-            if (this.isJsonMime(response.headers.get('content-type'))) {
-                return new runtime.JSONApiResponse(response);
-            }
-            else {
-                return new runtime.TextApiResponse(response);
-            }
-        });
-    }
-    /**
-     * Get WCS Capabilities
-     */
-    wcsCapabilitiesHandler(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.wcsCapabilitiesHandlerRaw(requestParameters, initOverrides);
-            return yield response.value();
-        });
-    }
-    /**
-     * Get WCS Coverage Description
-     */
-    wcsDescribeCoverageHandlerRaw(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters['workflow'] == null) {
-                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wcsDescribeCoverageHandler().');
-            }
-            if (requestParameters['version'] == null) {
-                throw new runtime.RequiredError('version', 'Required parameter "version" was null or undefined when calling wcsDescribeCoverageHandler().');
-            }
-            if (requestParameters['service'] == null) {
-                throw new runtime.RequiredError('service', 'Required parameter "service" was null or undefined when calling wcsDescribeCoverageHandler().');
-            }
-            if (requestParameters['request'] == null) {
-                throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wcsDescribeCoverageHandler().');
-            }
-            if (requestParameters['identifiers'] == null) {
-                throw new runtime.RequiredError('identifiers', 'Required parameter "identifiers" was null or undefined when calling wcsDescribeCoverageHandler().');
-            }
-            const queryParameters = {};
-            if (requestParameters['version'] != null) {
-                queryParameters['version'] = requestParameters['version'];
-            }
-            if (requestParameters['service'] != null) {
-                queryParameters['service'] = requestParameters['service'];
-            }
-            if (requestParameters['request'] != null) {
-                queryParameters['request'] = requestParameters['request'];
-            }
-            if (requestParameters['identifiers'] != null) {
-                queryParameters['identifiers'] = requestParameters['identifiers'];
-            }
-            const headerParameters = {};
-            if (this.configuration && this.configuration.accessToken) {
-                const token = this.configuration.accessToken;
-                const tokenString = yield token("session_token", []);
-                if (tokenString) {
-                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
-                }
-            }
-            let urlPath = `/wcs/{workflow}?request=DescribeCoverage`;
-            urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
-            const response = yield this.request({
-                path: urlPath,
-                method: 'GET',
-                headers: headerParameters,
-                query: queryParameters,
-            }, initOverrides);
-            if (this.isJsonMime(response.headers.get('content-type'))) {
-                return new runtime.JSONApiResponse(response);
-            }
-            else {
-                return new runtime.TextApiResponse(response);
-            }
-        });
-    }
-    /**
-     * Get WCS Coverage Description
-     */
-    wcsDescribeCoverageHandler(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.wcsDescribeCoverageHandlerRaw(requestParameters, initOverrides);
-            return yield response.value();
-        });
-    }
-    /**
-     * Get WCS Coverage
-     */
-    wcsGetCoverageHandlerRaw(requestParameters, initOverrides) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (requestParameters['workflow'] == null) {
-                throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wcsGetCoverageHandler().');
-            }
-            if (requestParameters['version'] == null) {
-                throw new runtime.RequiredError('version', 'Required parameter "version" was null or undefined when calling wcsGetCoverageHandler().');
-            }
-            if (requestParameters['service'] == null) {
-                throw new runtime.RequiredError('service', 'Required parameter "service" was null or undefined when calling wcsGetCoverageHandler().');
-            }
-            if (requestParameters['request'] == null) {
-                throw new runtime.RequiredError('request', 'Required parameter "request" was null or undefined when calling wcsGetCoverageHandler().');
-            }
-            if (requestParameters['format'] == null) {
-                throw new runtime.RequiredError('format', 'Required parameter "format" was null or undefined when calling wcsGetCoverageHandler().');
-            }
-            if (requestParameters['identifier'] == null) {
-                throw new runtime.RequiredError('identifier', 'Required parameter "identifier" was null or undefined when calling wcsGetCoverageHandler().');
-            }
-            if (requestParameters['boundingbox'] == null) {
-                throw new runtime.RequiredError('boundingbox', 'Required parameter "boundingbox" was null or undefined when calling wcsGetCoverageHandler().');
-            }
-            if (requestParameters['gridbasecrs'] == null) {
-                throw new runtime.RequiredError('gridbasecrs', 'Required parameter "gridbasecrs" was null or undefined when calling wcsGetCoverageHandler().');
-            }
-            const queryParameters = {};
-            if (requestParameters['version'] != null) {
-                queryParameters['version'] = requestParameters['version'];
-            }
-            if (requestParameters['service'] != null) {
-                queryParameters['service'] = requestParameters['service'];
-            }
-            if (requestParameters['request'] != null) {
-                queryParameters['request'] = requestParameters['request'];
+            if (requestParameters['boundingbox'] != null) {
+                queryParameters['boundingbox'] = requestParameters['boundingbox'];
             }
             if (requestParameters['format'] != null) {
                 queryParameters['format'] = requestParameters['format'];
             }
-            if (requestParameters['identifier'] != null) {
-                queryParameters['identifier'] = requestParameters['identifier'];
-            }
-            if (requestParameters['boundingbox'] != null) {
-                queryParameters['boundingbox'] = requestParameters['boundingbox'];
-            }
             if (requestParameters['gridbasecrs'] != null) {
                 queryParameters['gridbasecrs'] = requestParameters['gridbasecrs'];
-            }
-            if (requestParameters['gridorigin'] != null) {
-                queryParameters['gridorigin'] = requestParameters['gridorigin'];
             }
             if (requestParameters['gridoffsets'] != null) {
                 queryParameters['gridoffsets'] = requestParameters['gridoffsets'];
             }
-            if (requestParameters['time'] != null) {
-                queryParameters['time'] = requestParameters['time'];
+            if (requestParameters['gridorigin'] != null) {
+                queryParameters['gridorigin'] = requestParameters['gridorigin'];
+            }
+            if (requestParameters['identifier'] != null) {
+                queryParameters['identifier'] = requestParameters['identifier'];
+            }
+            if (requestParameters['identifiers'] != null) {
+                queryParameters['identifiers'] = requestParameters['identifiers'];
+            }
+            if (requestParameters['nodatavalue'] != null) {
+                queryParameters['nodatavalue'] = requestParameters['nodatavalue'];
+            }
+            if (requestParameters['request'] != null) {
+                queryParameters['request'] = requestParameters['request'];
             }
             if (requestParameters['resx'] != null) {
                 queryParameters['resx'] = requestParameters['resx'];
@@ -217,8 +73,14 @@ class OGCWCSApi extends runtime.BaseAPI {
             if (requestParameters['resy'] != null) {
                 queryParameters['resy'] = requestParameters['resy'];
             }
-            if (requestParameters['nodatavalue'] != null) {
-                queryParameters['nodatavalue'] = requestParameters['nodatavalue'];
+            if (requestParameters['service'] != null) {
+                queryParameters['service'] = requestParameters['service'];
+            }
+            if (requestParameters['time'] != null) {
+                queryParameters['time'] = requestParameters['time'];
+            }
+            if (requestParameters['version'] != null) {
+                queryParameters['version'] = requestParameters['version'];
             }
             const headerParameters = {};
             if (this.configuration && this.configuration.accessToken) {
@@ -228,7 +90,7 @@ class OGCWCSApi extends runtime.BaseAPI {
                     headerParameters["Authorization"] = `Bearer ${tokenString}`;
                 }
             }
-            let urlPath = `/wcs/{workflow}?request=GetCoverage`;
+            let urlPath = `/wcs/{workflow}`;
             urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
             const response = yield this.request({
                 path: urlPath,
@@ -236,17 +98,30 @@ class OGCWCSApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             }, initOverrides);
-            return new runtime.BlobApiResponse(response);
+            if (this.isJsonMime(response.headers.get('content-type'))) {
+                return new runtime.JSONApiResponse(response);
+            }
+            else {
+                return new runtime.TextApiResponse(response);
+            }
         });
     }
     /**
-     * Get WCS Coverage
+     * OGC WCS endpoint
      */
-    wcsGetCoverageHandler(requestParameters, initOverrides) {
+    wcsHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield this.wcsGetCoverageHandlerRaw(requestParameters, initOverrides);
+            const response = yield this.wcsHandlerRaw(requestParameters, initOverrides);
             return yield response.value();
         });
     }
 }
 exports.OGCWCSApi = OGCWCSApi;
+/**
+ * @export
+ */
+exports.WcsHandlerRequestEnum = {
+    GetCapabilGetCapabilitiesities: 'GetCapabilGetCapabilitiesities',
+    DescribeCoverage: 'DescribeCoverage',
+    GetCoverage: 'GetCoverage'
+};

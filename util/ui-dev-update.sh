@@ -48,7 +48,7 @@ fi
 cd ../geoengine-ui
 
 npm uninstall @geoengine/openapi-client
-npm install @geoengine/openapi-client@https://gitpkg.now.sh/geo-engine/openapi-client/typescript?${current_branch}
+npm install  @geoengine/openapi-client@"https://github.com/geo-engine/openapi-client.git#${current_branch}"
 
 cd -
 

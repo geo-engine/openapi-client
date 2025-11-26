@@ -6,8 +6,8 @@
 #
 # this script uses the OpenAPI json generated via cli in a backend located next to the openapi-client
 # it generates the openapi-client and pushes it to the current branch (-a to amend the last commit)
-# then it updates the geoengine-ui's openapi-client dependency to the development branch
-# note: the geoengine-ui git repo must be in the same directory as the openapi-client repo
+# then it updates the geoengine-ui's and geoengine-python's openapi-client dependency to the development branch
+# note: the geoengine, geoengine-ui and geoengine-python git repo must be in the same directory as the openapi-client repo
 
 set -e
 
@@ -48,6 +48,16 @@ fi
 cd ../geoengine-ui
 
 npm uninstall @geoengine/openapi-client
-npm install @geoengine/openapi-client@https://gitpkg.now.sh/geo-engine/openapi-client/typescript?${current_branch}
+npm install  @geoengine/openapi-client@"https://github.com/geo-engine/openapi-client.git#${current_branch}"
 
 cd -
+
+cd ../geoengine-python
+
+source .venv/bin/activate
+pip uninstall geoengine-openapi-client -y
+pip install "geoengine-openapi-client @ git+https://github.com/geo-engine/openapi-client@${current_branch}#subdirectory=python"
+deactivate
+
+cd -
+

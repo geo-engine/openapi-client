@@ -1,6 +1,6 @@
 # @geoengine/openapi-client@0.0.30
 
-A TypeScript SDK client for the 127.0.0.1 API.
+A TypeScript SDK client for the geoengine.io API.
 
 ## Usage
 
@@ -52,7 +52,7 @@ example().catch(console.error);
 
 ### API Endpoints
 
-All URIs are relative to *http://127.0.0.1:3030/api*
+All URIs are relative to *https://geoengine.io/api*
 
 | Class | Method | HTTP request | Description
 | ----- | ------ | ------------ | -------------

@@ -27,7 +27,7 @@ exports.querystring = querystring;
 exports.exists = exists;
 exports.mapValues = mapValues;
 exports.canConsumeForm = canConsumeForm;
-exports.BASE_PATH = "http://127.0.0.1:3030/api".replace(/\/+$/, "");
+exports.BASE_PATH = "https://geoengine.io/api".replace(/\/+$/, "");
 class Configuration {
     constructor(configuration = {}) {
         this.configuration = configuration;

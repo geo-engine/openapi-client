@@ -191,6 +191,7 @@ All URIs are relative to *https://geoengine.io/api*
 - [DatasetListing](docs/DatasetListing.md)
 - [DatasetNameResponse](docs/DatasetNameResponse.md)
 - [DatasetResource](docs/DatasetResource.md)
+- [DatasetTile](docs/DatasetTile.md)
 - [DerivedColor](docs/DerivedColor.md)
 - [DerivedNumber](docs/DerivedNumber.md)
 - [EbvPortalDataProviderDefinition](docs/EbvPortalDataProviderDefinition.md)

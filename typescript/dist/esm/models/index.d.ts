@@ -37,6 +37,7 @@ export * from './DatasetLayerListingProviderDefinition';
 export * from './DatasetListing';
 export * from './DatasetNameResponse';
 export * from './DatasetResource';
+export * from './DatasetTile';
 export * from './DerivedColor';
 export * from './DerivedNumber';
 export * from './EbvPortalDataProviderDefinition';

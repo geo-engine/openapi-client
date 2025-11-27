@@ -220,6 +220,55 @@ class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    getDatasetTilesHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['dataset'] == null) {
+                throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling getDatasetTilesHandler().');
+            }
+            if (requestParameters['offset'] == null) {
+                throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling getDatasetTilesHandler().');
+            }
+            if (requestParameters['limit'] == null) {
+                throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling getDatasetTilesHandler().');
+            }
+            const queryParameters = {};
+            if (requestParameters['offset'] != null) {
+                queryParameters['offset'] = requestParameters['offset'];
+            }
+            if (requestParameters['limit'] != null) {
+                queryParameters['limit'] = requestParameters['limit'];
+            }
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            let urlPath = `/dataset/{dataset}/tiles`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
+            const response = yield this.request({
+                path: urlPath,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(index_1.DatasetTileFromJSON));
+        });
+    }
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    getDatasetTilesHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getDatasetTilesHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
      * Retrieves the loading information of a dataset
      */
     getLoadingInfoHandlerRaw(requestParameters, initOverrides) {

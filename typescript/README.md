@@ -61,6 +61,7 @@ All URIs are relative to *https://geoengine.io/api*
 *DatasetsApi* | [**createDatasetHandler**](docs/DatasetsApi.md#createdatasethandler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 *DatasetsApi* | [**deleteDatasetHandler**](docs/DatasetsApi.md#deletedatasethandler) | **DELETE** /dataset/{dataset} | Delete a dataset
 *DatasetsApi* | [**getDatasetHandler**](docs/DatasetsApi.md#getdatasethandler) | **GET** /dataset/{dataset} | Retrieves details about a dataset using the internal name.
+*DatasetsApi* | [**getDatasetTilesHandler**](docs/DatasetsApi.md#getdatasettileshandler) | **GET** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**getLoadingInfoHandler**](docs/DatasetsApi.md#getloadinginfohandler) | **GET** /dataset/{dataset}/loadingInfo | Retrieves the loading information of a dataset
 *DatasetsApi* | [**listDatasetsHandler**](docs/DatasetsApi.md#listdatasetshandler) | **GET** /datasets | Lists available datasets.
 *DatasetsApi* | [**listVolumeFileLayersHandler**](docs/DatasetsApi.md#listvolumefilelayershandler) | **GET** /dataset/volumes/{volume_name}/files/{file_name}/layers | List the layers of a file in a volume.

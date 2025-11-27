@@ -62,6 +62,13 @@ class TestDatasetsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_dataset_tiles_handler(self) -> None:
+        """Test case for get_dataset_tiles_handler
+
+        Retrieves details about a dataset using the internal name.
+        """
+        pass
+
     def test_get_loading_info_handler(self) -> None:
         """Test case for get_loading_info_handler
 

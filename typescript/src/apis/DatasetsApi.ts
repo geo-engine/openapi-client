@@ -20,6 +20,7 @@ import type {
   Dataset,
   DatasetListing,
   DatasetNameResponse,
+  DatasetTile,
   ErrorResponse,
   MetaDataDefinition,
   MetaDataSuggestion,
@@ -42,6 +43,8 @@ import {
     DatasetListingToJSON,
     DatasetNameResponseFromJSON,
     DatasetNameResponseToJSON,
+    DatasetTileFromJSON,
+    DatasetTileToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     MetaDataDefinitionFromJSON,
@@ -83,6 +86,12 @@ export interface DeleteDatasetHandlerRequest {
 
 export interface GetDatasetHandlerRequest {
     dataset: string;
+}
+
+export interface GetDatasetTilesHandlerRequest {
+    dataset: string;
+    offset: number;
+    limit: number;
 }
 
 export interface GetLoadingInfoHandlerRequest {
@@ -365,6 +374,73 @@ export class DatasetsApi extends runtime.BaseAPI {
      */
     async getDatasetHandler(requestParameters: GetDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Dataset> {
         const response = await this.getDatasetHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    async getDatasetTilesHandlerRaw(requestParameters: GetDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DatasetTile>>> {
+        if (requestParameters['dataset'] == null) {
+            throw new runtime.RequiredError(
+                'dataset',
+                'Required parameter "dataset" was null or undefined when calling getDatasetTilesHandler().'
+            );
+        }
+
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError(
+                'offset',
+                'Required parameter "offset" was null or undefined when calling getDatasetTilesHandler().'
+            );
+        }
+
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError(
+                'limit',
+                'Required parameter "limit" was null or undefined when calling getDatasetTilesHandler().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/dataset/{dataset}/tiles`;
+        urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DatasetTileFromJSON));
+    }
+
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    async getDatasetTilesHandler(requestParameters: GetDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DatasetTile>> {
+        const response = await this.getDatasetTilesHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

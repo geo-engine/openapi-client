@@ -9,6 +9,7 @@ All URIs are relative to *https://geoengine.io/api*
 | [**createDatasetHandler**](DatasetsApi.md#createdatasethandler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume. |
 | [**deleteDatasetHandler**](DatasetsApi.md#deletedatasethandler) | **DELETE** /dataset/{dataset} | Delete a dataset |
 | [**getDatasetHandler**](DatasetsApi.md#getdatasethandler) | **GET** /dataset/{dataset} | Retrieves details about a dataset using the internal name. |
+| [**getDatasetTilesHandler**](DatasetsApi.md#getdatasettileshandler) | **GET** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name. |
 | [**getLoadingInfoHandler**](DatasetsApi.md#getloadinginfohandler) | **GET** /dataset/{dataset}/loadingInfo | Retrieves the loading information of a dataset |
 | [**listDatasetsHandler**](DatasetsApi.md#listdatasetshandler) | **GET** /datasets | Lists available datasets. |
 | [**listVolumeFileLayersHandler**](DatasetsApi.md#listvolumefilelayershandler) | **GET** /dataset/volumes/{volume_name}/files/{file_name}/layers | List the layers of a file in a volume. |
@@ -372,6 +373,82 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **400** | Bad request |  -  |
+| **401** | Authorization failed |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getDatasetTilesHandler
+
+> Array&lt;DatasetTile&gt; getDatasetTilesHandler(dataset, offset, limit)
+
+Retrieves details about a dataset using the internal name.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DatasetsApi,
+} from '@geoengine/openapi-client';
+import type { GetDatasetTilesHandlerRequest } from '@geoengine/openapi-client';
+
+async function example() {
+  console.log("🚀 Testing @geoengine/openapi-client SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: session_token
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DatasetsApi(config);
+
+  const body = {
+    // string | Dataset Name
+    dataset: dataset_example,
+    // number
+    offset: 56,
+    // number
+    limit: 56,
+  } satisfies GetDatasetTilesHandlerRequest;
+
+  try {
+    const data = await api.getDatasetTilesHandler(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **dataset** | `string` | Dataset Name | [Defaults to `undefined`] |
+| **offset** | `number` |  | [Defaults to `undefined`] |
+| **limit** | `number` |  | [Defaults to `undefined`] |
+
+### Return type
+
+[**Array&lt;DatasetTile&gt;**](DatasetTile.md)
+
+### Authorization
+
+[session_token](../README.md#session_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 | **401** | Authorization failed |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

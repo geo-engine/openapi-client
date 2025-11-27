@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AutoCreateDataset, CreateDataset, Dataset, DatasetListing, DatasetNameResponse, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, Volume, VolumeFileLayersResponse } from '../models/index';
+import type { AutoCreateDataset, CreateDataset, Dataset, DatasetListing, DatasetNameResponse, DatasetTile, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, Volume, VolumeFileLayersResponse } from '../models/index';
 export interface AddDatasetTilesHandlerRequest {
     dataset: string;
     autoCreateDataset: AutoCreateDataset;
@@ -26,6 +26,11 @@ export interface DeleteDatasetHandlerRequest {
 }
 export interface GetDatasetHandlerRequest {
     dataset: string;
+}
+export interface GetDatasetTilesHandlerRequest {
+    dataset: string;
+    offset: number;
+    limit: number;
 }
 export interface GetLoadingInfoHandlerRequest {
     dataset: string;
@@ -104,6 +109,14 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Retrieves details about a dataset using the internal name.
      */
     getDatasetHandler(requestParameters: GetDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Dataset>;
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    getDatasetTilesHandlerRaw(requestParameters: GetDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DatasetTile>>>;
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    getDatasetTilesHandler(requestParameters: GetDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DatasetTile>>;
     /**
      * Retrieves the loading information of a dataset
      */

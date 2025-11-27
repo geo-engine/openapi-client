@@ -113,11 +113,3 @@ export class OGCWCSApi extends runtime.BaseAPI {
         });
     }
 }
-/**
- * @export
- */
-export const WcsHandlerRequestEnum = {
-    GetCapabilGetCapabilitiesities: 'GetCapabilGetCapabilitiesities',
-    DescribeCoverage: 'DescribeCoverage',
-    GetCoverage: 'GetCoverage'
-};

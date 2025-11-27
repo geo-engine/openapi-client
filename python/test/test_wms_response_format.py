@@ -15,10 +15,10 @@
 
 import unittest
 
-from geoengine_openapi_client.models.get_capabilities_format import GetCapabilitiesFormat
+from geoengine_openapi_client.models.wms_response_format import WmsResponseFormat
 
-class TestGetCapabilitiesFormat(unittest.TestCase):
-    """GetCapabilitiesFormat unit test stubs"""
+class TestWmsResponseFormat(unittest.TestCase):
+    """WmsResponseFormat unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,9 +26,9 @@ class TestGetCapabilitiesFormat(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testGetCapabilitiesFormat(self):
-        """Test GetCapabilitiesFormat"""
-        # inst = GetCapabilitiesFormat()
+    def testWmsResponseFormat(self):
+        """Test WmsResponseFormat"""
+        # inst = WmsResponseFormat()
 
 if __name__ == '__main__':
     unittest.main()

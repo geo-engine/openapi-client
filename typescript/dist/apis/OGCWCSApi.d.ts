@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { GetCoverageFormat, WcsService, WcsVersion } from '../models/index';
+import type { GetCoverageFormat, WcsRequest, WcsService, WcsVersion } from '../models/index';
 export interface WcsHandlerRequest {
     workflow: string;
-    request: WcsHandlerRequestEnum;
+    request: WcsRequest;
     boundingbox?: string;
     format?: GetCoverageFormat;
     gridbasecrs?: string;
@@ -41,12 +41,3 @@ export declare class OGCWCSApi extends runtime.BaseAPI {
      */
     wcsHandler(requestParameters: WcsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
 }
-/**
- * @export
- */
-export declare const WcsHandlerRequestEnum: {
-    readonly GetCapabilGetCapabilitiesities: "GetCapabilGetCapabilitiesities";
-    readonly DescribeCoverage: "DescribeCoverage";
-    readonly GetCoverage: "GetCoverage";
-};
-export type WcsHandlerRequestEnum = typeof WcsHandlerRequestEnum[keyof typeof WcsHandlerRequestEnum];

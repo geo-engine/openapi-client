@@ -107,11 +107,8 @@ __all__ = [
     "GdalSourceTimePlaceholder",
     "GeoJson",
     "GeoTransform",
-    "GetCapabilitiesFormat",
     "GetCoverageFormat",
-    "GetFeatureRequest",
     "GetMapExceptionFormat",
-    "GetMapFormat",
     "GfbioAbcdDataProviderDefinition",
     "GfbioCollectionsDataProviderDefinition",
     "GridBoundingBox2D",
@@ -281,11 +278,15 @@ __all__ = [
     "Volume",
     "VolumeFileLayersResponse",
     "WcsBoundingbox",
+    "WcsRequest",
     "WcsService",
     "WcsVersion",
+    "WfsRequest",
     "WfsService",
     "WfsVersion",
     "WildliveDataConnectorDefinition",
+    "WmsRequest",
+    "WmsResponseFormat",
     "WmsService",
     "WmsVersion",
     "Workflow",
@@ -385,11 +386,8 @@ from geoengine_openapi_client.models.gdal_multi_band import GdalMultiBand as Gda
 from geoengine_openapi_client.models.gdal_source_time_placeholder import GdalSourceTimePlaceholder as GdalSourceTimePlaceholder
 from geoengine_openapi_client.models.geo_json import GeoJson as GeoJson
 from geoengine_openapi_client.models.geo_transform import GeoTransform as GeoTransform
-from geoengine_openapi_client.models.get_capabilities_format import GetCapabilitiesFormat as GetCapabilitiesFormat
 from geoengine_openapi_client.models.get_coverage_format import GetCoverageFormat as GetCoverageFormat
-from geoengine_openapi_client.models.get_feature_request import GetFeatureRequest as GetFeatureRequest
 from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat as GetMapExceptionFormat
-from geoengine_openapi_client.models.get_map_format import GetMapFormat as GetMapFormat
 from geoengine_openapi_client.models.gfbio_abcd_data_provider_definition import GfbioAbcdDataProviderDefinition as GfbioAbcdDataProviderDefinition
 from geoengine_openapi_client.models.gfbio_collections_data_provider_definition import GfbioCollectionsDataProviderDefinition as GfbioCollectionsDataProviderDefinition
 from geoengine_openapi_client.models.grid_bounding_box2_d import GridBoundingBox2D as GridBoundingBox2D
@@ -559,11 +557,15 @@ from geoengine_openapi_client.models.vector_result_descriptor import VectorResul
 from geoengine_openapi_client.models.volume import Volume as Volume
 from geoengine_openapi_client.models.volume_file_layers_response import VolumeFileLayersResponse as VolumeFileLayersResponse
 from geoengine_openapi_client.models.wcs_boundingbox import WcsBoundingbox as WcsBoundingbox
+from geoengine_openapi_client.models.wcs_request import WcsRequest as WcsRequest
 from geoengine_openapi_client.models.wcs_service import WcsService as WcsService
 from geoengine_openapi_client.models.wcs_version import WcsVersion as WcsVersion
+from geoengine_openapi_client.models.wfs_request import WfsRequest as WfsRequest
 from geoengine_openapi_client.models.wfs_service import WfsService as WfsService
 from geoengine_openapi_client.models.wfs_version import WfsVersion as WfsVersion
 from geoengine_openapi_client.models.wildlive_data_connector_definition import WildliveDataConnectorDefinition as WildliveDataConnectorDefinition
+from geoengine_openapi_client.models.wms_request import WmsRequest as WmsRequest
+from geoengine_openapi_client.models.wms_response_format import WmsResponseFormat as WmsResponseFormat
 from geoengine_openapi_client.models.wms_service import WmsService as WmsService
 from geoengine_openapi_client.models.wms_version import WmsVersion as WmsVersion
 from geoengine_openapi_client.models.workflow import Workflow as Workflow

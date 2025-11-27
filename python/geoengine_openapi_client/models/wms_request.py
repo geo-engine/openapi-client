@@ -19,19 +19,23 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class GetMapFormat(str, Enum):
+class WmsRequest(str, Enum):
     """
-    GetMapFormat
+    WmsRequest
     """
 
     """
     allowed enum values
     """
-    IMAGE_SLASH_PNG = 'image/png'
+    GETCAPABILITIES = 'GetCapabilities'
+    GETMAP = 'GetMap'
+    GETFEATUREINFO = 'GetFeatureInfo'
+    GETSTYLES = 'GetStyles'
+    GETLEGENDGRAPHIC = 'GetLegendGraphic'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of GetMapFormat from a JSON string"""
+        """Create an instance of WmsRequest from a JSON string"""
         return cls(json.loads(json_str))
 
 

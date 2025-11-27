@@ -15,28 +15,29 @@
  *
  * @export
  */
-export const GetFeatureRequest = {
+export const WfsRequest = {
+    GetCapabilities: 'GetCapabilities',
     GetFeature: 'GetFeature'
 };
-export function instanceOfGetFeatureRequest(value) {
-    for (const key in GetFeatureRequest) {
-        if (Object.prototype.hasOwnProperty.call(GetFeatureRequest, key)) {
-            if (GetFeatureRequest[key] === value) {
+export function instanceOfWfsRequest(value) {
+    for (const key in WfsRequest) {
+        if (Object.prototype.hasOwnProperty.call(WfsRequest, key)) {
+            if (WfsRequest[key] === value) {
                 return true;
             }
         }
     }
     return false;
 }
-export function GetFeatureRequestFromJSON(json) {
-    return GetFeatureRequestFromJSONTyped(json, false);
+export function WfsRequestFromJSON(json) {
+    return WfsRequestFromJSONTyped(json, false);
 }
-export function GetFeatureRequestFromJSONTyped(json, ignoreDiscriminator) {
+export function WfsRequestFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-export function GetFeatureRequestToJSON(value) {
+export function WfsRequestToJSON(value) {
     return value;
 }
-export function GetFeatureRequestToJSONTyped(value, ignoreDiscriminator) {
+export function WfsRequestToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

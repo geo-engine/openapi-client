@@ -10,7 +10,7 @@ All URIs are relative to *https://geoengine.io/api*
 
 ## wmsHandler
 
-> string wmsHandler(workflow, request, bbox, bgcolor, crs, elevation, exceptions, format, height, infoFormat, layer, layers, queryLayers, service, sld, sldBody, styles, time, transparent, version, width)
+> Blob wmsHandler(workflow, request, bbox, bgcolor, crs, elevation, exceptions, format, height, infoFormat, layer, layers, queryLayers, service, sld, sldBody, styles, time, transparent, version, width)
 
 OGC WMS endpoint
 
@@ -34,8 +34,8 @@ async function example() {
   const body = {
     // string | Workflow id
     workflow: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-    // 'GetCapabilities' | 'GetMap' | 'GetFeatureInfo' | 'GetStyles' | 'GetLegendGraphic' | type of WMS request
-    request: request_example,
+    // WmsRequest | type of WMS request
+    request: ...,
     // string (optional)
     bbox: -90,-180,90,180,
     // string (optional)
@@ -46,7 +46,7 @@ async function example() {
     elevation: elevation_example,
     // GetMapExceptionFormat (optional)
     exceptions: ...,
-    // GetCapabilitiesFormat (optional)
+    // WmsResponseFormat (optional)
     format: ...,
     // number (optional)
     height: 256,
@@ -94,13 +94,13 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **workflow** | `string` | Workflow id | [Defaults to `undefined`] |
-| **request** | `GetCapabilities`, `GetMap`, `GetFeatureInfo`, `GetStyles`, `GetLegendGraphic` | type of WMS request | [Defaults to `undefined`] [Enum: GetCapabilities, GetMap, GetFeatureInfo, GetStyles, GetLegendGraphic] |
+| **request** | `WmsRequest` | type of WMS request | [Defaults to `undefined`] [Enum: GetCapabilities, GetMap, GetFeatureInfo, GetStyles, GetLegendGraphic] |
 | **bbox** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **bgcolor** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **crs** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **elevation** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **exceptions** | `GetMapExceptionFormat` |  | [Optional] [Defaults to `undefined`] [Enum: XML, JSON] |
-| **format** | `GetCapabilitiesFormat` |  | [Optional] [Defaults to `undefined`] [Enum: text/xml] |
+| **format** | `WmsResponseFormat` |  | [Optional] [Defaults to `undefined`] [Enum: text/xml, image/png] |
 | **height** | `number` |  | [Optional] [Defaults to `undefined`] |
 | **infoFormat** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **layer** | `string` |  | [Optional] [Defaults to `undefined`] |
@@ -117,7 +117,7 @@ example().catch(console.error);
 
 ### Return type
 
-**string**
+**Blob**
 
 ### Authorization
 
@@ -126,13 +126,13 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `text/xml`
+- **Accept**: `image/png`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200** | PNG Image |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

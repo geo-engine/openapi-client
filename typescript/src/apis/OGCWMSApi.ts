@@ -15,16 +15,19 @@
 
 import * as runtime from '../runtime';
 import type {
-  GetCapabilitiesFormat,
   GetMapExceptionFormat,
+  WmsRequest,
+  WmsResponseFormat,
   WmsService,
   WmsVersion,
 } from '../models/index';
 import {
-    GetCapabilitiesFormatFromJSON,
-    GetCapabilitiesFormatToJSON,
     GetMapExceptionFormatFromJSON,
     GetMapExceptionFormatToJSON,
+    WmsRequestFromJSON,
+    WmsRequestToJSON,
+    WmsResponseFormatFromJSON,
+    WmsResponseFormatToJSON,
     WmsServiceFromJSON,
     WmsServiceToJSON,
     WmsVersionFromJSON,
@@ -33,13 +36,13 @@ import {
 
 export interface WmsHandlerRequest {
     workflow: string;
-    request: WmsHandlerRequestEnum;
+    request: WmsRequest;
     bbox?: string;
     bgcolor?: string | null;
     crs?: string | null;
     elevation?: string | null;
     exceptions?: GetMapExceptionFormat | null;
-    format?: GetCapabilitiesFormat | null;
+    format?: WmsResponseFormat | null;
     height?: number;
     infoFormat?: string | null;
     layer?: string;
@@ -63,7 +66,7 @@ export class OGCWMSApi extends runtime.BaseAPI {
     /**
      * OGC WMS endpoint
      */
-    async wmsHandlerRaw(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async wmsHandlerRaw(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
         if (requestParameters['workflow'] == null) {
             throw new runtime.RequiredError(
                 'workflow',
@@ -181,31 +184,15 @@ export class OGCWMSApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.BlobApiResponse(response);
     }
 
     /**
      * OGC WMS endpoint
      */
-    async wmsHandler(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async wmsHandler(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob> {
         const response = await this.wmsHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
 }
-
-/**
- * @export
- */
-export const WmsHandlerRequestEnum = {
-    GetCapabilities: 'GetCapabilities',
-    GetMap: 'GetMap',
-    GetFeatureInfo: 'GetFeatureInfo',
-    GetStyles: 'GetStyles',
-    GetLegendGraphic: 'GetLegendGraphic'
-} as const;
-export type WmsHandlerRequestEnum = typeof WmsHandlerRequestEnum[keyof typeof WmsHandlerRequestEnum];

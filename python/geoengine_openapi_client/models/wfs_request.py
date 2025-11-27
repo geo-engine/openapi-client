@@ -19,19 +19,20 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class GetFeatureRequest(str, Enum):
+class WfsRequest(str, Enum):
     """
-    GetFeatureRequest
+    WfsRequest
     """
 
     """
     allowed enum values
     """
+    GETCAPABILITIES = 'GetCapabilities'
     GETFEATURE = 'GetFeature'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of GetFeatureRequest from a JSON string"""
+        """Create an instance of WfsRequest from a JSON string"""
         return cls(json.loads(json_str))
 
 

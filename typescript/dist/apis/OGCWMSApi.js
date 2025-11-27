@@ -22,7 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WmsHandlerRequestEnum = exports.OGCWMSApi = void 0;
+exports.OGCWMSApi = void 0;
 const runtime = require("../runtime");
 /**
  *
@@ -116,12 +116,7 @@ class OGCWMSApi extends runtime.BaseAPI {
                 headers: headerParameters,
                 query: queryParameters,
             }, initOverrides);
-            if (this.isJsonMime(response.headers.get('content-type'))) {
-                return new runtime.JSONApiResponse(response);
-            }
-            else {
-                return new runtime.TextApiResponse(response);
-            }
+            return new runtime.BlobApiResponse(response);
         });
     }
     /**
@@ -135,13 +130,3 @@ class OGCWMSApi extends runtime.BaseAPI {
     }
 }
 exports.OGCWMSApi = OGCWMSApi;
-/**
- * @export
- */
-exports.WmsHandlerRequestEnum = {
-    GetCapabilities: 'GetCapabilities',
-    GetMap: 'GetMap',
-    GetFeatureInfo: 'GetFeatureInfo',
-    GetStyles: 'GetStyles',
-    GetLegendGraphic: 'GetLegendGraphic'
-};

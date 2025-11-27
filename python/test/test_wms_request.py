@@ -15,10 +15,10 @@
 
 import unittest
 
-from geoengine_openapi_client.models.get_feature_request import GetFeatureRequest
+from geoengine_openapi_client.models.wms_request import WmsRequest
 
-class TestGetFeatureRequest(unittest.TestCase):
-    """GetFeatureRequest unit test stubs"""
+class TestWmsRequest(unittest.TestCase):
+    """WmsRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,9 +26,9 @@ class TestGetFeatureRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testGetFeatureRequest(self):
-        """Test GetFeatureRequest"""
-        # inst = GetFeatureRequest()
+    def testWmsRequest(self):
+        """Test WmsRequest"""
+        # inst = WmsRequest()
 
 if __name__ == '__main__':
     unittest.main()

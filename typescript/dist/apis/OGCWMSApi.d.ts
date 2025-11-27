@@ -10,16 +10,16 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { GetCapabilitiesFormat, GetMapExceptionFormat, WmsService, WmsVersion } from '../models/index';
+import type { GetMapExceptionFormat, WmsRequest, WmsResponseFormat, WmsService, WmsVersion } from '../models/index';
 export interface WmsHandlerRequest {
     workflow: string;
-    request: WmsHandlerRequestEnum;
+    request: WmsRequest;
     bbox?: string;
     bgcolor?: string | null;
     crs?: string | null;
     elevation?: string | null;
     exceptions?: GetMapExceptionFormat | null;
-    format?: GetCapabilitiesFormat | null;
+    format?: WmsResponseFormat | null;
     height?: number;
     infoFormat?: string | null;
     layer?: string;
@@ -41,20 +41,9 @@ export declare class OGCWMSApi extends runtime.BaseAPI {
     /**
      * OGC WMS endpoint
      */
-    wmsHandlerRaw(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    wmsHandlerRaw(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>>;
     /**
      * OGC WMS endpoint
      */
-    wmsHandler(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    wmsHandler(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob>;
 }
-/**
- * @export
- */
-export declare const WmsHandlerRequestEnum: {
-    readonly GetCapabilities: "GetCapabilities";
-    readonly GetMap: "GetMap";
-    readonly GetFeatureInfo: "GetFeatureInfo";
-    readonly GetStyles: "GetStyles";
-    readonly GetLegendGraphic: "GetLegendGraphic";
-};
-export type WmsHandlerRequestEnum = typeof WmsHandlerRequestEnum[keyof typeof WmsHandlerRequestEnum];

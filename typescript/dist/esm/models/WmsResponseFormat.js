@@ -15,28 +15,29 @@
  *
  * @export
  */
-export const GetMapFormat = {
+export const WmsResponseFormat = {
+    TextXml: 'text/xml',
     ImagePng: 'image/png'
 };
-export function instanceOfGetMapFormat(value) {
-    for (const key in GetMapFormat) {
-        if (Object.prototype.hasOwnProperty.call(GetMapFormat, key)) {
-            if (GetMapFormat[key] === value) {
+export function instanceOfWmsResponseFormat(value) {
+    for (const key in WmsResponseFormat) {
+        if (Object.prototype.hasOwnProperty.call(WmsResponseFormat, key)) {
+            if (WmsResponseFormat[key] === value) {
                 return true;
             }
         }
     }
     return false;
 }
-export function GetMapFormatFromJSON(json) {
-    return GetMapFormatFromJSONTyped(json, false);
+export function WmsResponseFormatFromJSON(json) {
+    return WmsResponseFormatFromJSONTyped(json, false);
 }
-export function GetMapFormatFromJSONTyped(json, ignoreDiscriminator) {
+export function WmsResponseFormatFromJSONTyped(json, ignoreDiscriminator) {
     return json;
 }
-export function GetMapFormatToJSON(value) {
+export function WmsResponseFormatToJSON(value) {
     return value;
 }
-export function GetMapFormatToJSONTyped(value, ignoreDiscriminator) {
+export function WmsResponseFormatToJSONTyped(value, ignoreDiscriminator) {
     return value;
 }

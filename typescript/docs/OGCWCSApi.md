@@ -34,8 +34,8 @@ async function example() {
   const body = {
     // string | Workflow id
     workflow: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
-    // 'GetCapabilGetCapabilitiesities' | 'DescribeCoverage' | 'GetCoverage' | type of WMS request
-    request: request_example,
+    // WcsRequest | type of WCS request
+    request: ...,
     // string (optional)
     boundingbox: -90,-180,90,180,urn:ogc:def:crs:EPSG::4326,
     // GetCoverageFormat (optional)
@@ -82,7 +82,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **workflow** | `string` | Workflow id | [Defaults to `undefined`] |
-| **request** | `GetCapabilGetCapabilitiesities`, `DescribeCoverage`, `GetCoverage` | type of WMS request | [Defaults to `undefined`] [Enum: GetCapabilGetCapabilitiesities, DescribeCoverage, GetCoverage] |
+| **request** | `WcsRequest` | type of WCS request | [Defaults to `undefined`] [Enum: GetCapabilities, DescribeCoverage, GetCoverage] |
 | **boundingbox** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **format** | `GetCoverageFormat` |  | [Optional] [Defaults to `undefined`] [Enum: image/tiff] |
 | **gridbasecrs** | `string` |  | [Optional] [Defaults to `undefined`] |

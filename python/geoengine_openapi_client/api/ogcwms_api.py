@@ -17,12 +17,13 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr, field_validator
-from typing import Optional
+from pydantic import Field, StrictBool, StrictBytes, StrictStr
+from typing import Optional, Tuple, Union
 from typing_extensions import Annotated
 from uuid import UUID
-from geoengine_openapi_client.models.get_capabilities_format import GetCapabilitiesFormat
 from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat
+from geoengine_openapi_client.models.wms_request import WmsRequest
+from geoengine_openapi_client.models.wms_response_format import WmsResponseFormat
 from geoengine_openapi_client.models.wms_service import WmsService
 from geoengine_openapi_client.models.wms_version import WmsVersion
 
@@ -48,13 +49,13 @@ class OGCWMSApi:
     def wms_handler(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        request: Annotated[StrictStr, Field(description="type of WMS request")],
+        request: Annotated[WmsRequest, Field(description="type of WMS request")],
         bbox: Optional[StrictStr] = None,
         bgcolor: Optional[StrictStr] = None,
         crs: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
         exceptions: Optional[GetMapExceptionFormat] = None,
-        format: Optional[GetCapabilitiesFormat] = None,
+        format: Optional[WmsResponseFormat] = None,
         height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         info_format: Optional[StrictStr] = None,
         layer: Optional[StrictStr] = None,
@@ -80,14 +81,14 @@ class OGCWMSApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
+    ) -> bytearray:
         """OGC WMS endpoint
 
 
         :param workflow: Workflow id (required)
         :type workflow: str
         :param request: type of WMS request (required)
-        :type request: str
+        :type request: WmsRequest
         :param bbox:
         :type bbox: str
         :param bgcolor:
@@ -99,7 +100,7 @@ class OGCWMSApi:
         :param exceptions:
         :type exceptions: GetMapExceptionFormat
         :param format:
-        :type format: GetCapabilitiesFormat
+        :type format: WmsResponseFormat
         :param height:
         :type height: int
         :param info_format:
@@ -177,7 +178,7 @@ class OGCWMSApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "bytearray",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -194,13 +195,13 @@ class OGCWMSApi:
     def wms_handler_with_http_info(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        request: Annotated[StrictStr, Field(description="type of WMS request")],
+        request: Annotated[WmsRequest, Field(description="type of WMS request")],
         bbox: Optional[StrictStr] = None,
         bgcolor: Optional[StrictStr] = None,
         crs: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
         exceptions: Optional[GetMapExceptionFormat] = None,
-        format: Optional[GetCapabilitiesFormat] = None,
+        format: Optional[WmsResponseFormat] = None,
         height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         info_format: Optional[StrictStr] = None,
         layer: Optional[StrictStr] = None,
@@ -226,14 +227,14 @@ class OGCWMSApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
+    ) -> ApiResponse[bytearray]:
         """OGC WMS endpoint
 
 
         :param workflow: Workflow id (required)
         :type workflow: str
         :param request: type of WMS request (required)
-        :type request: str
+        :type request: WmsRequest
         :param bbox:
         :type bbox: str
         :param bgcolor:
@@ -245,7 +246,7 @@ class OGCWMSApi:
         :param exceptions:
         :type exceptions: GetMapExceptionFormat
         :param format:
-        :type format: GetCapabilitiesFormat
+        :type format: WmsResponseFormat
         :param height:
         :type height: int
         :param info_format:
@@ -323,7 +324,7 @@ class OGCWMSApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "bytearray",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -340,13 +341,13 @@ class OGCWMSApi:
     def wms_handler_without_preload_content(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        request: Annotated[StrictStr, Field(description="type of WMS request")],
+        request: Annotated[WmsRequest, Field(description="type of WMS request")],
         bbox: Optional[StrictStr] = None,
         bgcolor: Optional[StrictStr] = None,
         crs: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
         exceptions: Optional[GetMapExceptionFormat] = None,
-        format: Optional[GetCapabilitiesFormat] = None,
+        format: Optional[WmsResponseFormat] = None,
         height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         info_format: Optional[StrictStr] = None,
         layer: Optional[StrictStr] = None,
@@ -379,7 +380,7 @@ class OGCWMSApi:
         :param workflow: Workflow id (required)
         :type workflow: str
         :param request: type of WMS request (required)
-        :type request: str
+        :type request: WmsRequest
         :param bbox:
         :type bbox: str
         :param bgcolor:
@@ -391,7 +392,7 @@ class OGCWMSApi:
         :param exceptions:
         :type exceptions: GetMapExceptionFormat
         :param format:
-        :type format: GetCapabilitiesFormat
+        :type format: WmsResponseFormat
         :param height:
         :type height: int
         :param info_format:
@@ -469,7 +470,7 @@ class OGCWMSApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "bytearray",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -571,7 +572,7 @@ class OGCWMSApi:
             
         if request is not None:
             
-            _query_params.append(('request', request))
+            _query_params.append(('request', request.value))
             
         if service is not None:
             
@@ -614,7 +615,7 @@ class OGCWMSApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'text/xml'
+                    'image/png'
                 ]
             )
 

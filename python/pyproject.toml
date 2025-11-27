@@ -1,6 +1,6 @@
 [project]
 name = "geoengine_openapi_client"
-version = "0.0.29"
+version = "0.0.30"
 description = "Geo Engine API"
 authors = [
   {name = "Geo Engine Developers",email = "dev@geoengine.de"},

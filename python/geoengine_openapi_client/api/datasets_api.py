@@ -20,11 +20,14 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
+from geoengine_openapi_client.models.add_dataset_tile import AddDatasetTile
 from geoengine_openapi_client.models.auto_create_dataset import AutoCreateDataset
 from geoengine_openapi_client.models.create_dataset import CreateDataset
 from geoengine_openapi_client.models.dataset import Dataset
 from geoengine_openapi_client.models.dataset_listing import DatasetListing
 from geoengine_openapi_client.models.dataset_name_response import DatasetNameResponse
+from geoengine_openapi_client.models.dataset_tile import DatasetTile
 from geoengine_openapi_client.models.meta_data_definition import MetaDataDefinition
 from geoengine_openapi_client.models.meta_data_suggestion import MetaDataSuggestion
 from geoengine_openapi_client.models.order_by import OrderBy
@@ -32,6 +35,7 @@ from geoengine_openapi_client.models.provenances import Provenances
 from geoengine_openapi_client.models.suggest_meta_data import SuggestMetaData
 from geoengine_openapi_client.models.symbology import Symbology
 from geoengine_openapi_client.models.update_dataset import UpdateDataset
+from geoengine_openapi_client.models.update_dataset_tile import UpdateDatasetTile
 from geoengine_openapi_client.models.volume import Volume
 from geoengine_openapi_client.models.volume_file_layers_response import VolumeFileLayersResponse
 
@@ -57,7 +61,7 @@ class DatasetsApi:
     def add_dataset_tiles_handler(
         self,
         dataset: Annotated[StrictStr, Field(description="Dataset Name")],
-        auto_create_dataset: AutoCreateDataset,
+        add_dataset_tile: List[AddDatasetTile],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -71,13 +75,13 @@ class DatasetsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """Add a tile to a gdal dataset.
+        """Add tiles to a gdal dataset.
 
 
         :param dataset: Dataset Name (required)
         :type dataset: str
-        :param auto_create_dataset: (required)
-        :type auto_create_dataset: AutoCreateDataset
+        :param add_dataset_tile: (required)
+        :type add_dataset_tile: List[AddDatasetTile]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -102,7 +106,7 @@ class DatasetsApi:
 
         _param = self._add_dataset_tiles_handler_serialize(
             dataset=dataset,
-            auto_create_dataset=auto_create_dataset,
+            add_dataset_tile=add_dataset_tile,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -127,7 +131,7 @@ class DatasetsApi:
     def add_dataset_tiles_handler_with_http_info(
         self,
         dataset: Annotated[StrictStr, Field(description="Dataset Name")],
-        auto_create_dataset: AutoCreateDataset,
+        add_dataset_tile: List[AddDatasetTile],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -141,13 +145,13 @@ class DatasetsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """Add a tile to a gdal dataset.
+        """Add tiles to a gdal dataset.
 
 
         :param dataset: Dataset Name (required)
         :type dataset: str
-        :param auto_create_dataset: (required)
-        :type auto_create_dataset: AutoCreateDataset
+        :param add_dataset_tile: (required)
+        :type add_dataset_tile: List[AddDatasetTile]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -172,7 +176,7 @@ class DatasetsApi:
 
         _param = self._add_dataset_tiles_handler_serialize(
             dataset=dataset,
-            auto_create_dataset=auto_create_dataset,
+            add_dataset_tile=add_dataset_tile,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -197,7 +201,7 @@ class DatasetsApi:
     def add_dataset_tiles_handler_without_preload_content(
         self,
         dataset: Annotated[StrictStr, Field(description="Dataset Name")],
-        auto_create_dataset: AutoCreateDataset,
+        add_dataset_tile: List[AddDatasetTile],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -211,13 +215,13 @@ class DatasetsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Add a tile to a gdal dataset.
+        """Add tiles to a gdal dataset.
 
 
         :param dataset: Dataset Name (required)
         :type dataset: str
-        :param auto_create_dataset: (required)
-        :type auto_create_dataset: AutoCreateDataset
+        :param add_dataset_tile: (required)
+        :type add_dataset_tile: List[AddDatasetTile]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -242,7 +246,7 @@ class DatasetsApi:
 
         _param = self._add_dataset_tiles_handler_serialize(
             dataset=dataset,
-            auto_create_dataset=auto_create_dataset,
+            add_dataset_tile=add_dataset_tile,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -262,7 +266,7 @@ class DatasetsApi:
     def _add_dataset_tiles_handler_serialize(
         self,
         dataset,
-        auto_create_dataset,
+        add_dataset_tile,
         _request_auth,
         _content_type,
         _headers,
@@ -272,6 +276,7 @@ class DatasetsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'AddDatasetTile': '',
         }
 
         _path_params: Dict[str, str] = {}
@@ -290,8 +295,8 @@ class DatasetsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if auto_create_dataset is not None:
-            _body_params = auto_create_dataset
+        if add_dataset_tile is not None:
+            _body_params = add_dataset_tile
 
 
 
@@ -1399,6 +1404,301 @@ class DatasetsApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/dataset/{dataset}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_dataset_tiles_handler(
+        self,
+        dataset: Annotated[StrictStr, Field(description="Dataset Name")],
+        offset: Annotated[int, Field(strict=True, ge=0)],
+        limit: Annotated[int, Field(strict=True, ge=0)],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[DatasetTile]:
+        """Retrieves details about a dataset using the internal name.
+
+
+        :param dataset: Dataset Name (required)
+        :type dataset: str
+        :param offset: (required)
+        :type offset: int
+        :param limit: (required)
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_dataset_tiles_handler_serialize(
+            dataset=dataset,
+            offset=offset,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[DatasetTile]",
+            '401': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_dataset_tiles_handler_with_http_info(
+        self,
+        dataset: Annotated[StrictStr, Field(description="Dataset Name")],
+        offset: Annotated[int, Field(strict=True, ge=0)],
+        limit: Annotated[int, Field(strict=True, ge=0)],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[DatasetTile]]:
+        """Retrieves details about a dataset using the internal name.
+
+
+        :param dataset: Dataset Name (required)
+        :type dataset: str
+        :param offset: (required)
+        :type offset: int
+        :param limit: (required)
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_dataset_tiles_handler_serialize(
+            dataset=dataset,
+            offset=offset,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[DatasetTile]",
+            '401': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_dataset_tiles_handler_without_preload_content(
+        self,
+        dataset: Annotated[StrictStr, Field(description="Dataset Name")],
+        offset: Annotated[int, Field(strict=True, ge=0)],
+        limit: Annotated[int, Field(strict=True, ge=0)],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Retrieves details about a dataset using the internal name.
+
+
+        :param dataset: Dataset Name (required)
+        :type dataset: str
+        :param offset: (required)
+        :type offset: int
+        :param limit: (required)
+        :type limit: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_dataset_tiles_handler_serialize(
+            dataset=dataset,
+            offset=offset,
+            limit=limit,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[DatasetTile]",
+            '401': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_dataset_tiles_handler_serialize(
+        self,
+        dataset,
+        offset,
+        limit,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if dataset is not None:
+            _path_params['dataset'] = dataset
+        # process the query parameters
+        if offset is not None:
+            
+            _query_params.append(('offset', offset))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'session_token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/dataset/{dataset}/tiles',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3664,6 +3964,310 @@ class DatasetsApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/dataset/{dataset}/symbology',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_dataset_tile_handler(
+        self,
+        dataset: Annotated[StrictStr, Field(description="Dataset Name")],
+        tile: Annotated[UUID, Field(description="Tile Id")],
+        update_dataset_tile: UpdateDatasetTile,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Retrieves details about a dataset using the internal name.
+
+
+        :param dataset: Dataset Name (required)
+        :type dataset: str
+        :param tile: Tile Id (required)
+        :type tile: str
+        :param update_dataset_tile: (required)
+        :type update_dataset_tile: UpdateDatasetTile
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_dataset_tile_handler_serialize(
+            dataset=dataset,
+            tile=tile,
+            update_dataset_tile=update_dataset_tile,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '401': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_dataset_tile_handler_with_http_info(
+        self,
+        dataset: Annotated[StrictStr, Field(description="Dataset Name")],
+        tile: Annotated[UUID, Field(description="Tile Id")],
+        update_dataset_tile: UpdateDatasetTile,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Retrieves details about a dataset using the internal name.
+
+
+        :param dataset: Dataset Name (required)
+        :type dataset: str
+        :param tile: Tile Id (required)
+        :type tile: str
+        :param update_dataset_tile: (required)
+        :type update_dataset_tile: UpdateDatasetTile
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_dataset_tile_handler_serialize(
+            dataset=dataset,
+            tile=tile,
+            update_dataset_tile=update_dataset_tile,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '401': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_dataset_tile_handler_without_preload_content(
+        self,
+        dataset: Annotated[StrictStr, Field(description="Dataset Name")],
+        tile: Annotated[UUID, Field(description="Tile Id")],
+        update_dataset_tile: UpdateDatasetTile,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Retrieves details about a dataset using the internal name.
+
+
+        :param dataset: Dataset Name (required)
+        :type dataset: str
+        :param tile: Tile Id (required)
+        :type tile: str
+        :param update_dataset_tile: (required)
+        :type update_dataset_tile: UpdateDatasetTile
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_dataset_tile_handler_serialize(
+            dataset=dataset,
+            tile=tile,
+            update_dataset_tile=update_dataset_tile,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': None,
+            '401': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_dataset_tile_handler_serialize(
+        self,
+        dataset,
+        tile,
+        update_dataset_tile,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if dataset is not None:
+            _path_params['dataset'] = dataset
+        if tile is not None:
+            _path_params['tile'] = tile
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if update_dataset_tile is not None:
+            _body_params = update_dataset_tile
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'session_token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PUT',
+            resource_path='/dataset/{dataset}/tiles/{tile}',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

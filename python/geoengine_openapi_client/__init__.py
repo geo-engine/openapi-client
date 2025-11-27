@@ -261,6 +261,7 @@ __all__ = [
     "UnitlessMeasurement",
     "UnixTimeStampType",
     "UpdateDataset",
+    "UpdateDatasetTile",
     "UpdateLayer",
     "UpdateLayerCollection",
     "UpdateProject",
@@ -541,6 +542,7 @@ from geoengine_openapi_client.models.typed_vector_result_descriptor import Typed
 from geoengine_openapi_client.models.unitless_measurement import UnitlessMeasurement as UnitlessMeasurement
 from geoengine_openapi_client.models.unix_time_stamp_type import UnixTimeStampType as UnixTimeStampType
 from geoengine_openapi_client.models.update_dataset import UpdateDataset as UpdateDataset
+from geoengine_openapi_client.models.update_dataset_tile import UpdateDatasetTile as UpdateDatasetTile
 from geoengine_openapi_client.models.update_layer import UpdateLayer as UpdateLayer
 from geoengine_openapi_client.models.update_layer_collection import UpdateLayerCollection as UpdateLayerCollection
 from geoengine_openapi_client.models.update_project import UpdateProject as UpdateProject

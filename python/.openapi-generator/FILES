@@ -233,6 +233,7 @@ docs/TypedVectorResultDescriptor.md
 docs/UnitlessMeasurement.md
 docs/UnixTimeStampType.md
 docs/UpdateDataset.md
+docs/UpdateDatasetTile.md
 docs/UpdateLayer.md
 docs/UpdateLayerCollection.md
 docs/UpdateProject.md
@@ -507,6 +508,7 @@ geoengine_openapi_client/models/typed_vector_result_descriptor.py
 geoengine_openapi_client/models/unitless_measurement.py
 geoengine_openapi_client/models/unix_time_stamp_type.py
 geoengine_openapi_client/models/update_dataset.py
+geoengine_openapi_client/models/update_dataset_tile.py
 geoengine_openapi_client/models/update_layer.py
 geoengine_openapi_client/models/update_layer_collection.py
 geoengine_openapi_client/models/update_project.py
@@ -777,6 +779,7 @@ test/test_typed_vector_result_descriptor.py
 test/test_unitless_measurement.py
 test/test_unix_time_stamp_type.py
 test/test_update_dataset.py
+test/test_update_dataset_tile.py
 test/test_update_layer.py
 test/test_update_layer_collection.py
 test/test_update_project.py

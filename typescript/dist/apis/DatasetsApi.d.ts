@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AutoCreateDataset, CreateDataset, Dataset, DatasetListing, DatasetNameResponse, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, Volume, VolumeFileLayersResponse } from '../models/index';
+import type { AddDatasetTile, AutoCreateDataset, CreateDataset, Dataset, DatasetListing, DatasetNameResponse, DatasetTile, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, UpdateDatasetTile, Volume, VolumeFileLayersResponse } from '../models/index';
 export interface AddDatasetTilesHandlerRequest {
     dataset: string;
-    autoCreateDataset: AutoCreateDataset;
+    addDatasetTile: Array<AddDatasetTile>;
 }
 export interface AutoCreateDatasetHandlerRequest {
     autoCreateDataset: AutoCreateDataset;
@@ -26,6 +26,11 @@ export interface DeleteDatasetHandlerRequest {
 }
 export interface GetDatasetHandlerRequest {
     dataset: string;
+}
+export interface GetDatasetTilesHandlerRequest {
+    dataset: string;
+    offset: number;
+    limit: number;
 }
 export interface GetLoadingInfoHandlerRequest {
     dataset: string;
@@ -56,6 +61,11 @@ export interface UpdateDatasetSymbologyHandlerRequest {
     dataset: string;
     symbology: Symbology;
 }
+export interface UpdateDatasetTileHandlerRequest {
+    dataset: string;
+    tile: string;
+    updateDatasetTile: UpdateDatasetTile;
+}
 export interface UpdateLoadingInfoHandlerRequest {
     dataset: string;
     metaDataDefinition: MetaDataDefinition;
@@ -65,11 +75,11 @@ export interface UpdateLoadingInfoHandlerRequest {
  */
 export declare class DatasetsApi extends runtime.BaseAPI {
     /**
-     * Add a tile to a gdal dataset.
+     * Add tiles to a gdal dataset.
      */
     addDatasetTilesHandlerRaw(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Add a tile to a gdal dataset.
+     * Add tiles to a gdal dataset.
      */
     addDatasetTilesHandler(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
@@ -104,6 +114,14 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Retrieves details about a dataset using the internal name.
      */
     getDatasetHandler(requestParameters: GetDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Dataset>;
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    getDatasetTilesHandlerRaw(requestParameters: GetDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DatasetTile>>>;
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    getDatasetTilesHandler(requestParameters: GetDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DatasetTile>>;
     /**
      * Retrieves the loading information of a dataset
      */
@@ -166,6 +184,14 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Updates the dataset\'s symbology
      */
     updateDatasetSymbologyHandler(requestParameters: UpdateDatasetSymbologyHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    updateDatasetTileHandlerRaw(requestParameters: UpdateDatasetTileHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    updateDatasetTileHandler(requestParameters: UpdateDatasetTileHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Updates the dataset\'s loading info
      */

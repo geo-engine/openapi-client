@@ -233,6 +233,7 @@ __exportStar(require("./TypedVectorResultDescriptor"), exports);
 __exportStar(require("./UnitlessMeasurement"), exports);
 __exportStar(require("./UnixTimeStampType"), exports);
 __exportStar(require("./UpdateDataset"), exports);
+__exportStar(require("./UpdateDatasetTile"), exports);
 __exportStar(require("./UpdateLayer"), exports);
 __exportStar(require("./UpdateLayerCollection"), exports);
 __exportStar(require("./UpdateProject"), exports);

@@ -4,11 +4,12 @@ All URIs are relative to *https://geoengine.io/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addDatasetTilesHandler**](DatasetsApi.md#adddatasettileshandler) | **POST** /dataset/{dataset}/tiles | Add a tile to a gdal dataset. |
+| [**addDatasetTilesHandler**](DatasetsApi.md#adddatasettileshandler) | **POST** /dataset/{dataset}/tiles | Add tiles to a gdal dataset. |
 | [**autoCreateDatasetHandler**](DatasetsApi.md#autocreatedatasethandler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible. |
 | [**createDatasetHandler**](DatasetsApi.md#createdatasethandler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume. |
 | [**deleteDatasetHandler**](DatasetsApi.md#deletedatasethandler) | **DELETE** /dataset/{dataset} | Delete a dataset |
 | [**getDatasetHandler**](DatasetsApi.md#getdatasethandler) | **GET** /dataset/{dataset} | Retrieves details about a dataset using the internal name. |
+| [**getDatasetTilesHandler**](DatasetsApi.md#getdatasettileshandler) | **GET** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name. |
 | [**getLoadingInfoHandler**](DatasetsApi.md#getloadinginfohandler) | **GET** /dataset/{dataset}/loadingInfo | Retrieves the loading information of a dataset |
 | [**listDatasetsHandler**](DatasetsApi.md#listdatasetshandler) | **GET** /datasets | Lists available datasets. |
 | [**listVolumeFileLayersHandler**](DatasetsApi.md#listvolumefilelayershandler) | **GET** /dataset/volumes/{volume_name}/files/{file_name}/layers | List the layers of a file in a volume. |
@@ -17,15 +18,16 @@ All URIs are relative to *https://geoengine.io/api*
 | [**updateDatasetHandler**](DatasetsApi.md#updatedatasethandler) | **POST** /dataset/{dataset} | Update details about a dataset using the internal name. |
 | [**updateDatasetProvenanceHandler**](DatasetsApi.md#updatedatasetprovenancehandler) | **PUT** /dataset/{dataset}/provenance |  |
 | [**updateDatasetSymbologyHandler**](DatasetsApi.md#updatedatasetsymbologyhandler) | **PUT** /dataset/{dataset}/symbology | Updates the dataset\&#39;s symbology |
+| [**updateDatasetTileHandler**](DatasetsApi.md#updatedatasettilehandler) | **PUT** /dataset/{dataset}/tiles/{tile} | Retrieves details about a dataset using the internal name. |
 | [**updateLoadingInfoHandler**](DatasetsApi.md#updateloadinginfohandler) | **PUT** /dataset/{dataset}/loadingInfo | Updates the dataset\&#39;s loading info |
 
 
 
 ## addDatasetTilesHandler
 
-> addDatasetTilesHandler(dataset, autoCreateDataset)
+> addDatasetTilesHandler(dataset, addDatasetTile)
 
-Add a tile to a gdal dataset.
+Add tiles to a gdal dataset.
 
 ### Example
 
@@ -47,8 +49,8 @@ async function example() {
   const body = {
     // string | Dataset Name
     dataset: dataset_example,
-    // AutoCreateDataset
-    autoCreateDataset: ...,
+    // Array<AddDatasetTile>
+    addDatasetTile: ...,
   } satisfies AddDatasetTilesHandlerRequest;
 
   try {
@@ -69,7 +71,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **dataset** | `string` | Dataset Name | [Defaults to `undefined`] |
-| **autoCreateDataset** | [AutoCreateDataset](AutoCreateDataset.md) |  | |
+| **addDatasetTile** | `Array<AddDatasetTile>` |  | |
 
 ### Return type
 
@@ -372,6 +374,82 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **400** | Bad request |  -  |
+| **401** | Authorization failed |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getDatasetTilesHandler
+
+> Array&lt;DatasetTile&gt; getDatasetTilesHandler(dataset, offset, limit)
+
+Retrieves details about a dataset using the internal name.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DatasetsApi,
+} from '@geoengine/openapi-client';
+import type { GetDatasetTilesHandlerRequest } from '@geoengine/openapi-client';
+
+async function example() {
+  console.log("🚀 Testing @geoengine/openapi-client SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: session_token
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DatasetsApi(config);
+
+  const body = {
+    // string | Dataset Name
+    dataset: dataset_example,
+    // number
+    offset: 56,
+    // number
+    limit: 56,
+  } satisfies GetDatasetTilesHandlerRequest;
+
+  try {
+    const data = await api.getDatasetTilesHandler(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **dataset** | `string` | Dataset Name | [Defaults to `undefined`] |
+| **offset** | `number` |  | [Defaults to `undefined`] |
+| **limit** | `number` |  | [Defaults to `undefined`] |
+
+### Return type
+
+[**Array&lt;DatasetTile&gt;**](DatasetTile.md)
+
+### Authorization
+
+[session_token](../README.md#session_token)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 | **401** | Authorization failed |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
@@ -951,6 +1029,82 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **400** | Bad request |  -  |
+| **401** | Authorization failed |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## updateDatasetTileHandler
+
+> updateDatasetTileHandler(dataset, tile, updateDatasetTile)
+
+Retrieves details about a dataset using the internal name.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DatasetsApi,
+} from '@geoengine/openapi-client';
+import type { UpdateDatasetTileHandlerRequest } from '@geoengine/openapi-client';
+
+async function example() {
+  console.log("🚀 Testing @geoengine/openapi-client SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: session_token
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DatasetsApi(config);
+
+  const body = {
+    // string | Dataset Name
+    dataset: dataset_example,
+    // string | Tile Id
+    tile: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
+    // UpdateDatasetTile
+    updateDatasetTile: ...,
+  } satisfies UpdateDatasetTileHandlerRequest;
+
+  try {
+    const data = await api.updateDatasetTileHandler(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **dataset** | `string` | Dataset Name | [Defaults to `undefined`] |
+| **tile** | `string` | Tile Id | [Defaults to `undefined`] |
+| **updateDatasetTile** | [UpdateDatasetTile](UpdateDatasetTile.md) |  | |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+[session_token](../README.md#session_token)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 | **401** | Authorization failed |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

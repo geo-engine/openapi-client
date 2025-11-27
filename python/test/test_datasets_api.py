@@ -30,7 +30,7 @@ class TestDatasetsApi(unittest.TestCase):
     def test_add_dataset_tiles_handler(self) -> None:
         """Test case for add_dataset_tiles_handler
 
-        Add a tile to a gdal dataset.
+        Add tiles to a gdal dataset.
         """
         pass
 
@@ -57,6 +57,13 @@ class TestDatasetsApi(unittest.TestCase):
 
     def test_get_dataset_handler(self) -> None:
         """Test case for get_dataset_handler
+
+        Retrieves details about a dataset using the internal name.
+        """
+        pass
+
+    def test_get_dataset_tiles_handler(self) -> None:
+        """Test case for get_dataset_tiles_handler
 
         Retrieves details about a dataset using the internal name.
         """
@@ -114,6 +121,13 @@ class TestDatasetsApi(unittest.TestCase):
         """Test case for update_dataset_symbology_handler
 
         Updates the dataset's symbology
+        """
+        pass
+
+    def test_update_dataset_tile_handler(self) -> None:
+        """Test case for update_dataset_tile_handler
+
+        Retrieves details about a dataset using the internal name.
         """
         pass
 

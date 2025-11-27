@@ -31,8 +31,8 @@ async function example() {
   const body = {
     // string | Dataset Name
     dataset: dataset_example,
-    // AutoCreateDataset
-    autoCreateDataset: ...,
+    // Array<AddDatasetTile>
+    addDatasetTile: ...,
   } satisfies AddDatasetTilesHandlerRequest;
 
   try {
@@ -56,11 +56,12 @@ All URIs are relative to *https://geoengine.io/api*
 
 | Class | Method | HTTP request | Description
 | ----- | ------ | ------------ | -------------
-*DatasetsApi* | [**addDatasetTilesHandler**](docs/DatasetsApi.md#adddatasettileshandler) | **POST** /dataset/{dataset}/tiles | Add a tile to a gdal dataset.
+*DatasetsApi* | [**addDatasetTilesHandler**](docs/DatasetsApi.md#adddatasettileshandler) | **POST** /dataset/{dataset}/tiles | Add tiles to a gdal dataset.
 *DatasetsApi* | [**autoCreateDatasetHandler**](docs/DatasetsApi.md#autocreatedatasethandler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 *DatasetsApi* | [**createDatasetHandler**](docs/DatasetsApi.md#createdatasethandler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 *DatasetsApi* | [**deleteDatasetHandler**](docs/DatasetsApi.md#deletedatasethandler) | **DELETE** /dataset/{dataset} | Delete a dataset
 *DatasetsApi* | [**getDatasetHandler**](docs/DatasetsApi.md#getdatasethandler) | **GET** /dataset/{dataset} | Retrieves details about a dataset using the internal name.
+*DatasetsApi* | [**getDatasetTilesHandler**](docs/DatasetsApi.md#getdatasettileshandler) | **GET** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**getLoadingInfoHandler**](docs/DatasetsApi.md#getloadinginfohandler) | **GET** /dataset/{dataset}/loadingInfo | Retrieves the loading information of a dataset
 *DatasetsApi* | [**listDatasetsHandler**](docs/DatasetsApi.md#listdatasetshandler) | **GET** /datasets | Lists available datasets.
 *DatasetsApi* | [**listVolumeFileLayersHandler**](docs/DatasetsApi.md#listvolumefilelayershandler) | **GET** /dataset/volumes/{volume_name}/files/{file_name}/layers | List the layers of a file in a volume.
@@ -69,6 +70,7 @@ All URIs are relative to *https://geoengine.io/api*
 *DatasetsApi* | [**updateDatasetHandler**](docs/DatasetsApi.md#updatedatasethandler) | **POST** /dataset/{dataset} | Update details about a dataset using the internal name.
 *DatasetsApi* | [**updateDatasetProvenanceHandler**](docs/DatasetsApi.md#updatedatasetprovenancehandler) | **PUT** /dataset/{dataset}/provenance | 
 *DatasetsApi* | [**updateDatasetSymbologyHandler**](docs/DatasetsApi.md#updatedatasetsymbologyhandler) | **PUT** /dataset/{dataset}/symbology | Updates the dataset\&#39;s symbology
+*DatasetsApi* | [**updateDatasetTileHandler**](docs/DatasetsApi.md#updatedatasettilehandler) | **PUT** /dataset/{dataset}/tiles/{tile} | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**updateLoadingInfoHandler**](docs/DatasetsApi.md#updateloadinginfohandler) | **PUT** /dataset/{dataset}/loadingInfo | Updates the dataset\&#39;s loading info
 *GeneralApi* | [**availableHandler**](docs/GeneralApi.md#availablehandler) | **GET** /available | Server availablity check.
 *GeneralApi* | [**serverInfoHandler**](docs/GeneralApi.md#serverinfohandler) | **GET** /info | Shows information about the server software version.
@@ -369,6 +371,7 @@ All URIs are relative to *https://geoengine.io/api*
 - [UnitlessMeasurement](docs/UnitlessMeasurement.md)
 - [UnixTimeStampType](docs/UnixTimeStampType.md)
 - [UpdateDataset](docs/UpdateDataset.md)
+- [UpdateDatasetTile](docs/UpdateDatasetTile.md)
 - [UpdateLayer](docs/UpdateLayer.md)
 - [UpdateLayerCollection](docs/UpdateLayerCollection.md)
 - [UpdateProject](docs/UpdateProject.md)

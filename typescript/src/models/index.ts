@@ -217,6 +217,7 @@ export * from './TypedVectorResultDescriptor';
 export * from './UnitlessMeasurement';
 export * from './UnixTimeStampType';
 export * from './UpdateDataset';
+export * from './UpdateDatasetTile';
 export * from './UpdateLayer';
 export * from './UpdateLayerCollection';
 export * from './UpdateProject';

@@ -30,15 +30,15 @@ const index_1 = require("../models/index");
  */
 class DatasetsApi extends runtime.BaseAPI {
     /**
-     * Add a tile to a gdal dataset.
+     * Add tiles to a gdal dataset.
      */
     addDatasetTilesHandlerRaw(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['dataset'] == null) {
                 throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling addDatasetTilesHandler().');
             }
-            if (requestParameters['autoCreateDataset'] == null) {
-                throw new runtime.RequiredError('autoCreateDataset', 'Required parameter "autoCreateDataset" was null or undefined when calling addDatasetTilesHandler().');
+            if (requestParameters['addDatasetTile'] == null) {
+                throw new runtime.RequiredError('addDatasetTile', 'Required parameter "addDatasetTile" was null or undefined when calling addDatasetTilesHandler().');
             }
             const queryParameters = {};
             const headerParameters = {};
@@ -57,13 +57,13 @@ class DatasetsApi extends runtime.BaseAPI {
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-                body: (0, index_1.AutoCreateDatasetToJSON)(requestParameters['autoCreateDataset']),
+                body: requestParameters['addDatasetTile'].map(index_1.AddDatasetTileToJSON),
             }, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
     /**
-     * Add a tile to a gdal dataset.
+     * Add tiles to a gdal dataset.
      */
     addDatasetTilesHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -216,6 +216,55 @@ class DatasetsApi extends runtime.BaseAPI {
     getDatasetHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.getDatasetHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
+        });
+    }
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    getDatasetTilesHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['dataset'] == null) {
+                throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling getDatasetTilesHandler().');
+            }
+            if (requestParameters['offset'] == null) {
+                throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling getDatasetTilesHandler().');
+            }
+            if (requestParameters['limit'] == null) {
+                throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling getDatasetTilesHandler().');
+            }
+            const queryParameters = {};
+            if (requestParameters['offset'] != null) {
+                queryParameters['offset'] = requestParameters['offset'];
+            }
+            if (requestParameters['limit'] != null) {
+                queryParameters['limit'] = requestParameters['limit'];
+            }
+            const headerParameters = {};
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            let urlPath = `/dataset/{dataset}/tiles`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
+            const response = yield this.request({
+                path: urlPath,
+                method: 'GET',
+                headers: headerParameters,
+                query: queryParameters,
+            }, initOverrides);
+            return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(index_1.DatasetTileFromJSON));
+        });
+    }
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    getDatasetTilesHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield this.getDatasetTilesHandlerRaw(requestParameters, initOverrides);
             return yield response.value();
         });
     }
@@ -544,6 +593,51 @@ class DatasetsApi extends runtime.BaseAPI {
     updateDatasetSymbologyHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.updateDatasetSymbologyHandlerRaw(requestParameters, initOverrides);
+        });
+    }
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    updateDatasetTileHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['dataset'] == null) {
+                throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling updateDatasetTileHandler().');
+            }
+            if (requestParameters['tile'] == null) {
+                throw new runtime.RequiredError('tile', 'Required parameter "tile" was null or undefined when calling updateDatasetTileHandler().');
+            }
+            if (requestParameters['updateDatasetTile'] == null) {
+                throw new runtime.RequiredError('updateDatasetTile', 'Required parameter "updateDatasetTile" was null or undefined when calling updateDatasetTileHandler().');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            let urlPath = `/dataset/{dataset}/tiles/{tile}`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
+            urlPath = urlPath.replace(`{${"tile"}}`, encodeURIComponent(String(requestParameters['tile'])));
+            const response = yield this.request({
+                path: urlPath,
+                method: 'PUT',
+                headers: headerParameters,
+                query: queryParameters,
+                body: (0, index_1.UpdateDatasetTileToJSON)(requestParameters['updateDatasetTile']),
+            }, initOverrides);
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    updateDatasetTileHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.updateDatasetTileHandlerRaw(requestParameters, initOverrides);
         });
     }
     /**

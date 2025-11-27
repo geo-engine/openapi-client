@@ -77,11 +77,11 @@ with geoengine_openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = geoengine_openapi_client.DatasetsApi(api_client)
     dataset = 'dataset_example' # str | Dataset Name
-    auto_create_dataset = geoengine_openapi_client.AutoCreateDataset() # AutoCreateDataset | 
+    add_dataset_tile = [geoengine_openapi_client.AddDatasetTile()] # List[AddDatasetTile] | 
 
     try:
-        # Add a tile to a gdal dataset.
-        api_instance.add_dataset_tiles_handler(dataset, auto_create_dataset)
+        # Add tiles to a gdal dataset.
+        api_instance.add_dataset_tiles_handler(dataset, add_dataset_tile)
     except ApiException as e:
         print("Exception when calling DatasetsApi->add_dataset_tiles_handler: %s\n" % e)
 
@@ -93,11 +93,12 @@ All URIs are relative to *https://geoengine.io/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DatasetsApi* | [**add_dataset_tiles_handler**](docs/DatasetsApi.md#add_dataset_tiles_handler) | **POST** /dataset/{dataset}/tiles | Add a tile to a gdal dataset.
+*DatasetsApi* | [**add_dataset_tiles_handler**](docs/DatasetsApi.md#add_dataset_tiles_handler) | **POST** /dataset/{dataset}/tiles | Add tiles to a gdal dataset.
 *DatasetsApi* | [**auto_create_dataset_handler**](docs/DatasetsApi.md#auto_create_dataset_handler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 *DatasetsApi* | [**create_dataset_handler**](docs/DatasetsApi.md#create_dataset_handler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 *DatasetsApi* | [**delete_dataset_handler**](docs/DatasetsApi.md#delete_dataset_handler) | **DELETE** /dataset/{dataset} | Delete a dataset
 *DatasetsApi* | [**get_dataset_handler**](docs/DatasetsApi.md#get_dataset_handler) | **GET** /dataset/{dataset} | Retrieves details about a dataset using the internal name.
+*DatasetsApi* | [**get_dataset_tiles_handler**](docs/DatasetsApi.md#get_dataset_tiles_handler) | **GET** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**get_loading_info_handler**](docs/DatasetsApi.md#get_loading_info_handler) | **GET** /dataset/{dataset}/loadingInfo | Retrieves the loading information of a dataset
 *DatasetsApi* | [**list_datasets_handler**](docs/DatasetsApi.md#list_datasets_handler) | **GET** /datasets | Lists available datasets.
 *DatasetsApi* | [**list_volume_file_layers_handler**](docs/DatasetsApi.md#list_volume_file_layers_handler) | **GET** /dataset/volumes/{volume_name}/files/{file_name}/layers | List the layers of a file in a volume.
@@ -106,6 +107,7 @@ Class | Method | HTTP request | Description
 *DatasetsApi* | [**update_dataset_handler**](docs/DatasetsApi.md#update_dataset_handler) | **POST** /dataset/{dataset} | Update details about a dataset using the internal name.
 *DatasetsApi* | [**update_dataset_provenance_handler**](docs/DatasetsApi.md#update_dataset_provenance_handler) | **PUT** /dataset/{dataset}/provenance | 
 *DatasetsApi* | [**update_dataset_symbology_handler**](docs/DatasetsApi.md#update_dataset_symbology_handler) | **PUT** /dataset/{dataset}/symbology | Updates the dataset&#39;s symbology
+*DatasetsApi* | [**update_dataset_tile_handler**](docs/DatasetsApi.md#update_dataset_tile_handler) | **PUT** /dataset/{dataset}/tiles/{tile} | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**update_loading_info_handler**](docs/DatasetsApi.md#update_loading_info_handler) | **PUT** /dataset/{dataset}/loadingInfo | Updates the dataset&#39;s loading info
 *GeneralApi* | [**available_handler**](docs/GeneralApi.md#available_handler) | **GET** /available | Server availablity check.
 *GeneralApi* | [**server_info_handler**](docs/GeneralApi.md#server_info_handler) | **GET** /info | Shows information about the server software version.
@@ -406,6 +408,7 @@ Class | Method | HTTP request | Description
  - [UnitlessMeasurement](docs/UnitlessMeasurement.md)
  - [UnixTimeStampType](docs/UnixTimeStampType.md)
  - [UpdateDataset](docs/UpdateDataset.md)
+ - [UpdateDatasetTile](docs/UpdateDatasetTile.md)
  - [UpdateLayer](docs/UpdateLayer.md)
  - [UpdateLayerCollection](docs/UpdateLayerCollection.md)
  - [UpdateProject](docs/UpdateProject.md)

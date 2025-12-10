@@ -22,6 +22,7 @@ import type {
   DatasetListing,
   DatasetNameResponse,
   DatasetTile,
+  DeleteDatasetTiles,
   ErrorResponse,
   MetaDataDefinition,
   MetaDataSuggestion,
@@ -49,6 +50,8 @@ import {
     DatasetNameResponseToJSON,
     DatasetTileFromJSON,
     DatasetTileToJSON,
+    DeleteDatasetTilesFromJSON,
+    DeleteDatasetTilesToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     MetaDataDefinitionFromJSON,
@@ -88,6 +91,11 @@ export interface CreateDatasetHandlerRequest {
 
 export interface DeleteDatasetHandlerRequest {
     dataset: string;
+}
+
+export interface DeleteDatasetTilesHandlerRequest {
+    dataset: string;
+    deleteDatasetTiles: DeleteDatasetTiles;
 }
 
 export interface GetDatasetHandlerRequest {
@@ -155,7 +163,7 @@ export class DatasetsApi extends runtime.BaseAPI {
     /**
      * Add tiles to a gdal dataset.
      */
-    async addDatasetTilesHandlerRaw(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addDatasetTilesHandlerRaw(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
         if (requestParameters['dataset'] == null) {
             throw new runtime.RequiredError(
                 'dataset',
@@ -196,14 +204,15 @@ export class DatasetsApi extends runtime.BaseAPI {
             body: requestParameters['addDatasetTile']!.map(AddDatasetTileToJSON),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * Add tiles to a gdal dataset.
      */
-    async addDatasetTilesHandler(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addDatasetTilesHandlerRaw(requestParameters, initOverrides);
+    async addDatasetTilesHandler(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>> {
+        const response = await this.addDatasetTilesHandlerRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -342,6 +351,60 @@ export class DatasetsApi extends runtime.BaseAPI {
      */
     async deleteDatasetHandler(requestParameters: DeleteDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteDatasetHandlerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    async deleteDatasetTilesHandlerRaw(requestParameters: DeleteDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['dataset'] == null) {
+            throw new runtime.RequiredError(
+                'dataset',
+                'Required parameter "dataset" was null or undefined when calling deleteDatasetTilesHandler().'
+            );
+        }
+
+        if (requestParameters['deleteDatasetTiles'] == null) {
+            throw new runtime.RequiredError(
+                'deleteDatasetTiles',
+                'Required parameter "deleteDatasetTiles" was null or undefined when calling deleteDatasetTilesHandler().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("session_token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+
+        let urlPath = `/dataset/{dataset}/tiles`;
+        urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
+
+        const response = await this.request({
+            path: urlPath,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+            body: DeleteDatasetTilesToJSON(requestParameters['deleteDatasetTiles']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    async deleteDatasetTilesHandler(requestParameters: DeleteDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteDatasetTilesHandlerRaw(requestParameters, initOverrides);
     }
 
     /**

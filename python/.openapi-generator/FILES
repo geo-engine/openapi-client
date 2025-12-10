@@ -44,6 +44,7 @@ docs/DatasetNameResponse.md
 docs/DatasetResource.md
 docs/DatasetTile.md
 docs/DatasetsApi.md
+docs/DeleteDatasetTiles.md
 docs/DerivedColor.md
 docs/DerivedNumber.md
 docs/EbvPortalDataProviderDefinition.md
@@ -331,6 +332,7 @@ geoengine_openapi_client/models/dataset_listing.py
 geoengine_openapi_client/models/dataset_name_response.py
 geoengine_openapi_client/models/dataset_resource.py
 geoengine_openapi_client/models/dataset_tile.py
+geoengine_openapi_client/models/delete_dataset_tiles.py
 geoengine_openapi_client/models/derived_color.py
 geoengine_openapi_client/models/derived_number.py
 geoengine_openapi_client/models/ebv_portal_data_provider_definition.py
@@ -590,6 +592,7 @@ test/test_dataset_name_response.py
 test/test_dataset_resource.py
 test/test_dataset_tile.py
 test/test_datasets_api.py
+test/test_delete_dataset_tiles.py
 test/test_derived_color.py
 test/test_derived_number.py
 test/test_ebv_portal_data_provider_definition.py

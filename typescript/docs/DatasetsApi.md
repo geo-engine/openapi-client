@@ -8,6 +8,7 @@ All URIs are relative to *https://geoengine.io/api*
 | [**autoCreateDatasetHandler**](DatasetsApi.md#autocreatedatasethandler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible. |
 | [**createDatasetHandler**](DatasetsApi.md#createdatasethandler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume. |
 | [**deleteDatasetHandler**](DatasetsApi.md#deletedatasethandler) | **DELETE** /dataset/{dataset} | Delete a dataset |
+| [**deleteDatasetTilesHandler**](DatasetsApi.md#deletedatasettileshandler) | **DELETE** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name. |
 | [**getDatasetHandler**](DatasetsApi.md#getdatasethandler) | **GET** /dataset/{dataset} | Retrieves details about a dataset using the internal name. |
 | [**getDatasetTilesHandler**](DatasetsApi.md#getdatasettileshandler) | **GET** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name. |
 | [**getLoadingInfoHandler**](DatasetsApi.md#getloadinginfohandler) | **GET** /dataset/{dataset}/loadingInfo | Retrieves the loading information of a dataset |
@@ -25,7 +26,7 @@ All URIs are relative to *https://geoengine.io/api*
 
 ## addDatasetTilesHandler
 
-> addDatasetTilesHandler(dataset, addDatasetTile)
+> Array&lt;string&gt; addDatasetTilesHandler(dataset, addDatasetTile)
 
 Add tiles to a gdal dataset.
 
@@ -75,7 +76,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+**Array<string>**
 
 ### Authorization
 
@@ -84,13 +85,13 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** |  |  -  |
+| **200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -303,6 +304,79 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **400** | Bad request |  -  |
+| **401** | Authorization failed |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## deleteDatasetTilesHandler
+
+> deleteDatasetTilesHandler(dataset, deleteDatasetTiles)
+
+Retrieves details about a dataset using the internal name.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  DatasetsApi,
+} from '@geoengine/openapi-client';
+import type { DeleteDatasetTilesHandlerRequest } from '@geoengine/openapi-client';
+
+async function example() {
+  console.log("🚀 Testing @geoengine/openapi-client SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: session_token
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DatasetsApi(config);
+
+  const body = {
+    // string | Dataset Name
+    dataset: dataset_example,
+    // DeleteDatasetTiles
+    deleteDatasetTiles: ...,
+  } satisfies DeleteDatasetTilesHandlerRequest;
+
+  try {
+    const data = await api.deleteDatasetTilesHandler(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **dataset** | `string` | Dataset Name | [Defaults to `undefined`] |
+| **deleteDatasetTiles** | [DeleteDatasetTiles](DeleteDatasetTiles.md) |  | |
+
+### Return type
+
+`void` (Empty response body)
+
+### Authorization
+
+[session_token](../README.md#session_token)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
 | **401** | Authorization failed |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

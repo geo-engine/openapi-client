@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { AddDatasetTile, AutoCreateDataset, CreateDataset, Dataset, DatasetListing, DatasetNameResponse, DatasetTile, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, UpdateDatasetTile, Volume, VolumeFileLayersResponse } from '../models/index';
+import type { AddDatasetTile, AutoCreateDataset, CreateDataset, Dataset, DatasetListing, DatasetNameResponse, DatasetTile, DeleteDatasetTiles, MetaDataDefinition, MetaDataSuggestion, OrderBy, Provenances, SuggestMetaData, Symbology, UpdateDataset, UpdateDatasetTile, Volume, VolumeFileLayersResponse } from '../models/index';
 export interface AddDatasetTilesHandlerRequest {
     dataset: string;
     addDatasetTile: Array<AddDatasetTile>;
@@ -23,6 +23,10 @@ export interface CreateDatasetHandlerRequest {
 }
 export interface DeleteDatasetHandlerRequest {
     dataset: string;
+}
+export interface DeleteDatasetTilesHandlerRequest {
+    dataset: string;
+    deleteDatasetTiles: DeleteDatasetTiles;
 }
 export interface GetDatasetHandlerRequest {
     dataset: string;
@@ -77,11 +81,11 @@ export declare class DatasetsApi extends runtime.BaseAPI {
     /**
      * Add tiles to a gdal dataset.
      */
-    addDatasetTilesHandlerRaw(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addDatasetTilesHandlerRaw(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
     /**
      * Add tiles to a gdal dataset.
      */
-    addDatasetTilesHandler(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addDatasetTilesHandler(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
     /**
      * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
@@ -106,6 +110,14 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Delete a dataset
      */
     deleteDatasetHandler(requestParameters: DeleteDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    deleteDatasetTilesHandlerRaw(requestParameters: DeleteDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    deleteDatasetTilesHandler(requestParameters: DeleteDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Retrieves details about a dataset using the internal name.
      */

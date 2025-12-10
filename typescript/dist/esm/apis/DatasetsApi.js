@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as runtime from '../runtime';
-import { AddDatasetTileToJSON, AutoCreateDatasetToJSON, CreateDatasetToJSON, DatasetFromJSON, DatasetListingFromJSON, DatasetNameResponseFromJSON, DatasetTileFromJSON, MetaDataDefinitionFromJSON, MetaDataDefinitionToJSON, MetaDataSuggestionFromJSON, ProvenancesToJSON, SuggestMetaDataToJSON, SymbologyToJSON, UpdateDatasetToJSON, UpdateDatasetTileToJSON, VolumeFromJSON, VolumeFileLayersResponseFromJSON, } from '../models/index';
+import { AddDatasetTileToJSON, AutoCreateDatasetToJSON, CreateDatasetToJSON, DatasetFromJSON, DatasetListingFromJSON, DatasetNameResponseFromJSON, DatasetTileFromJSON, DeleteDatasetTilesToJSON, MetaDataDefinitionFromJSON, MetaDataDefinitionToJSON, MetaDataSuggestionFromJSON, ProvenancesToJSON, SuggestMetaDataToJSON, SymbologyToJSON, UpdateDatasetToJSON, UpdateDatasetTileToJSON, VolumeFromJSON, VolumeFileLayersResponseFromJSON, } from '../models/index';
 /**
  *
  */
@@ -56,7 +56,7 @@ export class DatasetsApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: requestParameters['addDatasetTile'].map(AddDatasetTileToJSON),
             }, initOverrides);
-            return new runtime.VoidApiResponse(response);
+            return new runtime.JSONApiResponse(response);
         });
     }
     /**
@@ -64,7 +64,8 @@ export class DatasetsApi extends runtime.BaseAPI {
      */
     addDatasetTilesHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.addDatasetTilesHandlerRaw(requestParameters, initOverrides);
+            const response = yield this.addDatasetTilesHandlerRaw(requestParameters, initOverrides);
+            return yield response.value();
         });
     }
     /**
@@ -177,6 +178,47 @@ export class DatasetsApi extends runtime.BaseAPI {
     deleteDatasetHandler(requestParameters, initOverrides) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.deleteDatasetHandlerRaw(requestParameters, initOverrides);
+        });
+    }
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    deleteDatasetTilesHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (requestParameters['dataset'] == null) {
+                throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling deleteDatasetTilesHandler().');
+            }
+            if (requestParameters['deleteDatasetTiles'] == null) {
+                throw new runtime.RequiredError('deleteDatasetTiles', 'Required parameter "deleteDatasetTiles" was null or undefined when calling deleteDatasetTilesHandler().');
+            }
+            const queryParameters = {};
+            const headerParameters = {};
+            headerParameters['Content-Type'] = 'application/json';
+            if (this.configuration && this.configuration.accessToken) {
+                const token = this.configuration.accessToken;
+                const tokenString = yield token("session_token", []);
+                if (tokenString) {
+                    headerParameters["Authorization"] = `Bearer ${tokenString}`;
+                }
+            }
+            let urlPath = `/dataset/{dataset}/tiles`;
+            urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
+            const response = yield this.request({
+                path: urlPath,
+                method: 'DELETE',
+                headers: headerParameters,
+                query: queryParameters,
+                body: DeleteDatasetTilesToJSON(requestParameters['deleteDatasetTiles']),
+            }, initOverrides);
+            return new runtime.VoidApiResponse(response);
+        });
+    }
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    deleteDatasetTilesHandler(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.deleteDatasetTilesHandlerRaw(requestParameters, initOverrides);
         });
     }
     /**

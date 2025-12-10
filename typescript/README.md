@@ -60,6 +60,7 @@ All URIs are relative to *https://geoengine.io/api*
 *DatasetsApi* | [**autoCreateDatasetHandler**](docs/DatasetsApi.md#autocreatedatasethandler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 *DatasetsApi* | [**createDatasetHandler**](docs/DatasetsApi.md#createdatasethandler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 *DatasetsApi* | [**deleteDatasetHandler**](docs/DatasetsApi.md#deletedatasethandler) | **DELETE** /dataset/{dataset} | Delete a dataset
+*DatasetsApi* | [**deleteDatasetTilesHandler**](docs/DatasetsApi.md#deletedatasettileshandler) | **DELETE** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**getDatasetHandler**](docs/DatasetsApi.md#getdatasethandler) | **GET** /dataset/{dataset} | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**getDatasetTilesHandler**](docs/DatasetsApi.md#getdatasettileshandler) | **GET** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**getLoadingInfoHandler**](docs/DatasetsApi.md#getloadinginfohandler) | **GET** /dataset/{dataset}/loadingInfo | Retrieves the loading information of a dataset
@@ -194,6 +195,7 @@ All URIs are relative to *https://geoengine.io/api*
 - [DatasetNameResponse](docs/DatasetNameResponse.md)
 - [DatasetResource](docs/DatasetResource.md)
 - [DatasetTile](docs/DatasetTile.md)
+- [DeleteDatasetTiles](docs/DeleteDatasetTiles.md)
 - [DerivedColor](docs/DerivedColor.md)
 - [DerivedNumber](docs/DerivedNumber.md)
 - [EbvPortalDataProviderDefinition](docs/EbvPortalDataProviderDefinition.md)

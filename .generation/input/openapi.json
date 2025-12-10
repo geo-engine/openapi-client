@@ -899,7 +899,58 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DatasetTileId"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "session_token": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Datasets"
+        ],
+        "summary": "Retrieves details about a dataset using the internal name.",
+        "operationId": "delete_dataset_tiles_handler",
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "path",
+            "description": "Dataset Name",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatasetName"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteDatasetTiles"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedUserResponse"
           }
         },
         "security": [
@@ -6400,6 +6451,20 @@
       },
       "DateTimeString": {
         "type": "string"
+      },
+      "DeleteDatasetTiles": {
+        "type": "object",
+        "required": [
+          "tileIds"
+        ],
+        "properties": {
+          "tileIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DatasetTileId"
+            }
+          }
+        }
       },
       "DerivedColor": {
         "type": "object",

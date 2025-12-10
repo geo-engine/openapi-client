@@ -84,6 +84,7 @@ __all__ = [
     "DatasetNameResponse",
     "DatasetResource",
     "DatasetTile",
+    "DeleteDatasetTiles",
     "DerivedColor",
     "DerivedNumber",
     "EbvPortalDataProviderDefinition",
@@ -365,6 +366,7 @@ from geoengine_openapi_client.models.dataset_listing import DatasetListing as Da
 from geoengine_openapi_client.models.dataset_name_response import DatasetNameResponse as DatasetNameResponse
 from geoengine_openapi_client.models.dataset_resource import DatasetResource as DatasetResource
 from geoengine_openapi_client.models.dataset_tile import DatasetTile as DatasetTile
+from geoengine_openapi_client.models.delete_dataset_tiles import DeleteDatasetTiles as DeleteDatasetTiles
 from geoengine_openapi_client.models.derived_color import DerivedColor as DerivedColor
 from geoengine_openapi_client.models.derived_number import DerivedNumber as DerivedNumber
 from geoengine_openapi_client.models.ebv_portal_data_provider_definition import EbvPortalDataProviderDefinition as EbvPortalDataProviderDefinition

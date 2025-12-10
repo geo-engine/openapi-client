@@ -81,7 +81,9 @@ with geoengine_openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Add tiles to a gdal dataset.
-        api_instance.add_dataset_tiles_handler(dataset, add_dataset_tile)
+        api_response = api_instance.add_dataset_tiles_handler(dataset, add_dataset_tile)
+        print("The response of DatasetsApi->add_dataset_tiles_handler:\n")
+        pprint(api_response)
     except ApiException as e:
         print("Exception when calling DatasetsApi->add_dataset_tiles_handler: %s\n" % e)
 
@@ -97,6 +99,7 @@ Class | Method | HTTP request | Description
 *DatasetsApi* | [**auto_create_dataset_handler**](docs/DatasetsApi.md#auto_create_dataset_handler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 *DatasetsApi* | [**create_dataset_handler**](docs/DatasetsApi.md#create_dataset_handler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 *DatasetsApi* | [**delete_dataset_handler**](docs/DatasetsApi.md#delete_dataset_handler) | **DELETE** /dataset/{dataset} | Delete a dataset
+*DatasetsApi* | [**delete_dataset_tiles_handler**](docs/DatasetsApi.md#delete_dataset_tiles_handler) | **DELETE** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**get_dataset_handler**](docs/DatasetsApi.md#get_dataset_handler) | **GET** /dataset/{dataset} | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**get_dataset_tiles_handler**](docs/DatasetsApi.md#get_dataset_tiles_handler) | **GET** /dataset/{dataset}/tiles | Retrieves details about a dataset using the internal name.
 *DatasetsApi* | [**get_loading_info_handler**](docs/DatasetsApi.md#get_loading_info_handler) | **GET** /dataset/{dataset}/loadingInfo | Retrieves the loading information of a dataset
@@ -231,6 +234,7 @@ Class | Method | HTTP request | Description
  - [DatasetNameResponse](docs/DatasetNameResponse.md)
  - [DatasetResource](docs/DatasetResource.md)
  - [DatasetTile](docs/DatasetTile.md)
+ - [DeleteDatasetTiles](docs/DeleteDatasetTiles.md)
  - [DerivedColor](docs/DerivedColor.md)
  - [DerivedNumber](docs/DerivedNumber.md)
  - [EbvPortalDataProviderDefinition](docs/EbvPortalDataProviderDefinition.md)

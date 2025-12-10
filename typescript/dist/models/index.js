@@ -56,6 +56,7 @@ __exportStar(require("./DatasetListing"), exports);
 __exportStar(require("./DatasetNameResponse"), exports);
 __exportStar(require("./DatasetResource"), exports);
 __exportStar(require("./DatasetTile"), exports);
+__exportStar(require("./DeleteDatasetTiles"), exports);
 __exportStar(require("./DerivedColor"), exports);
 __exportStar(require("./DerivedNumber"), exports);
 __exportStar(require("./EbvPortalDataProviderDefinition"), exports);

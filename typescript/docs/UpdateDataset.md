@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`dataPath` | [DataPath](DataPath.md)
 `description` | string
 `displayName` | string
 `name` | string
@@ -18,6 +19,7 @@ import type { UpdateDataset } from '@geoengine/openapi-client'
 
 // TODO: Update the object below with actual values
 const example = {
+  "dataPath": null,
   "description": null,
   "displayName": null,
   "name": null,

@@ -11,6 +11,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { DataPathFromJSON, DataPathToJSON, } from './DataPath';
 /**
  * Check if a given object implements the UpdateDataset interface.
  */
@@ -33,8 +34,9 @@ export function UpdateDatasetFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'dataPath': json['dataPath'] == null ? undefined : DataPathFromJSON(json['dataPath']),
         'description': json['description'],
-        'displayName': json['display_name'],
+        'displayName': json['displayName'],
         'name': json['name'],
         'tags': json['tags'],
     };
@@ -47,8 +49,9 @@ export function UpdateDatasetToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
+        'dataPath': DataPathToJSON(value['dataPath']),
         'description': value['description'],
-        'display_name': value['displayName'],
+        'displayName': value['displayName'],
         'name': value['name'],
         'tags': value['tags'],
     };

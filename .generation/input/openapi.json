@@ -10485,15 +10485,25 @@
         "type": "object",
         "required": [
           "name",
-          "display_name",
+          "displayName",
           "description",
           "tags"
         ],
         "properties": {
+          "dataPath": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/DataPath"
+              }
+            ]
+          },
           "description": {
             "type": "string"
           },
-          "display_name": {
+          "displayName": {
             "type": "string"
           },
           "name": {

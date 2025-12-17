@@ -18,6 +18,7 @@ exports.UpdateDatasetFromJSON = UpdateDatasetFromJSON;
 exports.UpdateDatasetFromJSONTyped = UpdateDatasetFromJSONTyped;
 exports.UpdateDatasetToJSON = UpdateDatasetToJSON;
 exports.UpdateDatasetToJSONTyped = UpdateDatasetToJSONTyped;
+const DataPath_1 = require("./DataPath");
 /**
  * Check if a given object implements the UpdateDataset interface.
  */
@@ -40,8 +41,9 @@ function UpdateDatasetFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'dataPath': json['dataPath'] == null ? undefined : (0, DataPath_1.DataPathFromJSON)(json['dataPath']),
         'description': json['description'],
-        'displayName': json['display_name'],
+        'displayName': json['displayName'],
         'name': json['name'],
         'tags': json['tags'],
     };
@@ -54,8 +56,9 @@ function UpdateDatasetToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
+        'dataPath': (0, DataPath_1.DataPathToJSON)(value['dataPath']),
         'description': value['description'],
-        'display_name': value['displayName'],
+        'displayName': value['displayName'],
         'name': value['name'],
         'tags': value['tags'],
     };

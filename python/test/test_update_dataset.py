@@ -36,6 +36,7 @@ class TestUpdateDataset(unittest.TestCase):
         model = UpdateDataset()
         if include_optional:
             return UpdateDataset(
+                data_path = None,
                 description = '',
                 display_name = '',
                 name = '',

@@ -13,12 +13,26 @@
  */
 
 import { mapValues } from '../runtime';
+import type { DataPath } from './DataPath';
+import {
+    DataPathFromJSON,
+    DataPathFromJSONTyped,
+    DataPathToJSON,
+    DataPathToJSONTyped,
+} from './DataPath';
+
 /**
  * 
  * @export
  * @interface UpdateDataset
  */
 export interface UpdateDataset {
+    /**
+     * 
+     * @type {DataPath}
+     * @memberof UpdateDataset
+     */
+    dataPath?: DataPath | null;
     /**
      * 
      * @type {string}
@@ -66,8 +80,9 @@ export function UpdateDatasetFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'dataPath': json['dataPath'] == null ? undefined : DataPathFromJSON(json['dataPath']),
         'description': json['description'],
-        'displayName': json['display_name'],
+        'displayName': json['displayName'],
         'name': json['name'],
         'tags': json['tags'],
     };
@@ -84,8 +99,9 @@ export function UpdateDatasetToJSONTyped(value?: UpdateDataset | null, ignoreDis
 
     return {
         
+        'dataPath': DataPathToJSON(value['dataPath']),
         'description': value['description'],
-        'display_name': value['displayName'],
+        'displayName': value['displayName'],
         'name': value['name'],
         'tags': value['tags'],
     };

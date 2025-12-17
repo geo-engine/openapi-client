@@ -9,12 +9,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { DataPath } from './DataPath';
 /**
  *
  * @export
  * @interface UpdateDataset
  */
 export interface UpdateDataset {
+    /**
+     *
+     * @type {DataPath}
+     * @memberof UpdateDataset
+     */
+    dataPath?: DataPath | null;
     /**
      *
      * @type {string}

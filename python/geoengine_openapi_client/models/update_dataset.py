@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from geoengine_openapi_client.models.data_path import DataPath
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,11 +28,12 @@ class UpdateDataset(BaseModel):
     """
     UpdateDataset
     """ # noqa: E501
+    data_path: Optional[DataPath] = Field(default=None, alias="dataPath")
     description: StrictStr
-    display_name: StrictStr
+    display_name: StrictStr = Field(alias="displayName")
     name: StrictStr
     tags: List[StrictStr]
-    __properties: ClassVar[List[str]] = ["description", "display_name", "name", "tags"]
+    __properties: ClassVar[List[str]] = ["dataPath", "description", "displayName", "name", "tags"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,6 +74,14 @@ class UpdateDataset(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of data_path
+        if self.data_path:
+            _dict['dataPath'] = self.data_path.to_dict()
+        # set to None if data_path (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_path is None and "data_path" in self.model_fields_set:
+            _dict['dataPath'] = None
+
         return _dict
 
     @classmethod
@@ -84,8 +94,9 @@ class UpdateDataset(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "dataPath": DataPath.from_dict(obj["dataPath"]) if obj.get("dataPath") is not None else None,
             "description": obj.get("description"),
-            "display_name": obj.get("display_name"),
+            "displayName": obj.get("displayName"),
             "name": obj.get("name"),
             "tags": obj.get("tags")
         })

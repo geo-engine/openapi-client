@@ -34,7 +34,7 @@ export interface AddDataset {
      * @type {string}
      * @memberof AddDataset
      */
-    name?: string;
+    name?: string | null;
     /**
      *
      * @type {Array<Provenance>}

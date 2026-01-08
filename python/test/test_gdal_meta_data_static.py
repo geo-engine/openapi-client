@@ -75,21 +75,11 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = geoengine_openapi_client.models.spatial_partition2_d.SpatialPartition2D(
-                        lower_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
-                            x = 1.337, 
-                            y = 1.337, ), 
-                        upper_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
-                            x = 1.337, 
-                            y = 1.337, ), ), 
+                    bbox = null, 
                     data_type = 'U8', 
-                    resolution = geoengine_openapi_client.models.spatial_resolution.SpatialResolution(
-                        x = 1.337, 
-                        y = 1.337, ), 
+                    resolution = null, 
                     spatial_reference = '', 
-                    time = geoengine_openapi_client.models.time_interval.TimeInterval(
-                        end = 56, 
-                        start = 56, ), ),
+                    time = null, ),
                 time = geoengine_openapi_client.models.time_interval.TimeInterval(
                     end = 56, 
                     start = 56, ),
@@ -135,21 +125,11 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                             measurement = null, 
                             name = '', )
                         ], 
-                    bbox = geoengine_openapi_client.models.spatial_partition2_d.SpatialPartition2D(
-                        lower_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
-                            x = 1.337, 
-                            y = 1.337, ), 
-                        upper_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
-                            x = 1.337, 
-                            y = 1.337, ), ), 
+                    bbox = null, 
                     data_type = 'U8', 
-                    resolution = geoengine_openapi_client.models.spatial_resolution.SpatialResolution(
-                        x = 1.337, 
-                        y = 1.337, ), 
+                    resolution = null, 
                     spatial_reference = '', 
-                    time = geoengine_openapi_client.models.time_interval.TimeInterval(
-                        end = 56, 
-                        start = 56, ), ),
+                    time = null, ),
                 type = 'GdalStatic',
         )
         """

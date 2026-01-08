@@ -32,7 +32,7 @@ export interface WfsFeatureHandlerRequest {
     resultType?: string | null;
     filter?: string | null;
     propertyName?: string | null;
-    queryResolution?: string;
+    queryResolution?: string | null;
 }
 /**
  *

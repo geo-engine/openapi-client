@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBytes, StrictFloat, StrictInt, StrictStr
-from typing import Optional, Tuple, Union
+from typing import Any, Optional, Tuple, Union
 from typing_extensions import Annotated
 from uuid import UUID
 from geoengine_openapi_client.models.describe_coverage_request import DescribeCoverageRequest
@@ -52,7 +52,7 @@ class OGCWCSApi:
         workflow: Annotated[UUID, Field(description="Workflow id")],
         service: WcsService,
         request: GetCapabilitiesRequest,
-        version: Optional[WcsVersion] = None,
+        version: Optional[Any] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -70,7 +70,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param service: (required)
         :type service: WcsService
         :param request: (required)
@@ -130,7 +130,7 @@ class OGCWCSApi:
         workflow: Annotated[UUID, Field(description="Workflow id")],
         service: WcsService,
         request: GetCapabilitiesRequest,
-        version: Optional[WcsVersion] = None,
+        version: Optional[Any] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -148,7 +148,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param service: (required)
         :type service: WcsService
         :param request: (required)
@@ -208,7 +208,7 @@ class OGCWCSApi:
         workflow: Annotated[UUID, Field(description="Workflow id")],
         service: WcsService,
         request: GetCapabilitiesRequest,
-        version: Optional[WcsVersion] = None,
+        version: Optional[Any] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -226,7 +226,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param service: (required)
         :type service: WcsService
         :param request: (required)
@@ -380,7 +380,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WcsVersion
         :param service: (required)
@@ -462,7 +462,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WcsVersion
         :param service: (required)
@@ -544,7 +544,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WcsVersion
         :param service: (required)
@@ -715,7 +715,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WcsVersion
         :param service: (required)
@@ -833,7 +833,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WcsVersion
         :param service: (required)
@@ -951,7 +951,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WcsVersion
         :param service: (required)

@@ -140,7 +140,7 @@ async function example() {
     // string (optional)
     propertyName: propertyName_example,
     // string | Vendor parameter for specifying a spatial query resolution (optional)
-    queryResolution: queryResolution_example,
+    queryResolution: ...,
   } satisfies WfsFeatureHandlerRequest;
 
   try {

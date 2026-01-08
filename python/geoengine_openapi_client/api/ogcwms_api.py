@@ -18,13 +18,11 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBool, StrictBytes, StrictStr
-from typing import Optional, Tuple, Union
+from typing import Any, Optional, Tuple, Union
 from typing_extensions import Annotated
 from uuid import UUID
-from geoengine_openapi_client.models.get_capabilities_format import GetCapabilitiesFormat
 from geoengine_openapi_client.models.get_capabilities_request import GetCapabilitiesRequest
 from geoengine_openapi_client.models.get_legend_graphic_request import GetLegendGraphicRequest
-from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat
 from geoengine_openapi_client.models.get_map_format import GetMapFormat
 from geoengine_openapi_client.models.get_map_request import GetMapRequest
 from geoengine_openapi_client.models.wms_service import WmsService
@@ -52,10 +50,10 @@ class OGCWMSApi:
     def wms_capabilities_handler(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        version: Optional[WmsVersion],
+        version: Optional[Any],
         service: WmsService,
         request: GetCapabilitiesRequest,
-        format: Optional[GetCapabilitiesFormat],
+        format: Optional[Any],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -73,7 +71,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WmsVersion
         :param service: (required)
@@ -134,10 +132,10 @@ class OGCWMSApi:
     def wms_capabilities_handler_with_http_info(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        version: Optional[WmsVersion],
+        version: Optional[Any],
         service: WmsService,
         request: GetCapabilitiesRequest,
-        format: Optional[GetCapabilitiesFormat],
+        format: Optional[Any],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -155,7 +153,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WmsVersion
         :param service: (required)
@@ -216,10 +214,10 @@ class OGCWMSApi:
     def wms_capabilities_handler_without_preload_content(
         self,
         workflow: Annotated[UUID, Field(description="Workflow id")],
-        version: Optional[WmsVersion],
+        version: Optional[Any],
         service: WmsService,
         request: GetCapabilitiesRequest,
-        format: Optional[GetCapabilitiesFormat],
+        format: Optional[Any],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -237,7 +235,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WmsVersion
         :param service: (required)
@@ -392,7 +390,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WmsVersion
         :param service: (required)
@@ -474,7 +472,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WmsVersion
         :param service: (required)
@@ -556,7 +554,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WmsVersion
         :param service: (required)
@@ -699,7 +697,7 @@ class OGCWMSApi:
         sld: Optional[StrictStr] = None,
         sld_body: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
-        exceptions: Optional[GetMapExceptionFormat] = None,
+        exceptions: Optional[Any] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -717,7 +715,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WmsVersion
         :param service: (required)
@@ -833,7 +831,7 @@ class OGCWMSApi:
         sld: Optional[StrictStr] = None,
         sld_body: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
-        exceptions: Optional[GetMapExceptionFormat] = None,
+        exceptions: Optional[Any] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -851,7 +849,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WmsVersion
         :param service: (required)
@@ -967,7 +965,7 @@ class OGCWMSApi:
         sld: Optional[StrictStr] = None,
         sld_body: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
-        exceptions: Optional[GetMapExceptionFormat] = None,
+        exceptions: Optional[Any] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -985,7 +983,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param version: (required)
         :type version: WmsVersion
         :param service: (required)

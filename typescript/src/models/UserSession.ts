@@ -51,7 +51,7 @@ export interface UserSession {
      * @type {string}
      * @memberof UserSession
      */
-    project?: string;
+    project?: string | null;
     /**
      * 
      * @type {Array<string>}

@@ -66,7 +66,7 @@ class UserApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UUID:
+    ) -> IdResponse:
         """Add a new role. Requires admin privilige.
 
 
@@ -103,7 +103,7 @@ class UserApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUID",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -132,7 +132,7 @@ class UserApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UUID]:
+    ) -> ApiResponse[IdResponse]:
         """Add a new role. Requires admin privilige.
 
 
@@ -169,7 +169,7 @@ class UserApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUID",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -235,7 +235,7 @@ class UserApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUID",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

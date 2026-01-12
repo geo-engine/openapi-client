@@ -17,8 +17,8 @@ pub struct UserSession {
     pub created: String,
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
-    #[serde(rename = "project", skip_serializing_if = "Option::is_none")]
-    pub project: Option<uuid::Uuid>,
+    #[serde(rename = "project", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub project: Option<Option<uuid::Uuid>>,
     #[serde(rename = "roles")]
     pub roles: Vec<uuid::Uuid>,
     #[serde(rename = "user")]

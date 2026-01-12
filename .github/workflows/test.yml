@@ -73,3 +73,24 @@ jobs:
           toolchain: stable
       - name: Install dependencies and build
         run: cargo build
+
+  idempotency:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Generate Code
+        run: |
+          .generation/generate.py python
+          .generation/generate.py rust
+          .generation/generate.py typescript
+      
+      - name: Check for uncommitted changes
+        run: |
+            if [ -n "$(git status --porcelain)" ]; then
+              echo "Error: Uncommitted changes found after code generation."
+              echo "The following files have uncommitted changes:"
+              git status --porcelain
+              exit 1
+            fi

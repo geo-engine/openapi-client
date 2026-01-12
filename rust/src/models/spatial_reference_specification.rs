@@ -14,8 +14,8 @@ use serde::{Deserialize, Serialize};
 /// SpatialReferenceSpecification : The specification of a spatial reference, where extent and axis labels are given in natural order (x, y) = (east, north)
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SpatialReferenceSpecification {
-    #[serde(rename = "axisLabels", skip_serializing_if = "Option::is_none")]
-    pub axis_labels: Option<Vec<String>>,
+    #[serde(rename = "axisLabels", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub axis_labels: Option<Option<Vec<String>>>,
     #[serde(rename = "axisOrder", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub axis_order: Option<Option<models::AxisOrder>>,
     #[serde(rename = "extent")]

@@ -19,6 +19,7 @@ pub struct GdalMetadataNetCdfCf {
     pub band_offset: i32,
     #[serde(rename = "cacheTtl", skip_serializing_if = "Option::is_none")]
     pub cache_ttl: Option<i32>,
+    /// We use the end to specify the last, non-inclusive valid time point. Queries behind this point return no data. TODO: Alternatively, we could think about using the number of possible time steps in the future.
     #[serde(rename = "end")]
     pub end: i64,
     #[serde(rename = "params")]

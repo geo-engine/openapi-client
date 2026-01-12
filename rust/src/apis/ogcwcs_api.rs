@@ -37,7 +37,7 @@ pub enum WcsGetCoverageHandlerError {
 }
 
 
-pub async fn wcs_capabilities_handler(configuration: &configuration::Configuration, workflow: &str, service: models::WcsService, request: models::GetCapabilitiesRequest, version: Option<models::WcsVersion>) -> Result<String, Error<WcsCapabilitiesHandlerError>> {
+pub async fn wcs_capabilities_handler(configuration: &configuration::Configuration, workflow: &str, service: models::WcsService, request: models::GetCapabilitiesRequest, version: Option<&str>) -> Result<String, Error<WcsCapabilitiesHandlerError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_workflow = workflow;
     let p_query_service = service;
@@ -48,7 +48,7 @@ pub async fn wcs_capabilities_handler(configuration: &configuration::Configurati
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = p_query_version {
-        req_builder = req_builder.query(&[("version", &param_value.to_string())]);
+        req_builder = req_builder.query(&[("version", &serde_json::to_string(param_value)?)]);
     }
     req_builder = req_builder.query(&[("service", &p_query_service.to_string())]);
     req_builder = req_builder.query(&[("request", &p_query_request.to_string())]);

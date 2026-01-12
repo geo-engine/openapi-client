@@ -13,29 +13,36 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct WildliveDataConnectorDefinition {
-    #[serde(rename = "apiKey", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub api_key: Option<Option<String>>,
     #[serde(rename = "description")]
     pub description: String,
+    #[serde(rename = "expiryDate", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub expiry_date: Option<Option<String>>,
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "priority", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub priority: Option<Option<i32>>,
+    /// A wrapper type that serializes to \"*****\" and can be deserialized from any string. If the inner value is \"*****\", it is considered unknown and `as_option` returns `None`. This is useful for secrets that should not be exposed in API responses, but can be set in API requests.
+    #[serde(rename = "refreshToken", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub refresh_token: Option<Option<String>>,
     #[serde(rename = "type")]
     pub r#type: Type,
+    #[serde(rename = "user", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub user: Option<Option<String>>,
 }
 
 impl WildliveDataConnectorDefinition {
     pub fn new(description: String, id: uuid::Uuid, name: String, r#type: Type) -> WildliveDataConnectorDefinition {
         WildliveDataConnectorDefinition {
-            api_key: None,
             description,
+            expiry_date: None,
             id,
             name,
             priority: None,
+            refresh_token: None,
             r#type,
+            user: None,
         }
     }
 }

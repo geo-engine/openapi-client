@@ -38,7 +38,7 @@ pub enum WmsMapHandlerError {
 }
 
 
-pub async fn wms_capabilities_handler(configuration: &configuration::Configuration, workflow: &str, version: Option<models::WmsVersion>, service: models::WmsService, request: models::GetCapabilitiesRequest, format: Option<models::GetCapabilitiesFormat>) -> Result<String, Error<WmsCapabilitiesHandlerError>> {
+pub async fn wms_capabilities_handler(configuration: &configuration::Configuration, workflow: &str, version: Option<&str>, service: models::WmsService, request: models::GetCapabilitiesRequest, format: Option<&str>) -> Result<String, Error<WmsCapabilitiesHandlerError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_workflow = workflow;
     let p_path_version = version;
@@ -129,7 +129,7 @@ pub async fn wms_legend_graphic_handler(configuration: &configuration::Configura
     }
 }
 
-pub async fn wms_map_handler(configuration: &configuration::Configuration, workflow: &str, version: models::WmsVersion, service: models::WmsService, request: models::GetMapRequest, width: i32, height: i32, bbox: &str, format: models::GetMapFormat, layers: &str, styles: &str, crs: Option<&str>, time: Option<&str>, transparent: Option<bool>, bgcolor: Option<&str>, sld: Option<&str>, sld_body: Option<&str>, elevation: Option<&str>, exceptions: Option<models::GetMapExceptionFormat>) -> Result<reqwest::Response, Error<WmsMapHandlerError>> {
+pub async fn wms_map_handler(configuration: &configuration::Configuration, workflow: &str, version: models::WmsVersion, service: models::WmsService, request: models::GetMapRequest, width: i32, height: i32, bbox: &str, format: models::GetMapFormat, layers: &str, styles: &str, crs: Option<&str>, time: Option<&str>, transparent: Option<bool>, bgcolor: Option<&str>, sld: Option<&str>, sld_body: Option<&str>, elevation: Option<&str>, exceptions: Option<&str>) -> Result<reqwest::Response, Error<WmsMapHandlerError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_workflow = workflow;
     let p_query_version = version;
@@ -184,7 +184,7 @@ pub async fn wms_map_handler(configuration: &configuration::Configuration, workf
         req_builder = req_builder.query(&[("elevation", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_exceptions {
-        req_builder = req_builder.query(&[("exceptions", &param_value.to_string())]);
+        req_builder = req_builder.query(&[("exceptions", &serde_json::to_string(param_value)?)]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

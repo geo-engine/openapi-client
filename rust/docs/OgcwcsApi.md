@@ -23,7 +23,7 @@ Name | Type | Description  | Required | Notes
 **workflow** | **uuid::Uuid** | Workflow id | [required] |
 **service** | [**WcsService**](.md) |  | [required] |
 **request** | [**GetCapabilitiesRequest**](.md) |  | [required] |
-**version** | Option<[**WcsVersion**](.md)> |  |  |
+**version** | Option<**String**> |  |  |
 
 ### Return type
 

@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## add_role_handler
 
-> uuid::Uuid add_role_handler(add_role)
+> models::IdResponse add_role_handler(add_role)
 Add a new role. Requires admin privilige.
 
 ### Parameters
@@ -34,7 +34,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**uuid::Uuid**](uuid::Uuid.md)
+[**models::IdResponse**](IdResponse.md)
 
 ### Authorization
 

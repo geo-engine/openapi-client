@@ -20,7 +20,7 @@ Get WFS Capabilities
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workflow** | **uuid::Uuid** | Workflow id | [required] |
-**version** | Option<[**WfsVersion**](.md)> |  | [required] |
+**version** | Option<**String**> |  | [required] |
 **service** | [**WfsService**](.md) |  | [required] |
 **request** | [**GetCapabilitiesRequest**](.md) |  | [required] |
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Required | Notes
 **request** | [**GetFeatureRequest**](.md) |  | [required] |
 **type_names** | **String** |  | [required] |
 **bbox** | **String** |  | [required] |
-**version** | Option<[**WfsVersion**](.md)> |  |  |
+**version** | Option<**String**> |  |  |
 **time** | Option<**String**> |  |  |
 **srs_name** | Option<**String**> |  |  |
 **namespaces** | Option<**String**> |  |  |

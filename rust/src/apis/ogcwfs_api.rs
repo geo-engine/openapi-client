@@ -30,7 +30,7 @@ pub enum WfsFeatureHandlerError {
 }
 
 
-pub async fn wfs_capabilities_handler(configuration: &configuration::Configuration, workflow: &str, version: Option<models::WfsVersion>, service: models::WfsService, request: models::GetCapabilitiesRequest) -> Result<String, Error<WfsCapabilitiesHandlerError>> {
+pub async fn wfs_capabilities_handler(configuration: &configuration::Configuration, workflow: &str, version: Option<&str>, service: models::WfsService, request: models::GetCapabilitiesRequest) -> Result<String, Error<WfsCapabilitiesHandlerError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_workflow = workflow;
     let p_path_version = version;
@@ -79,7 +79,7 @@ pub async fn wfs_capabilities_handler(configuration: &configuration::Configurati
     }
 }
 
-pub async fn wfs_feature_handler(configuration: &configuration::Configuration, workflow: &str, service: models::WfsService, request: models::GetFeatureRequest, type_names: &str, bbox: &str, version: Option<models::WfsVersion>, time: Option<&str>, srs_name: Option<&str>, namespaces: Option<&str>, count: Option<i64>, sort_by: Option<&str>, result_type: Option<&str>, filter: Option<&str>, property_name: Option<&str>, query_resolution: Option<&str>) -> Result<models::GeoJson, Error<WfsFeatureHandlerError>> {
+pub async fn wfs_feature_handler(configuration: &configuration::Configuration, workflow: &str, service: models::WfsService, request: models::GetFeatureRequest, type_names: &str, bbox: &str, version: Option<&str>, time: Option<&str>, srs_name: Option<&str>, namespaces: Option<&str>, count: Option<i64>, sort_by: Option<&str>, result_type: Option<&str>, filter: Option<&str>, property_name: Option<&str>, query_resolution: Option<&str>) -> Result<models::GeoJson, Error<WfsFeatureHandlerError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_workflow = workflow;
     let p_query_service = service;
@@ -101,7 +101,7 @@ pub async fn wfs_feature_handler(configuration: &configuration::Configuration, w
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = p_query_version {
-        req_builder = req_builder.query(&[("version", &param_value.to_string())]);
+        req_builder = req_builder.query(&[("version", &serde_json::to_string(param_value)?)]);
     }
     req_builder = req_builder.query(&[("service", &p_query_service.to_string())]);
     req_builder = req_builder.query(&[("request", &p_query_request.to_string())]);
@@ -132,7 +132,7 @@ pub async fn wfs_feature_handler(configuration: &configuration::Configuration, w
         req_builder = req_builder.query(&[("propertyName", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_query_resolution {
-        req_builder = req_builder.query(&[("queryResolution", &param_value.to_string())]);
+        req_builder = req_builder.query(&[("queryResolution", &serde_json::to_string(param_value)?)]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

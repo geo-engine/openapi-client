@@ -17,8 +17,8 @@ pub struct AddDataset {
     pub description: String,
     #[serde(rename = "displayName")]
     pub display_name: String,
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    #[serde(rename = "name", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub name: Option<Option<String>>,
     #[serde(rename = "provenance", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub provenance: Option<Option<Vec<models::Provenance>>>,
     #[serde(rename = "sourceOperator")]

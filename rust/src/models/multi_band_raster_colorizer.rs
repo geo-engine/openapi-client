@@ -37,6 +37,7 @@ pub struct MultiBandRasterColorizer {
     /// A scaling factor for the green channel between 0 and 1.
     #[serde(rename = "greenScale", skip_serializing_if = "Option::is_none")]
     pub green_scale: Option<f64>,
+    /// The color to use for no data values. If not specified, the no data values will be transparent.
     #[serde(rename = "noDataColor", skip_serializing_if = "Option::is_none")]
     pub no_data_color: Option<Vec<i32>>,
     /// The band index of the red channel.

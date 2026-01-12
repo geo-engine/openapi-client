@@ -107,7 +107,7 @@ pub enum UpdateUserQuotaHandlerError {
 }
 
 
-pub async fn add_role_handler(configuration: &configuration::Configuration, add_role: models::AddRole) -> Result<uuid::Uuid, Error<AddRoleHandlerError>> {
+pub async fn add_role_handler(configuration: &configuration::Configuration, add_role: models::AddRole) -> Result<models::IdResponse, Error<AddRoleHandlerError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_add_role = add_role;
 
@@ -137,8 +137,8 @@ pub async fn add_role_handler(configuration: &configuration::Configuration, add_
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `uuid::Uuid`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `uuid::Uuid`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::IdResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::IdResponse`")))),
         }
     } else {
         let content = resp.text().await?;

@@ -21,10 +21,10 @@ Get WMS Capabilities
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workflow** | **uuid::Uuid** | Workflow id | [required] |
-**version** | Option<[**WmsVersion**](.md)> |  | [required] |
+**version** | Option<**String**> |  | [required] |
 **service** | [**WmsService**](.md) |  | [required] |
 **request** | [**GetCapabilitiesRequest**](.md) |  | [required] |
-**format** | Option<[**GetCapabilitiesFormat**](.md)> |  | [required] |
+**format** | Option<**String**> |  | [required] |
 
 ### Return type
 
@@ -101,7 +101,7 @@ Name | Type | Description  | Required | Notes
 **sld** | Option<**String**> |  |  |
 **sld_body** | Option<**String**> |  |  |
 **elevation** | Option<**String**> |  |  |
-**exceptions** | Option<[**GetMapExceptionFormat**](.md)> |  |  |
+**exceptions** | Option<**String**> |  |  |
 
 ### Return type
 

@@ -70,7 +70,7 @@ pub async fn abort_handler(configuration: &configuration::Configuration, id: &st
     }
 }
 
-pub async fn list_handler(configuration: &configuration::Configuration, filter: Option<models::TaskFilter>, offset: i32, limit: i32) -> Result<Vec<models::TaskStatusWithId>, Error<ListHandlerError>> {
+pub async fn list_handler(configuration: &configuration::Configuration, filter: Option<&str>, offset: i32, limit: i32) -> Result<Vec<models::TaskStatusWithId>, Error<ListHandlerError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_filter = filter;
     let p_path_offset = offset;

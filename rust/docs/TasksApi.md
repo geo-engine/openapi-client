@@ -51,7 +51,7 @@ Retrieve the status of all tasks.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**filter** | Option<[**TaskFilter**](.md)> |  | [required] |
+**filter** | Option<**String**> |  | [required] |
 **offset** | **i32** |  | [required] |
 **limit** | **i32** |  | [required] |
 

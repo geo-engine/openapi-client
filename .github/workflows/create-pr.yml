@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Update config.ini
         run: .generation/update_config.py --backendCommit ${{ github.event.inputs.backend_commit }}

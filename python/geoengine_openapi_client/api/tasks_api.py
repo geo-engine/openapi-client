@@ -18,10 +18,9 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBool
-from typing import List, Optional
+from typing import Any, List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
-from geoengine_openapi_client.models.task_filter import TaskFilter
 from geoengine_openapi_client.models.task_status import TaskStatus
 from geoengine_openapi_client.models.task_status_with_id import TaskStatusWithId
 
@@ -66,7 +65,7 @@ class TasksApi:
         # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
 
         :param id: Task id (required)
-        :type id: str
+        :type id: UUID
         :param force:
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -141,7 +140,7 @@ class TasksApi:
         # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
 
         :param id: Task id (required)
-        :type id: str
+        :type id: UUID
         :param force:
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -212,7 +211,7 @@ class TasksApi:
         # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
 
         :param id: Task id (required)
-        :type id: str
+        :type id: UUID
         :param force:
         :type force: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -321,7 +320,7 @@ class TasksApi:
     @validate_call
     def list_handler(
         self,
-        filter: Optional[TaskFilter],
+        filter: Optional[Any],
         offset: Annotated[int, Field(strict=True, ge=0)],
         limit: Annotated[int, Field(strict=True, ge=0)],
         _request_timeout: Union[
@@ -395,7 +394,7 @@ class TasksApi:
     @validate_call
     def list_handler_with_http_info(
         self,
-        filter: Optional[TaskFilter],
+        filter: Optional[Any],
         offset: Annotated[int, Field(strict=True, ge=0)],
         limit: Annotated[int, Field(strict=True, ge=0)],
         _request_timeout: Union[
@@ -469,7 +468,7 @@ class TasksApi:
     @validate_call
     def list_handler_without_preload_content(
         self,
-        filter: Optional[TaskFilter],
+        filter: Optional[Any],
         offset: Annotated[int, Field(strict=True, ge=0)],
         limit: Annotated[int, Field(strict=True, ge=0)],
         _request_timeout: Union[
@@ -627,7 +626,7 @@ class TasksApi:
 
 
         :param id: Task id (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -693,7 +692,7 @@ class TasksApi:
 
 
         :param id: Task id (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -759,7 +758,7 @@ class TasksApi:
 
 
         :param id: Task id (required)
-        :type id: str
+        :type id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

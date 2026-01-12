@@ -20,13 +20,13 @@ export interface WildliveDataConnectorDefinition {
      * @type {string}
      * @memberof WildliveDataConnectorDefinition
      */
-    apiKey?: string | null;
+    description: string;
     /**
      *
-     * @type {string}
+     * @type {Date}
      * @memberof WildliveDataConnectorDefinition
      */
-    description: string;
+    expiryDate?: Date | null;
     /**
      *
      * @type {string}
@@ -46,11 +46,25 @@ export interface WildliveDataConnectorDefinition {
      */
     priority?: number | null;
     /**
+     * A wrapper type that serializes to "*****" and can be deserialized from any string.
+     * If the inner value is "*****", it is considered unknown and `as_option` returns `None`.
+     * This is useful for secrets that should not be exposed in API responses, but can be set in API requests.
+     * @type {string}
+     * @memberof WildliveDataConnectorDefinition
+     */
+    refreshToken?: string | null;
+    /**
      *
      * @type {string}
      * @memberof WildliveDataConnectorDefinition
      */
     type: WildliveDataConnectorDefinitionTypeEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof WildliveDataConnectorDefinition
+     */
+    user?: string | null;
 }
 /**
  * @export

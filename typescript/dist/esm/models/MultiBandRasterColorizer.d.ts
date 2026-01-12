@@ -64,7 +64,8 @@ export interface MultiBandRasterColorizer {
      */
     greenScale?: number;
     /**
-     *
+     * The color to use for no data values.
+     * If not specified, the no data values will be transparent.
      * @type {Array<number>}
      * @memberof MultiBandRasterColorizer
      */

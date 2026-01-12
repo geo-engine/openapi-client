@@ -40,7 +40,9 @@ Name | Type
 `queryBuffer` | [StacQueryBuffer](StacQueryBuffer.md)
 `stacApiRetries` | [StacApiRetries](StacApiRetries.md)
 `zones` | [Array&lt;StacZone&gt;](StacZone.md)
-`apiKey` | string
+`expiryDate` | Date
+`refreshToken` | string
+`user` | string
 
 ## Example
 
@@ -83,7 +85,9 @@ const example = {
   "queryBuffer": null,
   "stacApiRetries": null,
   "zones": null,
-  "apiKey": null,
+  "expiryDate": null,
+  "refreshToken": null,
+  "user": null,
 } satisfies TypedDataProviderDefinition
 
 console.log(example)

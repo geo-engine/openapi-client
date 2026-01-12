@@ -3461,17 +3461,7 @@
         },
         "responses": {
           "200": {
-            "description": "Role was added",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoleId"
-                },
-                "example": {
-                  "id": "5b4466d2-8bab-4ed8-a182-722af3c80958"
-                }
-              }
-            }
+            "$ref": "#/components/responses/IdResponse"
           }
         },
         "security": [
@@ -9528,6 +9518,10 @@
           }
         }
       },
+      "Secret_String": {
+        "type": "string",
+        "description": "A wrapper type that serializes to \"*****\" and can be deserialized from any string.\nIf the inner value is \"*****\", it is considered unknown and `as_option` returns `None`.\nThis is useful for secrets that should not be exposed in API responses, but can be set in API requests."
+      },
       "SentinelS2L2ACogsProviderDefinition": {
         "type": "object",
         "required": [
@@ -11036,14 +11030,15 @@
           "description"
         ],
         "properties": {
-          "apiKey": {
+          "description": {
+            "type": "string"
+          },
+          "expiryDate": {
             "type": [
               "string",
               "null"
-            ]
-          },
-          "description": {
-            "type": "string"
+            ],
+            "format": "date-time"
           },
           "id": {
             "$ref": "#/components/schemas/DataProviderId"
@@ -11058,10 +11053,26 @@
             ],
             "format": "int32"
           },
+          "refreshToken": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Secret_String"
+              }
+            ]
+          },
           "type": {
             "type": "string",
             "enum": [
               "WildLIVE!"
+            ]
+          },
+          "user": {
+            "type": [
+              "string",
+              "null"
             ]
           }
         }

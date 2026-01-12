@@ -73,7 +73,7 @@ class PlotsApi:
         :param spatial_resolution: (required)
         :type spatial_resolution: str
         :param id: Workflow id (required)
-        :type id: str
+        :type id: UUID
         :param crs:
         :type crs: str
         :param _request_timeout: timeout setting for this request. If one
@@ -156,7 +156,7 @@ class PlotsApi:
         :param spatial_resolution: (required)
         :type spatial_resolution: str
         :param id: Workflow id (required)
-        :type id: str
+        :type id: UUID
         :param crs:
         :type crs: str
         :param _request_timeout: timeout setting for this request. If one
@@ -239,7 +239,7 @@ class PlotsApi:
         :param spatial_resolution: (required)
         :type spatial_resolution: str
         :param id: Workflow id (required)
-        :type id: str
+        :type id: UUID
         :param crs:
         :type crs: str
         :param _request_timeout: timeout setting for this request. If one

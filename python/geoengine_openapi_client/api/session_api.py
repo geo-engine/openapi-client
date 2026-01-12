@@ -1361,7 +1361,7 @@ class SessionApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
+    ) -> UUID:
         """Registers a user.
 
 
@@ -1398,7 +1398,7 @@ class SessionApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "UUID",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1427,7 +1427,7 @@ class SessionApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
+    ) -> ApiResponse[UUID]:
         """Registers a user.
 
 
@@ -1464,7 +1464,7 @@ class SessionApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "UUID",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1530,7 +1530,7 @@ class SessionApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "UUID",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1879,7 +1879,7 @@ class SessionApi:
 
 
         :param project: Project id (required)
-        :type project: str
+        :type project: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1945,7 +1945,7 @@ class SessionApi:
 
 
         :param project: Project id (required)
-        :type project: str
+        :type project: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2011,7 +2011,7 @@ class SessionApi:
 
 
         :param project: Project id (required)
-        :type project: str
+        :type project: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

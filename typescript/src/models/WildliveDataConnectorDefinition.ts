@@ -56,7 +56,7 @@ export interface WildliveDataConnectorDefinition {
      * @type {string}
      * @memberof WildliveDataConnectorDefinition
      */
-    refreshToken?: string;
+    refreshToken?: string | null;
     /**
      * 
      * @type {string}

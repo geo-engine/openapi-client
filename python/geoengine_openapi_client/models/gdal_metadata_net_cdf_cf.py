@@ -33,7 +33,7 @@ class GdalMetadataNetCdfCf(BaseModel):
     """ # noqa: E501
     band_offset: Annotated[int, Field(strict=True, ge=0)] = Field(description="A band offset specifies the first band index to use for the first point in time. All other time steps are added to this offset.", alias="bandOffset")
     cache_ttl: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, alias="cacheTtl")
-    end: StrictInt
+    end: StrictInt = Field(description="We use the end to specify the last, non-inclusive valid time point. Queries behind this point return no data. TODO: Alternatively, we could think about using the number of possible time steps in the future.")
     params: GdalDatasetParameters
     result_descriptor: RasterResultDescriptor = Field(alias="resultDescriptor")
     start: StrictInt

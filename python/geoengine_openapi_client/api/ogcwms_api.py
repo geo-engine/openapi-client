@@ -18,14 +18,11 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBool, StrictBytes, StrictStr
-from typing import Optional, Tuple, Union
+from typing import Any, Optional, Tuple, Union
 from typing_extensions import Annotated
 from uuid import UUID
-from geoengine_openapi_client.models.get_map_exception_format import GetMapExceptionFormat
 from geoengine_openapi_client.models.wms_request import WmsRequest
-from geoengine_openapi_client.models.wms_response_format import WmsResponseFormat
 from geoengine_openapi_client.models.wms_service import WmsService
-from geoengine_openapi_client.models.wms_version import WmsVersion
 
 from geoengine_openapi_client.api_client import ApiClient, RequestSerialized
 from geoengine_openapi_client.api_response import ApiResponse
@@ -54,8 +51,8 @@ class OGCWMSApi:
         bgcolor: Optional[StrictStr] = None,
         crs: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
-        exceptions: Optional[GetMapExceptionFormat] = None,
-        format: Optional[WmsResponseFormat] = None,
+        exceptions: Optional[Any] = None,
+        format: Optional[Any] = None,
         height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         info_format: Optional[StrictStr] = None,
         layer: Optional[StrictStr] = None,
@@ -67,7 +64,7 @@ class OGCWMSApi:
         styles: Optional[StrictStr] = None,
         time: Optional[StrictStr] = None,
         transparent: Optional[StrictBool] = None,
-        version: Optional[WmsVersion] = None,
+        version: Optional[Any] = None,
         width: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         _request_timeout: Union[
             None,
@@ -86,7 +83,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param request: type of WMS request (required)
         :type request: WmsRequest
         :param bbox:
@@ -200,8 +197,8 @@ class OGCWMSApi:
         bgcolor: Optional[StrictStr] = None,
         crs: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
-        exceptions: Optional[GetMapExceptionFormat] = None,
-        format: Optional[WmsResponseFormat] = None,
+        exceptions: Optional[Any] = None,
+        format: Optional[Any] = None,
         height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         info_format: Optional[StrictStr] = None,
         layer: Optional[StrictStr] = None,
@@ -213,7 +210,7 @@ class OGCWMSApi:
         styles: Optional[StrictStr] = None,
         time: Optional[StrictStr] = None,
         transparent: Optional[StrictBool] = None,
-        version: Optional[WmsVersion] = None,
+        version: Optional[Any] = None,
         width: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         _request_timeout: Union[
             None,
@@ -232,7 +229,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param request: type of WMS request (required)
         :type request: WmsRequest
         :param bbox:
@@ -346,8 +343,8 @@ class OGCWMSApi:
         bgcolor: Optional[StrictStr] = None,
         crs: Optional[StrictStr] = None,
         elevation: Optional[StrictStr] = None,
-        exceptions: Optional[GetMapExceptionFormat] = None,
-        format: Optional[WmsResponseFormat] = None,
+        exceptions: Optional[Any] = None,
+        format: Optional[Any] = None,
         height: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         info_format: Optional[StrictStr] = None,
         layer: Optional[StrictStr] = None,
@@ -359,7 +356,7 @@ class OGCWMSApi:
         styles: Optional[StrictStr] = None,
         time: Optional[StrictStr] = None,
         transparent: Optional[StrictBool] = None,
-        version: Optional[WmsVersion] = None,
+        version: Optional[Any] = None,
         width: Optional[Annotated[int, Field(strict=True, ge=0)]] = None,
         _request_timeout: Union[
             None,
@@ -378,7 +375,7 @@ class OGCWMSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param request: type of WMS request (required)
         :type request: WmsRequest
         :param bbox:

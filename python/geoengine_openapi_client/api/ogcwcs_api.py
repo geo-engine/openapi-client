@@ -18,13 +18,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr
-from typing import Optional, Union
+from typing import Any, Optional, Union
 from typing_extensions import Annotated
 from uuid import UUID
 from geoengine_openapi_client.models.get_coverage_format import GetCoverageFormat
 from geoengine_openapi_client.models.wcs_request import WcsRequest
 from geoengine_openapi_client.models.wcs_service import WcsService
-from geoengine_openapi_client.models.wcs_version import WcsVersion
 
 from geoengine_openapi_client.api_client import ApiClient, RequestSerialized
 from geoengine_openapi_client.api_response import ApiResponse
@@ -61,7 +60,7 @@ class OGCWCSApi:
         resy: Optional[Union[StrictFloat, StrictInt]] = None,
         service: Optional[WcsService] = None,
         time: Optional[StrictStr] = None,
-        version: Optional[WcsVersion] = None,
+        version: Optional[Any] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -79,7 +78,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param request: type of WCS request (required)
         :type request: WcsRequest
         :param boundingbox:
@@ -183,7 +182,7 @@ class OGCWCSApi:
         resy: Optional[Union[StrictFloat, StrictInt]] = None,
         service: Optional[WcsService] = None,
         time: Optional[StrictStr] = None,
-        version: Optional[WcsVersion] = None,
+        version: Optional[Any] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -201,7 +200,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param request: type of WCS request (required)
         :type request: WcsRequest
         :param boundingbox:
@@ -305,7 +304,7 @@ class OGCWCSApi:
         resy: Optional[Union[StrictFloat, StrictInt]] = None,
         service: Optional[WcsService] = None,
         time: Optional[StrictStr] = None,
-        version: Optional[WcsVersion] = None,
+        version: Optional[Any] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -323,7 +322,7 @@ class OGCWCSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: str
+        :type workflow: UUID
         :param request: type of WCS request (required)
         :type request: WcsRequest
         :param boundingbox:

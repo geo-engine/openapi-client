@@ -22,7 +22,7 @@ All URIs are relative to *https://geoengine.io/api*
 
 ## addRoleHandler
 
-> string addRoleHandler(addRole)
+> IdResponse addRoleHandler(addRole)
 
 Add a new role. Requires admin privilige.
 
@@ -69,7 +69,7 @@ example().catch(console.error);
 
 ### Return type
 
-**string**
+[**IdResponse**](IdResponse.md)
 
 ### Authorization
 
@@ -84,7 +84,7 @@ example().catch(console.error);
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Role was added |  -  |
+| **200** | Id of generated resource |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

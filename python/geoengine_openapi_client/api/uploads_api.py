@@ -65,7 +65,7 @@ class UploadsApi:
 
 
         :param upload_id: Upload id (required)
-        :type upload_id: str
+        :type upload_id: UUID
         :param file_name: File name (required)
         :type file_name: str
         :param _request_timeout: timeout setting for this request. If one
@@ -135,7 +135,7 @@ class UploadsApi:
 
 
         :param upload_id: Upload id (required)
-        :type upload_id: str
+        :type upload_id: UUID
         :param file_name: File name (required)
         :type file_name: str
         :param _request_timeout: timeout setting for this request. If one
@@ -205,7 +205,7 @@ class UploadsApi:
 
 
         :param upload_id: Upload id (required)
-        :type upload_id: str
+        :type upload_id: UUID
         :param file_name: File name (required)
         :type file_name: str
         :param _request_timeout: timeout setting for this request. If one
@@ -337,7 +337,7 @@ class UploadsApi:
 
 
         :param upload_id: Upload id (required)
-        :type upload_id: str
+        :type upload_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -403,7 +403,7 @@ class UploadsApi:
 
 
         :param upload_id: Upload id (required)
-        :type upload_id: str
+        :type upload_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -469,7 +469,7 @@ class UploadsApi:
 
 
         :param upload_id: Upload id (required)
-        :type upload_id: str
+        :type upload_id: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

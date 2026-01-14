@@ -61,9 +61,7 @@ class TestGdalMultiBand(unittest.TestCase):
                                     y_idx = 56, ), ), ), ), 
                     spatial_reference = '', 
                     time = geoengine_openapi_client.models.time_descriptor.TimeDescriptor(
-                        bounds = geoengine_openapi_client.models.time_interval.TimeInterval(
-                            end = 56, 
-                            start = 56, ), 
+                        bounds = null, 
                         dimension = null, ), ),
                 type = 'GdalMultiBand'
             )
@@ -94,9 +92,7 @@ class TestGdalMultiBand(unittest.TestCase):
                                     y_idx = 56, ), ), ), ), 
                     spatial_reference = '', 
                     time = geoengine_openapi_client.models.time_descriptor.TimeDescriptor(
-                        bounds = geoengine_openapi_client.models.time_interval.TimeInterval(
-                            end = 56, 
-                            start = 56, ), 
+                        bounds = null, 
                         dimension = null, ), ),
                 type = 'GdalMultiBand',
         )

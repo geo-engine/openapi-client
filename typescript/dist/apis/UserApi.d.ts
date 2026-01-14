@@ -59,11 +59,11 @@ export declare class UserApi extends runtime.BaseAPI {
     /**
      * Add a new role. Requires admin privilige.
      */
-    addRoleHandlerRaw(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+    addRoleHandlerRaw(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
     /**
      * Add a new role. Requires admin privilige.
      */
-    addRoleHandler(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    addRoleHandler(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
     /**
      * Assign a role to a user. Requires admin privilige.
      */

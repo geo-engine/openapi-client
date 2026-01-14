@@ -109,7 +109,7 @@ export class UserApi extends runtime.BaseAPI {
     /**
      * Add a new role. Requires admin privilige.
      */
-    async addRoleHandlerRaw(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async addRoleHandlerRaw(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
         if (requestParameters['addRole'] == null) {
             throw new runtime.RequiredError(
                 'addRole',
@@ -142,17 +142,13 @@ export class UserApi extends runtime.BaseAPI {
             body: AddRoleToJSON(requestParameters['addRole']),
         }, initOverrides);
 
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse<string>(response);
-        } else {
-            return new runtime.TextApiResponse(response) as any;
-        }
+        return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
 
     /**
      * Add a new role. Requires admin privilige.
      */
-    async addRoleHandler(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+    async addRoleHandler(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse> {
         const response = await this.addRoleHandlerRaw(requestParameters, initOverrides);
         return await response.value();
     }

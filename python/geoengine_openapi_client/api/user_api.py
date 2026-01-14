@@ -66,7 +66,7 @@ class UserApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> str:
+    ) -> IdResponse:
         """Add a new role. Requires admin privilige.
 
 
@@ -103,7 +103,7 @@ class UserApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -132,7 +132,7 @@ class UserApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[str]:
+    ) -> ApiResponse[IdResponse]:
         """Add a new role. Requires admin privilige.
 
 
@@ -169,7 +169,7 @@ class UserApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -235,7 +235,7 @@ class UserApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "str",
+            '200': "IdResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -343,9 +343,9 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param role: Role id (required)
-        :type role: str
+        :type role: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -413,9 +413,9 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param role: Role id (required)
-        :type role: str
+        :type role: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -483,9 +483,9 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param role: Role id (required)
-        :type role: str
+        :type role: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -608,7 +608,7 @@ class UserApi:
 
 
         :param computation: Computation id (required)
-        :type computation: str
+        :type computation: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -674,7 +674,7 @@ class UserApi:
 
 
         :param computation: Computation id (required)
-        :type computation: str
+        :type computation: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -740,7 +740,7 @@ class UserApi:
 
 
         :param computation: Computation id (required)
-        :type computation: str
+        :type computation: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2232,7 +2232,7 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2298,7 +2298,7 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2364,7 +2364,7 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2733,7 +2733,7 @@ class UserApi:
 
 
         :param role: Role id (required)
-        :type role: str
+        :type role: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2799,7 +2799,7 @@ class UserApi:
 
 
         :param role: Role id (required)
-        :type role: str
+        :type role: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2865,7 +2865,7 @@ class UserApi:
 
 
         :param role: Role id (required)
-        :type role: str
+        :type role: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2985,9 +2985,9 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param role: Role id (required)
-        :type role: str
+        :type role: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3055,9 +3055,9 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param role: Role id (required)
-        :type role: str
+        :type role: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3125,9 +3125,9 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param role: Role id (required)
-        :type role: str
+        :type role: UUID
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3251,7 +3251,7 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param update_quota: (required)
         :type update_quota: UpdateQuota
         :param _request_timeout: timeout setting for this request. If one
@@ -3321,7 +3321,7 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param update_quota: (required)
         :type update_quota: UpdateQuota
         :param _request_timeout: timeout setting for this request. If one
@@ -3391,7 +3391,7 @@ class UserApi:
 
 
         :param user: User id (required)
-        :type user: str
+        :type user: UUID
         :param update_quota: (required)
         :type update_quota: UpdateQuota
         :param _request_timeout: timeout setting for this request. If one

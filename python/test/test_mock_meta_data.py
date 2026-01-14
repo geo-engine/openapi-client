@@ -43,13 +43,7 @@ class TestMockMetaData(unittest.TestCase):
                             y = 1.337, )
                         ], ),
                 result_descriptor = geoengine_openapi_client.models.vector_result_descriptor.VectorResultDescriptor(
-                    bbox = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(
-                        lower_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
-                            x = 1.337, 
-                            y = 1.337, ), 
-                        upper_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
-                            x = 1.337, 
-                            y = 1.337, ), ), 
+                    bbox = null, 
                     columns = {
                         'key' : geoengine_openapi_client.models.vector_column_info.VectorColumnInfo(
                             data_type = 'category', 
@@ -57,9 +51,7 @@ class TestMockMetaData(unittest.TestCase):
                         }, 
                     data_type = 'Data', 
                     spatial_reference = '', 
-                    time = geoengine_openapi_client.models.time_interval.TimeInterval(
-                        end = 56, 
-                        start = 56, ), ),
+                    time = null, ),
                 type = 'MockMetaData'
             )
         else:
@@ -71,13 +63,7 @@ class TestMockMetaData(unittest.TestCase):
                             y = 1.337, )
                         ], ),
                 result_descriptor = geoengine_openapi_client.models.vector_result_descriptor.VectorResultDescriptor(
-                    bbox = geoengine_openapi_client.models.bounding_box2_d.BoundingBox2D(
-                        lower_left_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
-                            x = 1.337, 
-                            y = 1.337, ), 
-                        upper_right_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
-                            x = 1.337, 
-                            y = 1.337, ), ), 
+                    bbox = null, 
                     columns = {
                         'key' : geoengine_openapi_client.models.vector_column_info.VectorColumnInfo(
                             data_type = 'category', 
@@ -85,9 +71,7 @@ class TestMockMetaData(unittest.TestCase):
                         }, 
                     data_type = 'Data', 
                     spatial_reference = '', 
-                    time = geoengine_openapi_client.models.time_interval.TimeInterval(
-                        end = 56, 
-                        start = 56, ), ),
+                    time = null, ),
                 type = 'MockMetaData',
         )
         """

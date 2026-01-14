@@ -55,12 +55,7 @@ class UserApi extends runtime.BaseAPI {
                 query: queryParameters,
                 body: (0, index_1.AddRoleToJSON)(requestParameters['addRole']),
             }, initOverrides);
-            if (this.isJsonMime(response.headers.get('content-type'))) {
-                return new runtime.JSONApiResponse(response);
-            }
-            else {
-                return new runtime.TextApiResponse(response);
-            }
+            return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.IdResponseFromJSON)(jsonValue));
         });
     }
     /**

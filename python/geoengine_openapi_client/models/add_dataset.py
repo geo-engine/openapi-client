@@ -87,11 +87,6 @@ class AddDataset(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of symbology
         if self.symbology:
             _dict['symbology'] = self.symbology.to_dict()
-        # set to None if name (nullable) is None
-        # and model_fields_set contains the field
-        if self.name is None and "name" in self.model_fields_set:
-            _dict['name'] = None
-
         # set to None if provenance (nullable) is None
         # and model_fields_set contains the field
         if self.provenance is None and "provenance" in self.model_fields_set:

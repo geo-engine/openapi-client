@@ -32,9 +32,7 @@ export interface GdalMetadataNetCdfCf {
      */
     cacheTtl?: number;
     /**
-     * We use the end to specify the last, non-inclusive valid time point.
-     * Queries behind this point return no data.
-     * TODO: Alternatively, we could think about using the number of possible time steps in the future.
+     *
      * @type {number}
      * @memberof GdalMetadataNetCdfCf
      */

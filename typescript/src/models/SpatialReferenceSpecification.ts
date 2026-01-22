@@ -40,7 +40,7 @@ export interface SpatialReferenceSpecification {
      * @type {Array<string>}
      * @memberof SpatialReferenceSpecification
      */
-    axisLabels?: Array<string> | null;
+    axisLabels?: Array<string>;
     /**
      * 
      * @type {AxisOrder}

@@ -85,11 +85,6 @@ class UserSession(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of view
         if self.view:
             _dict['view'] = self.view.to_dict()
-        # set to None if project (nullable) is None
-        # and model_fields_set contains the field
-        if self.project is None and "project" in self.model_fields_set:
-            _dict['project'] = None
-
         # set to None if view (nullable) is None
         # and model_fields_set contains the field
         if self.view is None and "view" in self.model_fields_set:

@@ -18,9 +18,9 @@ exports.GdalDatasetParametersFromJSON = GdalDatasetParametersFromJSON;
 exports.GdalDatasetParametersFromJSONTyped = GdalDatasetParametersFromJSONTyped;
 exports.GdalDatasetParametersToJSON = GdalDatasetParametersToJSON;
 exports.GdalDatasetParametersToJSONTyped = GdalDatasetParametersToJSONTyped;
-const GdalDatasetGeoTransform_1 = require("./GdalDatasetGeoTransform");
 const GdalMetadataMapping_1 = require("./GdalMetadataMapping");
 const FileNotFoundHandling_1 = require("./FileNotFoundHandling");
+const GeoTransform_1 = require("./GeoTransform");
 /**
  * Check if a given object implements the GdalDatasetParameters interface.
  */
@@ -52,7 +52,7 @@ function GdalDatasetParametersFromJSONTyped(json, ignoreDiscriminator) {
         'filePath': json['filePath'],
         'gdalConfigOptions': json['gdalConfigOptions'] == null ? undefined : json['gdalConfigOptions'],
         'gdalOpenOptions': json['gdalOpenOptions'] == null ? undefined : json['gdalOpenOptions'],
-        'geoTransform': (0, GdalDatasetGeoTransform_1.GdalDatasetGeoTransformFromJSON)(json['geoTransform']),
+        'geoTransform': (0, GeoTransform_1.GeoTransformFromJSON)(json['geoTransform']),
         'height': json['height'],
         'noDataValue': json['noDataValue'] == null ? undefined : json['noDataValue'],
         'propertiesMapping': json['propertiesMapping'] == null ? undefined : (json['propertiesMapping'].map(GdalMetadataMapping_1.GdalMetadataMappingFromJSON)),
@@ -73,7 +73,7 @@ function GdalDatasetParametersToJSONTyped(value, ignoreDiscriminator = false) {
         'filePath': value['filePath'],
         'gdalConfigOptions': value['gdalConfigOptions'],
         'gdalOpenOptions': value['gdalOpenOptions'],
-        'geoTransform': (0, GdalDatasetGeoTransform_1.GdalDatasetGeoTransformToJSON)(value['geoTransform']),
+        'geoTransform': (0, GeoTransform_1.GeoTransformToJSON)(value['geoTransform']),
         'height': value['height'],
         'noDataValue': value['noDataValue'],
         'propertiesMapping': value['propertiesMapping'] == null ? undefined : (value['propertiesMapping'].map(GdalMetadataMapping_1.GdalMetadataMappingToJSON)),

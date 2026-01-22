@@ -339,7 +339,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -405,7 +405,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -471,7 +471,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -878,7 +878,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -944,7 +944,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1010,7 +1010,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1137,9 +1137,9 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param version: Version id (required)
-        :type version: UUID
+        :type version: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1207,9 +1207,9 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param version: Version id (required)
-        :type version: UUID
+        :type version: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1277,9 +1277,9 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param version: Version id (required)
-        :type version: UUID
+        :type version: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1409,7 +1409,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1475,7 +1475,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1541,7 +1541,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1668,7 +1668,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param update_project: (required)
         :type update_project: UpdateProject
         :param _request_timeout: timeout setting for this request. If one
@@ -1738,7 +1738,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param update_project: (required)
         :type update_project: UpdateProject
         :param _request_timeout: timeout setting for this request. If one
@@ -1808,7 +1808,7 @@ class ProjectsApi:
 
 
         :param project: Project id (required)
-        :type project: UUID
+        :type project: str
         :param update_project: (required)
         :type update_project: UpdateProject
         :param _request_timeout: timeout setting for this request. If one

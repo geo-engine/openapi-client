@@ -42,7 +42,7 @@ class TestCreateDataset(unittest.TestCase):
                     properties = geoengine_openapi_client.models.add_dataset.AddDataset(
                         description = '', 
                         display_name = '', 
-                        name = null, 
+                        name = '', 
                         provenance = [
                             geoengine_openapi_client.models.provenance.Provenance(
                                 citation = '', 
@@ -63,7 +63,7 @@ class TestCreateDataset(unittest.TestCase):
                     properties = geoengine_openapi_client.models.add_dataset.AddDataset(
                         description = '', 
                         display_name = '', 
-                        name = null, 
+                        name = '', 
                         provenance = [
                             geoengine_openapi_client.models.provenance.Provenance(
                                 citation = '', 

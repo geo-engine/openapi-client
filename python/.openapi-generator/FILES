@@ -1,7 +1,6 @@
 .github/workflows/python.yml
 .gitignore
 .gitlab-ci.yml
-.openapi-generator-ignore
 .travis.yml
 README.md
 docs/AddDataset.md
@@ -56,7 +55,6 @@ docs/FileNotFoundHandling.md
 docs/FormatSpecifics.md
 docs/FormatSpecificsCsv.md
 docs/GbifDataProviderDefinition.md
-docs/GdalDatasetGeoTransform.md
 docs/GdalDatasetParameters.md
 docs/GdalLoadingInfoTemporalSlice.md
 docs/GdalMetaDataList.md
@@ -341,7 +339,6 @@ geoengine_openapi_client/models/file_not_found_handling.py
 geoengine_openapi_client/models/format_specifics.py
 geoengine_openapi_client/models/format_specifics_csv.py
 geoengine_openapi_client/models/gbif_data_provider_definition.py
-geoengine_openapi_client/models/gdal_dataset_geo_transform.py
 geoengine_openapi_client/models/gdal_dataset_parameters.py
 geoengine_openapi_client/models/gdal_loading_info_temporal_slice.py
 geoengine_openapi_client/models/gdal_meta_data_list.py
@@ -598,7 +595,6 @@ test/test_file_not_found_handling.py
 test/test_format_specifics.py
 test/test_format_specifics_csv.py
 test/test_gbif_data_provider_definition.py
-test/test_gdal_dataset_geo_transform.py
 test/test_gdal_dataset_parameters.py
 test/test_gdal_loading_info_temporal_slice.py
 test/test_gdal_meta_data_list.py

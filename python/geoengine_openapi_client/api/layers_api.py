@@ -1461,7 +1461,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param collection: Layer collection id (required)
         :type collection: str
         :param search_type: (required)
@@ -1547,7 +1547,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param collection: Layer collection id (required)
         :type collection: str
         :param search_type: (required)
@@ -1633,7 +1633,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param collection: Layer collection id (required)
         :type collection: str
         :param search_type: (required)
@@ -1797,7 +1797,7 @@ class LayersApi:
 
 
         :param provider: Layer provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1863,7 +1863,7 @@ class LayersApi:
 
 
         :param provider: Layer provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1929,7 +1929,7 @@ class LayersApi:
 
 
         :param provider: Layer provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2048,7 +2048,7 @@ class LayersApi:
 
 
         :param provider: Layer provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2114,7 +2114,7 @@ class LayersApi:
 
 
         :param provider: Layer provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2180,7 +2180,7 @@ class LayersApi:
 
 
         :param provider: Layer provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2307,7 +2307,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param layer: Layer id (required)
         :type layer: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2377,7 +2377,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param layer: Layer id (required)
         :type layer: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2447,7 +2447,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param layer: Layer id (required)
         :type layer: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2580,7 +2580,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param layer: Layer id (required)
         :type layer: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2650,7 +2650,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param layer: Layer id (required)
         :type layer: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2720,7 +2720,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param layer: Layer id (required)
         :type layer: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2853,7 +2853,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param layer: Layer id (required)
         :type layer: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2923,7 +2923,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param layer: Layer id (required)
         :type layer: str
         :param _request_timeout: timeout setting for this request. If one
@@ -2993,7 +2993,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param layer: Layer id (required)
         :type layer: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3128,7 +3128,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param collection: Layer collection id (required)
         :type collection: str
         :param offset: (required)
@@ -3206,7 +3206,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param collection: Layer collection id (required)
         :type collection: str
         :param offset: (required)
@@ -3284,7 +3284,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param collection: Layer collection id (required)
         :type collection: str
         :param offset: (required)
@@ -3986,7 +3986,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4052,7 +4052,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4118,7 +4118,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5295,7 +5295,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param collection: Layer collection id (required)
         :type collection: str
         :param search_type: (required)
@@ -5381,7 +5381,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param collection: Layer collection id (required)
         :type collection: str
         :param search_type: (required)
@@ -5467,7 +5467,7 @@ class LayersApi:
 
 
         :param provider: Data provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param collection: Layer collection id (required)
         :type collection: str
         :param search_type: (required)
@@ -6190,7 +6190,7 @@ class LayersApi:
 
 
         :param provider: Layer provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param typed_data_provider_definition: (required)
         :type typed_data_provider_definition: TypedDataProviderDefinition
         :param _request_timeout: timeout setting for this request. If one
@@ -6260,7 +6260,7 @@ class LayersApi:
 
 
         :param provider: Layer provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param typed_data_provider_definition: (required)
         :type typed_data_provider_definition: TypedDataProviderDefinition
         :param _request_timeout: timeout setting for this request. If one
@@ -6330,7 +6330,7 @@ class LayersApi:
 
 
         :param provider: Layer provider id (required)
-        :type provider: UUID
+        :type provider: str
         :param typed_data_provider_definition: (required)
         :type typed_data_provider_definition: TypedDataProviderDefinition
         :param _request_timeout: timeout setting for this request. If one

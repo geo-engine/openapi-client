@@ -36,7 +36,7 @@ class MultiBandRasterColorizer(BaseModel):
     green_max: Union[StrictFloat, StrictInt] = Field(description="The maximum value for the red channel.", alias="greenMax")
     green_min: Union[StrictFloat, StrictInt] = Field(description="The minimum value for the red channel.", alias="greenMin")
     green_scale: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A scaling factor for the green channel between 0 and 1.", alias="greenScale")
-    no_data_color: Optional[Annotated[List[StrictInt], Field(min_length=4, max_length=4)]] = Field(default=None, description="The color to use for no data values. If not specified, the no data values will be transparent.", alias="noDataColor")
+    no_data_color: Optional[Annotated[List[StrictInt], Field(min_length=4, max_length=4)]] = Field(default=None, alias="noDataColor")
     red_band: Annotated[int, Field(strict=True, ge=0)] = Field(description="The band index of the red channel.", alias="redBand")
     red_max: Union[StrictFloat, StrictInt] = Field(description="The maximum value for the red channel.", alias="redMax")
     red_min: Union[StrictFloat, StrictInt] = Field(description="The minimum value for the red channel.", alias="redMin")

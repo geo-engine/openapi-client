@@ -39,8 +39,31 @@ class TestMetaDataDefinition(unittest.TestCase):
                 loading_info = geoengine_openapi_client.models.ogr_source_dataset.OgrSourceDataset(
                     attribute_query = '', 
                     cache_ttl = 0, 
-                    columns = null, 
-                    data_type = null, 
+                    columns = geoengine_openapi_client.models.ogr_source_column_spec.OgrSourceColumnSpec(
+                        bool = [
+                            ''
+                            ], 
+                        datetime = [
+                            ''
+                            ], 
+                        float = [
+                            ''
+                            ], 
+                        format_specifics = geoengine_openapi_client.models.format_specifics.FormatSpecifics(
+                            csv = geoengine_openapi_client.models.format_specifics_csv.FormatSpecifics_csv(
+                                header = 'yes', ), ), 
+                        int = [
+                            ''
+                            ], 
+                        rename = {
+                            'key' : ''
+                            }, 
+                        text = [
+                            ''
+                            ], 
+                        x = '', 
+                        y = '', ), 
+                    data_type = 'Data', 
                     default_geometry = null, 
                     file_name = '', 
                     force_ogr_spatial_filter = True, 
@@ -59,7 +82,7 @@ class TestMetaDataDefinition(unittest.TestCase):
                     spatial_grid = geoengine_openapi_client.models.spatial_grid_descriptor.SpatialGridDescriptor(
                         descriptor = 'source', 
                         spatial_grid = geoengine_openapi_client.models.spatial_grid_definition.SpatialGridDefinition(
-                            geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                            geo_transform = geoengine_openapi_client.models.geo_transform.GeoTransform(
                                 origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                                     x = 1.337, 
                                     y = 1.337, ), 
@@ -74,7 +97,9 @@ class TestMetaDataDefinition(unittest.TestCase):
                                     y_idx = 56, ), ), ), ), 
                     spatial_reference = '', 
                     time = geoengine_openapi_client.models.time_descriptor.TimeDescriptor(
-                        bounds = null, 
+                        bounds = geoengine_openapi_client.models.time_interval.TimeInterval(
+                            end = 56, 
+                            start = 56, ), 
                         dimension = null, ), ),
                 type = 'MockMetaData',
                 cache_ttl = 0,
@@ -108,8 +133,31 @@ class TestMetaDataDefinition(unittest.TestCase):
                 loading_info = geoengine_openapi_client.models.ogr_source_dataset.OgrSourceDataset(
                     attribute_query = '', 
                     cache_ttl = 0, 
-                    columns = null, 
-                    data_type = null, 
+                    columns = geoengine_openapi_client.models.ogr_source_column_spec.OgrSourceColumnSpec(
+                        bool = [
+                            ''
+                            ], 
+                        datetime = [
+                            ''
+                            ], 
+                        float = [
+                            ''
+                            ], 
+                        format_specifics = geoengine_openapi_client.models.format_specifics.FormatSpecifics(
+                            csv = geoengine_openapi_client.models.format_specifics_csv.FormatSpecifics_csv(
+                                header = 'yes', ), ), 
+                        int = [
+                            ''
+                            ], 
+                        rename = {
+                            'key' : ''
+                            }, 
+                        text = [
+                            ''
+                            ], 
+                        x = '', 
+                        y = '', ), 
+                    data_type = 'Data', 
                     default_geometry = null, 
                     file_name = '', 
                     force_ogr_spatial_filter = True, 
@@ -128,7 +176,7 @@ class TestMetaDataDefinition(unittest.TestCase):
                     spatial_grid = geoengine_openapi_client.models.spatial_grid_descriptor.SpatialGridDescriptor(
                         descriptor = 'source', 
                         spatial_grid = geoengine_openapi_client.models.spatial_grid_definition.SpatialGridDefinition(
-                            geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                            geo_transform = geoengine_openapi_client.models.geo_transform.GeoTransform(
                                 origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                                     x = 1.337, 
                                     y = 1.337, ), 
@@ -143,7 +191,9 @@ class TestMetaDataDefinition(unittest.TestCase):
                                     y_idx = 56, ), ), ), ), 
                     spatial_reference = '', 
                     time = geoengine_openapi_client.models.time_descriptor.TimeDescriptor(
-                        bounds = null, 
+                        bounds = geoengine_openapi_client.models.time_interval.TimeInterval(
+                            end = 56, 
+                            start = 56, ), 
                         dimension = null, ), ),
                 type = 'MockMetaData',
                 data_time = geoengine_openapi_client.models.time_interval.TimeInterval(

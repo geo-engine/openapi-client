@@ -36,7 +36,7 @@ class TestSpatialGridDefinition(unittest.TestCase):
         model = SpatialGridDefinition()
         if include_optional:
             return SpatialGridDefinition(
-                geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                geo_transform = geoengine_openapi_client.models.geo_transform.GeoTransform(
                     origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                         x = 1.337, 
                         y = 1.337, ), 
@@ -52,7 +52,7 @@ class TestSpatialGridDefinition(unittest.TestCase):
             )
         else:
             return SpatialGridDefinition(
-                geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                geo_transform = geoengine_openapi_client.models.geo_transform.GeoTransform(
                     origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                         x = 1.337, 
                         y = 1.337, ), 

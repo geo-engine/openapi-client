@@ -67,7 +67,6 @@ __exportStar(require("./FileNotFoundHandling"), exports);
 __exportStar(require("./FormatSpecifics"), exports);
 __exportStar(require("./FormatSpecificsCsv"), exports);
 __exportStar(require("./GbifDataProviderDefinition"), exports);
-__exportStar(require("./GdalDatasetGeoTransform"), exports);
 __exportStar(require("./GdalDatasetParameters"), exports);
 __exportStar(require("./GdalLoadingInfoTemporalSlice"), exports);
 __exportStar(require("./GdalMetaDataList"), exports);

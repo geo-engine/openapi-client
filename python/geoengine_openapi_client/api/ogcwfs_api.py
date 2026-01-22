@@ -18,12 +18,13 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-from typing import Any, Optional
+from typing import Optional
 from typing_extensions import Annotated
 from uuid import UUID
 from geoengine_openapi_client.models.geo_json import GeoJson
 from geoengine_openapi_client.models.wfs_request import WfsRequest
 from geoengine_openapi_client.models.wfs_service import WfsService
+from geoengine_openapi_client.models.wfs_version import WfsVersion
 
 from geoengine_openapi_client.api_client import ApiClient, RequestSerialized
 from geoengine_openapi_client.api_response import ApiResponse
@@ -59,7 +60,7 @@ class OGCWFSApi:
         srs_name: Optional[StrictStr] = None,
         time: Optional[StrictStr] = None,
         type_names: Optional[StrictStr] = None,
-        version: Optional[Any] = None,
+        version: Optional[WfsVersion] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -77,7 +78,7 @@ class OGCWFSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: UUID
+        :type workflow: str
         :param request: type of WFS request (required)
         :type request: WfsRequest
         :param bbox:
@@ -177,7 +178,7 @@ class OGCWFSApi:
         srs_name: Optional[StrictStr] = None,
         time: Optional[StrictStr] = None,
         type_names: Optional[StrictStr] = None,
-        version: Optional[Any] = None,
+        version: Optional[WfsVersion] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -195,7 +196,7 @@ class OGCWFSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: UUID
+        :type workflow: str
         :param request: type of WFS request (required)
         :type request: WfsRequest
         :param bbox:
@@ -295,7 +296,7 @@ class OGCWFSApi:
         srs_name: Optional[StrictStr] = None,
         time: Optional[StrictStr] = None,
         type_names: Optional[StrictStr] = None,
-        version: Optional[Any] = None,
+        version: Optional[WfsVersion] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -313,7 +314,7 @@ class OGCWFSApi:
 
 
         :param workflow: Workflow id (required)
-        :type workflow: UUID
+        :type workflow: str
         :param request: type of WFS request (required)
         :type request: WfsRequest
         :param bbox:

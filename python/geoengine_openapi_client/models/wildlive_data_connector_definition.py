@@ -95,11 +95,6 @@ class WildliveDataConnectorDefinition(BaseModel):
         if self.priority is None and "priority" in self.model_fields_set:
             _dict['priority'] = None
 
-        # set to None if refresh_token (nullable) is None
-        # and model_fields_set contains the field
-        if self.refresh_token is None and "refresh_token" in self.model_fields_set:
-            _dict['refreshToken'] = None
-
         # set to None if user (nullable) is None
         # and model_fields_set contains the field
         if self.user is None and "user" in self.model_fields_set:

@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { GdalDatasetGeoTransform } from './GdalDatasetGeoTransform';
-import {
-    GdalDatasetGeoTransformFromJSON,
-    GdalDatasetGeoTransformFromJSONTyped,
-    GdalDatasetGeoTransformToJSON,
-    GdalDatasetGeoTransformToJSONTyped,
-} from './GdalDatasetGeoTransform';
 import type { GdalMetadataMapping } from './GdalMetadataMapping';
 import {
     GdalMetadataMappingFromJSON,
@@ -34,6 +27,13 @@ import {
     FileNotFoundHandlingToJSON,
     FileNotFoundHandlingToJSONTyped,
 } from './FileNotFoundHandling';
+import type { GeoTransform } from './GeoTransform';
+import {
+    GeoTransformFromJSON,
+    GeoTransformFromJSONTyped,
+    GeoTransformToJSON,
+    GeoTransformToJSONTyped,
+} from './GeoTransform';
 
 /**
  * Parameters for loading data using Gdal
@@ -73,10 +73,10 @@ export interface GdalDatasetParameters {
     gdalOpenOptions?: Array<string> | null;
     /**
      * 
-     * @type {GdalDatasetGeoTransform}
+     * @type {GeoTransform}
      * @memberof GdalDatasetParameters
      */
-    geoTransform: GdalDatasetGeoTransform;
+    geoTransform: GeoTransform;
     /**
      * 
      * @type {number}
@@ -139,7 +139,7 @@ export function GdalDatasetParametersFromJSONTyped(json: any, ignoreDiscriminato
         'filePath': json['filePath'],
         'gdalConfigOptions': json['gdalConfigOptions'] == null ? undefined : json['gdalConfigOptions'],
         'gdalOpenOptions': json['gdalOpenOptions'] == null ? undefined : json['gdalOpenOptions'],
-        'geoTransform': GdalDatasetGeoTransformFromJSON(json['geoTransform']),
+        'geoTransform': GeoTransformFromJSON(json['geoTransform']),
         'height': json['height'],
         'noDataValue': json['noDataValue'] == null ? undefined : json['noDataValue'],
         'propertiesMapping': json['propertiesMapping'] == null ? undefined : ((json['propertiesMapping'] as Array<any>).map(GdalMetadataMappingFromJSON)),
@@ -164,7 +164,7 @@ export function GdalDatasetParametersToJSONTyped(value?: GdalDatasetParameters |
         'filePath': value['filePath'],
         'gdalConfigOptions': value['gdalConfigOptions'],
         'gdalOpenOptions': value['gdalOpenOptions'],
-        'geoTransform': GdalDatasetGeoTransformToJSON(value['geoTransform']),
+        'geoTransform': GeoTransformToJSON(value['geoTransform']),
         'height': value['height'],
         'noDataValue': value['noDataValue'],
         'propertiesMapping': value['propertiesMapping'] == null ? undefined : ((value['propertiesMapping'] as Array<any>).map(GdalMetadataMappingToJSON)),

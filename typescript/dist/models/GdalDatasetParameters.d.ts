@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { GdalDatasetGeoTransform } from './GdalDatasetGeoTransform';
 import type { GdalMetadataMapping } from './GdalMetadataMapping';
 import type { FileNotFoundHandling } from './FileNotFoundHandling';
+import type { GeoTransform } from './GeoTransform';
 /**
  * Parameters for loading data using Gdal
  * @export
@@ -50,10 +50,10 @@ export interface GdalDatasetParameters {
     gdalOpenOptions?: Array<string> | null;
     /**
      *
-     * @type {GdalDatasetGeoTransform}
+     * @type {GeoTransform}
      * @memberof GdalDatasetParameters
      */
-    geoTransform: GdalDatasetGeoTransform;
+    geoTransform: GeoTransform;
     /**
      *
      * @type {number}

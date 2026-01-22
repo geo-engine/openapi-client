@@ -70,7 +70,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param raster_dataset_from_workflow: (required)
         :type raster_dataset_from_workflow: RasterDatasetFromWorkflow
         :param _request_timeout: timeout setting for this request. If one
@@ -140,7 +140,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param raster_dataset_from_workflow: (required)
         :type raster_dataset_from_workflow: RasterDatasetFromWorkflow
         :param _request_timeout: timeout setting for this request. If one
@@ -210,7 +210,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param raster_dataset_from_workflow: (required)
         :type raster_dataset_from_workflow: RasterDatasetFromWorkflow
         :param _request_timeout: timeout setting for this request. If one
@@ -355,7 +355,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -421,7 +421,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -487,7 +487,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -613,7 +613,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -679,7 +679,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -745,7 +745,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -871,7 +871,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -937,7 +937,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1003,7 +1003,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1129,7 +1129,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1195,7 +1195,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1261,7 +1261,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1391,7 +1391,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param spatial_bounds: (required)
         :type spatial_bounds: SpatialPartition2D
         :param time_interval: (required)
@@ -1473,7 +1473,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param spatial_bounds: (required)
         :type spatial_bounds: SpatialPartition2D
         :param time_interval: (required)
@@ -1555,7 +1555,7 @@ class WorkflowsApi:
 
 
         :param id: Workflow id (required)
-        :type id: UUID
+        :type id: str
         :param spatial_bounds: (required)
         :type spatial_bounds: SpatialPartition2D
         :param time_interval: (required)

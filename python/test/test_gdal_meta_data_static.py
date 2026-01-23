@@ -49,7 +49,7 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                     gdal_open_options = [
                         ''
                         ], 
-                    geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                    geo_transform = geoengine_openapi_client.models.geo_transform.GeoTransform(
                         origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                             x = 1.337, 
                             y = 1.337, ), 
@@ -79,7 +79,7 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                     spatial_grid = geoengine_openapi_client.models.spatial_grid_descriptor.SpatialGridDescriptor(
                         descriptor = 'source', 
                         spatial_grid = geoengine_openapi_client.models.spatial_grid_definition.SpatialGridDefinition(
-                            geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                            geo_transform = geoengine_openapi_client.models.geo_transform.GeoTransform(
                                 origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                                     x = 1.337, 
                                     y = 1.337, ), 
@@ -115,7 +115,7 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                     gdal_open_options = [
                         ''
                         ], 
-                    geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                    geo_transform = geoengine_openapi_client.models.geo_transform.GeoTransform(
                         origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                             x = 1.337, 
                             y = 1.337, ), 
@@ -145,7 +145,7 @@ class TestGdalMetaDataStatic(unittest.TestCase):
                     spatial_grid = geoengine_openapi_client.models.spatial_grid_descriptor.SpatialGridDescriptor(
                         descriptor = 'source', 
                         spatial_grid = geoengine_openapi_client.models.spatial_grid_definition.SpatialGridDefinition(
-                            geo_transform = geoengine_openapi_client.models.gdal_dataset_geo_transform.GdalDatasetGeoTransform(
+                            geo_transform = geoengine_openapi_client.models.geo_transform.GeoTransform(
                                 origin_coordinate = geoengine_openapi_client.models.coordinate2_d.Coordinate2D(
                                     x = 1.337, 
                                     y = 1.337, ), 

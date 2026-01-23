@@ -95,7 +95,6 @@ __all__ = [
     "FormatSpecifics",
     "FormatSpecificsCsv",
     "GbifDataProviderDefinition",
-    "GdalDatasetGeoTransform",
     "GdalDatasetParameters",
     "GdalLoadingInfoTemporalSlice",
     "GdalMetaDataList",
@@ -374,7 +373,6 @@ from geoengine_openapi_client.models.file_not_found_handling import FileNotFound
 from geoengine_openapi_client.models.format_specifics import FormatSpecifics as FormatSpecifics
 from geoengine_openapi_client.models.format_specifics_csv import FormatSpecificsCsv as FormatSpecificsCsv
 from geoengine_openapi_client.models.gbif_data_provider_definition import GbifDataProviderDefinition as GbifDataProviderDefinition
-from geoengine_openapi_client.models.gdal_dataset_geo_transform import GdalDatasetGeoTransform as GdalDatasetGeoTransform
 from geoengine_openapi_client.models.gdal_dataset_parameters import GdalDatasetParameters as GdalDatasetParameters
 from geoengine_openapi_client.models.gdal_loading_info_temporal_slice import GdalLoadingInfoTemporalSlice as GdalLoadingInfoTemporalSlice
 from geoengine_openapi_client.models.gdal_meta_data_list import GdalMetaDataList as GdalMetaDataList

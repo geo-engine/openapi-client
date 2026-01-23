@@ -49,7 +49,6 @@ export * from './FileNotFoundHandling';
 export * from './FormatSpecifics';
 export * from './FormatSpecificsCsv';
 export * from './GbifDataProviderDefinition';
-export * from './GdalDatasetGeoTransform';
 export * from './GdalDatasetParameters';
 export * from './GdalLoadingInfoTemporalSlice';
 export * from './GdalMetaDataList';

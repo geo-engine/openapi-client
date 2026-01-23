@@ -240,7 +240,6 @@ Class | Method | HTTP request | Description
  - [FormatSpecifics](docs/FormatSpecifics.md)
  - [FormatSpecificsCsv](docs/FormatSpecificsCsv.md)
  - [GbifDataProviderDefinition](docs/GbifDataProviderDefinition.md)
- - [GdalDatasetGeoTransform](docs/GdalDatasetGeoTransform.md)
  - [GdalDatasetParameters](docs/GdalDatasetParameters.md)
  - [GdalLoadingInfoTemporalSlice](docs/GdalLoadingInfoTemporalSlice.md)
  - [GdalMetaDataList](docs/GdalMetaDataList.md)

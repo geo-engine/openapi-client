@@ -12,7 +12,7 @@ Name | Type
 `filePath` | string
 `gdalConfigOptions` | Array&lt;Array&lt;string&gt;&gt;
 `gdalOpenOptions` | Array&lt;string&gt;
-`geoTransform` | [GdalDatasetGeoTransform](GdalDatasetGeoTransform.md)
+`geoTransform` | [GeoTransform](GeoTransform.md)
 `height` | number
 `noDataValue` | number
 `propertiesMapping` | [Array&lt;GdalMetadataMapping&gt;](GdalMetadataMapping.md)

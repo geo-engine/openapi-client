@@ -12,7 +12,7 @@ Name | Type
 `type` | string
 `bands` | [Array&lt;RasterBandDescriptor&gt;](RasterBandDescriptor.md)
 `dataType` | [VectorDataType](VectorDataType.md)
-`resolution` | [SpatialResolution](SpatialResolution.md)
+`spatialGrid` | [SpatialGridDescriptor](SpatialGridDescriptor.md)
 `columns` | [{ [key: string]: VectorColumnInfo; }](VectorColumnInfo.md)
 
 ## Example
@@ -28,7 +28,7 @@ const example = {
   "type": null,
   "bands": null,
   "dataType": null,
-  "resolution": null,
+  "spatialGrid": null,
   "columns": null,
 } satisfies TypedResultDescriptor
 

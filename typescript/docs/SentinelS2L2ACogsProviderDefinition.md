@@ -7,7 +7,6 @@
 Name | Type
 ------------ | -------------
 `apiUrl` | string
-`bands` | [Array&lt;StacBand&gt;](StacBand.md)
 `cacheTtl` | number
 `description` | string
 `gdalRetries` | number
@@ -17,7 +16,6 @@ Name | Type
 `queryBuffer` | [StacQueryBuffer](StacQueryBuffer.md)
 `stacApiRetries` | [StacApiRetries](StacApiRetries.md)
 `type` | string
-`zones` | [Array&lt;StacZone&gt;](StacZone.md)
 
 ## Example
 
@@ -27,7 +25,6 @@ import type { SentinelS2L2ACogsProviderDefinition } from '@geoengine/openapi-cli
 // TODO: Update the object below with actual values
 const example = {
   "apiUrl": null,
-  "bands": null,
   "cacheTtl": null,
   "description": null,
   "gdalRetries": null,
@@ -37,7 +34,6 @@ const example = {
   "queryBuffer": null,
   "stacApiRetries": null,
   "type": null,
-  "zones": null,
 } satisfies SentinelS2L2ACogsProviderDefinition
 
 console.log(example)

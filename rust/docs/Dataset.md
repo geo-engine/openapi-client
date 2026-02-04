@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**data_path** | Option<[**models::DataPath**](DataPath.md)> |  | [optional]
 **description** | **String** |  | 
 **display_name** | **String** |  | 
 **id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 

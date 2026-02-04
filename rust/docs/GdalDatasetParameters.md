@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **file_path** | **String** |  | 
 **gdal_config_options** | Option<[**Vec<Vec<String>>**](Vec.md)> |  | [optional]
 **gdal_open_options** | Option<**Vec<String>**> |  | [optional]
-**geo_transform** | [**models::GdalDatasetGeoTransform**](GdalDatasetGeoTransform.md) |  | 
+**geo_transform** | [**models::GeoTransform**](GeoTransform.md) |  | 
 **height** | **i32** |  | 
 **no_data_value** | Option<**f64**> |  | [optional]
 **properties_mapping** | Option<[**Vec<models::GdalMetadataMapping>**](GdalMetadataMapping.md)> |  | [optional]

@@ -157,7 +157,7 @@ Name | Type | Description  | Required | Notes
 
 ## raster_stream_websocket
 
-> raster_stream_websocket(id, spatial_bounds, time_interval, spatial_resolution, attributes, result_type)
+> raster_stream_websocket(id, spatial_bounds, time_interval, attributes, result_type)
 Query a workflow raster result as a stream of tiles via a websocket connection.
 
 ### Parameters
@@ -168,7 +168,6 @@ Name | Type | Description  | Required | Notes
 **id** | **uuid::Uuid** | Workflow id | [required] |
 **spatial_bounds** | [**SpatialPartition2D**](.md) |  | [required] |
 **time_interval** | **String** |  | [required] |
-**spatial_resolution** | [**SpatialResolution**](.md) |  | [required] |
 **attributes** | **String** |  | [required] |
 **result_type** | [**RasterStreamWebsocketResultType**](.md) |  | [required] |
 

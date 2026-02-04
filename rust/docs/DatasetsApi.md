@@ -4,6 +4,7 @@ All URIs are relative to *https://geoengine.io/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_dataset_tiles_handler**](DatasetsApi.md#add_dataset_tiles_handler) | **POST** /dataset/{dataset}/tiles | Add a tile to a gdal dataset.
 [**auto_create_dataset_handler**](DatasetsApi.md#auto_create_dataset_handler) | **POST** /dataset/auto | Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
 [**create_dataset_handler**](DatasetsApi.md#create_dataset_handler) | **POST** /dataset | Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
 [**delete_dataset_handler**](DatasetsApi.md#delete_dataset_handler) | **DELETE** /dataset/{dataset} | Delete a dataset
@@ -18,6 +19,35 @@ Method | HTTP request | Description
 [**update_dataset_symbology_handler**](DatasetsApi.md#update_dataset_symbology_handler) | **PUT** /dataset/{dataset}/symbology | Updates the dataset's symbology
 [**update_loading_info_handler**](DatasetsApi.md#update_loading_info_handler) | **PUT** /dataset/{dataset}/loadingInfo | Updates the dataset's loading info
 
+
+
+## add_dataset_tiles_handler
+
+> add_dataset_tiles_handler(dataset, auto_create_dataset)
+Add a tile to a gdal dataset.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**dataset** | **String** | Dataset Name | [required] |
+**auto_create_dataset** | [**AutoCreateDataset**](AutoCreateDataset.md) |  | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[session_token](../README.md#session_token)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## auto_create_dataset_handler

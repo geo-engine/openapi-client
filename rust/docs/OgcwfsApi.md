@@ -4,46 +4,14 @@ All URIs are relative to *https://geoengine.io/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**wfs_capabilities_handler**](OgcwfsApi.md#wfs_capabilities_handler) | **GET** /wfs/{workflow}?request=GetCapabilities | Get WFS Capabilities
-[**wfs_feature_handler**](OgcwfsApi.md#wfs_feature_handler) | **GET** /wfs/{workflow}?request=GetFeature | Get WCS Features
+[**wfs_handler**](OgcwfsApi.md#wfs_handler) | **GET** /wfs/{workflow} | OGC WFS endpoint
 
 
 
-## wfs_capabilities_handler
+## wfs_handler
 
-> String wfs_capabilities_handler(workflow, version, service, request)
-Get WFS Capabilities
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**workflow** | **uuid::Uuid** | Workflow id | [required] |
-**version** | Option<**String**> |  | [required] |
-**service** | [**WfsService**](.md) |  | [required] |
-**request** | [**GetCapabilitiesRequest**](.md) |  | [required] |
-
-### Return type
-
-**String**
-
-### Authorization
-
-[session_token](../README.md#session_token)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: text/xml
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## wfs_feature_handler
-
-> models::GeoJson wfs_feature_handler(workflow, service, request, type_names, bbox, version, time, srs_name, namespaces, count, sort_by, result_type, filter, property_name, query_resolution)
-Get WCS Features
+> models::GeoJson wfs_handler(workflow, request, bbox, count, filter, namespaces, property_name, result_type, service, sort_by, srs_name, time, type_names, version)
+OGC WFS endpoint
 
 ### Parameters
 
@@ -51,20 +19,19 @@ Get WCS Features
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **workflow** | **uuid::Uuid** | Workflow id | [required] |
-**service** | [**WfsService**](.md) |  | [required] |
-**request** | [**GetFeatureRequest**](.md) |  | [required] |
-**type_names** | **String** |  | [required] |
-**bbox** | **String** |  | [required] |
-**version** | Option<**String**> |  |  |
-**time** | Option<**String**> |  |  |
-**srs_name** | Option<**String**> |  |  |
-**namespaces** | Option<**String**> |  |  |
+**request** | [**WfsRequest**](.md) | type of WFS request | [required] |
+**bbox** | Option<**String**> |  |  |
 **count** | Option<**i64**> |  |  |
-**sort_by** | Option<**String**> |  |  |
-**result_type** | Option<**String**> |  |  |
 **filter** | Option<**String**> |  |  |
+**namespaces** | Option<**String**> |  |  |
 **property_name** | Option<**String**> |  |  |
-**query_resolution** | Option<**String**> | Vendor parameter for specifying a spatial query resolution |  |
+**result_type** | Option<**String**> |  |  |
+**service** | Option<[**WfsService**](.md)> |  |  |
+**sort_by** | Option<**String**> |  |  |
+**srs_name** | Option<**String**> |  |  |
+**time** | Option<**String**> |  |  |
+**type_names** | Option<**String**> |  |  |
+**version** | Option<**String**> |  |  |
 
 ### Return type
 

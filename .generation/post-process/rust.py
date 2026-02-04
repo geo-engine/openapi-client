@@ -163,29 +163,12 @@ def ogcwfs_api_rs(file_contents: List[str]) -> Generator[str, None, None]:
         dedented_line = dedent(line)
 
         if dedented_line.startswith(
-            'let uri_str = format!("{}/wfs/{workflow}?request=GetCapabilities'
+            'req_builder = req_builder.query(&[("service", &serde_json::to_string(param_value)?)]);'
         ):
             line = indent(
-                """\
-                let uri_str = format!(
-                "{}/wfs/{workflow}?request={request}&service={service}&version={version}",
-                configuration.base_path,
-                workflow = crate::apis::urlencode(p_path_workflow),
-                version = p_path_version.unwrap().to_string(),
-                service = p_path_service.to_string(),
-                request = p_path_request.to_string()
-            );
-            """,
-                INDENT,
-            )
-        elif dedented_line.startswith(
-            'let uri_str = format!("{}/wfs/{workflow}?request=GetFeature"'
-        ):
-            line = indent(
-                'let uri_str = format!("{}/wfs/{workflow}", '
-                "configuration.base_path, workflow=crate::apis::urlencode(p_path_workflow));"
+                'req_builder = req_builder.query(&[("service", &param_value.to_string())]);'
                 "\n",
-                INDENT,
+                2 * INDENT,
             )
 
         yield line

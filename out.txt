@@ -1,0 +1,1296 @@
+STEP 1/2: FROM docker.io/openapitools/openapi-generator-cli:v7.18.0
+STEP 2/2: RUN apt-get update && apt-get install -y python3
+--> Using cache cbaf5b0e13be665e3d43d13f4767baa27ad85589ce5bd0805311a473e3b4594c
+COMMIT openapi-generator-cli:patched
+--> cbaf5b0e13be
+Successfully tagged localhost/openapi-generator-cli:patched
+cbaf5b0e13be665e3d43d13f4767baa27ad85589ce5bd0805311a473e3b4594c
+[main] WARN  o.o.codegen.DefaultCodegen - OpenAPI 3.1 support is still in beta. To report an issue related to 3.1 spec, please kindly open an issue in the Github repo: https://github.com/openAPITools/openapi-generator.
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: rust (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'rust' is considered stable.
+[main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as upload_handler_request. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings upload_handler_request=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings upload_handler_request=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as ColumnNames_oneOf. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings ColumnNames_oneOf=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings ColumnNames_oneOf=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as ColumnNames_oneOf_1. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings ColumnNames_oneOf_1=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings ColumnNames_oneOf_1=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as ColumnNames_oneOf_2. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings ColumnNames_oneOf_2=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings ColumnNames_oneOf_2=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as DataPath_oneOf. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings DataPath_oneOf=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings DataPath_oneOf=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as DataPath_oneOf_1. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings DataPath_oneOf_1=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings DataPath_oneOf_1=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as FormatSpecifics_csv. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings FormatSpecifics_csv=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings FormatSpecifics_csv=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as TimeDimension_oneOf. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings TimeDimension_oneOf=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings TimeDimension_oneOf=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as TimeDimension_oneOf_1. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings TimeDimension_oneOf_1=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings TimeDimension_oneOf_1=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as TypedGeometry_oneOf. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings TypedGeometry_oneOf=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings TypedGeometry_oneOf=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as TypedGeometry_oneOf_1. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings TypedGeometry_oneOf_1=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings TypedGeometry_oneOf_1=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as TypedGeometry_oneOf_2. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings TypedGeometry_oneOf_2=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings TypedGeometry_oneOf_2=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as TypedGeometry_oneOf_3. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings TypedGeometry_oneOf_3=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings TypedGeometry_oneOf_3=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as TypedOperator_operator. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings TypedOperator_operator=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings TypedOperator_operator=NewModel,ModelA=NewModelA in CLI).
+[main] WARN  o.o.codegen.DefaultCodegen - OpenAPI 3.1 support is still in beta. To report an issue related to 3.1 spec, please kindly open an issue in the Github repo: https://github.com/openAPITools/openapi-generator.
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] INFO  o.o.codegen.DefaultGenerator - Model BandSelection not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ImageTiff cannot be used as a enum variant name. Renamed to ImageSlashTiff
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+end cannot be used as a model name. Renamed to StartPlusEnd
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+duration cannot be used as a model name. Renamed to StartPlusDuration
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+end cannot be used as a enum variant name. Renamed to StartPlusEnd
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+duration cannot be used as a enum variant name. Renamed to StartPlusDuration
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+end cannot be used as a enum variant name. Renamed to StartPlusEnd
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+duration cannot be used as a enum variant name. Renamed to StartPlusDuration
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+end cannot be used as a enum variant name. Renamed to StartPlusEnd
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+duration cannot be used as a enum variant name. Renamed to StartPlusDuration
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+end cannot be used as a enum variant name. Renamed to StartPlusEnd
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+duration cannot be used as a enum variant name. Renamed to StartPlusDuration
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+duration cannot be used as a enum variant name. Renamed to StartPlusDuration
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+duration cannot be used as a enum variant name. Renamed to StartPlusDuration
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+duration cannot be used as a enum variant name. Renamed to StartPlusDuration
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+duration cannot be used as a enum variant name. Renamed to StartPlusDuration
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+duration cannot be used as a enum variant name. Renamed to StartPlusDuration
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+end cannot be used as a enum variant name. Renamed to StartPlusEnd
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+end cannot be used as a enum variant name. Renamed to StartPlusEnd
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+end cannot be used as a enum variant name. Renamed to StartPlusEnd
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+end cannot be used as a enum variant name. Renamed to StartPlusEnd
+[main] WARN  o.o.c.languages.AbstractRustCodegen - Start+end cannot be used as a enum variant name. Renamed to StartPlusEnd
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] INFO  o.o.codegen.DefaultGenerator - Model Palette not generated since it's a free-form object
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] INFO  o.o.codegen.DefaultGenerator - Model Property not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.DefaultGenerator - Model RasterBandDescriptors not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] INFO  o.o.codegen.DefaultGenerator - Model RgbaColor not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - SrOrg cannot be used as a enum variant name. Renamed to SrOrg
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] INFO  o.o.codegen.DefaultGenerator - Model StringPair not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a model name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a enum variant name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a enum variant name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a enum variant name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a enum variant name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 110 cannot be used as a enum variant name. Renamed to Variant110
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 111 cannot be used as a enum variant name. Renamed to Variant111
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 200 cannot be used as a enum variant name. Renamed to Variant200
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a enum variant name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a enum variant name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a enum variant name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a enum variant name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a enum variant name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - TextXml cannot be used as a enum variant name. Renamed to TextSlashXml
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ImagePng cannot be used as a enum variant name. Renamed to ImageSlashPng
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 130 cannot be used as a enum variant name. Renamed to Variant130
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] INFO  o.o.codegen.DefaultGenerator - Model upload_handler_request not generated since it's marked as unused (due to form parameters) and `skipFormModel` (global property) set to true (default)
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - serde_json::value cannot be used as a field/variable name. Renamed to serde_json_colon_colon_value
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/add_dataset.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/AddDataset.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/add_dataset_tile.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/AddDatasetTile.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/add_layer.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/AddLayer.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/add_layer_collection.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/AddLayerCollection.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/add_role.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/AddRole.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/aruna_data_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ArunaDataProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/auth_code_request_url.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/AuthCodeRequestUrl.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/auth_code_response.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/AuthCodeResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/auto_create_dataset.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/AutoCreateDataset.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/axis_order.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/AxisOrder.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/bounding_box2_d.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/BoundingBox2D.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/breakpoint.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Breakpoint.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/classification_measurement.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ClassificationMeasurement.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/collection_item.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/CollectionItem.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/collection_type.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/CollectionType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/color_param.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ColorParam.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/colorizer.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Colorizer.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/column_names.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ColumnNames.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/column_names_one_of.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ColumnNamesOneOf.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/column_names_one_of_1.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ColumnNamesOneOf1.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/column_names_one_of_2.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ColumnNamesOneOf2.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/computation_quota.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ComputationQuota.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/continuous_measurement.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ContinuousMeasurement.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/coordinate2_d.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Coordinate2D.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/copernicus_dataspace_data_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/CopernicusDataspaceDataProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/create_dataset.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/CreateDataset.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/create_project.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/CreateProject.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/csv_header.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/CsvHeader.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/data_id.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DataId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/data_path.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DataPath.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/data_path_one_of.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DataPathOneOf.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/data_path_one_of_1.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DataPathOneOf1.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/data_provider_resource.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DataProviderResource.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/data_usage.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DataUsage.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/data_usage_summary.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DataUsageSummary.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/database_connection_config.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DatabaseConnectionConfig.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/dataset.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Dataset.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/dataset_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DatasetDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/dataset_layer_listing_collection.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DatasetLayerListingCollection.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/dataset_layer_listing_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DatasetLayerListingProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/dataset_listing.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DatasetListing.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/dataset_name_response.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DatasetNameResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/dataset_resource.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DatasetResource.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/derived_color.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DerivedColor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/derived_number.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DerivedNumber.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ebv_portal_data_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/EbvPortalDataProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/edr_data_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/EdrDataProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/edr_vector_spec.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/EdrVectorSpec.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/error_response.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ErrorResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/expression.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Expression.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/expression_parameters.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ExpressionParameters.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/external_data_id.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ExternalDataId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/feature_aggregation_method.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/FeatureAggregationMethod.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/feature_data_type.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/FeatureDataType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/file_not_found_handling.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/FileNotFoundHandling.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/format_specifics.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/FormatSpecifics.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/format_specifics_csv.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/FormatSpecificsCsv.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gbif_data_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GbifDataProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_dataset_parameters.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalDatasetParameters.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_loading_info_temporal_slice.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalLoadingInfoTemporalSlice.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_meta_data_list.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalMetaDataList.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_meta_data_regular.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalMetaDataRegular.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_meta_data_static.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalMetaDataStatic.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_metadata_mapping.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalMetadataMapping.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_metadata_net_cdf_cf.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalMetadataNetCdfCf.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_multi_band.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalMultiBand.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_source.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalSource.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_source_parameters.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalSourceParameters.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gdal_source_time_placeholder.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GdalSourceTimePlaceholder.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/geo_json.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GeoJson.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/geo_transform.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GeoTransform.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/get_coverage_format.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GetCoverageFormat.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/get_map_exception_format.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GetMapExceptionFormat.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gfbio_abcd_data_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GfbioAbcdDataProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/gfbio_collections_data_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GfbioCollectionsDataProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/grid_bounding_box2_d.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GridBoundingBox2D.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/grid_idx2_d.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GridIdx2D.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/id_response.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/IdResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/internal_data_id.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/InternalDataId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/layer.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Layer.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/layer_collection.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LayerCollection.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/layer_collection_listing.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LayerCollectionListing.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/layer_collection_resource.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LayerCollectionResource.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/layer_listing.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LayerListing.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/layer_provider_listing.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LayerProviderListing.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/layer_resource.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LayerResource.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/layer_visibility.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LayerVisibility.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/line_symbology.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LineSymbology.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/linear_gradient.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LinearGradient.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/logarithmic_gradient.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LogarithmicGradient.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/measurement.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Measurement.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/meta_data_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MetaDataDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/meta_data_suggestion.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MetaDataSuggestion.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ml_model.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MlModel.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ml_model_input_no_data_handling.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MlModelInputNoDataHandling.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ml_model_input_no_data_handling_variant.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MlModelInputNoDataHandlingVariant.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ml_model_metadata.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MlModelMetadata.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ml_model_name_response.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MlModelNameResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ml_model_output_no_data_handling.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MlModelOutputNoDataHandling.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ml_model_output_no_data_handling_variant.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MlModelOutputNoDataHandlingVariant.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ml_model_resource.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MlModelResource.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ml_tensor_shape3_d.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MlTensorShape3D.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/mock_dataset_data_source_loading_info.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MockDatasetDataSourceLoadingInfo.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/mock_meta_data.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MockMetaData.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/mock_point_source.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MockPointSource.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/mock_point_source_parameters.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MockPointSourceParameters.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/multi_band_raster_colorizer.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MultiBandRasterColorizer.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/multi_line_string.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MultiLineString.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/multi_point.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MultiPoint.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/multi_polygon.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MultiPolygon.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/net_cdf_cf_data_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/NetCdfCfDataProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/number_param.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/NumberParam.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_meta_data.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrMetaData.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_column_spec.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceColumnSpec.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_dataset.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceDataset.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_dataset_time_type.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceDatasetTimeType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_dataset_time_type_none.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceDatasetTimeTypeNone.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_dataset_time_type_start.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceDatasetTimeTypeStart.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_dataset_time_type_start_duration.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceDatasetTimeTypeStartDuration.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_dataset_time_type_start_end.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceDatasetTimeTypeStartEnd.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_duration_spec.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceDurationSpec.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_duration_spec_infinite.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceDurationSpecInfinite.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_duration_spec_value.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceDurationSpecValue.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_duration_spec_zero.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceDurationSpecZero.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_error_spec.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceErrorSpec.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_time_format.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceTimeFormat.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_time_format_auto.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceTimeFormatAuto.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_time_format_custom.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceTimeFormatCustom.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/ogr_source_time_format_unix_time_stamp.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgrSourceTimeFormatUnixTimeStamp.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/operator_quota.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OperatorQuota.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/order_by.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OrderBy.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/palette_colorizer.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PaletteColorizer.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/pangaea_data_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PangaeaDataProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/permission.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Permission.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/permission_list_options.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PermissionListOptions.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/permission_listing.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PermissionListing.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/permission_request.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PermissionRequest.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/plot.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Plot.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/plot_output_format.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PlotOutputFormat.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/plot_result_descriptor.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PlotResultDescriptor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/point_symbology.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PointSymbology.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/polygon_symbology.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PolygonSymbology.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/project.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Project.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/project_layer.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProjectLayer.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/project_listing.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProjectListing.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/project_resource.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProjectResource.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/project_update_token.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProjectUpdateToken.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/project_version.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProjectVersion.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/provenance.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Provenance.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/provenance_entry.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProvenanceEntry.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/provenance_output.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProvenanceOutput.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/provenances.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Provenances.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/provider_capabilities.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProviderCapabilities.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/provider_layer_collection_id.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProviderLayerCollectionId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/provider_layer_id.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProviderLayerId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/quota.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Quota.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_band_descriptor.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterBandDescriptor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_colorizer.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterColorizer.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_data_type.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterDataType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_dataset_from_workflow.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterDatasetFromWorkflow.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_dataset_from_workflow_result.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterDatasetFromWorkflowResult.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_properties_entry_type.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterPropertiesEntryType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_properties_key.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterPropertiesKey.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_result_descriptor.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterResultDescriptor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_stream_websocket_result_type.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterStreamWebsocketResultType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_symbology.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterSymbology.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_to_dataset_query_rectangle.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterToDatasetQueryRectangle.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_vector_join.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterVectorJoin.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/raster_vector_join_parameters.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RasterVectorJoinParameters.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/regular_time_dimension.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RegularTimeDimension.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/resource.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Resource.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/role.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Role.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/role_description.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/RoleDescription.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/search_capabilities.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SearchCapabilities.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/search_type.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SearchType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/search_types.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SearchTypes.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/sentinel_s2_l2_a_cogs_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SentinelS2L2ACogsProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/server_info.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ServerInfo.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/single_band_raster_colorizer.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SingleBandRasterColorizer.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/single_raster_source.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SingleRasterSource.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/single_vector_multiple_raster_sources.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SingleVectorMultipleRasterSources.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_bounds_derive.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialBoundsDerive.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_bounds_derive_bounds.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialBoundsDeriveBounds.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_bounds_derive_derive.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialBoundsDeriveDerive.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_bounds_derive_none.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialBoundsDeriveNone.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_grid_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialGridDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_grid_descriptor.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialGridDescriptor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_grid_descriptor_state.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialGridDescriptorState.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_partition2_d.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialPartition2D.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_reference_authority.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialReferenceAuthority.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_reference_specification.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialReferenceSpecification.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/spatial_resolution.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialResolution.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/st_rectangle.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/StRectangle.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/stac_api_retries.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/StacApiRetries.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/stac_query_buffer.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/StacQueryBuffer.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/static_color.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/StaticColor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/static_number.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/StaticNumber.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/stroke_param.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/StrokeParam.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/suggest_meta_data.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SuggestMetaData.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/symbology.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Symbology.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/task_abort_options.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TaskAbortOptions.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/task_filter.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TaskFilter.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/task_list_options.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TaskListOptions.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/task_response.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TaskResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/task_status.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TaskStatus.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/task_status_aborted.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TaskStatusAborted.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/task_status_completed.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TaskStatusCompleted.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/task_status_failed.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TaskStatusFailed.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/task_status_running.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TaskStatusRunning.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/task_status_with_id.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TaskStatusWithId.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/temporal_aggregation_method.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TemporalAggregationMethod.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/text_symbology.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TextSymbology.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/time_descriptor.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TimeDescriptor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/time_dimension.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TimeDimension.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/time_dimension_one_of.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TimeDimensionOneOf.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/time_dimension_one_of_1.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TimeDimensionOneOf1.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/time_granularity.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TimeGranularity.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/time_interval.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TimeInterval.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/time_reference.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TimeReference.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/time_step.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TimeStep.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_data_provider_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedDataProviderDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_geometry.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedGeometry.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_geometry_one_of.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedGeometryOneOf.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_geometry_one_of_1.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedGeometryOneOf1.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_geometry_one_of_2.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedGeometryOneOf2.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_geometry_one_of_3.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedGeometryOneOf3.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_operator.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedOperator.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_operator_operator.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedOperatorOperator.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_plot_result_descriptor.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedPlotResultDescriptor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_raster_result_descriptor.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedRasterResultDescriptor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_result_descriptor.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedResultDescriptor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/typed_vector_result_descriptor.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TypedVectorResultDescriptor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/unitless_measurement.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UnitlessMeasurement.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/unix_time_stamp_type.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UnixTimeStampType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/update_dataset.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UpdateDataset.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/update_layer.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UpdateLayer.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/update_layer_collection.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UpdateLayerCollection.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/update_project.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UpdateProject.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/update_quota.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UpdateQuota.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/upload_file_layers_response.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UploadFileLayersResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/upload_files_response.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UploadFilesResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/usage_summary_granularity.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UsageSummaryGranularity.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/user_credentials.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UserCredentials.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/user_info.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UserInfo.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/user_registration.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UserRegistration.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/user_session.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UserSession.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/vec_update.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/VecUpdate.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/vector_column_info.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/VectorColumnInfo.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/vector_data_type.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/VectorDataType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/vector_operator.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/VectorOperator.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/vector_result_descriptor.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/VectorResultDescriptor.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/volume.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Volume.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/volume_file_layers_response.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/VolumeFileLayersResponse.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wcs_boundingbox.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WcsBoundingbox.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wcs_request.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WcsRequest.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wcs_service.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WcsService.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wcs_version.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WcsVersion.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wfs_request.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WfsRequest.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wfs_service.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WfsService.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wfs_version.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WfsVersion.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wildlive_data_connector_definition.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WildliveDataConnectorDefinition.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wms_request.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WmsRequest.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wms_response_format.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WmsResponseFormat.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wms_service.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WmsService.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wms_version.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WmsVersion.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/workflow.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/Workflow.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/wrapped_plot_output.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WrappedPlotOutput.md
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a model name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a model name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - WildLive! cannot be used as a model name. Renamed to WildLiveExclamation
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - files[] cannot be used as a field/variable name. Renamed to files_left_square_bracket_right_square_bracket
+[main] WARN  o.o.c.languages.AbstractRustCodegen - files[] cannot be used as a field/variable name. Renamed to files_left_square_bracket_right_square_bracket
+[main] WARN  o.o.c.languages.AbstractRustCodegen - files[] cannot be used as a field/variable name. Renamed to files_left_square_bracket_right_square_bracket
+[main] WARN  o.o.c.languages.AbstractRustCodegen - files[] cannot be used as a field/variable name. Renamed to files_left_square_bracket_right_square_bracket
+[main] WARN  o.o.c.languages.AbstractRustCodegen - files[] cannot be used as a parameter name. Renamed to files_left_square_bracket_right_square_bracket
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from std::path::PathBuf, null
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.codegen.utils.ExamplesUtils - No application/json content media type found in response. Response examples can currently only be generated for application/json media type.
+[main] WARN  o.o.c.languages.AbstractRustCodegen - TextXml cannot be used as a model name. Renamed to TextSlashXml
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ImageTiff cannot be used as a enum variant name. Renamed to ImageSlashTiff
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 110 cannot be used as a enum variant name. Renamed to Variant110
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 111 cannot be used as a enum variant name. Renamed to Variant111
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 200 cannot be used as a enum variant name. Renamed to Variant200
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ImagePng cannot be used as a model name. Renamed to ImageSlashPng
+[main] WARN  o.o.c.languages.AbstractRustCodegen - TextXml cannot be used as a enum variant name. Renamed to TextSlashXml
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ImagePng cannot be used as a enum variant name. Renamed to ImageSlashPng
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 130 cannot be used as a enum variant name. Renamed to Variant130
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationZip cannot be used as a model name. Renamed to ApplicationSlashZip
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - r#type cannot be used as a field/variable name. Renamed to r_hash_type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
+[main] WARN  o.o.c.languages.AbstractRustCodegen - ApplicationJson cannot be used as a model name. Renamed to ApplicationSlashJson
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/datasets_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/DatasetsApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/general_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/GeneralApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/layers_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/LayersApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/ml_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/MlApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/ogcwcs_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgcwcsApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/ogcwfs_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgcwfsApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/ogcwms_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/OgcwmsApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/permissions_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PermissionsApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/plots_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/PlotsApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/projects_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/ProjectsApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/session_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SessionApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/spatial_references_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/SpatialReferencesApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/tasks_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/TasksApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/uploads_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UploadsApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/user_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/UserApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/workflows_api.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/docs/WorkflowsApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/.travis.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/models/mod.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/lib.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/Cargo.toml
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/mod.rs
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/src/apis/configuration.rs
+[main] INFO  o.o.codegen.TemplateManager - Skipped /local/rust/.openapi-generator-ignore (Skipped by supportingFiles options supplied by user.)
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /local/rust/.openapi-generator/FILES
+############################################################################################
+# Thanks for using OpenAPI Generator.                                                      #
+# We appreciate your support! Please consider donation to help us maintain this project.   #
+# https://opencollective.com/openapi_generator/donate                                      #
+############################################################################################

@@ -173,6 +173,7 @@ docs/RasterColorizer.md
 docs/RasterDataType.md
 docs/RasterDatasetFromWorkflow.md
 docs/RasterDatasetFromWorkflowResult.md
+docs/RasterOperator.md
 docs/RasterPropertiesEntryType.md
 docs/RasterPropertiesKey.md
 docs/RasterResultDescriptor.md
@@ -192,10 +193,12 @@ docs/SentinelS2L2ACogsProviderDefinition.md
 docs/ServerInfo.md
 docs/SessionApi.md
 docs/SingleBandRasterColorizer.md
+docs/SingleRasterSource.md
+docs/SingleVectorMultipleRasterSources.md
 docs/SpatialBoundsDerive.md
-docs/SpatialBoundsDeriveOneOf.md
-docs/SpatialBoundsDeriveOneOf1.md
-docs/SpatialBoundsDeriveOneOf2.md
+docs/SpatialBoundsDeriveBounds.md
+docs/SpatialBoundsDeriveDerive.md
+docs/SpatialBoundsDeriveNone.md
 docs/SpatialGridDefinition.md
 docs/SpatialGridDescriptor.md
 docs/SpatialGridDescriptorState.md
@@ -465,6 +468,7 @@ src/models/raster_colorizer.rs
 src/models/raster_data_type.rs
 src/models/raster_dataset_from_workflow.rs
 src/models/raster_dataset_from_workflow_result.rs
+src/models/raster_operator.rs
 src/models/raster_properties_entry_type.rs
 src/models/raster_properties_key.rs
 src/models/raster_result_descriptor.rs
@@ -483,10 +487,12 @@ src/models/search_types.rs
 src/models/sentinel_s2_l2_a_cogs_provider_definition.rs
 src/models/server_info.rs
 src/models/single_band_raster_colorizer.rs
+src/models/single_raster_source.rs
+src/models/single_vector_multiple_raster_sources.rs
 src/models/spatial_bounds_derive.rs
-src/models/spatial_bounds_derive_one_of.rs
-src/models/spatial_bounds_derive_one_of_1.rs
-src/models/spatial_bounds_derive_one_of_2.rs
+src/models/spatial_bounds_derive_bounds.rs
+src/models/spatial_bounds_derive_derive.rs
+src/models/spatial_bounds_derive_none.rs
 src/models/spatial_grid_definition.rs
 src/models/spatial_grid_descriptor.rs
 src/models/spatial_grid_descriptor_state.rs

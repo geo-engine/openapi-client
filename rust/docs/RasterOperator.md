@@ -1,4 +1,4 @@
-# SpatialBoundsDerive
+# RasterOperator
 
 ## Enum Variants
 

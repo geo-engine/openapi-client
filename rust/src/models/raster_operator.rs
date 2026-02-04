@@ -11,21 +11,19 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// SpatialBoundsDerive : Spatial bounds derivation options for the [`MockPointSource`].
+/// RasterOperator : An operator that produces raster data.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "type")]
-pub enum SpatialBoundsDerive {
-    #[serde(rename="derive")]
-    Derive(Box<models::SpatialBoundsDeriveDerive>),
-    #[serde(rename="bounds")]
-    Bounds(Box<models::SpatialBoundsDeriveBounds>),
-    #[serde(rename="none")]
-    None(Box<models::SpatialBoundsDeriveNone>),
+pub enum RasterOperator {
+    #[serde(rename="Expression")]
+    Expression(Box<models::Expression>),
+    #[serde(rename="GdalSource")]
+    GdalSource(Box<models::GdalSource>),
 }
 
-impl Default for SpatialBoundsDerive {
+impl Default for RasterOperator {
     fn default() -> Self {
-        Self::Derive(Default::default())
+        Self::Expression(Default::default())
     }
 }
 

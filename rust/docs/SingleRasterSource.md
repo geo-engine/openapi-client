@@ -1,12 +1,10 @@
-# RasterVectorJoin
+# SingleRasterSource
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**params** | [**models::RasterVectorJoinParameters**](RasterVectorJoinParameters.md) |  | 
-**sources** | [**models::SingleVectorMultipleRasterSources**](SingleVectorMultipleRasterSources.md) |  | 
-**r#type** | **String** |  | 
+**raster** | [**models::RasterOperator**](RasterOperator.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

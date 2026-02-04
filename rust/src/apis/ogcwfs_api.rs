@@ -63,7 +63,7 @@ pub async fn wfs_handler(configuration: &configuration::Configuration, workflow:
         req_builder = req_builder.query(&[("resultType", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_service {
-        req_builder = req_builder.query(&[("service", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("service", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_sort_by {
         req_builder = req_builder.query(&[("sortBy", &param_value.to_string())]);

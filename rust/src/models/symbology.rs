@@ -15,13 +15,13 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum Symbology {
     #[serde(rename="raster")]
-    Raster(models::RasterSymbology),
+    Raster(Box<models::RasterSymbology>),
     #[serde(rename="point")]
-    Point(models::PointSymbology),
+    Point(Box<models::PointSymbology>),
     #[serde(rename="line")]
-    Line(models::LineSymbology),
+    Line(Box<models::LineSymbology>),
     #[serde(rename="polygon")]
-    Polygon(models::PolygonSymbology),
+    Polygon(Box<models::PolygonSymbology>),
 }
 
 impl Default for Symbology {

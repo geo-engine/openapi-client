@@ -16,14 +16,14 @@ pub struct VectorColumnInfo {
     #[serde(rename = "dataType")]
     pub data_type: models::FeatureDataType,
     #[serde(rename = "measurement")]
-    pub measurement: models::Measurement,
+    pub measurement: Box<models::Measurement>,
 }
 
 impl VectorColumnInfo {
     pub fn new(data_type: models::FeatureDataType, measurement: models::Measurement) -> VectorColumnInfo {
         VectorColumnInfo {
             data_type,
-            measurement,
+            measurement: Box::new(measurement),
         }
     }
 }

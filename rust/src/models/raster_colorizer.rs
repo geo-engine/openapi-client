@@ -15,9 +15,9 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum RasterColorizer {
     #[serde(rename="singleBand")]
-    SingleBand(models::SingleBandRasterColorizer),
+    SingleBand(Box<models::SingleBandRasterColorizer>),
     #[serde(rename="multiBand")]
-    MultiBand(models::MultiBandRasterColorizer),
+    MultiBand(Box<models::MultiBandRasterColorizer>),
 }
 
 impl Default for RasterColorizer {

@@ -20,7 +20,7 @@ pub struct OgrSourceColumnSpec {
     #[serde(rename = "float", skip_serializing_if = "Option::is_none")]
     pub float: Option<Vec<String>>,
     #[serde(rename = "formatSpecifics", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub format_specifics: Option<Option<models::FormatSpecifics>>,
+    pub format_specifics: Option<Option<Box<models::FormatSpecifics>>>,
     #[serde(rename = "int", skip_serializing_if = "Option::is_none")]
     pub int: Option<Vec<String>>,
     #[serde(rename = "rename", skip_serializing_if = "Option::is_none")]

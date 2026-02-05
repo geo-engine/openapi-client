@@ -14,16 +14,16 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct StrokeParam {
     #[serde(rename = "color")]
-    pub color: models::ColorParam,
+    pub color: Box<models::ColorParam>,
     #[serde(rename = "width")]
-    pub width: models::NumberParam,
+    pub width: Box<models::NumberParam>,
 }
 
 impl StrokeParam {
     pub fn new(color: models::ColorParam, width: models::NumberParam) -> StrokeParam {
         StrokeParam {
-            color,
-            width,
+            color: Box::new(color),
+            width: Box::new(width),
         }
     }
 }

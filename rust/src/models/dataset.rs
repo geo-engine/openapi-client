@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Dataset {
     #[serde(rename = "dataPath", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub data_path: Option<Option<models::DataPath>>,
+    pub data_path: Option<Option<Box<models::DataPath>>>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "displayName")]
@@ -26,11 +26,11 @@ pub struct Dataset {
     #[serde(rename = "provenance", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub provenance: Option<Option<Vec<models::Provenance>>>,
     #[serde(rename = "resultDescriptor")]
-    pub result_descriptor: models::TypedResultDescriptor,
+    pub result_descriptor: Box<models::TypedResultDescriptor>,
     #[serde(rename = "sourceOperator")]
     pub source_operator: String,
     #[serde(rename = "symbology", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub symbology: Option<Option<models::Symbology>>,
+    pub symbology: Option<Option<Box<models::Symbology>>>,
     #[serde(rename = "tags", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Option<Vec<String>>>,
 }
@@ -44,7 +44,7 @@ impl Dataset {
             id,
             name,
             provenance: None,
-            result_descriptor,
+            result_descriptor: Box::new(result_descriptor),
             source_operator,
             symbology: None,
             tags: None,

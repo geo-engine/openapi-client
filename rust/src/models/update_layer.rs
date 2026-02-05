@@ -24,9 +24,9 @@ pub struct UpdateLayer {
     #[serde(rename = "properties", skip_serializing_if = "Option::is_none")]
     pub properties: Option<Vec<Vec<String>>>,
     #[serde(rename = "symbology", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub symbology: Option<Option<models::Symbology>>,
+    pub symbology: Option<Option<Box<models::Symbology>>>,
     #[serde(rename = "workflow")]
-    pub workflow: models::Workflow,
+    pub workflow: Box<models::Workflow>,
 }
 
 impl UpdateLayer {
@@ -37,7 +37,7 @@ impl UpdateLayer {
             name,
             properties: None,
             symbology: None,
-            workflow,
+            workflow: Box::new(workflow),
         }
     }
 }

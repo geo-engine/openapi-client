@@ -17,7 +17,7 @@ pub struct PermissionRequest {
     #[serde(rename = "permission")]
     pub permission: models::Permission,
     #[serde(rename = "resource")]
-    pub resource: models::Resource,
+    pub resource: Box<models::Resource>,
     #[serde(rename = "roleId")]
     pub role_id: uuid::Uuid,
 }
@@ -27,7 +27,7 @@ impl PermissionRequest {
     pub fn new(permission: models::Permission, resource: models::Resource, role_id: uuid::Uuid) -> PermissionRequest {
         PermissionRequest {
             permission,
-            resource,
+            resource: Box::new(resource),
             role_id,
         }
     }

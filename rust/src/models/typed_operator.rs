@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TypedOperator {
     #[serde(rename = "operator")]
-    pub operator: models::TypedOperatorOperator,
+    pub operator: Box<models::TypedOperatorOperator>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -24,7 +24,7 @@ impl TypedOperator {
     /// An enum to differentiate between `Operator` variants
     pub fn new(operator: models::TypedOperatorOperator, r#type: Type) -> TypedOperator {
         TypedOperator {
-            operator,
+            operator: Box::new(operator),
             r#type,
         }
     }

@@ -16,11 +16,11 @@ pub struct GdalMetaDataStatic {
     #[serde(rename = "cacheTtl", skip_serializing_if = "Option::is_none")]
     pub cache_ttl: Option<i32>,
     #[serde(rename = "params")]
-    pub params: models::GdalDatasetParameters,
+    pub params: Box<models::GdalDatasetParameters>,
     #[serde(rename = "resultDescriptor")]
-    pub result_descriptor: models::RasterResultDescriptor,
+    pub result_descriptor: Box<models::RasterResultDescriptor>,
     #[serde(rename = "time", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub time: Option<Option<models::TimeInterval>>,
+    pub time: Option<Option<Box<models::TimeInterval>>>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -29,8 +29,8 @@ impl GdalMetaDataStatic {
     pub fn new(params: models::GdalDatasetParameters, result_descriptor: models::RasterResultDescriptor, r#type: Type) -> GdalMetaDataStatic {
         GdalMetaDataStatic {
             cache_ttl: None,
-            params,
-            result_descriptor,
+            params: Box::new(params),
+            result_descriptor: Box::new(result_descriptor),
             time: None,
             r#type,
         }

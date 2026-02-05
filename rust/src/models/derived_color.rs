@@ -16,7 +16,7 @@ pub struct DerivedColor {
     #[serde(rename = "attribute")]
     pub attribute: String,
     #[serde(rename = "colorizer")]
-    pub colorizer: models::Colorizer,
+    pub colorizer: Box<models::Colorizer>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -25,7 +25,7 @@ impl DerivedColor {
     pub fn new(attribute: String, colorizer: models::Colorizer, r#type: Type) -> DerivedColor {
         DerivedColor {
             attribute,
-            colorizer,
+            colorizer: Box::new(colorizer),
             r#type,
         }
     }

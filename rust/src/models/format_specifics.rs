@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FormatSpecifics {
     #[serde(rename = "csv")]
-    pub csv: models::FormatSpecificsCsv,
+    pub csv: Box<models::FormatSpecificsCsv>,
 }
 
 impl FormatSpecifics {
     pub fn new(csv: models::FormatSpecificsCsv) -> FormatSpecifics {
         FormatSpecifics {
-            csv,
+            csv: Box::new(csv),
         }
     }
 }

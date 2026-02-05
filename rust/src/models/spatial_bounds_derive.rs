@@ -16,11 +16,11 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum SpatialBoundsDerive {
     #[serde(rename="derive")]
-    Derive(models::SpatialBoundsDeriveDerive),
+    Derive(Box<models::SpatialBoundsDeriveDerive>),
     #[serde(rename="bounds")]
-    Bounds(models::SpatialBoundsDeriveBounds),
+    Bounds(Box<models::SpatialBoundsDeriveBounds>),
     #[serde(rename="none")]
-    None(models::SpatialBoundsDeriveNone),
+    None(Box<models::SpatialBoundsDeriveNone>),
 }
 
 impl Default for SpatialBoundsDerive {

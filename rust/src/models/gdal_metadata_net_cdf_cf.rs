@@ -23,13 +23,13 @@ pub struct GdalMetadataNetCdfCf {
     #[serde(rename = "end")]
     pub end: i64,
     #[serde(rename = "params")]
-    pub params: models::GdalDatasetParameters,
+    pub params: Box<models::GdalDatasetParameters>,
     #[serde(rename = "resultDescriptor")]
-    pub result_descriptor: models::RasterResultDescriptor,
+    pub result_descriptor: Box<models::RasterResultDescriptor>,
     #[serde(rename = "start")]
     pub start: i64,
     #[serde(rename = "step")]
-    pub step: models::TimeStep,
+    pub step: Box<models::TimeStep>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -41,10 +41,10 @@ impl GdalMetadataNetCdfCf {
             band_offset,
             cache_ttl: None,
             end,
-            params,
-            result_descriptor,
+            params: Box::new(params),
+            result_descriptor: Box::new(result_descriptor),
             start,
-            step,
+            step: Box::new(step),
             r#type,
         }
     }

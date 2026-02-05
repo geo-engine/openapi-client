@@ -16,7 +16,7 @@ pub struct LayerCollectionListing {
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "id")]
-    pub id: models::ProviderLayerCollectionId,
+    pub id: Box<models::ProviderLayerCollectionId>,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "properties", skip_serializing_if = "Option::is_none")]
@@ -29,7 +29,7 @@ impl LayerCollectionListing {
     pub fn new(description: String, id: models::ProviderLayerCollectionId, name: String, r#type: Type) -> LayerCollectionListing {
         LayerCollectionListing {
             description,
-            id,
+            id: Box::new(id),
             name,
             properties: None,
             r#type,

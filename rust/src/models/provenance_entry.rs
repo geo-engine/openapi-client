@@ -16,14 +16,14 @@ pub struct ProvenanceEntry {
     #[serde(rename = "data")]
     pub data: Vec<models::DataId>,
     #[serde(rename = "provenance")]
-    pub provenance: models::Provenance,
+    pub provenance: Box<models::Provenance>,
 }
 
 impl ProvenanceEntry {
     pub fn new(data: Vec<models::DataId>, provenance: models::Provenance) -> ProvenanceEntry {
         ProvenanceEntry {
             data,
-            provenance,
+            provenance: Box::new(provenance),
         }
     }
 }

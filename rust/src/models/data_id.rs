@@ -16,9 +16,9 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum DataId {
     #[serde(rename="internal")]
-    Internal(models::InternalDataId),
+    Internal(Box<models::InternalDataId>),
     #[serde(rename="external")]
-    External(models::ExternalDataId),
+    External(Box<models::ExternalDataId>),
 }
 
 impl Default for DataId {

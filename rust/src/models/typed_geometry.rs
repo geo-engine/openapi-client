@@ -14,10 +14,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TypedGeometry {
-    TypedGeometryOneOf(models::TypedGeometryOneOf),
-    TypedGeometryOneOf1(models::TypedGeometryOneOf1),
-    TypedGeometryOneOf2(models::TypedGeometryOneOf2),
-    TypedGeometryOneOf3(models::TypedGeometryOneOf3),
+    TypedGeometryOneOf(Box<models::TypedGeometryOneOf>),
+    TypedGeometryOneOf1(Box<models::TypedGeometryOneOf1>),
+    TypedGeometryOneOf2(Box<models::TypedGeometryOneOf2>),
+    TypedGeometryOneOf3(Box<models::TypedGeometryOneOf3>),
 }
 
 impl Default for TypedGeometry {

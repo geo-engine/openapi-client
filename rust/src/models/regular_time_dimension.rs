@@ -16,14 +16,14 @@ pub struct RegularTimeDimension {
     #[serde(rename = "origin")]
     pub origin: i64,
     #[serde(rename = "step")]
-    pub step: models::TimeStep,
+    pub step: Box<models::TimeStep>,
 }
 
 impl RegularTimeDimension {
     pub fn new(origin: i64, step: models::TimeStep) -> RegularTimeDimension {
         RegularTimeDimension {
             origin,
-            step,
+            step: Box::new(step),
         }
     }
 }

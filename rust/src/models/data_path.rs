@@ -14,8 +14,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DataPath {
-    DataPathOneOf(models::DataPathOneOf),
-    DataPathOneOf1(models::DataPathOneOf1),
+    DataPathOneOf(Box<models::DataPathOneOf>),
+    DataPathOneOf1(Box<models::DataPathOneOf1>),
 }
 
 impl Default for DataPath {

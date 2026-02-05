@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Project {
     #[serde(rename = "bounds")]
-    pub bounds: models::StRectangle,
+    pub bounds: Box<models::StRectangle>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "id")]
@@ -26,22 +26,22 @@ pub struct Project {
     #[serde(rename = "plots")]
     pub plots: Vec<models::Plot>,
     #[serde(rename = "timeStep")]
-    pub time_step: models::TimeStep,
+    pub time_step: Box<models::TimeStep>,
     #[serde(rename = "version")]
-    pub version: models::ProjectVersion,
+    pub version: Box<models::ProjectVersion>,
 }
 
 impl Project {
     pub fn new(bounds: models::StRectangle, description: String, id: uuid::Uuid, layers: Vec<models::ProjectLayer>, name: String, plots: Vec<models::Plot>, time_step: models::TimeStep, version: models::ProjectVersion) -> Project {
         Project {
-            bounds,
+            bounds: Box::new(bounds),
             description,
             id,
             layers,
             name,
             plots,
-            time_step,
-            version,
+            time_step: Box::new(time_step),
+            version: Box::new(version),
         }
     }
 }

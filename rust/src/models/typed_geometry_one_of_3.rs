@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TypedGeometryOneOf3 {
     #[serde(rename = "MultiPolygon")]
-    pub multi_polygon: models::MultiPolygon,
+    pub multi_polygon: Box<models::MultiPolygon>,
 }
 
 impl TypedGeometryOneOf3 {
     pub fn new(multi_polygon: models::MultiPolygon) -> TypedGeometryOneOf3 {
         TypedGeometryOneOf3 {
-            multi_polygon,
+            multi_polygon: Box::new(multi_polygon),
         }
     }
 }

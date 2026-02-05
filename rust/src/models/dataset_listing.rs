@@ -22,11 +22,11 @@ pub struct DatasetListing {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "resultDescriptor")]
-    pub result_descriptor: models::TypedResultDescriptor,
+    pub result_descriptor: Box<models::TypedResultDescriptor>,
     #[serde(rename = "sourceOperator")]
     pub source_operator: String,
     #[serde(rename = "symbology", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub symbology: Option<Option<models::Symbology>>,
+    pub symbology: Option<Option<Box<models::Symbology>>>,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
 }
@@ -38,7 +38,7 @@ impl DatasetListing {
             display_name,
             id,
             name,
-            result_descriptor,
+            result_descriptor: Box::new(result_descriptor),
             source_operator,
             symbology: None,
             tags,

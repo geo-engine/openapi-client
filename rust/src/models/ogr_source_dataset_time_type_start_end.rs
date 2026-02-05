@@ -16,11 +16,11 @@ pub struct OgrSourceDatasetTimeTypeStartEnd {
     #[serde(rename = "endField")]
     pub end_field: String,
     #[serde(rename = "endFormat")]
-    pub end_format: models::OgrSourceTimeFormat,
+    pub end_format: Box<models::OgrSourceTimeFormat>,
     #[serde(rename = "startField")]
     pub start_field: String,
     #[serde(rename = "startFormat")]
-    pub start_format: models::OgrSourceTimeFormat,
+    pub start_format: Box<models::OgrSourceTimeFormat>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -29,9 +29,9 @@ impl OgrSourceDatasetTimeTypeStartEnd {
     pub fn new(end_field: String, end_format: models::OgrSourceTimeFormat, start_field: String, start_format: models::OgrSourceTimeFormat, r#type: Type) -> OgrSourceDatasetTimeTypeStartEnd {
         OgrSourceDatasetTimeTypeStartEnd {
             end_field,
-            end_format,
+            end_format: Box::new(end_format),
             start_field,
-            start_format,
+            start_format: Box::new(start_format),
             r#type,
         }
     }

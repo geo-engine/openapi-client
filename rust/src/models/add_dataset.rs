@@ -24,7 +24,7 @@ pub struct AddDataset {
     #[serde(rename = "sourceOperator")]
     pub source_operator: String,
     #[serde(rename = "symbology", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub symbology: Option<Option<models::Symbology>>,
+    pub symbology: Option<Option<Box<models::Symbology>>>,
     #[serde(rename = "tags", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Option<Vec<String>>>,
 }

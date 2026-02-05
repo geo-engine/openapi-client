@@ -15,9 +15,9 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum CollectionItem {
     #[serde(rename="collection")]
-    Collection(models::LayerCollectionListing),
+    Collection(Box<models::LayerCollectionListing>),
     #[serde(rename="layer")]
-    Layer(models::LayerListing),
+    Layer(Box<models::LayerListing>),
 }
 
 impl Default for CollectionItem {

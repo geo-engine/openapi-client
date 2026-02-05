@@ -17,9 +17,9 @@ pub struct GdalLoadingInfoTemporalSlice {
     #[serde(rename = "cacheTtl", skip_serializing_if = "Option::is_none")]
     pub cache_ttl: Option<i32>,
     #[serde(rename = "params", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub params: Option<Option<models::GdalDatasetParameters>>,
+    pub params: Option<Option<Box<models::GdalDatasetParameters>>>,
     #[serde(rename = "time")]
-    pub time: models::TimeInterval,
+    pub time: Box<models::TimeInterval>,
 }
 
 impl GdalLoadingInfoTemporalSlice {
@@ -28,7 +28,7 @@ impl GdalLoadingInfoTemporalSlice {
         GdalLoadingInfoTemporalSlice {
             cache_ttl: None,
             params: None,
-            time,
+            time: Box::new(time),
         }
     }
 }

@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MockPointSource {
     #[serde(rename = "params")]
-    pub params: models::MockPointSourceParameters,
+    pub params: Box<models::MockPointSourceParameters>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -24,7 +24,7 @@ impl MockPointSource {
     /// # MockPointSource  The [`MockPointSource`] is a source operator that provides mock vector point data for testing and development purposes.  ## Example JSON ```json {   \"type\": \"MockPointSource\",   \"params\": {     \"points\": [ { \"x\": 1.0, \"y\": 2.0 }, { \"x\": 3.0, \"y\": 4.0 } ]   } } ```
     pub fn new(params: models::MockPointSourceParameters, r#type: Type) -> MockPointSource {
         MockPointSource {
-            params,
+            params: Box::new(params),
             r#type,
         }
     }

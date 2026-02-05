@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SuggestMetaData {
     #[serde(rename = "dataPath")]
-    pub data_path: models::DataPath,
+    pub data_path: Box<models::DataPath>,
     #[serde(rename = "layerName", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub layer_name: Option<Option<String>>,
     #[serde(rename = "mainFile", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
@@ -24,7 +24,7 @@ pub struct SuggestMetaData {
 impl SuggestMetaData {
     pub fn new(data_path: models::DataPath) -> SuggestMetaData {
         SuggestMetaData {
-            data_path,
+            data_path: Box::new(data_path),
             layer_name: None,
             main_file: None,
         }

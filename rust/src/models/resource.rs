@@ -16,17 +16,17 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum Resource {
     #[serde(rename="layer")]
-    Layer(models::LayerResource),
+    Layer(Box<models::LayerResource>),
     #[serde(rename="layerCollection")]
-    LayerCollection(models::LayerCollectionResource),
+    LayerCollection(Box<models::LayerCollectionResource>),
     #[serde(rename="project")]
-    Project(models::ProjectResource),
+    Project(Box<models::ProjectResource>),
     #[serde(rename="dataset")]
-    Dataset(models::DatasetResource),
+    Dataset(Box<models::DatasetResource>),
     #[serde(rename="mlModel")]
-    MlModel(models::MlModelResource),
+    MlModel(Box<models::MlModelResource>),
     #[serde(rename="provider")]
-    Provider(models::DataProviderResource),
+    Provider(Box<models::DataProviderResource>),
 }
 
 impl Default for Resource {

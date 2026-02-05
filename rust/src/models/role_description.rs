@@ -16,14 +16,14 @@ pub struct RoleDescription {
     #[serde(rename = "individual")]
     pub individual: bool,
     #[serde(rename = "role")]
-    pub role: models::Role,
+    pub role: Box<models::Role>,
 }
 
 impl RoleDescription {
     pub fn new(individual: bool, role: models::Role) -> RoleDescription {
         RoleDescription {
             individual,
-            role,
+            role: Box::new(role),
         }
     }
 }

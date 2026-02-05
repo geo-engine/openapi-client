@@ -14,16 +14,16 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateDataset {
     #[serde(rename = "dataPath")]
-    pub data_path: models::DataPath,
+    pub data_path: Box<models::DataPath>,
     #[serde(rename = "definition")]
-    pub definition: models::DatasetDefinition,
+    pub definition: Box<models::DatasetDefinition>,
 }
 
 impl CreateDataset {
     pub fn new(data_path: models::DataPath, definition: models::DatasetDefinition) -> CreateDataset {
         CreateDataset {
-            data_path,
-            definition,
+            data_path: Box::new(data_path),
+            definition: Box::new(definition),
         }
     }
 }

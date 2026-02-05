@@ -15,17 +15,17 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BoundingBox2D {
     #[serde(rename = "lowerLeftCoordinate")]
-    pub lower_left_coordinate: models::Coordinate2D,
+    pub lower_left_coordinate: Box<models::Coordinate2D>,
     #[serde(rename = "upperRightCoordinate")]
-    pub upper_right_coordinate: models::Coordinate2D,
+    pub upper_right_coordinate: Box<models::Coordinate2D>,
 }
 
 impl BoundingBox2D {
     /// A bounding box that includes all border points. Note: may degenerate to a point!
     pub fn new(lower_left_coordinate: models::Coordinate2D, upper_right_coordinate: models::Coordinate2D) -> BoundingBox2D {
         BoundingBox2D {
-            lower_left_coordinate,
-            upper_right_coordinate,
+            lower_left_coordinate: Box::new(lower_left_coordinate),
+            upper_right_coordinate: Box::new(upper_right_coordinate),
         }
     }
 }

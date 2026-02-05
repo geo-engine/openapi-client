@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Workflow {
     #[serde(rename = "operator")]
-    pub operator: models::TypedOperatorOperator,
+    pub operator: Box<models::TypedOperatorOperator>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -22,7 +22,7 @@ pub struct Workflow {
 impl Workflow {
     pub fn new(operator: models::TypedOperatorOperator, r#type: Type) -> Workflow {
         Workflow {
-            operator,
+            operator: Box::new(operator),
             r#type,
         }
     }

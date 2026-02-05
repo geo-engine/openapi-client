@@ -14,16 +14,16 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SpatialGridDefinition {
     #[serde(rename = "geoTransform")]
-    pub geo_transform: models::GeoTransform,
+    pub geo_transform: Box<models::GeoTransform>,
     #[serde(rename = "gridBounds")]
-    pub grid_bounds: models::GridBoundingBox2D,
+    pub grid_bounds: Box<models::GridBoundingBox2D>,
 }
 
 impl SpatialGridDefinition {
     pub fn new(geo_transform: models::GeoTransform, grid_bounds: models::GridBoundingBox2D) -> SpatialGridDefinition {
         SpatialGridDefinition {
-            geo_transform,
-            grid_bounds,
+            geo_transform: Box::new(geo_transform),
+            grid_bounds: Box::new(grid_bounds),
         }
     }
 }

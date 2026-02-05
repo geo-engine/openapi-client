@@ -16,11 +16,11 @@ pub struct PolygonSymbology {
     #[serde(rename = "autoSimplified")]
     pub auto_simplified: bool,
     #[serde(rename = "fillColor")]
-    pub fill_color: models::ColorParam,
+    pub fill_color: Box<models::ColorParam>,
     #[serde(rename = "stroke")]
-    pub stroke: models::StrokeParam,
+    pub stroke: Box<models::StrokeParam>,
     #[serde(rename = "text", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub text: Option<Option<models::TextSymbology>>,
+    pub text: Option<Option<Box<models::TextSymbology>>>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -29,8 +29,8 @@ impl PolygonSymbology {
     pub fn new(auto_simplified: bool, fill_color: models::ColorParam, stroke: models::StrokeParam, r#type: Type) -> PolygonSymbology {
         PolygonSymbology {
             auto_simplified,
-            fill_color,
-            stroke,
+            fill_color: Box::new(fill_color),
+            stroke: Box::new(stroke),
             text: None,
             r#type,
         }

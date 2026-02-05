@@ -283,7 +283,6 @@ def generate_rust_code(
                     f"packageVersion={package_version}",
                     f"homePageUrl={homepage_url}",
                     f"repositoryUrl={git_repo.url()}",
-                    "avoidBoxedModels=true",
                 ]
             ),
             "--git-host",

@@ -18,11 +18,11 @@ pub struct TypedRasterResultDescriptor {
     #[serde(rename = "dataType")]
     pub data_type: models::RasterDataType,
     #[serde(rename = "spatialGrid")]
-    pub spatial_grid: models::SpatialGridDescriptor,
+    pub spatial_grid: Box<models::SpatialGridDescriptor>,
     #[serde(rename = "spatialReference")]
     pub spatial_reference: String,
     #[serde(rename = "time")]
-    pub time: models::TimeDescriptor,
+    pub time: Box<models::TimeDescriptor>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -32,9 +32,9 @@ impl TypedRasterResultDescriptor {
         TypedRasterResultDescriptor {
             bands,
             data_type,
-            spatial_grid,
+            spatial_grid: Box::new(spatial_grid),
             spatial_reference,
-            time,
+            time: Box::new(time),
             r#type,
         }
     }

@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GdalMultiBand {
     #[serde(rename = "resultDescriptor")]
-    pub result_descriptor: models::RasterResultDescriptor,
+    pub result_descriptor: Box<models::RasterResultDescriptor>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -22,7 +22,7 @@ pub struct GdalMultiBand {
 impl GdalMultiBand {
     pub fn new(result_descriptor: models::RasterResultDescriptor, r#type: Type) -> GdalMultiBand {
         GdalMultiBand {
-            result_descriptor,
+            result_descriptor: Box::new(result_descriptor),
             r#type,
         }
     }

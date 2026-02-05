@@ -16,17 +16,17 @@ pub struct TextSymbology {
     #[serde(rename = "attribute")]
     pub attribute: String,
     #[serde(rename = "fillColor")]
-    pub fill_color: models::ColorParam,
+    pub fill_color: Box<models::ColorParam>,
     #[serde(rename = "stroke")]
-    pub stroke: models::StrokeParam,
+    pub stroke: Box<models::StrokeParam>,
 }
 
 impl TextSymbology {
     pub fn new(attribute: String, fill_color: models::ColorParam, stroke: models::StrokeParam) -> TextSymbology {
         TextSymbology {
             attribute,
-            fill_color,
-            stroke,
+            fill_color: Box::new(fill_color),
+            stroke: Box::new(stroke),
         }
     }
 }

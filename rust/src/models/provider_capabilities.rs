@@ -16,14 +16,14 @@ pub struct ProviderCapabilities {
     #[serde(rename = "listing")]
     pub listing: bool,
     #[serde(rename = "search")]
-    pub search: models::SearchCapabilities,
+    pub search: Box<models::SearchCapabilities>,
 }
 
 impl ProviderCapabilities {
     pub fn new(listing: bool, search: models::SearchCapabilities) -> ProviderCapabilities {
         ProviderCapabilities {
             listing,
-            search,
+            search: Box::new(search),
         }
     }
 }

@@ -16,17 +16,17 @@ pub struct PermissionListing {
     #[serde(rename = "permission")]
     pub permission: models::Permission,
     #[serde(rename = "resource")]
-    pub resource: models::Resource,
+    pub resource: Box<models::Resource>,
     #[serde(rename = "role")]
-    pub role: models::Role,
+    pub role: Box<models::Role>,
 }
 
 impl PermissionListing {
     pub fn new(permission: models::Permission, resource: models::Resource, role: models::Role) -> PermissionListing {
         PermissionListing {
             permission,
-            resource,
-            role,
+            resource: Box::new(resource),
+            role: Box::new(role),
         }
     }
 }

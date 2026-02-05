@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GeoTransform {
     #[serde(rename = "originCoordinate")]
-    pub origin_coordinate: models::Coordinate2D,
+    pub origin_coordinate: Box<models::Coordinate2D>,
     #[serde(rename = "xPixelSize")]
     pub x_pixel_size: f64,
     #[serde(rename = "yPixelSize")]
@@ -24,7 +24,7 @@ pub struct GeoTransform {
 impl GeoTransform {
     pub fn new(origin_coordinate: models::Coordinate2D, x_pixel_size: f64, y_pixel_size: f64) -> GeoTransform {
         GeoTransform {
-            origin_coordinate,
+            origin_coordinate: Box::new(origin_coordinate),
             x_pixel_size,
             y_pixel_size,
         }

@@ -15,13 +15,13 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum OgrSourceDatasetTimeType {
     #[serde(rename="none")]
-    None(models::OgrSourceDatasetTimeTypeNone),
+    None(Box<models::OgrSourceDatasetTimeTypeNone>),
     #[serde(rename="start")]
-    Start(models::OgrSourceDatasetTimeTypeStart),
+    Start(Box<models::OgrSourceDatasetTimeTypeStart>),
     #[serde(rename="start+end")]
-    StartPlusEnd(models::OgrSourceDatasetTimeTypeStartEnd),
+    StartPlusEnd(Box<models::OgrSourceDatasetTimeTypeStartEnd>),
     #[serde(rename="start+duration")]
-    StartPlusDuration(models::OgrSourceDatasetTimeTypeStartDuration),
+    StartPlusDuration(Box<models::OgrSourceDatasetTimeTypeStartDuration>),
 }
 
 impl Default for OgrSourceDatasetTimeType {

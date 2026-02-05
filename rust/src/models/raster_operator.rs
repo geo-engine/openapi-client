@@ -16,9 +16,9 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum RasterOperator {
     #[serde(rename="Expression")]
-    Expression(models::Expression),
+    Expression(Box<models::Expression>),
     #[serde(rename="GdalSource")]
-    GdalSource(models::GdalSource),
+    GdalSource(Box<models::GdalSource>),
 }
 
 impl Default for RasterOperator {

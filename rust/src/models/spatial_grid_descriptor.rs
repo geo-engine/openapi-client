@@ -16,14 +16,14 @@ pub struct SpatialGridDescriptor {
     #[serde(rename = "descriptor")]
     pub descriptor: models::SpatialGridDescriptorState,
     #[serde(rename = "spatialGrid")]
-    pub spatial_grid: Box<models::SpatialGridDefinition>,
+    pub spatial_grid: models::SpatialGridDefinition,
 }
 
 impl SpatialGridDescriptor {
     pub fn new(descriptor: models::SpatialGridDescriptorState, spatial_grid: models::SpatialGridDefinition) -> SpatialGridDescriptor {
         SpatialGridDescriptor {
             descriptor,
-            spatial_grid: Box::new(spatial_grid),
+            spatial_grid,
         }
     }
 }

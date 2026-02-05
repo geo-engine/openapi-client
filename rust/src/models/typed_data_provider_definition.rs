@@ -15,29 +15,29 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum TypedDataProviderDefinition {
     #[serde(rename="Aruna")]
-    Aruna(Box<models::ArunaDataProviderDefinition>),
+    Aruna(models::ArunaDataProviderDefinition),
     #[serde(rename="CopernicusDataspace")]
-    CopernicusDataspace(Box<models::CopernicusDataspaceDataProviderDefinition>),
+    CopernicusDataspace(models::CopernicusDataspaceDataProviderDefinition),
     #[serde(rename="DatasetLayerListing")]
-    DatasetLayerListing(Box<models::DatasetLayerListingProviderDefinition>),
+    DatasetLayerListing(models::DatasetLayerListingProviderDefinition),
     #[serde(rename="EbvPortal")]
-    EbvPortal(Box<models::EbvPortalDataProviderDefinition>),
+    EbvPortal(models::EbvPortalDataProviderDefinition),
     #[serde(rename="Edr")]
-    Edr(Box<models::EdrDataProviderDefinition>),
+    Edr(models::EdrDataProviderDefinition),
     #[serde(rename="Gbif")]
-    Gbif(Box<models::GbifDataProviderDefinition>),
+    Gbif(models::GbifDataProviderDefinition),
     #[serde(rename="GfbioAbcd")]
-    GfbioAbcd(Box<models::GfbioAbcdDataProviderDefinition>),
+    GfbioAbcd(models::GfbioAbcdDataProviderDefinition),
     #[serde(rename="GfbioCollections")]
-    GfbioCollections(Box<models::GfbioCollectionsDataProviderDefinition>),
+    GfbioCollections(models::GfbioCollectionsDataProviderDefinition),
     #[serde(rename="NetCdfCf")]
-    NetCdfCf(Box<models::NetCdfCfDataProviderDefinition>),
+    NetCdfCf(models::NetCdfCfDataProviderDefinition),
     #[serde(rename="Pangaea")]
-    Pangaea(Box<models::PangaeaDataProviderDefinition>),
+    Pangaea(models::PangaeaDataProviderDefinition),
     #[serde(rename="SentinelS2L2ACogs")]
-    SentinelS2L2ACogs(Box<models::SentinelS2L2ACogsProviderDefinition>),
+    SentinelS2L2ACogs(models::SentinelS2L2ACogsProviderDefinition),
     #[serde(rename="WildLIVE!")]
-    WildLiveExclamation(Box<models::WildliveDataConnectorDefinition>),
+    WildLiveExclamation(models::WildliveDataConnectorDefinition),
 }
 
 impl Default for TypedDataProviderDefinition {

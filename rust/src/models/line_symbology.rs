@@ -16,9 +16,9 @@ pub struct LineSymbology {
     #[serde(rename = "autoSimplified")]
     pub auto_simplified: bool,
     #[serde(rename = "stroke")]
-    pub stroke: Box<models::StrokeParam>,
+    pub stroke: models::StrokeParam,
     #[serde(rename = "text", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub text: Option<Option<Box<models::TextSymbology>>>,
+    pub text: Option<Option<models::TextSymbology>>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -27,7 +27,7 @@ impl LineSymbology {
     pub fn new(auto_simplified: bool, stroke: models::StrokeParam, r#type: Type) -> LineSymbology {
         LineSymbology {
             auto_simplified,
-            stroke: Box::new(stroke),
+            stroke,
             text: None,
             r#type,
         }

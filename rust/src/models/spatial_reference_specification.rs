@@ -19,7 +19,7 @@ pub struct SpatialReferenceSpecification {
     #[serde(rename = "axisOrder", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub axis_order: Option<Option<models::AxisOrder>>,
     #[serde(rename = "extent")]
-    pub extent: Box<models::BoundingBox2D>,
+    pub extent: models::BoundingBox2D,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "projString")]
@@ -34,7 +34,7 @@ impl SpatialReferenceSpecification {
         SpatialReferenceSpecification {
             axis_labels: None,
             axis_order: None,
-            extent: Box::new(extent),
+            extent,
             name,
             proj_string,
             spatial_reference,

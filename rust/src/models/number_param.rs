@@ -15,9 +15,9 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum NumberParam {
     #[serde(rename="static")]
-    Static(Box<models::StaticNumber>),
+    Static(models::StaticNumber),
     #[serde(rename="derived")]
-    Derived(Box<models::DerivedNumber>),
+    Derived(models::DerivedNumber),
 }
 
 impl Default for NumberParam {

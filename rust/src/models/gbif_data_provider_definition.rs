@@ -20,7 +20,7 @@ pub struct GbifDataProviderDefinition {
     #[serde(rename = "columns")]
     pub columns: Vec<String>,
     #[serde(rename = "dbConfig")]
-    pub db_config: Box<models::DatabaseConnectionConfig>,
+    pub db_config: models::DatabaseConnectionConfig,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "name")]
@@ -37,7 +37,7 @@ impl GbifDataProviderDefinition {
             autocomplete_timeout,
             cache_ttl: None,
             columns,
-            db_config: Box::new(db_config),
+            db_config,
             description,
             name,
             priority: None,

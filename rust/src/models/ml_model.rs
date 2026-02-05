@@ -20,7 +20,7 @@ pub struct MlModel {
     #[serde(rename = "fileName")]
     pub file_name: String,
     #[serde(rename = "metadata")]
-    pub metadata: Box<models::MlModelMetadata>,
+    pub metadata: models::MlModelMetadata,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "upload")]
@@ -33,7 +33,7 @@ impl MlModel {
             description,
             display_name,
             file_name,
-            metadata: Box::new(metadata),
+            metadata,
             name,
             upload,
         }

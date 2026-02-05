@@ -16,7 +16,7 @@ pub struct SingleBandRasterColorizer {
     #[serde(rename = "band")]
     pub band: i32,
     #[serde(rename = "bandColorizer")]
-    pub band_colorizer: Box<models::Colorizer>,
+    pub band_colorizer: models::Colorizer,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -25,7 +25,7 @@ impl SingleBandRasterColorizer {
     pub fn new(band: i32, band_colorizer: models::Colorizer, r#type: Type) -> SingleBandRasterColorizer {
         SingleBandRasterColorizer {
             band,
-            band_colorizer: Box::new(band_colorizer),
+            band_colorizer,
             r#type,
         }
     }

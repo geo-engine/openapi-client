@@ -23,7 +23,7 @@ pub struct RasterDatasetFromWorkflow {
     #[serde(rename = "name", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub name: Option<Option<String>>,
     #[serde(rename = "query")]
-    pub query: Box<models::RasterToDatasetQueryRectangle>,
+    pub query: models::RasterToDatasetQueryRectangle,
 }
 
 impl RasterDatasetFromWorkflow {
@@ -34,7 +34,7 @@ impl RasterDatasetFromWorkflow {
             description: None,
             display_name,
             name: None,
-            query: Box::new(query),
+            query,
         }
     }
 }

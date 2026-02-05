@@ -16,9 +16,9 @@ pub struct ProjectLayer {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "symbology")]
-    pub symbology: Box<models::Symbology>,
+    pub symbology: models::Symbology,
     #[serde(rename = "visibility")]
-    pub visibility: Box<models::LayerVisibility>,
+    pub visibility: models::LayerVisibility,
     #[serde(rename = "workflow")]
     pub workflow: uuid::Uuid,
 }
@@ -27,8 +27,8 @@ impl ProjectLayer {
     pub fn new(name: String, symbology: models::Symbology, visibility: models::LayerVisibility, workflow: uuid::Uuid) -> ProjectLayer {
         ProjectLayer {
             name,
-            symbology: Box::new(symbology),
-            visibility: Box::new(visibility),
+            symbology,
+            visibility,
             workflow,
         }
     }

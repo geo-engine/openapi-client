@@ -19,7 +19,7 @@ pub struct LayerCollection {
     #[serde(rename = "entryLabel", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub entry_label: Option<Option<String>>,
     #[serde(rename = "id")]
-    pub id: Box<models::ProviderLayerCollectionId>,
+    pub id: models::ProviderLayerCollectionId,
     #[serde(rename = "items")]
     pub items: Vec<models::CollectionItem>,
     #[serde(rename = "name")]
@@ -33,7 +33,7 @@ impl LayerCollection {
         LayerCollection {
             description,
             entry_label: None,
-            id: Box::new(id),
+            id,
             items,
             name,
             properties,

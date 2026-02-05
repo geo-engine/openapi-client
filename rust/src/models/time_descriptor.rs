@@ -14,16 +14,16 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TimeDescriptor {
     #[serde(rename = "bounds", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub bounds: Option<Option<Box<models::TimeInterval>>>,
+    pub bounds: Option<Option<models::TimeInterval>>,
     #[serde(rename = "dimension")]
-    pub dimension: Box<models::TimeDimension>,
+    pub dimension: models::TimeDimension,
 }
 
 impl TimeDescriptor {
     pub fn new(dimension: models::TimeDimension) -> TimeDescriptor {
         TimeDescriptor {
             bounds: None,
-            dimension: Box::new(dimension),
+            dimension,
         }
     }
 }

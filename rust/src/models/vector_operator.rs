@@ -16,9 +16,9 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum VectorOperator {
     #[serde(rename="MockPointSource")]
-    MockPointSource(Box<models::MockPointSource>),
+    MockPointSource(models::MockPointSource),
     #[serde(rename="RasterVectorJoin")]
-    RasterVectorJoin(Box<models::RasterVectorJoin>),
+    RasterVectorJoin(models::RasterVectorJoin),
 }
 
 impl Default for VectorOperator {

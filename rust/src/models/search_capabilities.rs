@@ -18,7 +18,7 @@ pub struct SearchCapabilities {
     #[serde(rename = "filters", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub filters: Option<Option<Vec<String>>>,
     #[serde(rename = "searchTypes")]
-    pub search_types: Box<models::SearchTypes>,
+    pub search_types: models::SearchTypes,
 }
 
 impl SearchCapabilities {
@@ -26,7 +26,7 @@ impl SearchCapabilities {
         SearchCapabilities {
             autocomplete,
             filters: None,
-            search_types: Box::new(search_types),
+            search_types,
         }
     }
 }

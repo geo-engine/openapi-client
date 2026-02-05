@@ -16,14 +16,14 @@ pub struct SingleVectorMultipleRasterSources {
     #[serde(rename = "rasters")]
     pub rasters: Vec<models::RasterOperator>,
     #[serde(rename = "vector")]
-    pub vector: Box<models::VectorOperator>,
+    pub vector: models::VectorOperator,
 }
 
 impl SingleVectorMultipleRasterSources {
     pub fn new(rasters: Vec<models::RasterOperator>, vector: models::VectorOperator) -> SingleVectorMultipleRasterSources {
         SingleVectorMultipleRasterSources {
             rasters,
-            vector: Box::new(vector),
+            vector,
         }
     }
 }

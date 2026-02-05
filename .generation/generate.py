@@ -257,6 +257,10 @@ def generate_rust_code(
 ):
     """Run the generator."""
 
+    # TODO:
+    # - Check `reqwest-trait` instead of `reqwest` for `library` parameter
+    # - Try `useBonBuilder=true` additional property
+
     subprocess.run(
         [
             "podman",
@@ -279,6 +283,7 @@ def generate_rust_code(
                     f"packageVersion={package_version}",
                     f"homePageUrl={homepage_url}",
                     f"repositoryUrl={git_repo.url()}",
+                    "avoidBoxedModels=true",
                 ]
             ),
             "--git-host",

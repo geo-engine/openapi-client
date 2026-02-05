@@ -33,7 +33,7 @@ pub struct EdrDataProviderDefinition {
     #[serde(rename = "type")]
     pub r#type: Type,
     #[serde(rename = "vectorSpec", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub vector_spec: Option<Option<Box<models::EdrVectorSpec>>>,
+    pub vector_spec: Option<Option<models::EdrVectorSpec>>,
 }
 
 impl EdrDataProviderDefinition {

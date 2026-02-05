@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GfbioCollectionsDataProviderDefinition {
     #[serde(rename = "abcdDbConfig")]
-    pub abcd_db_config: Box<models::DatabaseConnectionConfig>,
+    pub abcd_db_config: models::DatabaseConnectionConfig,
     #[serde(rename = "cacheTtl", skip_serializing_if = "Option::is_none")]
     pub cache_ttl: Option<i32>,
     #[serde(rename = "collectionApiAuthToken")]
@@ -36,7 +36,7 @@ pub struct GfbioCollectionsDataProviderDefinition {
 impl GfbioCollectionsDataProviderDefinition {
     pub fn new(abcd_db_config: models::DatabaseConnectionConfig, collection_api_auth_token: String, collection_api_url: String, description: String, name: String, pangaea_url: String, r#type: Type) -> GfbioCollectionsDataProviderDefinition {
         GfbioCollectionsDataProviderDefinition {
-            abcd_db_config: Box::new(abcd_db_config),
+            abcd_db_config,
             cache_ttl: None,
             collection_api_auth_token,
             collection_api_url,

@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 #[serde(untagged)]
 pub enum VecUpdate {
     ProjectUpdateToken(models::ProjectUpdateToken),
-    Plot(Box<models::Plot>),
+    Plot(models::Plot),
 }
 
 impl Default for VecUpdate {

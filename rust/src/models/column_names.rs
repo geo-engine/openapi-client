@@ -14,9 +14,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ColumnNames {
-    ColumnNamesOneOf(Box<models::ColumnNamesOneOf>),
-    ColumnNamesOneOf1(Box<models::ColumnNamesOneOf1>),
-    ColumnNamesOneOf2(Box<models::ColumnNamesOneOf2>),
+    ColumnNamesOneOf(models::ColumnNamesOneOf),
+    ColumnNamesOneOf1(models::ColumnNamesOneOf1),
+    ColumnNamesOneOf2(models::ColumnNamesOneOf2),
 }
 
 impl Default for ColumnNames {

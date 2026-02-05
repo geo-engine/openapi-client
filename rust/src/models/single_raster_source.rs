@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SingleRasterSource {
     #[serde(rename = "raster")]
-    pub raster: Box<models::RasterOperator>,
+    pub raster: models::RasterOperator,
 }
 
 impl SingleRasterSource {
     pub fn new(raster: models::RasterOperator) -> SingleRasterSource {
         SingleRasterSource {
-            raster: Box::new(raster),
+            raster,
         }
     }
 }

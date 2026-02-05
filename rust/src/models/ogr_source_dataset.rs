@@ -18,11 +18,11 @@ pub struct OgrSourceDataset {
     #[serde(rename = "cacheTtl", skip_serializing_if = "Option::is_none")]
     pub cache_ttl: Option<i32>,
     #[serde(rename = "columns", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub columns: Option<Option<Box<models::OgrSourceColumnSpec>>>,
+    pub columns: Option<Option<models::OgrSourceColumnSpec>>,
     #[serde(rename = "dataType", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub data_type: Option<Option<models::VectorDataType>>,
     #[serde(rename = "defaultGeometry", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub default_geometry: Option<Option<Box<models::TypedGeometry>>>,
+    pub default_geometry: Option<Option<models::TypedGeometry>>,
     #[serde(rename = "fileName")]
     pub file_name: String,
     #[serde(rename = "forceOgrSpatialFilter", skip_serializing_if = "Option::is_none")]
@@ -36,7 +36,7 @@ pub struct OgrSourceDataset {
     #[serde(rename = "sqlQuery", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub sql_query: Option<Option<String>>,
     #[serde(rename = "time", skip_serializing_if = "Option::is_none")]
-    pub time: Option<Box<models::OgrSourceDatasetTimeType>>,
+    pub time: Option<models::OgrSourceDatasetTimeType>,
 }
 
 impl OgrSourceDataset {

@@ -16,13 +16,13 @@ pub struct GdalMetaDataRegular {
     #[serde(rename = "cacheTtl", skip_serializing_if = "Option::is_none")]
     pub cache_ttl: Option<i32>,
     #[serde(rename = "dataTime")]
-    pub data_time: Box<models::TimeInterval>,
+    pub data_time: models::TimeInterval,
     #[serde(rename = "params")]
-    pub params: Box<models::GdalDatasetParameters>,
+    pub params: models::GdalDatasetParameters,
     #[serde(rename = "resultDescriptor")]
-    pub result_descriptor: Box<models::RasterResultDescriptor>,
+    pub result_descriptor: models::RasterResultDescriptor,
     #[serde(rename = "step")]
-    pub step: Box<models::TimeStep>,
+    pub step: models::TimeStep,
     #[serde(rename = "timePlaceholders")]
     pub time_placeholders: std::collections::HashMap<String, models::GdalSourceTimePlaceholder>,
     #[serde(rename = "type")]
@@ -33,10 +33,10 @@ impl GdalMetaDataRegular {
     pub fn new(data_time: models::TimeInterval, params: models::GdalDatasetParameters, result_descriptor: models::RasterResultDescriptor, step: models::TimeStep, time_placeholders: std::collections::HashMap<String, models::GdalSourceTimePlaceholder>, r#type: Type) -> GdalMetaDataRegular {
         GdalMetaDataRegular {
             cache_ttl: None,
-            data_time: Box::new(data_time),
-            params: Box::new(params),
-            result_descriptor: Box::new(result_descriptor),
-            step: Box::new(step),
+            data_time,
+            params,
+            result_descriptor,
+            step,
             time_placeholders,
             r#type,
         }

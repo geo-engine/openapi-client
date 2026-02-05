@@ -16,7 +16,7 @@ pub struct GdalMetaDataList {
     #[serde(rename = "params")]
     pub params: Vec<models::GdalLoadingInfoTemporalSlice>,
     #[serde(rename = "resultDescriptor")]
-    pub result_descriptor: Box<models::RasterResultDescriptor>,
+    pub result_descriptor: models::RasterResultDescriptor,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -25,7 +25,7 @@ impl GdalMetaDataList {
     pub fn new(params: Vec<models::GdalLoadingInfoTemporalSlice>, result_descriptor: models::RasterResultDescriptor, r#type: Type) -> GdalMetaDataList {
         GdalMetaDataList {
             params,
-            result_descriptor: Box::new(result_descriptor),
+            result_descriptor,
             r#type,
         }
     }

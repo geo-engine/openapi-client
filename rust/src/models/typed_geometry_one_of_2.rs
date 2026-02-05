@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TypedGeometryOneOf2 {
     #[serde(rename = "MultiLineString")]
-    pub multi_line_string: Box<models::MultiLineString>,
+    pub multi_line_string: models::MultiLineString,
 }
 
 impl TypedGeometryOneOf2 {
     pub fn new(multi_line_string: models::MultiLineString) -> TypedGeometryOneOf2 {
         TypedGeometryOneOf2 {
-            multi_line_string: Box::new(multi_line_string),
+            multi_line_string,
         }
     }
 }

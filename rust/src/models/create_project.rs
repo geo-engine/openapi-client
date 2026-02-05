@@ -14,19 +14,19 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateProject {
     #[serde(rename = "bounds")]
-    pub bounds: Box<models::StRectangle>,
+    pub bounds: models::StRectangle,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "timeStep", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub time_step: Option<Option<Box<models::TimeStep>>>,
+    pub time_step: Option<Option<models::TimeStep>>,
 }
 
 impl CreateProject {
     pub fn new(bounds: models::StRectangle, description: String, name: String) -> CreateProject {
         CreateProject {
-            bounds: Box::new(bounds),
+            bounds,
             description,
             name,
             time_step: None,

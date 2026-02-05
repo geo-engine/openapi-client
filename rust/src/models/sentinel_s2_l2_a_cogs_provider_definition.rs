@@ -28,9 +28,9 @@ pub struct SentinelS2L2ACogsProviderDefinition {
     #[serde(rename = "priority", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub priority: Option<Option<i32>>,
     #[serde(rename = "queryBuffer", skip_serializing_if = "Option::is_none")]
-    pub query_buffer: Option<Box<models::StacQueryBuffer>>,
+    pub query_buffer: Option<models::StacQueryBuffer>,
     #[serde(rename = "stacApiRetries", skip_serializing_if = "Option::is_none")]
-    pub stac_api_retries: Option<Box<models::StacApiRetries>>,
+    pub stac_api_retries: Option<models::StacApiRetries>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }

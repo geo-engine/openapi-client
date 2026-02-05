@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ProvenanceOutput {
     #[serde(rename = "data")]
-    pub data: Box<models::DataId>,
+    pub data: models::DataId,
     #[serde(rename = "provenance", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub provenance: Option<Option<Vec<models::Provenance>>>,
 }
@@ -22,7 +22,7 @@ pub struct ProvenanceOutput {
 impl ProvenanceOutput {
     pub fn new(data: models::DataId) -> ProvenanceOutput {
         ProvenanceOutput {
-            data: Box::new(data),
+            data,
             provenance: None,
         }
     }

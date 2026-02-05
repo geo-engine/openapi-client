@@ -25,7 +25,7 @@ pub struct GdalDatasetParameters {
     #[serde(rename = "gdalOpenOptions", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub gdal_open_options: Option<Option<Vec<String>>>,
     #[serde(rename = "geoTransform")]
-    pub geo_transform: Box<models::GeoTransform>,
+    pub geo_transform: models::GeoTransform,
     #[serde(rename = "height")]
     pub height: i32,
     #[serde(rename = "noDataValue", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
@@ -47,7 +47,7 @@ impl GdalDatasetParameters {
             file_path,
             gdal_config_options: None,
             gdal_open_options: None,
-            geo_transform: Box::new(geo_transform),
+            geo_transform,
             height,
             no_data_value: None,
             properties_mapping: None,

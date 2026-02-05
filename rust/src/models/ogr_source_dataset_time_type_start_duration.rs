@@ -18,7 +18,7 @@ pub struct OgrSourceDatasetTimeTypeStartDuration {
     #[serde(rename = "startField")]
     pub start_field: String,
     #[serde(rename = "startFormat")]
-    pub start_format: Box<models::OgrSourceTimeFormat>,
+    pub start_format: models::OgrSourceTimeFormat,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -28,7 +28,7 @@ impl OgrSourceDatasetTimeTypeStartDuration {
         OgrSourceDatasetTimeTypeStartDuration {
             duration_field,
             start_field,
-            start_format: Box::new(start_format),
+            start_format,
             r#type,
         }
     }

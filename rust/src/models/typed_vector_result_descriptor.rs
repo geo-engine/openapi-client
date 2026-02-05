@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TypedVectorResultDescriptor {
     #[serde(rename = "bbox", skip_serializing_if = "Option::is_none")]
-    pub bbox: Option<Box<models::BoundingBox2D>>,
+    pub bbox: Option<models::BoundingBox2D>,
     #[serde(rename = "columns")]
     pub columns: std::collections::HashMap<String, models::VectorColumnInfo>,
     #[serde(rename = "dataType")]
@@ -22,7 +22,7 @@ pub struct TypedVectorResultDescriptor {
     #[serde(rename = "spatialReference")]
     pub spatial_reference: String,
     #[serde(rename = "time", skip_serializing_if = "Option::is_none")]
-    pub time: Option<Box<models::TimeInterval>>,
+    pub time: Option<models::TimeInterval>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }

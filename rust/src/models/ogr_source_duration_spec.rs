@@ -15,11 +15,11 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum OgrSourceDurationSpec {
     #[serde(rename="infinite")]
-    Infinite(Box<models::OgrSourceDurationSpecInfinite>),
+    Infinite(models::OgrSourceDurationSpecInfinite),
     #[serde(rename="zero")]
-    Zero(Box<models::OgrSourceDurationSpecZero>),
+    Zero(models::OgrSourceDurationSpecZero),
     #[serde(rename="value")]
-    Value(Box<models::OgrSourceDurationSpecValue>),
+    Value(models::OgrSourceDurationSpecValue),
 }
 
 impl Default for OgrSourceDurationSpec {

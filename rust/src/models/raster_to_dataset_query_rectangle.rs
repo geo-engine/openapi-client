@@ -15,17 +15,17 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RasterToDatasetQueryRectangle {
     #[serde(rename = "spatialBounds")]
-    pub spatial_bounds: Box<models::SpatialPartition2D>,
+    pub spatial_bounds: models::SpatialPartition2D,
     #[serde(rename = "timeInterval")]
-    pub time_interval: Box<models::TimeInterval>,
+    pub time_interval: models::TimeInterval,
 }
 
 impl RasterToDatasetQueryRectangle {
     /// A spatio-temporal rectangle with a specified resolution
     pub fn new(spatial_bounds: models::SpatialPartition2D, time_interval: models::TimeInterval) -> RasterToDatasetQueryRectangle {
         RasterToDatasetQueryRectangle {
-            spatial_bounds: Box::new(spatial_bounds),
-            time_interval: Box::new(time_interval),
+            spatial_bounds,
+            time_interval,
         }
     }
 }

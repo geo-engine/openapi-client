@@ -24,9 +24,9 @@ pub struct AddLayer {
     #[serde(rename = "properties", skip_serializing_if = "Option::is_none")]
     pub properties: Option<Vec<Vec<String>>>,
     #[serde(rename = "symbology", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub symbology: Option<Option<Box<models::Symbology>>>,
+    pub symbology: Option<Option<models::Symbology>>,
     #[serde(rename = "workflow")]
-    pub workflow: Box<models::Workflow>,
+    pub workflow: models::Workflow,
 }
 
 impl AddLayer {
@@ -37,7 +37,7 @@ impl AddLayer {
             name,
             properties: None,
             symbology: None,
-            workflow: Box::new(workflow),
+            workflow,
         }
     }
 }

@@ -15,9 +15,9 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum ColorParam {
     #[serde(rename="static")]
-    Static(Box<models::StaticColor>),
+    Static(models::StaticColor),
     #[serde(rename="derived")]
-    Derived(Box<models::DerivedColor>),
+    Derived(models::DerivedColor),
 }
 
 impl Default for ColorParam {

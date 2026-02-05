@@ -14,8 +14,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TimeDimension {
-    TimeDimensionOneOf(Box<models::TimeDimensionOneOf>),
-    TimeDimensionOneOf1(Box<models::TimeDimensionOneOf1>),
+    TimeDimensionOneOf(models::TimeDimensionOneOf),
+    TimeDimensionOneOf1(models::TimeDimensionOneOf1),
 }
 
 impl Default for TimeDimension {

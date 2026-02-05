@@ -15,19 +15,19 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum MetaDataDefinition {
     #[serde(rename="MockMetaData")]
-    MockMetaData(Box<models::MockMetaData>),
+    MockMetaData(models::MockMetaData),
     #[serde(rename="OgrMetaData")]
-    OgrMetaData(Box<models::OgrMetaData>),
+    OgrMetaData(models::OgrMetaData),
     #[serde(rename="GdalMetaDataRegular")]
-    GdalMetaDataRegular(Box<models::GdalMetaDataRegular>),
+    GdalMetaDataRegular(models::GdalMetaDataRegular),
     #[serde(rename="GdalStatic")]
-    GdalStatic(Box<models::GdalMetaDataStatic>),
+    GdalStatic(models::GdalMetaDataStatic),
     #[serde(rename="GdalMetaDataNetCdfCf")]
-    GdalMetaDataNetCdfCf(Box<models::GdalMetadataNetCdfCf>),
+    GdalMetaDataNetCdfCf(models::GdalMetadataNetCdfCf),
     #[serde(rename="GdalMetaDataList")]
-    GdalMetaDataList(Box<models::GdalMetaDataList>),
+    GdalMetaDataList(models::GdalMetaDataList),
     #[serde(rename="GdalMultiBand")]
-    GdalMultiBand(Box<models::GdalMultiBand>),
+    GdalMultiBand(models::GdalMultiBand),
 }
 
 impl Default for MetaDataDefinition {

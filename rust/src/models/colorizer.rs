@@ -16,11 +16,11 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum Colorizer {
     #[serde(rename="linearGradient")]
-    LinearGradient(Box<models::LinearGradient>),
+    LinearGradient(models::LinearGradient),
     #[serde(rename="logarithmicGradient")]
-    LogarithmicGradient(Box<models::LogarithmicGradient>),
+    LogarithmicGradient(models::LogarithmicGradient),
     #[serde(rename="palette")]
-    Palette(Box<models::PaletteColorizer>),
+    Palette(models::PaletteColorizer),
 }
 
 impl Default for Colorizer {

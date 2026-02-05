@@ -14,9 +14,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GdalMetadataMapping {
     #[serde(rename = "source_key")]
-    pub source_key: Box<models::RasterPropertiesKey>,
+    pub source_key: models::RasterPropertiesKey,
     #[serde(rename = "target_key")]
-    pub target_key: Box<models::RasterPropertiesKey>,
+    pub target_key: models::RasterPropertiesKey,
     #[serde(rename = "target_type")]
     pub target_type: models::RasterPropertiesEntryType,
 }
@@ -24,8 +24,8 @@ pub struct GdalMetadataMapping {
 impl GdalMetadataMapping {
     pub fn new(source_key: models::RasterPropertiesKey, target_key: models::RasterPropertiesKey, target_type: models::RasterPropertiesEntryType) -> GdalMetadataMapping {
         GdalMetadataMapping {
-            source_key: Box::new(source_key),
-            target_key: Box::new(target_key),
+            source_key,
+            target_key,
             target_type,
         }
     }

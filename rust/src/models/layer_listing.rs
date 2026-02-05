@@ -16,7 +16,7 @@ pub struct LayerListing {
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "id")]
-    pub id: Box<models::ProviderLayerId>,
+    pub id: models::ProviderLayerId,
     #[serde(rename = "name")]
     pub name: String,
     /// properties, for instance, to be rendered in the UI
@@ -30,7 +30,7 @@ impl LayerListing {
     pub fn new(description: String, id: models::ProviderLayerId, name: String, r#type: Type) -> LayerListing {
         LayerListing {
             description,
-            id: Box::new(id),
+            id,
             name,
             properties: None,
             r#type,

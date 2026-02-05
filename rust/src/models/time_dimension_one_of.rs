@@ -16,7 +16,7 @@ pub struct TimeDimensionOneOf {
     #[serde(rename = "origin")]
     pub origin: i64,
     #[serde(rename = "step")]
-    pub step: Box<models::TimeStep>,
+    pub step: models::TimeStep,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -25,7 +25,7 @@ impl TimeDimensionOneOf {
     pub fn new(origin: i64, step: models::TimeStep, r#type: Type) -> TimeDimensionOneOf {
         TimeDimensionOneOf {
             origin,
-            step: Box::new(step),
+            step,
             r#type,
         }
     }

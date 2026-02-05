@@ -18,7 +18,7 @@ pub struct MetaDataSuggestion {
     #[serde(rename = "mainFile")]
     pub main_file: String,
     #[serde(rename = "metaData")]
-    pub meta_data: Box<models::MetaDataDefinition>,
+    pub meta_data: models::MetaDataDefinition,
 }
 
 impl MetaDataSuggestion {
@@ -26,7 +26,7 @@ impl MetaDataSuggestion {
         MetaDataSuggestion {
             layer_name,
             main_file,
-            meta_data: Box::new(meta_data),
+            meta_data,
         }
     }
 }

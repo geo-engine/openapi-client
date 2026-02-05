@@ -15,11 +15,11 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum Measurement {
     #[serde(rename="unitless")]
-    Unitless(Box<models::UnitlessMeasurement>),
+    Unitless(models::UnitlessMeasurement),
     #[serde(rename="continuous")]
-    Continuous(Box<models::ContinuousMeasurement>),
+    Continuous(models::ContinuousMeasurement),
     #[serde(rename="classification")]
-    Classification(Box<models::ClassificationMeasurement>),
+    Classification(models::ClassificationMeasurement),
 }
 
 impl Default for Measurement {

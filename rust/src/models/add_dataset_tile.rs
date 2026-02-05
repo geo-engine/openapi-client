@@ -16,11 +16,11 @@ pub struct AddDatasetTile {
     #[serde(rename = "band")]
     pub band: i32,
     #[serde(rename = "params")]
-    pub params: Box<models::GdalDatasetParameters>,
+    pub params: models::GdalDatasetParameters,
     #[serde(rename = "spatial_partition")]
-    pub spatial_partition: Box<models::SpatialPartition2D>,
+    pub spatial_partition: models::SpatialPartition2D,
     #[serde(rename = "time")]
-    pub time: Box<models::TimeInterval>,
+    pub time: models::TimeInterval,
     #[serde(rename = "z_index")]
     pub z_index: i32,
 }
@@ -29,9 +29,9 @@ impl AddDatasetTile {
     pub fn new(band: i32, params: models::GdalDatasetParameters, spatial_partition: models::SpatialPartition2D, time: models::TimeInterval, z_index: i32) -> AddDatasetTile {
         AddDatasetTile {
             band,
-            params: Box::new(params),
-            spatial_partition: Box::new(spatial_partition),
-            time: Box::new(time),
+            params,
+            spatial_partition,
+            time,
             z_index,
         }
     }

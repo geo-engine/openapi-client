@@ -16,7 +16,7 @@ pub struct Layer {
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "id")]
-    pub id: Box<models::ProviderLayerId>,
+    pub id: models::ProviderLayerId,
     /// metadata used for loading the data
     #[serde(rename = "metadata", skip_serializing_if = "Option::is_none")]
     pub metadata: Option<std::collections::HashMap<String, String>>,
@@ -26,21 +26,21 @@ pub struct Layer {
     #[serde(rename = "properties", skip_serializing_if = "Option::is_none")]
     pub properties: Option<Vec<Vec<String>>>,
     #[serde(rename = "symbology", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub symbology: Option<Option<Box<models::Symbology>>>,
+    pub symbology: Option<Option<models::Symbology>>,
     #[serde(rename = "workflow")]
-    pub workflow: Box<models::Workflow>,
+    pub workflow: models::Workflow,
 }
 
 impl Layer {
     pub fn new(description: String, id: models::ProviderLayerId, name: String, workflow: models::Workflow) -> Layer {
         Layer {
             description,
-            id: Box::new(id),
+            id,
             metadata: None,
             name,
             properties: None,
             symbology: None,
-            workflow: Box::new(workflow),
+            workflow,
         }
     }
 }

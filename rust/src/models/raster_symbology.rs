@@ -16,7 +16,7 @@ pub struct RasterSymbology {
     #[serde(rename = "opacity")]
     pub opacity: f64,
     #[serde(rename = "rasterColorizer")]
-    pub raster_colorizer: Box<models::RasterColorizer>,
+    pub raster_colorizer: models::RasterColorizer,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
@@ -25,7 +25,7 @@ impl RasterSymbology {
     pub fn new(opacity: f64, raster_colorizer: models::RasterColorizer, r#type: Type) -> RasterSymbology {
         RasterSymbology {
             opacity,
-            raster_colorizer: Box::new(raster_colorizer),
+            raster_colorizer,
             r#type,
         }
     }

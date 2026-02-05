@@ -15,13 +15,13 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "status")]
 pub enum TaskStatus {
     #[serde(rename="TaskStatusRunning")]
-    TaskStatusRunning(Box<models::TaskStatusRunning>),
+    TaskStatusRunning(models::TaskStatusRunning),
     #[serde(rename="TaskStatusCompleted")]
-    TaskStatusCompleted(Box<models::TaskStatusCompleted>),
+    TaskStatusCompleted(models::TaskStatusCompleted),
     #[serde(rename="TaskStatusAborted")]
-    TaskStatusAborted(Box<models::TaskStatusAborted>),
+    TaskStatusAborted(models::TaskStatusAborted),
     #[serde(rename="TaskStatusFailed")]
-    TaskStatusFailed(Box<models::TaskStatusFailed>),
+    TaskStatusFailed(models::TaskStatusFailed),
 }
 
 impl Default for TaskStatus {

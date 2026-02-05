@@ -22,11 +22,11 @@ pub struct UserSession {
     #[serde(rename = "roles")]
     pub roles: Vec<uuid::Uuid>,
     #[serde(rename = "user")]
-    pub user: Box<models::UserInfo>,
+    pub user: models::UserInfo,
     #[serde(rename = "validUntil")]
     pub valid_until: String,
     #[serde(rename = "view", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub view: Option<Option<Box<models::StRectangle>>>,
+    pub view: Option<Option<models::StRectangle>>,
 }
 
 impl UserSession {
@@ -36,7 +36,7 @@ impl UserSession {
             id,
             project: None,
             roles,
-            user: Box::new(user),
+            user,
             valid_until,
             view: None,
         }

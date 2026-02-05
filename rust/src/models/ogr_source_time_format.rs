@@ -15,11 +15,11 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "format")]
 pub enum OgrSourceTimeFormat {
     #[serde(rename="custom")]
-    Custom(Box<models::OgrSourceTimeFormatCustom>),
+    Custom(models::OgrSourceTimeFormatCustom),
     #[serde(rename="unixTimeStamp")]
-    UnixTimeStamp(Box<models::OgrSourceTimeFormatUnixTimeStamp>),
+    UnixTimeStamp(models::OgrSourceTimeFormatUnixTimeStamp),
     #[serde(rename="auto")]
-    Auto(Box<models::OgrSourceTimeFormatAuto>),
+    Auto(models::OgrSourceTimeFormatAuto),
 }
 
 impl Default for OgrSourceTimeFormat {

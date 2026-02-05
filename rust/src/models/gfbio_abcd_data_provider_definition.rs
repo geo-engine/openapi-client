@@ -16,7 +16,7 @@ pub struct GfbioAbcdDataProviderDefinition {
     #[serde(rename = "cacheTtl", skip_serializing_if = "Option::is_none")]
     pub cache_ttl: Option<i32>,
     #[serde(rename = "dbConfig")]
-    pub db_config: Box<models::DatabaseConnectionConfig>,
+    pub db_config: models::DatabaseConnectionConfig,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "name")]
@@ -31,7 +31,7 @@ impl GfbioAbcdDataProviderDefinition {
     pub fn new(db_config: models::DatabaseConnectionConfig, description: String, name: String, r#type: Type) -> GfbioAbcdDataProviderDefinition {
         GfbioAbcdDataProviderDefinition {
             cache_ttl: None,
-            db_config: Box::new(db_config),
+            db_config,
             description,
             name,
             priority: None,

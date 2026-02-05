@@ -15,11 +15,11 @@ use serde::{Deserialize, Serialize};
 #[serde(tag = "type")]
 pub enum TypedResultDescriptor {
     #[serde(rename="plot")]
-    Plot(Box<models::TypedPlotResultDescriptor>),
+    Plot(models::TypedPlotResultDescriptor),
     #[serde(rename="raster")]
-    Raster(Box<models::TypedRasterResultDescriptor>),
+    Raster(models::TypedRasterResultDescriptor),
     #[serde(rename="vector")]
-    Vector(Box<models::TypedVectorResultDescriptor>),
+    Vector(models::TypedVectorResultDescriptor),
 }
 
 impl Default for TypedResultDescriptor {

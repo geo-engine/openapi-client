@@ -20,9 +20,6 @@ docs/CollectionType.md
 docs/ColorParam.md
 docs/Colorizer.md
 docs/ColumnNames.md
-docs/ColumnNamesOneOf.md
-docs/ColumnNamesOneOf1.md
-docs/ColumnNamesOneOf2.md
 docs/ComputationQuota.md
 docs/ContinuousMeasurement.md
 docs/Coordinate2D.md
@@ -46,6 +43,7 @@ docs/DatasetListing.md
 docs/DatasetNameResponse.md
 docs/DatasetResource.md
 docs/DatasetsApi.md
+docs/Default.md
 docs/DerivedColor.md
 docs/DerivedNumber.md
 docs/EbvPortalDataProviderDefinition.md
@@ -116,6 +114,7 @@ docs/MultiBandRasterColorizer.md
 docs/MultiLineString.md
 docs/MultiPoint.md
 docs/MultiPolygon.md
+docs/Names.md
 docs/NetCdfCfDataProviderDefinition.md
 docs/NumberParam.md
 docs/OgcwcsApi.md
@@ -213,6 +212,7 @@ docs/StacQueryBuffer.md
 docs/StaticColor.md
 docs/StaticNumber.md
 docs/StrokeParam.md
+docs/Suffix.md
 docs/SuggestMetaData.md
 docs/Symbology.md
 docs/TaskAbortOptions.md
@@ -324,9 +324,6 @@ src/models/collection_type.rs
 src/models/color_param.rs
 src/models/colorizer.rs
 src/models/column_names.rs
-src/models/column_names_one_of.rs
-src/models/column_names_one_of_1.rs
-src/models/column_names_one_of_2.rs
 src/models/computation_quota.rs
 src/models/continuous_measurement.rs
 src/models/coordinate2_d.rs
@@ -349,6 +346,7 @@ src/models/dataset_layer_listing_provider_definition.rs
 src/models/dataset_listing.rs
 src/models/dataset_name_response.rs
 src/models/dataset_resource.rs
+src/models/default.rs
 src/models/derived_color.rs
 src/models/derived_number.rs
 src/models/ebv_portal_data_provider_definition.rs
@@ -417,6 +415,7 @@ src/models/multi_band_raster_colorizer.rs
 src/models/multi_line_string.rs
 src/models/multi_point.rs
 src/models/multi_polygon.rs
+src/models/names.rs
 src/models/net_cdf_cf_data_provider_definition.rs
 src/models/number_param.rs
 src/models/ogr_meta_data.rs
@@ -506,6 +505,7 @@ src/models/stac_query_buffer.rs
 src/models/static_color.rs
 src/models/static_number.rs
 src/models/stroke_param.rs
+src/models/suffix.rs
 src/models/suggest_meta_data.rs
 src/models/symbology.rs
 src/models/task_abort_options.rs

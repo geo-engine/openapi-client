@@ -11,17 +11,17 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum ColumnNames {
-    Default(Box<models::Default>),
-    Suffix(Box<models::Suffix>),
-    Names(Box<models::Names>),
+#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+pub struct Default {
+    #[serde(rename = "type")]
+    pub r#type: Type,
 }
 
-impl Default for ColumnNames {
-    fn default() -> Self {
-        Self::Default(Default::default())
+impl Default {
+    pub fn new(r#type: Type) -> Default {
+        Default {
+            r#type,
+        }
     }
 }
 /// 
@@ -29,10 +29,6 @@ impl Default for ColumnNames {
 pub enum Type {
     #[serde(rename = "default")]
     Default,
-    #[serde(rename = "suffix")]
-    Suffix,
-    #[serde(rename = "names")]
-    Names,
 }
 
 impl Default for Type {

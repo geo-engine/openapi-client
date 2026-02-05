@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// MockPointSource : # MockPointSource  The [`MockPointSource`] is a source operator that provides mock vector point data for testing and development purposes.  ## Example JSON ```json {   \"type\": \"MockPointSource\",   \"params\": {     \"points\": [ { \"x\": 1.0, \"y\": 2.0 }, { \"x\": 3.0, \"y\": 4.0 } ]   } } ```
+/// MockPointSource : The [`MockPointSource`] is a source operator that provides mock vector point data for testing and development purposes. 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MockPointSource {
     #[serde(rename = "params")]
@@ -21,7 +21,7 @@ pub struct MockPointSource {
 }
 
 impl MockPointSource {
-    /// # MockPointSource  The [`MockPointSource`] is a source operator that provides mock vector point data for testing and development purposes.  ## Example JSON ```json {   \"type\": \"MockPointSource\",   \"params\": {     \"points\": [ { \"x\": 1.0, \"y\": 2.0 }, { \"x\": 3.0, \"y\": 4.0 } ]   } } ```
+    /// The [`MockPointSource`] is a source operator that provides mock vector point data for testing and development purposes. 
     pub fn new(params: models::MockPointSourceParameters, r#type: Type) -> MockPointSource {
         MockPointSource {
             params: Box::new(params),

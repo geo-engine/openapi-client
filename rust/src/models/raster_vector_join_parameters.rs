@@ -19,7 +19,7 @@ pub struct RasterVectorJoinParameters {
     /// Whether to ignore no data values in the aggregation. Defaults to `false`.
     #[serde(rename = "featureAggregationIgnoreNoData", skip_serializing_if = "Option::is_none")]
     pub feature_aggregation_ignore_no_data: Option<bool>,
-    /// Specify how the new column names are derived from the raster band names.  The `ColumnNames` type is used to specify how the new column names are derived from the raster band names.  | Value                                    | Description                                                                  | | ---------------------------------------- | ---------------------------------------------------------------------------- | | `{\"type\": \"default\"}`                    | Appends \" (n)\" to the band name with the smallest `n` that avoids a conflict | | `{\"type\": \"suffix\", \"values\": [string]}` | Specifies a suffix for each input, to be appended to the band names          | | `{\"type\": \"rename\", \"values\": [string]}` | A list of names for each new column                                          | 
+    /// Specify how the new column names are derived from the raster band names.  The `ColumnNames` type is used to specify how the new column names are derived from the raster band names.  - **default**: Appends \" (n)\" to the band name with the smallest `n` that avoids a conflict. - **suffix**: Specifies a suffix for each input, to be appended to the band names. - **rename**: A list of names for each new column. 
     #[serde(rename = "names")]
     pub names: Box<models::ColumnNames>,
     /// The aggregation function to use for features covering multiple (raster) time steps.

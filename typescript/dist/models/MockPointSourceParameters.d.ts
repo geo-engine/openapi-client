@@ -20,8 +20,6 @@ export interface MockPointSourceParameters {
     /**
      * Points to be output by the mock point source.
      *
-     * ### Example
-     * `[{"x": 1.0, "y": 2.0}, {"x": 3.0, "y": 4.0}]`
      * @type {Array<Coordinate2D>}
      * @memberof MockPointSourceParameters
      */

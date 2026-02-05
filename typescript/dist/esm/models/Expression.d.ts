@@ -12,8 +12,6 @@
 import type { SingleRasterSource } from './SingleRasterSource';
 import type { ExpressionParameters } from './ExpressionParameters';
 /**
- * # Raster Expression
- *
  * The `Expression` operator performs a pixel-wise mathematical expression on one or more bands of a raster source.
  * The expression is specified as a user-defined script in a very simple language.
  * The output is a raster time series with the result of the expression and with time intervals that are the same as for the inputs.

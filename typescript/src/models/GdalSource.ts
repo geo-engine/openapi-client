@@ -22,8 +22,6 @@ import {
 } from './GdalSourceParameters';
 
 /**
- * # GdalSource
- * 
  * The [`GdalSource`] is a source operator that reads raster data using GDAL.
  * The counterpart for vector data is the [`OgrSource`].
  * 
@@ -31,16 +29,6 @@ import {
  * 
  * If the given dataset does not exist or is not readable, an error is thrown.
  * 
- * ## Example JSON
- * 
- * ```json
- * {
- *   "type": "GdalSource",
- *   "params": {
- *     "data": "ndvi"
- *   }
- * }
- * ```
  * @export
  * @interface GdalSource
  */

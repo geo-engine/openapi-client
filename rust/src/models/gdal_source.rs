@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// GdalSource : # GdalSource  The [`GdalSource`] is a source operator that reads raster data using GDAL. The counterpart for vector data is the [`OgrSource`].  ## Errors  If the given dataset does not exist or is not readable, an error is thrown.  ## Example JSON  ```json {   \"type\": \"GdalSource\",   \"params\": {     \"data\": \"ndvi\"   } } ```
+/// GdalSource : The [`GdalSource`] is a source operator that reads raster data using GDAL. The counterpart for vector data is the [`OgrSource`].  ## Errors  If the given dataset does not exist or is not readable, an error is thrown. 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GdalSource {
     #[serde(rename = "params")]
@@ -21,7 +21,7 @@ pub struct GdalSource {
 }
 
 impl GdalSource {
-    /// # GdalSource  The [`GdalSource`] is a source operator that reads raster data using GDAL. The counterpart for vector data is the [`OgrSource`].  ## Errors  If the given dataset does not exist or is not readable, an error is thrown.  ## Example JSON  ```json {   \"type\": \"GdalSource\",   \"params\": {     \"data\": \"ndvi\"   } } ```
+    /// The [`GdalSource`] is a source operator that reads raster data using GDAL. The counterpart for vector data is the [`OgrSource`].  ## Errors  If the given dataset does not exist or is not readable, an error is thrown. 
     pub fn new(params: models::GdalSourceParameters, r#type: Type) -> GdalSource {
         GdalSource {
             params: Box::new(params),

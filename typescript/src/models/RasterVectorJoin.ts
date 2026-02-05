@@ -29,8 +29,6 @@ import {
 } from './RasterVectorJoinParameters';
 
 /**
- * # RasterVectorJoin
- * 
  * The `RasterVectorJoin` operator allows combining a single vector input and multiple raster inputs.
  * For each raster input, a new column is added to the collection from the vector input.
  * The new column contains the value of the raster at the location of the vector feature.
@@ -61,35 +59,6 @@ import {
  * 
  * If the length of `names` is not equal to the number of raster inputs, an error is thrown.
  * 
- * ## Example JSON
- * 
- * ```json
- * {
- *   "type": "RasterVectorJoin",
- *   "params": {
- *     "names": ["NDVI"],
- *     "featureAggregation": "first",
- *     "temporalAggregation": "mean",
- *     "temporalAggregationIgnoreNoData": true
- *   },
- *   "sources": {
- *     "vector": {
- *       "type": "OgrSource",
- *       "params": {
- *         "data": "places"
- *       }
- *     },
- *     "rasters": [
- *       {
- *         "type": "GdalSource",
- *         "params": {
- *           "data": "ndvi"
- *         }
- *       }
- *     ]
- *   }
- * }
- * ```
  * @export
  * @interface RasterVectorJoin
  */

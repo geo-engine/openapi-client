@@ -22,19 +22,8 @@ import {
 } from './MockPointSourceParameters';
 
 /**
- * # MockPointSource
- * 
  * The [`MockPointSource`] is a source operator that provides mock vector point data for testing and development purposes.
  * 
- * ## Example JSON
- * ```json
- * {
- *   "type": "MockPointSource",
- *   "params": {
- *     "points": [ { "x": 1.0, "y": 2.0 }, { "x": 3.0, "y": 4.0 } ]
- *   }
- * }
- * ```
  * @export
  * @interface MockPointSource
  */

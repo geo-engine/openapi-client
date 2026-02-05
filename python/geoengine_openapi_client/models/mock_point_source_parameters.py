@@ -29,7 +29,7 @@ class MockPointSourceParameters(BaseModel):
     """
     Parameters for the [`MockPointSource`] operator.
     """ # noqa: E501
-    points: List[Coordinate2D] = Field(description="Points to be output by the mock point source.  ### Example `[{\"x\": 1.0, \"y\": 2.0}, {\"x\": 3.0, \"y\": 4.0}]`")
+    points: List[Coordinate2D] = Field(description="Points to be output by the mock point source. ")
     spatial_bounds: SpatialBoundsDerive = Field(description="Defines how the spatial bounds of the source are derived.  Defaults to `None`.", alias="spatialBounds")
     __properties: ClassVar[List[str]] = ["points", "spatialBounds"]
 

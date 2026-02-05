@@ -17,9 +17,6 @@
 export interface GdalSourceParameters {
     /**
      * Dataset name or identifier to be loaded.
-     *
-     * ### Example
-     * `"ndvi"`
      * @type {string}
      * @memberof GdalSourceParameters
      */

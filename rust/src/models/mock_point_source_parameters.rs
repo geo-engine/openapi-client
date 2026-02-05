@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// MockPointSourceParameters : Parameters for the [`MockPointSource`] operator.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MockPointSourceParameters {
-    /// Points to be output by the mock point source.  ### Example `[{\"x\": 1.0, \"y\": 2.0}, {\"x\": 3.0, \"y\": 4.0}]`
+    /// Points to be output by the mock point source. 
     #[serde(rename = "points")]
     pub points: Vec<models::Coordinate2D>,
     /// Defines how the spatial bounds of the source are derived.  Defaults to `None`.

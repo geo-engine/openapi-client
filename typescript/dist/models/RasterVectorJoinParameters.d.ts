@@ -35,11 +35,9 @@ export interface RasterVectorJoinParameters {
      *
      * The `ColumnNames` type is used to specify how the new column names are derived from the raster band names.
      *
-     * | Value                                    | Description                                                                  |
-     * | ---------------------------------------- | ---------------------------------------------------------------------------- |
-     * | `{"type": "default"}`                    | Appends " (n)" to the band name with the smallest `n` that avoids a conflict |
-     * | `{"type": "suffix", "values": [string]}` | Specifies a suffix for each input, to be appended to the band names          |
-     * | `{"type": "rename", "values": [string]}` | A list of names for each new column                                          |
+     * - **default**: Appends " (n)" to the band name with the smallest `n` that avoids a conflict.
+     * - **suffix**: Specifies a suffix for each input, to be appended to the band names.
+     * - **rename**: A list of names for each new column.
      *
      * @type {ColumnNames}
      * @memberof RasterVectorJoinParameters

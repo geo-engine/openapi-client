@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 /// GdalSourceParameters : Parameters for the [`GdalSource`] operator.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GdalSourceParameters {
-    /// Dataset name or identifier to be loaded.  ### Example `\"ndvi\"`
+    /// Dataset name or identifier to be loaded.
     #[serde(rename = "data")]
     pub data: String,
     /// *Optional*: overview level to use.  If not provided, the data source will determine the resolution, i.e., uses its native resolution.

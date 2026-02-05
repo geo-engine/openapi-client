@@ -21,8 +21,8 @@ pub struct ExpressionParameters {
     #[serde(rename = "mapNoData")]
     pub map_no_data: bool,
     /// Description about the output
-    #[serde(rename = "outputBand", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub output_band: Option<Option<Box<models::RasterBandDescriptor>>>,
+    #[serde(rename = "outputBand", skip_serializing_if = "Option::is_none")]
+    pub output_band: Option<Box<models::RasterBandDescriptor>>,
     /// A raster data type for the output
     #[serde(rename = "outputType")]
     pub output_type: models::RasterDataType,

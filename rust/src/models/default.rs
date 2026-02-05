@@ -31,7 +31,7 @@ pub enum Type {
     Default,
 }
 
-impl Default for Type {
+impl std::default::Default for Type {
     fn default() -> Type {
         Self::Default
     }

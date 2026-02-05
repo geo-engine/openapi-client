@@ -190,10 +190,20 @@ def cargo_toml(file_contents: List[str]) -> Generator[str, None, None]:
         yield line
 
 
+def default_rs(file_contents: List[str]) -> Generator[str, None, None]:
+    """Modify the default.rs file."""
+    for line in file_contents:
+        if line.startswith("impl Default for Type {"):
+            line = "impl std::default::Default for Type {\n"
+
+        yield line
+
+
 input_file = Path(sys.argv[1])
 
 file_modifications = {
     "Cargo.toml": cargo_toml,
+    "default.rs": default_rs,
     "ogcwfs_api.rs": ogcwfs_api_rs,
     "ogcwms_api.rs": ogcwms_api_rs,
     "projects_api.rs": projects_api_rs,

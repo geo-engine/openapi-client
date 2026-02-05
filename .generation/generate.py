@@ -308,6 +308,7 @@ def generate_rust_code(
         "src/apis/projects_api.rs",
         "src/apis/tasks_api.rs",
         "src/apis/uploads_api.rs",
+        "src/models/default.rs",
         "src/models/spatial_partition2_d.rs",
         "src/models/spatial_resolution.rs",
     ]:

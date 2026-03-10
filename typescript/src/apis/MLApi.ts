@@ -39,9 +39,9 @@ export interface GetMlModelRequest {
 export class MLApi extends runtime.BaseAPI {
 
     /**
-     * Create a new ml model.
+     * Creates request options for addMlModel without sending the request
      */
-    async addMlModelRaw(requestParameters: AddMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MlModelNameResponse>> {
+    async addMlModelRequestOpts(requestParameters: AddMlModelRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['mlModel'] == null) {
             throw new runtime.RequiredError(
                 'mlModel',
@@ -66,13 +66,21 @@ export class MLApi extends runtime.BaseAPI {
 
         let urlPath = `/ml/models`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: MlModelToJSON(requestParameters['mlModel']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new ml model.
+     */
+    async addMlModelRaw(requestParameters: AddMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MlModelNameResponse>> {
+        const requestOptions = await this.addMlModelRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MlModelNameResponseFromJSON(jsonValue));
     }
@@ -86,9 +94,9 @@ export class MLApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get ml model by name.
+     * Creates request options for getMlModel without sending the request
      */
-    async getMlModelRaw(requestParameters: GetMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MlModel>> {
+    async getMlModelRequestOpts(requestParameters: GetMlModelRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['modelName'] == null) {
             throw new runtime.RequiredError(
                 'modelName',
@@ -112,12 +120,20 @@ export class MLApi extends runtime.BaseAPI {
         let urlPath = `/ml/models/{model_name}`;
         urlPath = urlPath.replace(`{${"model_name"}}`, encodeURIComponent(String(requestParameters['modelName'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get ml model by name.
+     */
+    async getMlModelRaw(requestParameters: GetMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MlModel>> {
+        const requestOptions = await this.getMlModelRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MlModelFromJSON(jsonValue));
     }
@@ -131,9 +147,9 @@ export class MLApi extends runtime.BaseAPI {
     }
 
     /**
-     * List ml models.
+     * Creates request options for listMlModels without sending the request
      */
-    async listMlModelsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<MlModel>>> {
+    async listMlModelsRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -149,12 +165,20 @@ export class MLApi extends runtime.BaseAPI {
 
         let urlPath = `/ml/models`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List ml models.
+     */
+    async listMlModelsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<MlModel>>> {
+        const requestOptions = await this.listMlModelsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(MlModelFromJSON));
     }

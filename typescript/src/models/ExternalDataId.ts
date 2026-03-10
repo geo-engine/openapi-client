@@ -33,7 +33,7 @@ export interface ExternalDataId {
     providerId: string;
     /**
      * 
-     * @type {string}
+     * @type {ExternalDataIdTypeEnum}
      * @memberof ExternalDataId
      */
     type: ExternalDataIdTypeEnum;

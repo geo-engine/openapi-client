@@ -53,7 +53,7 @@ export interface LayerCollectionListing {
     properties?: Array<Array<string>>;
     /**
      * 
-     * @type {string}
+     * @type {LayerCollectionListingTypeEnum}
      * @memberof LayerCollectionListing
      */
     type: LayerCollectionListingTypeEnum;

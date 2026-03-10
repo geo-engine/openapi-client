@@ -27,9 +27,9 @@ import { IdResponseFromJSON, UploadFileLayersResponseFromJSON, UploadFilesRespon
  */
 export class UploadsApi extends runtime.BaseAPI {
     /**
-     * List the layers of on uploaded file.
+     * Creates request options for listUploadFileLayersHandler without sending the request
      */
-    listUploadFileLayersHandlerRaw(requestParameters, initOverrides) {
+    listUploadFileLayersHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['uploadId'] == null) {
                 throw new runtime.RequiredError('uploadId', 'Required parameter "uploadId" was null or undefined when calling listUploadFileLayersHandler().');
@@ -49,12 +49,21 @@ export class UploadsApi extends runtime.BaseAPI {
             let urlPath = `/uploads/{upload_id}/files/{file_name}/layers`;
             urlPath = urlPath.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters['uploadId'])));
             urlPath = urlPath.replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters['fileName'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * List the layers of on uploaded file.
+     */
+    listUploadFileLayersHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listUploadFileLayersHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => UploadFileLayersResponseFromJSON(jsonValue));
         });
     }
@@ -68,9 +77,9 @@ export class UploadsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List the files of on upload.
+     * Creates request options for listUploadFilesHandler without sending the request
      */
-    listUploadFilesHandlerRaw(requestParameters, initOverrides) {
+    listUploadFilesHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['uploadId'] == null) {
                 throw new runtime.RequiredError('uploadId', 'Required parameter "uploadId" was null or undefined when calling listUploadFilesHandler().');
@@ -86,12 +95,21 @@ export class UploadsApi extends runtime.BaseAPI {
             }
             let urlPath = `/uploads/{upload_id}/files`;
             urlPath = urlPath.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters['uploadId'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * List the files of on upload.
+     */
+    listUploadFilesHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listUploadFilesHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => UploadFilesResponseFromJSON(jsonValue));
         });
     }
@@ -105,9 +123,9 @@ export class UploadsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Uploads files.
+     * Creates request options for uploadHandler without sending the request
      */
-    uploadHandlerRaw(requestParameters, initOverrides) {
+    uploadHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['files'] == null) {
                 throw new runtime.RequiredError('files', 'Required parameter "files" was null or undefined when calling uploadHandler().');
@@ -142,13 +160,22 @@ export class UploadsApi extends runtime.BaseAPI {
                 });
             }
             let urlPath = `/upload`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: formParams,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Uploads files.
+     */
+    uploadHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.uploadHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }

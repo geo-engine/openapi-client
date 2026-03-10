@@ -57,7 +57,7 @@ import {
 export interface TypedRasterResultDescriptor extends RasterResultDescriptor {
     /**
      * 
-     * @type {string}
+     * @type {TypedRasterResultDescriptorTypeEnum}
      * @memberof TypedRasterResultDescriptor
      */
     type: TypedRasterResultDescriptorTypeEnum;

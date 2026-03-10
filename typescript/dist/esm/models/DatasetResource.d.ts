@@ -23,7 +23,7 @@ export interface DatasetResource {
     id: string;
     /**
      *
-     * @type {string}
+     * @type {DatasetResourceTypeEnum}
      * @memberof DatasetResource
      */
     type: DatasetResourceTypeEnum;

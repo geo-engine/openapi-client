@@ -42,6 +42,10 @@ export interface RegisterWorkflowHandlerRequest {
  */
 export declare class WorkflowsApi extends runtime.BaseAPI {
     /**
+     * Creates request options for datasetFromWorkflowHandler without sending the request
+     */
+    datasetFromWorkflowHandlerRequestOpts(requestParameters: DatasetFromWorkflowHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
      */
     datasetFromWorkflowHandlerRaw(requestParameters: DatasetFromWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskResponse>>;
@@ -49,6 +53,10 @@ export declare class WorkflowsApi extends runtime.BaseAPI {
      * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
      */
     datasetFromWorkflowHandler(requestParameters: DatasetFromWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaskResponse>;
+    /**
+     * Creates request options for getWorkflowAllMetadataZipHandler without sending the request
+     */
+    getWorkflowAllMetadataZipHandlerRequestOpts(requestParameters: GetWorkflowAllMetadataZipHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Gets a ZIP archive of the worklow, its provenance and the output metadata.
      */
@@ -58,6 +66,10 @@ export declare class WorkflowsApi extends runtime.BaseAPI {
      */
     getWorkflowAllMetadataZipHandler(requestParameters: GetWorkflowAllMetadataZipHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Blob>;
     /**
+     * Creates request options for getWorkflowMetadataHandler without sending the request
+     */
+    getWorkflowMetadataHandlerRequestOpts(requestParameters: GetWorkflowMetadataHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Gets the metadata of a workflow
      */
     getWorkflowMetadataHandlerRaw(requestParameters: GetWorkflowMetadataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TypedResultDescriptor>>;
@@ -65,6 +77,10 @@ export declare class WorkflowsApi extends runtime.BaseAPI {
      * Gets the metadata of a workflow
      */
     getWorkflowMetadataHandler(requestParameters: GetWorkflowMetadataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TypedResultDescriptor>;
+    /**
+     * Creates request options for getWorkflowProvenanceHandler without sending the request
+     */
+    getWorkflowProvenanceHandlerRequestOpts(requestParameters: GetWorkflowProvenanceHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Gets the provenance of all datasets used in a workflow.
      */
@@ -74,6 +90,10 @@ export declare class WorkflowsApi extends runtime.BaseAPI {
      */
     getWorkflowProvenanceHandler(requestParameters: GetWorkflowProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProvenanceEntry>>;
     /**
+     * Creates request options for loadWorkflowHandler without sending the request
+     */
+    loadWorkflowHandlerRequestOpts(requestParameters: LoadWorkflowHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Retrieves an existing Workflow.
      */
     loadWorkflowHandlerRaw(requestParameters: LoadWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Workflow>>;
@@ -82,6 +102,10 @@ export declare class WorkflowsApi extends runtime.BaseAPI {
      */
     loadWorkflowHandler(requestParameters: LoadWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Workflow>;
     /**
+     * Creates request options for rasterStreamWebsocket without sending the request
+     */
+    rasterStreamWebsocketRequestOpts(requestParameters: RasterStreamWebsocketRequest): Promise<runtime.RequestOpts>;
+    /**
      * Query a workflow raster result as a stream of tiles via a websocket connection.
      */
     rasterStreamWebsocketRaw(requestParameters: RasterStreamWebsocketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -89,6 +113,10 @@ export declare class WorkflowsApi extends runtime.BaseAPI {
      * Query a workflow raster result as a stream of tiles via a websocket connection.
      */
     rasterStreamWebsocket(requestParameters: RasterStreamWebsocketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for registerWorkflowHandler without sending the request
+     */
+    registerWorkflowHandlerRequestOpts(requestParameters: RegisterWorkflowHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Registers a new Workflow.
      */

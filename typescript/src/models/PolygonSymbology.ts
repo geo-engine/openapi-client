@@ -67,7 +67,7 @@ export interface PolygonSymbology {
     text?: TextSymbology | null;
     /**
      * 
-     * @type {string}
+     * @type {PolygonSymbologyTypeEnum}
      * @memberof PolygonSymbology
      */
     type: PolygonSymbologyTypeEnum;

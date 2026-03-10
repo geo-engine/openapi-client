@@ -27,9 +27,9 @@ import { AutoCreateDatasetToJSON, CreateDatasetToJSON, DatasetFromJSON, DatasetL
  */
 export class DatasetsApi extends runtime.BaseAPI {
     /**
-     * Add a tile to a gdal dataset.
+     * Creates request options for addDatasetTilesHandler without sending the request
      */
-    addDatasetTilesHandlerRaw(requestParameters, initOverrides) {
+    addDatasetTilesHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['dataset'] == null) {
                 throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling addDatasetTilesHandler().');
@@ -49,13 +49,22 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
             let urlPath = `/dataset/{dataset}/tiles`;
             urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: AutoCreateDatasetToJSON(requestParameters['autoCreateDataset']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Add a tile to a gdal dataset.
+     */
+    addDatasetTilesHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.addDatasetTilesHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -68,9 +77,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
+     * Creates request options for autoCreateDatasetHandler without sending the request
      */
-    autoCreateDatasetHandlerRaw(requestParameters, initOverrides) {
+    autoCreateDatasetHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['autoCreateDataset'] == null) {
                 throw new runtime.RequiredError('autoCreateDataset', 'Required parameter "autoCreateDataset" was null or undefined when calling autoCreateDatasetHandler().');
@@ -86,13 +95,22 @@ export class DatasetsApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/dataset/auto`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: AutoCreateDatasetToJSON(requestParameters['autoCreateDataset']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
+     */
+    autoCreateDatasetHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.autoCreateDatasetHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => DatasetNameResponseFromJSON(jsonValue));
         });
     }
@@ -106,9 +124,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Creates request options for createDatasetHandler without sending the request
      */
-    createDatasetHandlerRaw(requestParameters, initOverrides) {
+    createDatasetHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['createDataset'] == null) {
                 throw new runtime.RequiredError('createDataset', 'Required parameter "createDataset" was null or undefined when calling createDatasetHandler().');
@@ -124,13 +142,22 @@ export class DatasetsApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/dataset`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: CreateDatasetToJSON(requestParameters['createDataset']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+     */
+    createDatasetHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.createDatasetHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => DatasetNameResponseFromJSON(jsonValue));
         });
     }
@@ -144,9 +171,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Delete a dataset
+     * Creates request options for deleteDatasetHandler without sending the request
      */
-    deleteDatasetHandlerRaw(requestParameters, initOverrides) {
+    deleteDatasetHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['dataset'] == null) {
                 throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling deleteDatasetHandler().');
@@ -162,12 +189,21 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
             let urlPath = `/dataset/{dataset}`;
             urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Delete a dataset
+     */
+    deleteDatasetHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.deleteDatasetHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -180,9 +216,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves details about a dataset using the internal name.
+     * Creates request options for getDatasetHandler without sending the request
      */
-    getDatasetHandlerRaw(requestParameters, initOverrides) {
+    getDatasetHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['dataset'] == null) {
                 throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling getDatasetHandler().');
@@ -198,12 +234,21 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
             let urlPath = `/dataset/{dataset}`;
             urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    getDatasetHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getDatasetHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => DatasetFromJSON(jsonValue));
         });
     }
@@ -217,9 +262,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the loading information of a dataset
+     * Creates request options for getLoadingInfoHandler without sending the request
      */
-    getLoadingInfoHandlerRaw(requestParameters, initOverrides) {
+    getLoadingInfoHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['dataset'] == null) {
                 throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling getLoadingInfoHandler().');
@@ -235,12 +280,21 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
             let urlPath = `/dataset/{dataset}/loadingInfo`;
             urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves the loading information of a dataset
+     */
+    getLoadingInfoHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getLoadingInfoHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => MetaDataDefinitionFromJSON(jsonValue));
         });
     }
@@ -254,9 +308,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Lists available datasets.
+     * Creates request options for listDatasetsHandler without sending the request
      */
-    listDatasetsHandlerRaw(requestParameters, initOverrides) {
+    listDatasetsHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['order'] == null) {
                 throw new runtime.RequiredError('order', 'Required parameter "order" was null or undefined when calling listDatasetsHandler().');
@@ -292,12 +346,21 @@ export class DatasetsApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/datasets`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Lists available datasets.
+     */
+    listDatasetsHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listDatasetsHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DatasetListingFromJSON));
         });
     }
@@ -311,9 +374,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List the layers of a file in a volume.
+     * Creates request options for listVolumeFileLayersHandler without sending the request
      */
-    listVolumeFileLayersHandlerRaw(requestParameters, initOverrides) {
+    listVolumeFileLayersHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['volumeName'] == null) {
                 throw new runtime.RequiredError('volumeName', 'Required parameter "volumeName" was null or undefined when calling listVolumeFileLayersHandler().');
@@ -333,12 +396,21 @@ export class DatasetsApi extends runtime.BaseAPI {
             let urlPath = `/dataset/volumes/{volume_name}/files/{file_name}/layers`;
             urlPath = urlPath.replace(`{${"volume_name"}}`, encodeURIComponent(String(requestParameters['volumeName'])));
             urlPath = urlPath.replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters['fileName'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * List the layers of a file in a volume.
+     */
+    listVolumeFileLayersHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listVolumeFileLayersHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => VolumeFileLayersResponseFromJSON(jsonValue));
         });
     }
@@ -352,9 +424,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Lists available volumes.
+     * Creates request options for listVolumesHandler without sending the request
      */
-    listVolumesHandlerRaw(initOverrides) {
+    listVolumesHandlerRequestOpts() {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
@@ -366,12 +438,21 @@ export class DatasetsApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/dataset/volumes`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Lists available volumes.
+     */
+    listVolumesHandlerRaw(initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listVolumesHandlerRequestOpts();
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(VolumeFromJSON));
         });
     }
@@ -385,9 +466,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
+     * Creates request options for suggestMetaDataHandler without sending the request
      */
-    suggestMetaDataHandlerRaw(requestParameters, initOverrides) {
+    suggestMetaDataHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['suggestMetaData'] == null) {
                 throw new runtime.RequiredError('suggestMetaData', 'Required parameter "suggestMetaData" was null or undefined when calling suggestMetaDataHandler().');
@@ -403,13 +484,22 @@ export class DatasetsApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/dataset/suggest`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: SuggestMetaDataToJSON(requestParameters['suggestMetaData']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
+     */
+    suggestMetaDataHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.suggestMetaDataHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => MetaDataSuggestionFromJSON(jsonValue));
         });
     }
@@ -423,9 +513,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update details about a dataset using the internal name.
+     * Creates request options for updateDatasetHandler without sending the request
      */
-    updateDatasetHandlerRaw(requestParameters, initOverrides) {
+    updateDatasetHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['dataset'] == null) {
                 throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling updateDatasetHandler().');
@@ -445,13 +535,22 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
             let urlPath = `/dataset/{dataset}`;
             urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: UpdateDatasetToJSON(requestParameters['updateDataset']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Update details about a dataset using the internal name.
+     */
+    updateDatasetHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.updateDatasetHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -464,8 +563,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Creates request options for updateDatasetProvenanceHandler without sending the request
      */
-    updateDatasetProvenanceHandlerRaw(requestParameters, initOverrides) {
+    updateDatasetProvenanceHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['dataset'] == null) {
                 throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling updateDatasetProvenanceHandler().');
@@ -485,13 +585,21 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
             let urlPath = `/dataset/{dataset}/provenance`;
             urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
                 body: ProvenancesToJSON(requestParameters['provenances']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     */
+    updateDatasetProvenanceHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.updateDatasetProvenanceHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -503,9 +611,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Updates the dataset\'s symbology
+     * Creates request options for updateDatasetSymbologyHandler without sending the request
      */
-    updateDatasetSymbologyHandlerRaw(requestParameters, initOverrides) {
+    updateDatasetSymbologyHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['dataset'] == null) {
                 throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling updateDatasetSymbologyHandler().');
@@ -525,13 +633,22 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
             let urlPath = `/dataset/{dataset}/symbology`;
             urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
                 body: SymbologyToJSON(requestParameters['symbology']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Updates the dataset\'s symbology
+     */
+    updateDatasetSymbologyHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.updateDatasetSymbologyHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -544,9 +661,9 @@ export class DatasetsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Updates the dataset\'s loading info
+     * Creates request options for updateLoadingInfoHandler without sending the request
      */
-    updateLoadingInfoHandlerRaw(requestParameters, initOverrides) {
+    updateLoadingInfoHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['dataset'] == null) {
                 throw new runtime.RequiredError('dataset', 'Required parameter "dataset" was null or undefined when calling updateLoadingInfoHandler().');
@@ -566,13 +683,22 @@ export class DatasetsApi extends runtime.BaseAPI {
             }
             let urlPath = `/dataset/{dataset}/loadingInfo`;
             urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
                 body: MetaDataDefinitionToJSON(requestParameters['metaDataDefinition']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Updates the dataset\'s loading info
+     */
+    updateLoadingInfoHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.updateLoadingInfoHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }

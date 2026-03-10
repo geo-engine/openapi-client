@@ -43,7 +43,7 @@ import {
 export interface TypedPlotResultDescriptor extends PlotResultDescriptor {
     /**
      * 
-     * @type {string}
+     * @type {TypedPlotResultDescriptorTypeEnum}
      * @memberof TypedPlotResultDescriptor
      */
     type: TypedPlotResultDescriptorTypeEnum;

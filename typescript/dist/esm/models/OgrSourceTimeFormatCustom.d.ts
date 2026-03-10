@@ -23,7 +23,7 @@ export interface OgrSourceTimeFormatCustom {
     customFormat: string;
     /**
      *
-     * @type {string}
+     * @type {OgrSourceTimeFormatCustomFormatEnum}
      * @memberof OgrSourceTimeFormatCustom
      */
     format: OgrSourceTimeFormatCustomFormatEnum;

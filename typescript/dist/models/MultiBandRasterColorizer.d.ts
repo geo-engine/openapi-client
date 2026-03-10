@@ -96,7 +96,7 @@ export interface MultiBandRasterColorizer {
     redScale?: number;
     /**
      *
-     * @type {string}
+     * @type {MultiBandRasterColorizerTypeEnum}
      * @memberof MultiBandRasterColorizer
      */
     type: MultiBandRasterColorizerTypeEnum;

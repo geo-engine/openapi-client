@@ -28,6 +28,10 @@ export interface RemovePermissionHandlerRequest {
  */
 export declare class PermissionsApi extends runtime.BaseAPI {
     /**
+     * Creates request options for addPermissionHandler without sending the request
+     */
+    addPermissionHandlerRequestOpts(requestParameters: AddPermissionHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Adds a new permission.
      */
     addPermissionHandlerRaw(requestParameters: AddPermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -36,6 +40,10 @@ export declare class PermissionsApi extends runtime.BaseAPI {
      */
     addPermissionHandler(requestParameters: AddPermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getResourcePermissionsHandler without sending the request
+     */
+    getResourcePermissionsHandlerRequestOpts(requestParameters: GetResourcePermissionsHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Lists permission for a given resource.
      */
     getResourcePermissionsHandlerRaw(requestParameters: GetResourcePermissionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PermissionListing>>>;
@@ -43,6 +51,10 @@ export declare class PermissionsApi extends runtime.BaseAPI {
      * Lists permission for a given resource.
      */
     getResourcePermissionsHandler(requestParameters: GetResourcePermissionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PermissionListing>>;
+    /**
+     * Creates request options for removePermissionHandler without sending the request
+     */
+    removePermissionHandlerRequestOpts(requestParameters: RemovePermissionHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Removes an existing permission.
      */

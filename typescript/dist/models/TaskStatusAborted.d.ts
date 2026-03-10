@@ -23,7 +23,7 @@ export interface TaskStatusAborted {
     cleanUp: any | null;
     /**
      *
-     * @type {string}
+     * @type {TaskStatusAbortedStatusEnum}
      * @memberof TaskStatusAborted
      */
     status: TaskStatusAbortedStatusEnum;

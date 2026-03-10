@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface OgrSourceTimeFormatAuto {
     /**
      * 
-     * @type {string}
+     * @type {OgrSourceTimeFormatAutoFormatEnum}
      * @memberof OgrSourceTimeFormatAuto
      */
     format: OgrSourceTimeFormatAutoFormatEnum;

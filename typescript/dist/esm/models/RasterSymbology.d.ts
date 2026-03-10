@@ -30,7 +30,7 @@ export interface RasterSymbology {
     rasterColorizer: RasterColorizer;
     /**
      *
-     * @type {string}
+     * @type {RasterSymbologyTypeEnum}
      * @memberof RasterSymbology
      */
     type: RasterSymbologyTypeEnum;

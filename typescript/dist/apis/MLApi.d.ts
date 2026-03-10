@@ -22,6 +22,10 @@ export interface GetMlModelRequest {
  */
 export declare class MLApi extends runtime.BaseAPI {
     /**
+     * Creates request options for addMlModel without sending the request
+     */
+    addMlModelRequestOpts(requestParameters: AddMlModelRequest): Promise<runtime.RequestOpts>;
+    /**
      * Create a new ml model.
      */
     addMlModelRaw(requestParameters: AddMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MlModelNameResponse>>;
@@ -30,6 +34,10 @@ export declare class MLApi extends runtime.BaseAPI {
      */
     addMlModel(requestParameters: AddMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MlModelNameResponse>;
     /**
+     * Creates request options for getMlModel without sending the request
+     */
+    getMlModelRequestOpts(requestParameters: GetMlModelRequest): Promise<runtime.RequestOpts>;
+    /**
      * Get ml model by name.
      */
     getMlModelRaw(requestParameters: GetMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MlModel>>;
@@ -37,6 +45,10 @@ export declare class MLApi extends runtime.BaseAPI {
      * Get ml model by name.
      */
     getMlModel(requestParameters: GetMlModelRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MlModel>;
+    /**
+     * Creates request options for listMlModels without sending the request
+     */
+    listMlModelsRequestOpts(): Promise<runtime.RequestOpts>;
     /**
      * List ml models.
      */

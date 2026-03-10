@@ -55,9 +55,9 @@ export interface WcsHandlerRequest {
 export class OGCWCSApi extends runtime.BaseAPI {
 
     /**
-     * OGC WCS endpoint
+     * Creates request options for wcsHandler without sending the request
      */
-    async wcsHandlerRaw(requestParameters: WcsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async wcsHandlerRequestOpts(requestParameters: WcsHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['workflow'] == null) {
             throw new runtime.RequiredError(
                 'workflow',
@@ -144,12 +144,20 @@ export class OGCWCSApi extends runtime.BaseAPI {
         let urlPath = `/wcs/{workflow}`;
         urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * OGC WCS endpoint
+     */
+    async wcsHandlerRaw(requestParameters: WcsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.wcsHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);

@@ -35,6 +35,10 @@ export interface SessionViewHandlerRequest {
  */
 export declare class SessionApi extends runtime.BaseAPI {
     /**
+     * Creates request options for anonymousHandler without sending the request
+     */
+    anonymousHandlerRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
      * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
      */
     anonymousHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>>;
@@ -42,6 +46,10 @@ export declare class SessionApi extends runtime.BaseAPI {
      * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
      */
     anonymousHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession>;
+    /**
+     * Creates request options for loginHandler without sending the request
+     */
+    loginHandlerRequestOpts(requestParameters: LoginHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
      */
@@ -51,6 +59,10 @@ export declare class SessionApi extends runtime.BaseAPI {
      */
     loginHandler(requestParameters: LoginHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession>;
     /**
+     * Creates request options for logoutHandler without sending the request
+     */
+    logoutHandlerRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
      * Ends a session.
      */
     logoutHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -58,6 +70,10 @@ export declare class SessionApi extends runtime.BaseAPI {
      * Ends a session.
      */
     logoutHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for oidcInit without sending the request
+     */
+    oidcInitRequestOpts(requestParameters: OidcInitRequest): Promise<runtime.RequestOpts>;
     /**
      * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
      * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
@@ -69,6 +85,10 @@ export declare class SessionApi extends runtime.BaseAPI {
      */
     oidcInit(requestParameters: OidcInitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCodeRequestURL>;
     /**
+     * Creates request options for oidcLogin without sending the request
+     */
+    oidcLoginRequestOpts(requestParameters: OidcLoginRequest): Promise<runtime.RequestOpts>;
+    /**
      * # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
      * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
      */
@@ -79,6 +99,10 @@ export declare class SessionApi extends runtime.BaseAPI {
      */
     oidcLogin(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession>;
     /**
+     * Creates request options for registerUserHandler without sending the request
+     */
+    registerUserHandlerRequestOpts(requestParameters: RegisterUserHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Registers a user.
      */
     registerUserHandlerRaw(requestParameters: RegisterUserHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
@@ -86,6 +110,10 @@ export declare class SessionApi extends runtime.BaseAPI {
      * Registers a user.
      */
     registerUserHandler(requestParameters: RegisterUserHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+    /**
+     * Creates request options for sessionHandler without sending the request
+     */
+    sessionHandlerRequestOpts(): Promise<runtime.RequestOpts>;
     /**
      * Retrieves details about the current session.
      */
@@ -95,6 +123,10 @@ export declare class SessionApi extends runtime.BaseAPI {
      */
     sessionHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserSession>;
     /**
+     * Creates request options for sessionProjectHandler without sending the request
+     */
+    sessionProjectHandlerRequestOpts(requestParameters: SessionProjectHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Sets the active project of the session.
      */
     sessionProjectHandlerRaw(requestParameters: SessionProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -102,6 +134,10 @@ export declare class SessionApi extends runtime.BaseAPI {
      * Sets the active project of the session.
      */
     sessionProjectHandler(requestParameters: SessionProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for sessionViewHandler without sending the request
+     */
+    sessionViewHandlerRequestOpts(requestParameters: SessionViewHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      */
     sessionViewHandlerRaw(requestParameters: SessionViewHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;

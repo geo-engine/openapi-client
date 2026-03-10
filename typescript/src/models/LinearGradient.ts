@@ -47,7 +47,7 @@ export interface LinearGradient {
     overColor: Array<number>;
     /**
      * 
-     * @type {string}
+     * @type {LinearGradientTypeEnum}
      * @memberof LinearGradient
      */
     type: LinearGradientTypeEnum;

@@ -66,7 +66,7 @@ export interface GfbioCollectionsDataProviderDefinition {
     priority?: number | null;
     /**
      *
-     * @type {string}
+     * @type {GfbioCollectionsDataProviderDefinitionTypeEnum}
      * @memberof GfbioCollectionsDataProviderDefinition
      */
     type: GfbioCollectionsDataProviderDefinitionTypeEnum;

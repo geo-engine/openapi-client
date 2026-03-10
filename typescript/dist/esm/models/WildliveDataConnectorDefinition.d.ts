@@ -55,7 +55,7 @@ export interface WildliveDataConnectorDefinition {
     refreshToken?: string | null;
     /**
      *
-     * @type {string}
+     * @type {WildliveDataConnectorDefinitionTypeEnum}
      * @memberof WildliveDataConnectorDefinition
      */
     type: WildliveDataConnectorDefinitionTypeEnum;

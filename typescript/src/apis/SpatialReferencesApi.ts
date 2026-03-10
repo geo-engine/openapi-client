@@ -32,8 +32,9 @@ export interface GetSpatialReferenceSpecificationHandlerRequest {
 export class SpatialReferencesApi extends runtime.BaseAPI {
 
     /**
+     * Creates request options for getSpatialReferenceSpecificationHandler without sending the request
      */
-    async getSpatialReferenceSpecificationHandlerRaw(requestParameters: GetSpatialReferenceSpecificationHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SpatialReferenceSpecification>> {
+    async getSpatialReferenceSpecificationHandlerRequestOpts(requestParameters: GetSpatialReferenceSpecificationHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['srsString'] == null) {
             throw new runtime.RequiredError(
                 'srsString',
@@ -57,12 +58,19 @@ export class SpatialReferencesApi extends runtime.BaseAPI {
         let urlPath = `/spatialReferenceSpecification/{srsString}`;
         urlPath = urlPath.replace(`{${"srsString"}}`, encodeURIComponent(String(requestParameters['srsString'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async getSpatialReferenceSpecificationHandlerRaw(requestParameters: GetSpatialReferenceSpecificationHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SpatialReferenceSpecification>> {
+        const requestOptions = await this.getSpatialReferenceSpecificationHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SpatialReferenceSpecificationFromJSON(jsonValue));
     }

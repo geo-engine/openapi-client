@@ -27,9 +27,9 @@ import { AddLayerToJSON, AddLayerCollectionToJSON, IdResponseFromJSON, LayerFrom
  */
 export class LayersApi extends runtime.BaseAPI {
     /**
-     * Add a new collection to an existing collection
+     * Creates request options for addCollection without sending the request
      */
-    addCollectionRaw(requestParameters, initOverrides) {
+    addCollectionRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['collection'] == null) {
                 throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling addCollection().');
@@ -49,13 +49,22 @@ export class LayersApi extends runtime.BaseAPI {
             }
             let urlPath = `/layerDb/collections/{collection}/collections`;
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: AddLayerCollectionToJSON(requestParameters['addLayerCollection']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Add a new collection to an existing collection
+     */
+    addCollectionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.addCollectionRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
@@ -69,9 +78,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Add an existing collection to a collection
+     * Creates request options for addExistingCollectionToCollection without sending the request
      */
-    addExistingCollectionToCollectionRaw(requestParameters, initOverrides) {
+    addExistingCollectionToCollectionRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['parent'] == null) {
                 throw new runtime.RequiredError('parent', 'Required parameter "parent" was null or undefined when calling addExistingCollectionToCollection().');
@@ -91,12 +100,21 @@ export class LayersApi extends runtime.BaseAPI {
             let urlPath = `/layerDb/collections/{parent}/collections/{collection}`;
             urlPath = urlPath.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters['parent'])));
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Add an existing collection to a collection
+     */
+    addExistingCollectionToCollectionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.addExistingCollectionToCollectionRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -109,9 +127,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Add an existing layer to a collection
+     * Creates request options for addExistingLayerToCollection without sending the request
      */
-    addExistingLayerToCollectionRaw(requestParameters, initOverrides) {
+    addExistingLayerToCollectionRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['collection'] == null) {
                 throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling addExistingLayerToCollection().');
@@ -131,12 +149,21 @@ export class LayersApi extends runtime.BaseAPI {
             let urlPath = `/layerDb/collections/{collection}/layers/{layer}`;
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
             urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Add an existing layer to a collection
+     */
+    addExistingLayerToCollectionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.addExistingLayerToCollectionRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -149,9 +176,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Add a new layer to a collection
+     * Creates request options for addLayer without sending the request
      */
-    addLayerRaw(requestParameters, initOverrides) {
+    addLayerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['collection'] == null) {
                 throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling addLayer().');
@@ -171,13 +198,22 @@ export class LayersApi extends runtime.BaseAPI {
             }
             let urlPath = `/layerDb/collections/{collection}/layers`;
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: AddLayerToJSON(requestParameters['addLayer']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Add a new layer to a collection
+     */
+    addLayerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.addLayerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
@@ -191,9 +227,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Add a new provider
+     * Creates request options for addProvider without sending the request
      */
-    addProviderRaw(requestParameters, initOverrides) {
+    addProviderRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['typedDataProviderDefinition'] == null) {
                 throw new runtime.RequiredError('typedDataProviderDefinition', 'Required parameter "typedDataProviderDefinition" was null or undefined when calling addProvider().');
@@ -209,13 +245,22 @@ export class LayersApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/layerDb/providers`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: TypedDataProviderDefinitionToJSON(requestParameters['typedDataProviderDefinition']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Add a new provider
+     */
+    addProviderRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.addProviderRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
@@ -229,9 +274,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Autocompletes the search on the contents of the collection of the given provider
+     * Creates request options for autocompleteHandler without sending the request
      */
-    autocompleteHandlerRaw(requestParameters, initOverrides) {
+    autocompleteHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['provider'] == null) {
                 throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling autocompleteHandler().');
@@ -275,12 +320,21 @@ export class LayersApi extends runtime.BaseAPI {
             let urlPath = `/layers/collections/search/autocomplete/{provider}/{collection}`;
             urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Autocompletes the search on the contents of the collection of the given provider
+     */
+    autocompleteHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.autocompleteHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response);
         });
     }
@@ -294,9 +348,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Delete an existing provider
+     * Creates request options for deleteProvider without sending the request
      */
-    deleteProviderRaw(requestParameters, initOverrides) {
+    deleteProviderRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['provider'] == null) {
                 throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling deleteProvider().');
@@ -312,12 +366,21 @@ export class LayersApi extends runtime.BaseAPI {
             }
             let urlPath = `/layerDb/providers/{provider}`;
             urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Delete an existing provider
+     */
+    deleteProviderRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.deleteProviderRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -330,9 +393,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get an existing provider\'s definition
+     * Creates request options for getProviderDefinition without sending the request
      */
-    getProviderDefinitionRaw(requestParameters, initOverrides) {
+    getProviderDefinitionRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['provider'] == null) {
                 throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling getProviderDefinition().');
@@ -348,12 +411,21 @@ export class LayersApi extends runtime.BaseAPI {
             }
             let urlPath = `/layerDb/providers/{provider}`;
             urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Get an existing provider\'s definition
+     */
+    getProviderDefinitionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getProviderDefinitionRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => TypedDataProviderDefinitionFromJSON(jsonValue));
         });
     }
@@ -367,9 +439,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the layer of the given provider
+     * Creates request options for layerHandler without sending the request
      */
-    layerHandlerRaw(requestParameters, initOverrides) {
+    layerHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['provider'] == null) {
                 throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling layerHandler().');
@@ -389,12 +461,21 @@ export class LayersApi extends runtime.BaseAPI {
             let urlPath = `/layers/{provider}/{layer}`;
             urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
             urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves the layer of the given provider
+     */
+    layerHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.layerHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => LayerFromJSON(jsonValue));
         });
     }
@@ -408,9 +489,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Persist a raster layer from a provider as a dataset.
+     * Creates request options for layerToDataset without sending the request
      */
-    layerToDatasetRaw(requestParameters, initOverrides) {
+    layerToDatasetRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['provider'] == null) {
                 throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling layerToDataset().');
@@ -430,12 +511,21 @@ export class LayersApi extends runtime.BaseAPI {
             let urlPath = `/layers/{provider}/{layer}/dataset`;
             urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
             urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Persist a raster layer from a provider as a dataset.
+     */
+    layerToDatasetRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.layerToDatasetRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => TaskResponseFromJSON(jsonValue));
         });
     }
@@ -449,9 +539,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Registers a layer from a provider as a workflow and returns the workflow id
+     * Creates request options for layerToWorkflowIdHandler without sending the request
      */
-    layerToWorkflowIdHandlerRaw(requestParameters, initOverrides) {
+    layerToWorkflowIdHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['provider'] == null) {
                 throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling layerToWorkflowIdHandler().');
@@ -471,12 +561,21 @@ export class LayersApi extends runtime.BaseAPI {
             let urlPath = `/layers/{provider}/{layer}/workflowId`;
             urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
             urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Registers a layer from a provider as a workflow and returns the workflow id
+     */
+    layerToWorkflowIdHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.layerToWorkflowIdHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
@@ -490,9 +589,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List the contents of the collection of the given provider
+     * Creates request options for listCollectionHandler without sending the request
      */
-    listCollectionHandlerRaw(requestParameters, initOverrides) {
+    listCollectionHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['provider'] == null) {
                 throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling listCollectionHandler().');
@@ -524,12 +623,21 @@ export class LayersApi extends runtime.BaseAPI {
             let urlPath = `/layers/collections/{provider}/{collection}`;
             urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * List the contents of the collection of the given provider
+     */
+    listCollectionHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listCollectionHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => LayerCollectionFromJSON(jsonValue));
         });
     }
@@ -543,9 +651,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List all providers
+     * Creates request options for listProviders without sending the request
      */
-    listProvidersRaw(requestParameters, initOverrides) {
+    listProvidersRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['offset'] == null) {
                 throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling listProviders().');
@@ -569,12 +677,21 @@ export class LayersApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/layerDb/providers`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * List all providers
+     */
+    listProvidersRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listProvidersRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(LayerProviderListingFromJSON));
         });
     }
@@ -588,9 +705,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List all layer collections
+     * Creates request options for listRootCollectionsHandler without sending the request
      */
-    listRootCollectionsHandlerRaw(requestParameters, initOverrides) {
+    listRootCollectionsHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['offset'] == null) {
                 throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling listRootCollectionsHandler().');
@@ -614,12 +731,21 @@ export class LayersApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/layers/collections`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * List all layer collections
+     */
+    listRootCollectionsHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listRootCollectionsHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => LayerCollectionFromJSON(jsonValue));
         });
     }
@@ -633,8 +759,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Creates request options for providerCapabilitiesHandler without sending the request
      */
-    providerCapabilitiesHandlerRaw(requestParameters, initOverrides) {
+    providerCapabilitiesHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['provider'] == null) {
                 throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling providerCapabilitiesHandler().');
@@ -650,12 +777,20 @@ export class LayersApi extends runtime.BaseAPI {
             }
             let urlPath = `/layers/{provider}/capabilities`;
             urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     */
+    providerCapabilitiesHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.providerCapabilitiesHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => ProviderCapabilitiesFromJSON(jsonValue));
         });
     }
@@ -668,9 +803,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Remove a collection
+     * Creates request options for removeCollection without sending the request
      */
-    removeCollectionRaw(requestParameters, initOverrides) {
+    removeCollectionRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['collection'] == null) {
                 throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling removeCollection().');
@@ -686,12 +821,21 @@ export class LayersApi extends runtime.BaseAPI {
             }
             let urlPath = `/layerDb/collections/{collection}`;
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Remove a collection
+     */
+    removeCollectionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.removeCollectionRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -704,9 +848,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Delete a collection from a collection
+     * Creates request options for removeCollectionFromCollection without sending the request
      */
-    removeCollectionFromCollectionRaw(requestParameters, initOverrides) {
+    removeCollectionFromCollectionRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['parent'] == null) {
                 throw new runtime.RequiredError('parent', 'Required parameter "parent" was null or undefined when calling removeCollectionFromCollection().');
@@ -726,12 +870,21 @@ export class LayersApi extends runtime.BaseAPI {
             let urlPath = `/layerDb/collections/{parent}/collections/{collection}`;
             urlPath = urlPath.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters['parent'])));
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Delete a collection from a collection
+     */
+    removeCollectionFromCollectionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.removeCollectionFromCollectionRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -744,9 +897,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Remove a collection
+     * Creates request options for removeLayer without sending the request
      */
-    removeLayerRaw(requestParameters, initOverrides) {
+    removeLayerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['layer'] == null) {
                 throw new runtime.RequiredError('layer', 'Required parameter "layer" was null or undefined when calling removeLayer().');
@@ -762,12 +915,21 @@ export class LayersApi extends runtime.BaseAPI {
             }
             let urlPath = `/layerDb/layers/{layer}`;
             urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Remove a collection
+     */
+    removeLayerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.removeLayerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -780,9 +942,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Remove a layer from a collection
+     * Creates request options for removeLayerFromCollection without sending the request
      */
-    removeLayerFromCollectionRaw(requestParameters, initOverrides) {
+    removeLayerFromCollectionRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['collection'] == null) {
                 throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling removeLayerFromCollection().');
@@ -802,12 +964,21 @@ export class LayersApi extends runtime.BaseAPI {
             let urlPath = `/layerDb/collections/{collection}/layers/{layer}`;
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
             urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Remove a layer from a collection
+     */
+    removeLayerFromCollectionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.removeLayerFromCollectionRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -820,9 +991,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Searches the contents of the collection of the given provider
+     * Creates request options for searchHandler without sending the request
      */
-    searchHandlerRaw(requestParameters, initOverrides) {
+    searchHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['provider'] == null) {
                 throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling searchHandler().');
@@ -866,12 +1037,21 @@ export class LayersApi extends runtime.BaseAPI {
             let urlPath = `/layers/collections/search/{provider}/{collection}`;
             urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Searches the contents of the collection of the given provider
+     */
+    searchHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.searchHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => LayerCollectionFromJSON(jsonValue));
         });
     }
@@ -885,9 +1065,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update a collection
+     * Creates request options for updateCollection without sending the request
      */
-    updateCollectionRaw(requestParameters, initOverrides) {
+    updateCollectionRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['collection'] == null) {
                 throw new runtime.RequiredError('collection', 'Required parameter "collection" was null or undefined when calling updateCollection().');
@@ -907,13 +1087,22 @@ export class LayersApi extends runtime.BaseAPI {
             }
             let urlPath = `/layerDb/collections/{collection}`;
             urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
                 body: UpdateLayerCollectionToJSON(requestParameters['updateLayerCollection']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Update a collection
+     */
+    updateCollectionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.updateCollectionRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -926,9 +1115,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update a layer
+     * Creates request options for updateLayer without sending the request
      */
-    updateLayerRaw(requestParameters, initOverrides) {
+    updateLayerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['layer'] == null) {
                 throw new runtime.RequiredError('layer', 'Required parameter "layer" was null or undefined when calling updateLayer().');
@@ -948,13 +1137,22 @@ export class LayersApi extends runtime.BaseAPI {
             }
             let urlPath = `/layerDb/layers/{layer}`;
             urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
                 body: UpdateLayerToJSON(requestParameters['updateLayer']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Update a layer
+     */
+    updateLayerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.updateLayerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -967,9 +1165,9 @@ export class LayersApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update an existing provider\'s definition
+     * Creates request options for updateProviderDefinition without sending the request
      */
-    updateProviderDefinitionRaw(requestParameters, initOverrides) {
+    updateProviderDefinitionRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['provider'] == null) {
                 throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling updateProviderDefinition().');
@@ -989,13 +1187,22 @@ export class LayersApi extends runtime.BaseAPI {
             }
             let urlPath = `/layerDb/providers/{provider}`;
             urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
                 body: TypedDataProviderDefinitionToJSON(requestParameters['typedDataProviderDefinition']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Update an existing provider\'s definition
+     */
+    updateProviderDefinitionRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.updateProviderDefinitionRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }

@@ -84,7 +84,7 @@ export interface EdrDataProviderDefinition {
     provenance?: Array<Provenance> | null;
     /**
      * 
-     * @type {string}
+     * @type {EdrDataProviderDefinitionTypeEnum}
      * @memberof EdrDataProviderDefinition
      */
     type: EdrDataProviderDefinitionTypeEnum;

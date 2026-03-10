@@ -27,9 +27,9 @@ import { AddRoleToJSON, ComputationQuotaFromJSON, DataUsageFromJSON, DataUsageSu
  */
 export class UserApi extends runtime.BaseAPI {
     /**
-     * Add a new role. Requires admin privilige.
+     * Creates request options for addRoleHandler without sending the request
      */
-    addRoleHandlerRaw(requestParameters, initOverrides) {
+    addRoleHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['addRole'] == null) {
                 throw new runtime.RequiredError('addRole', 'Required parameter "addRole" was null or undefined when calling addRoleHandler().');
@@ -45,13 +45,22 @@ export class UserApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/roles`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
                 body: AddRoleToJSON(requestParameters['addRole']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Add a new role. Requires admin privilige.
+     */
+    addRoleHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.addRoleHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
@@ -65,9 +74,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Assign a role to a user. Requires admin privilige.
+     * Creates request options for assignRoleHandler without sending the request
      */
-    assignRoleHandlerRaw(requestParameters, initOverrides) {
+    assignRoleHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['user'] == null) {
                 throw new runtime.RequiredError('user', 'Required parameter "user" was null or undefined when calling assignRoleHandler().');
@@ -87,12 +96,21 @@ export class UserApi extends runtime.BaseAPI {
             let urlPath = `/users/{user}/roles/{role}`;
             urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
             urlPath = urlPath.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Assign a role to a user. Requires admin privilige.
+     */
+    assignRoleHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.assignRoleHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -105,9 +123,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the quota used by computation with the given computation id
+     * Creates request options for computationQuotaHandler without sending the request
      */
-    computationQuotaHandlerRaw(requestParameters, initOverrides) {
+    computationQuotaHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['computation'] == null) {
                 throw new runtime.RequiredError('computation', 'Required parameter "computation" was null or undefined when calling computationQuotaHandler().');
@@ -123,12 +141,21 @@ export class UserApi extends runtime.BaseAPI {
             }
             let urlPath = `/quota/computations/{computation}`;
             urlPath = urlPath.replace(`{${"computation"}}`, encodeURIComponent(String(requestParameters['computation'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves the quota used by computation with the given computation id
+     */
+    computationQuotaHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.computationQuotaHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OperatorQuotaFromJSON));
         });
     }
@@ -142,9 +169,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the quota used by computations
+     * Creates request options for computationsQuotaHandler without sending the request
      */
-    computationsQuotaHandlerRaw(requestParameters, initOverrides) {
+    computationsQuotaHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['offset'] == null) {
                 throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling computationsQuotaHandler().');
@@ -168,12 +195,21 @@ export class UserApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/quota/computations`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves the quota used by computations
+     */
+    computationsQuotaHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.computationsQuotaHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ComputationQuotaFromJSON));
         });
     }
@@ -187,9 +223,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the data usage
+     * Creates request options for dataUsageHandler without sending the request
      */
-    dataUsageHandlerRaw(requestParameters, initOverrides) {
+    dataUsageHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['offset'] == null) {
                 throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling dataUsageHandler().');
@@ -213,12 +249,21 @@ export class UserApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/quota/dataUsage`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves the data usage
+     */
+    dataUsageHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.dataUsageHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DataUsageFromJSON));
         });
     }
@@ -232,9 +277,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the data usage summary
+     * Creates request options for dataUsageSummaryHandler without sending the request
      */
-    dataUsageSummaryHandlerRaw(requestParameters, initOverrides) {
+    dataUsageSummaryHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['granularity'] == null) {
                 throw new runtime.RequiredError('granularity', 'Required parameter "granularity" was null or undefined when calling dataUsageSummaryHandler().');
@@ -267,12 +312,21 @@ export class UserApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/quota/dataUsage/summary`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves the data usage summary
+     */
+    dataUsageSummaryHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.dataUsageSummaryHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DataUsageSummaryFromJSON));
         });
     }
@@ -286,9 +340,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get role by name
+     * Creates request options for getRoleByNameHandler without sending the request
      */
-    getRoleByNameHandlerRaw(requestParameters, initOverrides) {
+    getRoleByNameHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['name'] == null) {
                 throw new runtime.RequiredError('name', 'Required parameter "name" was null or undefined when calling getRoleByNameHandler().');
@@ -304,12 +358,21 @@ export class UserApi extends runtime.BaseAPI {
             }
             let urlPath = `/roles/byName/{name}`;
             urlPath = urlPath.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters['name'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Get role by name
+     */
+    getRoleByNameHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getRoleByNameHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
@@ -323,9 +386,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Query roles for the current user.
+     * Creates request options for getRoleDescriptions without sending the request
      */
-    getRoleDescriptionsRaw(initOverrides) {
+    getRoleDescriptionsRequestOpts() {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
@@ -337,12 +400,21 @@ export class UserApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/user/roles/descriptions`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Query roles for the current user.
+     */
+    getRoleDescriptionsRaw(initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getRoleDescriptionsRequestOpts();
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(RoleDescriptionFromJSON));
         });
     }
@@ -356,9 +428,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the available and used quota of a specific user.
+     * Creates request options for getUserQuotaHandler without sending the request
      */
-    getUserQuotaHandlerRaw(requestParameters, initOverrides) {
+    getUserQuotaHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['user'] == null) {
                 throw new runtime.RequiredError('user', 'Required parameter "user" was null or undefined when calling getUserQuotaHandler().');
@@ -374,12 +446,21 @@ export class UserApi extends runtime.BaseAPI {
             }
             let urlPath = `/quotas/{user}`;
             urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves the available and used quota of a specific user.
+     */
+    getUserQuotaHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getUserQuotaHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => QuotaFromJSON(jsonValue));
         });
     }
@@ -393,9 +474,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves the available and used quota of the current user.
+     * Creates request options for quotaHandler without sending the request
      */
-    quotaHandlerRaw(initOverrides) {
+    quotaHandlerRequestOpts() {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
@@ -407,12 +488,21 @@ export class UserApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/quota`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves the available and used quota of the current user.
+     */
+    quotaHandlerRaw(initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.quotaHandlerRequestOpts();
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => QuotaFromJSON(jsonValue));
         });
     }
@@ -426,9 +516,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Remove a role. Requires admin privilige.
+     * Creates request options for removeRoleHandler without sending the request
      */
-    removeRoleHandlerRaw(requestParameters, initOverrides) {
+    removeRoleHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['role'] == null) {
                 throw new runtime.RequiredError('role', 'Required parameter "role" was null or undefined when calling removeRoleHandler().');
@@ -444,12 +534,21 @@ export class UserApi extends runtime.BaseAPI {
             }
             let urlPath = `/roles/{role}`;
             urlPath = urlPath.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Remove a role. Requires admin privilige.
+     */
+    removeRoleHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.removeRoleHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -462,9 +561,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Revoke a role from a user. Requires admin privilige.
+     * Creates request options for revokeRoleHandler without sending the request
      */
-    revokeRoleHandlerRaw(requestParameters, initOverrides) {
+    revokeRoleHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['user'] == null) {
                 throw new runtime.RequiredError('user', 'Required parameter "user" was null or undefined when calling revokeRoleHandler().');
@@ -484,12 +583,21 @@ export class UserApi extends runtime.BaseAPI {
             let urlPath = `/users/{user}/roles/{role}`;
             urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
             urlPath = urlPath.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Revoke a role from a user. Requires admin privilige.
+     */
+    revokeRoleHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.revokeRoleHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -502,9 +610,9 @@ export class UserApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Update the available quota of a specific user.
+     * Creates request options for updateUserQuotaHandler without sending the request
      */
-    updateUserQuotaHandlerRaw(requestParameters, initOverrides) {
+    updateUserQuotaHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['user'] == null) {
                 throw new runtime.RequiredError('user', 'Required parameter "user" was null or undefined when calling updateUserQuotaHandler().');
@@ -524,13 +632,22 @@ export class UserApi extends runtime.BaseAPI {
             }
             let urlPath = `/quotas/{user}`;
             urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: UpdateQuotaToJSON(requestParameters['updateQuota']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Update the available quota of a specific user.
+     */
+    updateUserQuotaHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.updateUserQuotaHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }

@@ -46,9 +46,9 @@ export interface RemovePermissionHandlerRequest {
 export class PermissionsApi extends runtime.BaseAPI {
 
     /**
-     * Adds a new permission.
+     * Creates request options for addPermissionHandler without sending the request
      */
-    async addPermissionHandlerRaw(requestParameters: AddPermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addPermissionHandlerRequestOpts(requestParameters: AddPermissionHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['permissionRequest'] == null) {
             throw new runtime.RequiredError(
                 'permissionRequest',
@@ -73,13 +73,21 @@ export class PermissionsApi extends runtime.BaseAPI {
 
         let urlPath = `/permissions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: PermissionRequestToJSON(requestParameters['permissionRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Adds a new permission.
+     */
+    async addPermissionHandlerRaw(requestParameters: AddPermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.addPermissionHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -92,9 +100,9 @@ export class PermissionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists permission for a given resource.
+     * Creates request options for getResourcePermissionsHandler without sending the request
      */
-    async getResourcePermissionsHandlerRaw(requestParameters: GetResourcePermissionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PermissionListing>>> {
+    async getResourcePermissionsHandlerRequestOpts(requestParameters: GetResourcePermissionsHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['resourceType'] == null) {
             throw new runtime.RequiredError(
                 'resourceType',
@@ -148,12 +156,20 @@ export class PermissionsApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"resource_type"}}`, encodeURIComponent(String(requestParameters['resourceType'])));
         urlPath = urlPath.replace(`{${"resource_id"}}`, encodeURIComponent(String(requestParameters['resourceId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Lists permission for a given resource.
+     */
+    async getResourcePermissionsHandlerRaw(requestParameters: GetResourcePermissionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PermissionListing>>> {
+        const requestOptions = await this.getResourcePermissionsHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PermissionListingFromJSON));
     }
@@ -167,9 +183,9 @@ export class PermissionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Removes an existing permission.
+     * Creates request options for removePermissionHandler without sending the request
      */
-    async removePermissionHandlerRaw(requestParameters: RemovePermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removePermissionHandlerRequestOpts(requestParameters: RemovePermissionHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['permissionRequest'] == null) {
             throw new runtime.RequiredError(
                 'permissionRequest',
@@ -194,13 +210,21 @@ export class PermissionsApi extends runtime.BaseAPI {
 
         let urlPath = `/permissions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
             body: PermissionRequestToJSON(requestParameters['permissionRequest']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Removes an existing permission.
+     */
+    async removePermissionHandlerRaw(requestParameters: RemovePermissionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.removePermissionHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }

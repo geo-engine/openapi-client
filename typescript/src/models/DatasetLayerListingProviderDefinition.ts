@@ -59,7 +59,7 @@ export interface DatasetLayerListingProviderDefinition {
     priority?: number | null;
     /**
      * 
-     * @type {string}
+     * @type {DatasetLayerListingProviderDefinitionTypeEnum}
      * @memberof DatasetLayerListingProviderDefinition
      */
     type: DatasetLayerListingProviderDefinitionTypeEnum;

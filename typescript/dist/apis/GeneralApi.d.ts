@@ -16,6 +16,10 @@ import type { ServerInfo } from '../models/index';
  */
 export declare class GeneralApi extends runtime.BaseAPI {
     /**
+     * Creates request options for availableHandler without sending the request
+     */
+    availableHandlerRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
      * Server availablity check.
      */
     availableHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -23,6 +27,10 @@ export declare class GeneralApi extends runtime.BaseAPI {
      * Server availablity check.
      */
     availableHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for serverInfoHandler without sending the request
+     */
+    serverInfoHandlerRequestOpts(): Promise<runtime.RequestOpts>;
     /**
      * Shows information about the server software version.
      */

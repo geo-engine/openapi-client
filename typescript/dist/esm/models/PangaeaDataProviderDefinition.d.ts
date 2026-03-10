@@ -47,7 +47,7 @@ export interface PangaeaDataProviderDefinition {
     priority?: number | null;
     /**
      *
-     * @type {string}
+     * @type {PangaeaDataProviderDefinitionTypeEnum}
      * @memberof PangaeaDataProviderDefinition
      */
     type: PangaeaDataProviderDefinitionTypeEnum;

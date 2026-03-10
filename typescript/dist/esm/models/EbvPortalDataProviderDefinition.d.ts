@@ -59,7 +59,7 @@ export interface EbvPortalDataProviderDefinition {
     priority?: number | null;
     /**
      *
-     * @type {string}
+     * @type {EbvPortalDataProviderDefinitionTypeEnum}
      * @memberof EbvPortalDataProviderDefinition
      */
     type: EbvPortalDataProviderDefinitionTypeEnum;

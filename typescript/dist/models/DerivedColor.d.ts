@@ -30,7 +30,7 @@ export interface DerivedColor {
     colorizer: Colorizer;
     /**
      *
-     * @type {string}
+     * @type {DerivedColorTypeEnum}
      * @memberof DerivedColor
      */
     type: DerivedColorTypeEnum;

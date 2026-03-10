@@ -18,7 +18,7 @@ import type { RegularTimeDimension } from './RegularTimeDimension';
 export interface TimeDimensionOneOf extends RegularTimeDimension {
     /**
      *
-     * @type {string}
+     * @type {TimeDimensionOneOfTypeEnum}
      * @memberof TimeDimensionOneOf
      */
     type: TimeDimensionOneOfTypeEnum;

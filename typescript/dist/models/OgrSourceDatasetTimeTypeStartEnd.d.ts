@@ -42,7 +42,7 @@ export interface OgrSourceDatasetTimeTypeStartEnd {
     startFormat: OgrSourceTimeFormat;
     /**
      *
-     * @type {string}
+     * @type {OgrSourceDatasetTimeTypeStartEndTypeEnum}
      * @memberof OgrSourceDatasetTimeTypeStartEnd
      */
     type: OgrSourceDatasetTimeTypeStartEndTypeEnum;

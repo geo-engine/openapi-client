@@ -27,7 +27,7 @@ export interface LayerCollectionResource {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {LayerCollectionResourceTypeEnum}
      * @memberof LayerCollectionResource
      */
     type: LayerCollectionResourceTypeEnum;

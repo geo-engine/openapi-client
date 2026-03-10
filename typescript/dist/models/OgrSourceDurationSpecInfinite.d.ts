@@ -17,7 +17,7 @@
 export interface OgrSourceDurationSpecInfinite {
     /**
      *
-     * @type {string}
+     * @type {OgrSourceDurationSpecInfiniteTypeEnum}
      * @memberof OgrSourceDurationSpecInfinite
      */
     type: OgrSourceDurationSpecInfiniteTypeEnum;

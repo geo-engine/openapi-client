@@ -41,7 +41,7 @@ export interface PaletteColorizer {
     noDataColor: Array<number>;
     /**
      * 
-     * @type {string}
+     * @type {PaletteColorizerTypeEnum}
      * @memberof PaletteColorizer
      */
     type: PaletteColorizerTypeEnum;

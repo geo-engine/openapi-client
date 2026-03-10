@@ -29,7 +29,7 @@ import {
 export interface OgrSourceTimeFormatUnixTimeStamp {
     /**
      * 
-     * @type {string}
+     * @type {OgrSourceTimeFormatUnixTimeStampFormatEnum}
      * @memberof OgrSourceTimeFormatUnixTimeStamp
      */
     format: OgrSourceTimeFormatUnixTimeStampFormatEnum;

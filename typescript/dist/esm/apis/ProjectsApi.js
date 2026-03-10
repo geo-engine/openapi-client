@@ -27,9 +27,9 @@ import { CreateProjectToJSON, IdResponseFromJSON, ProjectFromJSON, ProjectListin
  */
 export class ProjectsApi extends runtime.BaseAPI {
     /**
-     * Create a new project for the user.
+     * Creates request options for createProjectHandler without sending the request
      */
-    createProjectHandlerRaw(requestParameters, initOverrides) {
+    createProjectHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['createProject'] == null) {
                 throw new runtime.RequiredError('createProject', 'Required parameter "createProject" was null or undefined when calling createProjectHandler().');
@@ -45,13 +45,22 @@ export class ProjectsApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/project`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: CreateProjectToJSON(requestParameters['createProject']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Create a new project for the user.
+     */
+    createProjectHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.createProjectHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
         });
     }
@@ -65,9 +74,9 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Deletes a project.
+     * Creates request options for deleteProjectHandler without sending the request
      */
-    deleteProjectHandlerRaw(requestParameters, initOverrides) {
+    deleteProjectHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['project'] == null) {
                 throw new runtime.RequiredError('project', 'Required parameter "project" was null or undefined when calling deleteProjectHandler().');
@@ -83,12 +92,21 @@ export class ProjectsApi extends runtime.BaseAPI {
             }
             let urlPath = `/project/{project}`;
             urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Deletes a project.
+     */
+    deleteProjectHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.deleteProjectHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -101,9 +119,9 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List all projects accessible to the user that match the selected criteria.
+     * Creates request options for listProjectsHandler without sending the request
      */
-    listProjectsHandlerRaw(requestParameters, initOverrides) {
+    listProjectsHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['order'] == null) {
                 throw new runtime.RequiredError('order', 'Required parameter "order" was null or undefined when calling listProjectsHandler().');
@@ -127,12 +145,21 @@ export class ProjectsApi extends runtime.BaseAPI {
             urlPath = urlPath.replace(`{${"order"}}`, encodeURIComponent(String(requestParameters['order'])));
             urlPath = urlPath.replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset'])));
             urlPath = urlPath.replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * List all projects accessible to the user that match the selected criteria.
+     */
+    listProjectsHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listProjectsHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ProjectListingFromJSON));
         });
     }
@@ -146,9 +173,9 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves details about the latest version of a project.
+     * Creates request options for loadProjectLatestHandler without sending the request
      */
-    loadProjectLatestHandlerRaw(requestParameters, initOverrides) {
+    loadProjectLatestHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['project'] == null) {
                 throw new runtime.RequiredError('project', 'Required parameter "project" was null or undefined when calling loadProjectLatestHandler().');
@@ -164,12 +191,21 @@ export class ProjectsApi extends runtime.BaseAPI {
             }
             let urlPath = `/project/{project}`;
             urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves details about the latest version of a project.
+     */
+    loadProjectLatestHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.loadProjectLatestHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => ProjectFromJSON(jsonValue));
         });
     }
@@ -183,9 +219,9 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves details about the given version of a project.
+     * Creates request options for loadProjectVersionHandler without sending the request
      */
-    loadProjectVersionHandlerRaw(requestParameters, initOverrides) {
+    loadProjectVersionHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['project'] == null) {
                 throw new runtime.RequiredError('project', 'Required parameter "project" was null or undefined when calling loadProjectVersionHandler().');
@@ -205,12 +241,21 @@ export class ProjectsApi extends runtime.BaseAPI {
             let urlPath = `/project/{project}/{version}`;
             urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
             urlPath = urlPath.replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves details about the given version of a project.
+     */
+    loadProjectVersionHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.loadProjectVersionHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => ProjectFromJSON(jsonValue));
         });
     }
@@ -224,9 +269,9 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Lists all available versions of a project.
+     * Creates request options for projectVersionsHandler without sending the request
      */
-    projectVersionsHandlerRaw(requestParameters, initOverrides) {
+    projectVersionsHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['project'] == null) {
                 throw new runtime.RequiredError('project', 'Required parameter "project" was null or undefined when calling projectVersionsHandler().');
@@ -242,12 +287,21 @@ export class ProjectsApi extends runtime.BaseAPI {
             }
             let urlPath = `/project/{project}/versions`;
             urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Lists all available versions of a project.
+     */
+    projectVersionsHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.projectVersionsHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ProjectVersionFromJSON));
         });
     }
@@ -261,9 +315,9 @@ export class ProjectsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Updates a project. This will create a new version.
+     * Creates request options for updateProjectHandler without sending the request
      */
-    updateProjectHandlerRaw(requestParameters, initOverrides) {
+    updateProjectHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['project'] == null) {
                 throw new runtime.RequiredError('project', 'Required parameter "project" was null or undefined when calling updateProjectHandler().');
@@ -283,13 +337,22 @@ export class ProjectsApi extends runtime.BaseAPI {
             }
             let urlPath = `/project/{project}`;
             urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'PATCH',
                 headers: headerParameters,
                 query: queryParameters,
                 body: UpdateProjectToJSON(requestParameters['updateProject']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Updates a project. This will create a new version.
+     */
+    updateProjectHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.updateProjectHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }

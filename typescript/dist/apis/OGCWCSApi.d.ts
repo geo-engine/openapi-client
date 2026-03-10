@@ -33,6 +33,10 @@ export interface WcsHandlerRequest {
  */
 export declare class OGCWCSApi extends runtime.BaseAPI {
     /**
+     * Creates request options for wcsHandler without sending the request
+     */
+    wcsHandlerRequestOpts(requestParameters: WcsHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * OGC WCS endpoint
      */
     wcsHandlerRaw(requestParameters: WcsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;

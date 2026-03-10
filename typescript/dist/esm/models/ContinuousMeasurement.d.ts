@@ -23,7 +23,7 @@ export interface ContinuousMeasurement {
     measurement: string;
     /**
      *
-     * @type {string}
+     * @type {ContinuousMeasurementTypeEnum}
      * @memberof ContinuousMeasurement
      */
     type: ContinuousMeasurementTypeEnum;

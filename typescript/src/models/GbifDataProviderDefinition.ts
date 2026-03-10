@@ -71,7 +71,7 @@ export interface GbifDataProviderDefinition {
     priority?: number | null;
     /**
      * 
-     * @type {string}
+     * @type {GbifDataProviderDefinitionTypeEnum}
      * @memberof GbifDataProviderDefinition
      */
     type: GbifDataProviderDefinitionTypeEnum;

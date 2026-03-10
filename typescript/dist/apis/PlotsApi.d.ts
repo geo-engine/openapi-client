@@ -23,6 +23,10 @@ export interface GetPlotHandlerRequest {
  */
 export declare class PlotsApi extends runtime.BaseAPI {
     /**
+     * Creates request options for getPlotHandler without sending the request
+     */
+    getPlotHandlerRequestOpts(requestParameters: GetPlotHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * # Example  1. Upload the file `plain_data.csv` with the following content:  ```csv a 1 2 ``` 2. Create a dataset from it using the \"Plain Data\" example at `/dataset`. 3. Create a statistics workflow using the \"Statistics Plot\" example at `/workflow`. 4. Generate the plot with this handler.
      * Generates a plot.
      */

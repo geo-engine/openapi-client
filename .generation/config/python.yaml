@@ -1,0 +1,13 @@
+inputSpec: .generation/input/openapi.json
+outputDir: python
+generatorName: python
+gitHost: github.com
+gitUserId: geo-engine
+gitRepoId: openapi-client
+additionalProperties:
+    useOneOfDiscriminatorLookup: true
+    packageName: "geoengine_openapi_client"
+    packageVersion: 0.0.32
+    packageUrl: "https://github.com/geo-engine/openapi-client"
+openapiNormalizer:
+    REF_AS_PARENT_IN_ALLOF: true

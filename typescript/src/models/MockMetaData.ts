@@ -48,7 +48,7 @@ export interface MockMetaData {
     resultDescriptor: VectorResultDescriptor;
     /**
      * 
-     * @type {string}
+     * @type {MockMetaDataTypeEnum}
      * @memberof MockMetaData
      */
     type: MockMetaDataTypeEnum;

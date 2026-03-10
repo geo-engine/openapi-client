@@ -32,6 +32,10 @@ export interface WfsHandlerRequest {
  */
 export declare class OGCWFSApi extends runtime.BaseAPI {
     /**
+     * Creates request options for wfsHandler without sending the request
+     */
+    wfsHandlerRequestOpts(requestParameters: WfsHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * OGC WFS endpoint
      */
     wfsHandlerRaw(requestParameters: WfsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeoJson>>;

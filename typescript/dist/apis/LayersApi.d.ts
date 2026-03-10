@@ -112,6 +112,10 @@ export interface UpdateProviderDefinitionRequest {
  */
 export declare class LayersApi extends runtime.BaseAPI {
     /**
+     * Creates request options for addCollection without sending the request
+     */
+    addCollectionRequestOpts(requestParameters: AddCollectionRequest): Promise<runtime.RequestOpts>;
+    /**
      * Add a new collection to an existing collection
      */
     addCollectionRaw(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
@@ -119,6 +123,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Add a new collection to an existing collection
      */
     addCollection(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
+    /**
+     * Creates request options for addExistingCollectionToCollection without sending the request
+     */
+    addExistingCollectionToCollectionRequestOpts(requestParameters: AddExistingCollectionToCollectionRequest): Promise<runtime.RequestOpts>;
     /**
      * Add an existing collection to a collection
      */
@@ -128,6 +136,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     addExistingCollectionToCollection(requestParameters: AddExistingCollectionToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for addExistingLayerToCollection without sending the request
+     */
+    addExistingLayerToCollectionRequestOpts(requestParameters: AddExistingLayerToCollectionRequest): Promise<runtime.RequestOpts>;
+    /**
      * Add an existing layer to a collection
      */
     addExistingLayerToCollectionRaw(requestParameters: AddExistingLayerToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -135,6 +147,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Add an existing layer to a collection
      */
     addExistingLayerToCollection(requestParameters: AddExistingLayerToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for addLayer without sending the request
+     */
+    addLayerRequestOpts(requestParameters: AddLayerRequest): Promise<runtime.RequestOpts>;
     /**
      * Add a new layer to a collection
      */
@@ -144,6 +160,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     addLayer(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
     /**
+     * Creates request options for addProvider without sending the request
+     */
+    addProviderRequestOpts(requestParameters: AddProviderRequest): Promise<runtime.RequestOpts>;
+    /**
      * Add a new provider
      */
     addProviderRaw(requestParameters: AddProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
@@ -151,6 +171,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Add a new provider
      */
     addProvider(requestParameters: AddProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
+    /**
+     * Creates request options for autocompleteHandler without sending the request
+     */
+    autocompleteHandlerRequestOpts(requestParameters: AutocompleteHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Autocompletes the search on the contents of the collection of the given provider
      */
@@ -160,6 +184,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     autocompleteHandler(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
     /**
+     * Creates request options for deleteProvider without sending the request
+     */
+    deleteProviderRequestOpts(requestParameters: DeleteProviderRequest): Promise<runtime.RequestOpts>;
+    /**
      * Delete an existing provider
      */
     deleteProviderRaw(requestParameters: DeleteProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -167,6 +195,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Delete an existing provider
      */
     deleteProvider(requestParameters: DeleteProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for getProviderDefinition without sending the request
+     */
+    getProviderDefinitionRequestOpts(requestParameters: GetProviderDefinitionRequest): Promise<runtime.RequestOpts>;
     /**
      * Get an existing provider\'s definition
      */
@@ -176,6 +208,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     getProviderDefinition(requestParameters: GetProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TypedDataProviderDefinition>;
     /**
+     * Creates request options for layerHandler without sending the request
+     */
+    layerHandlerRequestOpts(requestParameters: LayerHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Retrieves the layer of the given provider
      */
     layerHandlerRaw(requestParameters: LayerHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Layer>>;
@@ -183,6 +219,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Retrieves the layer of the given provider
      */
     layerHandler(requestParameters: LayerHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Layer>;
+    /**
+     * Creates request options for layerToDataset without sending the request
+     */
+    layerToDatasetRequestOpts(requestParameters: LayerToDatasetRequest): Promise<runtime.RequestOpts>;
     /**
      * Persist a raster layer from a provider as a dataset.
      */
@@ -192,6 +232,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     layerToDataset(requestParameters: LayerToDatasetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaskResponse>;
     /**
+     * Creates request options for layerToWorkflowIdHandler without sending the request
+     */
+    layerToWorkflowIdHandlerRequestOpts(requestParameters: LayerToWorkflowIdHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Registers a layer from a provider as a workflow and returns the workflow id
      */
     layerToWorkflowIdHandlerRaw(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
@@ -199,6 +243,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Registers a layer from a provider as a workflow and returns the workflow id
      */
     layerToWorkflowIdHandler(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
+    /**
+     * Creates request options for listCollectionHandler without sending the request
+     */
+    listCollectionHandlerRequestOpts(requestParameters: ListCollectionHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * List the contents of the collection of the given provider
      */
@@ -208,6 +256,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     listCollectionHandler(requestParameters: ListCollectionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection>;
     /**
+     * Creates request options for listProviders without sending the request
+     */
+    listProvidersRequestOpts(requestParameters: ListProvidersRequest): Promise<runtime.RequestOpts>;
+    /**
      * List all providers
      */
     listProvidersRaw(requestParameters: ListProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LayerProviderListing>>>;
@@ -215,6 +267,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      * List all providers
      */
     listProviders(requestParameters: ListProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<LayerProviderListing>>;
+    /**
+     * Creates request options for listRootCollectionsHandler without sending the request
+     */
+    listRootCollectionsHandlerRequestOpts(requestParameters: ListRootCollectionsHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * List all layer collections
      */
@@ -224,11 +280,19 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     listRootCollectionsHandler(requestParameters: ListRootCollectionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection>;
     /**
+     * Creates request options for providerCapabilitiesHandler without sending the request
+     */
+    providerCapabilitiesHandlerRequestOpts(requestParameters: ProviderCapabilitiesHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      */
     providerCapabilitiesHandlerRaw(requestParameters: ProviderCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProviderCapabilities>>;
     /**
      */
     providerCapabilitiesHandler(requestParameters: ProviderCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProviderCapabilities>;
+    /**
+     * Creates request options for removeCollection without sending the request
+     */
+    removeCollectionRequestOpts(requestParameters: RemoveCollectionRequest): Promise<runtime.RequestOpts>;
     /**
      * Remove a collection
      */
@@ -238,6 +302,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     removeCollection(requestParameters: RemoveCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for removeCollectionFromCollection without sending the request
+     */
+    removeCollectionFromCollectionRequestOpts(requestParameters: RemoveCollectionFromCollectionRequest): Promise<runtime.RequestOpts>;
+    /**
      * Delete a collection from a collection
      */
     removeCollectionFromCollectionRaw(requestParameters: RemoveCollectionFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -245,6 +313,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Delete a collection from a collection
      */
     removeCollectionFromCollection(requestParameters: RemoveCollectionFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for removeLayer without sending the request
+     */
+    removeLayerRequestOpts(requestParameters: RemoveLayerRequest): Promise<runtime.RequestOpts>;
     /**
      * Remove a collection
      */
@@ -254,6 +326,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     removeLayer(requestParameters: RemoveLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for removeLayerFromCollection without sending the request
+     */
+    removeLayerFromCollectionRequestOpts(requestParameters: RemoveLayerFromCollectionRequest): Promise<runtime.RequestOpts>;
+    /**
      * Remove a layer from a collection
      */
     removeLayerFromCollectionRaw(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -261,6 +337,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Remove a layer from a collection
      */
     removeLayerFromCollection(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for searchHandler without sending the request
+     */
+    searchHandlerRequestOpts(requestParameters: SearchHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Searches the contents of the collection of the given provider
      */
@@ -270,6 +350,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     searchHandler(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LayerCollection>;
     /**
+     * Creates request options for updateCollection without sending the request
+     */
+    updateCollectionRequestOpts(requestParameters: UpdateCollectionRequest): Promise<runtime.RequestOpts>;
+    /**
      * Update a collection
      */
     updateCollectionRaw(requestParameters: UpdateCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -278,6 +362,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      */
     updateCollection(requestParameters: UpdateCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for updateLayer without sending the request
+     */
+    updateLayerRequestOpts(requestParameters: UpdateLayerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Update a layer
      */
     updateLayerRaw(requestParameters: UpdateLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -285,6 +373,10 @@ export declare class LayersApi extends runtime.BaseAPI {
      * Update a layer
      */
     updateLayer(requestParameters: UpdateLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for updateProviderDefinition without sending the request
+     */
+    updateProviderDefinitionRequestOpts(requestParameters: UpdateProviderDefinitionRequest): Promise<runtime.RequestOpts>;
     /**
      * Update an existing provider\'s definition
      */

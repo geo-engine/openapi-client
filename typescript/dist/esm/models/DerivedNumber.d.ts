@@ -35,7 +35,7 @@ export interface DerivedNumber {
     factor: number;
     /**
      *
-     * @type {string}
+     * @type {DerivedNumberTypeEnum}
      * @memberof DerivedNumber
      */
     type: DerivedNumberTypeEnum;

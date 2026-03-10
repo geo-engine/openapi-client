@@ -27,10 +27,9 @@ import { TaskStatusFromJSON, TaskStatusWithIdFromJSON, } from '../models/index';
  */
 export class TasksApi extends runtime.BaseAPI {
     /**
-     * # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
-     * Abort a running task.
+     * Creates request options for abortHandler without sending the request
      */
-    abortHandlerRaw(requestParameters, initOverrides) {
+    abortHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['id'] == null) {
                 throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling abortHandler().');
@@ -49,12 +48,22 @@ export class TasksApi extends runtime.BaseAPI {
             }
             let urlPath = `/tasks/{id}`;
             urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
+     * Abort a running task.
+     */
+    abortHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.abortHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -68,9 +77,9 @@ export class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve the status of all tasks.
+     * Creates request options for listHandler without sending the request
      */
-    listHandlerRaw(requestParameters, initOverrides) {
+    listHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['filter'] == null) {
                 throw new runtime.RequiredError('filter', 'Required parameter "filter" was null or undefined when calling listHandler().');
@@ -94,12 +103,21 @@ export class TasksApi extends runtime.BaseAPI {
             urlPath = urlPath.replace(`{${"filter"}}`, encodeURIComponent(String(requestParameters['filter'])));
             urlPath = urlPath.replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset'])));
             urlPath = urlPath.replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieve the status of all tasks.
+     */
+    listHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TaskStatusWithIdFromJSON));
         });
     }
@@ -113,9 +131,9 @@ export class TasksApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieve the status of a task.
+     * Creates request options for statusHandler without sending the request
      */
-    statusHandlerRaw(requestParameters, initOverrides) {
+    statusHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['id'] == null) {
                 throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling statusHandler().');
@@ -131,12 +149,21 @@ export class TasksApi extends runtime.BaseAPI {
             }
             let urlPath = `/tasks/{id}/status`;
             urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieve the status of a task.
+     */
+    statusHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.statusHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => TaskStatusFromJSON(jsonValue));
         });
     }

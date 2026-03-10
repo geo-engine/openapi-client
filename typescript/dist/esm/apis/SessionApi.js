@@ -27,19 +27,28 @@ import { AuthCodeRequestURLFromJSON, AuthCodeResponseToJSON, STRectangleToJSON, 
  */
 export class SessionApi extends runtime.BaseAPI {
     /**
-     * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
+     * Creates request options for anonymousHandler without sending the request
      */
-    anonymousHandlerRaw(initOverrides) {
+    anonymousHandlerRequestOpts() {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
             let urlPath = `/anonymous`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
+     */
+    anonymousHandlerRaw(initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.anonymousHandlerRequestOpts();
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => UserSessionFromJSON(jsonValue));
         });
     }
@@ -53,9 +62,9 @@ export class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
+     * Creates request options for loginHandler without sending the request
      */
-    loginHandlerRaw(requestParameters, initOverrides) {
+    loginHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['userCredentials'] == null) {
                 throw new runtime.RequiredError('userCredentials', 'Required parameter "userCredentials" was null or undefined when calling loginHandler().');
@@ -64,13 +73,22 @@ export class SessionApi extends runtime.BaseAPI {
             const headerParameters = {};
             headerParameters['Content-Type'] = 'application/json';
             let urlPath = `/login`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: UserCredentialsToJSON(requestParameters['userCredentials']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
+     */
+    loginHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.loginHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => UserSessionFromJSON(jsonValue));
         });
     }
@@ -84,9 +102,9 @@ export class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Ends a session.
+     * Creates request options for logoutHandler without sending the request
      */
-    logoutHandlerRaw(initOverrides) {
+    logoutHandlerRequestOpts() {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
@@ -98,12 +116,21 @@ export class SessionApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/logout`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Ends a session.
+     */
+    logoutHandlerRaw(initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.logoutHandlerRequestOpts();
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -116,10 +143,9 @@ export class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
-     * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
+     * Creates request options for oidcInit without sending the request
      */
-    oidcInitRaw(requestParameters, initOverrides) {
+    oidcInitRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['redirectUri'] == null) {
                 throw new runtime.RequiredError('redirectUri', 'Required parameter "redirectUri" was null or undefined when calling oidcInit().');
@@ -130,12 +156,22 @@ export class SessionApi extends runtime.BaseAPI {
             }
             const headerParameters = {};
             let urlPath = `/oidcInit`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.
+     * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
+     */
+    oidcInitRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.oidcInitRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => AuthCodeRequestURLFromJSON(jsonValue));
         });
     }
@@ -150,10 +186,9 @@ export class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
-     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
+     * Creates request options for oidcLogin without sending the request
      */
-    oidcLoginRaw(requestParameters, initOverrides) {
+    oidcLoginRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['redirectUri'] == null) {
                 throw new runtime.RequiredError('redirectUri', 'Required parameter "redirectUri" was null or undefined when calling oidcLogin().');
@@ -168,13 +203,23 @@ export class SessionApi extends runtime.BaseAPI {
             const headerParameters = {};
             headerParameters['Content-Type'] = 'application/json';
             let urlPath = `/oidcLogin`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: AuthCodeResponseToJSON(requestParameters['authCodeResponse']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.
+     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
+     */
+    oidcLoginRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.oidcLoginRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => UserSessionFromJSON(jsonValue));
         });
     }
@@ -189,9 +234,9 @@ export class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Registers a user.
+     * Creates request options for registerUserHandler without sending the request
      */
-    registerUserHandlerRaw(requestParameters, initOverrides) {
+    registerUserHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['userRegistration'] == null) {
                 throw new runtime.RequiredError('userRegistration', 'Required parameter "userRegistration" was null or undefined when calling registerUserHandler().');
@@ -200,13 +245,22 @@ export class SessionApi extends runtime.BaseAPI {
             const headerParameters = {};
             headerParameters['Content-Type'] = 'application/json';
             let urlPath = `/user`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: UserRegistrationToJSON(requestParameters['userRegistration']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Registers a user.
+     */
+    registerUserHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.registerUserHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             if (this.isJsonMime(response.headers.get('content-type'))) {
                 return new runtime.JSONApiResponse(response);
             }
@@ -225,9 +279,9 @@ export class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves details about the current session.
+     * Creates request options for sessionHandler without sending the request
      */
-    sessionHandlerRaw(initOverrides) {
+    sessionHandlerRequestOpts() {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
@@ -239,12 +293,21 @@ export class SessionApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/session`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves details about the current session.
+     */
+    sessionHandlerRaw(initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.sessionHandlerRequestOpts();
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => UserSessionFromJSON(jsonValue));
         });
     }
@@ -258,9 +321,9 @@ export class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Sets the active project of the session.
+     * Creates request options for sessionProjectHandler without sending the request
      */
-    sessionProjectHandlerRaw(requestParameters, initOverrides) {
+    sessionProjectHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['project'] == null) {
                 throw new runtime.RequiredError('project', 'Required parameter "project" was null or undefined when calling sessionProjectHandler().');
@@ -276,12 +339,21 @@ export class SessionApi extends runtime.BaseAPI {
             }
             let urlPath = `/session/project/{project}`;
             urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Sets the active project of the session.
+     */
+    sessionProjectHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.sessionProjectHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -294,8 +366,9 @@ export class SessionApi extends runtime.BaseAPI {
         });
     }
     /**
+     * Creates request options for sessionViewHandler without sending the request
      */
-    sessionViewHandlerRaw(requestParameters, initOverrides) {
+    sessionViewHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['sTRectangle'] == null) {
                 throw new runtime.RequiredError('sTRectangle', 'Required parameter "sTRectangle" was null or undefined when calling sessionViewHandler().');
@@ -311,13 +384,21 @@ export class SessionApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/session/view`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: STRectangleToJSON(requestParameters['sTRectangle']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     */
+    sessionViewHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.sessionViewHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }

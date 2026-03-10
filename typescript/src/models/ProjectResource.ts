@@ -27,7 +27,7 @@ export interface ProjectResource {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {ProjectResourceTypeEnum}
      * @memberof ProjectResource
      */
     type: ProjectResourceTypeEnum;

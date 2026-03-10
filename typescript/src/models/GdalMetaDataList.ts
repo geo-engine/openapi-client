@@ -48,7 +48,7 @@ export interface GdalMetaDataList {
     resultDescriptor: RasterResultDescriptor;
     /**
      * 
-     * @type {string}
+     * @type {GdalMetaDataListTypeEnum}
      * @memberof GdalMetaDataList
      */
     type: GdalMetaDataListTypeEnum;

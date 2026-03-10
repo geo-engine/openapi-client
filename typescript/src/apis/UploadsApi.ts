@@ -47,9 +47,9 @@ export interface UploadHandlerRequest {
 export class UploadsApi extends runtime.BaseAPI {
 
     /**
-     * List the layers of on uploaded file.
+     * Creates request options for listUploadFileLayersHandler without sending the request
      */
-    async listUploadFileLayersHandlerRaw(requestParameters: ListUploadFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFileLayersResponse>> {
+    async listUploadFileLayersHandlerRequestOpts(requestParameters: ListUploadFileLayersHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['uploadId'] == null) {
             throw new runtime.RequiredError(
                 'uploadId',
@@ -81,12 +81,20 @@ export class UploadsApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters['uploadId'])));
         urlPath = urlPath.replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters['fileName'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List the layers of on uploaded file.
+     */
+    async listUploadFileLayersHandlerRaw(requestParameters: ListUploadFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFileLayersResponse>> {
+        const requestOptions = await this.listUploadFileLayersHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UploadFileLayersResponseFromJSON(jsonValue));
     }
@@ -100,9 +108,9 @@ export class UploadsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the files of on upload.
+     * Creates request options for listUploadFilesHandler without sending the request
      */
-    async listUploadFilesHandlerRaw(requestParameters: ListUploadFilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFilesResponse>> {
+    async listUploadFilesHandlerRequestOpts(requestParameters: ListUploadFilesHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['uploadId'] == null) {
             throw new runtime.RequiredError(
                 'uploadId',
@@ -126,12 +134,20 @@ export class UploadsApi extends runtime.BaseAPI {
         let urlPath = `/uploads/{upload_id}/files`;
         urlPath = urlPath.replace(`{${"upload_id"}}`, encodeURIComponent(String(requestParameters['uploadId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List the files of on upload.
+     */
+    async listUploadFilesHandlerRaw(requestParameters: ListUploadFilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFilesResponse>> {
+        const requestOptions = await this.listUploadFilesHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UploadFilesResponseFromJSON(jsonValue));
     }
@@ -145,9 +161,9 @@ export class UploadsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Uploads files.
+     * Creates request options for uploadHandler without sending the request
      */
-    async uploadHandlerRaw(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+    async uploadHandlerRequestOpts(requestParameters: UploadHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['files'] == null) {
             throw new runtime.RequiredError(
                 'files',
@@ -192,13 +208,21 @@ export class UploadsApi extends runtime.BaseAPI {
 
         let urlPath = `/upload`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Uploads files.
+     */
+    async uploadHandlerRaw(requestParameters: UploadHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+        const requestOptions = await this.uploadHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }

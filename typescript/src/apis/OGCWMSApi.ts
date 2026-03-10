@@ -64,9 +64,9 @@ export interface WmsHandlerRequest {
 export class OGCWMSApi extends runtime.BaseAPI {
 
     /**
-     * OGC WMS endpoint
+     * Creates request options for wmsHandler without sending the request
      */
-    async wmsHandlerRaw(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+    async wmsHandlerRequestOpts(requestParameters: WmsHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['workflow'] == null) {
             throw new runtime.RequiredError(
                 'workflow',
@@ -177,12 +177,20 @@ export class OGCWMSApi extends runtime.BaseAPI {
         let urlPath = `/wms/{workflow}`;
         urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * OGC WMS endpoint
+     */
+    async wmsHandlerRaw(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+        const requestOptions = await this.wmsHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.BlobApiResponse(response);
     }

@@ -23,7 +23,7 @@ export interface MlModelResource {
     id: string;
     /**
      *
-     * @type {string}
+     * @type {MlModelResourceTypeEnum}
      * @memberof MlModelResource
      */
     type: MlModelResourceTypeEnum;

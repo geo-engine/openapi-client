@@ -39,6 +39,10 @@ export interface WmsHandlerRequest {
  */
 export declare class OGCWMSApi extends runtime.BaseAPI {
     /**
+     * Creates request options for wmsHandler without sending the request
+     */
+    wmsHandlerRequestOpts(requestParameters: WmsHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * OGC WMS endpoint
      */
     wmsHandlerRaw(requestParameters: WmsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>>;

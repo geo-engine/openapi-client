@@ -11,26 +11,34 @@ _clear:
 
 # Build all API clients by executing the build steps for each language.
 [group('build')]
-build: build-api-client-python build-api-client-typescript
+build: _clear _build-python _build-typescript
 
 # Build the API clients for Python by generating code with the OpenAPI Generator and applying post-processing steps.
 [group('build')]
-build-api-client-python: _clear _clean_dirs_python
+build-python: _clear _build-python
+
+_build-python: _clean_dirs_python
     npx {{ OPENAPI_GENERATOR_PACKAGE }} batch .generation/config/python.yaml
     .generation/post-process/python.py
-    rm -rf python/docs
+    rm -rf \
+        python/docs \
+        openapitools.json
 
 # Build the API clients for TypeScript by generating code with the OpenAPI Generator and applying post-processing steps. Also install npm dependencies and set up .gitignore.
 [group('build')]
-build-api-client-typescript: _clear _clean_dirs_typescript
+build-typescript: _clear _build-typescript
+
+_build-typescript: _clean_dirs_typescript
     npx {{ OPENAPI_GENERATOR_PACKAGE }} batch .generation/config/typescript.yaml
     .generation/post-process/typescript.py
     echo "wwwroot/*.js" > typescript/.gitignore
     echo "node_modules" > typescript/.gitignore
     echo "typings" > typescript/.gitignore
-    rm typescript/.openapi-generator/FILES
-    cd typescript
-    npm install && npm run build
+    cd typescript && npm install
+    rm \
+        typescript/.openapi-generator/FILES \
+        openapitools.json \
+        package-lock.json
 
 [group('config')]
 lint-openapi-spec: _clear
@@ -43,12 +51,14 @@ _clean_dirs language:
 
     @just _clean_dirs_{{ language }}
 
+# Remove some directories because they are not be overwritten by the generator.
 _clean_dirs_python:
     rm -rf \
         python/geoengine_openapi_client \
         python/.mypy_cache \
         python/test
 
+# Remove some directories because they are not be overwritten by the generator.
 _clean_dirs_typescript:
     rm -rf \
         typescript/src \
@@ -141,3 +151,15 @@ fetch-openapi-spec backendCommit:
     curl \
         -o .generation/input/openapi.json \
         https://raw.githubusercontent.com/geo-engine/geoengine/{{ backendCommit }}/openapi.json
+
+# Check if there are uncommitted changes in the git repository. If there are, print an error message and exit with a non-zero status code. Otherwise, print a success message.
+[group('CI')]
+check-no-changes-in-git-repo:
+    #!/usr/bin/env bash
+    if [ -n "$(git status --porcelain)" ]; then
+      echo "Error: Uncommitted changes found in git repository."
+      git status --porcelain
+      exit 1
+    else
+      echo "No uncommitted changes found in git repository."
+    fi

@@ -43,6 +43,7 @@ _build-typescript: _clean_dirs_typescript
 [group('config')]
 lint-openapi-spec: _clear
     npx {{ OPENAPI_GENERATOR_PACKAGE }} validate -i .generation/input/openapi.json --recommend
+    rm openapitools.json
 
 # Remove some directories because they are not be overwritten by the generator.
 [arg('language', pattern='python|typescript')]
@@ -116,6 +117,7 @@ generate-configs:
 
 # Update the backend commit in the config.ini and increment the version.
 [group('config')]
+[arg("backendCommit", long="backendCommit", help="The commit hash of the backend for which to fetch the OpenAPI specification.")]
 update-config backendCommit: _clear (_update-config backendCommit) generate-configs (fetch-openapi-spec backendCommit) lint-openapi-spec
 
 [script("python3")]
@@ -146,6 +148,7 @@ _update-config backendCommit:
 
 # Fetch the OpenAPI specification for the given backend commit from the Geo Engine repository and save it to the input directory.
 [group('config')]
+[arg("backendCommit", long="backendCommit", help="The commit hash of the backend for which to fetch the OpenAPI specification.")]
 fetch-openapi-spec backendCommit:
     @echo "Fetching OpenAPI specification for backend commit {{ backendCommit }}…"
     curl \

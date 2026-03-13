@@ -23,7 +23,7 @@ export interface InternalDataId {
     datasetId: string;
     /**
      *
-     * @type {string}
+     * @type {InternalDataIdTypeEnum}
      * @memberof InternalDataId
      */
     type: InternalDataIdTypeEnum;

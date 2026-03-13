@@ -132,9 +132,9 @@ export interface UpdateLoadingInfoHandlerRequest {
 export class DatasetsApi extends runtime.BaseAPI {
 
     /**
-     * Add a tile to a gdal dataset.
+     * Creates request options for addDatasetTilesHandler without sending the request
      */
-    async addDatasetTilesHandlerRaw(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addDatasetTilesHandlerRequestOpts(requestParameters: AddDatasetTilesHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['dataset'] == null) {
             throw new runtime.RequiredError(
                 'dataset',
@@ -167,13 +167,21 @@ export class DatasetsApi extends runtime.BaseAPI {
         let urlPath = `/dataset/{dataset}/tiles`;
         urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: AutoCreateDatasetToJSON(requestParameters['autoCreateDataset']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Add a tile to a gdal dataset.
+     */
+    async addDatasetTilesHandlerRaw(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.addDatasetTilesHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -186,9 +194,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
+     * Creates request options for autoCreateDatasetHandler without sending the request
      */
-    async autoCreateDatasetHandlerRaw(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DatasetNameResponse>> {
+    async autoCreateDatasetHandlerRequestOpts(requestParameters: AutoCreateDatasetHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['autoCreateDataset'] == null) {
             throw new runtime.RequiredError(
                 'autoCreateDataset',
@@ -213,13 +221,21 @@ export class DatasetsApi extends runtime.BaseAPI {
 
         let urlPath = `/dataset/auto`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: AutoCreateDatasetToJSON(requestParameters['autoCreateDataset']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
+     */
+    async autoCreateDatasetHandlerRaw(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DatasetNameResponse>> {
+        const requestOptions = await this.autoCreateDatasetHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DatasetNameResponseFromJSON(jsonValue));
     }
@@ -233,9 +249,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+     * Creates request options for createDatasetHandler without sending the request
      */
-    async createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DatasetNameResponse>> {
+    async createDatasetHandlerRequestOpts(requestParameters: CreateDatasetHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createDataset'] == null) {
             throw new runtime.RequiredError(
                 'createDataset',
@@ -260,13 +276,21 @@ export class DatasetsApi extends runtime.BaseAPI {
 
         let urlPath = `/dataset`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateDatasetToJSON(requestParameters['createDataset']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
+     */
+    async createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DatasetNameResponse>> {
+        const requestOptions = await this.createDatasetHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DatasetNameResponseFromJSON(jsonValue));
     }
@@ -280,9 +304,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a dataset
+     * Creates request options for deleteDatasetHandler without sending the request
      */
-    async deleteDatasetHandlerRaw(requestParameters: DeleteDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteDatasetHandlerRequestOpts(requestParameters: DeleteDatasetHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['dataset'] == null) {
             throw new runtime.RequiredError(
                 'dataset',
@@ -306,12 +330,20 @@ export class DatasetsApi extends runtime.BaseAPI {
         let urlPath = `/dataset/{dataset}`;
         urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a dataset
+     */
+    async deleteDatasetHandlerRaw(requestParameters: DeleteDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteDatasetHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -324,9 +356,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves details about a dataset using the internal name.
+     * Creates request options for getDatasetHandler without sending the request
      */
-    async getDatasetHandlerRaw(requestParameters: GetDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Dataset>> {
+    async getDatasetHandlerRequestOpts(requestParameters: GetDatasetHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['dataset'] == null) {
             throw new runtime.RequiredError(
                 'dataset',
@@ -350,12 +382,20 @@ export class DatasetsApi extends runtime.BaseAPI {
         let urlPath = `/dataset/{dataset}`;
         urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves details about a dataset using the internal name.
+     */
+    async getDatasetHandlerRaw(requestParameters: GetDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Dataset>> {
+        const requestOptions = await this.getDatasetHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => DatasetFromJSON(jsonValue));
     }
@@ -369,9 +409,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the loading information of a dataset
+     * Creates request options for getLoadingInfoHandler without sending the request
      */
-    async getLoadingInfoHandlerRaw(requestParameters: GetLoadingInfoHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetaDataDefinition>> {
+    async getLoadingInfoHandlerRequestOpts(requestParameters: GetLoadingInfoHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['dataset'] == null) {
             throw new runtime.RequiredError(
                 'dataset',
@@ -395,12 +435,20 @@ export class DatasetsApi extends runtime.BaseAPI {
         let urlPath = `/dataset/{dataset}/loadingInfo`;
         urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves the loading information of a dataset
+     */
+    async getLoadingInfoHandlerRaw(requestParameters: GetLoadingInfoHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetaDataDefinition>> {
+        const requestOptions = await this.getLoadingInfoHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MetaDataDefinitionFromJSON(jsonValue));
     }
@@ -414,9 +462,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists available datasets.
+     * Creates request options for listDatasetsHandler without sending the request
      */
-    async listDatasetsHandlerRaw(requestParameters: ListDatasetsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DatasetListing>>> {
+    async listDatasetsHandlerRequestOpts(requestParameters: ListDatasetsHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['order'] == null) {
             throw new runtime.RequiredError(
                 'order',
@@ -473,12 +521,20 @@ export class DatasetsApi extends runtime.BaseAPI {
 
         let urlPath = `/datasets`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Lists available datasets.
+     */
+    async listDatasetsHandlerRaw(requestParameters: ListDatasetsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DatasetListing>>> {
+        const requestOptions = await this.listDatasetsHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DatasetListingFromJSON));
     }
@@ -492,9 +548,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the layers of a file in a volume.
+     * Creates request options for listVolumeFileLayersHandler without sending the request
      */
-    async listVolumeFileLayersHandlerRaw(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VolumeFileLayersResponse>> {
+    async listVolumeFileLayersHandlerRequestOpts(requestParameters: ListVolumeFileLayersHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['volumeName'] == null) {
             throw new runtime.RequiredError(
                 'volumeName',
@@ -526,12 +582,20 @@ export class DatasetsApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"volume_name"}}`, encodeURIComponent(String(requestParameters['volumeName'])));
         urlPath = urlPath.replace(`{${"file_name"}}`, encodeURIComponent(String(requestParameters['fileName'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List the layers of a file in a volume.
+     */
+    async listVolumeFileLayersHandlerRaw(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VolumeFileLayersResponse>> {
+        const requestOptions = await this.listVolumeFileLayersHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => VolumeFileLayersResponseFromJSON(jsonValue));
     }
@@ -545,9 +609,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists available volumes.
+     * Creates request options for listVolumesHandler without sending the request
      */
-    async listVolumesHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Volume>>> {
+    async listVolumesHandlerRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -563,12 +627,20 @@ export class DatasetsApi extends runtime.BaseAPI {
 
         let urlPath = `/dataset/volumes`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Lists available volumes.
+     */
+    async listVolumesHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Volume>>> {
+        const requestOptions = await this.listVolumesHandlerRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(VolumeFromJSON));
     }
@@ -582,9 +654,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
+     * Creates request options for suggestMetaDataHandler without sending the request
      */
-    async suggestMetaDataHandlerRaw(requestParameters: SuggestMetaDataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetaDataSuggestion>> {
+    async suggestMetaDataHandlerRequestOpts(requestParameters: SuggestMetaDataHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['suggestMetaData'] == null) {
             throw new runtime.RequiredError(
                 'suggestMetaData',
@@ -609,13 +681,21 @@ export class DatasetsApi extends runtime.BaseAPI {
 
         let urlPath = `/dataset/suggest`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: SuggestMetaDataToJSON(requestParameters['suggestMetaData']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
+     */
+    async suggestMetaDataHandlerRaw(requestParameters: SuggestMetaDataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MetaDataSuggestion>> {
+        const requestOptions = await this.suggestMetaDataHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MetaDataSuggestionFromJSON(jsonValue));
     }
@@ -629,9 +709,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update details about a dataset using the internal name.
+     * Creates request options for updateDatasetHandler without sending the request
      */
-    async updateDatasetHandlerRaw(requestParameters: UpdateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateDatasetHandlerRequestOpts(requestParameters: UpdateDatasetHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['dataset'] == null) {
             throw new runtime.RequiredError(
                 'dataset',
@@ -664,13 +744,21 @@ export class DatasetsApi extends runtime.BaseAPI {
         let urlPath = `/dataset/{dataset}`;
         urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateDatasetToJSON(requestParameters['updateDataset']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update details about a dataset using the internal name.
+     */
+    async updateDatasetHandlerRaw(requestParameters: UpdateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateDatasetHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -683,8 +771,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for updateDatasetProvenanceHandler without sending the request
      */
-    async updateDatasetProvenanceHandlerRaw(requestParameters: UpdateDatasetProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateDatasetProvenanceHandlerRequestOpts(requestParameters: UpdateDatasetProvenanceHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['dataset'] == null) {
             throw new runtime.RequiredError(
                 'dataset',
@@ -717,13 +806,20 @@ export class DatasetsApi extends runtime.BaseAPI {
         let urlPath = `/dataset/{dataset}/provenance`;
         urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: ProvenancesToJSON(requestParameters['provenances']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async updateDatasetProvenanceHandlerRaw(requestParameters: UpdateDatasetProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateDatasetProvenanceHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -735,9 +831,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates the dataset\'s symbology
+     * Creates request options for updateDatasetSymbologyHandler without sending the request
      */
-    async updateDatasetSymbologyHandlerRaw(requestParameters: UpdateDatasetSymbologyHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateDatasetSymbologyHandlerRequestOpts(requestParameters: UpdateDatasetSymbologyHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['dataset'] == null) {
             throw new runtime.RequiredError(
                 'dataset',
@@ -770,13 +866,21 @@ export class DatasetsApi extends runtime.BaseAPI {
         let urlPath = `/dataset/{dataset}/symbology`;
         urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: SymbologyToJSON(requestParameters['symbology']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Updates the dataset\'s symbology
+     */
+    async updateDatasetSymbologyHandlerRaw(requestParameters: UpdateDatasetSymbologyHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateDatasetSymbologyHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -789,9 +893,9 @@ export class DatasetsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates the dataset\'s loading info
+     * Creates request options for updateLoadingInfoHandler without sending the request
      */
-    async updateLoadingInfoHandlerRaw(requestParameters: UpdateLoadingInfoHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateLoadingInfoHandlerRequestOpts(requestParameters: UpdateLoadingInfoHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['dataset'] == null) {
             throw new runtime.RequiredError(
                 'dataset',
@@ -824,13 +928,21 @@ export class DatasetsApi extends runtime.BaseAPI {
         let urlPath = `/dataset/{dataset}/loadingInfo`;
         urlPath = urlPath.replace(`{${"dataset"}}`, encodeURIComponent(String(requestParameters['dataset'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: MetaDataDefinitionToJSON(requestParameters['metaDataDefinition']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Updates the dataset\'s loading info
+     */
+    async updateLoadingInfoHandlerRaw(requestParameters: UpdateLoadingInfoHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateLoadingInfoHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }

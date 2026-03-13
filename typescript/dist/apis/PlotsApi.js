@@ -30,10 +30,9 @@ const index_1 = require("../models/index");
  */
 class PlotsApi extends runtime.BaseAPI {
     /**
-     * # Example  1. Upload the file `plain_data.csv` with the following content:  ```csv a 1 2 ``` 2. Create a dataset from it using the \"Plain Data\" example at `/dataset`. 3. Create a statistics workflow using the \"Statistics Plot\" example at `/workflow`. 4. Generate the plot with this handler.
-     * Generates a plot.
+     * Creates request options for getPlotHandler without sending the request
      */
-    getPlotHandlerRaw(requestParameters, initOverrides) {
+    getPlotHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['bbox'] == null) {
                 throw new runtime.RequiredError('bbox', 'Required parameter "bbox" was null or undefined when calling getPlotHandler().');
@@ -70,12 +69,22 @@ class PlotsApi extends runtime.BaseAPI {
             }
             let urlPath = `/plot/{id}`;
             urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * # Example  1. Upload the file `plain_data.csv` with the following content:  ```csv a 1 2 ``` 2. Create a dataset from it using the \"Plain Data\" example at `/dataset`. 3. Create a statistics workflow using the \"Statistics Plot\" example at `/workflow`. 4. Generate the plot with this handler.
+     * Generates a plot.
+     */
+    getPlotHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getPlotHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.WrappedPlotOutputFromJSON)(jsonValue));
         });
     }

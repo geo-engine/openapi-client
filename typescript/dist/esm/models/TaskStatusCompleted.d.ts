@@ -29,7 +29,7 @@ export interface TaskStatusCompleted {
     info?: any | null;
     /**
      *
-     * @type {string}
+     * @type {TaskStatusCompletedStatusEnum}
      * @memberof TaskStatusCompleted
      */
     status: TaskStatusCompletedStatusEnum;

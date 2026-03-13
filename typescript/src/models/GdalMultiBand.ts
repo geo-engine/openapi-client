@@ -35,7 +35,7 @@ export interface GdalMultiBand {
     resultDescriptor: RasterResultDescriptor;
     /**
      * 
-     * @type {string}
+     * @type {GdalMultiBandTypeEnum}
      * @memberof GdalMultiBand
      */
     type: GdalMultiBandTypeEnum;

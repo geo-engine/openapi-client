@@ -28,9 +28,9 @@ import {
 export class GeneralApi extends runtime.BaseAPI {
 
     /**
-     * Server availablity check.
+     * Creates request options for availableHandler without sending the request
      */
-    async availableHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async availableHandlerRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -38,12 +38,20 @@ export class GeneralApi extends runtime.BaseAPI {
 
         let urlPath = `/available`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Server availablity check.
+     */
+    async availableHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.availableHandlerRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -56,9 +64,9 @@ export class GeneralApi extends runtime.BaseAPI {
     }
 
     /**
-     * Shows information about the server software version.
+     * Creates request options for serverInfoHandler without sending the request
      */
-    async serverInfoHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServerInfo>> {
+    async serverInfoHandlerRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -66,12 +74,20 @@ export class GeneralApi extends runtime.BaseAPI {
 
         let urlPath = `/info`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Shows information about the server software version.
+     */
+    async serverInfoHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ServerInfo>> {
+        const requestOptions = await this.serverInfoHandlerRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ServerInfoFromJSON(jsonValue));
     }

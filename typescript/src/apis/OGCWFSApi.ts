@@ -54,9 +54,9 @@ export interface WfsHandlerRequest {
 export class OGCWFSApi extends runtime.BaseAPI {
 
     /**
-     * OGC WFS endpoint
+     * Creates request options for wfsHandler without sending the request
      */
-    async wfsHandlerRaw(requestParameters: WfsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeoJson>> {
+    async wfsHandlerRequestOpts(requestParameters: WfsHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['workflow'] == null) {
             throw new runtime.RequiredError(
                 'workflow',
@@ -139,12 +139,20 @@ export class OGCWFSApi extends runtime.BaseAPI {
         let urlPath = `/wfs/{workflow}`;
         urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * OGC WFS endpoint
+     */
+    async wfsHandlerRaw(requestParameters: WfsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GeoJson>> {
+        const requestOptions = await this.wfsHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GeoJsonFromJSON(jsonValue));
     }

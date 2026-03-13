@@ -35,7 +35,7 @@ export interface Workflow {
     operator: TypedOperatorOperator;
     /**
      * 
-     * @type {string}
+     * @type {WorkflowTypeEnum}
      * @memberof Workflow
      */
     type: WorkflowTypeEnum;

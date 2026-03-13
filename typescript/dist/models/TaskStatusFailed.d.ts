@@ -29,7 +29,7 @@ export interface TaskStatusFailed {
     error: any | null;
     /**
      *
-     * @type {string}
+     * @type {TaskStatusFailedStatusEnum}
      * @memberof TaskStatusFailed
      */
     status: TaskStatusFailedStatusEnum;

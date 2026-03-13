@@ -65,6 +65,10 @@ export interface UpdateLoadingInfoHandlerRequest {
  */
 export declare class DatasetsApi extends runtime.BaseAPI {
     /**
+     * Creates request options for addDatasetTilesHandler without sending the request
+     */
+    addDatasetTilesHandlerRequestOpts(requestParameters: AddDatasetTilesHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Add a tile to a gdal dataset.
      */
     addDatasetTilesHandlerRaw(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -72,6 +76,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Add a tile to a gdal dataset.
      */
     addDatasetTilesHandler(requestParameters: AddDatasetTilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for autoCreateDatasetHandler without sending the request
+     */
+    autoCreateDatasetHandlerRequestOpts(requestParameters: AutoCreateDatasetHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Creates a new dataset using previously uploaded files. The format of the files will be automatically detected when possible.
      */
@@ -81,6 +89,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      */
     autoCreateDatasetHandler(requestParameters: AutoCreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DatasetNameResponse>;
     /**
+     * Creates request options for createDatasetHandler without sending the request
+     */
+    createDatasetHandlerRequestOpts(requestParameters: CreateDatasetHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     createDatasetHandlerRaw(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DatasetNameResponse>>;
@@ -88,6 +100,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Creates a new dataset referencing files. Users can reference previously uploaded files. Admins can reference files from a volume.
      */
     createDatasetHandler(requestParameters: CreateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DatasetNameResponse>;
+    /**
+     * Creates request options for deleteDatasetHandler without sending the request
+     */
+    deleteDatasetHandlerRequestOpts(requestParameters: DeleteDatasetHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Delete a dataset
      */
@@ -97,6 +113,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      */
     deleteDatasetHandler(requestParameters: DeleteDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for getDatasetHandler without sending the request
+     */
+    getDatasetHandlerRequestOpts(requestParameters: GetDatasetHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Retrieves details about a dataset using the internal name.
      */
     getDatasetHandlerRaw(requestParameters: GetDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Dataset>>;
@@ -104,6 +124,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Retrieves details about a dataset using the internal name.
      */
     getDatasetHandler(requestParameters: GetDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Dataset>;
+    /**
+     * Creates request options for getLoadingInfoHandler without sending the request
+     */
+    getLoadingInfoHandlerRequestOpts(requestParameters: GetLoadingInfoHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Retrieves the loading information of a dataset
      */
@@ -113,6 +137,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      */
     getLoadingInfoHandler(requestParameters: GetLoadingInfoHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetaDataDefinition>;
     /**
+     * Creates request options for listDatasetsHandler without sending the request
+     */
+    listDatasetsHandlerRequestOpts(requestParameters: ListDatasetsHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Lists available datasets.
      */
     listDatasetsHandlerRaw(requestParameters: ListDatasetsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DatasetListing>>>;
@@ -120,6 +148,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Lists available datasets.
      */
     listDatasetsHandler(requestParameters: ListDatasetsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DatasetListing>>;
+    /**
+     * Creates request options for listVolumeFileLayersHandler without sending the request
+     */
+    listVolumeFileLayersHandlerRequestOpts(requestParameters: ListVolumeFileLayersHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * List the layers of a file in a volume.
      */
@@ -129,6 +161,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      */
     listVolumeFileLayersHandler(requestParameters: ListVolumeFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VolumeFileLayersResponse>;
     /**
+     * Creates request options for listVolumesHandler without sending the request
+     */
+    listVolumesHandlerRequestOpts(): Promise<runtime.RequestOpts>;
+    /**
      * Lists available volumes.
      */
     listVolumesHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Volume>>>;
@@ -136,6 +172,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Lists available volumes.
      */
     listVolumesHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Volume>>;
+    /**
+     * Creates request options for suggestMetaDataHandler without sending the request
+     */
+    suggestMetaDataHandlerRequestOpts(requestParameters: SuggestMetaDataHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Inspects an upload and suggests metadata that can be used when creating a new dataset based on it. Tries to automatically detect the main file and layer name if not specified.
      */
@@ -145,6 +185,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      */
     suggestMetaDataHandler(requestParameters: SuggestMetaDataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MetaDataSuggestion>;
     /**
+     * Creates request options for updateDatasetHandler without sending the request
+     */
+    updateDatasetHandlerRequestOpts(requestParameters: UpdateDatasetHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Update details about a dataset using the internal name.
      */
     updateDatasetHandlerRaw(requestParameters: UpdateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -153,11 +197,19 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      */
     updateDatasetHandler(requestParameters: UpdateDatasetHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for updateDatasetProvenanceHandler without sending the request
+     */
+    updateDatasetProvenanceHandlerRequestOpts(requestParameters: UpdateDatasetProvenanceHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      */
     updateDatasetProvenanceHandlerRaw(requestParameters: UpdateDatasetProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      */
     updateDatasetProvenanceHandler(requestParameters: UpdateDatasetProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for updateDatasetSymbologyHandler without sending the request
+     */
+    updateDatasetSymbologyHandlerRequestOpts(requestParameters: UpdateDatasetSymbologyHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Updates the dataset\'s symbology
      */
@@ -166,6 +218,10 @@ export declare class DatasetsApi extends runtime.BaseAPI {
      * Updates the dataset\'s symbology
      */
     updateDatasetSymbologyHandler(requestParameters: UpdateDatasetSymbologyHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for updateLoadingInfoHandler without sending the request
+     */
+    updateLoadingInfoHandlerRequestOpts(requestParameters: UpdateLoadingInfoHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Updates the dataset\'s loading info
      */

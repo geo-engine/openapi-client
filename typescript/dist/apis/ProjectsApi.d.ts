@@ -41,6 +41,10 @@ export interface UpdateProjectHandlerRequest {
  */
 export declare class ProjectsApi extends runtime.BaseAPI {
     /**
+     * Creates request options for createProjectHandler without sending the request
+     */
+    createProjectHandlerRequestOpts(requestParameters: CreateProjectHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Create a new project for the user.
      */
     createProjectHandlerRaw(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
@@ -48,6 +52,10 @@ export declare class ProjectsApi extends runtime.BaseAPI {
      * Create a new project for the user.
      */
     createProjectHandler(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
+    /**
+     * Creates request options for deleteProjectHandler without sending the request
+     */
+    deleteProjectHandlerRequestOpts(requestParameters: DeleteProjectHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Deletes a project.
      */
@@ -57,6 +65,10 @@ export declare class ProjectsApi extends runtime.BaseAPI {
      */
     deleteProjectHandler(requestParameters: DeleteProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for listProjectsHandler without sending the request
+     */
+    listProjectsHandlerRequestOpts(requestParameters: ListProjectsHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * List all projects accessible to the user that match the selected criteria.
      */
     listProjectsHandlerRaw(requestParameters: ListProjectsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectListing>>>;
@@ -64,6 +76,10 @@ export declare class ProjectsApi extends runtime.BaseAPI {
      * List all projects accessible to the user that match the selected criteria.
      */
     listProjectsHandler(requestParameters: ListProjectsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProjectListing>>;
+    /**
+     * Creates request options for loadProjectLatestHandler without sending the request
+     */
+    loadProjectLatestHandlerRequestOpts(requestParameters: LoadProjectLatestHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Retrieves details about the latest version of a project.
      */
@@ -73,6 +89,10 @@ export declare class ProjectsApi extends runtime.BaseAPI {
      */
     loadProjectLatestHandler(requestParameters: LoadProjectLatestHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
     /**
+     * Creates request options for loadProjectVersionHandler without sending the request
+     */
+    loadProjectVersionHandlerRequestOpts(requestParameters: LoadProjectVersionHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Retrieves details about the given version of a project.
      */
     loadProjectVersionHandlerRaw(requestParameters: LoadProjectVersionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>>;
@@ -81,6 +101,10 @@ export declare class ProjectsApi extends runtime.BaseAPI {
      */
     loadProjectVersionHandler(requestParameters: LoadProjectVersionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Project>;
     /**
+     * Creates request options for projectVersionsHandler without sending the request
+     */
+    projectVersionsHandlerRequestOpts(requestParameters: ProjectVersionsHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Lists all available versions of a project.
      */
     projectVersionsHandlerRaw(requestParameters: ProjectVersionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectVersion>>>;
@@ -88,6 +112,10 @@ export declare class ProjectsApi extends runtime.BaseAPI {
      * Lists all available versions of a project.
      */
     projectVersionsHandler(requestParameters: ProjectVersionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ProjectVersion>>;
+    /**
+     * Creates request options for updateProjectHandler without sending the request
+     */
+    updateProjectHandlerRequestOpts(requestParameters: UpdateProjectHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Updates a project. This will create a new version.
      */

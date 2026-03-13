@@ -36,7 +36,7 @@ export interface OgrSourceDatasetTimeTypeStartDuration {
     startFormat: OgrSourceTimeFormat;
     /**
      *
-     * @type {string}
+     * @type {OgrSourceDatasetTimeTypeStartDurationTypeEnum}
      * @memberof OgrSourceDatasetTimeTypeStartDuration
      */
     type: OgrSourceDatasetTimeTypeStartDurationTypeEnum;

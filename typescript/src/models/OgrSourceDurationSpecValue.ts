@@ -36,7 +36,7 @@ import {
 export interface OgrSourceDurationSpecValue extends TimeStep {
     /**
      * 
-     * @type {string}
+     * @type {OgrSourceDurationSpecValueTypeEnum}
      * @memberof OgrSourceDurationSpecValue
      */
     type: OgrSourceDurationSpecValueTypeEnum;

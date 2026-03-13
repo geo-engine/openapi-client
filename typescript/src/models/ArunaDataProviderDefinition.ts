@@ -75,7 +75,7 @@ export interface ArunaDataProviderDefinition {
     projectId: string;
     /**
      * 
-     * @type {string}
+     * @type {ArunaDataProviderDefinitionTypeEnum}
      * @memberof ArunaDataProviderDefinition
      */
     type: ArunaDataProviderDefinitionTypeEnum;

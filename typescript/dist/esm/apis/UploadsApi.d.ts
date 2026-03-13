@@ -26,6 +26,10 @@ export interface UploadHandlerRequest {
  */
 export declare class UploadsApi extends runtime.BaseAPI {
     /**
+     * Creates request options for listUploadFileLayersHandler without sending the request
+     */
+    listUploadFileLayersHandlerRequestOpts(requestParameters: ListUploadFileLayersHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * List the layers of on uploaded file.
      */
     listUploadFileLayersHandlerRaw(requestParameters: ListUploadFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFileLayersResponse>>;
@@ -34,6 +38,10 @@ export declare class UploadsApi extends runtime.BaseAPI {
      */
     listUploadFileLayersHandler(requestParameters: ListUploadFileLayersHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadFileLayersResponse>;
     /**
+     * Creates request options for listUploadFilesHandler without sending the request
+     */
+    listUploadFilesHandlerRequestOpts(requestParameters: ListUploadFilesHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * List the files of on upload.
      */
     listUploadFilesHandlerRaw(requestParameters: ListUploadFilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFilesResponse>>;
@@ -41,6 +49,10 @@ export declare class UploadsApi extends runtime.BaseAPI {
      * List the files of on upload.
      */
     listUploadFilesHandler(requestParameters: ListUploadFilesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadFilesResponse>;
+    /**
+     * Creates request options for uploadHandler without sending the request
+     */
+    uploadHandlerRequestOpts(requestParameters: UploadHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Uploads files.
      */

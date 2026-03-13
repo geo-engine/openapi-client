@@ -30,7 +30,7 @@ export interface SingleBandRasterColorizer {
     bandColorizer: Colorizer;
     /**
      *
-     * @type {string}
+     * @type {SingleBandRasterColorizerTypeEnum}
      * @memberof SingleBandRasterColorizer
      */
     type: SingleBandRasterColorizerTypeEnum;

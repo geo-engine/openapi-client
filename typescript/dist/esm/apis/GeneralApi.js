@@ -27,19 +27,28 @@ import { ServerInfoFromJSON, } from '../models/index';
  */
 export class GeneralApi extends runtime.BaseAPI {
     /**
-     * Server availablity check.
+     * Creates request options for availableHandler without sending the request
      */
-    availableHandlerRaw(initOverrides) {
+    availableHandlerRequestOpts() {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
             let urlPath = `/available`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Server availablity check.
+     */
+    availableHandlerRaw(initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.availableHandlerRequestOpts();
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -52,19 +61,28 @@ export class GeneralApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Shows information about the server software version.
+     * Creates request options for serverInfoHandler without sending the request
      */
-    serverInfoHandlerRaw(initOverrides) {
+    serverInfoHandlerRequestOpts() {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
             let urlPath = `/info`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Shows information about the server software version.
+     */
+    serverInfoHandlerRaw(initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.serverInfoHandlerRequestOpts();
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => ServerInfoFromJSON(jsonValue));
         });
     }

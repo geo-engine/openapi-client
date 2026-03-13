@@ -57,7 +57,7 @@ import {
 export interface TypedVectorResultDescriptor extends VectorResultDescriptor {
     /**
      * 
-     * @type {string}
+     * @type {TypedVectorResultDescriptorTypeEnum}
      * @memberof TypedVectorResultDescriptor
      */
     type: TypedVectorResultDescriptorTypeEnum;

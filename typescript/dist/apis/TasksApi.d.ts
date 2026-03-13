@@ -28,6 +28,10 @@ export interface StatusHandlerRequest {
  */
 export declare class TasksApi extends runtime.BaseAPI {
     /**
+     * Creates request options for abortHandler without sending the request
+     */
+    abortHandlerRequestOpts(requestParameters: AbortHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
      * Abort a running task.
      */
@@ -38,6 +42,10 @@ export declare class TasksApi extends runtime.BaseAPI {
      */
     abortHandler(requestParameters: AbortHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for listHandler without sending the request
+     */
+    listHandlerRequestOpts(requestParameters: ListHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Retrieve the status of all tasks.
      */
     listHandlerRaw(requestParameters: ListHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaskStatusWithId>>>;
@@ -45,6 +53,10 @@ export declare class TasksApi extends runtime.BaseAPI {
      * Retrieve the status of all tasks.
      */
     listHandler(requestParameters: ListHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TaskStatusWithId>>;
+    /**
+     * Creates request options for statusHandler without sending the request
+     */
+    statusHandlerRequestOpts(requestParameters: StatusHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Retrieve the status of a task.
      */

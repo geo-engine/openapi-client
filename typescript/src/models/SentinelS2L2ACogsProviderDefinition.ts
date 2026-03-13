@@ -90,7 +90,7 @@ export interface SentinelS2L2ACogsProviderDefinition {
     stacApiRetries?: StacApiRetries;
     /**
      * 
-     * @type {string}
+     * @type {SentinelS2L2ACogsProviderDefinitionTypeEnum}
      * @memberof SentinelS2L2ACogsProviderDefinition
      */
     type: SentinelS2L2ACogsProviderDefinitionTypeEnum;

@@ -17,7 +17,7 @@
 export interface TimeDimensionOneOf1 {
     /**
      *
-     * @type {string}
+     * @type {TimeDimensionOneOf1TypeEnum}
      * @memberof TimeDimensionOneOf1
      */
     type: TimeDimensionOneOf1TypeEnum;

@@ -29,9 +29,9 @@ const runtime = require("../runtime");
  */
 class OGCWMSApi extends runtime.BaseAPI {
     /**
-     * OGC WMS endpoint
+     * Creates request options for wmsHandler without sending the request
      */
-    wmsHandlerRaw(requestParameters, initOverrides) {
+    wmsHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['workflow'] == null) {
                 throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wmsHandler().');
@@ -110,12 +110,21 @@ class OGCWMSApi extends runtime.BaseAPI {
             }
             let urlPath = `/wms/{workflow}`;
             urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * OGC WMS endpoint
+     */
+    wmsHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.wmsHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.BlobApiResponse(response);
         });
     }

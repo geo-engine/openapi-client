@@ -24,7 +24,7 @@ export interface TypedOperator {
     operator: TypedOperatorOperator;
     /**
      *
-     * @type {string}
+     * @type {TypedOperatorTypeEnum}
      * @memberof TypedOperator
      */
     type: TypedOperatorTypeEnum;

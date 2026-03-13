@@ -19,6 +19,10 @@ export interface GetSpatialReferenceSpecificationHandlerRequest {
  */
 export declare class SpatialReferencesApi extends runtime.BaseAPI {
     /**
+     * Creates request options for getSpatialReferenceSpecificationHandler without sending the request
+     */
+    getSpatialReferenceSpecificationHandlerRequestOpts(requestParameters: GetSpatialReferenceSpecificationHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      */
     getSpatialReferenceSpecificationHandlerRaw(requestParameters: GetSpatialReferenceSpecificationHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SpatialReferenceSpecification>>;
     /**

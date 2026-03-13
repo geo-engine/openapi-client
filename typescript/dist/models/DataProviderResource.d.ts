@@ -23,7 +23,7 @@ export interface DataProviderResource {
     id: string;
     /**
      *
-     * @type {string}
+     * @type {DataProviderResourceTypeEnum}
      * @memberof DataProviderResource
      */
     type: DataProviderResourceTypeEnum;

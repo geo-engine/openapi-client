@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface StaticNumber {
     /**
      * 
-     * @type {string}
+     * @type {StaticNumberTypeEnum}
      * @memberof StaticNumber
      */
     type: StaticNumberTypeEnum;

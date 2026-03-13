@@ -30,9 +30,9 @@ const index_1 = require("../models/index");
  */
 class WorkflowsApi extends runtime.BaseAPI {
     /**
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
+     * Creates request options for datasetFromWorkflowHandler without sending the request
      */
-    datasetFromWorkflowHandlerRaw(requestParameters, initOverrides) {
+    datasetFromWorkflowHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['id'] == null) {
                 throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling datasetFromWorkflowHandler().');
@@ -52,13 +52,22 @@ class WorkflowsApi extends runtime.BaseAPI {
             }
             let urlPath = `/datasetFromWorkflow/{id}`;
             urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: (0, index_1.RasterDatasetFromWorkflowToJSON)(requestParameters['rasterDatasetFromWorkflow']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
+     */
+    datasetFromWorkflowHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.datasetFromWorkflowHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TaskResponseFromJSON)(jsonValue));
         });
     }
@@ -72,9 +81,9 @@ class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Gets a ZIP archive of the worklow, its provenance and the output metadata.
+     * Creates request options for getWorkflowAllMetadataZipHandler without sending the request
      */
-    getWorkflowAllMetadataZipHandlerRaw(requestParameters, initOverrides) {
+    getWorkflowAllMetadataZipHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['id'] == null) {
                 throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getWorkflowAllMetadataZipHandler().');
@@ -90,12 +99,21 @@ class WorkflowsApi extends runtime.BaseAPI {
             }
             let urlPath = `/workflow/{id}/allMetadata/zip`;
             urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Gets a ZIP archive of the worklow, its provenance and the output metadata.
+     */
+    getWorkflowAllMetadataZipHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getWorkflowAllMetadataZipHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.BlobApiResponse(response);
         });
     }
@@ -109,9 +127,9 @@ class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Gets the metadata of a workflow
+     * Creates request options for getWorkflowMetadataHandler without sending the request
      */
-    getWorkflowMetadataHandlerRaw(requestParameters, initOverrides) {
+    getWorkflowMetadataHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['id'] == null) {
                 throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getWorkflowMetadataHandler().');
@@ -127,12 +145,21 @@ class WorkflowsApi extends runtime.BaseAPI {
             }
             let urlPath = `/workflow/{id}/metadata`;
             urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Gets the metadata of a workflow
+     */
+    getWorkflowMetadataHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getWorkflowMetadataHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TypedResultDescriptorFromJSON)(jsonValue));
         });
     }
@@ -146,9 +173,9 @@ class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Gets the provenance of all datasets used in a workflow.
+     * Creates request options for getWorkflowProvenanceHandler without sending the request
      */
-    getWorkflowProvenanceHandlerRaw(requestParameters, initOverrides) {
+    getWorkflowProvenanceHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['id'] == null) {
                 throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling getWorkflowProvenanceHandler().');
@@ -164,12 +191,21 @@ class WorkflowsApi extends runtime.BaseAPI {
             }
             let urlPath = `/workflow/{id}/provenance`;
             urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Gets the provenance of all datasets used in a workflow.
+     */
+    getWorkflowProvenanceHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getWorkflowProvenanceHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(index_1.ProvenanceEntryFromJSON));
         });
     }
@@ -183,9 +219,9 @@ class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Retrieves an existing Workflow.
+     * Creates request options for loadWorkflowHandler without sending the request
      */
-    loadWorkflowHandlerRaw(requestParameters, initOverrides) {
+    loadWorkflowHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['id'] == null) {
                 throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling loadWorkflowHandler().');
@@ -201,12 +237,21 @@ class WorkflowsApi extends runtime.BaseAPI {
             }
             let urlPath = `/workflow/{id}`;
             urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Retrieves an existing Workflow.
+     */
+    loadWorkflowHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.loadWorkflowHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.WorkflowFromJSON)(jsonValue));
         });
     }
@@ -220,9 +265,9 @@ class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Query a workflow raster result as a stream of tiles via a websocket connection.
+     * Creates request options for rasterStreamWebsocket without sending the request
      */
-    rasterStreamWebsocketRaw(requestParameters, initOverrides) {
+    rasterStreamWebsocketRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['id'] == null) {
                 throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling rasterStreamWebsocket().');
@@ -262,12 +307,21 @@ class WorkflowsApi extends runtime.BaseAPI {
             }
             let urlPath = `/workflow/{id}/rasterStream`;
             urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Query a workflow raster result as a stream of tiles via a websocket connection.
+     */
+    rasterStreamWebsocketRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.rasterStreamWebsocketRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -280,9 +334,9 @@ class WorkflowsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Registers a new Workflow.
+     * Creates request options for registerWorkflowHandler without sending the request
      */
-    registerWorkflowHandlerRaw(requestParameters, initOverrides) {
+    registerWorkflowHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['workflow'] == null) {
                 throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling registerWorkflowHandler().');
@@ -298,13 +352,22 @@ class WorkflowsApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/workflow`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: (0, index_1.WorkflowToJSON)(requestParameters['workflow']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Registers a new Workflow.
+     */
+    registerWorkflowHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.registerWorkflowHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.IdResponseFromJSON)(jsonValue));
         });
     }

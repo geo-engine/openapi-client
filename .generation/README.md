@@ -2,17 +2,24 @@
 
 Auto-generated Python Client API for Geo Engine
 
-# Dependencies
+## Dependencies
 
 - Python
-- Podman
+- Java Runtime
 
-# Generation
+## Generation
 
 From the root of the repository run:
 
 ```bash
-.generation/generate.py python
+just build
+```
+
+For specific languages, run:
+
+```bash
+just build-python
+just build-typescript
 ```
 
 ## Dev-Mode
@@ -20,25 +27,27 @@ From the root of the repository run:
 To fetch the OpenAPI spec from the backend, run:
 
 ```bash
-wget -O .generation/input/openapi.json \
-  https://raw.githubusercontent.com/geo-engine/geoengine/refs/heads/main/openapi.json
+just fetch-openapi-spec --backendCommit=1076a616369dcc33e86b422a9364ac99553a18f8
 ```
 
-To run the generation in dev mode, run:
+You can verify the OpenAPI spec with:
 
 ```bash
-.generation/generate.py --no-spec-fetch --no-container-build python
+just lint-openapi-spec
 ```
-
-This will skip the running of the container and instead use the local files.
-It will also stop building the customized generator container.
 
 ## Update config.ini
 
 To update the config.ini file, run:
 
 ```bash
-.generation/update_config.py --backendCommit 1076a616369dcc33e86b422a9364ac99553a18f8
+just update-config --backendCommit=1076a616369dcc33e86b422a9364ac99553a18f8
 ```
 
 This will set a new backend commit hash and increment the version number.
+
+Note, that you still need to build the clients after updating the config.ini file, otherwise the generated code will not be updated. You can do this with:
+
+```bash
+just build
+```

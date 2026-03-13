@@ -49,10 +49,9 @@ export interface StatusHandlerRequest {
 export class TasksApi extends runtime.BaseAPI {
 
     /**
-     * # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
-     * Abort a running task.
+     * Creates request options for abortHandler without sending the request
      */
-    async abortHandlerRaw(requestParameters: AbortHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async abortHandlerRequestOpts(requestParameters: AbortHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -80,12 +79,21 @@ export class TasksApi extends runtime.BaseAPI {
         let urlPath = `/tasks/{id}`;
         urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * # Parameters  * `force` - If true, the task will be aborted without clean-up.             You can abort a task that is already in the process of aborting.
+     * Abort a running task.
+     */
+    async abortHandlerRaw(requestParameters: AbortHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.abortHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -99,9 +107,9 @@ export class TasksApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the status of all tasks.
+     * Creates request options for listHandler without sending the request
      */
-    async listHandlerRaw(requestParameters: ListHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaskStatusWithId>>> {
+    async listHandlerRequestOpts(requestParameters: ListHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['filter'] == null) {
             throw new runtime.RequiredError(
                 'filter',
@@ -141,12 +149,20 @@ export class TasksApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset'])));
         urlPath = urlPath.replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the status of all tasks.
+     */
+    async listHandlerRaw(requestParameters: ListHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TaskStatusWithId>>> {
+        const requestOptions = await this.listHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(TaskStatusWithIdFromJSON));
     }
@@ -160,9 +176,9 @@ export class TasksApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve the status of a task.
+     * Creates request options for statusHandler without sending the request
      */
-    async statusHandlerRaw(requestParameters: StatusHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskStatus>> {
+    async statusHandlerRequestOpts(requestParameters: StatusHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -186,12 +202,20 @@ export class TasksApi extends runtime.BaseAPI {
         let urlPath = `/tasks/{id}/status`;
         urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieve the status of a task.
+     */
+    async statusHandlerRaw(requestParameters: StatusHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskStatus>> {
+        const requestOptions = await this.statusHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TaskStatusFromJSON(jsonValue));
     }

@@ -18,7 +18,7 @@ import type { UnixTimeStampType } from './UnixTimeStampType';
 export interface OgrSourceTimeFormatUnixTimeStamp {
     /**
      *
-     * @type {string}
+     * @type {OgrSourceTimeFormatUnixTimeStampFormatEnum}
      * @memberof OgrSourceTimeFormatUnixTimeStamp
      */
     format: OgrSourceTimeFormatUnixTimeStampFormatEnum;

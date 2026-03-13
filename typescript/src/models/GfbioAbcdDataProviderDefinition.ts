@@ -59,7 +59,7 @@ export interface GfbioAbcdDataProviderDefinition {
     priority?: number | null;
     /**
      * 
-     * @type {string}
+     * @type {GfbioAbcdDataProviderDefinitionTypeEnum}
      * @memberof GfbioAbcdDataProviderDefinition
      */
     type: GfbioAbcdDataProviderDefinitionTypeEnum;

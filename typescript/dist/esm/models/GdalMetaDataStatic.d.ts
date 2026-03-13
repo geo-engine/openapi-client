@@ -44,7 +44,7 @@ export interface GdalMetaDataStatic {
     time?: TimeInterval | null;
     /**
      *
-     * @type {string}
+     * @type {GdalMetaDataStaticTypeEnum}
      * @memberof GdalMetaDataStatic
      */
     type: GdalMetaDataStaticTypeEnum;

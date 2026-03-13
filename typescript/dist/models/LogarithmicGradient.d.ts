@@ -36,7 +36,7 @@ export interface LogarithmicGradient {
     overColor: Array<number>;
     /**
      *
-     * @type {string}
+     * @type {LogarithmicGradientTypeEnum}
      * @memberof LogarithmicGradient
      */
     type: LogarithmicGradientTypeEnum;

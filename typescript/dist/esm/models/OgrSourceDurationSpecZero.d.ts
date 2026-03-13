@@ -17,7 +17,7 @@
 export interface OgrSourceDurationSpecZero {
     /**
      *
-     * @type {string}
+     * @type {OgrSourceDurationSpecZeroTypeEnum}
      * @memberof OgrSourceDurationSpecZero
      */
     type: OgrSourceDurationSpecZeroTypeEnum;

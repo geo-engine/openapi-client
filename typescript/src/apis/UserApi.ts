@@ -107,9 +107,9 @@ export interface UpdateUserQuotaHandlerRequest {
 export class UserApi extends runtime.BaseAPI {
 
     /**
-     * Add a new role. Requires admin privilige.
+     * Creates request options for addRoleHandler without sending the request
      */
-    async addRoleHandlerRaw(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+    async addRoleHandlerRequestOpts(requestParameters: AddRoleHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['addRole'] == null) {
             throw new runtime.RequiredError(
                 'addRole',
@@ -134,13 +134,21 @@ export class UserApi extends runtime.BaseAPI {
 
         let urlPath = `/roles`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: AddRoleToJSON(requestParameters['addRole']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Add a new role. Requires admin privilige.
+     */
+    async addRoleHandlerRaw(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+        const requestOptions = await this.addRoleHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
@@ -154,9 +162,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Assign a role to a user. Requires admin privilige.
+     * Creates request options for assignRoleHandler without sending the request
      */
-    async assignRoleHandlerRaw(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async assignRoleHandlerRequestOpts(requestParameters: AssignRoleHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['user'] == null) {
             throw new runtime.RequiredError(
                 'user',
@@ -188,12 +196,20 @@ export class UserApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
         urlPath = urlPath.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Assign a role to a user. Requires admin privilige.
+     */
+    async assignRoleHandlerRaw(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.assignRoleHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -206,9 +222,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the quota used by computation with the given computation id
+     * Creates request options for computationQuotaHandler without sending the request
      */
-    async computationQuotaHandlerRaw(requestParameters: ComputationQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OperatorQuota>>> {
+    async computationQuotaHandlerRequestOpts(requestParameters: ComputationQuotaHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['computation'] == null) {
             throw new runtime.RequiredError(
                 'computation',
@@ -232,12 +248,20 @@ export class UserApi extends runtime.BaseAPI {
         let urlPath = `/quota/computations/{computation}`;
         urlPath = urlPath.replace(`{${"computation"}}`, encodeURIComponent(String(requestParameters['computation'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves the quota used by computation with the given computation id
+     */
+    async computationQuotaHandlerRaw(requestParameters: ComputationQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OperatorQuota>>> {
+        const requestOptions = await this.computationQuotaHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OperatorQuotaFromJSON));
     }
@@ -251,9 +275,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the quota used by computations
+     * Creates request options for computationsQuotaHandler without sending the request
      */
-    async computationsQuotaHandlerRaw(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ComputationQuota>>> {
+    async computationsQuotaHandlerRequestOpts(requestParameters: ComputationsQuotaHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['offset'] == null) {
             throw new runtime.RequiredError(
                 'offset',
@@ -291,12 +315,20 @@ export class UserApi extends runtime.BaseAPI {
 
         let urlPath = `/quota/computations`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves the quota used by computations
+     */
+    async computationsQuotaHandlerRaw(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ComputationQuota>>> {
+        const requestOptions = await this.computationsQuotaHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ComputationQuotaFromJSON));
     }
@@ -310,9 +342,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the data usage
+     * Creates request options for dataUsageHandler without sending the request
      */
-    async dataUsageHandlerRaw(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsage>>> {
+    async dataUsageHandlerRequestOpts(requestParameters: DataUsageHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['offset'] == null) {
             throw new runtime.RequiredError(
                 'offset',
@@ -350,12 +382,20 @@ export class UserApi extends runtime.BaseAPI {
 
         let urlPath = `/quota/dataUsage`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves the data usage
+     */
+    async dataUsageHandlerRaw(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsage>>> {
+        const requestOptions = await this.dataUsageHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DataUsageFromJSON));
     }
@@ -369,9 +409,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the data usage summary
+     * Creates request options for dataUsageSummaryHandler without sending the request
      */
-    async dataUsageSummaryHandlerRaw(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsageSummary>>> {
+    async dataUsageSummaryHandlerRequestOpts(requestParameters: DataUsageSummaryHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['granularity'] == null) {
             throw new runtime.RequiredError(
                 'granularity',
@@ -424,12 +464,20 @@ export class UserApi extends runtime.BaseAPI {
 
         let urlPath = `/quota/dataUsage/summary`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves the data usage summary
+     */
+    async dataUsageSummaryHandlerRaw(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsageSummary>>> {
+        const requestOptions = await this.dataUsageSummaryHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DataUsageSummaryFromJSON));
     }
@@ -443,9 +491,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get role by name
+     * Creates request options for getRoleByNameHandler without sending the request
      */
-    async getRoleByNameHandlerRaw(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+    async getRoleByNameHandlerRequestOpts(requestParameters: GetRoleByNameHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['name'] == null) {
             throw new runtime.RequiredError(
                 'name',
@@ -469,12 +517,20 @@ export class UserApi extends runtime.BaseAPI {
         let urlPath = `/roles/byName/{name}`;
         urlPath = urlPath.replace(`{${"name"}}`, encodeURIComponent(String(requestParameters['name'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get role by name
+     */
+    async getRoleByNameHandlerRaw(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+        const requestOptions = await this.getRoleByNameHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
@@ -488,9 +544,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Query roles for the current user.
+     * Creates request options for getRoleDescriptions without sending the request
      */
-    async getRoleDescriptionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RoleDescription>>> {
+    async getRoleDescriptionsRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -506,12 +562,20 @@ export class UserApi extends runtime.BaseAPI {
 
         let urlPath = `/user/roles/descriptions`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Query roles for the current user.
+     */
+    async getRoleDescriptionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<RoleDescription>>> {
+        const requestOptions = await this.getRoleDescriptionsRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(RoleDescriptionFromJSON));
     }
@@ -525,9 +589,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the available and used quota of a specific user.
+     * Creates request options for getUserQuotaHandler without sending the request
      */
-    async getUserQuotaHandlerRaw(requestParameters: GetUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quota>> {
+    async getUserQuotaHandlerRequestOpts(requestParameters: GetUserQuotaHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['user'] == null) {
             throw new runtime.RequiredError(
                 'user',
@@ -551,12 +615,20 @@ export class UserApi extends runtime.BaseAPI {
         let urlPath = `/quotas/{user}`;
         urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves the available and used quota of a specific user.
+     */
+    async getUserQuotaHandlerRaw(requestParameters: GetUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quota>> {
+        const requestOptions = await this.getUserQuotaHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => QuotaFromJSON(jsonValue));
     }
@@ -570,9 +642,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the available and used quota of the current user.
+     * Creates request options for quotaHandler without sending the request
      */
-    async quotaHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quota>> {
+    async quotaHandlerRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -588,12 +660,20 @@ export class UserApi extends runtime.BaseAPI {
 
         let urlPath = `/quota`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves the available and used quota of the current user.
+     */
+    async quotaHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quota>> {
+        const requestOptions = await this.quotaHandlerRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => QuotaFromJSON(jsonValue));
     }
@@ -607,9 +687,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a role. Requires admin privilige.
+     * Creates request options for removeRoleHandler without sending the request
      */
-    async removeRoleHandlerRaw(requestParameters: RemoveRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeRoleHandlerRequestOpts(requestParameters: RemoveRoleHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['role'] == null) {
             throw new runtime.RequiredError(
                 'role',
@@ -633,12 +713,20 @@ export class UserApi extends runtime.BaseAPI {
         let urlPath = `/roles/{role}`;
         urlPath = urlPath.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Remove a role. Requires admin privilige.
+     */
+    async removeRoleHandlerRaw(requestParameters: RemoveRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.removeRoleHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -651,9 +739,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Revoke a role from a user. Requires admin privilige.
+     * Creates request options for revokeRoleHandler without sending the request
      */
-    async revokeRoleHandlerRaw(requestParameters: RevokeRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async revokeRoleHandlerRequestOpts(requestParameters: RevokeRoleHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['user'] == null) {
             throw new runtime.RequiredError(
                 'user',
@@ -685,12 +773,20 @@ export class UserApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
         urlPath = urlPath.replace(`{${"role"}}`, encodeURIComponent(String(requestParameters['role'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Revoke a role from a user. Requires admin privilige.
+     */
+    async revokeRoleHandlerRaw(requestParameters: RevokeRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.revokeRoleHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -703,9 +799,9 @@ export class UserApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update the available quota of a specific user.
+     * Creates request options for updateUserQuotaHandler without sending the request
      */
-    async updateUserQuotaHandlerRaw(requestParameters: UpdateUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateUserQuotaHandlerRequestOpts(requestParameters: UpdateUserQuotaHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['user'] == null) {
             throw new runtime.RequiredError(
                 'user',
@@ -738,13 +834,21 @@ export class UserApi extends runtime.BaseAPI {
         let urlPath = `/quotas/{user}`;
         urlPath = urlPath.replace(`{${"user"}}`, encodeURIComponent(String(requestParameters['user'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateQuotaToJSON(requestParameters['updateQuota']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update the available quota of a specific user.
+     */
+    async updateUserQuotaHandlerRaw(requestParameters: UpdateUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateUserQuotaHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }

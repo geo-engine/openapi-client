@@ -27,7 +27,7 @@ export interface StaticColor {
     color: Array<number>;
     /**
      * 
-     * @type {string}
+     * @type {StaticColorTypeEnum}
      * @memberof StaticColor
      */
     type: StaticColorTypeEnum;

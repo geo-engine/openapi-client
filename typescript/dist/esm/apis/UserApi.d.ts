@@ -57,6 +57,10 @@ export interface UpdateUserQuotaHandlerRequest {
  */
 export declare class UserApi extends runtime.BaseAPI {
     /**
+     * Creates request options for addRoleHandler without sending the request
+     */
+    addRoleHandlerRequestOpts(requestParameters: AddRoleHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Add a new role. Requires admin privilige.
      */
     addRoleHandlerRaw(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
@@ -64,6 +68,10 @@ export declare class UserApi extends runtime.BaseAPI {
      * Add a new role. Requires admin privilige.
      */
     addRoleHandler(requestParameters: AddRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
+    /**
+     * Creates request options for assignRoleHandler without sending the request
+     */
+    assignRoleHandlerRequestOpts(requestParameters: AssignRoleHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Assign a role to a user. Requires admin privilige.
      */
@@ -73,6 +81,10 @@ export declare class UserApi extends runtime.BaseAPI {
      */
     assignRoleHandler(requestParameters: AssignRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for computationQuotaHandler without sending the request
+     */
+    computationQuotaHandlerRequestOpts(requestParameters: ComputationQuotaHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Retrieves the quota used by computation with the given computation id
      */
     computationQuotaHandlerRaw(requestParameters: ComputationQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OperatorQuota>>>;
@@ -80,6 +92,10 @@ export declare class UserApi extends runtime.BaseAPI {
      * Retrieves the quota used by computation with the given computation id
      */
     computationQuotaHandler(requestParameters: ComputationQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OperatorQuota>>;
+    /**
+     * Creates request options for computationsQuotaHandler without sending the request
+     */
+    computationsQuotaHandlerRequestOpts(requestParameters: ComputationsQuotaHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Retrieves the quota used by computations
      */
@@ -89,6 +105,10 @@ export declare class UserApi extends runtime.BaseAPI {
      */
     computationsQuotaHandler(requestParameters: ComputationsQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ComputationQuota>>;
     /**
+     * Creates request options for dataUsageHandler without sending the request
+     */
+    dataUsageHandlerRequestOpts(requestParameters: DataUsageHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Retrieves the data usage
      */
     dataUsageHandlerRaw(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DataUsage>>>;
@@ -96,6 +116,10 @@ export declare class UserApi extends runtime.BaseAPI {
      * Retrieves the data usage
      */
     dataUsageHandler(requestParameters: DataUsageHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DataUsage>>;
+    /**
+     * Creates request options for dataUsageSummaryHandler without sending the request
+     */
+    dataUsageSummaryHandlerRequestOpts(requestParameters: DataUsageSummaryHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Retrieves the data usage summary
      */
@@ -105,6 +129,10 @@ export declare class UserApi extends runtime.BaseAPI {
      */
     dataUsageSummaryHandler(requestParameters: DataUsageSummaryHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<DataUsageSummary>>;
     /**
+     * Creates request options for getRoleByNameHandler without sending the request
+     */
+    getRoleByNameHandlerRequestOpts(requestParameters: GetRoleByNameHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Get role by name
      */
     getRoleByNameHandlerRaw(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>>;
@@ -112,6 +140,10 @@ export declare class UserApi extends runtime.BaseAPI {
      * Get role by name
      */
     getRoleByNameHandler(requestParameters: GetRoleByNameHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IdResponse>;
+    /**
+     * Creates request options for getRoleDescriptions without sending the request
+     */
+    getRoleDescriptionsRequestOpts(): Promise<runtime.RequestOpts>;
     /**
      * Query roles for the current user.
      */
@@ -121,6 +153,10 @@ export declare class UserApi extends runtime.BaseAPI {
      */
     getRoleDescriptions(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<RoleDescription>>;
     /**
+     * Creates request options for getUserQuotaHandler without sending the request
+     */
+    getUserQuotaHandlerRequestOpts(requestParameters: GetUserQuotaHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Retrieves the available and used quota of a specific user.
      */
     getUserQuotaHandlerRaw(requestParameters: GetUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Quota>>;
@@ -128,6 +164,10 @@ export declare class UserApi extends runtime.BaseAPI {
      * Retrieves the available and used quota of a specific user.
      */
     getUserQuotaHandler(requestParameters: GetUserQuotaHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quota>;
+    /**
+     * Creates request options for quotaHandler without sending the request
+     */
+    quotaHandlerRequestOpts(): Promise<runtime.RequestOpts>;
     /**
      * Retrieves the available and used quota of the current user.
      */
@@ -137,6 +177,10 @@ export declare class UserApi extends runtime.BaseAPI {
      */
     quotaHandler(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Quota>;
     /**
+     * Creates request options for removeRoleHandler without sending the request
+     */
+    removeRoleHandlerRequestOpts(requestParameters: RemoveRoleHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Remove a role. Requires admin privilige.
      */
     removeRoleHandlerRaw(requestParameters: RemoveRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -145,6 +189,10 @@ export declare class UserApi extends runtime.BaseAPI {
      */
     removeRoleHandler(requestParameters: RemoveRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Creates request options for revokeRoleHandler without sending the request
+     */
+    revokeRoleHandlerRequestOpts(requestParameters: RevokeRoleHandlerRequest): Promise<runtime.RequestOpts>;
+    /**
      * Revoke a role from a user. Requires admin privilige.
      */
     revokeRoleHandlerRaw(requestParameters: RevokeRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -152,6 +200,10 @@ export declare class UserApi extends runtime.BaseAPI {
      * Revoke a role from a user. Requires admin privilige.
      */
     revokeRoleHandler(requestParameters: RevokeRoleHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Creates request options for updateUserQuotaHandler without sending the request
+     */
+    updateUserQuotaHandlerRequestOpts(requestParameters: UpdateUserQuotaHandlerRequest): Promise<runtime.RequestOpts>;
     /**
      * Update the available quota of a specific user.
      */

@@ -31,7 +31,7 @@ export interface ClassificationMeasurement {
     measurement: string;
     /**
      *
-     * @type {string}
+     * @type {ClassificationMeasurementTypeEnum}
      * @memberof ClassificationMeasurement
      */
     type: ClassificationMeasurementTypeEnum;

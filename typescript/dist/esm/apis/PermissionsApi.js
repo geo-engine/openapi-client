@@ -27,9 +27,9 @@ import { PermissionListingFromJSON, PermissionRequestToJSON, } from '../models/i
  */
 export class PermissionsApi extends runtime.BaseAPI {
     /**
-     * Adds a new permission.
+     * Creates request options for addPermissionHandler without sending the request
      */
-    addPermissionHandlerRaw(requestParameters, initOverrides) {
+    addPermissionHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['permissionRequest'] == null) {
                 throw new runtime.RequiredError('permissionRequest', 'Required parameter "permissionRequest" was null or undefined when calling addPermissionHandler().');
@@ -45,13 +45,22 @@ export class PermissionsApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/permissions`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'PUT',
                 headers: headerParameters,
                 query: queryParameters,
                 body: PermissionRequestToJSON(requestParameters['permissionRequest']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Adds a new permission.
+     */
+    addPermissionHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.addPermissionHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }
@@ -64,9 +73,9 @@ export class PermissionsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Lists permission for a given resource.
+     * Creates request options for getResourcePermissionsHandler without sending the request
      */
-    getResourcePermissionsHandlerRaw(requestParameters, initOverrides) {
+    getResourcePermissionsHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['resourceType'] == null) {
                 throw new runtime.RequiredError('resourceType', 'Required parameter "resourceType" was null or undefined when calling getResourcePermissionsHandler().');
@@ -98,12 +107,21 @@ export class PermissionsApi extends runtime.BaseAPI {
             let urlPath = `/permissions/resources/{resource_type}/{resource_id}`;
             urlPath = urlPath.replace(`{${"resource_type"}}`, encodeURIComponent(String(requestParameters['resourceType'])));
             urlPath = urlPath.replace(`{${"resource_id"}}`, encodeURIComponent(String(requestParameters['resourceId'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Lists permission for a given resource.
+     */
+    getResourcePermissionsHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getResourcePermissionsHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PermissionListingFromJSON));
         });
     }
@@ -117,9 +135,9 @@ export class PermissionsApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Removes an existing permission.
+     * Creates request options for removePermissionHandler without sending the request
      */
-    removePermissionHandlerRaw(requestParameters, initOverrides) {
+    removePermissionHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['permissionRequest'] == null) {
                 throw new runtime.RequiredError('permissionRequest', 'Required parameter "permissionRequest" was null or undefined when calling removePermissionHandler().');
@@ -135,13 +153,22 @@ export class PermissionsApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/permissions`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'DELETE',
                 headers: headerParameters,
                 query: queryParameters,
                 body: PermissionRequestToJSON(requestParameters['permissionRequest']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Removes an existing permission.
+     */
+    removePermissionHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.removePermissionHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.VoidApiResponse(response);
         });
     }

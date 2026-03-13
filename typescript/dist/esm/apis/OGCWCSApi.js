@@ -26,9 +26,9 @@ import * as runtime from '../runtime';
  */
 export class OGCWCSApi extends runtime.BaseAPI {
     /**
-     * OGC WCS endpoint
+     * Creates request options for wcsHandler without sending the request
      */
-    wcsHandlerRaw(requestParameters, initOverrides) {
+    wcsHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['workflow'] == null) {
                 throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wcsHandler().');
@@ -89,12 +89,21 @@ export class OGCWCSApi extends runtime.BaseAPI {
             }
             let urlPath = `/wcs/{workflow}`;
             urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * OGC WCS endpoint
+     */
+    wcsHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.wcsHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             if (this.isJsonMime(response.headers.get('content-type'))) {
                 return new runtime.JSONApiResponse(response);
             }

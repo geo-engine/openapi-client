@@ -17,7 +17,7 @@
 export interface OgrSourceTimeFormatAuto {
     /**
      *
-     * @type {string}
+     * @type {OgrSourceTimeFormatAutoFormatEnum}
      * @memberof OgrSourceTimeFormatAuto
      */
     format: OgrSourceTimeFormatAutoFormatEnum;

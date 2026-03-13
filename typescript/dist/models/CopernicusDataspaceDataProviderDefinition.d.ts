@@ -71,7 +71,7 @@ export interface CopernicusDataspaceDataProviderDefinition {
     stacUrl: string;
     /**
      *
-     * @type {string}
+     * @type {CopernicusDataspaceDataProviderDefinitionTypeEnum}
      * @memberof CopernicusDataspaceDataProviderDefinition
      */
     type: CopernicusDataspaceDataProviderDefinitionTypeEnum;

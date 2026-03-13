@@ -15,8 +15,7 @@ cd  ../geoengine
 cargo run --bin geoengine-cli openapi > ../openapi-client/.generation/input/openapi.json
 cd -
 
-.generation/generate.py --no-spec-fetch --no-container-build python
-.generation/generate.py --no-spec-fetch --no-container-build typescript
+just build
 
 git add .
 

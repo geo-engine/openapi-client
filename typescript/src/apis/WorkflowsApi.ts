@@ -82,9 +82,9 @@ export interface RegisterWorkflowHandlerRequest {
 export class WorkflowsApi extends runtime.BaseAPI {
 
     /**
-     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
+     * Creates request options for datasetFromWorkflowHandler without sending the request
      */
-    async datasetFromWorkflowHandlerRaw(requestParameters: DatasetFromWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskResponse>> {
+    async datasetFromWorkflowHandlerRequestOpts(requestParameters: DatasetFromWorkflowHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -117,13 +117,21 @@ export class WorkflowsApi extends runtime.BaseAPI {
         let urlPath = `/datasetFromWorkflow/{id}`;
         urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: RasterDatasetFromWorkflowToJSON(requestParameters['rasterDatasetFromWorkflow']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a task for creating a new dataset from the result of the workflow given by its `id` and the dataset parameters in the request body. Returns the id of the created task
+     */
+    async datasetFromWorkflowHandlerRaw(requestParameters: DatasetFromWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskResponse>> {
+        const requestOptions = await this.datasetFromWorkflowHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TaskResponseFromJSON(jsonValue));
     }
@@ -137,9 +145,9 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gets a ZIP archive of the worklow, its provenance and the output metadata.
+     * Creates request options for getWorkflowAllMetadataZipHandler without sending the request
      */
-    async getWorkflowAllMetadataZipHandlerRaw(requestParameters: GetWorkflowAllMetadataZipHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+    async getWorkflowAllMetadataZipHandlerRequestOpts(requestParameters: GetWorkflowAllMetadataZipHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -163,12 +171,20 @@ export class WorkflowsApi extends runtime.BaseAPI {
         let urlPath = `/workflow/{id}/allMetadata/zip`;
         urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Gets a ZIP archive of the worklow, its provenance and the output metadata.
+     */
+    async getWorkflowAllMetadataZipHandlerRaw(requestParameters: GetWorkflowAllMetadataZipHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Blob>> {
+        const requestOptions = await this.getWorkflowAllMetadataZipHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.BlobApiResponse(response);
     }
@@ -182,9 +198,9 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gets the metadata of a workflow
+     * Creates request options for getWorkflowMetadataHandler without sending the request
      */
-    async getWorkflowMetadataHandlerRaw(requestParameters: GetWorkflowMetadataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TypedResultDescriptor>> {
+    async getWorkflowMetadataHandlerRequestOpts(requestParameters: GetWorkflowMetadataHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -208,12 +224,20 @@ export class WorkflowsApi extends runtime.BaseAPI {
         let urlPath = `/workflow/{id}/metadata`;
         urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Gets the metadata of a workflow
+     */
+    async getWorkflowMetadataHandlerRaw(requestParameters: GetWorkflowMetadataHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TypedResultDescriptor>> {
+        const requestOptions = await this.getWorkflowMetadataHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TypedResultDescriptorFromJSON(jsonValue));
     }
@@ -227,9 +251,9 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Gets the provenance of all datasets used in a workflow.
+     * Creates request options for getWorkflowProvenanceHandler without sending the request
      */
-    async getWorkflowProvenanceHandlerRaw(requestParameters: GetWorkflowProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProvenanceEntry>>> {
+    async getWorkflowProvenanceHandlerRequestOpts(requestParameters: GetWorkflowProvenanceHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -253,12 +277,20 @@ export class WorkflowsApi extends runtime.BaseAPI {
         let urlPath = `/workflow/{id}/provenance`;
         urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Gets the provenance of all datasets used in a workflow.
+     */
+    async getWorkflowProvenanceHandlerRaw(requestParameters: GetWorkflowProvenanceHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProvenanceEntry>>> {
+        const requestOptions = await this.getWorkflowProvenanceHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ProvenanceEntryFromJSON));
     }
@@ -272,9 +304,9 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves an existing Workflow.
+     * Creates request options for loadWorkflowHandler without sending the request
      */
-    async loadWorkflowHandlerRaw(requestParameters: LoadWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Workflow>> {
+    async loadWorkflowHandlerRequestOpts(requestParameters: LoadWorkflowHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -298,12 +330,20 @@ export class WorkflowsApi extends runtime.BaseAPI {
         let urlPath = `/workflow/{id}`;
         urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves an existing Workflow.
+     */
+    async loadWorkflowHandlerRaw(requestParameters: LoadWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Workflow>> {
+        const requestOptions = await this.loadWorkflowHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WorkflowFromJSON(jsonValue));
     }
@@ -317,9 +357,9 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Query a workflow raster result as a stream of tiles via a websocket connection.
+     * Creates request options for rasterStreamWebsocket without sending the request
      */
-    async rasterStreamWebsocketRaw(requestParameters: RasterStreamWebsocketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async rasterStreamWebsocketRequestOpts(requestParameters: RasterStreamWebsocketRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -387,12 +427,20 @@ export class WorkflowsApi extends runtime.BaseAPI {
         let urlPath = `/workflow/{id}/rasterStream`;
         urlPath = urlPath.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Query a workflow raster result as a stream of tiles via a websocket connection.
+     */
+    async rasterStreamWebsocketRaw(requestParameters: RasterStreamWebsocketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.rasterStreamWebsocketRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -405,9 +453,9 @@ export class WorkflowsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Registers a new Workflow.
+     * Creates request options for registerWorkflowHandler without sending the request
      */
-    async registerWorkflowHandlerRaw(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+    async registerWorkflowHandlerRequestOpts(requestParameters: RegisterWorkflowHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['workflow'] == null) {
             throw new runtime.RequiredError(
                 'workflow',
@@ -432,13 +480,21 @@ export class WorkflowsApi extends runtime.BaseAPI {
 
         let urlPath = `/workflow`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: WorkflowToJSON(requestParameters['workflow']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Registers a new Workflow.
+     */
+    async registerWorkflowHandlerRaw(requestParameters: RegisterWorkflowHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+        const requestOptions = await this.registerWorkflowHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }

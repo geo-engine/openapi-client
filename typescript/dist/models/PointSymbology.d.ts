@@ -45,7 +45,7 @@ export interface PointSymbology {
     text?: TextSymbology | null;
     /**
      *
-     * @type {string}
+     * @type {PointSymbologyTypeEnum}
      * @memberof PointSymbology
      */
     type: PointSymbologyTypeEnum;

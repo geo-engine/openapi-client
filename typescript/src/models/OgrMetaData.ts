@@ -48,7 +48,7 @@ export interface OgrMetaData {
     resultDescriptor: VectorResultDescriptor;
     /**
      * 
-     * @type {string}
+     * @type {OgrMetaDataTypeEnum}
      * @memberof OgrMetaData
      */
     type: OgrMetaDataTypeEnum;

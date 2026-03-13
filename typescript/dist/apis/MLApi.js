@@ -30,9 +30,9 @@ const index_1 = require("../models/index");
  */
 class MLApi extends runtime.BaseAPI {
     /**
-     * Create a new ml model.
+     * Creates request options for addMlModel without sending the request
      */
-    addMlModelRaw(requestParameters, initOverrides) {
+    addMlModelRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['mlModel'] == null) {
                 throw new runtime.RequiredError('mlModel', 'Required parameter "mlModel" was null or undefined when calling addMlModel().');
@@ -48,13 +48,22 @@ class MLApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/ml/models`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'POST',
                 headers: headerParameters,
                 query: queryParameters,
                 body: (0, index_1.MlModelToJSON)(requestParameters['mlModel']),
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Create a new ml model.
+     */
+    addMlModelRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.addMlModelRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MlModelNameResponseFromJSON)(jsonValue));
         });
     }
@@ -68,9 +77,9 @@ class MLApi extends runtime.BaseAPI {
         });
     }
     /**
-     * Get ml model by name.
+     * Creates request options for getMlModel without sending the request
      */
-    getMlModelRaw(requestParameters, initOverrides) {
+    getMlModelRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['modelName'] == null) {
                 throw new runtime.RequiredError('modelName', 'Required parameter "modelName" was null or undefined when calling getMlModel().');
@@ -86,12 +95,21 @@ class MLApi extends runtime.BaseAPI {
             }
             let urlPath = `/ml/models/{model_name}`;
             urlPath = urlPath.replace(`{${"model_name"}}`, encodeURIComponent(String(requestParameters['modelName'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * Get ml model by name.
+     */
+    getMlModelRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.getMlModelRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MlModelFromJSON)(jsonValue));
         });
     }
@@ -105,9 +123,9 @@ class MLApi extends runtime.BaseAPI {
         });
     }
     /**
-     * List ml models.
+     * Creates request options for listMlModels without sending the request
      */
-    listMlModelsRaw(initOverrides) {
+    listMlModelsRequestOpts() {
         return __awaiter(this, void 0, void 0, function* () {
             const queryParameters = {};
             const headerParameters = {};
@@ -119,12 +137,21 @@ class MLApi extends runtime.BaseAPI {
                 }
             }
             let urlPath = `/ml/models`;
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * List ml models.
+     */
+    listMlModelsRaw(initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.listMlModelsRequestOpts();
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(index_1.MlModelFromJSON));
         });
     }

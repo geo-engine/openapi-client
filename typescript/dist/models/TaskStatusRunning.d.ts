@@ -41,7 +41,7 @@ export interface TaskStatusRunning {
     pctComplete: string;
     /**
      *
-     * @type {string}
+     * @type {TaskStatusRunningStatusEnum}
      * @memberof TaskStatusRunning
      */
     status: TaskStatusRunningStatusEnum;

@@ -180,9 +180,9 @@ export interface UpdateProviderDefinitionRequest {
 export class LayersApi extends runtime.BaseAPI {
 
     /**
-     * Add a new collection to an existing collection
+     * Creates request options for addCollection without sending the request
      */
-    async addCollectionRaw(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+    async addCollectionRequestOpts(requestParameters: AddCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collection'] == null) {
             throw new runtime.RequiredError(
                 'collection',
@@ -215,13 +215,21 @@ export class LayersApi extends runtime.BaseAPI {
         let urlPath = `/layerDb/collections/{collection}/collections`;
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: AddLayerCollectionToJSON(requestParameters['addLayerCollection']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Add a new collection to an existing collection
+     */
+    async addCollectionRaw(requestParameters: AddCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+        const requestOptions = await this.addCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
@@ -235,9 +243,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add an existing collection to a collection
+     * Creates request options for addExistingCollectionToCollection without sending the request
      */
-    async addExistingCollectionToCollectionRaw(requestParameters: AddExistingCollectionToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addExistingCollectionToCollectionRequestOpts(requestParameters: AddExistingCollectionToCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['parent'] == null) {
             throw new runtime.RequiredError(
                 'parent',
@@ -269,12 +277,20 @@ export class LayersApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters['parent'])));
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Add an existing collection to a collection
+     */
+    async addExistingCollectionToCollectionRaw(requestParameters: AddExistingCollectionToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.addExistingCollectionToCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -287,9 +303,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add an existing layer to a collection
+     * Creates request options for addExistingLayerToCollection without sending the request
      */
-    async addExistingLayerToCollectionRaw(requestParameters: AddExistingLayerToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addExistingLayerToCollectionRequestOpts(requestParameters: AddExistingLayerToCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collection'] == null) {
             throw new runtime.RequiredError(
                 'collection',
@@ -321,12 +337,20 @@ export class LayersApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
         urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Add an existing layer to a collection
+     */
+    async addExistingLayerToCollectionRaw(requestParameters: AddExistingLayerToCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.addExistingLayerToCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -339,9 +363,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a new layer to a collection
+     * Creates request options for addLayer without sending the request
      */
-    async addLayerRaw(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+    async addLayerRequestOpts(requestParameters: AddLayerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collection'] == null) {
             throw new runtime.RequiredError(
                 'collection',
@@ -374,13 +398,21 @@ export class LayersApi extends runtime.BaseAPI {
         let urlPath = `/layerDb/collections/{collection}/layers`;
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: AddLayerToJSON(requestParameters['addLayer']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Add a new layer to a collection
+     */
+    async addLayerRaw(requestParameters: AddLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+        const requestOptions = await this.addLayerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
@@ -394,9 +426,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a new provider
+     * Creates request options for addProvider without sending the request
      */
-    async addProviderRaw(requestParameters: AddProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+    async addProviderRequestOpts(requestParameters: AddProviderRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['typedDataProviderDefinition'] == null) {
             throw new runtime.RequiredError(
                 'typedDataProviderDefinition',
@@ -421,13 +453,21 @@ export class LayersApi extends runtime.BaseAPI {
 
         let urlPath = `/layerDb/providers`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: TypedDataProviderDefinitionToJSON(requestParameters['typedDataProviderDefinition']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Add a new provider
+     */
+    async addProviderRaw(requestParameters: AddProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+        const requestOptions = await this.addProviderRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
@@ -441,9 +481,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Autocompletes the search on the contents of the collection of the given provider
+     * Creates request options for autocompleteHandler without sending the request
      */
-    async autocompleteHandlerRaw(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+    async autocompleteHandlerRequestOpts(requestParameters: AutocompleteHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -519,12 +559,20 @@ export class LayersApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Autocompletes the search on the contents of the collection of the given provider
+     */
+    async autocompleteHandlerRaw(requestParameters: AutocompleteHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>> {
+        const requestOptions = await this.autocompleteHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse<any>(response);
     }
@@ -538,9 +586,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete an existing provider
+     * Creates request options for deleteProvider without sending the request
      */
-    async deleteProviderRaw(requestParameters: DeleteProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProviderRequestOpts(requestParameters: DeleteProviderRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -564,12 +612,20 @@ export class LayersApi extends runtime.BaseAPI {
         let urlPath = `/layerDb/providers/{provider}`;
         urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete an existing provider
+     */
+    async deleteProviderRaw(requestParameters: DeleteProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteProviderRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -582,9 +638,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get an existing provider\'s definition
+     * Creates request options for getProviderDefinition without sending the request
      */
-    async getProviderDefinitionRaw(requestParameters: GetProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TypedDataProviderDefinition>> {
+    async getProviderDefinitionRequestOpts(requestParameters: GetProviderDefinitionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -608,12 +664,20 @@ export class LayersApi extends runtime.BaseAPI {
         let urlPath = `/layerDb/providers/{provider}`;
         urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get an existing provider\'s definition
+     */
+    async getProviderDefinitionRaw(requestParameters: GetProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TypedDataProviderDefinition>> {
+        const requestOptions = await this.getProviderDefinitionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TypedDataProviderDefinitionFromJSON(jsonValue));
     }
@@ -627,9 +691,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves the layer of the given provider
+     * Creates request options for layerHandler without sending the request
      */
-    async layerHandlerRaw(requestParameters: LayerHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Layer>> {
+    async layerHandlerRequestOpts(requestParameters: LayerHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -661,12 +725,20 @@ export class LayersApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
         urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves the layer of the given provider
+     */
+    async layerHandlerRaw(requestParameters: LayerHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Layer>> {
+        const requestOptions = await this.layerHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LayerFromJSON(jsonValue));
     }
@@ -680,9 +752,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Persist a raster layer from a provider as a dataset.
+     * Creates request options for layerToDataset without sending the request
      */
-    async layerToDatasetRaw(requestParameters: LayerToDatasetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskResponse>> {
+    async layerToDatasetRequestOpts(requestParameters: LayerToDatasetRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -714,12 +786,20 @@ export class LayersApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
         urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Persist a raster layer from a provider as a dataset.
+     */
+    async layerToDatasetRaw(requestParameters: LayerToDatasetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaskResponse>> {
+        const requestOptions = await this.layerToDatasetRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TaskResponseFromJSON(jsonValue));
     }
@@ -733,9 +813,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Registers a layer from a provider as a workflow and returns the workflow id
+     * Creates request options for layerToWorkflowIdHandler without sending the request
      */
-    async layerToWorkflowIdHandlerRaw(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+    async layerToWorkflowIdHandlerRequestOpts(requestParameters: LayerToWorkflowIdHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -767,12 +847,20 @@ export class LayersApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
         urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Registers a layer from a provider as a workflow and returns the workflow id
+     */
+    async layerToWorkflowIdHandlerRaw(requestParameters: LayerToWorkflowIdHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+        const requestOptions = await this.layerToWorkflowIdHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
@@ -786,9 +874,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * List the contents of the collection of the given provider
+     * Creates request options for listCollectionHandler without sending the request
      */
-    async listCollectionHandlerRaw(requestParameters: ListCollectionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
+    async listCollectionHandlerRequestOpts(requestParameters: ListCollectionHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -842,12 +930,20 @@ export class LayersApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List the contents of the collection of the given provider
+     */
+    async listCollectionHandlerRaw(requestParameters: ListCollectionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
+        const requestOptions = await this.listCollectionHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LayerCollectionFromJSON(jsonValue));
     }
@@ -861,9 +957,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all providers
+     * Creates request options for listProviders without sending the request
      */
-    async listProvidersRaw(requestParameters: ListProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LayerProviderListing>>> {
+    async listProvidersRequestOpts(requestParameters: ListProvidersRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['offset'] == null) {
             throw new runtime.RequiredError(
                 'offset',
@@ -901,12 +997,20 @@ export class LayersApi extends runtime.BaseAPI {
 
         let urlPath = `/layerDb/providers`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all providers
+     */
+    async listProvidersRaw(requestParameters: ListProvidersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<LayerProviderListing>>> {
+        const requestOptions = await this.listProvidersRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(LayerProviderListingFromJSON));
     }
@@ -920,9 +1024,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all layer collections
+     * Creates request options for listRootCollectionsHandler without sending the request
      */
-    async listRootCollectionsHandlerRaw(requestParameters: ListRootCollectionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
+    async listRootCollectionsHandlerRequestOpts(requestParameters: ListRootCollectionsHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['offset'] == null) {
             throw new runtime.RequiredError(
                 'offset',
@@ -960,12 +1064,20 @@ export class LayersApi extends runtime.BaseAPI {
 
         let urlPath = `/layers/collections`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all layer collections
+     */
+    async listRootCollectionsHandlerRaw(requestParameters: ListRootCollectionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
+        const requestOptions = await this.listRootCollectionsHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LayerCollectionFromJSON(jsonValue));
     }
@@ -979,8 +1091,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for providerCapabilitiesHandler without sending the request
      */
-    async providerCapabilitiesHandlerRaw(requestParameters: ProviderCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProviderCapabilities>> {
+    async providerCapabilitiesHandlerRequestOpts(requestParameters: ProviderCapabilitiesHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -1004,12 +1117,19 @@ export class LayersApi extends runtime.BaseAPI {
         let urlPath = `/layers/{provider}/capabilities`;
         urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async providerCapabilitiesHandlerRaw(requestParameters: ProviderCapabilitiesHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProviderCapabilities>> {
+        const requestOptions = await this.providerCapabilitiesHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProviderCapabilitiesFromJSON(jsonValue));
     }
@@ -1022,9 +1142,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a collection
+     * Creates request options for removeCollection without sending the request
      */
-    async removeCollectionRaw(requestParameters: RemoveCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeCollectionRequestOpts(requestParameters: RemoveCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collection'] == null) {
             throw new runtime.RequiredError(
                 'collection',
@@ -1048,12 +1168,20 @@ export class LayersApi extends runtime.BaseAPI {
         let urlPath = `/layerDb/collections/{collection}`;
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Remove a collection
+     */
+    async removeCollectionRaw(requestParameters: RemoveCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.removeCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1066,9 +1194,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a collection from a collection
+     * Creates request options for removeCollectionFromCollection without sending the request
      */
-    async removeCollectionFromCollectionRaw(requestParameters: RemoveCollectionFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeCollectionFromCollectionRequestOpts(requestParameters: RemoveCollectionFromCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['parent'] == null) {
             throw new runtime.RequiredError(
                 'parent',
@@ -1100,12 +1228,20 @@ export class LayersApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"parent"}}`, encodeURIComponent(String(requestParameters['parent'])));
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Delete a collection from a collection
+     */
+    async removeCollectionFromCollectionRaw(requestParameters: RemoveCollectionFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.removeCollectionFromCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1118,9 +1254,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a collection
+     * Creates request options for removeLayer without sending the request
      */
-    async removeLayerRaw(requestParameters: RemoveLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeLayerRequestOpts(requestParameters: RemoveLayerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['layer'] == null) {
             throw new runtime.RequiredError(
                 'layer',
@@ -1144,12 +1280,20 @@ export class LayersApi extends runtime.BaseAPI {
         let urlPath = `/layerDb/layers/{layer}`;
         urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Remove a collection
+     */
+    async removeLayerRaw(requestParameters: RemoveLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.removeLayerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1162,9 +1306,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Remove a layer from a collection
+     * Creates request options for removeLayerFromCollection without sending the request
      */
-    async removeLayerFromCollectionRaw(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async removeLayerFromCollectionRequestOpts(requestParameters: RemoveLayerFromCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collection'] == null) {
             throw new runtime.RequiredError(
                 'collection',
@@ -1196,12 +1340,20 @@ export class LayersApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
         urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Remove a layer from a collection
+     */
+    async removeLayerFromCollectionRaw(requestParameters: RemoveLayerFromCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.removeLayerFromCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1214,9 +1366,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Searches the contents of the collection of the given provider
+     * Creates request options for searchHandler without sending the request
      */
-    async searchHandlerRaw(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
+    async searchHandlerRequestOpts(requestParameters: SearchHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -1292,12 +1444,20 @@ export class LayersApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Searches the contents of the collection of the given provider
+     */
+    async searchHandlerRaw(requestParameters: SearchHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<LayerCollection>> {
+        const requestOptions = await this.searchHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => LayerCollectionFromJSON(jsonValue));
     }
@@ -1311,9 +1471,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a collection
+     * Creates request options for updateCollection without sending the request
      */
-    async updateCollectionRaw(requestParameters: UpdateCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateCollectionRequestOpts(requestParameters: UpdateCollectionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['collection'] == null) {
             throw new runtime.RequiredError(
                 'collection',
@@ -1346,13 +1506,21 @@ export class LayersApi extends runtime.BaseAPI {
         let urlPath = `/layerDb/collections/{collection}`;
         urlPath = urlPath.replace(`{${"collection"}}`, encodeURIComponent(String(requestParameters['collection'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateLayerCollectionToJSON(requestParameters['updateLayerCollection']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update a collection
+     */
+    async updateCollectionRaw(requestParameters: UpdateCollectionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateCollectionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1365,9 +1533,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a layer
+     * Creates request options for updateLayer without sending the request
      */
-    async updateLayerRaw(requestParameters: UpdateLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateLayerRequestOpts(requestParameters: UpdateLayerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['layer'] == null) {
             throw new runtime.RequiredError(
                 'layer',
@@ -1400,13 +1568,21 @@ export class LayersApi extends runtime.BaseAPI {
         let urlPath = `/layerDb/layers/{layer}`;
         urlPath = urlPath.replace(`{${"layer"}}`, encodeURIComponent(String(requestParameters['layer'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateLayerToJSON(requestParameters['updateLayer']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update a layer
+     */
+    async updateLayerRaw(requestParameters: UpdateLayerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateLayerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -1419,9 +1595,9 @@ export class LayersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update an existing provider\'s definition
+     * Creates request options for updateProviderDefinition without sending the request
      */
-    async updateProviderDefinitionRaw(requestParameters: UpdateProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateProviderDefinitionRequestOpts(requestParameters: UpdateProviderDefinitionRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['provider'] == null) {
             throw new runtime.RequiredError(
                 'provider',
@@ -1454,13 +1630,21 @@ export class LayersApi extends runtime.BaseAPI {
         let urlPath = `/layerDb/providers/{provider}`;
         urlPath = urlPath.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: TypedDataProviderDefinitionToJSON(requestParameters['typedDataProviderDefinition']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Update an existing provider\'s definition
+     */
+    async updateProviderDefinitionRaw(requestParameters: UpdateProviderDefinitionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateProviderDefinitionRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }

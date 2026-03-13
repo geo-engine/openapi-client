@@ -27,9 +27,9 @@ import { GeoJsonFromJSON, } from '../models/index';
  */
 export class OGCWFSApi extends runtime.BaseAPI {
     /**
-     * OGC WFS endpoint
+     * Creates request options for wfsHandler without sending the request
      */
-    wfsHandlerRaw(requestParameters, initOverrides) {
+    wfsHandlerRequestOpts(requestParameters) {
         return __awaiter(this, void 0, void 0, function* () {
             if (requestParameters['workflow'] == null) {
                 throw new runtime.RequiredError('workflow', 'Required parameter "workflow" was null or undefined when calling wfsHandler().');
@@ -87,12 +87,21 @@ export class OGCWFSApi extends runtime.BaseAPI {
             }
             let urlPath = `/wfs/{workflow}`;
             urlPath = urlPath.replace(`{${"workflow"}}`, encodeURIComponent(String(requestParameters['workflow'])));
-            const response = yield this.request({
+            return {
                 path: urlPath,
                 method: 'GET',
                 headers: headerParameters,
                 query: queryParameters,
-            }, initOverrides);
+            };
+        });
+    }
+    /**
+     * OGC WFS endpoint
+     */
+    wfsHandlerRaw(requestParameters, initOverrides) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const requestOptions = yield this.wfsHandlerRequestOpts(requestParameters);
+            const response = yield this.request(requestOptions, initOverrides);
             return new runtime.JSONApiResponse(response, (jsonValue) => GeoJsonFromJSON(jsonValue));
         });
     }

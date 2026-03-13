@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface UnitlessMeasurement {
     /**
      * 
-     * @type {string}
+     * @type {UnitlessMeasurementTypeEnum}
      * @memberof UnitlessMeasurement
      */
     type: UnitlessMeasurementTypeEnum;

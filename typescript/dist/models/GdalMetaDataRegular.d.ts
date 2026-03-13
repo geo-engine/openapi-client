@@ -60,7 +60,7 @@ export interface GdalMetaDataRegular {
     };
     /**
      *
-     * @type {string}
+     * @type {GdalMetaDataRegularTypeEnum}
      * @memberof GdalMetaDataRegular
      */
     type: GdalMetaDataRegularTypeEnum;

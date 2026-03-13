@@ -78,9 +78,9 @@ export interface UpdateProjectHandlerRequest {
 export class ProjectsApi extends runtime.BaseAPI {
 
     /**
-     * Create a new project for the user.
+     * Creates request options for createProjectHandler without sending the request
      */
-    async createProjectHandlerRaw(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+    async createProjectHandlerRequestOpts(requestParameters: CreateProjectHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['createProject'] == null) {
             throw new runtime.RequiredError(
                 'createProject',
@@ -105,13 +105,21 @@ export class ProjectsApi extends runtime.BaseAPI {
 
         let urlPath = `/project`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: CreateProjectToJSON(requestParameters['createProject']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Create a new project for the user.
+     */
+    async createProjectHandlerRaw(requestParameters: CreateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IdResponse>> {
+        const requestOptions = await this.createProjectHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => IdResponseFromJSON(jsonValue));
     }
@@ -125,9 +133,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deletes a project.
+     * Creates request options for deleteProjectHandler without sending the request
      */
-    async deleteProjectHandlerRaw(requestParameters: DeleteProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async deleteProjectHandlerRequestOpts(requestParameters: DeleteProjectHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['project'] == null) {
             throw new runtime.RequiredError(
                 'project',
@@ -151,12 +159,20 @@ export class ProjectsApi extends runtime.BaseAPI {
         let urlPath = `/project/{project}`;
         urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Deletes a project.
+     */
+    async deleteProjectHandlerRaw(requestParameters: DeleteProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.deleteProjectHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -169,9 +185,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all projects accessible to the user that match the selected criteria.
+     * Creates request options for listProjectsHandler without sending the request
      */
-    async listProjectsHandlerRaw(requestParameters: ListProjectsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectListing>>> {
+    async listProjectsHandlerRequestOpts(requestParameters: ListProjectsHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['order'] == null) {
             throw new runtime.RequiredError(
                 'order',
@@ -211,12 +227,20 @@ export class ProjectsApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"offset"}}`, encodeURIComponent(String(requestParameters['offset'])));
         urlPath = urlPath.replace(`{${"limit"}}`, encodeURIComponent(String(requestParameters['limit'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * List all projects accessible to the user that match the selected criteria.
+     */
+    async listProjectsHandlerRaw(requestParameters: ListProjectsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectListing>>> {
+        const requestOptions = await this.listProjectsHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ProjectListingFromJSON));
     }
@@ -230,9 +254,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves details about the latest version of a project.
+     * Creates request options for loadProjectLatestHandler without sending the request
      */
-    async loadProjectLatestHandlerRaw(requestParameters: LoadProjectLatestHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async loadProjectLatestHandlerRequestOpts(requestParameters: LoadProjectLatestHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['project'] == null) {
             throw new runtime.RequiredError(
                 'project',
@@ -256,12 +280,20 @@ export class ProjectsApi extends runtime.BaseAPI {
         let urlPath = `/project/{project}`;
         urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves details about the latest version of a project.
+     */
+    async loadProjectLatestHandlerRaw(requestParameters: LoadProjectLatestHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+        const requestOptions = await this.loadProjectLatestHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectFromJSON(jsonValue));
     }
@@ -275,9 +307,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves details about the given version of a project.
+     * Creates request options for loadProjectVersionHandler without sending the request
      */
-    async loadProjectVersionHandlerRaw(requestParameters: LoadProjectVersionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+    async loadProjectVersionHandlerRequestOpts(requestParameters: LoadProjectVersionHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['project'] == null) {
             throw new runtime.RequiredError(
                 'project',
@@ -309,12 +341,20 @@ export class ProjectsApi extends runtime.BaseAPI {
         urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
         urlPath = urlPath.replace(`{${"version"}}`, encodeURIComponent(String(requestParameters['version'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves details about the given version of a project.
+     */
+    async loadProjectVersionHandlerRaw(requestParameters: LoadProjectVersionHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Project>> {
+        const requestOptions = await this.loadProjectVersionHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ProjectFromJSON(jsonValue));
     }
@@ -328,9 +368,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Lists all available versions of a project.
+     * Creates request options for projectVersionsHandler without sending the request
      */
-    async projectVersionsHandlerRaw(requestParameters: ProjectVersionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectVersion>>> {
+    async projectVersionsHandlerRequestOpts(requestParameters: ProjectVersionsHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['project'] == null) {
             throw new runtime.RequiredError(
                 'project',
@@ -354,12 +394,20 @@ export class ProjectsApi extends runtime.BaseAPI {
         let urlPath = `/project/{project}/versions`;
         urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Lists all available versions of a project.
+     */
+    async projectVersionsHandlerRaw(requestParameters: ProjectVersionsHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ProjectVersion>>> {
+        const requestOptions = await this.projectVersionsHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ProjectVersionFromJSON));
     }
@@ -373,9 +421,9 @@ export class ProjectsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Updates a project. This will create a new version.
+     * Creates request options for updateProjectHandler without sending the request
      */
-    async updateProjectHandlerRaw(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async updateProjectHandlerRequestOpts(requestParameters: UpdateProjectHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['project'] == null) {
             throw new runtime.RequiredError(
                 'project',
@@ -408,13 +456,21 @@ export class ProjectsApi extends runtime.BaseAPI {
         let urlPath = `/project/{project}`;
         urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
             body: UpdateProjectToJSON(requestParameters['updateProject']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Updates a project. This will create a new version.
+     */
+    async updateProjectHandlerRaw(requestParameters: UpdateProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.updateProjectHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }

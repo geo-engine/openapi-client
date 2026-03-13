@@ -68,9 +68,9 @@ export interface SessionViewHandlerRequest {
 export class SessionApi extends runtime.BaseAPI {
 
     /**
-     * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
+     * Creates request options for anonymousHandler without sending the request
      */
-    async anonymousHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
+    async anonymousHandlerRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -78,12 +78,20 @@ export class SessionApi extends runtime.BaseAPI {
 
         let urlPath = `/anonymous`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates session for anonymous user. The session\'s id serves as a Bearer token for requests.
+     */
+    async anonymousHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
+        const requestOptions = await this.anonymousHandlerRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserSessionFromJSON(jsonValue));
     }
@@ -97,9 +105,9 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
+     * Creates request options for loginHandler without sending the request
      */
-    async loginHandlerRaw(requestParameters: LoginHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
+    async loginHandlerRequestOpts(requestParameters: LoginHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userCredentials'] == null) {
             throw new runtime.RequiredError(
                 'userCredentials',
@@ -116,13 +124,21 @@ export class SessionApi extends runtime.BaseAPI {
 
         let urlPath = `/login`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UserCredentialsToJSON(requestParameters['userCredentials']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Creates a session by providing user credentials. The session\'s id serves as a Bearer token for requests.
+     */
+    async loginHandlerRaw(requestParameters: LoginHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
+        const requestOptions = await this.loginHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserSessionFromJSON(jsonValue));
     }
@@ -136,9 +152,9 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Ends a session.
+     * Creates request options for logoutHandler without sending the request
      */
-    async logoutHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async logoutHandlerRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -154,12 +170,20 @@ export class SessionApi extends runtime.BaseAPI {
 
         let urlPath = `/logout`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Ends a session.
+     */
+    async logoutHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.logoutHandlerRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -172,10 +196,9 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.  
-     * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
+     * Creates request options for oidcInit without sending the request
      */
-    async oidcInitRaw(requestParameters: OidcInitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCodeRequestURL>> {
+    async oidcInitRequestOpts(requestParameters: OidcInitRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['redirectUri'] == null) {
             throw new runtime.RequiredError(
                 'redirectUri',
@@ -194,12 +217,21 @@ export class SessionApi extends runtime.BaseAPI {
 
         let urlPath = `/oidcInit`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * # Errors  This call fails if Open ID Connect is disabled, misconfigured or the Id Provider is unreachable.  
+     * Initializes the Open Id Connect login procedure by requesting a parametrized url to the configured Id Provider.
+     */
+    async oidcInitRaw(requestParameters: OidcInitRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCodeRequestURL>> {
+        const requestOptions = await this.oidcInitRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AuthCodeRequestURLFromJSON(jsonValue));
     }
@@ -214,10 +246,9 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.  
-     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
+     * Creates request options for oidcLogin without sending the request
      */
-    async oidcLoginRaw(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
+    async oidcLoginRequestOpts(requestParameters: OidcLoginRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['redirectUri'] == null) {
             throw new runtime.RequiredError(
                 'redirectUri',
@@ -245,13 +276,22 @@ export class SessionApi extends runtime.BaseAPI {
 
         let urlPath = `/oidcLogin`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: AuthCodeResponseToJSON(requestParameters['authCodeResponse']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * # Errors  This call fails if the [`AuthCodeResponse`] is invalid, if a previous oidcLogin call with the same state was already successfully or unsuccessfully resolved, if the Open Id Connect configuration is invalid, or if the Id Provider is unreachable.  
+     * Creates a session for a user via a login with Open Id Connect. This call must be preceded by a call to oidcInit and match the parameters of that call.
+     */
+    async oidcLoginRaw(requestParameters: OidcLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
+        const requestOptions = await this.oidcLoginRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserSessionFromJSON(jsonValue));
     }
@@ -266,9 +306,9 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Registers a user.
+     * Creates request options for registerUserHandler without sending the request
      */
-    async registerUserHandlerRaw(requestParameters: RegisterUserHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+    async registerUserHandlerRequestOpts(requestParameters: RegisterUserHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['userRegistration'] == null) {
             throw new runtime.RequiredError(
                 'userRegistration',
@@ -285,13 +325,21 @@ export class SessionApi extends runtime.BaseAPI {
 
         let urlPath = `/user`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: UserRegistrationToJSON(requestParameters['userRegistration']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Registers a user.
+     */
+    async registerUserHandlerRaw(requestParameters: RegisterUserHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        const requestOptions = await this.registerUserHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse<string>(response);
@@ -309,9 +357,9 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieves details about the current session.
+     * Creates request options for sessionHandler without sending the request
      */
-    async sessionHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
+    async sessionHandlerRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -327,12 +375,20 @@ export class SessionApi extends runtime.BaseAPI {
 
         let urlPath = `/session`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Retrieves details about the current session.
+     */
+    async sessionHandlerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserSession>> {
+        const requestOptions = await this.sessionHandlerRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UserSessionFromJSON(jsonValue));
     }
@@ -346,9 +402,9 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
-     * Sets the active project of the session.
+     * Creates request options for sessionProjectHandler without sending the request
      */
-    async sessionProjectHandlerRaw(requestParameters: SessionProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async sessionProjectHandlerRequestOpts(requestParameters: SessionProjectHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['project'] == null) {
             throw new runtime.RequiredError(
                 'project',
@@ -372,12 +428,20 @@ export class SessionApi extends runtime.BaseAPI {
         let urlPath = `/session/project/{project}`;
         urlPath = urlPath.replace(`{${"project"}}`, encodeURIComponent(String(requestParameters['project'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Sets the active project of the session.
+     */
+    async sessionProjectHandlerRaw(requestParameters: SessionProjectHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.sessionProjectHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
@@ -390,8 +454,9 @@ export class SessionApi extends runtime.BaseAPI {
     }
 
     /**
+     * Creates request options for sessionViewHandler without sending the request
      */
-    async sessionViewHandlerRaw(requestParameters: SessionViewHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async sessionViewHandlerRequestOpts(requestParameters: SessionViewHandlerRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['sTRectangle'] == null) {
             throw new runtime.RequiredError(
                 'sTRectangle',
@@ -416,13 +481,20 @@ export class SessionApi extends runtime.BaseAPI {
 
         let urlPath = `/session/view`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: STRectangleToJSON(requestParameters['sTRectangle']),
-        }, initOverrides);
+        };
+    }
+
+    /**
+     */
+    async sessionViewHandlerRaw(requestParameters: SessionViewHandlerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.sessionViewHandlerRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }

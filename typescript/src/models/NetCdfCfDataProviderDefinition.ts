@@ -57,7 +57,7 @@ export interface NetCdfCfDataProviderDefinition {
     priority?: number | null;
     /**
      * 
-     * @type {string}
+     * @type {NetCdfCfDataProviderDefinitionTypeEnum}
      * @memberof NetCdfCfDataProviderDefinition
      */
     type: NetCdfCfDataProviderDefinitionTypeEnum;

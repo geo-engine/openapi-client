@@ -54,7 +54,7 @@ export interface LineSymbology {
     text?: TextSymbology | null;
     /**
      * 
-     * @type {string}
+     * @type {LineSymbologyTypeEnum}
      * @memberof LineSymbology
      */
     type: LineSymbologyTypeEnum;

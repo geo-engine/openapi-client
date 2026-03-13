@@ -65,7 +65,7 @@ export interface GdalMetadataNetCdfCf {
     step: TimeStep;
     /**
      *
-     * @type {string}
+     * @type {GdalMetadataNetCdfCfTypeEnum}
      * @memberof GdalMetadataNetCdfCf
      */
     type: GdalMetadataNetCdfCfTypeEnum;

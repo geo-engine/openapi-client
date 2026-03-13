@@ -93,7 +93,7 @@ export interface GdalMetaDataRegular {
     timePlaceholders: { [key: string]: GdalSourceTimePlaceholder; };
     /**
      * 
-     * @type {string}
+     * @type {GdalMetaDataRegularTypeEnum}
      * @memberof GdalMetaDataRegular
      */
     type: GdalMetaDataRegularTypeEnum;

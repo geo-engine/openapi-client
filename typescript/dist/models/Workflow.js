@@ -13,31 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkflowTypeEnum = void 0;
-exports.instanceOfWorkflow = instanceOfWorkflow;
 exports.WorkflowFromJSON = WorkflowFromJSON;
 exports.WorkflowFromJSONTyped = WorkflowFromJSONTyped;
 exports.WorkflowToJSON = WorkflowToJSON;
 exports.WorkflowToJSONTyped = WorkflowToJSONTyped;
-const TypedOperatorOperator_1 = require("./TypedOperatorOperator");
-/**
- * @export
- */
-exports.WorkflowTypeEnum = {
-    Vector: 'Vector',
-    Raster: 'Raster',
-    Plot: 'Plot'
-};
-/**
- * Check if a given object implements the Workflow interface.
- */
-function instanceOfWorkflow(value) {
-    if (!('operator' in value) || value['operator'] === undefined)
-        return false;
-    if (!('type' in value) || value['type'] === undefined)
-        return false;
-    return true;
-}
+const LegacyTypedOperator_1 = require("./LegacyTypedOperator");
+const TypedOperator_1 = require("./TypedOperator");
 function WorkflowFromJSON(json) {
     return WorkflowFromJSONTyped(json, false);
 }
@@ -45,10 +26,16 @@ function WorkflowFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    return {
-        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorFromJSON)(json['operator']),
-        'type': json['type'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if ((0, LegacyTypedOperator_1.instanceOfLegacyTypedOperator)(json)) {
+        return (0, LegacyTypedOperator_1.LegacyTypedOperatorFromJSONTyped)(json, true);
+    }
+    if ((0, TypedOperator_1.instanceOfTypedOperator)(json)) {
+        return (0, TypedOperator_1.TypedOperatorFromJSONTyped)(json, true);
+    }
+    return {};
 }
 function WorkflowToJSON(json) {
     return WorkflowToJSONTyped(json, false);
@@ -57,8 +44,14 @@ function WorkflowToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
-    return {
-        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorToJSON)(value['operator']),
-        'type': value['type'],
-    };
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if ((0, LegacyTypedOperator_1.instanceOfLegacyTypedOperator)(value)) {
+        return (0, LegacyTypedOperator_1.LegacyTypedOperatorToJSON)(value);
+    }
+    if ((0, TypedOperator_1.instanceOfTypedOperator)(value)) {
+        return (0, TypedOperator_1.TypedOperatorToJSON)(value);
+    }
+    return {};
 }

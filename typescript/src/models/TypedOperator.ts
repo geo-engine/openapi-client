@@ -12,55 +12,35 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { TypedOperatorOperator } from './TypedOperatorOperator';
+import type { TypedOperatorOneOf } from './TypedOperatorOneOf';
 import {
-    TypedOperatorOperatorFromJSON,
-    TypedOperatorOperatorFromJSONTyped,
-    TypedOperatorOperatorToJSON,
-    TypedOperatorOperatorToJSONTyped,
-} from './TypedOperatorOperator';
+    instanceOfTypedOperatorOneOf,
+    TypedOperatorOneOfFromJSON,
+    TypedOperatorOneOfFromJSONTyped,
+    TypedOperatorOneOfToJSON,
+} from './TypedOperatorOneOf';
+import type { TypedOperatorOneOf1 } from './TypedOperatorOneOf1';
+import {
+    instanceOfTypedOperatorOneOf1,
+    TypedOperatorOneOf1FromJSON,
+    TypedOperatorOneOf1FromJSONTyped,
+    TypedOperatorOneOf1ToJSON,
+} from './TypedOperatorOneOf1';
+import type { TypedOperatorOneOf2 } from './TypedOperatorOneOf2';
+import {
+    instanceOfTypedOperatorOneOf2,
+    TypedOperatorOneOf2FromJSON,
+    TypedOperatorOneOf2FromJSONTyped,
+    TypedOperatorOneOf2ToJSON,
+} from './TypedOperatorOneOf2';
 
 /**
- * An enum to differentiate between `Operator` variants
- * @export
- * @interface TypedOperator
- */
-export interface TypedOperator {
-    /**
-     * 
-     * @type {TypedOperatorOperator}
-     * @memberof TypedOperator
-     */
-    operator: TypedOperatorOperator;
-    /**
-     * 
-     * @type {TypedOperatorTypeEnum}
-     * @memberof TypedOperator
-     */
-    type: TypedOperatorTypeEnum;
-}
-
-
-/**
+ * @type TypedOperator
+ * Operator outputs are distinguished by their data type.
+ * There are `raster`, `vector` and `plot` operators.
  * @export
  */
-export const TypedOperatorTypeEnum = {
-    Vector: 'Vector',
-    Raster: 'Raster',
-    Plot: 'Plot'
-} as const;
-export type TypedOperatorTypeEnum = typeof TypedOperatorTypeEnum[keyof typeof TypedOperatorTypeEnum];
-
-
-/**
- * Check if a given object implements the TypedOperator interface.
- */
-export function instanceOfTypedOperator(value: object): value is TypedOperator {
-    if (!('operator' in value) || value['operator'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    return true;
-}
+export type TypedOperator = TypedOperatorOneOf | TypedOperatorOneOf1 | TypedOperatorOneOf2;
 
 export function TypedOperatorFromJSON(json: any): TypedOperator {
     return TypedOperatorFromJSONTyped(json, false);
@@ -70,14 +50,22 @@ export function TypedOperatorFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (json == null) {
         return json;
     }
-    return {
-        
-        'operator': TypedOperatorOperatorFromJSON(json['operator']),
-        'type': json['type'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfTypedOperatorOneOf(json)) {
+        return TypedOperatorOneOfFromJSONTyped(json, true);
+    }
+    if (instanceOfTypedOperatorOneOf1(json)) {
+        return TypedOperatorOneOf1FromJSONTyped(json, true);
+    }
+    if (instanceOfTypedOperatorOneOf2(json)) {
+        return TypedOperatorOneOf2FromJSONTyped(json, true);
+    }
+    return {} as any;
 }
 
-export function TypedOperatorToJSON(json: any): TypedOperator {
+export function TypedOperatorToJSON(json: any): any {
     return TypedOperatorToJSONTyped(json, false);
 }
 
@@ -85,11 +73,27 @@ export function TypedOperatorToJSONTyped(value?: TypedOperator | null, ignoreDis
     if (value == null) {
         return value;
     }
-
-    return {
-        
-        'operator': TypedOperatorOperatorToJSON(value['operator']),
-        'type': value['type'],
-    };
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfTypedOperatorOneOf(value)) {
+        return TypedOperatorOneOfToJSON(value as TypedOperatorOneOf);
+    }
+    if (instanceOfTypedOperatorOneOf1(value)) {
+        return TypedOperatorOneOf1ToJSON(value as TypedOperatorOneOf1);
+    }
+    if (instanceOfTypedOperatorOneOf2(value)) {
+        return TypedOperatorOneOf2ToJSON(value as TypedOperatorOneOf2);
+    }
+    return {};
 }
 
+
+/**
+* Check if a given object implements the TypedOperator interface.
+*/
+export function instanceOfTypedOperator(value: object): value is TypedOperator {
+    return instanceOfTypedOperatorOneOf(value)
+        || instanceOfTypedOperatorOneOf1(value)
+        || instanceOfTypedOperatorOneOf2(value);
+}

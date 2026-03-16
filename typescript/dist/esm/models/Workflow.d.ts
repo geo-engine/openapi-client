@@ -9,40 +9,15 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TypedOperatorOperator } from './TypedOperatorOperator';
+import type { LegacyTypedOperator } from './LegacyTypedOperator';
+import type { TypedOperator } from './TypedOperator';
 /**
+ * @type Workflow
  *
  * @export
- * @interface Workflow
  */
-export interface Workflow {
-    /**
-     *
-     * @type {TypedOperatorOperator}
-     * @memberof Workflow
-     */
-    operator: TypedOperatorOperator;
-    /**
-     *
-     * @type {WorkflowTypeEnum}
-     * @memberof Workflow
-     */
-    type: WorkflowTypeEnum;
-}
-/**
- * @export
- */
-export declare const WorkflowTypeEnum: {
-    readonly Vector: "Vector";
-    readonly Raster: "Raster";
-    readonly Plot: "Plot";
-};
-export type WorkflowTypeEnum = typeof WorkflowTypeEnum[keyof typeof WorkflowTypeEnum];
-/**
- * Check if a given object implements the Workflow interface.
- */
-export declare function instanceOfWorkflow(value: object): value is Workflow;
+export type Workflow = LegacyTypedOperator | TypedOperator;
 export declare function WorkflowFromJSON(json: any): Workflow;
 export declare function WorkflowFromJSONTyped(json: any, ignoreDiscriminator: boolean): Workflow;
-export declare function WorkflowToJSON(json: any): Workflow;
+export declare function WorkflowToJSON(json: any): any;
 export declare function WorkflowToJSONTyped(value?: Workflow | null, ignoreDiscriminator?: boolean): any;

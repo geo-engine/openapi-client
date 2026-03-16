@@ -80,18 +80,7 @@ class BoundingBox2D(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(cls, obj: Dict[str, Any]) -> Optional[Self]:
         """Create an instance of BoundingBox2D from a dict"""
-        if obj is None:
-            return None
-
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
-
-        _obj = cls.model_validate({
-            "lowerLeftCoordinate": Coordinate2D.from_dict(obj["lowerLeftCoordinate"]) if obj.get("lowerLeftCoordinate") is not None else None,
-            "upperRightCoordinate": Coordinate2D.from_dict(obj["upperRightCoordinate"]) if obj.get("upperRightCoordinate") is not None else None
-        })
-        return _obj
 
 

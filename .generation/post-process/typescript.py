@@ -17,14 +17,82 @@ def file_modifications() -> Generator[tuple[Path, FileModifier], None, None]:
 
     # yield Path("models/LayerUpdate.ts"), layer_update_ts
     # yield Path("models/PlotUpdate.ts"), plot_update_ts
+    yield Path("models/RasterOperator.ts"), raster_operator_ts
+    yield Path("models/VectorOperator.ts"), vector_operator_ts
     yield Path("models/TaskStatusWithId.ts"), task_status_with_id_ts
     yield Path("models/VecUpdate.ts"), vec_update_ts
+    yield Path("models/TypedOperator.ts"), typed_operator_ts
     yield Path("runtime.ts"), runtime_ts
 
 
 def main():
     """Main function to perform file modifications."""
-    modify_files(file_modifications(), Path("typescript/src"))
+    modify_files(file_modifications(), Path("typescript/src"), Path("typescript/diffs"))
+
+
+def raster_operator_ts(
+    file_contents: list[str],
+) -> Generator[str, None, None]:
+    """Modify the RasterOperator.ts file."""
+    for line in file_contents:
+        yield line
+
+    new_lines = dedent("""\
+                       
+        /**
+        * Check if a given object implements the RasterOperator interface.
+        */
+        export function instanceOfRasterOperator(value: object): value is RasterOperator {
+            return instanceOfExpression(value)
+                || instanceOfGdalSource(value);
+        }
+    """).splitlines(keepends=True)
+
+    for line in new_lines:
+        yield line
+
+
+def vector_operator_ts(
+    file_contents: list[str],
+) -> Generator[str, None, None]:
+    """Modify the VectorOperator.ts file."""
+    for line in file_contents:
+        yield line
+
+    new_lines = dedent("""\
+                       
+        /**
+        * Check if a given object implements the VectorOperator interface.
+        */
+        export function instanceOfVectorOperator(value: object): value is VectorOperator {
+            return instanceOfMockPointSource(value)
+                || instanceOfRasterVectorJoin(value);
+        }
+    """).splitlines(keepends=True)
+
+    for line in new_lines:
+        yield line
+
+
+def typed_operator_ts(file_contents: list[str]) -> Generator[str, None, None]:
+    """Modify the TypedOperator.ts file."""
+    for line in file_contents:
+        yield line
+
+    new_lines = dedent("""\
+                       
+        /**
+        * Check if a given object implements the TypedOperator interface.
+        */
+        export function instanceOfTypedOperator(value: object): value is TypedOperator {
+            return instanceOfTypedOperatorOneOf(value)
+                || instanceOfTypedOperatorOneOf1(value)
+                || instanceOfTypedOperatorOneOf2(value);
+        }
+    """).splitlines(keepends=True)
+
+    for line in new_lines:
+        yield line
 
 
 def runtime_ts(file_contents: list[str]) -> Generator[str, None, None]:

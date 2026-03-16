@@ -36,19 +36,19 @@ class TestWorkflow(unittest.TestCase):
         model = Workflow()
         if include_optional:
             return Workflow(
-                operator = geoengine_openapi_client.models.typed_operator_operator.TypedOperator_operator(
+                operator = geoengine_openapi_client.models.legacy_typed_operator_operator.LegacyTypedOperator_operator(
                     params = geoengine_openapi_client.models.params.params(), 
                     sources = geoengine_openapi_client.models.sources.sources(), 
                     type = '', ),
-                type = 'Vector'
+                type = 'Plot'
             )
         else:
             return Workflow(
-                operator = geoengine_openapi_client.models.typed_operator_operator.TypedOperator_operator(
+                operator = geoengine_openapi_client.models.legacy_typed_operator_operator.LegacyTypedOperator_operator(
                     params = geoengine_openapi_client.models.params.params(), 
                     sources = geoengine_openapi_client.models.sources.sources(), 
                     type = '', ),
-                type = 'Vector',
+                type = 'Plot',
         )
         """
 

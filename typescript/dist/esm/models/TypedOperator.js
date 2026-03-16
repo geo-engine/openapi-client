@@ -11,25 +11,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TypedOperatorOperatorFromJSON, TypedOperatorOperatorToJSON, } from './TypedOperatorOperator';
-/**
- * @export
- */
-export const TypedOperatorTypeEnum = {
-    Vector: 'Vector',
-    Raster: 'Raster',
-    Plot: 'Plot'
-};
-/**
- * Check if a given object implements the TypedOperator interface.
- */
-export function instanceOfTypedOperator(value) {
-    if (!('operator' in value) || value['operator'] === undefined)
-        return false;
-    if (!('type' in value) || value['type'] === undefined)
-        return false;
-    return true;
-}
+import { instanceOfTypedOperatorOneOf, TypedOperatorOneOfFromJSONTyped, TypedOperatorOneOfToJSON, } from './TypedOperatorOneOf';
+import { instanceOfTypedOperatorOneOf1, TypedOperatorOneOf1FromJSONTyped, TypedOperatorOneOf1ToJSON, } from './TypedOperatorOneOf1';
+import { instanceOfTypedOperatorOneOf2, TypedOperatorOneOf2FromJSONTyped, TypedOperatorOneOf2ToJSON, } from './TypedOperatorOneOf2';
 export function TypedOperatorFromJSON(json) {
     return TypedOperatorFromJSONTyped(json, false);
 }
@@ -37,10 +21,19 @@ export function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    return {
-        'operator': TypedOperatorOperatorFromJSON(json['operator']),
-        'type': json['type'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfTypedOperatorOneOf(json)) {
+        return TypedOperatorOneOfFromJSONTyped(json, true);
+    }
+    if (instanceOfTypedOperatorOneOf1(json)) {
+        return TypedOperatorOneOf1FromJSONTyped(json, true);
+    }
+    if (instanceOfTypedOperatorOneOf2(json)) {
+        return TypedOperatorOneOf2FromJSONTyped(json, true);
+    }
+    return {};
 }
 export function TypedOperatorToJSON(json) {
     return TypedOperatorToJSONTyped(json, false);
@@ -49,8 +42,25 @@ export function TypedOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
-    return {
-        'operator': TypedOperatorOperatorToJSON(value['operator']),
-        'type': value['type'],
-    };
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfTypedOperatorOneOf(value)) {
+        return TypedOperatorOneOfToJSON(value);
+    }
+    if (instanceOfTypedOperatorOneOf1(value)) {
+        return TypedOperatorOneOf1ToJSON(value);
+    }
+    if (instanceOfTypedOperatorOneOf2(value)) {
+        return TypedOperatorOneOf2ToJSON(value);
+    }
+    return {};
+}
+/**
+* Check if a given object implements the TypedOperator interface.
+*/
+export function instanceOfTypedOperator(value) {
+    return instanceOfTypedOperatorOneOf(value)
+        || instanceOfTypedOperatorOneOf1(value)
+        || instanceOfTypedOperatorOneOf2(value);
 }

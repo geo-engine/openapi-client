@@ -1,13 +1,13 @@
 
 # TypedOperator
 
-An enum to differentiate between `Operator` variants
+Operator outputs are distinguished by their data type. There are `raster`, `vector` and `plot` operators.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`operator` | [TypedOperatorOperator](TypedOperatorOperator.md)
+`operator` | [PlotOperator](PlotOperator.md)
 `type` | string
 
 ## Example

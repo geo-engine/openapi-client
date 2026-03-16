@@ -1,0 +1,14 @@
+--- typescript/src/models/VectorOperator.ts
++++ typescript/src/models/VectorOperator.ts
+@@ -70,3 +70,11 @@
+     }
+ }
+ 
++
++/**
++* Check if a given object implements the VectorOperator interface.
++*/
++export function instanceOfVectorOperator(value: object): value is VectorOperator {
++    return instanceOfMockPointSource(value)
++        || instanceOfRasterVectorJoin(value);
++}

@@ -26,6 +26,7 @@ def file_modifications() -> Generator[tuple[Path, FileModifier], None, None]:
     yield Path("models/task_status_with_id.py"), task_status_with_id_py
     yield Path("models/time_step.py"), time_step_py
     yield Path("models/vector_result_descriptor.py"), vector_result_descriptor_py
+    yield Path("models/workflow.py"), workflow_py
 
 
 def main():
@@ -35,6 +36,17 @@ def main():
         Path("python/geoengine_openapi_client"),
         Path("python/diffs"),
     )
+
+
+def workflow_py(file_contents: list[str]) -> Generator[str, None, None]:
+    """Modify the workflow.py file."""
+    for line in file_contents:
+        dedented_line = dedent(line)
+
+        if dedented_line.startswith("match += 1"):
+            line = indent("return instance", 3 * INDENT) + "\n"
+
+        yield line
 
 
 def api_client_py(file_contents: list[str]) -> Generator[str, None, None]:

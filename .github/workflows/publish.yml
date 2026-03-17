@@ -77,3 +77,27 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  rust:
+    name: Publish Rust Package
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        rust-version: ["1.80.0"] # use lowest supported Rust version
+
+    defaults:
+      run:
+        working-directory: rust
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Rust ${{ matrix.rust-version }}
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust-version }}
+      - name: Install dependencies
+        run: cargo fetch
+      - name: Publish
+        run: cargo publish --token ${{ secrets.CARGO_TOKEN }}

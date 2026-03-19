@@ -45,7 +45,7 @@
         "gitUserId": "geo-engine",
         "gitRepoId": "openapi-client",
         "additionalProperties": {
-          "packageName": "geoengine_api_client",
+          "packageName": "geoengine-api-client",
           "packageVersion": "0.0.33",
           "homePageUrl": "https://www.geoengine.io",
           "repositoryUrl": "https://github.com/geo-engine/openapi-client"

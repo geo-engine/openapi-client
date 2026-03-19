@@ -16,14 +16,12 @@ HALF_INDENT = "  "
 def file_modifications() -> Generator[tuple[Path, FileModifier], None, None]:
     """Return a generator of file paths and their corresponding modification functions."""
 
-    # yield Path("src/apis/ogcwfs_api.rs"), ogcwfs_api_rs
-    # yield Path("src/apis/ogcwms_api.rs"), ogcwms_api_rs
     yield Path("src/apis/projects_api.rs"), projects_api_rs
     yield Path("src/apis/tasks_api.rs"), tasks_api_rs
-    # yield Path("src/apis/uploads_api.rs"), uploads_api_rs
     yield Path("src/models/default.rs"), default_rs
+    yield Path("src/models/raster_operator.rs"), raster_operator_rs
+    yield Path("src/models/vector_operator.rs"), vector_operator_rs
     yield Path("src/models/spatial_partition2_d.rs"), spatial_partition2_d_rs
-    # yield Path("src/models/spatial_resolution.rs"), spatial_resolution_rs
     yield (
         Path("src/models/multiple_raster_or_single_vector_operator.rs"),
         multiple_raster_or_single_vector_operator_rs,
@@ -37,6 +35,32 @@ def main():
         Path("rust"),
         Path("rust/diffs"),
     )
+
+
+def raster_operator_rs(
+    file_contents: list[str],
+) -> Generator[str, None, None]:
+    """Modify the raster_operator.rs file."""
+    for line in file_contents:
+        dedented_line = dedent(line)
+        # cf. <https://github.com/OpenAPITools/openapi-generator/issues/22344>
+        if dedented_line.startswith('#[serde(tag = "type")]'):
+            line = "#[serde(untagged)]" + "\n"
+
+        yield line
+
+
+def vector_operator_rs(
+    file_contents: list[str],
+) -> Generator[str, None, None]:
+    """Modify the vector_operator.rs file."""
+    for line in file_contents:
+        dedented_line = dedent(line)
+        # cf. <https://github.com/OpenAPITools/openapi-generator/issues/22344>
+        if dedented_line.startswith('#[serde(tag = "type")]'):
+            line = "#[serde(untagged)]" + "\n"
+
+        yield line
 
 
 def multiple_raster_or_single_vector_operator_rs(

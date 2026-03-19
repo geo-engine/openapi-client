@@ -15,10 +15,10 @@
 
 import unittest
 
-from geoengine_openapi_client.models.typed_operator_one_of import TypedOperatorOneOf
+from geoengine_openapi_client.models.typed_vector_operator import TypedVectorOperator
 
-class TestTypedOperatorOneOf(unittest.TestCase):
-    """TypedOperatorOneOf unit test stubs"""
+class TestTypedVectorOperator(unittest.TestCase):
+    """TypedVectorOperator unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,28 +26,28 @@ class TestTypedOperatorOneOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> TypedOperatorOneOf:
-        """Test TypedOperatorOneOf
+    def make_instance(self, include_optional) -> TypedVectorOperator:
+        """Test TypedVectorOperator
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `TypedOperatorOneOf`
+        # uncomment below to create an instance of `TypedVectorOperator`
         """
-        model = TypedOperatorOneOf()
+        model = TypedVectorOperator()
         if include_optional:
-            return TypedOperatorOneOf(
+            return TypedVectorOperator(
                 operator = None,
                 type = 'Vector'
             )
         else:
-            return TypedOperatorOneOf(
+            return TypedVectorOperator(
                 operator = None,
                 type = 'Vector',
         )
         """
 
-    def testTypedOperatorOneOf(self):
-        """Test TypedOperatorOneOf"""
+    def testTypedVectorOperator(self):
+        """Test TypedVectorOperator"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

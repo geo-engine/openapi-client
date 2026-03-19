@@ -24,47 +24,47 @@ import {
 /**
  * 
  * @export
- * @interface TypedOperatorOneOf
+ * @interface TypedVectorOperator
  */
-export interface TypedOperatorOneOf {
+export interface TypedVectorOperator {
     /**
      * 
      * @type {VectorOperator}
-     * @memberof TypedOperatorOneOf
+     * @memberof TypedVectorOperator
      */
     operator: VectorOperator;
     /**
      * 
-     * @type {TypedOperatorOneOfTypeEnum}
-     * @memberof TypedOperatorOneOf
+     * @type {TypedVectorOperatorTypeEnum}
+     * @memberof TypedVectorOperator
      */
-    type: TypedOperatorOneOfTypeEnum;
+    type: TypedVectorOperatorTypeEnum;
 }
 
 
 /**
  * @export
  */
-export const TypedOperatorOneOfTypeEnum = {
+export const TypedVectorOperatorTypeEnum = {
     Vector: 'Vector'
 } as const;
-export type TypedOperatorOneOfTypeEnum = typeof TypedOperatorOneOfTypeEnum[keyof typeof TypedOperatorOneOfTypeEnum];
+export type TypedVectorOperatorTypeEnum = typeof TypedVectorOperatorTypeEnum[keyof typeof TypedVectorOperatorTypeEnum];
 
 
 /**
- * Check if a given object implements the TypedOperatorOneOf interface.
+ * Check if a given object implements the TypedVectorOperator interface.
  */
-export function instanceOfTypedOperatorOneOf(value: object): value is TypedOperatorOneOf {
+export function instanceOfTypedVectorOperator(value: object): value is TypedVectorOperator {
     if (!('operator' in value) || value['operator'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
 
-export function TypedOperatorOneOfFromJSON(json: any): TypedOperatorOneOf {
-    return TypedOperatorOneOfFromJSONTyped(json, false);
+export function TypedVectorOperatorFromJSON(json: any): TypedVectorOperator {
+    return TypedVectorOperatorFromJSONTyped(json, false);
 }
 
-export function TypedOperatorOneOfFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedOperatorOneOf {
+export function TypedVectorOperatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedVectorOperator {
     if (json == null) {
         return json;
     }
@@ -75,11 +75,11 @@ export function TypedOperatorOneOfFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function TypedOperatorOneOfToJSON(json: any): TypedOperatorOneOf {
-    return TypedOperatorOneOfToJSONTyped(json, false);
+export function TypedVectorOperatorToJSON(json: any): TypedVectorOperator {
+    return TypedVectorOperatorToJSONTyped(json, false);
 }
 
-export function TypedOperatorOneOfToJSONTyped(value?: TypedOperatorOneOf | null, ignoreDiscriminator: boolean = false): any {
+export function TypedVectorOperatorToJSONTyped(value?: TypedVectorOperator | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

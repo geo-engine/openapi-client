@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 
 /// RasterOperator : An operator that produces raster data.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "type")]
+#[serde(untagged)]
 pub enum RasterOperator {
     #[serde(rename="Expression")]
     Expression(Box<models::Expression>),

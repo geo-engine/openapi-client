@@ -9,16 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TypedOperatorOneOf } from './TypedOperatorOneOf';
-import type { TypedOperatorOneOf1 } from './TypedOperatorOneOf1';
-import type { TypedOperatorOneOf2 } from './TypedOperatorOneOf2';
+import type { TypedPlotOperator } from './TypedPlotOperator';
+import type { TypedRasterOperator } from './TypedRasterOperator';
+import type { TypedVectorOperator } from './TypedVectorOperator';
 /**
  * @type TypedOperator
  * Operator outputs are distinguished by their data type.
  * There are `raster`, `vector` and `plot` operators.
  * @export
  */
-export type TypedOperator = TypedOperatorOneOf | TypedOperatorOneOf1 | TypedOperatorOneOf2;
+export type TypedOperator = TypedPlotOperator | TypedRasterOperator | TypedVectorOperator;
 export declare function TypedOperatorFromJSON(json: any): TypedOperator;
 export declare function TypedOperatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedOperator;
 export declare function TypedOperatorToJSON(json: any): any;

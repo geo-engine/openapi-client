@@ -14,15 +14,15 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TypedOperatorOneOf {
     #[serde(rename = "operator")]
-    pub operator: Box<models::VectorOperator>,
+    pub operator: models::RasterOperator,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
 
 impl TypedOperatorOneOf {
-    pub fn new(operator: models::VectorOperator, r#type: Type) -> TypedOperatorOneOf {
+    pub fn new(operator: models::RasterOperator, r#type: Type) -> TypedOperatorOneOf {
         TypedOperatorOneOf {
-            operator: Box::new(operator),
+            operator,
             r#type,
         }
     }
@@ -30,13 +30,13 @@ impl TypedOperatorOneOf {
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
-    #[serde(rename = "Vector")]
-    Vector,
+    #[serde(rename = "Raster")]
+    Raster,
 }
 
 impl Default for Type {
     fn default() -> Type {
-        Self::Vector
+        Self::Raster
     }
 }
 

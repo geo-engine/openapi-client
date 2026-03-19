@@ -20,23 +20,23 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from geoengine_openapi_client.models.vector_operator import VectorOperator
+from geoengine_openapi_client.models.plot_operator import PlotOperator
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TypedOperatorOneOf(BaseModel):
+class TypedPlotOperator(BaseModel):
     """
-    TypedOperatorOneOf
+    TypedPlotOperator
     """ # noqa: E501
-    operator: VectorOperator
+    operator: PlotOperator
     type: StrictStr
     __properties: ClassVar[List[str]] = ["operator", "type"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['Vector']):
-            raise ValueError("must be one of enum values ('Vector')")
+        if value not in set(['Plot']):
+            raise ValueError("must be one of enum values ('Plot')")
         return value
 
     model_config = ConfigDict(
@@ -57,7 +57,7 @@ class TypedOperatorOneOf(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TypedOperatorOneOf from a JSON string"""
+        """Create an instance of TypedPlotOperator from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -85,7 +85,7 @@ class TypedOperatorOneOf(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TypedOperatorOneOf from a dict"""
+        """Create an instance of TypedPlotOperator from a dict"""
         if obj is None:
             return None
 
@@ -93,7 +93,7 @@ class TypedOperatorOneOf(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "operator": VectorOperator.from_dict(obj["operator"]) if obj.get("operator") is not None else None,
+            "operator": PlotOperator.from_dict(obj["operator"]) if obj.get("operator") is not None else None,
             "type": obj.get("type")
         })
         return _obj

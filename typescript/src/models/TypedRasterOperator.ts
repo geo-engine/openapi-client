@@ -24,47 +24,47 @@ import {
 /**
  * 
  * @export
- * @interface TypedOperatorOneOf1
+ * @interface TypedRasterOperator
  */
-export interface TypedOperatorOneOf1 {
+export interface TypedRasterOperator {
     /**
      * 
      * @type {RasterOperator}
-     * @memberof TypedOperatorOneOf1
+     * @memberof TypedRasterOperator
      */
     operator: RasterOperator;
     /**
      * 
-     * @type {TypedOperatorOneOf1TypeEnum}
-     * @memberof TypedOperatorOneOf1
+     * @type {TypedRasterOperatorTypeEnum}
+     * @memberof TypedRasterOperator
      */
-    type: TypedOperatorOneOf1TypeEnum;
+    type: TypedRasterOperatorTypeEnum;
 }
 
 
 /**
  * @export
  */
-export const TypedOperatorOneOf1TypeEnum = {
+export const TypedRasterOperatorTypeEnum = {
     Raster: 'Raster'
 } as const;
-export type TypedOperatorOneOf1TypeEnum = typeof TypedOperatorOneOf1TypeEnum[keyof typeof TypedOperatorOneOf1TypeEnum];
+export type TypedRasterOperatorTypeEnum = typeof TypedRasterOperatorTypeEnum[keyof typeof TypedRasterOperatorTypeEnum];
 
 
 /**
- * Check if a given object implements the TypedOperatorOneOf1 interface.
+ * Check if a given object implements the TypedRasterOperator interface.
  */
-export function instanceOfTypedOperatorOneOf1(value: object): value is TypedOperatorOneOf1 {
+export function instanceOfTypedRasterOperator(value: object): value is TypedRasterOperator {
     if (!('operator' in value) || value['operator'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
 
-export function TypedOperatorOneOf1FromJSON(json: any): TypedOperatorOneOf1 {
-    return TypedOperatorOneOf1FromJSONTyped(json, false);
+export function TypedRasterOperatorFromJSON(json: any): TypedRasterOperator {
+    return TypedRasterOperatorFromJSONTyped(json, false);
 }
 
-export function TypedOperatorOneOf1FromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedOperatorOneOf1 {
+export function TypedRasterOperatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedRasterOperator {
     if (json == null) {
         return json;
     }
@@ -75,11 +75,11 @@ export function TypedOperatorOneOf1FromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function TypedOperatorOneOf1ToJSON(json: any): TypedOperatorOneOf1 {
-    return TypedOperatorOneOf1ToJSONTyped(json, false);
+export function TypedRasterOperatorToJSON(json: any): TypedRasterOperator {
+    return TypedRasterOperatorToJSONTyped(json, false);
 }
 
-export function TypedOperatorOneOf1ToJSONTyped(value?: TypedOperatorOneOf1 | null, ignoreDiscriminator: boolean = false): any {
+export function TypedRasterOperatorToJSONTyped(value?: TypedRasterOperator | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

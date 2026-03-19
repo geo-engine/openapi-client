@@ -1,4 +1,4 @@
-# TypedOperatorOneOf1
+# TypedPlotOperator
 
 ## Properties
 

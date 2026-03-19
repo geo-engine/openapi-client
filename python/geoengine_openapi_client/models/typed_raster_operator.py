@@ -24,9 +24,9 @@ from geoengine_openapi_client.models.raster_operator import RasterOperator
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TypedOperatorOneOf1(BaseModel):
+class TypedRasterOperator(BaseModel):
     """
-    TypedOperatorOneOf1
+    TypedRasterOperator
     """ # noqa: E501
     operator: RasterOperator
     type: StrictStr
@@ -57,7 +57,7 @@ class TypedOperatorOneOf1(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TypedOperatorOneOf1 from a JSON string"""
+        """Create an instance of TypedRasterOperator from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -85,7 +85,7 @@ class TypedOperatorOneOf1(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TypedOperatorOneOf1 from a dict"""
+        """Create an instance of TypedRasterOperator from a dict"""
         if obj is None:
             return None
 

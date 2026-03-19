@@ -15,10 +15,10 @@
 
 import unittest
 
-from geoengine_openapi_client.models.typed_operator_one_of1 import TypedOperatorOneOf1
+from geoengine_openapi_client.models.typed_plot_operator import TypedPlotOperator
 
-class TestTypedOperatorOneOf1(unittest.TestCase):
-    """TypedOperatorOneOf1 unit test stubs"""
+class TestTypedPlotOperator(unittest.TestCase):
+    """TypedPlotOperator unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,28 +26,28 @@ class TestTypedOperatorOneOf1(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> TypedOperatorOneOf1:
-        """Test TypedOperatorOneOf1
+    def make_instance(self, include_optional) -> TypedPlotOperator:
+        """Test TypedPlotOperator
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `TypedOperatorOneOf1`
+        # uncomment below to create an instance of `TypedPlotOperator`
         """
-        model = TypedOperatorOneOf1()
+        model = TypedPlotOperator()
         if include_optional:
-            return TypedOperatorOneOf1(
+            return TypedPlotOperator(
                 operator = None,
-                type = 'Raster'
+                type = 'Plot'
             )
         else:
-            return TypedOperatorOneOf1(
+            return TypedPlotOperator(
                 operator = None,
-                type = 'Raster',
+                type = 'Plot',
         )
         """
 
-    def testTypedOperatorOneOf1(self):
-        """Test TypedOperatorOneOf1"""
+    def testTypedPlotOperator(self):
+        """Test TypedPlotOperator"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -282,12 +282,12 @@ __all__ = [
     "TypedGeometryOneOf2",
     "TypedGeometryOneOf3",
     "TypedOperator",
-    "TypedOperatorOneOf",
-    "TypedOperatorOneOf1",
-    "TypedOperatorOneOf2",
+    "TypedPlotOperator",
     "TypedPlotResultDescriptor",
+    "TypedRasterOperator",
     "TypedRasterResultDescriptor",
     "TypedResultDescriptor",
+    "TypedVectorOperator",
     "TypedVectorResultDescriptor",
     "UnitlessMeasurement",
     "UnixTimeStampType",
@@ -593,12 +593,12 @@ from geoengine_openapi_client.models.typed_geometry_one_of1 import TypedGeometry
 from geoengine_openapi_client.models.typed_geometry_one_of2 import TypedGeometryOneOf2 as TypedGeometryOneOf2
 from geoengine_openapi_client.models.typed_geometry_one_of3 import TypedGeometryOneOf3 as TypedGeometryOneOf3
 from geoengine_openapi_client.models.typed_operator import TypedOperator as TypedOperator
-from geoengine_openapi_client.models.typed_operator_one_of import TypedOperatorOneOf as TypedOperatorOneOf
-from geoengine_openapi_client.models.typed_operator_one_of1 import TypedOperatorOneOf1 as TypedOperatorOneOf1
-from geoengine_openapi_client.models.typed_operator_one_of2 import TypedOperatorOneOf2 as TypedOperatorOneOf2
+from geoengine_openapi_client.models.typed_plot_operator import TypedPlotOperator as TypedPlotOperator
 from geoengine_openapi_client.models.typed_plot_result_descriptor import TypedPlotResultDescriptor as TypedPlotResultDescriptor
+from geoengine_openapi_client.models.typed_raster_operator import TypedRasterOperator as TypedRasterOperator
 from geoengine_openapi_client.models.typed_raster_result_descriptor import TypedRasterResultDescriptor as TypedRasterResultDescriptor
 from geoengine_openapi_client.models.typed_result_descriptor import TypedResultDescriptor as TypedResultDescriptor
+from geoengine_openapi_client.models.typed_vector_operator import TypedVectorOperator as TypedVectorOperator
 from geoengine_openapi_client.models.typed_vector_result_descriptor import TypedVectorResultDescriptor as TypedVectorResultDescriptor
 from geoengine_openapi_client.models.unitless_measurement import UnitlessMeasurement as UnitlessMeasurement
 from geoengine_openapi_client.models.unix_time_stamp_type import UnixTimeStampType as UnixTimeStampType

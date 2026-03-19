@@ -9,7 +9,7 @@
 +* Check if a given object implements the TypedOperator interface.
 +*/
 +export function instanceOfTypedOperator(value: object): value is TypedOperator {
-+    return instanceOfTypedOperatorOneOf(value)
-+        || instanceOfTypedOperatorOneOf1(value)
-+        || instanceOfTypedOperatorOneOf2(value);
++    return instanceOfTypedPlotOperator(value)
++        || instanceOfTypedRasterOperator(value)
++        || instanceOfTypedVectorOperator(value);
 +}

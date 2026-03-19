@@ -18,27 +18,27 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.typed_operator_one_of import TypedOperatorOneOf
-from geoengine_openapi_client.models.typed_operator_one_of1 import TypedOperatorOneOf1
-from geoengine_openapi_client.models.typed_operator_one_of2 import TypedOperatorOneOf2
+from geoengine_openapi_client.models.typed_plot_operator import TypedPlotOperator
+from geoengine_openapi_client.models.typed_raster_operator import TypedRasterOperator
+from geoengine_openapi_client.models.typed_vector_operator import TypedVectorOperator
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-TYPEDOPERATOR_ONE_OF_SCHEMAS = ["TypedOperatorOneOf", "TypedOperatorOneOf1", "TypedOperatorOneOf2"]
+TYPEDOPERATOR_ONE_OF_SCHEMAS = ["TypedPlotOperator", "TypedRasterOperator", "TypedVectorOperator"]
 
 class TypedOperator(BaseModel):
     """
     Operator outputs are distinguished by their data type. There are `raster`, `vector` and `plot` operators.
     """
-    # data type: TypedOperatorOneOf
-    oneof_schema_1_validator: Optional[TypedOperatorOneOf] = None
-    # data type: TypedOperatorOneOf1
-    oneof_schema_2_validator: Optional[TypedOperatorOneOf1] = None
-    # data type: TypedOperatorOneOf2
-    oneof_schema_3_validator: Optional[TypedOperatorOneOf2] = None
-    actual_instance: Optional[Union[TypedOperatorOneOf, TypedOperatorOneOf1, TypedOperatorOneOf2]] = None
-    one_of_schemas: Set[str] = { "TypedOperatorOneOf", "TypedOperatorOneOf1", "TypedOperatorOneOf2" }
+    # data type: TypedVectorOperator
+    oneof_schema_1_validator: Optional[TypedVectorOperator] = None
+    # data type: TypedRasterOperator
+    oneof_schema_2_validator: Optional[TypedRasterOperator] = None
+    # data type: TypedPlotOperator
+    oneof_schema_3_validator: Optional[TypedPlotOperator] = None
+    actual_instance: Optional[Union[TypedPlotOperator, TypedRasterOperator, TypedVectorOperator]] = None
+    one_of_schemas: Set[str] = { "TypedPlotOperator", "TypedRasterOperator", "TypedVectorOperator" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -61,27 +61,27 @@ class TypedOperator(BaseModel):
         instance = TypedOperator.model_construct()
         error_messages = []
         match = 0
-        # validate data type: TypedOperatorOneOf
-        if not isinstance(v, TypedOperatorOneOf):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedOperatorOneOf`")
+        # validate data type: TypedVectorOperator
+        if not isinstance(v, TypedVectorOperator):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedVectorOperator`")
         else:
             match += 1
-        # validate data type: TypedOperatorOneOf1
-        if not isinstance(v, TypedOperatorOneOf1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedOperatorOneOf1`")
+        # validate data type: TypedRasterOperator
+        if not isinstance(v, TypedRasterOperator):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedRasterOperator`")
         else:
             match += 1
-        # validate data type: TypedOperatorOneOf2
-        if not isinstance(v, TypedOperatorOneOf2):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedOperatorOneOf2`")
+        # validate data type: TypedPlotOperator
+        if not isinstance(v, TypedPlotOperator):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedPlotOperator`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in TypedOperator with oneOf schemas: TypedOperatorOneOf, TypedOperatorOneOf1, TypedOperatorOneOf2. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in TypedOperator with oneOf schemas: TypedPlotOperator, TypedRasterOperator, TypedVectorOperator. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in TypedOperator with oneOf schemas: TypedOperatorOneOf, TypedOperatorOneOf1, TypedOperatorOneOf2. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in TypedOperator with oneOf schemas: TypedPlotOperator, TypedRasterOperator, TypedVectorOperator. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -96,31 +96,31 @@ class TypedOperator(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into TypedOperatorOneOf
+        # deserialize data into TypedVectorOperator
         try:
-            instance.actual_instance = TypedOperatorOneOf.from_json(json_str)
+            instance.actual_instance = TypedVectorOperator.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into TypedOperatorOneOf1
+        # deserialize data into TypedRasterOperator
         try:
-            instance.actual_instance = TypedOperatorOneOf1.from_json(json_str)
+            instance.actual_instance = TypedRasterOperator.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into TypedOperatorOneOf2
+        # deserialize data into TypedPlotOperator
         try:
-            instance.actual_instance = TypedOperatorOneOf2.from_json(json_str)
+            instance.actual_instance = TypedPlotOperator.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into TypedOperator with oneOf schemas: TypedOperatorOneOf, TypedOperatorOneOf1, TypedOperatorOneOf2. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into TypedOperator with oneOf schemas: TypedPlotOperator, TypedRasterOperator, TypedVectorOperator. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into TypedOperator with oneOf schemas: TypedOperatorOneOf, TypedOperatorOneOf1, TypedOperatorOneOf2. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into TypedOperator with oneOf schemas: TypedPlotOperator, TypedRasterOperator, TypedVectorOperator. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -134,7 +134,7 @@ class TypedOperator(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], TypedOperatorOneOf, TypedOperatorOneOf1, TypedOperatorOneOf2]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], TypedPlotOperator, TypedRasterOperator, TypedVectorOperator]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -11,44 +11,44 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RasterOperatorFromJSON, RasterOperatorToJSON, } from './RasterOperator';
+import { PlotOperatorFromJSON, PlotOperatorToJSON, } from './PlotOperator';
 /**
  * @export
  */
-export const TypedOperatorOneOf1TypeEnum = {
-    Raster: 'Raster'
+export const TypedPlotOperatorTypeEnum = {
+    Plot: 'Plot'
 };
 /**
- * Check if a given object implements the TypedOperatorOneOf1 interface.
+ * Check if a given object implements the TypedPlotOperator interface.
  */
-export function instanceOfTypedOperatorOneOf1(value) {
+export function instanceOfTypedPlotOperator(value) {
     if (!('operator' in value) || value['operator'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
 }
-export function TypedOperatorOneOf1FromJSON(json) {
-    return TypedOperatorOneOf1FromJSONTyped(json, false);
+export function TypedPlotOperatorFromJSON(json) {
+    return TypedPlotOperatorFromJSONTyped(json, false);
 }
-export function TypedOperatorOneOf1FromJSONTyped(json, ignoreDiscriminator) {
+export function TypedPlotOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
     return {
-        'operator': RasterOperatorFromJSON(json['operator']),
+        'operator': PlotOperatorFromJSON(json['operator']),
         'type': json['type'],
     };
 }
-export function TypedOperatorOneOf1ToJSON(json) {
-    return TypedOperatorOneOf1ToJSONTyped(json, false);
+export function TypedPlotOperatorToJSON(json) {
+    return TypedPlotOperatorToJSONTyped(json, false);
 }
-export function TypedOperatorOneOf1ToJSONTyped(value, ignoreDiscriminator = false) {
+export function TypedPlotOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
     return {
-        'operator': RasterOperatorToJSON(value['operator']),
+        'operator': PlotOperatorToJSON(value['operator']),
         'type': value['type'],
     };
 }

@@ -49,9 +49,6 @@
           "packageVersion": "0.0.33",
           "homePageUrl": "https://www.geoengine.io",
           "repositoryUrl": "https://github.com/geo-engine/openapi-client"
-        },
-        "openapiNormalizer": {
-          "REF_AS_PARENT_IN_ALLOF": true
         }
       }
     }

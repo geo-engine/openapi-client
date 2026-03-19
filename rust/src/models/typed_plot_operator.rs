@@ -12,17 +12,17 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct TypedOperatorOneOf2 {
+pub struct TypedPlotOperator {
     #[serde(rename = "operator")]
-    pub operator: models::PlotOperator,
+    pub operator: Box<models::PlotOperator>,
     #[serde(rename = "type")]
     pub r#type: Type,
 }
 
-impl TypedOperatorOneOf2 {
-    pub fn new(operator: models::PlotOperator, r#type: Type) -> TypedOperatorOneOf2 {
-        TypedOperatorOneOf2 {
-            operator,
+impl TypedPlotOperator {
+    pub fn new(operator: models::PlotOperator, r#type: Type) -> TypedPlotOperator {
+        TypedPlotOperator {
+            operator: Box::new(operator),
             r#type,
         }
     }

@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 
 /// VectorOperator : An operator that produces vector data.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "type")]
+#[serde(untagged)]
 pub enum VectorOperator {
     #[serde(rename="MockPointSource")]
     MockPointSource(Box<models::MockPointSource>),

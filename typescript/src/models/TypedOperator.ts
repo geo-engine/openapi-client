@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { TypedOperatorOneOf } from './TypedOperatorOneOf';
+import type { TypedPlotOperator } from './TypedPlotOperator';
 import {
-    instanceOfTypedOperatorOneOf,
-    TypedOperatorOneOfFromJSON,
-    TypedOperatorOneOfFromJSONTyped,
-    TypedOperatorOneOfToJSON,
-} from './TypedOperatorOneOf';
-import type { TypedOperatorOneOf1 } from './TypedOperatorOneOf1';
+    instanceOfTypedPlotOperator,
+    TypedPlotOperatorFromJSON,
+    TypedPlotOperatorFromJSONTyped,
+    TypedPlotOperatorToJSON,
+} from './TypedPlotOperator';
+import type { TypedRasterOperator } from './TypedRasterOperator';
 import {
-    instanceOfTypedOperatorOneOf1,
-    TypedOperatorOneOf1FromJSON,
-    TypedOperatorOneOf1FromJSONTyped,
-    TypedOperatorOneOf1ToJSON,
-} from './TypedOperatorOneOf1';
-import type { TypedOperatorOneOf2 } from './TypedOperatorOneOf2';
+    instanceOfTypedRasterOperator,
+    TypedRasterOperatorFromJSON,
+    TypedRasterOperatorFromJSONTyped,
+    TypedRasterOperatorToJSON,
+} from './TypedRasterOperator';
+import type { TypedVectorOperator } from './TypedVectorOperator';
 import {
-    instanceOfTypedOperatorOneOf2,
-    TypedOperatorOneOf2FromJSON,
-    TypedOperatorOneOf2FromJSONTyped,
-    TypedOperatorOneOf2ToJSON,
-} from './TypedOperatorOneOf2';
+    instanceOfTypedVectorOperator,
+    TypedVectorOperatorFromJSON,
+    TypedVectorOperatorFromJSONTyped,
+    TypedVectorOperatorToJSON,
+} from './TypedVectorOperator';
 
 /**
  * @type TypedOperator
@@ -40,7 +40,7 @@ import {
  * There are `raster`, `vector` and `plot` operators.
  * @export
  */
-export type TypedOperator = TypedOperatorOneOf | TypedOperatorOneOf1 | TypedOperatorOneOf2;
+export type TypedOperator = TypedPlotOperator | TypedRasterOperator | TypedVectorOperator;
 
 export function TypedOperatorFromJSON(json: any): TypedOperator {
     return TypedOperatorFromJSONTyped(json, false);
@@ -53,14 +53,14 @@ export function TypedOperatorFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfTypedOperatorOneOf(json)) {
-        return TypedOperatorOneOfFromJSONTyped(json, true);
+    if (instanceOfTypedPlotOperator(json)) {
+        return TypedPlotOperatorFromJSONTyped(json, true);
     }
-    if (instanceOfTypedOperatorOneOf1(json)) {
-        return TypedOperatorOneOf1FromJSONTyped(json, true);
+    if (instanceOfTypedRasterOperator(json)) {
+        return TypedRasterOperatorFromJSONTyped(json, true);
     }
-    if (instanceOfTypedOperatorOneOf2(json)) {
-        return TypedOperatorOneOf2FromJSONTyped(json, true);
+    if (instanceOfTypedVectorOperator(json)) {
+        return TypedVectorOperatorFromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -76,14 +76,14 @@ export function TypedOperatorToJSONTyped(value?: TypedOperator | null, ignoreDis
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfTypedOperatorOneOf(value)) {
-        return TypedOperatorOneOfToJSON(value as TypedOperatorOneOf);
+    if (instanceOfTypedPlotOperator(value)) {
+        return TypedPlotOperatorToJSON(value as TypedPlotOperator);
     }
-    if (instanceOfTypedOperatorOneOf1(value)) {
-        return TypedOperatorOneOf1ToJSON(value as TypedOperatorOneOf1);
+    if (instanceOfTypedRasterOperator(value)) {
+        return TypedRasterOperatorToJSON(value as TypedRasterOperator);
     }
-    if (instanceOfTypedOperatorOneOf2(value)) {
-        return TypedOperatorOneOf2ToJSON(value as TypedOperatorOneOf2);
+    if (instanceOfTypedVectorOperator(value)) {
+        return TypedVectorOperatorToJSON(value as TypedVectorOperator);
     }
     return {};
 }
@@ -93,7 +93,7 @@ export function TypedOperatorToJSONTyped(value?: TypedOperator | null, ignoreDis
 * Check if a given object implements the TypedOperator interface.
 */
 export function instanceOfTypedOperator(value: object): value is TypedOperator {
-    return instanceOfTypedOperatorOneOf(value)
-        || instanceOfTypedOperatorOneOf1(value)
-        || instanceOfTypedOperatorOneOf2(value);
+    return instanceOfTypedPlotOperator(value)
+        || instanceOfTypedRasterOperator(value)
+        || instanceOfTypedVectorOperator(value);
 }

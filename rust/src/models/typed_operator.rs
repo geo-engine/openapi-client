@@ -16,14 +16,14 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TypedOperator {
-    TypedOperatorOneOf(Box<models::TypedOperatorOneOf>),
-    TypedOperatorOneOf1(Box<models::TypedOperatorOneOf1>),
-    TypedOperatorOneOf2(Box<models::TypedOperatorOneOf2>),
+    TypedVectorOperator(Box<models::TypedVectorOperator>),
+    TypedRasterOperator(Box<models::TypedRasterOperator>),
+    TypedPlotOperator(Box<models::TypedPlotOperator>),
 }
 
 impl Default for TypedOperator {
     fn default() -> Self {
-        Self::TypedOperatorOneOf(Default::default())
+        Self::TypedVectorOperator(Default::default())
     }
 }
 /// 

@@ -11,9 +11,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfTypedOperatorOneOf, TypedOperatorOneOfFromJSONTyped, TypedOperatorOneOfToJSON, } from './TypedOperatorOneOf';
-import { instanceOfTypedOperatorOneOf1, TypedOperatorOneOf1FromJSONTyped, TypedOperatorOneOf1ToJSON, } from './TypedOperatorOneOf1';
-import { instanceOfTypedOperatorOneOf2, TypedOperatorOneOf2FromJSONTyped, TypedOperatorOneOf2ToJSON, } from './TypedOperatorOneOf2';
+import { instanceOfTypedPlotOperator, TypedPlotOperatorFromJSONTyped, TypedPlotOperatorToJSON, } from './TypedPlotOperator';
+import { instanceOfTypedRasterOperator, TypedRasterOperatorFromJSONTyped, TypedRasterOperatorToJSON, } from './TypedRasterOperator';
+import { instanceOfTypedVectorOperator, TypedVectorOperatorFromJSONTyped, TypedVectorOperatorToJSON, } from './TypedVectorOperator';
 export function TypedOperatorFromJSON(json) {
     return TypedOperatorFromJSONTyped(json, false);
 }
@@ -24,14 +24,14 @@ export function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfTypedOperatorOneOf(json)) {
-        return TypedOperatorOneOfFromJSONTyped(json, true);
+    if (instanceOfTypedPlotOperator(json)) {
+        return TypedPlotOperatorFromJSONTyped(json, true);
     }
-    if (instanceOfTypedOperatorOneOf1(json)) {
-        return TypedOperatorOneOf1FromJSONTyped(json, true);
+    if (instanceOfTypedRasterOperator(json)) {
+        return TypedRasterOperatorFromJSONTyped(json, true);
     }
-    if (instanceOfTypedOperatorOneOf2(json)) {
-        return TypedOperatorOneOf2FromJSONTyped(json, true);
+    if (instanceOfTypedVectorOperator(json)) {
+        return TypedVectorOperatorFromJSONTyped(json, true);
     }
     return {};
 }
@@ -45,14 +45,14 @@ export function TypedOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfTypedOperatorOneOf(value)) {
-        return TypedOperatorOneOfToJSON(value);
+    if (instanceOfTypedPlotOperator(value)) {
+        return TypedPlotOperatorToJSON(value);
     }
-    if (instanceOfTypedOperatorOneOf1(value)) {
-        return TypedOperatorOneOf1ToJSON(value);
+    if (instanceOfTypedRasterOperator(value)) {
+        return TypedRasterOperatorToJSON(value);
     }
-    if (instanceOfTypedOperatorOneOf2(value)) {
-        return TypedOperatorOneOf2ToJSON(value);
+    if (instanceOfTypedVectorOperator(value)) {
+        return TypedVectorOperatorToJSON(value);
     }
     return {};
 }
@@ -60,7 +60,7 @@ export function TypedOperatorToJSONTyped(value, ignoreDiscriminator = false) {
 * Check if a given object implements the TypedOperator interface.
 */
 export function instanceOfTypedOperator(value) {
-    return instanceOfTypedOperatorOneOf(value)
-        || instanceOfTypedOperatorOneOf1(value)
-        || instanceOfTypedOperatorOneOf2(value);
+    return instanceOfTypedPlotOperator(value)
+        || instanceOfTypedRasterOperator(value)
+        || instanceOfTypedVectorOperator(value);
 }

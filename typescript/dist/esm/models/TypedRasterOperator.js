@@ -11,44 +11,44 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PlotOperatorFromJSON, PlotOperatorToJSON, } from './PlotOperator';
+import { RasterOperatorFromJSON, RasterOperatorToJSON, } from './RasterOperator';
 /**
  * @export
  */
-export const TypedOperatorOneOf2TypeEnum = {
-    Plot: 'Plot'
+export const TypedRasterOperatorTypeEnum = {
+    Raster: 'Raster'
 };
 /**
- * Check if a given object implements the TypedOperatorOneOf2 interface.
+ * Check if a given object implements the TypedRasterOperator interface.
  */
-export function instanceOfTypedOperatorOneOf2(value) {
+export function instanceOfTypedRasterOperator(value) {
     if (!('operator' in value) || value['operator'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
 }
-export function TypedOperatorOneOf2FromJSON(json) {
-    return TypedOperatorOneOf2FromJSONTyped(json, false);
+export function TypedRasterOperatorFromJSON(json) {
+    return TypedRasterOperatorFromJSONTyped(json, false);
 }
-export function TypedOperatorOneOf2FromJSONTyped(json, ignoreDiscriminator) {
+export function TypedRasterOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
     return {
-        'operator': PlotOperatorFromJSON(json['operator']),
+        'operator': RasterOperatorFromJSON(json['operator']),
         'type': json['type'],
     };
 }
-export function TypedOperatorOneOf2ToJSON(json) {
-    return TypedOperatorOneOf2ToJSONTyped(json, false);
+export function TypedRasterOperatorToJSON(json) {
+    return TypedRasterOperatorToJSONTyped(json, false);
 }
-export function TypedOperatorOneOf2ToJSONTyped(value, ignoreDiscriminator = false) {
+export function TypedRasterOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
     return {
-        'operator': PlotOperatorToJSON(value['operator']),
+        'operator': RasterOperatorToJSON(value['operator']),
         'type': value['type'],
     };
 }

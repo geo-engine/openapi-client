@@ -18,9 +18,9 @@ exports.TypedOperatorFromJSONTyped = TypedOperatorFromJSONTyped;
 exports.TypedOperatorToJSON = TypedOperatorToJSON;
 exports.TypedOperatorToJSONTyped = TypedOperatorToJSONTyped;
 exports.instanceOfTypedOperator = instanceOfTypedOperator;
-const TypedOperatorOneOf_1 = require("./TypedOperatorOneOf");
-const TypedOperatorOneOf1_1 = require("./TypedOperatorOneOf1");
-const TypedOperatorOneOf2_1 = require("./TypedOperatorOneOf2");
+const TypedPlotOperator_1 = require("./TypedPlotOperator");
+const TypedRasterOperator_1 = require("./TypedRasterOperator");
+const TypedVectorOperator_1 = require("./TypedVectorOperator");
 function TypedOperatorFromJSON(json) {
     return TypedOperatorFromJSONTyped(json, false);
 }
@@ -31,14 +31,14 @@ function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if ((0, TypedOperatorOneOf_1.instanceOfTypedOperatorOneOf)(json)) {
-        return (0, TypedOperatorOneOf_1.TypedOperatorOneOfFromJSONTyped)(json, true);
+    if ((0, TypedPlotOperator_1.instanceOfTypedPlotOperator)(json)) {
+        return (0, TypedPlotOperator_1.TypedPlotOperatorFromJSONTyped)(json, true);
     }
-    if ((0, TypedOperatorOneOf1_1.instanceOfTypedOperatorOneOf1)(json)) {
-        return (0, TypedOperatorOneOf1_1.TypedOperatorOneOf1FromJSONTyped)(json, true);
+    if ((0, TypedRasterOperator_1.instanceOfTypedRasterOperator)(json)) {
+        return (0, TypedRasterOperator_1.TypedRasterOperatorFromJSONTyped)(json, true);
     }
-    if ((0, TypedOperatorOneOf2_1.instanceOfTypedOperatorOneOf2)(json)) {
-        return (0, TypedOperatorOneOf2_1.TypedOperatorOneOf2FromJSONTyped)(json, true);
+    if ((0, TypedVectorOperator_1.instanceOfTypedVectorOperator)(json)) {
+        return (0, TypedVectorOperator_1.TypedVectorOperatorFromJSONTyped)(json, true);
     }
     return {};
 }
@@ -52,14 +52,14 @@ function TypedOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if ((0, TypedOperatorOneOf_1.instanceOfTypedOperatorOneOf)(value)) {
-        return (0, TypedOperatorOneOf_1.TypedOperatorOneOfToJSON)(value);
+    if ((0, TypedPlotOperator_1.instanceOfTypedPlotOperator)(value)) {
+        return (0, TypedPlotOperator_1.TypedPlotOperatorToJSON)(value);
     }
-    if ((0, TypedOperatorOneOf1_1.instanceOfTypedOperatorOneOf1)(value)) {
-        return (0, TypedOperatorOneOf1_1.TypedOperatorOneOf1ToJSON)(value);
+    if ((0, TypedRasterOperator_1.instanceOfTypedRasterOperator)(value)) {
+        return (0, TypedRasterOperator_1.TypedRasterOperatorToJSON)(value);
     }
-    if ((0, TypedOperatorOneOf2_1.instanceOfTypedOperatorOneOf2)(value)) {
-        return (0, TypedOperatorOneOf2_1.TypedOperatorOneOf2ToJSON)(value);
+    if ((0, TypedVectorOperator_1.instanceOfTypedVectorOperator)(value)) {
+        return (0, TypedVectorOperator_1.TypedVectorOperatorToJSON)(value);
     }
     return {};
 }
@@ -67,7 +67,7 @@ function TypedOperatorToJSONTyped(value, ignoreDiscriminator = false) {
 * Check if a given object implements the TypedOperator interface.
 */
 function instanceOfTypedOperator(value) {
-    return (0, TypedOperatorOneOf_1.instanceOfTypedOperatorOneOf)(value)
-        || (0, TypedOperatorOneOf1_1.instanceOfTypedOperatorOneOf1)(value)
-        || (0, TypedOperatorOneOf2_1.instanceOfTypedOperatorOneOf2)(value);
+    return (0, TypedPlotOperator_1.instanceOfTypedPlotOperator)(value)
+        || (0, TypedRasterOperator_1.instanceOfTypedRasterOperator)(value)
+        || (0, TypedVectorOperator_1.instanceOfTypedVectorOperator)(value);
 }

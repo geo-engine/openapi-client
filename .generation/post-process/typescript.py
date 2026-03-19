@@ -15,8 +15,6 @@ INDENT = "    "
 def file_modifications() -> Generator[tuple[Path, FileModifier], None, None]:
     """Return a generator of file paths and their corresponding modification functions."""
 
-    # yield Path("models/LayerUpdate.ts"), layer_update_ts
-    # yield Path("models/PlotUpdate.ts"), plot_update_ts
     yield Path("models/RasterOperator.ts"), raster_operator_ts
     yield Path("models/VectorOperator.ts"), vector_operator_ts
     yield Path("models/TaskStatusWithId.ts"), task_status_with_id_ts
@@ -85,9 +83,9 @@ def typed_operator_ts(file_contents: list[str]) -> Generator[str, None, None]:
         * Check if a given object implements the TypedOperator interface.
         */
         export function instanceOfTypedOperator(value: object): value is TypedOperator {
-            return instanceOfTypedOperatorOneOf(value)
-                || instanceOfTypedOperatorOneOf1(value)
-                || instanceOfTypedOperatorOneOf2(value);
+            return instanceOfTypedPlotOperator(value)
+                || instanceOfTypedRasterOperator(value)
+                || instanceOfTypedVectorOperator(value);
         }
     """).splitlines(keepends=True)
 

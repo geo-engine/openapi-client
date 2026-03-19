@@ -24,47 +24,47 @@ import {
 /**
  * 
  * @export
- * @interface TypedOperatorOneOf2
+ * @interface TypedPlotOperator
  */
-export interface TypedOperatorOneOf2 {
+export interface TypedPlotOperator {
     /**
      * 
      * @type {PlotOperator}
-     * @memberof TypedOperatorOneOf2
+     * @memberof TypedPlotOperator
      */
     operator: PlotOperator;
     /**
      * 
-     * @type {TypedOperatorOneOf2TypeEnum}
-     * @memberof TypedOperatorOneOf2
+     * @type {TypedPlotOperatorTypeEnum}
+     * @memberof TypedPlotOperator
      */
-    type: TypedOperatorOneOf2TypeEnum;
+    type: TypedPlotOperatorTypeEnum;
 }
 
 
 /**
  * @export
  */
-export const TypedOperatorOneOf2TypeEnum = {
+export const TypedPlotOperatorTypeEnum = {
     Plot: 'Plot'
 } as const;
-export type TypedOperatorOneOf2TypeEnum = typeof TypedOperatorOneOf2TypeEnum[keyof typeof TypedOperatorOneOf2TypeEnum];
+export type TypedPlotOperatorTypeEnum = typeof TypedPlotOperatorTypeEnum[keyof typeof TypedPlotOperatorTypeEnum];
 
 
 /**
- * Check if a given object implements the TypedOperatorOneOf2 interface.
+ * Check if a given object implements the TypedPlotOperator interface.
  */
-export function instanceOfTypedOperatorOneOf2(value: object): value is TypedOperatorOneOf2 {
+export function instanceOfTypedPlotOperator(value: object): value is TypedPlotOperator {
     if (!('operator' in value) || value['operator'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
 
-export function TypedOperatorOneOf2FromJSON(json: any): TypedOperatorOneOf2 {
-    return TypedOperatorOneOf2FromJSONTyped(json, false);
+export function TypedPlotOperatorFromJSON(json: any): TypedPlotOperator {
+    return TypedPlotOperatorFromJSONTyped(json, false);
 }
 
-export function TypedOperatorOneOf2FromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedOperatorOneOf2 {
+export function TypedPlotOperatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedPlotOperator {
     if (json == null) {
         return json;
     }
@@ -75,11 +75,11 @@ export function TypedOperatorOneOf2FromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function TypedOperatorOneOf2ToJSON(json: any): TypedOperatorOneOf2 {
-    return TypedOperatorOneOf2ToJSONTyped(json, false);
+export function TypedPlotOperatorToJSON(json: any): TypedPlotOperator {
+    return TypedPlotOperatorToJSONTyped(json, false);
 }
 
-export function TypedOperatorOneOf2ToJSONTyped(value?: TypedOperatorOneOf2 | null, ignoreDiscriminator: boolean = false): any {
+export function TypedPlotOperatorToJSONTyped(value?: TypedPlotOperator | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

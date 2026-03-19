@@ -13,33 +13,33 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedOperatorOneOfTypeEnum = void 0;
-exports.instanceOfTypedOperatorOneOf = instanceOfTypedOperatorOneOf;
-exports.TypedOperatorOneOfFromJSON = TypedOperatorOneOfFromJSON;
-exports.TypedOperatorOneOfFromJSONTyped = TypedOperatorOneOfFromJSONTyped;
-exports.TypedOperatorOneOfToJSON = TypedOperatorOneOfToJSON;
-exports.TypedOperatorOneOfToJSONTyped = TypedOperatorOneOfToJSONTyped;
+exports.TypedVectorOperatorTypeEnum = void 0;
+exports.instanceOfTypedVectorOperator = instanceOfTypedVectorOperator;
+exports.TypedVectorOperatorFromJSON = TypedVectorOperatorFromJSON;
+exports.TypedVectorOperatorFromJSONTyped = TypedVectorOperatorFromJSONTyped;
+exports.TypedVectorOperatorToJSON = TypedVectorOperatorToJSON;
+exports.TypedVectorOperatorToJSONTyped = TypedVectorOperatorToJSONTyped;
 const VectorOperator_1 = require("./VectorOperator");
 /**
  * @export
  */
-exports.TypedOperatorOneOfTypeEnum = {
+exports.TypedVectorOperatorTypeEnum = {
     Vector: 'Vector'
 };
 /**
- * Check if a given object implements the TypedOperatorOneOf interface.
+ * Check if a given object implements the TypedVectorOperator interface.
  */
-function instanceOfTypedOperatorOneOf(value) {
+function instanceOfTypedVectorOperator(value) {
     if (!('operator' in value) || value['operator'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
 }
-function TypedOperatorOneOfFromJSON(json) {
-    return TypedOperatorOneOfFromJSONTyped(json, false);
+function TypedVectorOperatorFromJSON(json) {
+    return TypedVectorOperatorFromJSONTyped(json, false);
 }
-function TypedOperatorOneOfFromJSONTyped(json, ignoreDiscriminator) {
+function TypedVectorOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
@@ -48,10 +48,10 @@ function TypedOperatorOneOfFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-function TypedOperatorOneOfToJSON(json) {
-    return TypedOperatorOneOfToJSONTyped(json, false);
+function TypedVectorOperatorToJSON(json) {
+    return TypedVectorOperatorToJSONTyped(json, false);
 }
-function TypedOperatorOneOfToJSONTyped(value, ignoreDiscriminator = false) {
+function TypedVectorOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }

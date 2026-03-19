@@ -15,23 +15,23 @@ import { VectorOperatorFromJSON, VectorOperatorToJSON, } from './VectorOperator'
 /**
  * @export
  */
-export const TypedOperatorOneOfTypeEnum = {
+export const TypedVectorOperatorTypeEnum = {
     Vector: 'Vector'
 };
 /**
- * Check if a given object implements the TypedOperatorOneOf interface.
+ * Check if a given object implements the TypedVectorOperator interface.
  */
-export function instanceOfTypedOperatorOneOf(value) {
+export function instanceOfTypedVectorOperator(value) {
     if (!('operator' in value) || value['operator'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
 }
-export function TypedOperatorOneOfFromJSON(json) {
-    return TypedOperatorOneOfFromJSONTyped(json, false);
+export function TypedVectorOperatorFromJSON(json) {
+    return TypedVectorOperatorFromJSONTyped(json, false);
 }
-export function TypedOperatorOneOfFromJSONTyped(json, ignoreDiscriminator) {
+export function TypedVectorOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
@@ -40,10 +40,10 @@ export function TypedOperatorOneOfFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-export function TypedOperatorOneOfToJSON(json) {
-    return TypedOperatorOneOfToJSONTyped(json, false);
+export function TypedVectorOperatorToJSON(json) {
+    return TypedVectorOperatorToJSONTyped(json, false);
 }
-export function TypedOperatorOneOfToJSONTyped(value, ignoreDiscriminator = false) {
+export function TypedVectorOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }

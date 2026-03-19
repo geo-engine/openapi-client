@@ -13,33 +13,33 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedOperatorOneOf1TypeEnum = void 0;
-exports.instanceOfTypedOperatorOneOf1 = instanceOfTypedOperatorOneOf1;
-exports.TypedOperatorOneOf1FromJSON = TypedOperatorOneOf1FromJSON;
-exports.TypedOperatorOneOf1FromJSONTyped = TypedOperatorOneOf1FromJSONTyped;
-exports.TypedOperatorOneOf1ToJSON = TypedOperatorOneOf1ToJSON;
-exports.TypedOperatorOneOf1ToJSONTyped = TypedOperatorOneOf1ToJSONTyped;
+exports.TypedRasterOperatorTypeEnum = void 0;
+exports.instanceOfTypedRasterOperator = instanceOfTypedRasterOperator;
+exports.TypedRasterOperatorFromJSON = TypedRasterOperatorFromJSON;
+exports.TypedRasterOperatorFromJSONTyped = TypedRasterOperatorFromJSONTyped;
+exports.TypedRasterOperatorToJSON = TypedRasterOperatorToJSON;
+exports.TypedRasterOperatorToJSONTyped = TypedRasterOperatorToJSONTyped;
 const RasterOperator_1 = require("./RasterOperator");
 /**
  * @export
  */
-exports.TypedOperatorOneOf1TypeEnum = {
+exports.TypedRasterOperatorTypeEnum = {
     Raster: 'Raster'
 };
 /**
- * Check if a given object implements the TypedOperatorOneOf1 interface.
+ * Check if a given object implements the TypedRasterOperator interface.
  */
-function instanceOfTypedOperatorOneOf1(value) {
+function instanceOfTypedRasterOperator(value) {
     if (!('operator' in value) || value['operator'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
 }
-function TypedOperatorOneOf1FromJSON(json) {
-    return TypedOperatorOneOf1FromJSONTyped(json, false);
+function TypedRasterOperatorFromJSON(json) {
+    return TypedRasterOperatorFromJSONTyped(json, false);
 }
-function TypedOperatorOneOf1FromJSONTyped(json, ignoreDiscriminator) {
+function TypedRasterOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
@@ -48,10 +48,10 @@ function TypedOperatorOneOf1FromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-function TypedOperatorOneOf1ToJSON(json) {
-    return TypedOperatorOneOf1ToJSONTyped(json, false);
+function TypedRasterOperatorToJSON(json) {
+    return TypedRasterOperatorToJSONTyped(json, false);
 }
-function TypedOperatorOneOf1ToJSONTyped(value, ignoreDiscriminator = false) {
+function TypedRasterOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }

@@ -13,33 +13,33 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedOperatorOneOf2TypeEnum = void 0;
-exports.instanceOfTypedOperatorOneOf2 = instanceOfTypedOperatorOneOf2;
-exports.TypedOperatorOneOf2FromJSON = TypedOperatorOneOf2FromJSON;
-exports.TypedOperatorOneOf2FromJSONTyped = TypedOperatorOneOf2FromJSONTyped;
-exports.TypedOperatorOneOf2ToJSON = TypedOperatorOneOf2ToJSON;
-exports.TypedOperatorOneOf2ToJSONTyped = TypedOperatorOneOf2ToJSONTyped;
+exports.TypedPlotOperatorTypeEnum = void 0;
+exports.instanceOfTypedPlotOperator = instanceOfTypedPlotOperator;
+exports.TypedPlotOperatorFromJSON = TypedPlotOperatorFromJSON;
+exports.TypedPlotOperatorFromJSONTyped = TypedPlotOperatorFromJSONTyped;
+exports.TypedPlotOperatorToJSON = TypedPlotOperatorToJSON;
+exports.TypedPlotOperatorToJSONTyped = TypedPlotOperatorToJSONTyped;
 const PlotOperator_1 = require("./PlotOperator");
 /**
  * @export
  */
-exports.TypedOperatorOneOf2TypeEnum = {
+exports.TypedPlotOperatorTypeEnum = {
     Plot: 'Plot'
 };
 /**
- * Check if a given object implements the TypedOperatorOneOf2 interface.
+ * Check if a given object implements the TypedPlotOperator interface.
  */
-function instanceOfTypedOperatorOneOf2(value) {
+function instanceOfTypedPlotOperator(value) {
     if (!('operator' in value) || value['operator'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     return true;
 }
-function TypedOperatorOneOf2FromJSON(json) {
-    return TypedOperatorOneOf2FromJSONTyped(json, false);
+function TypedPlotOperatorFromJSON(json) {
+    return TypedPlotOperatorFromJSONTyped(json, false);
 }
-function TypedOperatorOneOf2FromJSONTyped(json, ignoreDiscriminator) {
+function TypedPlotOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
@@ -48,10 +48,10 @@ function TypedOperatorOneOf2FromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
     };
 }
-function TypedOperatorOneOf2ToJSON(json) {
-    return TypedOperatorOneOf2ToJSONTyped(json, false);
+function TypedPlotOperatorToJSON(json) {
+    return TypedPlotOperatorToJSONTyped(json, false);
 }
-function TypedOperatorOneOf2ToJSONTyped(value, ignoreDiscriminator = false) {
+function TypedPlotOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }

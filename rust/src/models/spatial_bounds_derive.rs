@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 
 /// SpatialBoundsDerive : Spatial bounds derivation options for the [`MockPointSource`].
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(tag = "type")]
+#[serde(untagged)]
 pub enum SpatialBoundsDerive {
     #[serde(rename="derive")]
     Derive(Box<models::SpatialBoundsDeriveDerive>),

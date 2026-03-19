@@ -19,14 +19,19 @@ def file_modifications() -> Generator[tuple[Path, FileModifier], None, None]:
     yield Path("src/apis/projects_api.rs"), projects_api_rs
     yield Path("src/apis/tasks_api.rs"), tasks_api_rs
     yield Path("src/models/default.rs"), default_rs
-    yield Path("src/models/raster_operator.rs"), make_untagged
-    yield Path("src/models/vector_operator.rs"), make_untagged
-    yield Path("src/models/spatial_bounds_derive.rs"), make_untagged
     yield Path("src/models/spatial_partition2_d.rs"), spatial_partition2_d_rs
     yield (
         Path("src/models/multiple_raster_or_single_vector_operator.rs"),
         multiple_raster_or_single_vector_operator_rs,
     )
+
+    for file_path in [
+        Path("src/models/raster_operator.rs"),
+        Path("src/models/vector_operator.rs"),
+        Path("src/models/spatial_bounds_derive.rs"),
+        Path("src/models/measurement.rs"),
+    ]:
+        yield file_path, make_untagged
 
 
 def main():

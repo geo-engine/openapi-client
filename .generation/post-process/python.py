@@ -6,9 +6,10 @@ Post-processing of generated code.
 
 from pathlib import Path
 from typing import Literal
-from collections.abc import Callable, Generator
+from collections.abc import Generator
 from textwrap import dedent, indent
 from util import FileModifier, modify_files, version
+from enum import Flag, auto
 
 INDENT = "    "
 HALF_INDENT = "  "
@@ -19,8 +20,6 @@ def file_modifications() -> Generator[tuple[Path, FileModifier], None, None]:
 
     yield Path("api_client.py"), api_client_py
     yield Path("api/layers_api.py"), layers_api_py
-    yield Path("api/ogcwfs_api.py"), ogc_xyz_api_py("wfs")
-    yield Path("api/ogcwms_api.py"), ogc_xyz_api_py("wms")
     yield Path("api/tasks_api.py"), tasks_api_py
     yield Path("exceptions.py"), exceptions_py
     yield Path("models/plot_result_descriptor.py"), plot_result_descriptor_py
@@ -28,11 +27,46 @@ def file_modifications() -> Generator[tuple[Path, FileModifier], None, None]:
     yield Path("models/task_status_with_id.py"), task_status_with_id_py
     yield Path("models/time_step.py"), time_step_py
     yield Path("models/vector_result_descriptor.py"), vector_result_descriptor_py
+    yield Path("models/workflow.py"), workflow_py
 
 
 def main():
     """Main function to perform file modifications."""
-    modify_files(file_modifications(), Path("python/geoengine_openapi_client"))
+    modify_files(
+        file_modifications(),
+        Path("python/geoengine_openapi_client"),
+        Path("python/diffs"),
+    )
+
+
+def workflow_py(file_contents: list[str]) -> Generator[str, None, None]:
+    """Modify the workflow.py file."""
+
+    class Method(Flag):
+        ACTUAL_INSTANCE_MUST_VALIDATE_ONEOF = auto()
+        FROM_JSON = auto()
+        OTHER = auto()
+
+    method = Method.OTHER
+
+    for line in file_contents:
+        dedented_line = dedent(line)
+
+        if dedented_line.startswith("def actual_instance_must_validate_oneof"):
+            method = Method.ACTUAL_INSTANCE_MUST_VALIDATE_ONEOF
+        elif dedented_line.startswith("def from_json("):
+            method = Method.FROM_JSON
+        elif dedented_line.startswith("def "):
+            method = Method.OTHER
+        elif (
+            method == Method.ACTUAL_INSTANCE_MUST_VALIDATE_ONEOF
+            and dedented_line.startswith("match += 1")
+        ):
+            line = indent("return v", 3 * INDENT) + "\n"
+        elif method == Method.FROM_JSON and dedented_line.startswith("match += 1"):
+            line = indent("return instance", 3 * INDENT) + "\n"
+
+        yield line
 
 
 def api_client_py(file_contents: list[str]) -> Generator[str, None, None]:
@@ -176,31 +210,6 @@ def layers_api_py(file_contents: list[str]) -> Generator[str, None, None]:
             state = None
 
         yield line
-
-
-def ogc_xyz_api_py(
-    ogc_api: Literal["wfs", "wms"],
-) -> Callable[[list[str]], Generator[str, None, None]]:
-    """Modify the ogc_xyz_api.py file."""
-
-    def _ogc_xyz_api_py(file_contents: list[str]) -> Generator[str, None, None]:
-        """Modify the ogc_wfs_api.py file."""
-        for line in file_contents:
-            dedented_line = dedent(line)
-            if dedented_line.startswith(
-                f"resource_path='/{ogc_api}/{{workflow}}?request="
-            ):
-                line = indent(
-                    dedent(f"""\
-                # Note: remove query string in path part for ogc endpoints
-                resource_path='/{ogc_api}/{{workflow}}',
-                """),
-                    3 * INDENT,
-                )
-
-            yield line
-
-    return _ogc_xyz_api_py
 
 
 def raster_result_descriptor_py(file_contents: list[str]) -> Generator[str, None, None]:

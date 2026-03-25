@@ -6,7 +6,7 @@
 
 Name | Type
 ------------ | -------------
-`operator` | [TypedOperatorOperator](TypedOperatorOperator.md)
+`operator` | [LegacyTypedOperatorOperator](LegacyTypedOperatorOperator.md)
 `type` | string
 
 ## Example

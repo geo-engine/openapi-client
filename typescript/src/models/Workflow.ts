@@ -12,55 +12,27 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { TypedOperatorOperator } from './TypedOperatorOperator';
+import type { LegacyTypedOperator } from './LegacyTypedOperator';
 import {
-    TypedOperatorOperatorFromJSON,
-    TypedOperatorOperatorFromJSONTyped,
-    TypedOperatorOperatorToJSON,
-    TypedOperatorOperatorToJSONTyped,
-} from './TypedOperatorOperator';
+    instanceOfLegacyTypedOperator,
+    LegacyTypedOperatorFromJSON,
+    LegacyTypedOperatorFromJSONTyped,
+    LegacyTypedOperatorToJSON,
+} from './LegacyTypedOperator';
+import type { TypedOperator } from './TypedOperator';
+import {
+    instanceOfTypedOperator,
+    TypedOperatorFromJSON,
+    TypedOperatorFromJSONTyped,
+    TypedOperatorToJSON,
+} from './TypedOperator';
 
 /**
+ * @type Workflow
  * 
  * @export
- * @interface Workflow
  */
-export interface Workflow {
-    /**
-     * 
-     * @type {TypedOperatorOperator}
-     * @memberof Workflow
-     */
-    operator: TypedOperatorOperator;
-    /**
-     * 
-     * @type {WorkflowTypeEnum}
-     * @memberof Workflow
-     */
-    type: WorkflowTypeEnum;
-}
-
-
-/**
- * @export
- */
-export const WorkflowTypeEnum = {
-    Vector: 'Vector',
-    Raster: 'Raster',
-    Plot: 'Plot'
-} as const;
-export type WorkflowTypeEnum = typeof WorkflowTypeEnum[keyof typeof WorkflowTypeEnum];
-
-
-/**
- * Check if a given object implements the Workflow interface.
- */
-export function instanceOfWorkflow(value: object): value is Workflow {
-    if (!('operator' in value) || value['operator'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    return true;
-}
+export type Workflow = LegacyTypedOperator | TypedOperator;
 
 export function WorkflowFromJSON(json: any): Workflow {
     return WorkflowFromJSONTyped(json, false);
@@ -70,14 +42,19 @@ export function WorkflowFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     if (json == null) {
         return json;
     }
-    return {
-        
-        'operator': TypedOperatorOperatorFromJSON(json['operator']),
-        'type': json['type'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfLegacyTypedOperator(json)) {
+        return LegacyTypedOperatorFromJSONTyped(json, true);
+    }
+    if (instanceOfTypedOperator(json)) {
+        return TypedOperatorFromJSONTyped(json, true);
+    }
+    return {} as any;
 }
 
-export function WorkflowToJSON(json: any): Workflow {
+export function WorkflowToJSON(json: any): any {
     return WorkflowToJSONTyped(json, false);
 }
 
@@ -85,11 +62,15 @@ export function WorkflowToJSONTyped(value?: Workflow | null, ignoreDiscriminator
     if (value == null) {
         return value;
     }
-
-    return {
-        
-        'operator': TypedOperatorOperatorToJSON(value['operator']),
-        'type': value['type'],
-    };
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfLegacyTypedOperator(value)) {
+        return LegacyTypedOperatorToJSON(value as LegacyTypedOperator);
+    }
+    if (instanceOfTypedOperator(value)) {
+        return TypedOperatorToJSON(value as TypedOperator);
+    }
+    return {};
 }
 

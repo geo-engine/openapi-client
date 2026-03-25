@@ -11,25 +11,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TypedOperatorOperatorFromJSON, TypedOperatorOperatorToJSON, } from './TypedOperatorOperator';
-/**
- * @export
- */
-export const TypedOperatorTypeEnum = {
-    Vector: 'Vector',
-    Raster: 'Raster',
-    Plot: 'Plot'
-};
-/**
- * Check if a given object implements the TypedOperator interface.
- */
-export function instanceOfTypedOperator(value) {
-    if (!('operator' in value) || value['operator'] === undefined)
-        return false;
-    if (!('type' in value) || value['type'] === undefined)
-        return false;
-    return true;
-}
+import { instanceOfTypedPlotOperator, TypedPlotOperatorFromJSONTyped, TypedPlotOperatorToJSON, } from './TypedPlotOperator';
+import { instanceOfTypedRasterOperator, TypedRasterOperatorFromJSONTyped, TypedRasterOperatorToJSON, } from './TypedRasterOperator';
+import { instanceOfTypedVectorOperator, TypedVectorOperatorFromJSONTyped, TypedVectorOperatorToJSON, } from './TypedVectorOperator';
 export function TypedOperatorFromJSON(json) {
     return TypedOperatorFromJSONTyped(json, false);
 }
@@ -37,10 +21,19 @@ export function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    return {
-        'operator': TypedOperatorOperatorFromJSON(json['operator']),
-        'type': json['type'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfTypedPlotOperator(json)) {
+        return TypedPlotOperatorFromJSONTyped(json, true);
+    }
+    if (instanceOfTypedRasterOperator(json)) {
+        return TypedRasterOperatorFromJSONTyped(json, true);
+    }
+    if (instanceOfTypedVectorOperator(json)) {
+        return TypedVectorOperatorFromJSONTyped(json, true);
+    }
+    return {};
 }
 export function TypedOperatorToJSON(json) {
     return TypedOperatorToJSONTyped(json, false);
@@ -49,8 +42,25 @@ export function TypedOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
-    return {
-        'operator': TypedOperatorOperatorToJSON(value['operator']),
-        'type': value['type'],
-    };
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfTypedPlotOperator(value)) {
+        return TypedPlotOperatorToJSON(value);
+    }
+    if (instanceOfTypedRasterOperator(value)) {
+        return TypedRasterOperatorToJSON(value);
+    }
+    if (instanceOfTypedVectorOperator(value)) {
+        return TypedVectorOperatorToJSON(value);
+    }
+    return {};
+}
+/**
+* Check if a given object implements the TypedOperator interface.
+*/
+export function instanceOfTypedOperator(value) {
+    return instanceOfTypedPlotOperator(value)
+        || instanceOfTypedRasterOperator(value)
+        || instanceOfTypedVectorOperator(value);
 }

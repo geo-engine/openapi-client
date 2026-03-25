@@ -1,6 +1,6 @@
 # OpenApi Client CLI
 
-OPENAPI_GENERATOR_PACKAGE := "@openapitools/openapi-generator-cli@2.28.3"
+OPENAPI_GENERATOR_CLI := "npx @openapitools/openapi-generator-cli --openapitools .generation/openapitools.json"
 
 _default:
     @just --list
@@ -9,27 +9,51 @@ _default:
 _clear:
     @-clear
 
+
 # Build all API clients by executing the build steps for each language.
 [group('build')]
-build: _clear _build-python _build-typescript
+build: _clear \
+    _build-python-preprocess _build-rust-preprocess _build-typescript-preprocess \
+    _build_call \
+    _build-python-postprocess _build-rust-postprocess _build-typescript-postprocess
+
+_build_call generator="":
+    {{ OPENAPI_GENERATOR_CLI }} generate {{ if generator == "" { "" } else { "--generator-key " + generator } }}
 
 # Build the API clients for Python by generating code with the OpenAPI Generator and applying post-processing steps.
 [group('build')]
-build-python: _clear _build-python
+build-python: _clear _build-python-preprocess (_build_call "python") _build-python-postprocess
 
-_build-python: _clean_dirs_python
-    npx {{ OPENAPI_GENERATOR_PACKAGE }} batch .generation/config/python.yaml
+# Remove some directories because they are not be overwritten by the generator.
+_build-python-preprocess:
+    rm -rf \
+        python/geoengine_openapi_client \
+        python/.mypy_cache \
+        python/test \
+        python/diffs
+
+_build-python-postprocess:
     .generation/post-process/python.py
     rm -rf \
         python/docs \
-        openapitools.json
+        python/git_push.sh \
+        python/.travis.yml \
+        python/.gitlab-ci.yml \
+        python/.github
 
 # Build the API clients for TypeScript by generating code with the OpenAPI Generator and applying post-processing steps. Also install npm dependencies and set up .gitignore.
 [group('build')]
-build-typescript: _clear _build-typescript
+build-typescript: _clear (_build_call "typescript") _build-typescript-postprocess
 
-_build-typescript: _clean_dirs_typescript
-    npx {{ OPENAPI_GENERATOR_PACKAGE }} batch .generation/config/typescript.yaml
+# Remove some directories because they are not be overwritten by the generator.
+_build-typescript-preprocess:
+    rm -rf \
+        typescript/src \
+        typescript/dist \
+        typescript/node_modules \
+        typescript/diffs
+
+_build-typescript-postprocess:
     .generation/post-process/typescript.py
     echo "wwwroot/*.js" > typescript/.gitignore
     echo "node_modules" > typescript/.gitignore
@@ -37,88 +61,70 @@ _build-typescript: _clean_dirs_typescript
     cd typescript && npm install
     rm \
         typescript/.openapi-generator/FILES \
-        openapitools.json \
         package-lock.json
+
+# Build the API clients for Rust by generating code with the OpenAPI Generator and applying post-processing steps.
+[group('build')]
+build-rust: _clear _build-rust-preprocess (_build_call "rust") _build-rust-postprocess
+
+_build-rust-preprocess:
+    rm -rf \
+        rust/diffs
+
+_build-rust-postprocess:
+    .generation/post-process/rust.py
+
+    rm -rf \
+        rust/git_push.sh \
+        rust/.travis.yml
 
 [group('config')]
 lint-openapi-spec: _clear
-    npx {{ OPENAPI_GENERATOR_PACKAGE }} validate -i .generation/input/openapi.json --recommend
-    rm openapitools.json
-
-# Remove some directories because they are not be overwritten by the generator.
-[arg('language', pattern='python|typescript')]
-_clean_dirs language:
-    @echo "Cleaning {{ language }} directory…"
-
-    @just _clean_dirs_{{ language }}
-
-# Remove some directories because they are not be overwritten by the generator.
-_clean_dirs_python:
-    rm -rf \
-        python/geoengine_openapi_client \
-        python/.mypy_cache \
-        python/test
-
-# Remove some directories because they are not be overwritten by the generator.
-_clean_dirs_typescript:
-    rm -rf \
-        typescript/src \
-        typescript/dist \
-        typescript/node_modules
+    {{ OPENAPI_GENERATOR_CLI }} validate \
+        -i .generation/input/openapi.json \
+        --recommend
 
 # Generate the OpenAPI Generator configuration files from the config.ini.
 [group('config'), script("python3")]
-generate-configs:
-    from textwrap import dedent
+update-generator-configs:
     import configparser
+    import json
 
     config = configparser.ConfigParser()
     config.optionxform = str  # do not convert keys to lowercase
     config.read('.generation/config.ini')
 
-    typescript_config = dedent(f"""
-        inputSpec: .generation/input/openapi.json
-        outputDir: typescript
-        generatorName: typescript-fetch
-        gitHost: {config['git']['host']}
-        gitUserId: {config['git']['user']}
-        gitRepoId: {config['git']['repo']}
-        additionalProperties:
-            supportsES6: true
-            npmName: "{config['typescript']['name']}"
-            npmVersion: {config['general']['version']}
-        openapiNormalizer:
-            REF_AS_PARENT_IN_ALLOF: true
-    """).strip()
+    with open('.generation/openapitools.json', 'r', encoding='utf-8') as f:
+        generator_config = json.load(f)
 
-    python_config = dedent(f"""
-        inputSpec: .generation/input/openapi.json
-        outputDir: python
-        generatorName: python
-        gitHost: {config['git']['host']}
-        gitUserId: {config['git']['user']}
-        gitRepoId: {config['git']['repo']}
-        additionalProperties:
-            useOneOfDiscriminatorLookup: true
-            packageName: "{config['python']['name']}"
-            packageVersion: {config['general']['version']}
-            packageUrl: "https://{config['git']['host']}/{config['git']['user']}/{config['git']['repo']}"
-        openapiNormalizer:
-            REF_AS_PARENT_IN_ALLOF: true
-    """).strip()
+    spaces = generator_config['spaces']
 
-    with open(".generation/config/typescript.yaml", "w") as f:
-        f.write(typescript_config)
-    
-    with open(".generation/config/python.yaml", "w") as f:
-        f.write(python_config)
+    generators = generator_config['generator-cli']['generators']
+    for generator in ['typescript', 'python', 'rust']:
+        generators[generator]['gitHost'] = config['git']['host']
+        generators[generator]['gitUserId'] = config['git']['user']
+        generators[generator]['gitRepoId'] = config['git']['repo']
 
-    print("Generated OpenAPI Generator configuration files for TypeScript and Python.")
+    repository_url = f"https://{config['git']['host']}/{config['git']['user']}/{config['git']['repo']}"
+
+    generators['typescript']['additionalProperties']['npmVersion'] = config['general']['version']
+
+    generators['python']['additionalProperties']['packageVersion'] = config['general']['version']
+    generators['python']['additionalProperties']['packageUrl'] = repository_url
+
+    generators['rust']['additionalProperties']['packageVersion'] = config['general']['version']
+    generators['rust']['additionalProperties']['homePageUrl'] = config['general']['homepageUrl']
+    generators['rust']['additionalProperties']['repositoryUrl'] = repository_url
+
+    with open('.generation/openapitools.json', 'w', encoding='utf-8') as f:
+        json.dump(generator_config, f, indent=spaces)
+
+    print("Generated OpenAPI Generator configuration for TypeScript, Python, and Rust.")
 
 # Update the backend commit in the config.ini and increment the version.
 [group('config')]
 [arg("backendCommit", long="backendCommit", help="The commit hash of the backend for which to fetch the OpenAPI specification.")]
-update-config backendCommit: _clear (_update-config backendCommit) generate-configs (fetch-openapi-spec backendCommit) lint-openapi-spec
+update-config backendCommit: _clear (_update-config backendCommit) update-generator-configs (fetch-openapi-spec backendCommit) lint-openapi-spec
 
 [script("python3")]
 _update-config backendCommit:
@@ -166,3 +172,30 @@ check-no-changes-in-git-repo:
     else
       echo "No uncommitted changes found in git repository."
     fi
+
+[group('test')]
+test: _clear test-python test-rust test-typescript
+
+[group('test')]
+[working-directory("python")]
+test-python: _clear
+    #!/usr/bin/env bash
+    python3 -m venv .venv && source .venv/bin/activate || source .venv/bin/activate
+    
+    python -m pip install --upgrade pip
+    if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
+    
+    pytest
+
+[group('test')]
+[working-directory("rust")]
+test-rust: _clear
+    cargo build
+    cargo test
+
+[group('test')]
+[working-directory("typescript")]
+test-typescript: _clear
+    npm install
+    npm run build

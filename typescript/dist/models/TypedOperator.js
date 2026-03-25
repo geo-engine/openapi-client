@@ -13,31 +13,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypedOperatorTypeEnum = void 0;
-exports.instanceOfTypedOperator = instanceOfTypedOperator;
 exports.TypedOperatorFromJSON = TypedOperatorFromJSON;
 exports.TypedOperatorFromJSONTyped = TypedOperatorFromJSONTyped;
 exports.TypedOperatorToJSON = TypedOperatorToJSON;
 exports.TypedOperatorToJSONTyped = TypedOperatorToJSONTyped;
-const TypedOperatorOperator_1 = require("./TypedOperatorOperator");
-/**
- * @export
- */
-exports.TypedOperatorTypeEnum = {
-    Vector: 'Vector',
-    Raster: 'Raster',
-    Plot: 'Plot'
-};
-/**
- * Check if a given object implements the TypedOperator interface.
- */
-function instanceOfTypedOperator(value) {
-    if (!('operator' in value) || value['operator'] === undefined)
-        return false;
-    if (!('type' in value) || value['type'] === undefined)
-        return false;
-    return true;
-}
+exports.instanceOfTypedOperator = instanceOfTypedOperator;
+const TypedPlotOperator_1 = require("./TypedPlotOperator");
+const TypedRasterOperator_1 = require("./TypedRasterOperator");
+const TypedVectorOperator_1 = require("./TypedVectorOperator");
 function TypedOperatorFromJSON(json) {
     return TypedOperatorFromJSONTyped(json, false);
 }
@@ -45,10 +28,19 @@ function TypedOperatorFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    return {
-        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorFromJSON)(json['operator']),
-        'type': json['type'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if ((0, TypedPlotOperator_1.instanceOfTypedPlotOperator)(json)) {
+        return (0, TypedPlotOperator_1.TypedPlotOperatorFromJSONTyped)(json, true);
+    }
+    if ((0, TypedRasterOperator_1.instanceOfTypedRasterOperator)(json)) {
+        return (0, TypedRasterOperator_1.TypedRasterOperatorFromJSONTyped)(json, true);
+    }
+    if ((0, TypedVectorOperator_1.instanceOfTypedVectorOperator)(json)) {
+        return (0, TypedVectorOperator_1.TypedVectorOperatorFromJSONTyped)(json, true);
+    }
+    return {};
 }
 function TypedOperatorToJSON(json) {
     return TypedOperatorToJSONTyped(json, false);
@@ -57,8 +49,25 @@ function TypedOperatorToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
-    return {
-        'operator': (0, TypedOperatorOperator_1.TypedOperatorOperatorToJSON)(value['operator']),
-        'type': value['type'],
-    };
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if ((0, TypedPlotOperator_1.instanceOfTypedPlotOperator)(value)) {
+        return (0, TypedPlotOperator_1.TypedPlotOperatorToJSON)(value);
+    }
+    if ((0, TypedRasterOperator_1.instanceOfTypedRasterOperator)(value)) {
+        return (0, TypedRasterOperator_1.TypedRasterOperatorToJSON)(value);
+    }
+    if ((0, TypedVectorOperator_1.instanceOfTypedVectorOperator)(value)) {
+        return (0, TypedVectorOperator_1.TypedVectorOperatorToJSON)(value);
+    }
+    return {};
+}
+/**
+* Check if a given object implements the TypedOperator interface.
+*/
+function instanceOfTypedOperator(value) {
+    return (0, TypedPlotOperator_1.instanceOfTypedPlotOperator)(value)
+        || (0, TypedRasterOperator_1.instanceOfTypedRasterOperator)(value)
+        || (0, TypedVectorOperator_1.instanceOfTypedVectorOperator)(value);
 }

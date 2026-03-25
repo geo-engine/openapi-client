@@ -9,40 +9,21 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TypedOperatorOperator } from './TypedOperatorOperator';
+import type { TypedPlotOperator } from './TypedPlotOperator';
+import type { TypedRasterOperator } from './TypedRasterOperator';
+import type { TypedVectorOperator } from './TypedVectorOperator';
 /**
- * An enum to differentiate between `Operator` variants
- * @export
- * @interface TypedOperator
- */
-export interface TypedOperator {
-    /**
-     *
-     * @type {TypedOperatorOperator}
-     * @memberof TypedOperator
-     */
-    operator: TypedOperatorOperator;
-    /**
-     *
-     * @type {TypedOperatorTypeEnum}
-     * @memberof TypedOperator
-     */
-    type: TypedOperatorTypeEnum;
-}
-/**
+ * @type TypedOperator
+ * Operator outputs are distinguished by their data type.
+ * There are `raster`, `vector` and `plot` operators.
  * @export
  */
-export declare const TypedOperatorTypeEnum: {
-    readonly Vector: "Vector";
-    readonly Raster: "Raster";
-    readonly Plot: "Plot";
-};
-export type TypedOperatorTypeEnum = typeof TypedOperatorTypeEnum[keyof typeof TypedOperatorTypeEnum];
-/**
- * Check if a given object implements the TypedOperator interface.
- */
-export declare function instanceOfTypedOperator(value: object): value is TypedOperator;
+export type TypedOperator = TypedPlotOperator | TypedRasterOperator | TypedVectorOperator;
 export declare function TypedOperatorFromJSON(json: any): TypedOperator;
 export declare function TypedOperatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedOperator;
-export declare function TypedOperatorToJSON(json: any): TypedOperator;
+export declare function TypedOperatorToJSON(json: any): any;
 export declare function TypedOperatorToJSONTyped(value?: TypedOperator | null, ignoreDiscriminator?: boolean): any;
+/**
+* Check if a given object implements the TypedOperator interface.
+*/
+export declare function instanceOfTypedOperator(value: object): value is TypedOperator;

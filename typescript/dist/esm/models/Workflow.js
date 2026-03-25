@@ -11,25 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TypedOperatorOperatorFromJSON, TypedOperatorOperatorToJSON, } from './TypedOperatorOperator';
-/**
- * @export
- */
-export const WorkflowTypeEnum = {
-    Vector: 'Vector',
-    Raster: 'Raster',
-    Plot: 'Plot'
-};
-/**
- * Check if a given object implements the Workflow interface.
- */
-export function instanceOfWorkflow(value) {
-    if (!('operator' in value) || value['operator'] === undefined)
-        return false;
-    if (!('type' in value) || value['type'] === undefined)
-        return false;
-    return true;
-}
+import { instanceOfLegacyTypedOperator, LegacyTypedOperatorFromJSONTyped, LegacyTypedOperatorToJSON, } from './LegacyTypedOperator';
+import { instanceOfTypedOperator, TypedOperatorFromJSONTyped, TypedOperatorToJSON, } from './TypedOperator';
 export function WorkflowFromJSON(json) {
     return WorkflowFromJSONTyped(json, false);
 }
@@ -37,10 +20,16 @@ export function WorkflowFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    return {
-        'operator': TypedOperatorOperatorFromJSON(json['operator']),
-        'type': json['type'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfLegacyTypedOperator(json)) {
+        return LegacyTypedOperatorFromJSONTyped(json, true);
+    }
+    if (instanceOfTypedOperator(json)) {
+        return TypedOperatorFromJSONTyped(json, true);
+    }
+    return {};
 }
 export function WorkflowToJSON(json) {
     return WorkflowToJSONTyped(json, false);
@@ -49,8 +38,14 @@ export function WorkflowToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
-    return {
-        'operator': TypedOperatorOperatorToJSON(value['operator']),
-        'type': value['type'],
-    };
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfLegacyTypedOperator(value)) {
+        return LegacyTypedOperatorToJSON(value);
+    }
+    if (instanceOfTypedOperator(value)) {
+        return TypedOperatorToJSON(value);
+    }
+    return {};
 }

@@ -12,55 +12,35 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { TypedOperatorOperator } from './TypedOperatorOperator';
+import type { TypedPlotOperator } from './TypedPlotOperator';
 import {
-    TypedOperatorOperatorFromJSON,
-    TypedOperatorOperatorFromJSONTyped,
-    TypedOperatorOperatorToJSON,
-    TypedOperatorOperatorToJSONTyped,
-} from './TypedOperatorOperator';
+    instanceOfTypedPlotOperator,
+    TypedPlotOperatorFromJSON,
+    TypedPlotOperatorFromJSONTyped,
+    TypedPlotOperatorToJSON,
+} from './TypedPlotOperator';
+import type { TypedRasterOperator } from './TypedRasterOperator';
+import {
+    instanceOfTypedRasterOperator,
+    TypedRasterOperatorFromJSON,
+    TypedRasterOperatorFromJSONTyped,
+    TypedRasterOperatorToJSON,
+} from './TypedRasterOperator';
+import type { TypedVectorOperator } from './TypedVectorOperator';
+import {
+    instanceOfTypedVectorOperator,
+    TypedVectorOperatorFromJSON,
+    TypedVectorOperatorFromJSONTyped,
+    TypedVectorOperatorToJSON,
+} from './TypedVectorOperator';
 
 /**
- * An enum to differentiate between `Operator` variants
- * @export
- * @interface TypedOperator
- */
-export interface TypedOperator {
-    /**
-     * 
-     * @type {TypedOperatorOperator}
-     * @memberof TypedOperator
-     */
-    operator: TypedOperatorOperator;
-    /**
-     * 
-     * @type {TypedOperatorTypeEnum}
-     * @memberof TypedOperator
-     */
-    type: TypedOperatorTypeEnum;
-}
-
-
-/**
+ * @type TypedOperator
+ * Operator outputs are distinguished by their data type.
+ * There are `raster`, `vector` and `plot` operators.
  * @export
  */
-export const TypedOperatorTypeEnum = {
-    Vector: 'Vector',
-    Raster: 'Raster',
-    Plot: 'Plot'
-} as const;
-export type TypedOperatorTypeEnum = typeof TypedOperatorTypeEnum[keyof typeof TypedOperatorTypeEnum];
-
-
-/**
- * Check if a given object implements the TypedOperator interface.
- */
-export function instanceOfTypedOperator(value: object): value is TypedOperator {
-    if (!('operator' in value) || value['operator'] === undefined) return false;
-    if (!('type' in value) || value['type'] === undefined) return false;
-    return true;
-}
+export type TypedOperator = TypedPlotOperator | TypedRasterOperator | TypedVectorOperator;
 
 export function TypedOperatorFromJSON(json: any): TypedOperator {
     return TypedOperatorFromJSONTyped(json, false);
@@ -70,14 +50,22 @@ export function TypedOperatorFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (json == null) {
         return json;
     }
-    return {
-        
-        'operator': TypedOperatorOperatorFromJSON(json['operator']),
-        'type': json['type'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfTypedPlotOperator(json)) {
+        return TypedPlotOperatorFromJSONTyped(json, true);
+    }
+    if (instanceOfTypedRasterOperator(json)) {
+        return TypedRasterOperatorFromJSONTyped(json, true);
+    }
+    if (instanceOfTypedVectorOperator(json)) {
+        return TypedVectorOperatorFromJSONTyped(json, true);
+    }
+    return {} as any;
 }
 
-export function TypedOperatorToJSON(json: any): TypedOperator {
+export function TypedOperatorToJSON(json: any): any {
     return TypedOperatorToJSONTyped(json, false);
 }
 
@@ -85,11 +73,27 @@ export function TypedOperatorToJSONTyped(value?: TypedOperator | null, ignoreDis
     if (value == null) {
         return value;
     }
-
-    return {
-        
-        'operator': TypedOperatorOperatorToJSON(value['operator']),
-        'type': value['type'],
-    };
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfTypedPlotOperator(value)) {
+        return TypedPlotOperatorToJSON(value as TypedPlotOperator);
+    }
+    if (instanceOfTypedRasterOperator(value)) {
+        return TypedRasterOperatorToJSON(value as TypedRasterOperator);
+    }
+    if (instanceOfTypedVectorOperator(value)) {
+        return TypedVectorOperatorToJSON(value as TypedVectorOperator);
+    }
+    return {};
 }
 
+
+/**
+* Check if a given object implements the TypedOperator interface.
+*/
+export function instanceOfTypedOperator(value: object): value is TypedOperator {
+    return instanceOfTypedPlotOperator(value)
+        || instanceOfTypedRasterOperator(value)
+        || instanceOfTypedVectorOperator(value);
+}

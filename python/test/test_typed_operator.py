@@ -36,18 +36,12 @@ class TestTypedOperator(unittest.TestCase):
         model = TypedOperator()
         if include_optional:
             return TypedOperator(
-                operator = geoengine_openapi_client.models.typed_operator_operator.TypedOperator_operator(
-                    params = geoengine_openapi_client.models.params.params(), 
-                    sources = geoengine_openapi_client.models.sources.sources(), 
-                    type = '', ),
+                operator = None,
                 type = 'Vector'
             )
         else:
             return TypedOperator(
-                operator = geoengine_openapi_client.models.typed_operator_operator.TypedOperator_operator(
-                    params = geoengine_openapi_client.models.params.params(), 
-                    sources = geoengine_openapi_client.models.sources.sources(), 
-                    type = '', ),
+                operator = None,
                 type = 'Vector',
         )
         """

@@ -1,0 +1,56 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "7.20.0",
+    "generators": {
+      "typescript": {
+        "generatorName": "typescript-fetch",
+        "inputSpec": ".generation/input/openapi.json",
+        "output": "typescript",
+        "gitHost": "github.com",
+        "gitUserId": "geo-engine",
+        "gitRepoId": "openapi-client",
+        "additionalProperties": {
+          "supportsES6": true,
+          "npmName": "@geoengine/openapi-client",
+          "npmVersion": "0.0.33"
+        },
+        "openapiNormalizer": {
+          "REF_AS_PARENT_IN_ALLOF": true
+        }
+      },
+      "python": {
+        "generatorName": "python",
+        "inputSpec": ".generation/input/openapi.json",
+        "output": "python",
+        "gitHost": "github.com",
+        "gitUserId": "geo-engine",
+        "gitRepoId": "openapi-client",
+        "additionalProperties": {
+          "useOneOfDiscriminatorLookup": true,
+          "packageName": "geoengine_openapi_client",
+          "packageVersion": "0.0.33",
+          "packageUrl": "https://github.com/geo-engine/openapi-client"
+        },
+        "openapiNormalizer": {
+          "REF_AS_PARENT_IN_ALLOF": true
+        }
+      },
+      "rust": {
+        "generatorName": "rust",
+        "inputSpec": ".generation/input/openapi.json",
+        "output": "rust",
+        "gitHost": "github.com",
+        "gitUserId": "geo-engine",
+        "gitRepoId": "openapi-client",
+        "additionalProperties": {
+          "packageName": "geoengine-api-client",
+          "packageVersion": "0.0.33",
+          "homePageUrl": "https://www.geoengine.io",
+          "repositoryUrl": "https://github.com/geo-engine/openapi-client"
+        }
+      }
+    }
+  }
+}

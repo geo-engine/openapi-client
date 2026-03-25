@@ -35,7 +35,11 @@ _build-python-preprocess:
 _build-python-postprocess:
     .generation/post-process/python.py
     rm -rf \
-        python/docs
+        python/docs \
+        python/git_push.sh \
+        python/.travis.yml \
+        python/.gitlab-ci.yml \
+        python/.github
 
 # Build the API clients for TypeScript by generating code with the OpenAPI Generator and applying post-processing steps. Also install npm dependencies and set up .gitignore.
 [group('build')]
@@ -69,6 +73,10 @@ _build-rust-preprocess:
 
 _build-rust-postprocess:
     .generation/post-process/rust.py
+
+    rm -rf \
+        rust/git_push.sh \
+        rust/.travis.yml
 
 [group('config')]
 lint-openapi-spec: _clear
@@ -165,21 +173,29 @@ check-no-changes-in-git-repo:
       echo "No uncommitted changes found in git repository."
     fi
 
-# [group('test')]
-# [working-directory("python")]
-# test-python:
-#     python3 -m venv .venv && source .venv/bin/activate || source .venv/bin/activate
-#     pip install -e .[dev]
-#     pytest
+[group('test')]
+test: _clear test-python test-rust test-typescript
+
+[group('test')]
+[working-directory("python")]
+test-python: _clear
+    #!/usr/bin/env bash
+    python3 -m venv .venv && source .venv/bin/activate || source .venv/bin/activate
+    
+    python -m pip install --upgrade pip
+    if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
+    
+    pytest
 
 [group('test')]
 [working-directory("rust")]
-test-rust:
+test-rust: _clear
     cargo build
     cargo test
 
 [group('test')]
 [working-directory("typescript")]
-test-typescript:
+test-typescript: _clear
     npm install
     npm run build

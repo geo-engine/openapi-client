@@ -36,33 +36,21 @@ class TestSingleRasterOrVectorOperator(unittest.TestCase):
         model = SingleRasterOrVectorOperator()
         if include_optional:
             return SingleRasterOrVectorOperator(
-                params = geoengine_openapi_client.models.raster_vector_join_parameters.RasterVectorJoinParameters(
-                    feature_aggregation = null, 
-                    feature_aggregation_ignore_no_data = True, 
-                    names = null, 
-                    temporal_aggregation = null, 
-                    temporal_aggregation_ignore_no_data = True, ),
-                sources = geoengine_openapi_client.models.single_vector_multiple_raster_sources.SingleVectorMultipleRasterSources(
-                    rasters = [
-                        null
-                        ], 
-                    vector = null, ),
-                type = 'GdalSource'
+                params = geoengine_openapi_client.models.reprojection_parameters.ReprojectionParameters(
+                    derive_out_spec = null, 
+                    target_spatial_reference = '', ),
+                sources = geoengine_openapi_client.models.single_raster_or_vector_source.SingleRasterOrVectorSource(
+                    source = null, ),
+                type = 'TemporalRasterAggregation'
             )
         else:
             return SingleRasterOrVectorOperator(
-                params = geoengine_openapi_client.models.raster_vector_join_parameters.RasterVectorJoinParameters(
-                    feature_aggregation = null, 
-                    feature_aggregation_ignore_no_data = True, 
-                    names = null, 
-                    temporal_aggregation = null, 
-                    temporal_aggregation_ignore_no_data = True, ),
-                sources = geoengine_openapi_client.models.single_vector_multiple_raster_sources.SingleVectorMultipleRasterSources(
-                    rasters = [
-                        null
-                        ], 
-                    vector = null, ),
-                type = 'GdalSource',
+                params = geoengine_openapi_client.models.reprojection_parameters.ReprojectionParameters(
+                    derive_out_spec = null, 
+                    target_spatial_reference = '', ),
+                sources = geoengine_openapi_client.models.single_raster_or_vector_source.SingleRasterOrVectorSource(
+                    source = null, ),
+                type = 'TemporalRasterAggregation',
         )
         """
 

@@ -14,7 +14,7 @@
         "additionalProperties": {
           "supportsES6": true,
           "npmName": "@geoengine/openapi-client",
-          "npmVersion": "0.0.33"
+          "npmVersion": "0.0.34"
         },
         "openapiNormalizer": {
           "REF_AS_PARENT_IN_ALLOF": true
@@ -30,7 +30,7 @@
         "additionalProperties": {
           "useOneOfDiscriminatorLookup": true,
           "packageName": "geoengine_openapi_client",
-          "packageVersion": "0.0.33",
+          "packageVersion": "0.0.34",
           "packageUrl": "https://github.com/geo-engine/openapi-client"
         },
         "openapiNormalizer": {
@@ -46,7 +46,7 @@
         "gitRepoId": "openapi-client",
         "additionalProperties": {
           "packageName": "geoengine-api-client",
-          "packageVersion": "0.0.33",
+          "packageVersion": "0.0.34",
           "homePageUrl": "https://www.geoengine.io",
           "repositoryUrl": "https://github.com/geo-engine/openapi-client"
         }

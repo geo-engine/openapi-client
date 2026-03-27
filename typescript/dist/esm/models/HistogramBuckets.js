@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfHistogramBucketsOneOf, HistogramBucketsOneOfFromJSONTyped, HistogramBucketsOneOfToJSON, } from './HistogramBucketsOneOf';
-import { instanceOfHistogramBucketsOneOf1, HistogramBucketsOneOf1FromJSONTyped, HistogramBucketsOneOf1ToJSON, } from './HistogramBucketsOneOf1';
+import { instanceOfNumber, NumberFromJSONTyped, NumberToJSON, } from './Number';
+import { instanceOfSquareRootChoiceRule, SquareRootChoiceRuleFromJSONTyped, SquareRootChoiceRuleToJSON, } from './SquareRootChoiceRule';
 export function HistogramBucketsFromJSON(json) {
     return HistogramBucketsFromJSONTyped(json, false);
 }
@@ -23,11 +23,11 @@ export function HistogramBucketsFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfHistogramBucketsOneOf(json)) {
-        return HistogramBucketsOneOfFromJSONTyped(json, true);
+    if (instanceOfNumber(json)) {
+        return NumberFromJSONTyped(json, true);
     }
-    if (instanceOfHistogramBucketsOneOf1(json)) {
-        return HistogramBucketsOneOf1FromJSONTyped(json, true);
+    if (instanceOfSquareRootChoiceRule(json)) {
+        return SquareRootChoiceRuleFromJSONTyped(json, true);
     }
     return {};
 }
@@ -41,11 +41,11 @@ export function HistogramBucketsToJSONTyped(value, ignoreDiscriminator = false) 
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfHistogramBucketsOneOf(value)) {
-        return HistogramBucketsOneOfToJSON(value);
+    if (instanceOfNumber(value)) {
+        return NumberToJSON(value);
     }
-    if (instanceOfHistogramBucketsOneOf1(value)) {
-        return HistogramBucketsOneOf1ToJSON(value);
+    if (instanceOfSquareRootChoiceRule(value)) {
+        return SquareRootChoiceRuleToJSON(value);
     }
     return {};
 }

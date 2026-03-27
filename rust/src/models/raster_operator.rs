@@ -15,15 +15,29 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RasterOperator {
+    #[serde(rename="BandFilter")]
+    BandFilter(Box<models::BandFilter>),
     #[serde(rename="Expression")]
     Expression(Box<models::Expression>),
     #[serde(rename="GdalSource")]
     GdalSource(Box<models::GdalSource>),
+    #[serde(rename="Interpolation")]
+    Interpolation(Box<models::Interpolation>),
+    #[serde(rename="MultiBandGdalSource")]
+    MultiBandGdalSource(Box<models::MultiBandGdalSource>),
+    #[serde(rename="RasterStacker")]
+    RasterStacker(Box<models::RasterStacker>),
+    #[serde(rename="RasterTypeConversion")]
+    RasterTypeConversion(Box<models::RasterTypeConversion>),
+    #[serde(rename="Reprojection")]
+    Reprojection(Box<models::Reprojection>),
+    #[serde(rename="TemporalRasterAggregation")]
+    TemporalRasterAggregation(Box<models::TemporalRasterAggregation>),
 }
 
 impl Default for RasterOperator {
     fn default() -> Self {
-        Self::Expression(Default::default())
+        Self::BandFilter(Default::default())
     }
 }
 

@@ -36,21 +36,25 @@ class TestRasterOperator(unittest.TestCase):
         model = RasterOperator()
         if include_optional:
             return RasterOperator(
-                params = geoengine_openapi_client.models.gdal_source_parameters.GdalSourceParameters(
-                    data = '', 
-                    overview_level = 0, ),
+                params = geoengine_openapi_client.models.temporal_raster_aggregation_parameters.TemporalRasterAggregationParameters(
+                    aggregation = null, 
+                    output_type = null, 
+                    window = null, 
+                    window_reference = null, ),
                 sources = geoengine_openapi_client.models.single_raster_source.SingleRasterSource(
                     raster = null, ),
-                type = 'Expression'
+                type = 'BandFilter'
             )
         else:
             return RasterOperator(
-                params = geoengine_openapi_client.models.gdal_source_parameters.GdalSourceParameters(
-                    data = '', 
-                    overview_level = 0, ),
+                params = geoengine_openapi_client.models.temporal_raster_aggregation_parameters.TemporalRasterAggregationParameters(
+                    aggregation = null, 
+                    output_type = null, 
+                    window = null, 
+                    window_reference = null, ),
                 sources = geoengine_openapi_client.models.single_raster_source.SingleRasterSource(
                     raster = null, ),
-                type = 'Expression',
+                type = 'BandFilter',
         )
         """
 

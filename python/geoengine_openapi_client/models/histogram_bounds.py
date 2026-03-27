@@ -18,24 +18,24 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.histogram_bounds_one_of import HistogramBoundsOneOf
-from geoengine_openapi_client.models.histogram_bounds_one_of1 import HistogramBoundsOneOf1
+from geoengine_openapi_client.models.data1 import Data1
+from geoengine_openapi_client.models.values import Values
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-HISTOGRAMBOUNDS_ONE_OF_SCHEMAS = ["HistogramBoundsOneOf", "HistogramBoundsOneOf1"]
+HISTOGRAMBOUNDS_ONE_OF_SCHEMAS = ["Data1", "Values"]
 
 class HistogramBounds(BaseModel):
     """
     HistogramBounds
     """
-    # data type: HistogramBoundsOneOf
-    oneof_schema_1_validator: Optional[HistogramBoundsOneOf] = None
-    # data type: HistogramBoundsOneOf1
-    oneof_schema_2_validator: Optional[HistogramBoundsOneOf1] = None
-    actual_instance: Optional[Union[HistogramBoundsOneOf, HistogramBoundsOneOf1]] = None
-    one_of_schemas: Set[str] = { "HistogramBoundsOneOf", "HistogramBoundsOneOf1" }
+    # data type: Data1
+    oneof_schema_1_validator: Optional[Data1] = None
+    # data type: Values
+    oneof_schema_2_validator: Optional[Values] = None
+    actual_instance: Optional[Union[Data1, Values]] = None
+    one_of_schemas: Set[str] = { "Data1", "Values" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -58,22 +58,22 @@ class HistogramBounds(BaseModel):
         instance = HistogramBounds.model_construct()
         error_messages = []
         match = 0
-        # validate data type: HistogramBoundsOneOf
-        if not isinstance(v, HistogramBoundsOneOf):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `HistogramBoundsOneOf`")
+        # validate data type: Data1
+        if not isinstance(v, Data1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Data1`")
         else:
             match += 1
-        # validate data type: HistogramBoundsOneOf1
-        if not isinstance(v, HistogramBoundsOneOf1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `HistogramBoundsOneOf1`")
+        # validate data type: Values
+        if not isinstance(v, Values):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Values`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in HistogramBounds with oneOf schemas: HistogramBoundsOneOf, HistogramBoundsOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in HistogramBounds with oneOf schemas: Data1, Values. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in HistogramBounds with oneOf schemas: HistogramBoundsOneOf, HistogramBoundsOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in HistogramBounds with oneOf schemas: Data1, Values. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -88,25 +88,25 @@ class HistogramBounds(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into HistogramBoundsOneOf
+        # deserialize data into Data1
         try:
-            instance.actual_instance = HistogramBoundsOneOf.from_json(json_str)
+            instance.actual_instance = Data1.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into HistogramBoundsOneOf1
+        # deserialize data into Values
         try:
-            instance.actual_instance = HistogramBoundsOneOf1.from_json(json_str)
+            instance.actual_instance = Values.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into HistogramBounds with oneOf schemas: HistogramBoundsOneOf, HistogramBoundsOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into HistogramBounds with oneOf schemas: Data1, Values. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into HistogramBounds with oneOf schemas: HistogramBoundsOneOf, HistogramBoundsOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into HistogramBounds with oneOf schemas: Data1, Values. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -120,7 +120,7 @@ class HistogramBounds(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], HistogramBoundsOneOf, HistogramBoundsOneOf1]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], Data1, Values]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

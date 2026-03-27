@@ -9,14 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { HistogramBoundsOneOf } from './HistogramBoundsOneOf';
-import type { HistogramBoundsOneOf1 } from './HistogramBoundsOneOf1';
+import type { Data1 } from './Data1';
+import type { Values } from './Values';
 /**
  * @type HistogramBounds
  *
  * @export
  */
-export type HistogramBounds = HistogramBoundsOneOf | HistogramBoundsOneOf1;
+export type HistogramBounds = Data1 | Values;
 export declare function HistogramBoundsFromJSON(json: any): HistogramBounds;
 export declare function HistogramBoundsFromJSONTyped(json: any, ignoreDiscriminator: boolean): HistogramBounds;
 export declare function HistogramBoundsToJSON(json: any): any;

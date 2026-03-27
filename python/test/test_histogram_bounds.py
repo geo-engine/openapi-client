@@ -37,14 +37,14 @@ class TestHistogramBounds(unittest.TestCase):
         if include_optional:
             return HistogramBounds(
                 data = None,
-                values = geoengine_openapi_client.models.histogram_bounds_one_of_1_values.HistogramBounds_oneOf_1_values(
+                values = geoengine_openapi_client.models.values_values.Values_values(
                     max = 1.337, 
                     min = 1.337, )
             )
         else:
             return HistogramBounds(
                 data = None,
-                values = geoengine_openapi_client.models.histogram_bounds_one_of_1_values.HistogramBounds_oneOf_1_values(
+                values = geoengine_openapi_client.models.values_values.Values_values(
                     max = 1.337, 
                     min = 1.337, ),
         )

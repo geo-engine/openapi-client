@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { DataPathOneOf } from './DataPathOneOf';
+import type { Upload } from './Upload';
 import {
-    instanceOfDataPathOneOf,
-    DataPathOneOfFromJSON,
-    DataPathOneOfFromJSONTyped,
-    DataPathOneOfToJSON,
-} from './DataPathOneOf';
-import type { DataPathOneOf1 } from './DataPathOneOf1';
+    instanceOfUpload,
+    UploadFromJSON,
+    UploadFromJSONTyped,
+    UploadToJSON,
+} from './Upload';
+import type { Volume1 } from './Volume1';
 import {
-    instanceOfDataPathOneOf1,
-    DataPathOneOf1FromJSON,
-    DataPathOneOf1FromJSONTyped,
-    DataPathOneOf1ToJSON,
-} from './DataPathOneOf1';
+    instanceOfVolume1,
+    Volume1FromJSON,
+    Volume1FromJSONTyped,
+    Volume1ToJSON,
+} from './Volume1';
 
 /**
  * @type DataPath
  * 
  * @export
  */
-export type DataPath = DataPathOneOf | DataPathOneOf1;
+export type DataPath = Upload | Volume1;
 
 export function DataPathFromJSON(json: any): DataPath {
     return DataPathFromJSONTyped(json, false);
@@ -45,11 +45,11 @@ export function DataPathFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfDataPathOneOf(json)) {
-        return DataPathOneOfFromJSONTyped(json, true);
+    if (instanceOfUpload(json)) {
+        return UploadFromJSONTyped(json, true);
     }
-    if (instanceOfDataPathOneOf1(json)) {
-        return DataPathOneOf1FromJSONTyped(json, true);
+    if (instanceOfVolume1(json)) {
+        return Volume1FromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -65,11 +65,11 @@ export function DataPathToJSONTyped(value?: DataPath | null, ignoreDiscriminator
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfDataPathOneOf(value)) {
-        return DataPathOneOfToJSON(value as DataPathOneOf);
+    if (instanceOfUpload(value)) {
+        return UploadToJSON(value as Upload);
     }
-    if (instanceOfDataPathOneOf1(value)) {
-        return DataPathOneOf1ToJSON(value as DataPathOneOf1);
+    if (instanceOfVolume1(value)) {
+        return Volume1ToJSON(value as Volume1);
     }
     return {};
 }

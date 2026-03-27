@@ -18,8 +18,6 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.raster_operator import RasterOperator
-from geoengine_openapi_client.models.vector_operator import VectorOperator
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
@@ -106,6 +104,11 @@ class SingleRasterOrVectorOperator(BaseModel):
             instance.actual_instance = RasterVectorJoin.from_json(json_str)
             return instance
 
+        # check if data type is `Reprojection`
+        if _data_type == "Reprojection":
+            instance.actual_instance = Reprojection.from_json(json_str)
+            return instance
+
         # check if data type is `RasterOperator`
         if _data_type == "RasterOperator":
             instance.actual_instance = RasterOperator.from_json(json_str)
@@ -163,4 +166,8 @@ class SingleRasterOrVectorOperator(BaseModel):
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.model_dump())
 
+from geoengine_openapi_client.models.raster_operator import RasterOperator
+from geoengine_openapi_client.models.vector_operator import VectorOperator
+# TODO: Rewrite to not use raise_errors
+SingleRasterOrVectorOperator.model_rebuild(raise_errors=False)
 

@@ -18,24 +18,24 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.data_path_one_of import DataPathOneOf
-from geoengine_openapi_client.models.data_path_one_of1 import DataPathOneOf1
+from geoengine_openapi_client.models.upload import Upload
+from geoengine_openapi_client.models.volume1 import Volume1
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-DATAPATH_ONE_OF_SCHEMAS = ["DataPathOneOf", "DataPathOneOf1"]
+DATAPATH_ONE_OF_SCHEMAS = ["Upload", "Volume1"]
 
 class DataPath(BaseModel):
     """
     DataPath
     """
-    # data type: DataPathOneOf
-    oneof_schema_1_validator: Optional[DataPathOneOf] = None
-    # data type: DataPathOneOf1
-    oneof_schema_2_validator: Optional[DataPathOneOf1] = None
-    actual_instance: Optional[Union[DataPathOneOf, DataPathOneOf1]] = None
-    one_of_schemas: Set[str] = { "DataPathOneOf", "DataPathOneOf1" }
+    # data type: Volume1
+    oneof_schema_1_validator: Optional[Volume1] = None
+    # data type: Upload
+    oneof_schema_2_validator: Optional[Upload] = None
+    actual_instance: Optional[Union[Upload, Volume1]] = None
+    one_of_schemas: Set[str] = { "Upload", "Volume1" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -58,22 +58,22 @@ class DataPath(BaseModel):
         instance = DataPath.model_construct()
         error_messages = []
         match = 0
-        # validate data type: DataPathOneOf
-        if not isinstance(v, DataPathOneOf):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `DataPathOneOf`")
+        # validate data type: Volume1
+        if not isinstance(v, Volume1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Volume1`")
         else:
             match += 1
-        # validate data type: DataPathOneOf1
-        if not isinstance(v, DataPathOneOf1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `DataPathOneOf1`")
+        # validate data type: Upload
+        if not isinstance(v, Upload):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Upload`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in DataPath with oneOf schemas: DataPathOneOf, DataPathOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in DataPath with oneOf schemas: Upload, Volume1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in DataPath with oneOf schemas: DataPathOneOf, DataPathOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in DataPath with oneOf schemas: Upload, Volume1. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -88,25 +88,25 @@ class DataPath(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into DataPathOneOf
+        # deserialize data into Volume1
         try:
-            instance.actual_instance = DataPathOneOf.from_json(json_str)
+            instance.actual_instance = Volume1.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into DataPathOneOf1
+        # deserialize data into Upload
         try:
-            instance.actual_instance = DataPathOneOf1.from_json(json_str)
+            instance.actual_instance = Upload.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into DataPath with oneOf schemas: DataPathOneOf, DataPathOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into DataPath with oneOf schemas: Upload, Volume1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into DataPath with oneOf schemas: DataPathOneOf, DataPathOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into DataPath with oneOf schemas: Upload, Volume1. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -120,7 +120,7 @@ class DataPath(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], DataPathOneOf, DataPathOneOf1]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], Upload, Volume1]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum HistogramBuckets {
-    HistogramBucketsOneOf(Box<models::HistogramBucketsOneOf>),
-    HistogramBucketsOneOf1(Box<models::HistogramBucketsOneOf1>),
+    Number(Box<models::Number>),
+    SquareRootChoiceRule(Box<models::SquareRootChoiceRule>),
 }
 
 impl Default for HistogramBuckets {
     fn default() -> Self {
-        Self::HistogramBucketsOneOf(Default::default())
+        Self::Number(Default::default())
     }
 }
 /// 

@@ -17,8 +17,8 @@ exports.HistogramBoundsFromJSON = HistogramBoundsFromJSON;
 exports.HistogramBoundsFromJSONTyped = HistogramBoundsFromJSONTyped;
 exports.HistogramBoundsToJSON = HistogramBoundsToJSON;
 exports.HistogramBoundsToJSONTyped = HistogramBoundsToJSONTyped;
-const HistogramBoundsOneOf_1 = require("./HistogramBoundsOneOf");
-const HistogramBoundsOneOf1_1 = require("./HistogramBoundsOneOf1");
+const Data1_1 = require("./Data1");
+const Values_1 = require("./Values");
 function HistogramBoundsFromJSON(json) {
     return HistogramBoundsFromJSONTyped(json, false);
 }
@@ -29,11 +29,11 @@ function HistogramBoundsFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if ((0, HistogramBoundsOneOf_1.instanceOfHistogramBoundsOneOf)(json)) {
-        return (0, HistogramBoundsOneOf_1.HistogramBoundsOneOfFromJSONTyped)(json, true);
+    if ((0, Data1_1.instanceOfData1)(json)) {
+        return (0, Data1_1.Data1FromJSONTyped)(json, true);
     }
-    if ((0, HistogramBoundsOneOf1_1.instanceOfHistogramBoundsOneOf1)(json)) {
-        return (0, HistogramBoundsOneOf1_1.HistogramBoundsOneOf1FromJSONTyped)(json, true);
+    if ((0, Values_1.instanceOfValues)(json)) {
+        return (0, Values_1.ValuesFromJSONTyped)(json, true);
     }
     return {};
 }
@@ -47,11 +47,11 @@ function HistogramBoundsToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if ((0, HistogramBoundsOneOf_1.instanceOfHistogramBoundsOneOf)(value)) {
-        return (0, HistogramBoundsOneOf_1.HistogramBoundsOneOfToJSON)(value);
+    if ((0, Data1_1.instanceOfData1)(value)) {
+        return (0, Data1_1.Data1ToJSON)(value);
     }
-    if ((0, HistogramBoundsOneOf1_1.instanceOfHistogramBoundsOneOf1)(value)) {
-        return (0, HistogramBoundsOneOf1_1.HistogramBoundsOneOf1ToJSON)(value);
+    if ((0, Values_1.instanceOfValues)(value)) {
+        return (0, Values_1.ValuesToJSON)(value);
     }
     return {};
 }

@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfDataPathOneOf, DataPathOneOfFromJSONTyped, DataPathOneOfToJSON, } from './DataPathOneOf';
-import { instanceOfDataPathOneOf1, DataPathOneOf1FromJSONTyped, DataPathOneOf1ToJSON, } from './DataPathOneOf1';
+import { instanceOfUpload, UploadFromJSONTyped, UploadToJSON, } from './Upload';
+import { instanceOfVolume1, Volume1FromJSONTyped, Volume1ToJSON, } from './Volume1';
 export function DataPathFromJSON(json) {
     return DataPathFromJSONTyped(json, false);
 }
@@ -23,11 +23,11 @@ export function DataPathFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfDataPathOneOf(json)) {
-        return DataPathOneOfFromJSONTyped(json, true);
+    if (instanceOfUpload(json)) {
+        return UploadFromJSONTyped(json, true);
     }
-    if (instanceOfDataPathOneOf1(json)) {
-        return DataPathOneOf1FromJSONTyped(json, true);
+    if (instanceOfVolume1(json)) {
+        return Volume1FromJSONTyped(json, true);
     }
     return {};
 }
@@ -41,11 +41,11 @@ export function DataPathToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfDataPathOneOf(value)) {
-        return DataPathOneOfToJSON(value);
+    if (instanceOfUpload(value)) {
+        return UploadToJSON(value);
     }
-    if (instanceOfDataPathOneOf1(value)) {
-        return DataPathOneOf1ToJSON(value);
+    if (instanceOfVolume1(value)) {
+        return Volume1ToJSON(value);
     }
     return {};
 }

@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DataPath {
-    DataPathOneOf(Box<models::DataPathOneOf>),
-    DataPathOneOf1(Box<models::DataPathOneOf1>),
+    Volume1(Box<models::Volume1>),
+    Upload(Box<models::Upload>),
 }
 
 impl Default for DataPath {
     fn default() -> Self {
-        Self::DataPathOneOf(Default::default())
+        Self::Volume1(Default::default())
     }
 }
 

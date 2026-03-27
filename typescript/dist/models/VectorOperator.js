@@ -20,6 +20,7 @@ exports.VectorOperatorToJSONTyped = VectorOperatorToJSONTyped;
 exports.instanceOfVectorOperator = instanceOfVectorOperator;
 const MockPointSource_1 = require("./MockPointSource");
 const RasterVectorJoin_1 = require("./RasterVectorJoin");
+const Reprojection_1 = require("./Reprojection");
 function VectorOperatorFromJSON(json) {
     return VectorOperatorFromJSONTyped(json, false);
 }
@@ -32,6 +33,8 @@ function VectorOperatorFromJSONTyped(json, ignoreDiscriminator) {
             return Object.assign({}, (0, MockPointSource_1.MockPointSourceFromJSONTyped)(json, true), { type: 'MockPointSource' });
         case 'RasterVectorJoin':
             return Object.assign({}, (0, RasterVectorJoin_1.RasterVectorJoinFromJSONTyped)(json, true), { type: 'RasterVectorJoin' });
+        case 'Reprojection':
+            return Object.assign({}, (0, Reprojection_1.ReprojectionFromJSONTyped)(json, true), { type: 'Reprojection' });
         default:
             return json;
     }
@@ -48,6 +51,8 @@ function VectorOperatorToJSONTyped(value, ignoreDiscriminator = false) {
             return Object.assign({}, (0, MockPointSource_1.MockPointSourceToJSON)(value), { type: 'MockPointSource' });
         case 'RasterVectorJoin':
             return Object.assign({}, (0, RasterVectorJoin_1.RasterVectorJoinToJSON)(value), { type: 'RasterVectorJoin' });
+        case 'Reprojection':
+            return Object.assign({}, (0, Reprojection_1.ReprojectionToJSON)(value), { type: 'Reprojection' });
         default:
             return value;
     }

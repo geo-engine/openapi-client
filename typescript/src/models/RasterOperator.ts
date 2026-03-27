@@ -12,6 +12,13 @@
  * Do not edit the class manually.
  */
 
+import type { BandFilter } from './BandFilter';
+import {
+    instanceOfBandFilter,
+    BandFilterFromJSON,
+    BandFilterFromJSONTyped,
+    BandFilterToJSON,
+} from './BandFilter';
 import type { Expression } from './Expression';
 import {
     instanceOfExpression,
@@ -26,13 +33,55 @@ import {
     GdalSourceFromJSONTyped,
     GdalSourceToJSON,
 } from './GdalSource';
+import type { Interpolation } from './Interpolation';
+import {
+    instanceOfInterpolation,
+    InterpolationFromJSON,
+    InterpolationFromJSONTyped,
+    InterpolationToJSON,
+} from './Interpolation';
+import type { MultiBandGdalSource } from './MultiBandGdalSource';
+import {
+    instanceOfMultiBandGdalSource,
+    MultiBandGdalSourceFromJSON,
+    MultiBandGdalSourceFromJSONTyped,
+    MultiBandGdalSourceToJSON,
+} from './MultiBandGdalSource';
+import type { RasterStacker } from './RasterStacker';
+import {
+    instanceOfRasterStacker,
+    RasterStackerFromJSON,
+    RasterStackerFromJSONTyped,
+    RasterStackerToJSON,
+} from './RasterStacker';
+import type { RasterTypeConversion } from './RasterTypeConversion';
+import {
+    instanceOfRasterTypeConversion,
+    RasterTypeConversionFromJSON,
+    RasterTypeConversionFromJSONTyped,
+    RasterTypeConversionToJSON,
+} from './RasterTypeConversion';
+import type { Reprojection } from './Reprojection';
+import {
+    instanceOfReprojection,
+    ReprojectionFromJSON,
+    ReprojectionFromJSONTyped,
+    ReprojectionToJSON,
+} from './Reprojection';
+import type { TemporalRasterAggregation } from './TemporalRasterAggregation';
+import {
+    instanceOfTemporalRasterAggregation,
+    TemporalRasterAggregationFromJSON,
+    TemporalRasterAggregationFromJSONTyped,
+    TemporalRasterAggregationToJSON,
+} from './TemporalRasterAggregation';
 
 /**
  * @type RasterOperator
  * An operator that produces raster data.
  * @export
  */
-export type RasterOperator = { type: 'Expression' } & Expression | { type: 'GdalSource' } & GdalSource;
+export type RasterOperator = { type: 'BandFilter' } & BandFilter | { type: 'Expression' } & Expression | { type: 'GdalSource' } & GdalSource | { type: 'Interpolation' } & Interpolation | { type: 'MultiBandGdalSource' } & MultiBandGdalSource | { type: 'RasterStacker' } & RasterStacker | { type: 'RasterTypeConversion' } & RasterTypeConversion | { type: 'Reprojection' } & Reprojection | { type: 'TemporalRasterAggregation' } & TemporalRasterAggregation;
 
 export function RasterOperatorFromJSON(json: any): RasterOperator {
     return RasterOperatorFromJSONTyped(json, false);
@@ -43,10 +92,24 @@ export function RasterOperatorFromJSONTyped(json: any, ignoreDiscriminator: bool
         return json;
     }
     switch (json['type']) {
+        case 'BandFilter':
+            return Object.assign({}, BandFilterFromJSONTyped(json, true), { type: 'BandFilter' } as const);
         case 'Expression':
             return Object.assign({}, ExpressionFromJSONTyped(json, true), { type: 'Expression' } as const);
         case 'GdalSource':
             return Object.assign({}, GdalSourceFromJSONTyped(json, true), { type: 'GdalSource' } as const);
+        case 'Interpolation':
+            return Object.assign({}, InterpolationFromJSONTyped(json, true), { type: 'Interpolation' } as const);
+        case 'MultiBandGdalSource':
+            return Object.assign({}, MultiBandGdalSourceFromJSONTyped(json, true), { type: 'MultiBandGdalSource' } as const);
+        case 'RasterStacker':
+            return Object.assign({}, RasterStackerFromJSONTyped(json, true), { type: 'RasterStacker' } as const);
+        case 'RasterTypeConversion':
+            return Object.assign({}, RasterTypeConversionFromJSONTyped(json, true), { type: 'RasterTypeConversion' } as const);
+        case 'Reprojection':
+            return Object.assign({}, ReprojectionFromJSONTyped(json, true), { type: 'Reprojection' } as const);
+        case 'TemporalRasterAggregation':
+            return Object.assign({}, TemporalRasterAggregationFromJSONTyped(json, true), { type: 'TemporalRasterAggregation' } as const);
         default:
             return json;
     }
@@ -61,10 +124,24 @@ export function RasterOperatorToJSONTyped(value?: RasterOperator | null, ignoreD
         return value;
     }
     switch (value['type']) {
+        case 'BandFilter':
+            return Object.assign({}, BandFilterToJSON(value), { type: 'BandFilter' } as const);
         case 'Expression':
             return Object.assign({}, ExpressionToJSON(value), { type: 'Expression' } as const);
         case 'GdalSource':
             return Object.assign({}, GdalSourceToJSON(value), { type: 'GdalSource' } as const);
+        case 'Interpolation':
+            return Object.assign({}, InterpolationToJSON(value), { type: 'Interpolation' } as const);
+        case 'MultiBandGdalSource':
+            return Object.assign({}, MultiBandGdalSourceToJSON(value), { type: 'MultiBandGdalSource' } as const);
+        case 'RasterStacker':
+            return Object.assign({}, RasterStackerToJSON(value), { type: 'RasterStacker' } as const);
+        case 'RasterTypeConversion':
+            return Object.assign({}, RasterTypeConversionToJSON(value), { type: 'RasterTypeConversion' } as const);
+        case 'Reprojection':
+            return Object.assign({}, ReprojectionToJSON(value), { type: 'Reprojection' } as const);
+        case 'TemporalRasterAggregation':
+            return Object.assign({}, TemporalRasterAggregationToJSON(value), { type: 'TemporalRasterAggregation' } as const);
         default:
             return value;
     }

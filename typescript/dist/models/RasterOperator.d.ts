@@ -9,18 +9,39 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { BandFilter } from './BandFilter';
 import type { Expression } from './Expression';
 import type { GdalSource } from './GdalSource';
+import type { Interpolation } from './Interpolation';
+import type { MultiBandGdalSource } from './MultiBandGdalSource';
+import type { RasterStacker } from './RasterStacker';
+import type { RasterTypeConversion } from './RasterTypeConversion';
+import type { Reprojection } from './Reprojection';
+import type { TemporalRasterAggregation } from './TemporalRasterAggregation';
 /**
  * @type RasterOperator
  * An operator that produces raster data.
  * @export
  */
 export type RasterOperator = {
+    type: 'BandFilter';
+} & BandFilter | {
     type: 'Expression';
 } & Expression | {
     type: 'GdalSource';
-} & GdalSource;
+} & GdalSource | {
+    type: 'Interpolation';
+} & Interpolation | {
+    type: 'MultiBandGdalSource';
+} & MultiBandGdalSource | {
+    type: 'RasterStacker';
+} & RasterStacker | {
+    type: 'RasterTypeConversion';
+} & RasterTypeConversion | {
+    type: 'Reprojection';
+} & Reprojection | {
+    type: 'TemporalRasterAggregation';
+} & TemporalRasterAggregation;
 export declare function RasterOperatorFromJSON(json: any): RasterOperator;
 export declare function RasterOperatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): RasterOperator;
 export declare function RasterOperatorToJSON(json: any): any;

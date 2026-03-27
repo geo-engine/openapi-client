@@ -7,8 +7,8 @@ It is either a set of `RasterOperator` or a single `VectorOperator`
 
 Name | Type
 ------------ | -------------
-`params` | [RasterVectorJoinParameters](RasterVectorJoinParameters.md)
-`sources` | [SingleVectorMultipleRasterSources](SingleVectorMultipleRasterSources.md)
+`params` | [ReprojectionParameters](ReprojectionParameters.md)
+`sources` | [SingleRasterOrVectorSource](SingleRasterOrVectorSource.md)
 `type` | string
 
 ## Example

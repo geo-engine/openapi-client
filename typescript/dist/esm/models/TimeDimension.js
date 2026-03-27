@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfTimeDimensionOneOf, TimeDimensionOneOfFromJSONTyped, TimeDimensionOneOfToJSON, } from './TimeDimensionOneOf';
-import { instanceOfTimeDimensionOneOf1, TimeDimensionOneOf1FromJSONTyped, TimeDimensionOneOf1ToJSON, } from './TimeDimensionOneOf1';
+import { instanceOfIrregular, IrregularFromJSONTyped, IrregularToJSON, } from './Irregular';
+import { instanceOfRegular, RegularFromJSONTyped, RegularToJSON, } from './Regular';
 export function TimeDimensionFromJSON(json) {
     return TimeDimensionFromJSONTyped(json, false);
 }
@@ -23,11 +23,11 @@ export function TimeDimensionFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfTimeDimensionOneOf(json)) {
-        return TimeDimensionOneOfFromJSONTyped(json, true);
+    if (instanceOfIrregular(json)) {
+        return IrregularFromJSONTyped(json, true);
     }
-    if (instanceOfTimeDimensionOneOf1(json)) {
-        return TimeDimensionOneOf1FromJSONTyped(json, true);
+    if (instanceOfRegular(json)) {
+        return RegularFromJSONTyped(json, true);
     }
     return {};
 }
@@ -41,11 +41,11 @@ export function TimeDimensionToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfTimeDimensionOneOf(value)) {
-        return TimeDimensionOneOfToJSON(value);
+    if (instanceOfIrregular(value)) {
+        return IrregularToJSON(value);
     }
-    if (instanceOfTimeDimensionOneOf1(value)) {
-        return TimeDimensionOneOf1ToJSON(value);
+    if (instanceOfRegular(value)) {
+        return RegularToJSON(value);
     }
     return {};
 }

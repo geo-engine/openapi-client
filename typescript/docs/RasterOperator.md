@@ -7,7 +7,7 @@ An operator that produces raster data.
 
 Name | Type
 ------------ | -------------
-`params` | [GdalSourceParameters](GdalSourceParameters.md)
+`params` | [TemporalRasterAggregationParameters](TemporalRasterAggregationParameters.md)
 `sources` | [SingleRasterSource](SingleRasterSource.md)
 `type` | string
 

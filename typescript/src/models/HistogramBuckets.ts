@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { HistogramBucketsOneOf } from './HistogramBucketsOneOf';
+import type { Number } from './Number';
 import {
-    instanceOfHistogramBucketsOneOf,
-    HistogramBucketsOneOfFromJSON,
-    HistogramBucketsOneOfFromJSONTyped,
-    HistogramBucketsOneOfToJSON,
-} from './HistogramBucketsOneOf';
-import type { HistogramBucketsOneOf1 } from './HistogramBucketsOneOf1';
+    instanceOfNumber,
+    NumberFromJSON,
+    NumberFromJSONTyped,
+    NumberToJSON,
+} from './Number';
+import type { SquareRootChoiceRule } from './SquareRootChoiceRule';
 import {
-    instanceOfHistogramBucketsOneOf1,
-    HistogramBucketsOneOf1FromJSON,
-    HistogramBucketsOneOf1FromJSONTyped,
-    HistogramBucketsOneOf1ToJSON,
-} from './HistogramBucketsOneOf1';
+    instanceOfSquareRootChoiceRule,
+    SquareRootChoiceRuleFromJSON,
+    SquareRootChoiceRuleFromJSONTyped,
+    SquareRootChoiceRuleToJSON,
+} from './SquareRootChoiceRule';
 
 /**
  * @type HistogramBuckets
  * 
  * @export
  */
-export type HistogramBuckets = HistogramBucketsOneOf | HistogramBucketsOneOf1;
+export type HistogramBuckets = Number | SquareRootChoiceRule;
 
 export function HistogramBucketsFromJSON(json: any): HistogramBuckets {
     return HistogramBucketsFromJSONTyped(json, false);
@@ -45,11 +45,11 @@ export function HistogramBucketsFromJSONTyped(json: any, ignoreDiscriminator: bo
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfHistogramBucketsOneOf(json)) {
-        return HistogramBucketsOneOfFromJSONTyped(json, true);
+    if (instanceOfNumber(json)) {
+        return NumberFromJSONTyped(json, true);
     }
-    if (instanceOfHistogramBucketsOneOf1(json)) {
-        return HistogramBucketsOneOf1FromJSONTyped(json, true);
+    if (instanceOfSquareRootChoiceRule(json)) {
+        return SquareRootChoiceRuleFromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -65,11 +65,11 @@ export function HistogramBucketsToJSONTyped(value?: HistogramBuckets | null, ign
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfHistogramBucketsOneOf(value)) {
-        return HistogramBucketsOneOfToJSON(value as HistogramBucketsOneOf);
+    if (instanceOfNumber(value)) {
+        return NumberToJSON(value as Number);
     }
-    if (instanceOfHistogramBucketsOneOf1(value)) {
-        return HistogramBucketsOneOf1ToJSON(value as HistogramBucketsOneOf1);
+    if (instanceOfSquareRootChoiceRule(value)) {
+        return SquareRootChoiceRuleToJSON(value as SquareRootChoiceRule);
     }
     return {};
 }

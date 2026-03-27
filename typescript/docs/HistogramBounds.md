@@ -7,7 +7,7 @@
 Name | Type
 ------------ | -------------
 `data` | any
-`values` | [HistogramBoundsOneOf1Values](HistogramBoundsOneOf1Values.md)
+`values` | [ValuesValues](ValuesValues.md)
 
 ## Example
 

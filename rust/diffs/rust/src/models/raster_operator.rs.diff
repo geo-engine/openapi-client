@@ -7,5 +7,5 @@
 -#[serde(tag = "type")]
 +#[serde(untagged)]
  pub enum RasterOperator {
-     #[serde(rename="Expression")]
-     Expression(Box<models::Expression>),
+     #[serde(rename="BandFilter")]
+     BandFilter(Box<models::BandFilter>),

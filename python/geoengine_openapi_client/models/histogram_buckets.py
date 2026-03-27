@@ -18,24 +18,24 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.histogram_buckets_one_of import HistogramBucketsOneOf
-from geoengine_openapi_client.models.histogram_buckets_one_of1 import HistogramBucketsOneOf1
+from geoengine_openapi_client.models.number import Number
+from geoengine_openapi_client.models.square_root_choice_rule import SquareRootChoiceRule
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-HISTOGRAMBUCKETS_ONE_OF_SCHEMAS = ["HistogramBucketsOneOf", "HistogramBucketsOneOf1"]
+HISTOGRAMBUCKETS_ONE_OF_SCHEMAS = ["Number", "SquareRootChoiceRule"]
 
 class HistogramBuckets(BaseModel):
     """
     HistogramBuckets
     """
-    # data type: HistogramBucketsOneOf
-    oneof_schema_1_validator: Optional[HistogramBucketsOneOf] = None
-    # data type: HistogramBucketsOneOf1
-    oneof_schema_2_validator: Optional[HistogramBucketsOneOf1] = None
-    actual_instance: Optional[Union[HistogramBucketsOneOf, HistogramBucketsOneOf1]] = None
-    one_of_schemas: Set[str] = { "HistogramBucketsOneOf", "HistogramBucketsOneOf1" }
+    # data type: Number
+    oneof_schema_1_validator: Optional[Number] = None
+    # data type: SquareRootChoiceRule
+    oneof_schema_2_validator: Optional[SquareRootChoiceRule] = None
+    actual_instance: Optional[Union[Number, SquareRootChoiceRule]] = None
+    one_of_schemas: Set[str] = { "Number", "SquareRootChoiceRule" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -58,22 +58,22 @@ class HistogramBuckets(BaseModel):
         instance = HistogramBuckets.model_construct()
         error_messages = []
         match = 0
-        # validate data type: HistogramBucketsOneOf
-        if not isinstance(v, HistogramBucketsOneOf):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `HistogramBucketsOneOf`")
+        # validate data type: Number
+        if not isinstance(v, Number):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Number`")
         else:
             match += 1
-        # validate data type: HistogramBucketsOneOf1
-        if not isinstance(v, HistogramBucketsOneOf1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `HistogramBucketsOneOf1`")
+        # validate data type: SquareRootChoiceRule
+        if not isinstance(v, SquareRootChoiceRule):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `SquareRootChoiceRule`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in HistogramBuckets with oneOf schemas: HistogramBucketsOneOf, HistogramBucketsOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in HistogramBuckets with oneOf schemas: Number, SquareRootChoiceRule. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in HistogramBuckets with oneOf schemas: HistogramBucketsOneOf, HistogramBucketsOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in HistogramBuckets with oneOf schemas: Number, SquareRootChoiceRule. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -88,25 +88,25 @@ class HistogramBuckets(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into HistogramBucketsOneOf
+        # deserialize data into Number
         try:
-            instance.actual_instance = HistogramBucketsOneOf.from_json(json_str)
+            instance.actual_instance = Number.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into HistogramBucketsOneOf1
+        # deserialize data into SquareRootChoiceRule
         try:
-            instance.actual_instance = HistogramBucketsOneOf1.from_json(json_str)
+            instance.actual_instance = SquareRootChoiceRule.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into HistogramBuckets with oneOf schemas: HistogramBucketsOneOf, HistogramBucketsOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into HistogramBuckets with oneOf schemas: Number, SquareRootChoiceRule. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into HistogramBuckets with oneOf schemas: HistogramBucketsOneOf, HistogramBucketsOneOf1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into HistogramBuckets with oneOf schemas: Number, SquareRootChoiceRule. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -120,7 +120,7 @@ class HistogramBuckets(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], HistogramBucketsOneOf, HistogramBucketsOneOf1]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], Number, SquareRootChoiceRule]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

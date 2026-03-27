@@ -17,8 +17,8 @@ exports.HistogramBucketsFromJSON = HistogramBucketsFromJSON;
 exports.HistogramBucketsFromJSONTyped = HistogramBucketsFromJSONTyped;
 exports.HistogramBucketsToJSON = HistogramBucketsToJSON;
 exports.HistogramBucketsToJSONTyped = HistogramBucketsToJSONTyped;
-const HistogramBucketsOneOf_1 = require("./HistogramBucketsOneOf");
-const HistogramBucketsOneOf1_1 = require("./HistogramBucketsOneOf1");
+const Number_1 = require("./Number");
+const SquareRootChoiceRule_1 = require("./SquareRootChoiceRule");
 function HistogramBucketsFromJSON(json) {
     return HistogramBucketsFromJSONTyped(json, false);
 }
@@ -29,11 +29,11 @@ function HistogramBucketsFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if ((0, HistogramBucketsOneOf_1.instanceOfHistogramBucketsOneOf)(json)) {
-        return (0, HistogramBucketsOneOf_1.HistogramBucketsOneOfFromJSONTyped)(json, true);
+    if ((0, Number_1.instanceOfNumber)(json)) {
+        return (0, Number_1.NumberFromJSONTyped)(json, true);
     }
-    if ((0, HistogramBucketsOneOf1_1.instanceOfHistogramBucketsOneOf1)(json)) {
-        return (0, HistogramBucketsOneOf1_1.HistogramBucketsOneOf1FromJSONTyped)(json, true);
+    if ((0, SquareRootChoiceRule_1.instanceOfSquareRootChoiceRule)(json)) {
+        return (0, SquareRootChoiceRule_1.SquareRootChoiceRuleFromJSONTyped)(json, true);
     }
     return {};
 }
@@ -47,11 +47,11 @@ function HistogramBucketsToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if ((0, HistogramBucketsOneOf_1.instanceOfHistogramBucketsOneOf)(value)) {
-        return (0, HistogramBucketsOneOf_1.HistogramBucketsOneOfToJSON)(value);
+    if ((0, Number_1.instanceOfNumber)(value)) {
+        return (0, Number_1.NumberToJSON)(value);
     }
-    if ((0, HistogramBucketsOneOf1_1.instanceOfHistogramBucketsOneOf1)(value)) {
-        return (0, HistogramBucketsOneOf1_1.HistogramBucketsOneOf1ToJSON)(value);
+    if ((0, SquareRootChoiceRule_1.instanceOfSquareRootChoiceRule)(value)) {
+        return (0, SquareRootChoiceRule_1.SquareRootChoiceRuleToJSON)(value);
     }
     return {};
 }

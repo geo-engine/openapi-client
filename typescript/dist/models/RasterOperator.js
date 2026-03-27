@@ -18,8 +18,15 @@ exports.RasterOperatorFromJSONTyped = RasterOperatorFromJSONTyped;
 exports.RasterOperatorToJSON = RasterOperatorToJSON;
 exports.RasterOperatorToJSONTyped = RasterOperatorToJSONTyped;
 exports.instanceOfRasterOperator = instanceOfRasterOperator;
+const BandFilter_1 = require("./BandFilter");
 const Expression_1 = require("./Expression");
 const GdalSource_1 = require("./GdalSource");
+const Interpolation_1 = require("./Interpolation");
+const MultiBandGdalSource_1 = require("./MultiBandGdalSource");
+const RasterStacker_1 = require("./RasterStacker");
+const RasterTypeConversion_1 = require("./RasterTypeConversion");
+const Reprojection_1 = require("./Reprojection");
+const TemporalRasterAggregation_1 = require("./TemporalRasterAggregation");
 function RasterOperatorFromJSON(json) {
     return RasterOperatorFromJSONTyped(json, false);
 }
@@ -28,10 +35,24 @@ function RasterOperatorFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     switch (json['type']) {
+        case 'BandFilter':
+            return Object.assign({}, (0, BandFilter_1.BandFilterFromJSONTyped)(json, true), { type: 'BandFilter' });
         case 'Expression':
             return Object.assign({}, (0, Expression_1.ExpressionFromJSONTyped)(json, true), { type: 'Expression' });
         case 'GdalSource':
             return Object.assign({}, (0, GdalSource_1.GdalSourceFromJSONTyped)(json, true), { type: 'GdalSource' });
+        case 'Interpolation':
+            return Object.assign({}, (0, Interpolation_1.InterpolationFromJSONTyped)(json, true), { type: 'Interpolation' });
+        case 'MultiBandGdalSource':
+            return Object.assign({}, (0, MultiBandGdalSource_1.MultiBandGdalSourceFromJSONTyped)(json, true), { type: 'MultiBandGdalSource' });
+        case 'RasterStacker':
+            return Object.assign({}, (0, RasterStacker_1.RasterStackerFromJSONTyped)(json, true), { type: 'RasterStacker' });
+        case 'RasterTypeConversion':
+            return Object.assign({}, (0, RasterTypeConversion_1.RasterTypeConversionFromJSONTyped)(json, true), { type: 'RasterTypeConversion' });
+        case 'Reprojection':
+            return Object.assign({}, (0, Reprojection_1.ReprojectionFromJSONTyped)(json, true), { type: 'Reprojection' });
+        case 'TemporalRasterAggregation':
+            return Object.assign({}, (0, TemporalRasterAggregation_1.TemporalRasterAggregationFromJSONTyped)(json, true), { type: 'TemporalRasterAggregation' });
         default:
             return json;
     }
@@ -44,10 +65,24 @@ function RasterOperatorToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     switch (value['type']) {
+        case 'BandFilter':
+            return Object.assign({}, (0, BandFilter_1.BandFilterToJSON)(value), { type: 'BandFilter' });
         case 'Expression':
             return Object.assign({}, (0, Expression_1.ExpressionToJSON)(value), { type: 'Expression' });
         case 'GdalSource':
             return Object.assign({}, (0, GdalSource_1.GdalSourceToJSON)(value), { type: 'GdalSource' });
+        case 'Interpolation':
+            return Object.assign({}, (0, Interpolation_1.InterpolationToJSON)(value), { type: 'Interpolation' });
+        case 'MultiBandGdalSource':
+            return Object.assign({}, (0, MultiBandGdalSource_1.MultiBandGdalSourceToJSON)(value), { type: 'MultiBandGdalSource' });
+        case 'RasterStacker':
+            return Object.assign({}, (0, RasterStacker_1.RasterStackerToJSON)(value), { type: 'RasterStacker' });
+        case 'RasterTypeConversion':
+            return Object.assign({}, (0, RasterTypeConversion_1.RasterTypeConversionToJSON)(value), { type: 'RasterTypeConversion' });
+        case 'Reprojection':
+            return Object.assign({}, (0, Reprojection_1.ReprojectionToJSON)(value), { type: 'Reprojection' });
+        case 'TemporalRasterAggregation':
+            return Object.assign({}, (0, TemporalRasterAggregation_1.TemporalRasterAggregationToJSON)(value), { type: 'TemporalRasterAggregation' });
         default:
             return value;
     }

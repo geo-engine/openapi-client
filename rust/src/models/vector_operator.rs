@@ -19,6 +19,8 @@ pub enum VectorOperator {
     MockPointSource(Box<models::MockPointSource>),
     #[serde(rename="RasterVectorJoin")]
     RasterVectorJoin(Box<models::RasterVectorJoin>),
+    #[serde(rename="Reprojection")]
+    Reprojection(Box<models::Reprojection>),
 }
 
 impl Default for VectorOperator {

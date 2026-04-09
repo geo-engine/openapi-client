@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { Number } from './Number';
+import type { HistogramBucketsNumber } from './HistogramBucketsNumber';
 import {
-    instanceOfNumber,
-    NumberFromJSON,
-    NumberFromJSONTyped,
-    NumberToJSON,
-} from './Number';
-import type { SquareRootChoiceRule } from './SquareRootChoiceRule';
+    instanceOfHistogramBucketsNumber,
+    HistogramBucketsNumberFromJSON,
+    HistogramBucketsNumberFromJSONTyped,
+    HistogramBucketsNumberToJSON,
+} from './HistogramBucketsNumber';
+import type { HistogramBucketsSquareRootChoiceRule } from './HistogramBucketsSquareRootChoiceRule';
 import {
-    instanceOfSquareRootChoiceRule,
-    SquareRootChoiceRuleFromJSON,
-    SquareRootChoiceRuleFromJSONTyped,
-    SquareRootChoiceRuleToJSON,
-} from './SquareRootChoiceRule';
+    instanceOfHistogramBucketsSquareRootChoiceRule,
+    HistogramBucketsSquareRootChoiceRuleFromJSON,
+    HistogramBucketsSquareRootChoiceRuleFromJSONTyped,
+    HistogramBucketsSquareRootChoiceRuleToJSON,
+} from './HistogramBucketsSquareRootChoiceRule';
 
 /**
  * @type HistogramBuckets
  * 
  * @export
  */
-export type HistogramBuckets = Number | SquareRootChoiceRule;
+export type HistogramBuckets = { type: 'number' } & HistogramBucketsNumber | { type: 'squareRootChoiceRule' } & HistogramBucketsSquareRootChoiceRule;
 
 export function HistogramBucketsFromJSON(json: any): HistogramBuckets {
     return HistogramBucketsFromJSONTyped(json, false);
@@ -42,16 +42,14 @@ export function HistogramBucketsFromJSONTyped(json: any, ignoreDiscriminator: bo
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
+    switch (json['type']) {
+        case 'number':
+            return Object.assign({}, HistogramBucketsNumberFromJSONTyped(json, true), { type: 'number' } as const);
+        case 'squareRootChoiceRule':
+            return Object.assign({}, HistogramBucketsSquareRootChoiceRuleFromJSONTyped(json, true), { type: 'squareRootChoiceRule' } as const);
+        default:
+            return json;
     }
-    if (instanceOfNumber(json)) {
-        return NumberFromJSONTyped(json, true);
-    }
-    if (instanceOfSquareRootChoiceRule(json)) {
-        return SquareRootChoiceRuleFromJSONTyped(json, true);
-    }
-    return {} as any;
 }
 
 export function HistogramBucketsToJSON(json: any): any {
@@ -62,15 +60,13 @@ export function HistogramBucketsToJSONTyped(value?: HistogramBuckets | null, ign
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
+    switch (value['type']) {
+        case 'number':
+            return Object.assign({}, HistogramBucketsNumberToJSON(value), { type: 'number' } as const);
+        case 'squareRootChoiceRule':
+            return Object.assign({}, HistogramBucketsSquareRootChoiceRuleToJSON(value), { type: 'squareRootChoiceRule' } as const);
+        default:
+            return value;
     }
-    if (instanceOfNumber(value)) {
-        return NumberToJSON(value as Number);
-    }
-    if (instanceOfSquareRootChoiceRule(value)) {
-        return SquareRootChoiceRuleToJSON(value as SquareRootChoiceRule);
-    }
-    return {};
 }
 

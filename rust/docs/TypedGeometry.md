@@ -4,10 +4,10 @@
 
 | Name | Description |
 |---- | -----|
-| MultiLineString1 |  |
-| MultiPoint1 |  |
-| MultiPolygon1 |  |
-| NoGeometry1 |  |
+| TypedGeometryMultiLineString |  |
+| TypedGeometryMultiPoint |  |
+| TypedGeometryMultiPolygon |  |
+| TypedGeometryNoGeometry |  |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -18,30 +18,30 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.multi_line_string1 import MultiLineString1
-from geoengine_openapi_client.models.multi_point1 import MultiPoint1
-from geoengine_openapi_client.models.multi_polygon1 import MultiPolygon1
-from geoengine_openapi_client.models.no_geometry1 import NoGeometry1
+from geoengine_openapi_client.models.typed_geometry_multi_line_string import TypedGeometryMultiLineString
+from geoengine_openapi_client.models.typed_geometry_multi_point import TypedGeometryMultiPoint
+from geoengine_openapi_client.models.typed_geometry_multi_polygon import TypedGeometryMultiPolygon
+from geoengine_openapi_client.models.typed_geometry_no_geometry import TypedGeometryNoGeometry
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-TYPEDGEOMETRY_ONE_OF_SCHEMAS = ["MultiLineString1", "MultiPoint1", "MultiPolygon1", "NoGeometry1"]
+TYPEDGEOMETRY_ONE_OF_SCHEMAS = ["TypedGeometryMultiLineString", "TypedGeometryMultiPoint", "TypedGeometryMultiPolygon", "TypedGeometryNoGeometry"]
 
 class TypedGeometry(BaseModel):
     """
     TypedGeometry
     """
-    # data type: NoGeometry1
-    oneof_schema_1_validator: Optional[NoGeometry1] = None
-    # data type: MultiPoint1
-    oneof_schema_2_validator: Optional[MultiPoint1] = None
-    # data type: MultiLineString1
-    oneof_schema_3_validator: Optional[MultiLineString1] = None
-    # data type: MultiPolygon1
-    oneof_schema_4_validator: Optional[MultiPolygon1] = None
-    actual_instance: Optional[Union[MultiLineString1, MultiPoint1, MultiPolygon1, NoGeometry1]] = None
-    one_of_schemas: Set[str] = { "MultiLineString1", "MultiPoint1", "MultiPolygon1", "NoGeometry1" }
+    # data type: TypedGeometryNoGeometry
+    oneof_schema_1_validator: Optional[TypedGeometryNoGeometry] = None
+    # data type: TypedGeometryMultiPoint
+    oneof_schema_2_validator: Optional[TypedGeometryMultiPoint] = None
+    # data type: TypedGeometryMultiLineString
+    oneof_schema_3_validator: Optional[TypedGeometryMultiLineString] = None
+    # data type: TypedGeometryMultiPolygon
+    oneof_schema_4_validator: Optional[TypedGeometryMultiPolygon] = None
+    actual_instance: Optional[Union[TypedGeometryMultiLineString, TypedGeometryMultiPoint, TypedGeometryMultiPolygon, TypedGeometryNoGeometry]] = None
+    one_of_schemas: Set[str] = { "TypedGeometryMultiLineString", "TypedGeometryMultiPoint", "TypedGeometryMultiPolygon", "TypedGeometryNoGeometry" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -64,32 +64,32 @@ class TypedGeometry(BaseModel):
         instance = TypedGeometry.model_construct()
         error_messages = []
         match = 0
-        # validate data type: NoGeometry1
-        if not isinstance(v, NoGeometry1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `NoGeometry1`")
+        # validate data type: TypedGeometryNoGeometry
+        if not isinstance(v, TypedGeometryNoGeometry):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedGeometryNoGeometry`")
         else:
             match += 1
-        # validate data type: MultiPoint1
-        if not isinstance(v, MultiPoint1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `MultiPoint1`")
+        # validate data type: TypedGeometryMultiPoint
+        if not isinstance(v, TypedGeometryMultiPoint):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedGeometryMultiPoint`")
         else:
             match += 1
-        # validate data type: MultiLineString1
-        if not isinstance(v, MultiLineString1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `MultiLineString1`")
+        # validate data type: TypedGeometryMultiLineString
+        if not isinstance(v, TypedGeometryMultiLineString):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedGeometryMultiLineString`")
         else:
             match += 1
-        # validate data type: MultiPolygon1
-        if not isinstance(v, MultiPolygon1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `MultiPolygon1`")
+        # validate data type: TypedGeometryMultiPolygon
+        if not isinstance(v, TypedGeometryMultiPolygon):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TypedGeometryMultiPolygon`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in TypedGeometry with oneOf schemas: MultiLineString1, MultiPoint1, MultiPolygon1, NoGeometry1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in TypedGeometry with oneOf schemas: TypedGeometryMultiLineString, TypedGeometryMultiPoint, TypedGeometryMultiPolygon, TypedGeometryNoGeometry. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in TypedGeometry with oneOf schemas: MultiLineString1, MultiPoint1, MultiPolygon1, NoGeometry1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in TypedGeometry with oneOf schemas: TypedGeometryMultiLineString, TypedGeometryMultiPoint, TypedGeometryMultiPolygon, TypedGeometryNoGeometry. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -104,37 +104,37 @@ class TypedGeometry(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into NoGeometry1
+        # deserialize data into TypedGeometryNoGeometry
         try:
-            instance.actual_instance = NoGeometry1.from_json(json_str)
+            instance.actual_instance = TypedGeometryNoGeometry.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into MultiPoint1
+        # deserialize data into TypedGeometryMultiPoint
         try:
-            instance.actual_instance = MultiPoint1.from_json(json_str)
+            instance.actual_instance = TypedGeometryMultiPoint.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into MultiLineString1
+        # deserialize data into TypedGeometryMultiLineString
         try:
-            instance.actual_instance = MultiLineString1.from_json(json_str)
+            instance.actual_instance = TypedGeometryMultiLineString.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into MultiPolygon1
+        # deserialize data into TypedGeometryMultiPolygon
         try:
-            instance.actual_instance = MultiPolygon1.from_json(json_str)
+            instance.actual_instance = TypedGeometryMultiPolygon.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into TypedGeometry with oneOf schemas: MultiLineString1, MultiPoint1, MultiPolygon1, NoGeometry1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into TypedGeometry with oneOf schemas: TypedGeometryMultiLineString, TypedGeometryMultiPoint, TypedGeometryMultiPolygon, TypedGeometryNoGeometry. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into TypedGeometry with oneOf schemas: MultiLineString1, MultiPoint1, MultiPolygon1, NoGeometry1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into TypedGeometry with oneOf schemas: TypedGeometryMultiLineString, TypedGeometryMultiPoint, TypedGeometryMultiPolygon, TypedGeometryNoGeometry. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -148,7 +148,7 @@ class TypedGeometry(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], MultiLineString1, MultiPoint1, MultiPolygon1, NoGeometry1]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], TypedGeometryMultiLineString, TypedGeometryMultiPoint, TypedGeometryMultiPolygon, TypedGeometryNoGeometry]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

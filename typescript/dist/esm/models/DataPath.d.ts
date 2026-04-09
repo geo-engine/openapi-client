@@ -9,14 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Upload } from './Upload';
-import type { Volume1 } from './Volume1';
+import type { DataPathUpload } from './DataPathUpload';
+import type { DataPathVolume } from './DataPathVolume';
 /**
  * @type DataPath
  *
  * @export
  */
-export type DataPath = Upload | Volume1;
+export type DataPath = DataPathUpload | DataPathVolume;
 export declare function DataPathFromJSON(json: any): DataPath;
 export declare function DataPathFromJSONTyped(json: any, ignoreDiscriminator: boolean): DataPath;
 export declare function DataPathToJSON(json: any): any;

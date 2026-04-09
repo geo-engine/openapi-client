@@ -9,14 +9,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Number } from './Number';
-import type { SquareRootChoiceRule } from './SquareRootChoiceRule';
+import type { HistogramBucketsNumber } from './HistogramBucketsNumber';
+import type { HistogramBucketsSquareRootChoiceRule } from './HistogramBucketsSquareRootChoiceRule';
 /**
  * @type HistogramBuckets
  *
  * @export
  */
-export type HistogramBuckets = Number | SquareRootChoiceRule;
+export type HistogramBuckets = {
+    type: 'number';
+} & HistogramBucketsNumber | {
+    type: 'squareRootChoiceRule';
+} & HistogramBucketsSquareRootChoiceRule;
 export declare function HistogramBucketsFromJSON(json: any): HistogramBuckets;
 export declare function HistogramBucketsFromJSONTyped(json: any, ignoreDiscriminator: boolean): HistogramBuckets;
 export declare function HistogramBucketsToJSON(json: any): any;

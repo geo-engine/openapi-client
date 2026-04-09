@@ -17,8 +17,8 @@ exports.HistogramBucketsFromJSON = HistogramBucketsFromJSON;
 exports.HistogramBucketsFromJSONTyped = HistogramBucketsFromJSONTyped;
 exports.HistogramBucketsToJSON = HistogramBucketsToJSON;
 exports.HistogramBucketsToJSONTyped = HistogramBucketsToJSONTyped;
-const Number_1 = require("./Number");
-const SquareRootChoiceRule_1 = require("./SquareRootChoiceRule");
+const HistogramBucketsNumber_1 = require("./HistogramBucketsNumber");
+const HistogramBucketsSquareRootChoiceRule_1 = require("./HistogramBucketsSquareRootChoiceRule");
 function HistogramBucketsFromJSON(json) {
     return HistogramBucketsFromJSONTyped(json, false);
 }
@@ -26,16 +26,14 @@ function HistogramBucketsFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
+    switch (json['type']) {
+        case 'number':
+            return Object.assign({}, (0, HistogramBucketsNumber_1.HistogramBucketsNumberFromJSONTyped)(json, true), { type: 'number' });
+        case 'squareRootChoiceRule':
+            return Object.assign({}, (0, HistogramBucketsSquareRootChoiceRule_1.HistogramBucketsSquareRootChoiceRuleFromJSONTyped)(json, true), { type: 'squareRootChoiceRule' });
+        default:
+            return json;
     }
-    if ((0, Number_1.instanceOfNumber)(json)) {
-        return (0, Number_1.NumberFromJSONTyped)(json, true);
-    }
-    if ((0, SquareRootChoiceRule_1.instanceOfSquareRootChoiceRule)(json)) {
-        return (0, SquareRootChoiceRule_1.SquareRootChoiceRuleFromJSONTyped)(json, true);
-    }
-    return {};
 }
 function HistogramBucketsToJSON(json) {
     return HistogramBucketsToJSONTyped(json, false);
@@ -44,14 +42,12 @@ function HistogramBucketsToJSONTyped(value, ignoreDiscriminator = false) {
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
+    switch (value['type']) {
+        case 'number':
+            return Object.assign({}, (0, HistogramBucketsNumber_1.HistogramBucketsNumberToJSON)(value), { type: 'number' });
+        case 'squareRootChoiceRule':
+            return Object.assign({}, (0, HistogramBucketsSquareRootChoiceRule_1.HistogramBucketsSquareRootChoiceRuleToJSON)(value), { type: 'squareRootChoiceRule' });
+        default:
+            return value;
     }
-    if ((0, Number_1.instanceOfNumber)(value)) {
-        return (0, Number_1.NumberToJSON)(value);
-    }
-    if ((0, SquareRootChoiceRule_1.instanceOfSquareRootChoiceRule)(value)) {
-        return (0, SquareRootChoiceRule_1.SquareRootChoiceRuleToJSON)(value);
-    }
-    return {};
 }

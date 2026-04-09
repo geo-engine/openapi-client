@@ -20,6 +20,7 @@ def file_modifications() -> Generator[tuple[Path, FileModifier], None, None]:
     yield Path("models/TaskStatusWithId.ts"), task_status_with_id_ts
     yield Path("models/VecUpdate.ts"), vec_update_ts
     yield Path("models/TypedOperator.ts"), typed_operator_ts
+    yield Path("models/HistogramBounds.ts"), histogram_bounds_ts
     yield Path("runtime.ts"), runtime_ts
 
 
@@ -171,6 +172,14 @@ def vec_update_ts(file_contents: list[str]) -> Generator[str, None, None]:
             )
 
         yield line
+
+
+def histogram_bounds_ts(file_contents: list[str]) -> Generator[str, None, None]:
+    """Fix TS2352 in HistogramBoundsToJSONTyped for Data | object oneOf."""
+    for line in file_contents:
+        yield line.replace(
+            "DataToJSON(value as Data)", "DataToJSON(value as unknown as Data)"
+        )
 
 
 if __name__ == "__main__":

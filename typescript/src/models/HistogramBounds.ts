@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { Data1 } from './Data1';
+import type { Data } from './Data';
 import {
-    instanceOfData1,
-    Data1FromJSON,
-    Data1FromJSONTyped,
-    Data1ToJSON,
-} from './Data1';
-import type { Values } from './Values';
+    instanceOfData,
+    DataFromJSON,
+    DataFromJSONTyped,
+    DataToJSON,
+} from './Data';
+import type { HistogramBoundsValues } from './HistogramBoundsValues';
 import {
-    instanceOfValues,
-    ValuesFromJSON,
-    ValuesFromJSONTyped,
-    ValuesToJSON,
-} from './Values';
+    instanceOfHistogramBoundsValues,
+    HistogramBoundsValuesFromJSON,
+    HistogramBoundsValuesFromJSONTyped,
+    HistogramBoundsValuesToJSON,
+} from './HistogramBoundsValues';
 
 /**
  * @type HistogramBounds
  * 
  * @export
  */
-export type HistogramBounds = Data1 | Values;
+export type HistogramBounds = Data | HistogramBoundsValues;
 
 export function HistogramBoundsFromJSON(json: any): HistogramBounds {
     return HistogramBoundsFromJSONTyped(json, false);
@@ -45,11 +45,11 @@ export function HistogramBoundsFromJSONTyped(json: any, ignoreDiscriminator: boo
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfData1(json)) {
-        return Data1FromJSONTyped(json, true);
+    if (instanceOfData(json)) {
+        return DataFromJSONTyped(json, true);
     }
-    if (instanceOfValues(json)) {
-        return ValuesFromJSONTyped(json, true);
+    if (instanceOfHistogramBoundsValues(json)) {
+        return HistogramBoundsValuesFromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -65,11 +65,11 @@ export function HistogramBoundsToJSONTyped(value?: HistogramBounds | null, ignor
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfData1(value)) {
-        return Data1ToJSON(value as Data1);
+    if (instanceOfData(value)) {
+        return DataToJSON(value as unknown as Data);
     }
-    if (instanceOfValues(value)) {
-        return ValuesToJSON(value as Values);
+    if (instanceOfHistogramBoundsValues(value)) {
+        return HistogramBoundsValuesToJSON(value as HistogramBoundsValues);
     }
     return {};
 }

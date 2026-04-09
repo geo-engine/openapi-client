@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfData1, Data1FromJSONTyped, Data1ToJSON, } from './Data1';
-import { instanceOfValues, ValuesFromJSONTyped, ValuesToJSON, } from './Values';
+import { instanceOfData, DataFromJSONTyped, DataToJSON, } from './Data';
+import { instanceOfHistogramBoundsValues, HistogramBoundsValuesFromJSONTyped, HistogramBoundsValuesToJSON, } from './HistogramBoundsValues';
 export function HistogramBoundsFromJSON(json) {
     return HistogramBoundsFromJSONTyped(json, false);
 }
@@ -23,11 +23,11 @@ export function HistogramBoundsFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfData1(json)) {
-        return Data1FromJSONTyped(json, true);
+    if (instanceOfData(json)) {
+        return DataFromJSONTyped(json, true);
     }
-    if (instanceOfValues(json)) {
-        return ValuesFromJSONTyped(json, true);
+    if (instanceOfHistogramBoundsValues(json)) {
+        return HistogramBoundsValuesFromJSONTyped(json, true);
     }
     return {};
 }
@@ -41,11 +41,11 @@ export function HistogramBoundsToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfData1(value)) {
-        return Data1ToJSON(value);
+    if (instanceOfData(value)) {
+        return DataToJSON(value);
     }
-    if (instanceOfValues(value)) {
-        return ValuesToJSON(value);
+    if (instanceOfHistogramBoundsValues(value)) {
+        return HistogramBoundsValuesToJSON(value);
     }
     return {};
 }

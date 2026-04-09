@@ -17,10 +17,10 @@ exports.TypedGeometryFromJSON = TypedGeometryFromJSON;
 exports.TypedGeometryFromJSONTyped = TypedGeometryFromJSONTyped;
 exports.TypedGeometryToJSON = TypedGeometryToJSON;
 exports.TypedGeometryToJSONTyped = TypedGeometryToJSONTyped;
-const MultiLineString1_1 = require("./MultiLineString1");
-const MultiPoint1_1 = require("./MultiPoint1");
-const MultiPolygon1_1 = require("./MultiPolygon1");
-const NoGeometry1_1 = require("./NoGeometry1");
+const TypedGeometryMultiLineString_1 = require("./TypedGeometryMultiLineString");
+const TypedGeometryMultiPoint_1 = require("./TypedGeometryMultiPoint");
+const TypedGeometryMultiPolygon_1 = require("./TypedGeometryMultiPolygon");
+const TypedGeometryNoGeometry_1 = require("./TypedGeometryNoGeometry");
 function TypedGeometryFromJSON(json) {
     return TypedGeometryFromJSONTyped(json, false);
 }
@@ -31,17 +31,17 @@ function TypedGeometryFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if ((0, MultiLineString1_1.instanceOfMultiLineString1)(json)) {
-        return (0, MultiLineString1_1.MultiLineString1FromJSONTyped)(json, true);
+    if ((0, TypedGeometryMultiLineString_1.instanceOfTypedGeometryMultiLineString)(json)) {
+        return (0, TypedGeometryMultiLineString_1.TypedGeometryMultiLineStringFromJSONTyped)(json, true);
     }
-    if ((0, MultiPoint1_1.instanceOfMultiPoint1)(json)) {
-        return (0, MultiPoint1_1.MultiPoint1FromJSONTyped)(json, true);
+    if ((0, TypedGeometryMultiPoint_1.instanceOfTypedGeometryMultiPoint)(json)) {
+        return (0, TypedGeometryMultiPoint_1.TypedGeometryMultiPointFromJSONTyped)(json, true);
     }
-    if ((0, MultiPolygon1_1.instanceOfMultiPolygon1)(json)) {
-        return (0, MultiPolygon1_1.MultiPolygon1FromJSONTyped)(json, true);
+    if ((0, TypedGeometryMultiPolygon_1.instanceOfTypedGeometryMultiPolygon)(json)) {
+        return (0, TypedGeometryMultiPolygon_1.TypedGeometryMultiPolygonFromJSONTyped)(json, true);
     }
-    if ((0, NoGeometry1_1.instanceOfNoGeometry1)(json)) {
-        return (0, NoGeometry1_1.NoGeometry1FromJSONTyped)(json, true);
+    if ((0, TypedGeometryNoGeometry_1.instanceOfTypedGeometryNoGeometry)(json)) {
+        return (0, TypedGeometryNoGeometry_1.TypedGeometryNoGeometryFromJSONTyped)(json, true);
     }
     return {};
 }
@@ -55,17 +55,17 @@ function TypedGeometryToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if ((0, MultiLineString1_1.instanceOfMultiLineString1)(value)) {
-        return (0, MultiLineString1_1.MultiLineString1ToJSON)(value);
+    if ((0, TypedGeometryMultiLineString_1.instanceOfTypedGeometryMultiLineString)(value)) {
+        return (0, TypedGeometryMultiLineString_1.TypedGeometryMultiLineStringToJSON)(value);
     }
-    if ((0, MultiPoint1_1.instanceOfMultiPoint1)(value)) {
-        return (0, MultiPoint1_1.MultiPoint1ToJSON)(value);
+    if ((0, TypedGeometryMultiPoint_1.instanceOfTypedGeometryMultiPoint)(value)) {
+        return (0, TypedGeometryMultiPoint_1.TypedGeometryMultiPointToJSON)(value);
     }
-    if ((0, MultiPolygon1_1.instanceOfMultiPolygon1)(value)) {
-        return (0, MultiPolygon1_1.MultiPolygon1ToJSON)(value);
+    if ((0, TypedGeometryMultiPolygon_1.instanceOfTypedGeometryMultiPolygon)(value)) {
+        return (0, TypedGeometryMultiPolygon_1.TypedGeometryMultiPolygonToJSON)(value);
     }
-    if ((0, NoGeometry1_1.instanceOfNoGeometry1)(value)) {
-        return (0, NoGeometry1_1.NoGeometry1ToJSON)(value);
+    if ((0, TypedGeometryNoGeometry_1.instanceOfTypedGeometryNoGeometry)(value)) {
+        return (0, TypedGeometryNoGeometry_1.TypedGeometryNoGeometryToJSON)(value);
     }
     return {};
 }

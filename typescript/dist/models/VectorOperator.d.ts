@@ -10,7 +10,9 @@
  * Do not edit the class manually.
  */
 import type { MockPointSource } from './MockPointSource';
+import type { OgrSource } from './OgrSource';
 import type { RasterVectorJoin } from './RasterVectorJoin';
+import type { Reprojection } from './Reprojection';
 /**
  * @type VectorOperator
  * An operator that produces vector data.
@@ -19,8 +21,12 @@ import type { RasterVectorJoin } from './RasterVectorJoin';
 export type VectorOperator = {
     type: 'MockPointSource';
 } & MockPointSource | {
+    type: 'OgrSource';
+} & OgrSource | {
     type: 'RasterVectorJoin';
-} & RasterVectorJoin;
+} & RasterVectorJoin | {
+    type: 'Reprojection';
+} & Reprojection;
 export declare function VectorOperatorFromJSON(json: any): VectorOperator;
 export declare function VectorOperatorFromJSONTyped(json: any, ignoreDiscriminator: boolean): VectorOperator;
 export declare function VectorOperatorToJSON(json: any): any;

@@ -21,7 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from geoengine_openapi_client.models.histogram_parameters import HistogramParameters
-from geoengine_openapi_client.models.single_raster_or_vector_source import SingleRasterOrVectorSource
+from geoengine_openapi_client.models.single_vector_or_raster_source import SingleVectorOrRasterSource
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +30,7 @@ class Histogram(BaseModel):
     The `Histogram` is a _plot operator_ that computes a histogram plot either over attributes of a vector dataset or values of a raster source. The output is a plot in [Vega-Lite](https://vega.github.io/vega-lite/) specification.  For instance, you want to plot the data distribution of numeric attributes of a feature collection. Then you can use a histogram with a suitable number of buckets to visualize and assess this.  ## Errors  The operator returns an error if the selected column (`columnName`) does not exist or is not numeric.  ## Notes  If `bounds` or `buckets` are not defined, the operator will determine these values by itself which requires processing the data twice.  If the `buckets` parameter is set to `squareRootChoiceRule`, the operator estimates it using the square root of the number of elements in the data. 
     """ # noqa: E501
     params: HistogramParameters
-    sources: SingleRasterOrVectorSource
+    sources: SingleVectorOrRasterSource
     type: StrictStr
     __properties: ClassVar[List[str]] = ["params", "sources", "type"]
 
@@ -99,7 +99,7 @@ class Histogram(BaseModel):
 
         _obj = cls.model_validate({
             "params": HistogramParameters.from_dict(obj["params"]) if obj.get("params") is not None else None,
-            "sources": SingleRasterOrVectorSource.from_dict(obj["sources"]) if obj.get("sources") is not None else None,
+            "sources": SingleVectorOrRasterSource.from_dict(obj["sources"]) if obj.get("sources") is not None else None,
             "type": obj.get("type")
         })
         return _obj

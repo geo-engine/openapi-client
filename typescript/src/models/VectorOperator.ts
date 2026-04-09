@@ -19,6 +19,13 @@ import {
     MockPointSourceFromJSONTyped,
     MockPointSourceToJSON,
 } from './MockPointSource';
+import type { OgrSource } from './OgrSource';
+import {
+    instanceOfOgrSource,
+    OgrSourceFromJSON,
+    OgrSourceFromJSONTyped,
+    OgrSourceToJSON,
+} from './OgrSource';
 import type { RasterVectorJoin } from './RasterVectorJoin';
 import {
     instanceOfRasterVectorJoin,
@@ -26,13 +33,20 @@ import {
     RasterVectorJoinFromJSONTyped,
     RasterVectorJoinToJSON,
 } from './RasterVectorJoin';
+import type { Reprojection } from './Reprojection';
+import {
+    instanceOfReprojection,
+    ReprojectionFromJSON,
+    ReprojectionFromJSONTyped,
+    ReprojectionToJSON,
+} from './Reprojection';
 
 /**
  * @type VectorOperator
  * An operator that produces vector data.
  * @export
  */
-export type VectorOperator = { type: 'MockPointSource' } & MockPointSource | { type: 'RasterVectorJoin' } & RasterVectorJoin;
+export type VectorOperator = { type: 'MockPointSource' } & MockPointSource | { type: 'OgrSource' } & OgrSource | { type: 'RasterVectorJoin' } & RasterVectorJoin | { type: 'Reprojection' } & Reprojection;
 
 export function VectorOperatorFromJSON(json: any): VectorOperator {
     return VectorOperatorFromJSONTyped(json, false);
@@ -45,8 +59,12 @@ export function VectorOperatorFromJSONTyped(json: any, ignoreDiscriminator: bool
     switch (json['type']) {
         case 'MockPointSource':
             return Object.assign({}, MockPointSourceFromJSONTyped(json, true), { type: 'MockPointSource' } as const);
+        case 'OgrSource':
+            return Object.assign({}, OgrSourceFromJSONTyped(json, true), { type: 'OgrSource' } as const);
         case 'RasterVectorJoin':
             return Object.assign({}, RasterVectorJoinFromJSONTyped(json, true), { type: 'RasterVectorJoin' } as const);
+        case 'Reprojection':
+            return Object.assign({}, ReprojectionFromJSONTyped(json, true), { type: 'Reprojection' } as const);
         default:
             return json;
     }
@@ -63,8 +81,12 @@ export function VectorOperatorToJSONTyped(value?: VectorOperator | null, ignoreD
     switch (value['type']) {
         case 'MockPointSource':
             return Object.assign({}, MockPointSourceToJSON(value), { type: 'MockPointSource' } as const);
+        case 'OgrSource':
+            return Object.assign({}, OgrSourceToJSON(value), { type: 'OgrSource' } as const);
         case 'RasterVectorJoin':
             return Object.assign({}, RasterVectorJoinToJSON(value), { type: 'RasterVectorJoin' } as const);
+        case 'Reprojection':
+            return Object.assign({}, ReprojectionToJSON(value), { type: 'Reprojection' } as const);
         default:
             return value;
     }

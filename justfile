@@ -9,13 +9,9 @@ _default:
 _clear:
     @-clear
 
-
 # Build all API clients by executing the build steps for each language.
 [group('build')]
-build: _clear \
-    _build-python-preprocess _build-rust-preprocess _build-typescript-preprocess \
-    _build_call \
-    _build-python-postprocess _build-rust-postprocess _build-typescript-postprocess
+build: _clear _build-python-preprocess _build-rust-preprocess _build-typescript-preprocess _build_call _build-python-postprocess _build-rust-postprocess _build-typescript-postprocess
 
 _build_call generator="":
     {{ OPENAPI_GENERATOR_CLI }} generate {{ if generator == "" { "" } else { "--generator-key " + generator } }}
@@ -43,12 +39,13 @@ _build-python-postprocess:
 
 # Build the API clients for TypeScript by generating code with the OpenAPI Generator and applying post-processing steps. Also install npm dependencies and set up .gitignore.
 [group('build')]
-build-typescript: _clear (_build_call "typescript") _build-typescript-postprocess
+build-typescript: _clear _build-typescript-preprocess (_build_call "typescript") _build-typescript-postprocess
 
 # Remove some directories because they are not be overwritten by the generator.
 _build-typescript-preprocess:
     rm -rf \
         typescript/src \
+        typescript/docs \
         typescript/dist \
         typescript/node_modules \
         typescript/diffs
@@ -69,6 +66,9 @@ build-rust: _clear _build-rust-preprocess (_build_call "rust") _build-rust-postp
 
 _build-rust-preprocess:
     rm -rf \
+        rust/src/apis \
+        rust/src/models \
+        rust/docs \
         rust/diffs
 
 _build-rust-postprocess:
@@ -85,7 +85,8 @@ lint-openapi-spec: _clear
         --recommend
 
 # Generate the OpenAPI Generator configuration files from the config.ini.
-[group('config'), script("python3")]
+[group('config')]
+[script("python3")]
 update-generator-configs:
     import configparser
     import json
@@ -122,8 +123,8 @@ update-generator-configs:
     print("Generated OpenAPI Generator configuration for TypeScript, Python, and Rust.")
 
 # Update the backend commit in the config.ini and increment the version.
-[group('config')]
 [arg("backendCommit", long="backendCommit", help="The commit hash of the backend for which to fetch the OpenAPI specification.")]
+[group('config')]
 update-config backendCommit: _clear (_update-config backendCommit) update-generator-configs (fetch-openapi-spec backendCommit) lint-openapi-spec
 
 [script("python3")]
@@ -153,8 +154,8 @@ _update-config backendCommit:
     print(f"Updated {INI_FILE} with backendCommit={config['input']['backendCommit']} and version={config['general']['version']}.")
 
 # Fetch the OpenAPI specification for the given backend commit from the Geo Engine repository and save it to the input directory.
-[group('config')]
 [arg("backendCommit", long="backendCommit", help="The commit hash of the backend for which to fetch the OpenAPI specification.")]
+[group('config')]
 fetch-openapi-spec backendCommit:
     @echo "Fetching OpenAPI specification for backend commit {{ backendCommit }}…"
     curl \
@@ -181,11 +182,11 @@ test: _clear test-python test-rust test-typescript
 test-python: _clear
     #!/usr/bin/env bash
     python3 -m venv .venv && source .venv/bin/activate || source .venv/bin/activate
-    
+
     python -m pip install --upgrade pip
     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
-    
+
     pytest
 
 [group('test')]

@@ -36,33 +36,21 @@ class TestVectorOperator(unittest.TestCase):
         model = VectorOperator()
         if include_optional:
             return VectorOperator(
-                params = geoengine_openapi_client.models.raster_vector_join_parameters.RasterVectorJoinParameters(
-                    feature_aggregation = null, 
-                    feature_aggregation_ignore_no_data = True, 
-                    names = null, 
-                    temporal_aggregation = null, 
-                    temporal_aggregation_ignore_no_data = True, ),
+                params = geoengine_openapi_client.models.reprojection_parameters.ReprojectionParameters(
+                    derive_out_spec = null, 
+                    target_spatial_reference = '', ),
                 type = 'MockPointSource',
-                sources = geoengine_openapi_client.models.single_vector_multiple_raster_sources.SingleVectorMultipleRasterSources(
-                    rasters = [
-                        null
-                        ], 
-                    vector = null, )
+                sources = geoengine_openapi_client.models.single_raster_or_vector_source.SingleRasterOrVectorSource(
+                    source = null, )
             )
         else:
             return VectorOperator(
-                params = geoengine_openapi_client.models.raster_vector_join_parameters.RasterVectorJoinParameters(
-                    feature_aggregation = null, 
-                    feature_aggregation_ignore_no_data = True, 
-                    names = null, 
-                    temporal_aggregation = null, 
-                    temporal_aggregation_ignore_no_data = True, ),
+                params = geoengine_openapi_client.models.reprojection_parameters.ReprojectionParameters(
+                    derive_out_spec = null, 
+                    target_spatial_reference = '', ),
                 type = 'MockPointSource',
-                sources = geoengine_openapi_client.models.single_vector_multiple_raster_sources.SingleVectorMultipleRasterSources(
-                    rasters = [
-                        null
-                        ], 
-                    vector = null, ),
+                sources = geoengine_openapi_client.models.single_raster_or_vector_source.SingleRasterOrVectorSource(
+                    source = null, ),
         )
         """
 

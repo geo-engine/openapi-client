@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { SingleVectorOrRasterSource } from './SingleVectorOrRasterSource';
+import {
+    SingleVectorOrRasterSourceFromJSON,
+    SingleVectorOrRasterSourceFromJSONTyped,
+    SingleVectorOrRasterSourceToJSON,
+    SingleVectorOrRasterSourceToJSONTyped,
+} from './SingleVectorOrRasterSource';
 import type { HistogramParameters } from './HistogramParameters';
 import {
     HistogramParametersFromJSON,
@@ -20,13 +27,6 @@ import {
     HistogramParametersToJSON,
     HistogramParametersToJSONTyped,
 } from './HistogramParameters';
-import type { SingleRasterOrVectorSource } from './SingleRasterOrVectorSource';
-import {
-    SingleRasterOrVectorSourceFromJSON,
-    SingleRasterOrVectorSourceFromJSONTyped,
-    SingleRasterOrVectorSourceToJSON,
-    SingleRasterOrVectorSourceToJSONTyped,
-} from './SingleRasterOrVectorSource';
 
 /**
  * The `Histogram` is a _plot operator_ that computes a histogram plot either over attributes of a vector dataset or values of a raster source.
@@ -57,10 +57,10 @@ export interface Histogram {
     params: HistogramParameters;
     /**
      * 
-     * @type {SingleRasterOrVectorSource}
+     * @type {SingleVectorOrRasterSource}
      * @memberof Histogram
      */
-    sources: SingleRasterOrVectorSource;
+    sources: SingleVectorOrRasterSource;
     /**
      * 
      * @type {HistogramTypeEnum}
@@ -100,7 +100,7 @@ export function HistogramFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     return {
         
         'params': HistogramParametersFromJSON(json['params']),
-        'sources': SingleRasterOrVectorSourceFromJSON(json['sources']),
+        'sources': SingleVectorOrRasterSourceFromJSON(json['sources']),
         'type': json['type'],
     };
 }
@@ -117,7 +117,7 @@ export function HistogramToJSONTyped(value?: Histogram | null, ignoreDiscriminat
     return {
         
         'params': HistogramParametersToJSON(value['params']),
-        'sources': SingleRasterOrVectorSourceToJSON(value['sources']),
+        'sources': SingleVectorOrRasterSourceToJSON(value['sources']),
         'type': value['type'],
     };
 }

@@ -37,23 +37,23 @@ class TestHistogram(unittest.TestCase):
         if include_optional:
             return Histogram(
                 params = geoengine_openapi_client.models.histogram_parameters.HistogramParameters(
-                    attribute_name = '', 
                     bounds = null, 
                     buckets = null, 
+                    column_name = '', 
                     interactive = True, ),
-                sources = geoengine_openapi_client.models.single_raster_or_vector_source.SingleRasterOrVectorSource(
-                    source = null, ),
+                sources = geoengine_openapi_client.models.single_vector_or_raster_source.SingleVectorOrRasterSource(
+                    vector = null, ),
                 type = 'Histogram'
             )
         else:
             return Histogram(
                 params = geoengine_openapi_client.models.histogram_parameters.HistogramParameters(
-                    attribute_name = '', 
                     bounds = null, 
                     buckets = null, 
+                    column_name = '', 
                     interactive = True, ),
-                sources = geoengine_openapi_client.models.single_raster_or_vector_source.SingleRasterOrVectorSource(
-                    source = null, ),
+                sources = geoengine_openapi_client.models.single_vector_or_raster_source.SingleVectorOrRasterSource(
+                    vector = null, ),
                 type = 'Histogram',
         )
         """

@@ -7,9 +7,9 @@ An operator that produces vector data.
 
 Name | Type
 ------------ | -------------
-`params` | [RasterVectorJoinParameters](RasterVectorJoinParameters.md)
+`params` | [ReprojectionParameters](ReprojectionParameters.md)
 `type` | string
-`sources` | [SingleVectorMultipleRasterSources](SingleVectorMultipleRasterSources.md)
+`sources` | [SingleRasterOrVectorSource](SingleRasterOrVectorSource.md)
 
 ## Example
 

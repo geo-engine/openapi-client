@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { HistogramBucketsOneOf } from './HistogramBucketsOneOf';
+import type { HistogramBucketsNumber } from './HistogramBucketsNumber';
 import {
-    instanceOfHistogramBucketsOneOf,
-    HistogramBucketsOneOfFromJSON,
-    HistogramBucketsOneOfFromJSONTyped,
-    HistogramBucketsOneOfToJSON,
-} from './HistogramBucketsOneOf';
-import type { HistogramBucketsOneOf1 } from './HistogramBucketsOneOf1';
+    instanceOfHistogramBucketsNumber,
+    HistogramBucketsNumberFromJSON,
+    HistogramBucketsNumberFromJSONTyped,
+    HistogramBucketsNumberToJSON,
+} from './HistogramBucketsNumber';
+import type { HistogramBucketsSquareRootChoiceRule } from './HistogramBucketsSquareRootChoiceRule';
 import {
-    instanceOfHistogramBucketsOneOf1,
-    HistogramBucketsOneOf1FromJSON,
-    HistogramBucketsOneOf1FromJSONTyped,
-    HistogramBucketsOneOf1ToJSON,
-} from './HistogramBucketsOneOf1';
+    instanceOfHistogramBucketsSquareRootChoiceRule,
+    HistogramBucketsSquareRootChoiceRuleFromJSON,
+    HistogramBucketsSquareRootChoiceRuleFromJSONTyped,
+    HistogramBucketsSquareRootChoiceRuleToJSON,
+} from './HistogramBucketsSquareRootChoiceRule';
 
 /**
  * @type HistogramBuckets
  * 
  * @export
  */
-export type HistogramBuckets = HistogramBucketsOneOf | HistogramBucketsOneOf1;
+export type HistogramBuckets = { type: 'number' } & HistogramBucketsNumber | { type: 'squareRootChoiceRule' } & HistogramBucketsSquareRootChoiceRule;
 
 export function HistogramBucketsFromJSON(json: any): HistogramBuckets {
     return HistogramBucketsFromJSONTyped(json, false);
@@ -42,16 +42,14 @@ export function HistogramBucketsFromJSONTyped(json: any, ignoreDiscriminator: bo
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
+    switch (json['type']) {
+        case 'number':
+            return Object.assign({}, HistogramBucketsNumberFromJSONTyped(json, true), { type: 'number' } as const);
+        case 'squareRootChoiceRule':
+            return Object.assign({}, HistogramBucketsSquareRootChoiceRuleFromJSONTyped(json, true), { type: 'squareRootChoiceRule' } as const);
+        default:
+            return json;
     }
-    if (instanceOfHistogramBucketsOneOf(json)) {
-        return HistogramBucketsOneOfFromJSONTyped(json, true);
-    }
-    if (instanceOfHistogramBucketsOneOf1(json)) {
-        return HistogramBucketsOneOf1FromJSONTyped(json, true);
-    }
-    return {} as any;
 }
 
 export function HistogramBucketsToJSON(json: any): any {
@@ -62,15 +60,13 @@ export function HistogramBucketsToJSONTyped(value?: HistogramBuckets | null, ign
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
+    switch (value['type']) {
+        case 'number':
+            return Object.assign({}, HistogramBucketsNumberToJSON(value), { type: 'number' } as const);
+        case 'squareRootChoiceRule':
+            return Object.assign({}, HistogramBucketsSquareRootChoiceRuleToJSON(value), { type: 'squareRootChoiceRule' } as const);
+        default:
+            return value;
     }
-    if (instanceOfHistogramBucketsOneOf(value)) {
-        return HistogramBucketsOneOfToJSON(value as HistogramBucketsOneOf);
-    }
-    if (instanceOfHistogramBucketsOneOf1(value)) {
-        return HistogramBucketsOneOf1ToJSON(value as HistogramBucketsOneOf1);
-    }
-    return {};
 }
 

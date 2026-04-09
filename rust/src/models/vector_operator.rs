@@ -17,8 +17,12 @@ use serde::{Deserialize, Serialize};
 pub enum VectorOperator {
     #[serde(rename="MockPointSource")]
     MockPointSource(Box<models::MockPointSource>),
+    #[serde(rename="OgrSource")]
+    OgrSource(Box<models::OgrSource>),
     #[serde(rename="RasterVectorJoin")]
     RasterVectorJoin(Box<models::RasterVectorJoin>),
+    #[serde(rename="Reprojection")]
+    Reprojection(Box<models::Reprojection>),
 }
 
 impl Default for VectorOperator {

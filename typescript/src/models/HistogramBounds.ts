@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { HistogramBoundsOneOf } from './HistogramBoundsOneOf';
+import type { Data } from './Data';
 import {
-    instanceOfHistogramBoundsOneOf,
-    HistogramBoundsOneOfFromJSON,
-    HistogramBoundsOneOfFromJSONTyped,
-    HistogramBoundsOneOfToJSON,
-} from './HistogramBoundsOneOf';
-import type { HistogramBoundsOneOf1 } from './HistogramBoundsOneOf1';
+    instanceOfData,
+    DataFromJSON,
+    DataFromJSONTyped,
+    DataToJSON,
+} from './Data';
+import type { HistogramBoundsValues } from './HistogramBoundsValues';
 import {
-    instanceOfHistogramBoundsOneOf1,
-    HistogramBoundsOneOf1FromJSON,
-    HistogramBoundsOneOf1FromJSONTyped,
-    HistogramBoundsOneOf1ToJSON,
-} from './HistogramBoundsOneOf1';
+    instanceOfHistogramBoundsValues,
+    HistogramBoundsValuesFromJSON,
+    HistogramBoundsValuesFromJSONTyped,
+    HistogramBoundsValuesToJSON,
+} from './HistogramBoundsValues';
 
 /**
  * @type HistogramBounds
  * 
  * @export
  */
-export type HistogramBounds = HistogramBoundsOneOf | HistogramBoundsOneOf1;
+export type HistogramBounds = Data | HistogramBoundsValues;
 
 export function HistogramBoundsFromJSON(json: any): HistogramBounds {
     return HistogramBoundsFromJSONTyped(json, false);
@@ -45,11 +45,11 @@ export function HistogramBoundsFromJSONTyped(json: any, ignoreDiscriminator: boo
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfHistogramBoundsOneOf(json)) {
-        return HistogramBoundsOneOfFromJSONTyped(json, true);
+    if (instanceOfData(json)) {
+        return DataFromJSONTyped(json, true);
     }
-    if (instanceOfHistogramBoundsOneOf1(json)) {
-        return HistogramBoundsOneOf1FromJSONTyped(json, true);
+    if (instanceOfHistogramBoundsValues(json)) {
+        return HistogramBoundsValuesFromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -65,11 +65,11 @@ export function HistogramBoundsToJSONTyped(value?: HistogramBounds | null, ignor
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfHistogramBoundsOneOf(value)) {
-        return HistogramBoundsOneOfToJSON(value as HistogramBoundsOneOf);
+    if (instanceOfData(value)) {
+        return DataToJSON(value as unknown as Data);
     }
-    if (instanceOfHistogramBoundsOneOf1(value)) {
-        return HistogramBoundsOneOf1ToJSON(value as HistogramBoundsOneOf1);
+    if (instanceOfHistogramBoundsValues(value)) {
+        return HistogramBoundsValuesToJSON(value as HistogramBoundsValues);
     }
     return {};
 }

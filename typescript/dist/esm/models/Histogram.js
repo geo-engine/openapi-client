@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SingleVectorOrRasterSourceFromJSON, SingleVectorOrRasterSourceToJSON, } from './SingleVectorOrRasterSource';
 import { HistogramParametersFromJSON, HistogramParametersToJSON, } from './HistogramParameters';
-import { SingleRasterOrVectorSourceFromJSON, SingleRasterOrVectorSourceToJSON, } from './SingleRasterOrVectorSource';
 /**
  * @export
  */
@@ -40,7 +40,7 @@ export function HistogramFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'params': HistogramParametersFromJSON(json['params']),
-        'sources': SingleRasterOrVectorSourceFromJSON(json['sources']),
+        'sources': SingleVectorOrRasterSourceFromJSON(json['sources']),
         'type': json['type'],
     };
 }
@@ -53,7 +53,7 @@ export function HistogramToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'params': HistogramParametersToJSON(value['params']),
-        'sources': SingleRasterOrVectorSourceToJSON(value['sources']),
+        'sources': SingleVectorOrRasterSourceToJSON(value['sources']),
         'type': value['type'],
     };
 }

@@ -17,8 +17,8 @@ exports.HistogramBoundsFromJSON = HistogramBoundsFromJSON;
 exports.HistogramBoundsFromJSONTyped = HistogramBoundsFromJSONTyped;
 exports.HistogramBoundsToJSON = HistogramBoundsToJSON;
 exports.HistogramBoundsToJSONTyped = HistogramBoundsToJSONTyped;
-const HistogramBoundsOneOf_1 = require("./HistogramBoundsOneOf");
-const HistogramBoundsOneOf1_1 = require("./HistogramBoundsOneOf1");
+const Data_1 = require("./Data");
+const HistogramBoundsValues_1 = require("./HistogramBoundsValues");
 function HistogramBoundsFromJSON(json) {
     return HistogramBoundsFromJSONTyped(json, false);
 }
@@ -29,11 +29,11 @@ function HistogramBoundsFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if ((0, HistogramBoundsOneOf_1.instanceOfHistogramBoundsOneOf)(json)) {
-        return (0, HistogramBoundsOneOf_1.HistogramBoundsOneOfFromJSONTyped)(json, true);
+    if ((0, Data_1.instanceOfData)(json)) {
+        return (0, Data_1.DataFromJSONTyped)(json, true);
     }
-    if ((0, HistogramBoundsOneOf1_1.instanceOfHistogramBoundsOneOf1)(json)) {
-        return (0, HistogramBoundsOneOf1_1.HistogramBoundsOneOf1FromJSONTyped)(json, true);
+    if ((0, HistogramBoundsValues_1.instanceOfHistogramBoundsValues)(json)) {
+        return (0, HistogramBoundsValues_1.HistogramBoundsValuesFromJSONTyped)(json, true);
     }
     return {};
 }
@@ -47,11 +47,11 @@ function HistogramBoundsToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if ((0, HistogramBoundsOneOf_1.instanceOfHistogramBoundsOneOf)(value)) {
-        return (0, HistogramBoundsOneOf_1.HistogramBoundsOneOfToJSON)(value);
+    if ((0, Data_1.instanceOfData)(value)) {
+        return (0, Data_1.DataToJSON)(value);
     }
-    if ((0, HistogramBoundsOneOf1_1.instanceOfHistogramBoundsOneOf1)(value)) {
-        return (0, HistogramBoundsOneOf1_1.HistogramBoundsOneOf1ToJSON)(value);
+    if ((0, HistogramBoundsValues_1.instanceOfHistogramBoundsValues)(value)) {
+        return (0, HistogramBoundsValues_1.HistogramBoundsValuesToJSON)(value);
     }
     return {};
 }

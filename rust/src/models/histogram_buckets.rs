@@ -12,29 +12,18 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-#[serde(untagged)]
+#[serde(tag = "type")]
 pub enum HistogramBuckets {
-    HistogramBucketsOneOf(Box<models::HistogramBucketsOneOf>),
-    HistogramBucketsOneOf1(Box<models::HistogramBucketsOneOf1>),
+    #[serde(rename="number")]
+    Number(Box<models::HistogramBucketsNumber>),
+    #[serde(rename="squareRootChoiceRule")]
+    SquareRootChoiceRule(Box<models::HistogramBucketsSquareRootChoiceRule>),
 }
 
 impl Default for HistogramBuckets {
     fn default() -> Self {
-        Self::HistogramBucketsOneOf(Default::default())
+        Self::Number(Default::default())
     }
-}
-/// 
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Type {
-    #[serde(rename = "number")]
-    Number,
-    #[serde(rename = "squareRootChoiceRule")]
-    SquareRootChoiceRule,
 }
 
-impl Default for Type {
-    fn default() -> Type {
-        Self::Number
-    }
-}
 

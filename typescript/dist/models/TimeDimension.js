@@ -17,8 +17,8 @@ exports.TimeDimensionFromJSON = TimeDimensionFromJSON;
 exports.TimeDimensionFromJSONTyped = TimeDimensionFromJSONTyped;
 exports.TimeDimensionToJSON = TimeDimensionToJSON;
 exports.TimeDimensionToJSONTyped = TimeDimensionToJSONTyped;
-const TimeDimensionOneOf_1 = require("./TimeDimensionOneOf");
-const TimeDimensionOneOf1_1 = require("./TimeDimensionOneOf1");
+const Irregular_1 = require("./Irregular");
+const Regular_1 = require("./Regular");
 function TimeDimensionFromJSON(json) {
     return TimeDimensionFromJSONTyped(json, false);
 }
@@ -29,11 +29,11 @@ function TimeDimensionFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if ((0, TimeDimensionOneOf_1.instanceOfTimeDimensionOneOf)(json)) {
-        return (0, TimeDimensionOneOf_1.TimeDimensionOneOfFromJSONTyped)(json, true);
+    if ((0, Irregular_1.instanceOfIrregular)(json)) {
+        return (0, Irregular_1.IrregularFromJSONTyped)(json, true);
     }
-    if ((0, TimeDimensionOneOf1_1.instanceOfTimeDimensionOneOf1)(json)) {
-        return (0, TimeDimensionOneOf1_1.TimeDimensionOneOf1FromJSONTyped)(json, true);
+    if ((0, Regular_1.instanceOfRegular)(json)) {
+        return (0, Regular_1.RegularFromJSONTyped)(json, true);
     }
     return {};
 }
@@ -47,11 +47,11 @@ function TimeDimensionToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if ((0, TimeDimensionOneOf_1.instanceOfTimeDimensionOneOf)(value)) {
-        return (0, TimeDimensionOneOf_1.TimeDimensionOneOfToJSON)(value);
+    if ((0, Irregular_1.instanceOfIrregular)(value)) {
+        return (0, Irregular_1.IrregularToJSON)(value);
     }
-    if ((0, TimeDimensionOneOf1_1.instanceOfTimeDimensionOneOf1)(value)) {
-        return (0, TimeDimensionOneOf1_1.TimeDimensionOneOf1ToJSON)(value);
+    if ((0, Regular_1.instanceOfRegular)(value)) {
+        return (0, Regular_1.RegularToJSON)(value);
     }
     return {};
 }

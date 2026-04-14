@@ -28,15 +28,15 @@ impl Default for SingleRasterOrVectorOperator {
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
-    #[serde(rename = "GdalSource")]
-    GdalSource,
-    #[serde(rename = "RasterVectorJoin")]
-    RasterVectorJoin,
+    #[serde(rename = "TemporalRasterAggregation")]
+    TemporalRasterAggregation,
+    #[serde(rename = "Reprojection")]
+    Reprojection,
 }
 
 impl Default for Type {
     fn default() -> Type {
-        Self::GdalSource
+        Self::TemporalRasterAggregation
     }
 }
 

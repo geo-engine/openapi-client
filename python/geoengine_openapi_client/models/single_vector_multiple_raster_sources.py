@@ -20,7 +20,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from geoengine_openapi_client.models.raster_operator import RasterOperator
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -98,6 +97,7 @@ class SingleVectorMultipleRasterSources(BaseModel):
         })
         return _obj
 
+from geoengine_openapi_client.models.raster_operator import RasterOperator
 from geoengine_openapi_client.models.vector_operator import VectorOperator
 # TODO: Rewrite to not use raise_errors
 SingleVectorMultipleRasterSources.model_rebuild(raise_errors=False)

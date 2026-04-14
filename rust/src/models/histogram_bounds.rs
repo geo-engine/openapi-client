@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum HistogramBounds {
-    HistogramBoundsOneOf(Box<models::HistogramBoundsOneOf>),
-    HistogramBoundsOneOf1(Box<models::HistogramBoundsOneOf1>),
+    Data(models::Data),
+    HistogramBoundsValues(Box<models::HistogramBoundsValues>),
 }
 
 impl Default for HistogramBounds {
     fn default() -> Self {
-        Self::HistogramBoundsOneOf(Default::default())
+        Self::Data(Default::default())
     }
 }
 

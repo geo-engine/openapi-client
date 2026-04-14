@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { TimeDimensionOneOf } from './TimeDimensionOneOf';
+import type { Irregular } from './Irregular';
 import {
-    instanceOfTimeDimensionOneOf,
-    TimeDimensionOneOfFromJSON,
-    TimeDimensionOneOfFromJSONTyped,
-    TimeDimensionOneOfToJSON,
-} from './TimeDimensionOneOf';
-import type { TimeDimensionOneOf1 } from './TimeDimensionOneOf1';
+    instanceOfIrregular,
+    IrregularFromJSON,
+    IrregularFromJSONTyped,
+    IrregularToJSON,
+} from './Irregular';
+import type { Regular } from './Regular';
 import {
-    instanceOfTimeDimensionOneOf1,
-    TimeDimensionOneOf1FromJSON,
-    TimeDimensionOneOf1FromJSONTyped,
-    TimeDimensionOneOf1ToJSON,
-} from './TimeDimensionOneOf1';
+    instanceOfRegular,
+    RegularFromJSON,
+    RegularFromJSONTyped,
+    RegularToJSON,
+} from './Regular';
 
 /**
  * @type TimeDimension
  * 
  * @export
  */
-export type TimeDimension = TimeDimensionOneOf | TimeDimensionOneOf1;
+export type TimeDimension = Irregular | Regular;
 
 export function TimeDimensionFromJSON(json: any): TimeDimension {
     return TimeDimensionFromJSONTyped(json, false);
@@ -45,11 +45,11 @@ export function TimeDimensionFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfTimeDimensionOneOf(json)) {
-        return TimeDimensionOneOfFromJSONTyped(json, true);
+    if (instanceOfIrregular(json)) {
+        return IrregularFromJSONTyped(json, true);
     }
-    if (instanceOfTimeDimensionOneOf1(json)) {
-        return TimeDimensionOneOf1FromJSONTyped(json, true);
+    if (instanceOfRegular(json)) {
+        return RegularFromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -65,11 +65,11 @@ export function TimeDimensionToJSONTyped(value?: TimeDimension | null, ignoreDis
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfTimeDimensionOneOf(value)) {
-        return TimeDimensionOneOfToJSON(value as TimeDimensionOneOf);
+    if (instanceOfIrregular(value)) {
+        return IrregularToJSON(value as Irregular);
     }
-    if (instanceOfTimeDimensionOneOf1(value)) {
-        return TimeDimensionOneOf1ToJSON(value as TimeDimensionOneOf1);
+    if (instanceOfRegular(value)) {
+        return RegularToJSON(value as Regular);
     }
     return {};
 }

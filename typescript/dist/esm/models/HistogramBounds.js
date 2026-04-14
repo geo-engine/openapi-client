@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfHistogramBoundsOneOf, HistogramBoundsOneOfFromJSONTyped, HistogramBoundsOneOfToJSON, } from './HistogramBoundsOneOf';
-import { instanceOfHistogramBoundsOneOf1, HistogramBoundsOneOf1FromJSONTyped, HistogramBoundsOneOf1ToJSON, } from './HistogramBoundsOneOf1';
+import { instanceOfData, DataFromJSONTyped, DataToJSON, } from './Data';
+import { instanceOfHistogramBoundsValues, HistogramBoundsValuesFromJSONTyped, HistogramBoundsValuesToJSON, } from './HistogramBoundsValues';
 export function HistogramBoundsFromJSON(json) {
     return HistogramBoundsFromJSONTyped(json, false);
 }
@@ -23,11 +23,11 @@ export function HistogramBoundsFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfHistogramBoundsOneOf(json)) {
-        return HistogramBoundsOneOfFromJSONTyped(json, true);
+    if (instanceOfData(json)) {
+        return DataFromJSONTyped(json, true);
     }
-    if (instanceOfHistogramBoundsOneOf1(json)) {
-        return HistogramBoundsOneOf1FromJSONTyped(json, true);
+    if (instanceOfHistogramBoundsValues(json)) {
+        return HistogramBoundsValuesFromJSONTyped(json, true);
     }
     return {};
 }
@@ -41,11 +41,11 @@ export function HistogramBoundsToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfHistogramBoundsOneOf(value)) {
-        return HistogramBoundsOneOfToJSON(value);
+    if (instanceOfData(value)) {
+        return DataToJSON(value);
     }
-    if (instanceOfHistogramBoundsOneOf1(value)) {
-        return HistogramBoundsOneOf1ToJSON(value);
+    if (instanceOfHistogramBoundsValues(value)) {
+        return HistogramBoundsValuesToJSON(value);
     }
     return {};
 }

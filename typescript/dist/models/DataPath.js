@@ -17,8 +17,8 @@ exports.DataPathFromJSON = DataPathFromJSON;
 exports.DataPathFromJSONTyped = DataPathFromJSONTyped;
 exports.DataPathToJSON = DataPathToJSON;
 exports.DataPathToJSONTyped = DataPathToJSONTyped;
-const DataPathOneOf_1 = require("./DataPathOneOf");
-const DataPathOneOf1_1 = require("./DataPathOneOf1");
+const DataPathUpload_1 = require("./DataPathUpload");
+const DataPathVolume_1 = require("./DataPathVolume");
 function DataPathFromJSON(json) {
     return DataPathFromJSONTyped(json, false);
 }
@@ -29,11 +29,11 @@ function DataPathFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if ((0, DataPathOneOf_1.instanceOfDataPathOneOf)(json)) {
-        return (0, DataPathOneOf_1.DataPathOneOfFromJSONTyped)(json, true);
+    if ((0, DataPathUpload_1.instanceOfDataPathUpload)(json)) {
+        return (0, DataPathUpload_1.DataPathUploadFromJSONTyped)(json, true);
     }
-    if ((0, DataPathOneOf1_1.instanceOfDataPathOneOf1)(json)) {
-        return (0, DataPathOneOf1_1.DataPathOneOf1FromJSONTyped)(json, true);
+    if ((0, DataPathVolume_1.instanceOfDataPathVolume)(json)) {
+        return (0, DataPathVolume_1.DataPathVolumeFromJSONTyped)(json, true);
     }
     return {};
 }
@@ -47,11 +47,11 @@ function DataPathToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if ((0, DataPathOneOf_1.instanceOfDataPathOneOf)(value)) {
-        return (0, DataPathOneOf_1.DataPathOneOfToJSON)(value);
+    if ((0, DataPathUpload_1.instanceOfDataPathUpload)(value)) {
+        return (0, DataPathUpload_1.DataPathUploadToJSON)(value);
     }
-    if ((0, DataPathOneOf1_1.instanceOfDataPathOneOf1)(value)) {
-        return (0, DataPathOneOf1_1.DataPathOneOf1ToJSON)(value);
+    if ((0, DataPathVolume_1.instanceOfDataPathVolume)(value)) {
+        return (0, DataPathVolume_1.DataPathVolumeToJSON)(value);
     }
     return {};
 }

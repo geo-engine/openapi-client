@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { HistogramBucketsNumberFromJSONTyped, HistogramBucketsNumberToJSON, } from './HistogramBucketsNumber';
-import { HistogramBucketsSquareRootChoiceRuleFromJSONTyped, HistogramBucketsSquareRootChoiceRuleToJSON, } from './HistogramBucketsSquareRootChoiceRule';
+import { instanceOfHistogramBucketsOneOf, HistogramBucketsOneOfFromJSONTyped, HistogramBucketsOneOfToJSON, } from './HistogramBucketsOneOf';
+import { instanceOfHistogramBucketsOneOf1, HistogramBucketsOneOf1FromJSONTyped, HistogramBucketsOneOf1ToJSON, } from './HistogramBucketsOneOf1';
 export function HistogramBucketsFromJSON(json) {
     return HistogramBucketsFromJSONTyped(json, false);
 }
@@ -20,14 +20,16 @@ export function HistogramBucketsFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    switch (json['type']) {
-        case 'number':
-            return Object.assign({}, HistogramBucketsNumberFromJSONTyped(json, true), { type: 'number' });
-        case 'squareRootChoiceRule':
-            return Object.assign({}, HistogramBucketsSquareRootChoiceRuleFromJSONTyped(json, true), { type: 'squareRootChoiceRule' });
-        default:
-            return json;
+    if (typeof json !== 'object') {
+        return json;
     }
+    if (instanceOfHistogramBucketsOneOf(json)) {
+        return HistogramBucketsOneOfFromJSONTyped(json, true);
+    }
+    if (instanceOfHistogramBucketsOneOf1(json)) {
+        return HistogramBucketsOneOf1FromJSONTyped(json, true);
+    }
+    return {};
 }
 export function HistogramBucketsToJSON(json) {
     return HistogramBucketsToJSONTyped(json, false);
@@ -36,12 +38,14 @@ export function HistogramBucketsToJSONTyped(value, ignoreDiscriminator = false) 
     if (value == null) {
         return value;
     }
-    switch (value['type']) {
-        case 'number':
-            return Object.assign({}, HistogramBucketsNumberToJSON(value), { type: 'number' });
-        case 'squareRootChoiceRule':
-            return Object.assign({}, HistogramBucketsSquareRootChoiceRuleToJSON(value), { type: 'squareRootChoiceRule' });
-        default:
-            return value;
+    if (typeof value !== 'object') {
+        return value;
     }
+    if (instanceOfHistogramBucketsOneOf(value)) {
+        return HistogramBucketsOneOfToJSON(value);
+    }
+    if (instanceOfHistogramBucketsOneOf1(value)) {
+        return HistogramBucketsOneOf1ToJSON(value);
+    }
+    return {};
 }

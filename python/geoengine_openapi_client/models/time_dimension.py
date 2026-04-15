@@ -18,24 +18,24 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.irregular import Irregular
-from geoengine_openapi_client.models.regular import Regular
+from geoengine_openapi_client.models.time_dimension_one_of import TimeDimensionOneOf
+from geoengine_openapi_client.models.time_dimension_one_of1 import TimeDimensionOneOf1
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-TIMEDIMENSION_ONE_OF_SCHEMAS = ["Irregular", "Regular"]
+TIMEDIMENSION_ONE_OF_SCHEMAS = ["TimeDimensionOneOf", "TimeDimensionOneOf1"]
 
 class TimeDimension(BaseModel):
     """
     TimeDimension
     """
-    # data type: Regular
-    oneof_schema_1_validator: Optional[Regular] = None
-    # data type: Irregular
-    oneof_schema_2_validator: Optional[Irregular] = None
-    actual_instance: Optional[Union[Irregular, Regular]] = None
-    one_of_schemas: Set[str] = { "Irregular", "Regular" }
+    # data type: TimeDimensionOneOf
+    oneof_schema_1_validator: Optional[TimeDimensionOneOf] = None
+    # data type: TimeDimensionOneOf1
+    oneof_schema_2_validator: Optional[TimeDimensionOneOf1] = None
+    actual_instance: Optional[Union[TimeDimensionOneOf, TimeDimensionOneOf1]] = None
+    one_of_schemas: Set[str] = { "TimeDimensionOneOf", "TimeDimensionOneOf1" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -58,22 +58,22 @@ class TimeDimension(BaseModel):
         instance = TimeDimension.model_construct()
         error_messages = []
         match = 0
-        # validate data type: Regular
-        if not isinstance(v, Regular):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Regular`")
+        # validate data type: TimeDimensionOneOf
+        if not isinstance(v, TimeDimensionOneOf):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TimeDimensionOneOf`")
         else:
             match += 1
-        # validate data type: Irregular
-        if not isinstance(v, Irregular):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Irregular`")
+        # validate data type: TimeDimensionOneOf1
+        if not isinstance(v, TimeDimensionOneOf1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `TimeDimensionOneOf1`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in TimeDimension with oneOf schemas: Irregular, Regular. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in TimeDimension with oneOf schemas: TimeDimensionOneOf, TimeDimensionOneOf1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in TimeDimension with oneOf schemas: Irregular, Regular. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in TimeDimension with oneOf schemas: TimeDimensionOneOf, TimeDimensionOneOf1. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -88,25 +88,25 @@ class TimeDimension(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into Regular
+        # deserialize data into TimeDimensionOneOf
         try:
-            instance.actual_instance = Regular.from_json(json_str)
+            instance.actual_instance = TimeDimensionOneOf.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into Irregular
+        # deserialize data into TimeDimensionOneOf1
         try:
-            instance.actual_instance = Irregular.from_json(json_str)
+            instance.actual_instance = TimeDimensionOneOf1.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into TimeDimension with oneOf schemas: Irregular, Regular. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into TimeDimension with oneOf schemas: TimeDimensionOneOf, TimeDimensionOneOf1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into TimeDimension with oneOf schemas: Irregular, Regular. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into TimeDimension with oneOf schemas: TimeDimensionOneOf, TimeDimensionOneOf1. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -120,7 +120,7 @@ class TimeDimension(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], Irregular, Regular]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], TimeDimensionOneOf, TimeDimensionOneOf1]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TimeDimension {
-    Regular(Box<models::Regular>),
-    Irregular(Box<models::Irregular>),
+    TimeDimensionOneOf(Box<models::TimeDimensionOneOf>),
+    TimeDimensionOneOf1(Box<models::TimeDimensionOneOf1>),
 }
 
 impl Default for TimeDimension {
     fn default() -> Self {
-        Self::Regular(Default::default())
+        Self::TimeDimensionOneOf(Default::default())
     }
 }
 /// 

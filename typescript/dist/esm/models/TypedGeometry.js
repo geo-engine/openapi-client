@@ -11,10 +11,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfTypedGeometryMultiLineString, TypedGeometryMultiLineStringFromJSONTyped, TypedGeometryMultiLineStringToJSON, } from './TypedGeometryMultiLineString';
-import { instanceOfTypedGeometryMultiPoint, TypedGeometryMultiPointFromJSONTyped, TypedGeometryMultiPointToJSON, } from './TypedGeometryMultiPoint';
-import { instanceOfTypedGeometryMultiPolygon, TypedGeometryMultiPolygonFromJSONTyped, TypedGeometryMultiPolygonToJSON, } from './TypedGeometryMultiPolygon';
-import { instanceOfTypedGeometryNoGeometry, TypedGeometryNoGeometryFromJSONTyped, TypedGeometryNoGeometryToJSON, } from './TypedGeometryNoGeometry';
+import { instanceOfTypedGeometryOneOf, TypedGeometryOneOfFromJSONTyped, TypedGeometryOneOfToJSON, } from './TypedGeometryOneOf';
+import { instanceOfTypedGeometryOneOf1, TypedGeometryOneOf1FromJSONTyped, TypedGeometryOneOf1ToJSON, } from './TypedGeometryOneOf1';
+import { instanceOfTypedGeometryOneOf2, TypedGeometryOneOf2FromJSONTyped, TypedGeometryOneOf2ToJSON, } from './TypedGeometryOneOf2';
+import { instanceOfTypedGeometryOneOf3, TypedGeometryOneOf3FromJSONTyped, TypedGeometryOneOf3ToJSON, } from './TypedGeometryOneOf3';
 export function TypedGeometryFromJSON(json) {
     return TypedGeometryFromJSONTyped(json, false);
 }
@@ -25,17 +25,17 @@ export function TypedGeometryFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfTypedGeometryMultiLineString(json)) {
-        return TypedGeometryMultiLineStringFromJSONTyped(json, true);
+    if (instanceOfTypedGeometryOneOf(json)) {
+        return TypedGeometryOneOfFromJSONTyped(json, true);
     }
-    if (instanceOfTypedGeometryMultiPoint(json)) {
-        return TypedGeometryMultiPointFromJSONTyped(json, true);
+    if (instanceOfTypedGeometryOneOf1(json)) {
+        return TypedGeometryOneOf1FromJSONTyped(json, true);
     }
-    if (instanceOfTypedGeometryMultiPolygon(json)) {
-        return TypedGeometryMultiPolygonFromJSONTyped(json, true);
+    if (instanceOfTypedGeometryOneOf2(json)) {
+        return TypedGeometryOneOf2FromJSONTyped(json, true);
     }
-    if (instanceOfTypedGeometryNoGeometry(json)) {
-        return TypedGeometryNoGeometryFromJSONTyped(json, true);
+    if (instanceOfTypedGeometryOneOf3(json)) {
+        return TypedGeometryOneOf3FromJSONTyped(json, true);
     }
     return {};
 }
@@ -49,17 +49,17 @@ export function TypedGeometryToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfTypedGeometryMultiLineString(value)) {
-        return TypedGeometryMultiLineStringToJSON(value);
+    if (instanceOfTypedGeometryOneOf(value)) {
+        return TypedGeometryOneOfToJSON(value);
     }
-    if (instanceOfTypedGeometryMultiPoint(value)) {
-        return TypedGeometryMultiPointToJSON(value);
+    if (instanceOfTypedGeometryOneOf1(value)) {
+        return TypedGeometryOneOf1ToJSON(value);
     }
-    if (instanceOfTypedGeometryMultiPolygon(value)) {
-        return TypedGeometryMultiPolygonToJSON(value);
+    if (instanceOfTypedGeometryOneOf2(value)) {
+        return TypedGeometryOneOf2ToJSON(value);
     }
-    if (instanceOfTypedGeometryNoGeometry(value)) {
-        return TypedGeometryNoGeometryToJSON(value);
+    if (instanceOfTypedGeometryOneOf3(value)) {
+        return TypedGeometryOneOf3ToJSON(value);
     }
     return {};
 }

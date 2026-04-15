@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { DataPathUpload } from './DataPathUpload';
+import type { DataPathOneOf } from './DataPathOneOf';
 import {
-    instanceOfDataPathUpload,
-    DataPathUploadFromJSON,
-    DataPathUploadFromJSONTyped,
-    DataPathUploadToJSON,
-} from './DataPathUpload';
-import type { DataPathVolume } from './DataPathVolume';
+    instanceOfDataPathOneOf,
+    DataPathOneOfFromJSON,
+    DataPathOneOfFromJSONTyped,
+    DataPathOneOfToJSON,
+} from './DataPathOneOf';
+import type { DataPathOneOf1 } from './DataPathOneOf1';
 import {
-    instanceOfDataPathVolume,
-    DataPathVolumeFromJSON,
-    DataPathVolumeFromJSONTyped,
-    DataPathVolumeToJSON,
-} from './DataPathVolume';
+    instanceOfDataPathOneOf1,
+    DataPathOneOf1FromJSON,
+    DataPathOneOf1FromJSONTyped,
+    DataPathOneOf1ToJSON,
+} from './DataPathOneOf1';
 
 /**
  * @type DataPath
  * 
  * @export
  */
-export type DataPath = DataPathUpload | DataPathVolume;
+export type DataPath = DataPathOneOf | DataPathOneOf1;
 
 export function DataPathFromJSON(json: any): DataPath {
     return DataPathFromJSONTyped(json, false);
@@ -45,11 +45,11 @@ export function DataPathFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfDataPathUpload(json)) {
-        return DataPathUploadFromJSONTyped(json, true);
+    if (instanceOfDataPathOneOf(json)) {
+        return DataPathOneOfFromJSONTyped(json, true);
     }
-    if (instanceOfDataPathVolume(json)) {
-        return DataPathVolumeFromJSONTyped(json, true);
+    if (instanceOfDataPathOneOf1(json)) {
+        return DataPathOneOf1FromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -65,11 +65,11 @@ export function DataPathToJSONTyped(value?: DataPath | null, ignoreDiscriminator
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfDataPathUpload(value)) {
-        return DataPathUploadToJSON(value as DataPathUpload);
+    if (instanceOfDataPathOneOf(value)) {
+        return DataPathOneOfToJSON(value as DataPathOneOf);
     }
-    if (instanceOfDataPathVolume(value)) {
-        return DataPathVolumeToJSON(value as DataPathVolume);
+    if (instanceOfDataPathOneOf1(value)) {
+        return DataPathOneOf1ToJSON(value as DataPathOneOf1);
     }
     return {};
 }

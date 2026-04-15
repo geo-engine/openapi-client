@@ -17,11 +17,11 @@ import { HistogramBucketsFromJSON, HistogramBucketsToJSON, } from './HistogramBu
  * Check if a given object implements the HistogramParameters interface.
  */
 export function instanceOfHistogramParameters(value) {
+    if (!('attributeName' in value) || value['attributeName'] === undefined)
+        return false;
     if (!('bounds' in value) || value['bounds'] === undefined)
         return false;
     if (!('buckets' in value) || value['buckets'] === undefined)
-        return false;
-    if (!('columnName' in value) || value['columnName'] === undefined)
         return false;
     return true;
 }
@@ -33,9 +33,9 @@ export function HistogramParametersFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'attributeName': json['attributeName'],
         'bounds': HistogramBoundsFromJSON(json['bounds']),
         'buckets': HistogramBucketsFromJSON(json['buckets']),
-        'columnName': json['columnName'],
         'interactive': json['interactive'] == null ? undefined : json['interactive'],
     };
 }
@@ -47,9 +47,9 @@ export function HistogramParametersToJSONTyped(value, ignoreDiscriminator = fals
         return value;
     }
     return {
+        'attributeName': value['attributeName'],
         'bounds': HistogramBoundsToJSON(value['bounds']),
         'buckets': HistogramBucketsToJSON(value['buckets']),
-        'columnName': value['columnName'],
         'interactive': value['interactive'],
     };
 }

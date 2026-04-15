@@ -36,16 +36,16 @@ class TestHistogramParameters(unittest.TestCase):
         model = HistogramParameters()
         if include_optional:
             return HistogramParameters(
+                attribute_name = '',
                 bounds = None,
                 buckets = None,
-                column_name = '',
                 interactive = True
             )
         else:
             return HistogramParameters(
+                attribute_name = '',
                 bounds = None,
                 buckets = None,
-                column_name = '',
         )
         """
 

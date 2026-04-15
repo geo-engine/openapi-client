@@ -12,41 +12,41 @@
  * Do not edit the class manually.
  */
 
-import type { TypedGeometryMultiLineString } from './TypedGeometryMultiLineString';
+import type { TypedGeometryOneOf } from './TypedGeometryOneOf';
 import {
-    instanceOfTypedGeometryMultiLineString,
-    TypedGeometryMultiLineStringFromJSON,
-    TypedGeometryMultiLineStringFromJSONTyped,
-    TypedGeometryMultiLineStringToJSON,
-} from './TypedGeometryMultiLineString';
-import type { TypedGeometryMultiPoint } from './TypedGeometryMultiPoint';
+    instanceOfTypedGeometryOneOf,
+    TypedGeometryOneOfFromJSON,
+    TypedGeometryOneOfFromJSONTyped,
+    TypedGeometryOneOfToJSON,
+} from './TypedGeometryOneOf';
+import type { TypedGeometryOneOf1 } from './TypedGeometryOneOf1';
 import {
-    instanceOfTypedGeometryMultiPoint,
-    TypedGeometryMultiPointFromJSON,
-    TypedGeometryMultiPointFromJSONTyped,
-    TypedGeometryMultiPointToJSON,
-} from './TypedGeometryMultiPoint';
-import type { TypedGeometryMultiPolygon } from './TypedGeometryMultiPolygon';
+    instanceOfTypedGeometryOneOf1,
+    TypedGeometryOneOf1FromJSON,
+    TypedGeometryOneOf1FromJSONTyped,
+    TypedGeometryOneOf1ToJSON,
+} from './TypedGeometryOneOf1';
+import type { TypedGeometryOneOf2 } from './TypedGeometryOneOf2';
 import {
-    instanceOfTypedGeometryMultiPolygon,
-    TypedGeometryMultiPolygonFromJSON,
-    TypedGeometryMultiPolygonFromJSONTyped,
-    TypedGeometryMultiPolygonToJSON,
-} from './TypedGeometryMultiPolygon';
-import type { TypedGeometryNoGeometry } from './TypedGeometryNoGeometry';
+    instanceOfTypedGeometryOneOf2,
+    TypedGeometryOneOf2FromJSON,
+    TypedGeometryOneOf2FromJSONTyped,
+    TypedGeometryOneOf2ToJSON,
+} from './TypedGeometryOneOf2';
+import type { TypedGeometryOneOf3 } from './TypedGeometryOneOf3';
 import {
-    instanceOfTypedGeometryNoGeometry,
-    TypedGeometryNoGeometryFromJSON,
-    TypedGeometryNoGeometryFromJSONTyped,
-    TypedGeometryNoGeometryToJSON,
-} from './TypedGeometryNoGeometry';
+    instanceOfTypedGeometryOneOf3,
+    TypedGeometryOneOf3FromJSON,
+    TypedGeometryOneOf3FromJSONTyped,
+    TypedGeometryOneOf3ToJSON,
+} from './TypedGeometryOneOf3';
 
 /**
  * @type TypedGeometry
  * 
  * @export
  */
-export type TypedGeometry = TypedGeometryMultiLineString | TypedGeometryMultiPoint | TypedGeometryMultiPolygon | TypedGeometryNoGeometry;
+export type TypedGeometry = TypedGeometryOneOf | TypedGeometryOneOf1 | TypedGeometryOneOf2 | TypedGeometryOneOf3;
 
 export function TypedGeometryFromJSON(json: any): TypedGeometry {
     return TypedGeometryFromJSONTyped(json, false);
@@ -59,17 +59,17 @@ export function TypedGeometryFromJSONTyped(json: any, ignoreDiscriminator: boole
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfTypedGeometryMultiLineString(json)) {
-        return TypedGeometryMultiLineStringFromJSONTyped(json, true);
+    if (instanceOfTypedGeometryOneOf(json)) {
+        return TypedGeometryOneOfFromJSONTyped(json, true);
     }
-    if (instanceOfTypedGeometryMultiPoint(json)) {
-        return TypedGeometryMultiPointFromJSONTyped(json, true);
+    if (instanceOfTypedGeometryOneOf1(json)) {
+        return TypedGeometryOneOf1FromJSONTyped(json, true);
     }
-    if (instanceOfTypedGeometryMultiPolygon(json)) {
-        return TypedGeometryMultiPolygonFromJSONTyped(json, true);
+    if (instanceOfTypedGeometryOneOf2(json)) {
+        return TypedGeometryOneOf2FromJSONTyped(json, true);
     }
-    if (instanceOfTypedGeometryNoGeometry(json)) {
-        return TypedGeometryNoGeometryFromJSONTyped(json, true);
+    if (instanceOfTypedGeometryOneOf3(json)) {
+        return TypedGeometryOneOf3FromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -85,17 +85,17 @@ export function TypedGeometryToJSONTyped(value?: TypedGeometry | null, ignoreDis
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfTypedGeometryMultiLineString(value)) {
-        return TypedGeometryMultiLineStringToJSON(value as TypedGeometryMultiLineString);
+    if (instanceOfTypedGeometryOneOf(value)) {
+        return TypedGeometryOneOfToJSON(value as TypedGeometryOneOf);
     }
-    if (instanceOfTypedGeometryMultiPoint(value)) {
-        return TypedGeometryMultiPointToJSON(value as TypedGeometryMultiPoint);
+    if (instanceOfTypedGeometryOneOf1(value)) {
+        return TypedGeometryOneOf1ToJSON(value as TypedGeometryOneOf1);
     }
-    if (instanceOfTypedGeometryMultiPolygon(value)) {
-        return TypedGeometryMultiPolygonToJSON(value as TypedGeometryMultiPolygon);
+    if (instanceOfTypedGeometryOneOf2(value)) {
+        return TypedGeometryOneOf2ToJSON(value as TypedGeometryOneOf2);
     }
-    if (instanceOfTypedGeometryNoGeometry(value)) {
-        return TypedGeometryNoGeometryToJSON(value as TypedGeometryNoGeometry);
+    if (instanceOfTypedGeometryOneOf3(value)) {
+        return TypedGeometryOneOf3ToJSON(value as TypedGeometryOneOf3);
     }
     return {};
 }

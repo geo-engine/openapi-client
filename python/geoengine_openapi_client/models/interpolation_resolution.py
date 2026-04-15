@@ -18,24 +18,24 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from geoengine_openapi_client.models.fraction import Fraction
-from geoengine_openapi_client.models.resolution import Resolution
+from geoengine_openapi_client.models.interpolation_resolution_one_of import InterpolationResolutionOneOf
+from geoengine_openapi_client.models.interpolation_resolution_one_of1 import InterpolationResolutionOneOf1
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-INTERPOLATIONRESOLUTION_ONE_OF_SCHEMAS = ["Fraction", "Resolution"]
+INTERPOLATIONRESOLUTION_ONE_OF_SCHEMAS = ["InterpolationResolutionOneOf", "InterpolationResolutionOneOf1"]
 
 class InterpolationResolution(BaseModel):
     """
     InterpolationResolution
     """
-    # data type: Resolution
-    oneof_schema_1_validator: Optional[Resolution] = None
-    # data type: Fraction
-    oneof_schema_2_validator: Optional[Fraction] = None
-    actual_instance: Optional[Union[Fraction, Resolution]] = None
-    one_of_schemas: Set[str] = { "Fraction", "Resolution" }
+    # data type: InterpolationResolutionOneOf
+    oneof_schema_1_validator: Optional[InterpolationResolutionOneOf] = None
+    # data type: InterpolationResolutionOneOf1
+    oneof_schema_2_validator: Optional[InterpolationResolutionOneOf1] = None
+    actual_instance: Optional[Union[InterpolationResolutionOneOf, InterpolationResolutionOneOf1]] = None
+    one_of_schemas: Set[str] = { "InterpolationResolutionOneOf", "InterpolationResolutionOneOf1" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -58,22 +58,22 @@ class InterpolationResolution(BaseModel):
         instance = InterpolationResolution.model_construct()
         error_messages = []
         match = 0
-        # validate data type: Resolution
-        if not isinstance(v, Resolution):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Resolution`")
+        # validate data type: InterpolationResolutionOneOf
+        if not isinstance(v, InterpolationResolutionOneOf):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `InterpolationResolutionOneOf`")
         else:
             match += 1
-        # validate data type: Fraction
-        if not isinstance(v, Fraction):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Fraction`")
+        # validate data type: InterpolationResolutionOneOf1
+        if not isinstance(v, InterpolationResolutionOneOf1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `InterpolationResolutionOneOf1`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in InterpolationResolution with oneOf schemas: Fraction, Resolution. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in InterpolationResolution with oneOf schemas: InterpolationResolutionOneOf, InterpolationResolutionOneOf1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in InterpolationResolution with oneOf schemas: Fraction, Resolution. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in InterpolationResolution with oneOf schemas: InterpolationResolutionOneOf, InterpolationResolutionOneOf1. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -88,25 +88,25 @@ class InterpolationResolution(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into Resolution
+        # deserialize data into InterpolationResolutionOneOf
         try:
-            instance.actual_instance = Resolution.from_json(json_str)
+            instance.actual_instance = InterpolationResolutionOneOf.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into Fraction
+        # deserialize data into InterpolationResolutionOneOf1
         try:
-            instance.actual_instance = Fraction.from_json(json_str)
+            instance.actual_instance = InterpolationResolutionOneOf1.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into InterpolationResolution with oneOf schemas: Fraction, Resolution. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into InterpolationResolution with oneOf schemas: InterpolationResolutionOneOf, InterpolationResolutionOneOf1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into InterpolationResolution with oneOf schemas: Fraction, Resolution. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into InterpolationResolution with oneOf schemas: InterpolationResolutionOneOf, InterpolationResolutionOneOf1. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -120,7 +120,7 @@ class InterpolationResolution(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], Fraction, Resolution]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], InterpolationResolutionOneOf, InterpolationResolutionOneOf1]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -9,14 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Irregular } from './Irregular';
-import type { Regular } from './Regular';
+import type { TimeDimensionOneOf } from './TimeDimensionOneOf';
+import type { TimeDimensionOneOf1 } from './TimeDimensionOneOf1';
 /**
  * @type TimeDimension
  *
  * @export
  */
-export type TimeDimension = Irregular | Regular;
+export type TimeDimension = TimeDimensionOneOf | TimeDimensionOneOf1;
 export declare function TimeDimensionFromJSON(json: any): TimeDimension;
 export declare function TimeDimensionFromJSONTyped(json: any, ignoreDiscriminator: boolean): TimeDimension;
 export declare function TimeDimensionToJSON(json: any): any;

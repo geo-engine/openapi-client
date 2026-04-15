@@ -17,8 +17,8 @@ exports.InterpolationResolutionFromJSON = InterpolationResolutionFromJSON;
 exports.InterpolationResolutionFromJSONTyped = InterpolationResolutionFromJSONTyped;
 exports.InterpolationResolutionToJSON = InterpolationResolutionToJSON;
 exports.InterpolationResolutionToJSONTyped = InterpolationResolutionToJSONTyped;
-const Fraction_1 = require("./Fraction");
-const Resolution_1 = require("./Resolution");
+const InterpolationResolutionOneOf_1 = require("./InterpolationResolutionOneOf");
+const InterpolationResolutionOneOf1_1 = require("./InterpolationResolutionOneOf1");
 function InterpolationResolutionFromJSON(json) {
     return InterpolationResolutionFromJSONTyped(json, false);
 }
@@ -29,11 +29,11 @@ function InterpolationResolutionFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if ((0, Fraction_1.instanceOfFraction)(json)) {
-        return (0, Fraction_1.FractionFromJSONTyped)(json, true);
+    if ((0, InterpolationResolutionOneOf_1.instanceOfInterpolationResolutionOneOf)(json)) {
+        return (0, InterpolationResolutionOneOf_1.InterpolationResolutionOneOfFromJSONTyped)(json, true);
     }
-    if ((0, Resolution_1.instanceOfResolution)(json)) {
-        return (0, Resolution_1.ResolutionFromJSONTyped)(json, true);
+    if ((0, InterpolationResolutionOneOf1_1.instanceOfInterpolationResolutionOneOf1)(json)) {
+        return (0, InterpolationResolutionOneOf1_1.InterpolationResolutionOneOf1FromJSONTyped)(json, true);
     }
     return {};
 }
@@ -47,11 +47,11 @@ function InterpolationResolutionToJSONTyped(value, ignoreDiscriminator = false) 
     if (typeof value !== 'object') {
         return value;
     }
-    if ((0, Fraction_1.instanceOfFraction)(value)) {
-        return (0, Fraction_1.FractionToJSON)(value);
+    if ((0, InterpolationResolutionOneOf_1.instanceOfInterpolationResolutionOneOf)(value)) {
+        return (0, InterpolationResolutionOneOf_1.InterpolationResolutionOneOfToJSON)(value);
     }
-    if ((0, Resolution_1.instanceOfResolution)(value)) {
-        return (0, Resolution_1.ResolutionToJSON)(value);
+    if ((0, InterpolationResolutionOneOf1_1.instanceOfInterpolationResolutionOneOf1)(value)) {
+        return (0, InterpolationResolutionOneOf1_1.InterpolationResolutionOneOf1ToJSON)(value);
     }
     return {};
 }

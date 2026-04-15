@@ -11,9 +11,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfDefault, DefaultFromJSONTyped, DefaultToJSON, } from './Default';
-import { instanceOfRename, RenameFromJSONTyped, RenameToJSON, } from './Rename';
-import { instanceOfSuffix, SuffixFromJSONTyped, SuffixToJSON, } from './Suffix';
+import { instanceOfRenameBandsOneOf, RenameBandsOneOfFromJSONTyped, RenameBandsOneOfToJSON, } from './RenameBandsOneOf';
+import { instanceOfRenameBandsOneOf1, RenameBandsOneOf1FromJSONTyped, RenameBandsOneOf1ToJSON, } from './RenameBandsOneOf1';
+import { instanceOfRenameBandsOneOf2, RenameBandsOneOf2FromJSONTyped, RenameBandsOneOf2ToJSON, } from './RenameBandsOneOf2';
 export function RenameBandsFromJSON(json) {
     return RenameBandsFromJSONTyped(json, false);
 }
@@ -24,14 +24,14 @@ export function RenameBandsFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfDefault(json)) {
-        return DefaultFromJSONTyped(json, true);
+    if (instanceOfRenameBandsOneOf(json)) {
+        return RenameBandsOneOfFromJSONTyped(json, true);
     }
-    if (instanceOfRename(json)) {
-        return RenameFromJSONTyped(json, true);
+    if (instanceOfRenameBandsOneOf1(json)) {
+        return RenameBandsOneOf1FromJSONTyped(json, true);
     }
-    if (instanceOfSuffix(json)) {
-        return SuffixFromJSONTyped(json, true);
+    if (instanceOfRenameBandsOneOf2(json)) {
+        return RenameBandsOneOf2FromJSONTyped(json, true);
     }
     return {};
 }
@@ -45,14 +45,14 @@ export function RenameBandsToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfDefault(value)) {
-        return DefaultToJSON(value);
+    if (instanceOfRenameBandsOneOf(value)) {
+        return RenameBandsOneOfToJSON(value);
     }
-    if (instanceOfRename(value)) {
-        return RenameToJSON(value);
+    if (instanceOfRenameBandsOneOf1(value)) {
+        return RenameBandsOneOf1ToJSON(value);
     }
-    if (instanceOfSuffix(value)) {
-        return SuffixToJSON(value);
+    if (instanceOfRenameBandsOneOf2(value)) {
+        return RenameBandsOneOf2ToJSON(value);
     }
     return {};
 }

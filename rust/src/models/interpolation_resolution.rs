@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum InterpolationResolution {
-    Resolution(Box<models::Resolution>),
-    Fraction(Box<models::Fraction>),
+    InterpolationResolutionOneOf(Box<models::InterpolationResolutionOneOf>),
+    InterpolationResolutionOneOf1(Box<models::InterpolationResolutionOneOf1>),
 }
 
 impl Default for InterpolationResolution {
     fn default() -> Self {
-        Self::Resolution(Default::default())
+        Self::InterpolationResolutionOneOf(Default::default())
     }
 }
 /// 

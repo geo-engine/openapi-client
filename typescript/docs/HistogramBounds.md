@@ -6,8 +6,8 @@
 
 Name | Type
 ------------ | -------------
-`max` | number
-`min` | number
+`data` | any
+`values` | [HistogramBoundsOneOf1Values](HistogramBoundsOneOf1Values.md)
 
 ## Example
 
@@ -16,8 +16,8 @@ import type { HistogramBounds } from '@geoengine/openapi-client'
 
 // TODO: Update the object below with actual values
 const example = {
-  "max": null,
-  "min": null,
+  "data": null,
+  "values": null,
 } satisfies HistogramBounds
 
 console.log(example)

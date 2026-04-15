@@ -9,16 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { TypedGeometryMultiLineString } from './TypedGeometryMultiLineString';
-import type { TypedGeometryMultiPoint } from './TypedGeometryMultiPoint';
-import type { TypedGeometryMultiPolygon } from './TypedGeometryMultiPolygon';
-import type { TypedGeometryNoGeometry } from './TypedGeometryNoGeometry';
+import type { TypedGeometryOneOf } from './TypedGeometryOneOf';
+import type { TypedGeometryOneOf1 } from './TypedGeometryOneOf1';
+import type { TypedGeometryOneOf2 } from './TypedGeometryOneOf2';
+import type { TypedGeometryOneOf3 } from './TypedGeometryOneOf3';
 /**
  * @type TypedGeometry
  *
  * @export
  */
-export type TypedGeometry = TypedGeometryMultiLineString | TypedGeometryMultiPoint | TypedGeometryMultiPolygon | TypedGeometryNoGeometry;
+export type TypedGeometry = TypedGeometryOneOf | TypedGeometryOneOf1 | TypedGeometryOneOf2 | TypedGeometryOneOf3;
 export declare function TypedGeometryFromJSON(json: any): TypedGeometry;
 export declare function TypedGeometryFromJSONTyped(json: any, ignoreDiscriminator: boolean): TypedGeometry;
 export declare function TypedGeometryToJSON(json: any): any;

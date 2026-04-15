@@ -11,8 +11,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { instanceOfFraction, FractionFromJSONTyped, FractionToJSON, } from './Fraction';
-import { instanceOfResolution, ResolutionFromJSONTyped, ResolutionToJSON, } from './Resolution';
+import { instanceOfInterpolationResolutionOneOf, InterpolationResolutionOneOfFromJSONTyped, InterpolationResolutionOneOfToJSON, } from './InterpolationResolutionOneOf';
+import { instanceOfInterpolationResolutionOneOf1, InterpolationResolutionOneOf1FromJSONTyped, InterpolationResolutionOneOf1ToJSON, } from './InterpolationResolutionOneOf1';
 export function InterpolationResolutionFromJSON(json) {
     return InterpolationResolutionFromJSONTyped(json, false);
 }
@@ -23,11 +23,11 @@ export function InterpolationResolutionFromJSONTyped(json, ignoreDiscriminator) 
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfFraction(json)) {
-        return FractionFromJSONTyped(json, true);
+    if (instanceOfInterpolationResolutionOneOf(json)) {
+        return InterpolationResolutionOneOfFromJSONTyped(json, true);
     }
-    if (instanceOfResolution(json)) {
-        return ResolutionFromJSONTyped(json, true);
+    if (instanceOfInterpolationResolutionOneOf1(json)) {
+        return InterpolationResolutionOneOf1FromJSONTyped(json, true);
     }
     return {};
 }
@@ -41,11 +41,11 @@ export function InterpolationResolutionToJSONTyped(value, ignoreDiscriminator = 
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfFraction(value)) {
-        return FractionToJSON(value);
+    if (instanceOfInterpolationResolutionOneOf(value)) {
+        return InterpolationResolutionOneOfToJSON(value);
     }
-    if (instanceOfResolution(value)) {
-        return ResolutionToJSON(value);
+    if (instanceOfInterpolationResolutionOneOf1(value)) {
+        return InterpolationResolutionOneOf1ToJSON(value);
     }
     return {};
 }

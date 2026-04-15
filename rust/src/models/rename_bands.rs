@@ -14,14 +14,14 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RenameBands {
-    Default(Box<models::Default>),
-    Suffix(Box<models::Suffix>),
-    Rename(Box<models::Rename>),
+    RenameBandsOneOf(Box<models::RenameBandsOneOf>),
+    RenameBandsOneOf1(Box<models::RenameBandsOneOf1>),
+    RenameBandsOneOf2(Box<models::RenameBandsOneOf2>),
 }
 
 impl Default for RenameBands {
     fn default() -> Self {
-        Self::Default(Default::default())
+        Self::RenameBandsOneOf(Default::default())
     }
 }
 /// 

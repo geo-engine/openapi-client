@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 import type { MockPointSource } from './MockPointSource';
-import type { OgrSource } from './OgrSource';
 import type { RasterVectorJoin } from './RasterVectorJoin';
 import type { Reprojection } from './Reprojection';
 /**
@@ -21,8 +20,6 @@ import type { Reprojection } from './Reprojection';
 export type VectorOperator = {
     type: 'MockPointSource';
 } & MockPointSource | {
-    type: 'OgrSource';
-} & OgrSource | {
     type: 'RasterVectorJoin';
 } & RasterVectorJoin | {
     type: 'Reprojection';

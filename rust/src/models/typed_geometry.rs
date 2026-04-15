@@ -14,15 +14,15 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum TypedGeometry {
-    TypedGeometryNoGeometry(Box<models::TypedGeometryNoGeometry>),
-    TypedGeometryMultiPoint(Box<models::TypedGeometryMultiPoint>),
-    TypedGeometryMultiLineString(Box<models::TypedGeometryMultiLineString>),
-    TypedGeometryMultiPolygon(Box<models::TypedGeometryMultiPolygon>),
+    TypedGeometryOneOf(Box<models::TypedGeometryOneOf>),
+    TypedGeometryOneOf1(Box<models::TypedGeometryOneOf1>),
+    TypedGeometryOneOf2(Box<models::TypedGeometryOneOf2>),
+    TypedGeometryOneOf3(Box<models::TypedGeometryOneOf3>),
 }
 
 impl Default for TypedGeometry {
     fn default() -> Self {
-        Self::TypedGeometryNoGeometry(Default::default())
+        Self::TypedGeometryOneOf(Default::default())
     }
 }
 

@@ -99,11 +99,6 @@ class SingleRasterOrVectorOperator(BaseModel):
             instance.actual_instance = MockPointSource.from_json(json_str)
             return instance
 
-        # check if data type is `OgrSource`
-        if _data_type == "OgrSource":
-            instance.actual_instance = OgrSource.from_json(json_str)
-            return instance
-
         # check if data type is `RasterVectorJoin`
         if _data_type == "RasterVectorJoin":
             instance.actual_instance = RasterVectorJoin.from_json(json_str)

@@ -11,8 +11,8 @@
 
 set -e
 
-cd  ../geoengine
-cargo run --bin geoengine-cli openapi > ../openapi-client/.generation/input/openapi.json
+cd  ../geoengine/geoengine
+cargo run --bin geoengine-cli openapi > ../../openapi-client/.generation/input/openapi.json
 cd -
 
 just build

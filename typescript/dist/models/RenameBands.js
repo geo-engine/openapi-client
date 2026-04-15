@@ -17,9 +17,9 @@ exports.RenameBandsFromJSON = RenameBandsFromJSON;
 exports.RenameBandsFromJSONTyped = RenameBandsFromJSONTyped;
 exports.RenameBandsToJSON = RenameBandsToJSON;
 exports.RenameBandsToJSONTyped = RenameBandsToJSONTyped;
-const Default_1 = require("./Default");
-const Rename_1 = require("./Rename");
-const Suffix_1 = require("./Suffix");
+const RenameBandsOneOf_1 = require("./RenameBandsOneOf");
+const RenameBandsOneOf1_1 = require("./RenameBandsOneOf1");
+const RenameBandsOneOf2_1 = require("./RenameBandsOneOf2");
 function RenameBandsFromJSON(json) {
     return RenameBandsFromJSONTyped(json, false);
 }
@@ -30,14 +30,14 @@ function RenameBandsFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if ((0, Default_1.instanceOfDefault)(json)) {
-        return (0, Default_1.DefaultFromJSONTyped)(json, true);
+    if ((0, RenameBandsOneOf_1.instanceOfRenameBandsOneOf)(json)) {
+        return (0, RenameBandsOneOf_1.RenameBandsOneOfFromJSONTyped)(json, true);
     }
-    if ((0, Rename_1.instanceOfRename)(json)) {
-        return (0, Rename_1.RenameFromJSONTyped)(json, true);
+    if ((0, RenameBandsOneOf1_1.instanceOfRenameBandsOneOf1)(json)) {
+        return (0, RenameBandsOneOf1_1.RenameBandsOneOf1FromJSONTyped)(json, true);
     }
-    if ((0, Suffix_1.instanceOfSuffix)(json)) {
-        return (0, Suffix_1.SuffixFromJSONTyped)(json, true);
+    if ((0, RenameBandsOneOf2_1.instanceOfRenameBandsOneOf2)(json)) {
+        return (0, RenameBandsOneOf2_1.RenameBandsOneOf2FromJSONTyped)(json, true);
     }
     return {};
 }
@@ -51,14 +51,14 @@ function RenameBandsToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if ((0, Default_1.instanceOfDefault)(value)) {
-        return (0, Default_1.DefaultToJSON)(value);
+    if ((0, RenameBandsOneOf_1.instanceOfRenameBandsOneOf)(value)) {
+        return (0, RenameBandsOneOf_1.RenameBandsOneOfToJSON)(value);
     }
-    if ((0, Rename_1.instanceOfRename)(value)) {
-        return (0, Rename_1.RenameToJSON)(value);
+    if ((0, RenameBandsOneOf1_1.instanceOfRenameBandsOneOf1)(value)) {
+        return (0, RenameBandsOneOf1_1.RenameBandsOneOf1ToJSON)(value);
     }
-    if ((0, Suffix_1.instanceOfSuffix)(value)) {
-        return (0, Suffix_1.SuffixToJSON)(value);
+    if ((0, RenameBandsOneOf2_1.instanceOfRenameBandsOneOf2)(value)) {
+        return (0, RenameBandsOneOf2_1.RenameBandsOneOf2ToJSON)(value);
     }
     return {};
 }

@@ -12,34 +12,34 @@
  * Do not edit the class manually.
  */
 
-import type { Default } from './Default';
+import type { RenameBandsOneOf } from './RenameBandsOneOf';
 import {
-    instanceOfDefault,
-    DefaultFromJSON,
-    DefaultFromJSONTyped,
-    DefaultToJSON,
-} from './Default';
-import type { Rename } from './Rename';
+    instanceOfRenameBandsOneOf,
+    RenameBandsOneOfFromJSON,
+    RenameBandsOneOfFromJSONTyped,
+    RenameBandsOneOfToJSON,
+} from './RenameBandsOneOf';
+import type { RenameBandsOneOf1 } from './RenameBandsOneOf1';
 import {
-    instanceOfRename,
-    RenameFromJSON,
-    RenameFromJSONTyped,
-    RenameToJSON,
-} from './Rename';
-import type { Suffix } from './Suffix';
+    instanceOfRenameBandsOneOf1,
+    RenameBandsOneOf1FromJSON,
+    RenameBandsOneOf1FromJSONTyped,
+    RenameBandsOneOf1ToJSON,
+} from './RenameBandsOneOf1';
+import type { RenameBandsOneOf2 } from './RenameBandsOneOf2';
 import {
-    instanceOfSuffix,
-    SuffixFromJSON,
-    SuffixFromJSONTyped,
-    SuffixToJSON,
-} from './Suffix';
+    instanceOfRenameBandsOneOf2,
+    RenameBandsOneOf2FromJSON,
+    RenameBandsOneOf2FromJSONTyped,
+    RenameBandsOneOf2ToJSON,
+} from './RenameBandsOneOf2';
 
 /**
  * @type RenameBands
  * 
  * @export
  */
-export type RenameBands = Default | Rename | Suffix;
+export type RenameBands = RenameBandsOneOf | RenameBandsOneOf1 | RenameBandsOneOf2;
 
 export function RenameBandsFromJSON(json: any): RenameBands {
     return RenameBandsFromJSONTyped(json, false);
@@ -52,14 +52,14 @@ export function RenameBandsFromJSONTyped(json: any, ignoreDiscriminator: boolean
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfDefault(json)) {
-        return DefaultFromJSONTyped(json, true);
+    if (instanceOfRenameBandsOneOf(json)) {
+        return RenameBandsOneOfFromJSONTyped(json, true);
     }
-    if (instanceOfRename(json)) {
-        return RenameFromJSONTyped(json, true);
+    if (instanceOfRenameBandsOneOf1(json)) {
+        return RenameBandsOneOf1FromJSONTyped(json, true);
     }
-    if (instanceOfSuffix(json)) {
-        return SuffixFromJSONTyped(json, true);
+    if (instanceOfRenameBandsOneOf2(json)) {
+        return RenameBandsOneOf2FromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -75,14 +75,14 @@ export function RenameBandsToJSONTyped(value?: RenameBands | null, ignoreDiscrim
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfDefault(value)) {
-        return DefaultToJSON(value as Default);
+    if (instanceOfRenameBandsOneOf(value)) {
+        return RenameBandsOneOfToJSON(value as RenameBandsOneOf);
     }
-    if (instanceOfRename(value)) {
-        return RenameToJSON(value as Rename);
+    if (instanceOfRenameBandsOneOf1(value)) {
+        return RenameBandsOneOf1ToJSON(value as RenameBandsOneOf1);
     }
-    if (instanceOfSuffix(value)) {
-        return SuffixToJSON(value as Suffix);
+    if (instanceOfRenameBandsOneOf2(value)) {
+        return RenameBandsOneOf2ToJSON(value as RenameBandsOneOf2);
     }
     return {};
 }

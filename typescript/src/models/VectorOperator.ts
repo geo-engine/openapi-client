@@ -19,13 +19,6 @@ import {
     MockPointSourceFromJSONTyped,
     MockPointSourceToJSON,
 } from './MockPointSource';
-import type { OgrSource } from './OgrSource';
-import {
-    instanceOfOgrSource,
-    OgrSourceFromJSON,
-    OgrSourceFromJSONTyped,
-    OgrSourceToJSON,
-} from './OgrSource';
 import type { RasterVectorJoin } from './RasterVectorJoin';
 import {
     instanceOfRasterVectorJoin,
@@ -46,7 +39,7 @@ import {
  * An operator that produces vector data.
  * @export
  */
-export type VectorOperator = { type: 'MockPointSource' } & MockPointSource | { type: 'OgrSource' } & OgrSource | { type: 'RasterVectorJoin' } & RasterVectorJoin | { type: 'Reprojection' } & Reprojection;
+export type VectorOperator = { type: 'MockPointSource' } & MockPointSource | { type: 'RasterVectorJoin' } & RasterVectorJoin | { type: 'Reprojection' } & Reprojection;
 
 export function VectorOperatorFromJSON(json: any): VectorOperator {
     return VectorOperatorFromJSONTyped(json, false);
@@ -59,8 +52,6 @@ export function VectorOperatorFromJSONTyped(json: any, ignoreDiscriminator: bool
     switch (json['type']) {
         case 'MockPointSource':
             return Object.assign({}, MockPointSourceFromJSONTyped(json, true), { type: 'MockPointSource' } as const);
-        case 'OgrSource':
-            return Object.assign({}, OgrSourceFromJSONTyped(json, true), { type: 'OgrSource' } as const);
         case 'RasterVectorJoin':
             return Object.assign({}, RasterVectorJoinFromJSONTyped(json, true), { type: 'RasterVectorJoin' } as const);
         case 'Reprojection':
@@ -81,8 +72,6 @@ export function VectorOperatorToJSONTyped(value?: VectorOperator | null, ignoreD
     switch (value['type']) {
         case 'MockPointSource':
             return Object.assign({}, MockPointSourceToJSON(value), { type: 'MockPointSource' } as const);
-        case 'OgrSource':
-            return Object.assign({}, OgrSourceToJSON(value), { type: 'OgrSource' } as const);
         case 'RasterVectorJoin':
             return Object.assign({}, RasterVectorJoinToJSON(value), { type: 'RasterVectorJoin' } as const);
         case 'Reprojection':

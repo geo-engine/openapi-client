@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import type { Fraction } from './Fraction';
+import type { InterpolationResolutionOneOf } from './InterpolationResolutionOneOf';
 import {
-    instanceOfFraction,
-    FractionFromJSON,
-    FractionFromJSONTyped,
-    FractionToJSON,
-} from './Fraction';
-import type { Resolution } from './Resolution';
+    instanceOfInterpolationResolutionOneOf,
+    InterpolationResolutionOneOfFromJSON,
+    InterpolationResolutionOneOfFromJSONTyped,
+    InterpolationResolutionOneOfToJSON,
+} from './InterpolationResolutionOneOf';
+import type { InterpolationResolutionOneOf1 } from './InterpolationResolutionOneOf1';
 import {
-    instanceOfResolution,
-    ResolutionFromJSON,
-    ResolutionFromJSONTyped,
-    ResolutionToJSON,
-} from './Resolution';
+    instanceOfInterpolationResolutionOneOf1,
+    InterpolationResolutionOneOf1FromJSON,
+    InterpolationResolutionOneOf1FromJSONTyped,
+    InterpolationResolutionOneOf1ToJSON,
+} from './InterpolationResolutionOneOf1';
 
 /**
  * @type InterpolationResolution
  * 
  * @export
  */
-export type InterpolationResolution = Fraction | Resolution;
+export type InterpolationResolution = InterpolationResolutionOneOf | InterpolationResolutionOneOf1;
 
 export function InterpolationResolutionFromJSON(json: any): InterpolationResolution {
     return InterpolationResolutionFromJSONTyped(json, false);
@@ -45,11 +45,11 @@ export function InterpolationResolutionFromJSONTyped(json: any, ignoreDiscrimina
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfFraction(json)) {
-        return FractionFromJSONTyped(json, true);
+    if (instanceOfInterpolationResolutionOneOf(json)) {
+        return InterpolationResolutionOneOfFromJSONTyped(json, true);
     }
-    if (instanceOfResolution(json)) {
-        return ResolutionFromJSONTyped(json, true);
+    if (instanceOfInterpolationResolutionOneOf1(json)) {
+        return InterpolationResolutionOneOf1FromJSONTyped(json, true);
     }
     return {} as any;
 }
@@ -65,11 +65,11 @@ export function InterpolationResolutionToJSONTyped(value?: InterpolationResoluti
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfFraction(value)) {
-        return FractionToJSON(value as Fraction);
+    if (instanceOfInterpolationResolutionOneOf(value)) {
+        return InterpolationResolutionOneOfToJSON(value as InterpolationResolutionOneOf);
     }
-    if (instanceOfResolution(value)) {
-        return ResolutionToJSON(value as Resolution);
+    if (instanceOfInterpolationResolutionOneOf1(value)) {
+        return InterpolationResolutionOneOf1ToJSON(value as InterpolationResolutionOneOf1);
     }
     return {};
 }

@@ -8,7 +8,7 @@ The `Histogram` is a _plot operator_ that computes a histogram plot either over 
 Name | Type
 ------------ | -------------
 `params` | [HistogramParameters](HistogramParameters.md)
-`sources` | [SingleVectorOrRasterSource](SingleVectorOrRasterSource.md)
+`sources` | [SingleRasterOrVectorSource](SingleRasterOrVectorSource.md)
 `type` | string
 
 ## Example
